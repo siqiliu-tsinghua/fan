@@ -1,0 +1,261 @@
+
+\section{\trActionSpectrum{}\trBundle{}的连续\trSection}
+\label{sec:continuous-section}
+
+\hzsync{proposition}{9}%
+
+利用\trMinimax{}集 $\mathcal{F}$ 对每个 $H\in\mathcal{H}$ 都相同这一事实，我们先导出%
+函数
+\[
+\gamma:\mathcal{H}\longrightarrow\R,\qquad H\longmapsto\gamma(H)
+\]
+的若干性质，其中 $\gamma(H)=\sup_{F\in\mathcal{F}}\inf a_{H}(F)$。我们首先证明，%
+函数 $\gamma$ 是非负、连续且\trMonotone{}递减的：
+
+\begin{proposition}\label{prop:gamma-h-properties}
+\begin{align*}
+\text{(i)}\qquad& \gamma\geq0\ \text{且}\ \gamma(0)=0\\
+\text{(ii)}\qquad& \bigl\lvert\gamma(H)-\gamma(K)\bigr\rvert\ \leq\ \lVert H-K\rVert\\
+\text{(iii)}\qquad& H\leq K\ \Rightarrow\ \gamma(H)\geq\gamma(K).
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+对每个 $x\in E$，
+\begin{align*}
+a_{H}(x)\ &=\ a_{K}(x)+b_{K}(x)-b_{H}(x)\\
+&\leq\ a_{K}(x)+\int_{0}^{1}\sup_{\R^{2n}}(K-H)\ dt\\
+&\leq\ a_{K}(x)+\int_{0}^{1}\Bigl[\sup_{\R^{2n}}(K-H)-\inf_{\R^{2n}}(K-H)\Bigr]dt\\
+&=\ a_{K}(x)+\lVert H-K\rVert
+\end{align*}
+由此即得\trEstimate{} (ii)。由于对每个 $x\in E$，只要 $H\leq K$ 就有%
+$a_{H}(x)\geq a_{K}(x)$，$\gamma$ 的\trMonotonicity{} (iii) 随之而得。为了证明%
+$\gamma(0)=0$，我们注意到
+\[
+\gamma(0)=\sup_{F\in\mathcal{F}}\inf a(F)\ \geq\ \inf a\bigl(E^{+}\bigr)=0,
+\]
+又因对 $F\in\mathcal{F}$ 有 $F\cap\bigl(E^{-}\oplus E^{0}\bigr)\neq\varnothing$，
+\[
+\inf a(F)\ \leq\ \sup a\bigl(E^{-}\oplus E^{0}\bigr)=0,
+\]
+从而 $\gamma(0)=0$。最后，为了证明对每个 $H\in\mathcal{H}$ 都有 $\gamma(H)\geq0$，%
+我们对固定的 $x_{0}\in\R^{2n}\setminus\{0\}$ 与 $\tau\in\R$，如下定义函数族%
+$H_{\tau}\in\mathcal{H}$：
+\[
+H_{\tau}(t,x)=H\bigl(t,x-\tau x_{0}\bigr).
+\]
+定义\trSymplectic\trMapping{} $\vartheta$ 为 $\vartheta(x)=x+\tau x_{0}$，便有%
+$\varphi_{H_{\tau}}=\vartheta\varphi_{H}\vartheta^{-1}$。若以 $\sigma(\varphi)$ 记 5.2 节中%
+引入的 $\varphi\in\mathcal{D}$ 之\trActionSpectrum，则由\cref{prop:spectrum-conjugation}%
+可知 $\sigma\bigl(\varphi_{H_{\tau}}\bigr)=\sigma(\varphi_{H})$。按定义%
+$\gamma\bigl(H_{\tau}\bigr)\in\sigma\bigl(\varphi_{H_{\tau}}\bigr)$，从而%
+$\gamma\bigl(H_{\tau}\bigr)\in\sigma(\varphi_{H})$。由于 $\tau\mapsto\gamma\bigl(H_{\tau}\bigr)$%
+连续，而其像落在某个\trNowhereDense{}的集合之中（\cref{prop:spectrum-compact}），%
+它必为常数，于是
+\[
+\gamma(H)=\gamma\bigl(H_{\tau}\bigr)\qquad\text{对一切}\ \tau\in\R.
+\]
+因此只需对大的 $\tau$ 估计 $\gamma\bigl(H_{\tau}\bigr)$。注意到当 $\tau\to\infty$ 时%
+$\operatorname{supp}\bigl(H_{\tau}\bigr)$ 沿 $x$ 方向移向「无穷远」，故对大的 $\tau$ 可得%
+\trEstimate
+\[
+H_{\tau}(t,x)\leq\pi|x|^{2}
+\]
+对一切 $(t,x)\in[0,1]\times\R^{2n}$ 成立。于是，回忆起%
+$\lVert x\rVert_{L^{2}}^{2}=\sum_{j}|x_{j}|^{2}$ 且当 $x\in E^{+}$ 时%
+$a(x)=\pi\sum_{j>0}j\,|x_{j}|^{2}$\footnote{原书第二式印作「$a(x)=\pi\Sigma j\,|x_{j}|$」，漏 $|x_{j}|$ 上之平方；按第 3 章中泛函 $a$ 之 Fourier 展开定义（$x\in E^{+}$ 时 $a(x)=\pi\sum_{j>0}j\,|x_{j}|^{2}$）径改，否则下式之下确界为零无从推出。——译者注}，即得
+\[
+\gamma\bigl(H_{\tau}\bigr)\ \geq\ \inf_{E^{+}}\Bigl[a(x)-\pi\int_{0}^{1}|x|^{2}dt\Bigr]=0,
+\]
+由此便得所要证的 $\gamma(H)\geq0$。\cref{prop:gamma-h-properties}的证明至此完成。
+\end{proof}
+
+例如，若 $H\geq0$，则由\trMonotonicity{}得 $0\leq\gamma(H)\leq\gamma(0)=0$，从而%
+$\gamma(H)=0$。这就证明了\cref{prop:gamma-sign}的第一部分。
+
+\begin{proposition}\label{prop:gamma-sign}
+\begin{align*}
+\text{若}\quad H\ \geq\ 0\qquad&\text{则}\quad\gamma(H)=0.\\
+\text{若}\quad H\ \leq\ 0\ \text{且}\ H\neq0\qquad&\text{则}\quad\gamma(H)>0.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+设 $H\leq0$ 且 $H\neq0$。则我们可找到一个\textbf{\trBumpFunction}（bump function）%
+$\alpha\neq0$，$0\leq\alpha(t)\leq1$，以及一个不依赖时间的%
+$G\in C^{\infty}_{c}\bigl(\R^{2n}\bigr)$，$G\leq0$ 且 $G\neq0$，使得
+\[
+K(t,x)=\alpha(t)G(x)
+\]
+满足：对 $\epsilon>0$ 充分小，
+\[
+H(t,x)\leq\epsilon K(t,x).
+\]
+由\trMonotonicity，$\gamma(H)\geq\gamma(\epsilon K)$，而我们将证明%
+$\gamma(\epsilon K)>0$。通过\trTranslation，并仿照上一条\trhProposition{}之证明%
+进行论证，我们可设 $G(0)=\inf G<0$，于是
+\[
+\epsilon\alpha(t)G(x)\ \leq\ \epsilon\alpha(t)G(0)+\pi|x|^{2}
+\]
+对一切 $(t,x)$ 成立，只要 $\epsilon>0$ 充分小。从而
+\begin{align*}
+\gamma(\epsilon K)\ &\geq\ \inf_{x\in E^{+}}\Bigl[a(x)-\epsilon\int_{0}^{1}\alpha(t)G\bigl(x(t)\bigr)dt\Bigr]\\
+&\geq\ -\epsilon G(0)\int_{0}^{1}\alpha\ dt+\inf_{E^{+}}\Bigl[a(x)-\pi\int_{0}^{1}|x|^{2}dt\Bigr]\\
+&=\ -\epsilon G(0)\cdot\int_{0}^{1}\alpha\ dt>0.
+\end{align*}
+这就完成了该\trhProposition{}的证明。
+\end{proof}
+
+函数 $a_{H}$ 的这一特定的\trCritical{}水平 $\gamma(H)$，按其构造，属于与之相伴的%
+\trTimeOneMap{} $\varphi_{H}$ 之\trActionSpectrum。接下来我们将证明：它只依赖于%
+\trTimeOneMap{}本身，而不依赖于生成诸映射的\trHamiltonianFunction{} $H$ 的特定%
+选取。
+
+\begin{proposition}\label{prop:gamma-well-defined}
+设 $H,K\in\mathcal{H}$，则
+\[
+\varphi_{H}=\varphi_{K}\ \Rightarrow\ \gamma(H)=\gamma(K).
+\]
+\end{proposition}
+
+\begin{proof}
+该证明基于一个\trHomotopy{}论证，我们从一个预备性的观察开始。$\mathcal{A}$ 中的%
+两条弧 $\psi^{t}_{0}$ 与 $\psi^{t}_{1}$ 称为是\trHomotopic，若存在一个%
+\trSmooth\trMapping
+\[
+[0,1]\times[0,1]\longrightarrow\mathcal{D}\ :\qquad(s,t)\mapsto\psi^{t}_{s}
+\]
+把这两条弧在 $\mathcal{A}$ 中连接起来。此时我们便可找到一个具有\trCompactSupport{}的%
+\trSmooth{}函数 $H:[0,1]\times[0,1]\times\R^{2n}\to\R$，满足
+\[
+\psi^{t}_{s}(x)=\varphi^{t}_{H_{s}}(x),
+\]
+其中 $H_{s}(t,x)=H(s,t,x)$。今设 $\psi^{1}_{s}=\psi$ 对一切 $0\leq s\leq1$ 成立；则
+\[
+\gamma\bigl(H_{s}\bigr)\in\sigma\bigl(\varphi_{H_{s}}\bigr)=\sigma(\psi).
+\]
+由于 $\sigma(\psi)$ 是\trNowhereDense{}的（由\cref{prop:spectrum-compact}），连续函数%
+$s\mapsto\gamma\bigl(H_{s}\bigr)$ 必为常数，从而 $\gamma(H_{0})=\gamma(H_{1})$。证明的想法%
+现在如下：设
+\[
+\varphi_{H}=\varphi_{K}=\psi,
+\]
+我们将经由一个\trHomotopy{}把 $\varphi^{t}_{H}$ 与 $\varphi^{t}_{K}$ 变成弧%
+$\varphi^{t}_{H'}$ 与 $\varphi^{t}_{K'}$，使得
+\[
+\bigl\lvert\gamma(H)-\gamma(K)\bigr\rvert=\bigl\lvert\gamma\bigl(H'\bigr)-\gamma\bigl(K'\bigr)\bigr\rvert\leq\bigl\lVert H'-K'\bigr\rVert
+\]
+很小。为了实施这一论证，我们先通过对时间作\trReparametrization，经由一个%
+\trHomotopy{}把弧 $\varphi^{t}_{H}$ 变成一条满足 $\varphi^{t}=\varphi^{1}=\psi$（对%
+$\frac{1}{2}\leq t\leq1$）的弧 $\varphi^{t}$，并对弧 $\varphi^{t}_{K}$ 作同样的处理。%
+于是我们可以假定
+\[
+K(t,x)=0=H(t,x)\qquad\text{若}\quad\frac{1}{2}\leq t\leq1.
+\]
+今对 $0<s\leq1$ 定义
+\begin{align*}
+H_{s}(t,x)\ &=\ s^{2}H\Bigl(t,\frac{1}{s}x\Bigr)\\
+K_{s}(t,x)\ &=\ s^{2}K\Bigl(t,\frac{1}{s}x\Bigr).
+\end{align*}
+则
+\begin{align*}
+\varphi^{t}_{H_{s}}(x)\ &=\ s\varphi^{t}_{H}\Bigl(\frac{1}{s}x\Bigr)\\
+\varphi^{t}_{K_{s}}(x)\ &=\ s\varphi^{t}_{K}\Bigl(\frac{1}{s}x\Bigr).
+\end{align*}
+若 $\frac{1}{2}\leq t\leq1$，则有
+\[
+\varphi^{t}_{H_{s}}(x)=s\varphi^{t}_{H}\Bigl(\frac{1}{s}x\Bigr)=s\psi\Bigl(\frac{1}{s}x\Bigr)=\varphi^{t}_{K_{s}}(x).
+\]
+取一个\trSmooth{}的 $\beta:\bigl[\frac{1}{2},1\bigr]\to[0,1]$，它在 $\frac{1}{2}$ 附近等于%
+$0$、在 $1$ 附近等于 $1$，并定义弧
+\[
+\varphi^{t}_{s}(x)=
+\begin{cases}
+\varphi^{t}_{H_{s}}(x) & 0\leq t\leq\frac{1}{2}\\[1mm]
+\bigl(s+(1-s)\beta(t)\bigr)\psi\bigl(\bigl[s+(1-s)\beta(t)\bigr]^{-1}x\bigr) & \frac{1}{2}\leq t\leq1
+\end{cases}
+\]
+并以完全同样的方式把 $H_{s}$ 换成 $K_{s}$ 而定义 $\psi^{t}_{s}(x)$。则
+\[
+\varphi^{1}_{s}=\psi=\psi^{1}_{s}\qquad\text{对一切}\ 0<s\leq1.
+\]
+若 $\hat{H}_{s}$ 生成 $\varphi^{t}_{s}$ 而 $\hat{K}_{s}$ 生成 $\psi^{t}_{s}$，我们便得出%
+$\gamma\bigl(\hat{H}_{s}\bigr)=\gamma(H)$ 与 $\gamma\bigl(\hat{K}_{s}\bigr)=\gamma(K)$。注意到
+\begin{align*}
+\hat{H}_{s}(t,x)\ &=\ \hat{K}_{s}(t,x),\qquad\frac{1}{2}\leq t\leq1\\
+\hat{H}_{s}(t,x)\ &=\ H_{s}(t,x),\qquad0\leq t\leq\frac{1}{2}\\
+\hat{K}_{s}(t,x)\ &=\ K_{s}(t,x),\qquad0\leq t\leq\frac{1}{2},
+\end{align*}
+且当 $0\leq t\leq\frac{1}{2}$ 与 $x\in\R^{2n}$ 时%
+$\lvert H_{s}(t,x)\rvert\footnote{原书首项变元印作 $H_{s}(t,s)$，疑为 $H_{s}(t,x)$ 之误，此处径改。——译者注}+\lvert K_{s}(t,x)\rvert\leq s^{2}\bigl(\lVert H\rVert+\lVert K\rVert\bigr)$。%
+于是
+\[
+\bigl\lvert\gamma(H)-\gamma(K)\bigr\rvert=\bigl\lvert\gamma\bigl(\hat{H}_{s}\bigr)-\gamma\bigl(\hat{K}_{s}\bigr)\bigr\rvert\leq\bigl\lVert\hat{H}_{s}-\hat{K}_{s}\bigr\rVert\leq s^{2}\bigl(\lVert H\rVert+\lVert K\rVert\bigr)
+\]
+对一切 $0<s\leq1$ 成立，从而如所断言，$\gamma(K)=\gamma(H)$。
+\end{proof}
+
+鉴于这一结果，我们可以对每个 $\varphi\in\mathcal{D}$ 配上实数
+\[
+\gamma(\varphi)=\gamma(H),\qquad\text{若}\quad\varphi=\varphi_{H}.
+\]
+\trInvariant{}量 $\gamma$ 的诸定性性质总结于下面的两条\trhProposition{}之中。
+
+\begin{proposition}\label{prop:gamma-invariant-properties}
+函数 $\gamma:\mathcal{D}\to\R$ 满足
+\begin{align*}
+\text{(i)}\qquad& \gamma\geq0\\
+\text{(ii)}\qquad& \bigl\lvert\gamma(\varphi)-\gamma(\psi)\bigr\rvert\leq d(\varphi,\psi)\\
+\text{(iii)}\qquad& \psi\geq\varphi\ \Rightarrow\ \gamma(\psi)\leq\gamma(\varphi)\\
+\text{(iv)}\qquad& \gamma\bigl(\vartheta\varphi\vartheta^{-1}\bigr)=\gamma(\varphi)\\
+\text{(v)}\qquad& \gamma(\varphi)\in\sigma(\varphi).
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+论断 (i) 已在\cref{prop:gamma-h-properties}的陈述 (ii)\footnote{原书印作「Proposition 9 (ii)」，其中 (ii) 疑属下一句 Lipschitz 估计的编号，此处照录原书面貌。——译者注} 中得到证明。若%
+$\varphi=\varphi_{H}$ 且 $\psi=\varphi_{K}$，则依据\cref{prop:gamma-h-properties}有%
+$\bigl\lvert\gamma(\varphi)-\gamma(\psi)\bigr\rvert\leq\lVert H-K\rVert$；再结合%
+\eqref{eq:metric-inf} 所重新表述的\trDistance{} $d(\varphi,\psi)$ 之定义，即证得%
+论断 (ii)。现在证明 (iii)。按定义，可找到 $H\leq0$ 使得%
+$\varphi_{H}=\psi^{-1}\circ\varphi$。取 $L$ 使得 $\psi=\psi_{L}$，于是%
+$\varphi=\varphi_{L}\circ\varphi_{H}=\varphi_{L\#H}$。由于 $H\leq0$，我们有%
+$L\#H-L\leq0$。现在我们要用到下述观察：若 $\psi=\varphi_{A}$ 与 $\varphi=\varphi_{B}$，%
+其中两个\trHamiltonianFunction{} $A,B\in\mathcal{H}$ 满足 $A\geq B$，则相伴的诸%
+\trFunctional{}逐点满足 $a_{A}\leq a_{B}$；于是，由 $\gamma$ 的\trMinimax{}刻画得出%
+$\gamma(\psi)=\gamma(A)\leq\gamma(B)=\gamma(\varphi)$，从而 (iii) 中的%
+\trMonotonicity{}论断随之而得。论断 (iv) 的证明与\cref{prop:gamma-well-defined}之%
+证明开头处的\trHomotopy{}论证相同。最后一条论断则是 $\gamma$ 之定义的推论，%
+依据是\cref{lem:gamma-critical-value}
+与\cref{prop:gamma-well-defined}。这就完成了\cref{prop:gamma-invariant-properties}%
+的证明。
+\end{proof}
+
+依据\cref{prop:gamma-sign}，我们还有
+
+\begin{proposition}\label{prop:gamma-on-d}
+\begin{align*}
+\gamma(\id)\ &=\ 0\\
+\gamma(\varphi)\ &=\ 0,\qquad\text{对一切}\ \varphi\in\mathcal{D}^{+}\\
+\gamma(\varphi)\ &>\ 0,\qquad\text{对一切}\ \varphi\in\mathcal{D}^{-}\setminus\{\id\}.
+\end{align*}
+\end{proposition}
+
+\begin{corollary}\label{cor:positive-negative-intersection}
+\[
+\mathcal{D}^{+}\cap\mathcal{D}^{-}=\{\id\}
+\]
+\end{corollary}
+
+回顾：5.1 节中在 $\mathcal{D}$ 上引入的\trPartialOrder{}结构正是基于这一事实。%
+还要注意，实数 $\gamma(\varphi)$ 属于与映射 $\varphi$ 之\trFixedPoint{}集相伴的%
+\trActionSpectrum{} $\sigma(\varphi)=\{\,A(x,\varphi)\ \bigm|\ \varphi(x)=x\,\}$。若%
+$x_{0}$ 是 $\varphi=\varphi_{H}$ 的一个平凡\trFixedPoint，即它满足%
+$(t,x_{0})\notin\operatorname{supp}(H)$（$0\leq t\leq1$），则 $A(x_{0},\varphi)=0$。%
+由此可见，论断 $\gamma(\varphi)>0$ 说的正是 $\varphi$ 的非平凡\trFixedPoint。
+
+总结起来，\cref{prop:gamma-invariant-properties}与\cref{prop:gamma-on-d}表明：%
+$\gamma:\mathcal{D}\to\mathcal{A}$ 是\trActionSpectrum{}\trBundle{} $\mathcal{A}\to\mathcal{D}$ 的%
+一个非平凡（$\gamma\not\equiv0$）且连续的\trSection。此外，$\gamma$ 关于群%
+$\mathcal{D}$ 上的\trOrderStructure{}是\trMonotone{}的，并且在\trSymplectic\trConjugate{}之下%
+不变。

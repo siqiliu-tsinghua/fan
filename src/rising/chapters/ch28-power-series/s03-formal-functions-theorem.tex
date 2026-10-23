@@ -1,0 +1,88 @@
+
+\section{形式函数定理}
+
+设 $\pi\colon X\to Y$ 是\trLocally\trNoether{}\trScheme{}之间的一个\trProper\trMorphism\footnote{原书此处作「is proper morphism」，当为「is a proper morphism」之误（脱漏冠词 a），径改。——译者注}，而 $\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf，从而 $\mathrm{R}^1\pi_*\mathscr{F}$ 是一个\trCoherentSheaf（\mbox{\trGrothendieck{}凝聚定理~18.9.1}）。取定一点 $q\in Y$。我们已经有这样一种感觉：$\mathrm{R}^1\pi_*\mathscr{F}$ 在 $q$ 处的\trFiber{}与 $\mathscr{F}$「在纤维 $X_q$ 上」的\trCohomology{}之间的关系并不完美，而第 25 章的大量篇幅正是致力于把这一点说精确。
+
+形式函数定理以另一种方式处理这个问题：它并不去比较 $\mathrm{R}^1\pi_*\mathscr{F}$ 的\trFiber{}与 $\mathscr{F}$ 限制到纤维上的\trCohomology，而是在关于纤维之「无穷小\trThickening{}」的信息之间给出一个\trIsomorphism。非正式地说：
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line width=0.5pt]
+\node (A)  at (0,0)       {$\mathrm{R}^i\pi_*\mathscr{F}$};
+\node (B0) at (7.4,0)     {$\mathrm{H}^i(X_q,\mathscr{F}|_{X_q})$};
+\node (B1) at (7.4,-1.1)  {$\mathrm{H}^i(\text{$X_q$ 的 $0$ 阶邻域},\mathscr{F})$};
+\node (B2) at (7.4,-2.2)  {$\mathrm{H}^i(\text{$X_q$ 的 $1$ 阶邻域},\mathscr{F})$};
+\node (B3) at (7.4,-3.3)  {$\mathrm{H}^i(\text{$X_q$ 的 $2$ 阶邻域},\mathscr{F})$};
+\node (V)  at (7.4,-4.2)  {$\vdots$};
+\node (L)  at (7.4,-5.2)  {极限。};
+\node (C)  at (0,-5.2)    {$\mathrm{R}^i\pi_*\mathscr{F}$ 在 $q$ 处的\trCompletion};
+\draw[->] (A) -- (B0);
+\draw[->] (A) -- (B1);
+\draw[->] (A) -- (B2);
+\draw[->] (A) -- (B3);
+\draw[->] (A) -- (L);
+\draw[->] (A) -- (C);
+\draw[->] (C) -- (L) node[above,midway] {\scriptsize 定理~28.3.2：同构};
+\draw[->] (L) -- (V);
+\draw[->] (V) -- (B3);
+\draw[->] (B3) -- (B2);
+\draw[->] (B2) -- (B1);
+\draw[double,double distance=1.2pt] (B1) -- (B0);
+\end{tikzpicture}
+\end{center}
+
+\textbf{28.3.1.}\quad 现在我们把这一点说得更加精确。若 $Z$ 是 $W$ 中由\trIdealSheaf{} $\mathscr{I}$ 截出的一个\trClosedSubscheme，我们就称由 $\mathscr{I}^{n+1}$ 截出的那个\trClosedSubscheme{}为 $Z$（在 $W$ 中）的\textbf{$n$ 阶形式}（或\textbf{无穷小}）\textbf{邻域}（或\textbf{\trThickening{}}）（nth order formal (or infinitesimal) neighborhood (or thickening)）。不提「阶」而单说「形式邻域」时，指的是同时蕴于所有这些邻域之中的信息，其形态往往是我们马上就要描述的那种极限。（这也会把我们引向\trFormalScheme{}的概念——尽管很重要，我们却终究用不到。）
+
+现在转向我们感兴趣的情境。我们不看 $\mathrm{R}^i\pi_*\mathscr{F}$ 在 $q$ 处的\trFiber，而看它的\trCompletion：取其在 $q$ 处的\trStalk，然后在\trMaximalIdeal{} $\mathfrak{m}_q$ 处作\trCompletion。我们不看 $\mathscr{F}$ 沿纤维的\trCohomology，而看 $\mathscr{F}$ 限制到纤维的 $n$ 阶形式邻域 $X_n$ 上时的\trCohomology，并取极限。形式函数定理说，这两者被\trCanonically{}等同。
+
+在陈述形式函数定理之前，我们需要把这些极限究竟是什么、又如何定义说清楚。为了专注于本质，我们在 $q$ 是 $Y$ 的一个\emph{\trClosedPoint}的特殊情形下做这件事，而把（温和的）到一般情形的推广留给你（\mbox{练习~28.3.A}）。
+
+我们先来处理 $\mathrm{R}^i\pi_*\mathscr{F}$。注意到下面这点很有帮助：由\mbox{练习~28.1.B}，要计算限制到第 $n$ 个形式邻域上的结果，既可以通过拉回到 $\Spec\OO_{Y,q}$（即「$Y$ 在 $q$ 处的\trGerm」，也就是与 $\OO_{Y,q}$ 作张量）来实现，也可以在 $q\in Y$ 的任何一个仿射开邻域中实现。为方便起见，我们选取 $q$ 的一个仿射开邻域 $\Spec B\subset Y$。（同样由\mbox{练习~28.1.B}，选取哪个仿射开子集并不要紧。）为方便起见，令 $X_B:=\pi^{-1}(\Spec B)$。设 $\mathfrak{m}\subset B$ 是对应于 $q$ 的\trMaximalIdeal。于是 $\widehat{(\mathrm{R}^i\pi_*\mathscr{F})_q}$ \trCanonically{}就是\trCoh{} $B$-模 $\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})$ 在 $\mathfrak{m}$ 处的\trCompletion：
+\[
+\widehat{(\mathrm{R}^i\pi_*\mathscr{F})_q}
+=\lim\ \mathrm{H}^i(X_B,\mathscr{F}|_{X_B})/\mathfrak{m}^n\mathrm{H}^i(X_B,\mathscr{F}|_{X_B}).
+\]
+
+接下来看 $\mathscr{F}$ 在纤维的\trThickening{}上的\trCohomology。我们有闭嵌入 $X_n\hookrightarrow X_{n+1}$，从而有\trCohomology{}群之间的映射
+\[
+\mathrm{H}^i(X_{n+1},\mathscr{F}|_{X_{n+1}})
+\longrightarrow
+\mathrm{H}^i(X_n,\mathscr{F}|_{X_n}).
+\]
+我们有基变换映射
+\begin{equation*}
+\tag{28.3.1.1}\label{eq:base-change-map-finite-level}
+\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})/\mathfrak{m}^n\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})
+\longrightarrow
+\mathrm{H}^i(X_n,\mathscr{F}|_{X_n})
+\end{equation*}
+（见 \eqref{eq:natural-pushpull-morphism}），使得方块
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4em]
+\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})/\mathfrak{m}^{n+1}\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})
+\ar[r]\ar[d] &
+\mathrm{H}^i(X_{n+1},\mathscr{F}|_{X_{n+1}})
+\ar[d] \\
+\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})/\mathfrak{m}^n\mathrm{H}^i(X_B,\mathscr{F}|_{X_B})
+\ar[r] &
+\mathrm{H}^i(X_n,\mathscr{F}|_{X_n})
+\end{tikzcd}
+\]
+交换。（你明白为什么吗？基本上，这同样是因为它们是基变换映射。）于是我们有一个诱导的极限之间的映射：
+\begin{equation*}
+\tag{28.3.1.2}\label{eq:limit-map}
+\widehat{(\mathrm{R}^i\pi_*\mathscr{F})_q}
+\longrightarrow
+\lim_{n\to\infty}\mathrm{H}^i(X_n,\mathscr{F}|_{X_n}).
+\end{equation*}
+
+\textbf{28.3.A.（练习）}\quad 把前面的讨论推广到 $q$ 不是 $Y$ 的\trClosedPoint{}的情形。
+
+形式函数定理断言，这是一个\trIsomorphism。
+
+\textbf{28.3.2. 形式函数定理。}\ ——\ \emph{设 $\pi\colon X\to Y$ 是\trLocally\trNoether{}\trScheme{}之间的一个\trProper\trMorphism，$\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf，而 $q\in Y$。则对一切 $i\ge 0$，\eqref{eq:limit-map} 都是\trIsomorphism。}
+
+\trhWarning{}：形式函数定理并\emph{不}蕴含任何关于「有限层」上的映射的断言，即关于「有限 $n$」的 \eqref{eq:base-change-map-finite-level} 的断言。
+
+\mbox{定理~28.3.2} 的证明颇为微妙，被推迟到带双星（\extrahard）的 \S28.7。为了让你保持动力、跃跃欲试，我们先给出如下四个重要应用：\mbox{\trZariski{}连通性引理~28.4.1}、\mbox{\trStein{}因子分解定理~28.4.3}、\mbox{\trZariskiMainTheorem~28.5.1}，以及关于收缩曲面上 $(-1)$-曲线的\mbox{\trCastelnuovo{}判别准则~28.6.1}。
+
+

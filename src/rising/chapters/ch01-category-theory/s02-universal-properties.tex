@@ -1,0 +1,295 @@
+\section{泛性质在相差唯一同构的意义下确定对象}
+
+给定一个我们构想出的范畴，我们常常会有从旧对象制造新对象的办法。在良好的情形下，定义通常会用\trUniversalProperty{}的观念来作。非正式地说：我们希望存在一个具有某性质的对象。我们先证明：它若存在，便在本质意义上唯一——更精确地说，在相差唯一同构的意义下唯一；然后我们着手构造这样一个对象的例子，以证明存在性。
+
+显式构造有时比泛性质更易于操作；但稍加练习，泛性质便能帮你把事情证得又快又漂亮。的确，初学此学科的人往往觉得显式构造更有吸引力，在证明中也更常用它们；而随着经验增长，他们会发现泛性质的论证更为优雅而富有洞见。
+
+\textbf{1.2.1. 积由一个泛性质定义。}\quad 我们已在 \S1.0.1 中见过泛性质论证的一个重要例子：积。你应当回头验证：我们在那里的讨论给出了任何范畴中\trProduct{}的观念，并证明了积\emph{若存在}，便在相差唯一同构的意义下唯一。
+
+\textbf{1.2.2. 初始对象、终对象与零对象。}\quad 下面是几个简单而有用的概念，可供你练习泛性质论证。范畴 $\scr{C}$ 的一个对象称为\textbf{\trInitialObject}（initial object），若它到每个对象恰有一个映射；称为\textbf{\trFinalObject}（final object），若从每个对象到它恰有一个映射；若它既是初始对象又是终对象，则称为\textbf{\trZeroObject}（zero object）。
+
+\begin{exercise}\label{ex:initial-final-objects-unique}
+证明：任意两个初始对象在相差唯一同构的意义下同构。证明：任意两个终对象亦然。
+\end{exercise}
+
+换言之，初始对象\emph{若}存在，便在相差唯一同构的意义下唯一；终对象亦然。这（部分地）为「\emph{那个}初始对象」的说法（而非「\emph{一个}初始对象」）提供了依据；「\emph{那个}终对象」「\emph{那个}零对象」同理。（约定：凡在相差唯一同构的意义下有定义的东西，我们常说「那个」，而不说「一个」。）
+
+\begin{exercise}\label{ex:initial-final-common-categories}
+$\catSets$、$\catRings$ 与 $\catTop$ 中的初始对象与终对象各是什么（若存在）？\S1.1.9 的两个例子里又如何？
+\end{exercise}
+
+\textbf{1.2.3. 环与模的局部化。}\quad 用泛性质作定义的另一个重要例子，是环的\trLocalization{}观念。我们先回顾一个构造性定义，再用泛性质重新解释这个观念。环 $\Lambda$ 的一个\textbf{\trMultiplicativeSubset}（multiplicative subset）$S$ 是一个对乘法封闭且含有 $1$ 的子集。我们定义一个环 $S^{-1}\Lambda$。其元素形如 $a/s$（$a\in\Lambda$，$s\in S$），并且 $a_1/s_1=a_2/s_2$ 当（且仅当）对\emph{某个} $s\in S$ 有 $s(s_2a_1-s_1a_2)=0$。我们定义 $(a_1/s_1)+(a_2/s_2)=(s_2a_1+s_1a_2)/(s_1s_2)$，$(a_1/s_1)\times(a_2/s_2)=(a_1a_2)/(s_1s_2)$。（如果你愿意，可以验证：分式的这个相等关系确实是一个\trEquivalenceRelation，分式上的两个\trBinaryOperation{}在\trEquivalenceClass{}上是\trWellDefined{}的，并且它们使 $S^{-1}\Lambda$ 成为一个环。）
+
+我们有一个典范的\trRingMorphism
+\begin{equation*}\tag{1.2.3.1}\label{eq:canonical-map-to-localization}
+\Lambda\longrightarrow S^{-1}\Lambda
+\end{equation*}
+由 $a\mapsto a/1$ 给出。注意：若 $0\in S$，则 $S^{-1}\Lambda$ 是\trZeroRing。
+
+乘性子集有两种特别重要的类型。其一是 $\{1,f,f^2,\dots\}$，其中 $f\in\Lambda$。这个局部化记作 $\Lambda_f$。（你能描述一个同构 $\Lambda_f\xleftarrow{\ \sim\ }\Lambda[t]/(tf-1)$ 吗？）其二是 $\Lambda\smallsetminus\mathfrak{p}$，其中 $\mathfrak{p}$ 是\trPrimeIdeal。这个局部化 $S^{-1}\Lambda$ 记作 $\Lambda_{\mathfrak{p}}$。（记号警示：若 $\mathfrak{p}$ 是\trPrimeIdeal，则 $\Lambda_{\mathfrak{p}}$ 意味着允许除以不属于 $\mathfrak{p}$ 的元素；而若 $f\in\Lambda$，则 $\Lambda_f$ 意味着允许除以 $f$。这两件事容易混淆。例如，若 $(f)$ 是\trPrimeIdeal，则 $\Lambda_f\neq\Lambda_{(f)}$。）
+
+警示：有时局部化最初是在特殊情形下引入的：$\Lambda$ 是\trIntegralDomain{}且 $0\notin S$。此时 $\Lambda\hookrightarrow S^{-1}\Lambda$；但一般而言这并不总是成立，下面的练习即为明证。（不过我们将看到，非单射的局部化未必是病态，有时还能从几何上理解它们；见练习~3.2.I。）
+
+\begin{exercise}\label{ex:when-localization-is-injective}
+证明：$\Lambda\to S^{-1}\Lambda$ 是\trInjectiveMap，当且仅当 $S$ 不含\trZerodivisor。（环 $\Lambda$ 的\textbf{\trZerodivisor}（zerodivisor）是指这样的元素 $a$：存在非零元素 $b$ 使 $ab=0$。$\Lambda$ 的其余元素称为\textbf{\trNonZerodivisor}（non-zerodivisor）。例如，可逆元素绝不是零因子。违反直觉的是：除\trZeroRing{}外的每个环中，$0$ 都是零因子。更一般地，若 $M$ 是 $\Lambda$-\trModule，则 $a\in\Lambda$ 称为\textbf{对 $M$ 的\trZerodivisor}（zerodivisor for $M$），若存在非零的 $m\in M$ 使 $am=0$；$\Lambda$ 的其余元素称为\textbf{对 $M$ 的\trNonZerodivisor}（non-zerodivisor for $M$）。等价地——而且这一点非常有用——$a\in\Lambda$ 是 $M$ 的非零因子，当且仅当 $\times a\colon M\to M$ 是\trInjection；用 \S1.5 的语言说，即
+\[
+0\longrightarrow M\mathrel{\xrightarrow{\ \times a\ }}M
+\]
+是\trExactSequence。）
+\end{exercise}
+
+若 $\Lambda$ 是\trIntegralDomain{}且 $S=\Lambda\smallsetminus\{0\}$，则 $S^{-1}\Lambda$ 称为 $\Lambda$ 的\textbf{\trFractionField}（fraction field），记作 $\mathrm{K}(\Lambda)$。前一练习表明：$\Lambda$ 是其分式域 $\mathrm{K}(\Lambda)$ 的一个\trSubring。现在我们回到 $\Lambda$ 是一般（\trCommutative）环的情形。
+
+\begin{exercise}\label{ex:rings-localization-universal-property}
+验证 $\Lambda\to S^{-1}\Lambda$ 满足如下\trUniversalProperty：在「$S$ 的每个元素都被送到可逆元素」的诸 $\Lambda$-\trAlgebra{} $B$ 之中，$S^{-1}\Lambda$ 是初始的。（回忆：「一个 $\Lambda$-代数 $B$」与「一个环映射 $\Lambda\to B$」是同一回事。）翻译一：任何映射 $\Lambda\to B$（其中 $S$ 的每个元素都被送到可逆元素）都唯一地穿过 $\Lambda\to S^{-1}\Lambda$ 分解。翻译二：从 $S^{-1}\Lambda$ 出发的环映射，与从 $\Lambda$ 出发、把 $S$ 的每个元素都送到可逆元素的环映射，是同一回事。此外，$S^{-1}\Lambda$-模与如下 $\Lambda$-模是同一回事：对所有 $s\in S$，$\times s\colon M\to M$ 都是 $\Lambda$-模同构。
+\end{exercise}
+
+事实上，更干净的做法是\emph{用泛性质来定义} $\Lambda\to S^{-1}\Lambda$，证明其存在性，然后便用泛性质来检验 $S^{-1}\Lambda$ 所具有的种种性质。让我们通过\emph{用泛性质定义}模的局部化来练练手。设 $M$ 是一个 $\Lambda$-模。我们把 $\Lambda$-模映射 $\phi\colon M\to S^{-1}M$ 定义为：在满足「$S$ 的元素在 $N$ 中可逆（对所有 $s\in S$，$\times s\colon N\to N$ 是同构）」的诸 $\Lambda$-模映射 $M\to N$ 之中，它是初始的。更精确地说：任何这样的映射 $\alpha\colon M\to N$ 都唯一地穿过 $\phi$ 分解：
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=3em]
+M \ar[r,"\phi"] \ar[dr,"\alpha"'] & S^{-1}M \ar[d,dashed,"\exists!"'] \\
+ & N
+\end{tikzcd}
+\]
+（翻译：在从 $M$ 出发、目标其实是 $S^{-1}\Lambda$-模的诸 $\Lambda$-模映射之中，$M\to S^{-1}M$ 是泛的（初始的）。你能把这个范畴的对象与态射明确定义出来，从而使这句话严格吗？）
+
+注意：（i）这（在相差唯一同构的意义下）确定了 $\phi\colon M\to S^{-1}M$（你应当把这话的含义想清楚）；（ii）我们同时定义的不只是 $S^{-1}M$，还有映射 $\phi$ 本身；（iii）本质上按定义，$S^{-1}M$ 上的 $\Lambda$-模结构扩充为 $S^{-1}\Lambda$-模结构。
+
+\begin{exercise}\label{ex:module-localization-explicit-construction}
+通过构造一个满足该\trUniversalProperty{}的东西，证明 $\phi\colon M\to S^{-1}M$ 存在。提示：把 $S^{-1}M$ 的元素定义为形如 $m/s$（$m\in M$，$s\in S$）的符号，其中 $m_1/s_1=m_2/s_2$ 当且仅当对某个 $s\in S$ 有 $s(s_2m_1-s_1m_2)=0$；加法结构由 $(m_1/s_1)+(m_2/s_2)=(s_2m_1+s_1m_2)/(s_1s_2)$ 给出，$S^{-1}\Lambda$-模结构（从而 $\Lambda$-模结构）由 $(a_1/s_1)\cdot(m_2/s_2)=(a_1m_2)/(s_1s_2)$ 给出。
+\end{exercise}
+
+\begin{exercise}\label{ex:localization-direct-sums-products}
+\begin{enumerate}[label=(\alph*)]
+\item 证明：局部化与有限积交换，等价地，与有限\trDirectSum{}交换。换言之，若 $M_1,\dots,M_n$ 是 $\Lambda$-模，请描述一个同构（既作为 $\Lambda$-模，也作为 $S^{-1}\Lambda$-模）$S^{-1}(M_1\times\cdots\times M_n)\to S^{-1}M_1\times\cdots\times S^{-1}M_n$。
+\item 证明：局部化与\emph{任意}\trDirectSum{}交换。
+\item 证明「局部化未必与无穷积交换」：由局部化的\trUniversalProperty{}诱导的显然映射
+\[
+S^{-1}\prod_i M_i\longrightarrow\prod_i S^{-1}M_i
+\]
+并不总是同构。（提示：$(1,1/2,1/3,1/4,\dots)\in\mathbb{Q}\times\mathbb{Q}\times\cdots$。）
+\end{enumerate}
+\end{exercise}
+
+\vkthmsync{4}
+\begin{remark}\label{thm:hom-does-not-localize}
+局部化并不总与 $\Hom$ 交换；见例~15.10。但\cref{ex:finitely-presented-hom-localization}将表明：在良好的情形（若 $\Hom$ 的第一个参数是\emph{\trFinitelyPresented}的），局部化\emph{确实}与 $\Hom$ 交换。
+\end{remark}
+
+\textbf{1.2.5. \trTensorProduct。}\quad 用泛性质作构造的另一个重要例子，是 $\Lambda$-模的\textbf{\trTensorProduct}（tensor product）观念：
+\[
+\begin{gathered}
+\otimes_\Lambda\colon\quad \obj(\catMod{\Lambda})\times\obj(\catMod{\Lambda})\longrightarrow\obj(\catMod{\Lambda})\\
+(M,\,N)\longmapsto M\otimes_\Lambda N
+\end{gathered}
+\]
+当上下文清楚时，下标 $\Lambda$ 常被省略。张量积常用如下方式定义。设你有两个 $\Lambda$-模 $M$ 与 $N$，则张量积 $M\otimes_\Lambda N$ 的元素是符号 $m\otimes n$（$m\in M$，$n\in N$）的有限 $\Lambda$-线性组合，服从关系：$(m_1+m_2)\otimes n=m_1\otimes n+m_2\otimes n$，$m\otimes(n_1+n_2)=m\otimes n_1+m\otimes n_2$，$a(m\otimes n)=(am)\otimes n=m\otimes(an)$（其中 $a\in\Lambda$，$m_1,m_2\in M$，$n_1,n_2\in N$）。更形式化地说：$M\otimes_\Lambda N$ 是由 $M\times N$ 生成的\trFreeModule，对由 $(m_1+m_2,n)-(m_1,n)-(m_2,n)$、$(m,n_1+n_2)-(m,n_1)-(m,n_2)$、$a(m,n)-(am,n)$ 与 $a(m,n)-(m,an)$（$a\in\Lambda$，$m,m_1,m_2\in M$，$n_1,n_2\in N$）生成的\trSubmodule{}取\trQuotient。$(m,n)$ 在这个商中的像就是 $m\otimes n$。若 $\Lambda$ 是\trField，我们便回到向量空间的张量积。
+
+\begin{exercise}[若你此前没见过张量积]\label{ex:introductory-tensor-product-computation}
+证明 $\mathbb{Z}/(10)\otimes_{\mathbb{Z}}\mathbb{Z}/(12)\cong\mathbb{Z}/(2)$。（本练习意在给你一些张量积的动手练习。）
+\end{exercise}
+
+\begin{exercise}[重要练习：$(\cdot)\otimes_\Lambda N$ 的右正合性]\label{ex:tensor-right-exactness}
+证明 $(\cdot)\otimes_\Lambda N$ 给出一个协变函子 $\catMod{\Lambda}\to\catMod{\Lambda}$。证明 $(\cdot)\otimes_\Lambda N$ 是\textbf{\trRightExact}（right-exact）函子，即：若
+\[
+M'\longrightarrow M\longrightarrow M''\longrightarrow 0
+\]
+是 $\Lambda$-模的\trExactSequence{}（其含义是：$f\colon M\to M''$ 是满的，且 $M'$ 满射到 $f$ 的\trKernel{}上；见 \S1.5），则诱导序列
+\[
+M'\otimes_\Lambda N\longrightarrow M\otimes_\Lambda N\longrightarrow M''\otimes_\Lambda N\longrightarrow 0
+\]
+也正合。本练习在\cref{ex:localization-tensor-hom-exactness}中会再次出现，但现在就做，你会收获良多。（右正合性的定义会在 \S1.5.6 中再次向你提醒。）
+\end{exercise}
+
+相比之下，你可以很快验证：张量积不是\trLeftExact{}的。把 $\mathbb{Z}$-模的正合列
+\[
+0\longrightarrow\mathbb{Z}\mathrel{\xrightarrow{\ \times 2\ }}\mathbb{Z}\longrightarrow\mathbb{Z}/(2)\longrightarrow 0
+\]
+与 $\mathbb{Z}/(2)$ 作张量。
+
+$\otimes$ 的构造性定义是一个古怪的定义，其实是「错误」的定义。为引出更好的定义，注意：存在一个自然的 $\Lambda$-\trBilinear{}映射 $M\times N\to M\otimes_\Lambda N$。（若 $M,N,P\in\catMod{\Lambda}$，映射 $f\colon M\times N\to P$ 称为\textbf{$\Lambda$-\trBilinear}（$\Lambda$-bilinear）的，若 $f(m_1+m_2,n)=f(m_1,n)+f(m_2,n)$，$f(m,n_1+n_2)=f(m,n_1)+f(m,n_2)$，且 $f(am,n)=f(m,an)=af(m,n)$。）\emph{任何} $\Lambda$-双线性映射 $M\times N\to P$ 都唯一地穿过张量积：$M\times N\to M\otimes_\Lambda N\to P$。（把这件事想通！）
+
+我们可以径直把这话当作张量积的\emph{定义}，如下。它是一个 $\Lambda$-模 $T$ 连同一个 $\Lambda$-双线性映射 $\mathrm{t}\colon M\times N\to T$，使得对任何 $\Lambda$-双线性映射 $\mathrm{t}'\colon M\times N\to T'$，存在唯一的 $\Lambda$-线性映射 $\mathrm{f}\colon T\to T'$ 使 $\mathrm{t}'=\mathrm{f}\circ\mathrm{t}$：
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=3em]
+M\times N \ar[r,"\mathrm{t}"] \ar[dr,"\mathrm{t}'"'] & T \ar[d,dashed,"\exists!"'] \\
+ & T'
+\end{tikzcd}
+\]
+
+\begin{exercise}\label{ex:tensor-pair-unique-isomorphism}
+证明 $(\mathrm{T},\mathrm{t}\colon M\times N\to\mathrm{T})$ 在相差唯一同构的意义下唯一。提示：先用一个由二元组 $(\mathrm{T},\mathrm{t})$ 构成的范畴，弄清对这样的二元组「相差唯一同构的唯一性」是什么意思；然后仿照积的论证进行。
+\end{exercise}
+
+要言之，给定 $M$ 与 $N$，存在一个 $\Lambda$-双线性映射 $\mathrm{t}\colon M\times N\to M\otimes_\Lambda N$，在相差唯一同构的意义下唯一，由如下\trUniversalProperty{}定义：对任何 $\Lambda$-双线性映射 $\mathrm{t}'\colon M\times N\to T'$，存在唯一的 $\Lambda$-线性映射 $\mathrm{f}\colon M\otimes_\Lambda N\to T'$ 使 $\mathrm{t}'=\mathrm{f}\circ\mathrm{t}$。与一切泛性质论证一样，这个论证表明的是\emph{假定存在}时的唯一性。要证明存在性，我们需要一个显式构造。
+
+\begin{exercise}\label{ex:tensor-construction-universal-property}
+证明 \S1.2.5 的构造满足张量积的\trUniversalProperty。
+\end{exercise}
+
+下面三个练习是关于张量积的有用事实，你应当熟悉它们。
+
+\begin{exercise}[重要练习]\label{ex:scalar-extension-tensor-of-rings}
+\begin{enumerate}[label=(\alph*)]
+\item 若 $M$ 是 $\Lambda$-模且 $\Lambda\to B$ 是\trRingMorphism，请赋予 $B\otimes_\Lambda M$ 一个 $B$-模结构（这本身就是练习的一部分）。证明这描述了一个函子 $\catMod{\Lambda}\to\catMod{B}$。
+\item （\textbf{环的张量积}）若进而还有另一个环态射 $\Lambda\to C$，证明 $B\otimes_\Lambda C$ 带有自然的环结构。提示：乘法将由 $(b_1\otimes c_1)(b_2\otimes c_2)=(b_1b_2)\otimes(c_1c_2)$ 给出。（\cref{ex:rings-tensor-fibered-coproduct}将把这个构造解释为一个\trFiberedCoproduct。）
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[重要练习]\label{ex:tensored-localization-natural-isomorphism}
+若 $S$ 是 $\Lambda$ 的\trMultiplicativeSubset{}且 $M$ 是 $\Lambda$-模，请描述一个自然同构 $(S^{-1}\Lambda)\otimes_\Lambda M\xrightarrow{\ \sim\ }S^{-1}M$（既作为 $S^{-1}\Lambda$-模\emph{也}作为 $\Lambda$-模）。
+\end{exercise}
+
+\begin{exercise}[$\otimes$ 与 $\oplus$ 交换]\label{ex:tensor-commutes-direct-sums}
+证明张量积与任意\trDirectSum{}交换：若 $M$ 与诸 $N_i$（$i\in I$）都是 $\Lambda$-模，请描述一个同构
+\[
+M\otimes\Bigl(\bigoplus_{i\in I}N_i\Bigr)\xrightarrow{\ \sim\ }\bigoplus_{i\in I}\bigl(M\otimes N_i\bigr).
+\]
+\end{exercise}
+
+\textbf{1.2.6. 重要例子：\trFiberProduct。}\quad 设有态射 $\alpha\colon X\to Z$ 与 $\beta\colon Y\to Z$（在\emph{任何}范畴中）。则\textbf{\trFiberProduct}（fibered product，或 fibred product）是一个对象 $X\times_Z Y$，连同态射 $\operatorname{pr}_X\colon X\times_Z Y\to X$ 与 $\operatorname{pr}_Y\colon X\times_Z Y\to Y$，其中两个复合 $\alpha\circ\operatorname{pr}_X$、$\beta\circ\operatorname{pr}_Y$（$X\times_Z Y\to Z$）相等，使得：给定任何带映射到 $X$ 与 $Y$ 的对象 $W$（其到 $Z$ 的两个复合相等），这些映射都穿过某个唯一的 $W\to X\times_Z Y$ 分解：
+\[
+\begin{tikzcd}[row sep=2.5em, column sep=3em]
+W \ar[d,dashed,"\exists!"] \ar[dd,bend right=25] \ar[dr] & \\
+X\times_Z Y \ar[r,"{\operatorname{pr}_Y}"] \ar[d,"{\operatorname{pr}_X}"'] & Y \ar[d,"\beta"] \\
+X \ar[r,"\alpha"'] & Z
+\end{tikzcd}
+\]
+（警示：纤维积的定义依赖于 $\alpha$ 与 $\beta$，尽管它们在记号 $X\times_Z Y$ 中被省略了。）
+
+按通常的泛性质论证，它若存在，便在相差唯一同构的意义下唯一。你应当把这一点想透，直到对你而言昭然若揭。于是，「\emph{那个}纤维积」（而非「一个纤维积」）的说法是合理的，而且我们也理应有权把它命名为 $X\times_Z Y$。到它的映射是什么，我们心里有数：它们恰好是那样一对映射——到 $X$ 的一个与到 $Y$ 的一个，且作为到 $Z$ 的映射彼此相符。
+
+\textbf{1.2.7. 定义。}\quad 举例来说，若 $\pi\colon X\to Y$ 是态射，且纤维积 $X\times_Y X$ 存在，则它确定一个\textbf{\trDiagonalMorphism}（diagonal morphism）$\delta_\pi\colon X\to X\times_Y X$。对角态射日后将被证明是一个非常有用的概念。随你的「信仰」而定，图
+\[
+\begin{tikzcd}[row sep=2.1em, column sep=3em]
+X\times_Z Y \ar[r,"{\operatorname{pr}_Y}"] \ar[d,"{\operatorname{pr}_X}"'] & Y \ar[d,"\beta"] \\
+X \ar[r,"\alpha"'] & Z
+\end{tikzcd}
+\]
+称为\textbf{\trFiberProduct{}图、\trPullback{}图或\trCartesianDiagram}（fibered/pullback/Cartesian diagram/square）（六种可能——若你偏爱 “fibred” 胜过 “fibered”，可能还不止六种%
+\footnote{译注：原文戏言：fibered/pullback/Cartesian 三词与 diagram/square 二词搭配共六种叫法；「还不止六种」是打趣 fibered 的英式拼法 fibred。}）。
+
+理解纤维积观念的正确方式，是先想一想它在集合范畴中的含义。
+
+\begin{exercise}[集合中的\trFiberProduct]\label{ex:fiber-product-in-sets}
+证明：在 $\catSets$ 中，$X\times_Z Y=\{(x,y)\in X\times Y:\alpha(x)=\beta(y)\}$。更精确地说：证明右边连同其显然的到 $X$ 与到 $Y$ 的映射，满足纤维积的\trUniversalProperty{}。（这会帮助你建立关于纤维积的直观。）
+\end{exercise}
+
+\begin{exercise}\label{ex:fiber-products-of-open-sets}
+设 $X$ 是\trTopologicalSpace。请通过描述纤维积是什么，证明：在 $X$ 的开集范畴中纤维积总存在。（提示：答案只需一个词。）
+\end{exercise}
+
+\begin{exercise}\label{ex:fiber-product-over-final-object}
+若 $Z$ 是范畴 $\scr{C}$ 的\trFinalObject{}且 $X,Y\in\scr{C}$，证明「$X\times_Z Y=X\times Y$」：在 $Z$ 上取的「那个」纤维积，唯一同构于「那个」\trProduct。假设所有相关的（纤维）积都存在。本练习考的是把定义摊开来用。
+\end{exercise}
+
+\begin{exercise}[有用练习：笛卡尔方图之塔仍是笛卡尔方图]\label{ex:pasting-cartesian-squares}
+若下面这个\trCommutativeDiagram{}中上下两个正方形都是\trCartesianDiagram，证明「外面的大矩形」（涉及 $U,V,Y,Z$ 的那个）也是\trCartesianDiagram。
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=2.8em]
+U \ar[r] \ar[d] & V \ar[d] \\
+W \ar[r] \ar[d] & X \ar[d] \\
+Y \ar[r] & Z
+\end{tikzcd}
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:natural-map-fiber-products}
+设有态射 $X_1\to Y$、$X_2\to Y$ 与 $Y\to Z$，并假设两个纤维积都存在，证明存在一个自然态射 $X_1\times_Y X_2\to X_1\times_Z X_2$。（一旦你想明白它在说什么，这就是平凡的。本练习的意义正是要看清它为何平凡。）
+\end{exercise}
+
+\begin{exercise}[重要练习：对角—基变换图]\label{ex:diagonal-base-change-square}
+设有态射 $X_1,X_2\to Y$ 与 $Y\to Z$。证明下图是一个\trCartesianDiagram：
+\[
+\begin{tikzcd}[row sep=2em, column sep=3.4em]
+X_1\times_Y X_2 \ar[r] \ar[d] & X_1\times_Z X_2 \ar[d] \\
+Y \ar[r] & Y\times_Z Y
+\end{tikzcd}
+\]
+假设所有相关的（纤维）积都存在。（若此刻觉得太难，可到练习~1.3.B 再试一次。）当你在证明与构造中反复使用对角态射时，你会体会到这张图何等有用。
+\end{exercise}
+
+喜欢这道题的话，练习~11.1.C 也许合你的口味。
+
+\textbf{1.2.8. \trCoproduct。}\quad 把积的定义中的所有箭头反转，便可在范畴中定义\textbf{\trCoproduct}（coproduct）。把纤维积定义中的所有箭头反转，便可定义\textbf{\trFiberedCoproduct}（fibered coproduct）。\trCoproduct{}记作 $\amalg$。
+
+\begin{exercise}\label{ex:coproducts-disjoint-union}
+证明：$\catSets$ 的余积是\trDisjointUnion{}。这正是我们用 $\amalg$ 记不交并的原因。
+\end{exercise}
+
+\begin{exercise}\label{ex:rings-tensor-fibered-coproduct}
+设 $\Lambda\to B$ 与 $\Lambda\to C$ 是两个\trRingMorphism，于是特别地 $B$ 与 $C$ 都是 $\Lambda$-模。回忆（\cref{ex:scalar-extension-tensor-of-rings}）：$B\otimes_\Lambda C$ 有环结构。证明存在自然态射 $B\to B\otimes_\Lambda C$，由 $b\mapsto b\otimes 1$ 给出（它未必是包含；见\cref{ex:introductory-tensor-product-computation}）。类似地，存在自然态射 $C\to B\otimes_\Lambda C$。证明：这给出环上的一个\trFiberedCoproduct，即
+\[
+\begin{tikzcd}[row sep=2em, column sep=3em]
+B\otimes_\Lambda C & C \ar[l] \\
+B \ar[u] & \Lambda \ar[l] \ar[u]
+\end{tikzcd}
+\]
+满足纤维余积的\trUniversalProperty。
+\end{exercise}
+
+\textbf{1.2.9. \trMonomorphism{}与\trEpimorphism。}
+
+\textbf{1.2.10. 定义。}\quad 态射 $\pi\colon X\to Y$ 称为\textbf{\trMonomorphism}（monomorphism），若满足 $\pi\circ\mu_1=\pi\circ\mu_2$ 的任何两个态射 $\mu_1\colon Z\to X$ 与 $\mu_2\colon Z\to X$ 必有 $\mu_1=\mu_2$。换言之，至多只有一种方式补全虚线箭头，使图
+\[
+\begin{tikzcd}[row sep=2em, column sep=3.4em]
+ & Z \ar[dl,dashed,"\le 1"'] \ar[dr] & \\
+ X \ar[rr,"\pi"'] & & Y
+\end{tikzcd}
+\]
+交换——对任何对象 $Z$，自然映射 $\Mor(Z,X)\to\Mor(Z,Y)$ 都是\trInjection。直观上，它是单射映射的范畴论版本，而且（我们会看到）这个概念推广了单射映射这个熟悉的观念。（我们不用「\trInjectiveMap」这个词，是因为在某些语境中，「\trInjectiveMap」的含义可能与「\trMonomorphism」并不一致。一个例子：在\trDivisibleGroup{}范畴中，映射 $\mathbb{Q}\to\mathbb{Q}/\mathbb{Z}$ 是\trMonomorphism{}却不是\trInjectiveMap{}。「\trEpimorphism」——稍后即将定义——与「\trSurjectiveMap」的关系亦复如是。）
+
+\begin{exercise}\label{ex:composite-of-monomorphisms}
+证明：两个\trMonomorphism{}的复合仍是\trMonomorphism。
+\end{exercise}
+
+\begin{exercise}\label{ex:monomorphism-diagonal-isomorphism}
+证明：态射 $\pi\colon X\to Y$ 是\trMonomorphism，当且仅当纤维积 $X\times_Y X$ 存在，且诱导的\trDiagonalMorphism{} $\delta_\pi\colon X\to X\times_Y X$（定义~1.2.7）是\trIsomorphism。此后我们也可以把这个作为\trMonomorphism{}的定义。（单态射在往后的讨论中并不核心，尽管它们还会露面。本练习纯粹是练手。）
+\end{exercise}
+
+\begin{exercise}[容易的练习]\label{ex:base-change-along-monomorphisms}
+沿用\cref{ex:natural-map-fiber-products}的记号。证明：若 $Y\to Z$ 是\trMonomorphism，则你在\cref{ex:natural-map-fiber-products}中描述的态射 $X_1\times_Y X_2\to X_1\times_Z X_2$ 是\trIsomorphism。（提示：对任何对象 $V$，在「从 $V$ 到第一个的映射」与「从 $V$ 到第二个的映射」之间给出一个自然\trBijection。也可以用对角—基变换图（\cref{ex:diagonal-base-change-square}）。）
+\end{exercise}
+
+\textbf{\trEpimorphism}（epimorphism）的观念与\trMonomorphism{}的定义「对偶」：把所有箭头反转即可。这个概念对我们而言并非核心，尽管它会出现在\trAbelianCategory{}的定义中。直观上，它是满射映射的范畴论版本。（但当你处理「带附加结构的集合」这类对象的范畴时要当心：\trEpimorphism{}未必是\trSurjectiveMap{}。例：在范畴 $\catRings$ 中，$\mathbb{Z}\to\mathbb{Q}$ 是\trEpimorphism，但显然不满。）
+
+\textbf{1.2.11. \trRepresentableFunctor{}与\trYonedaLemma。}\quad 关于泛性质的讨论，大部分都可以借助\trRepresentableFunctor、在「\trYonedaLemma」的名目下干净地表述。\trYonedaLemma{}是一个用复杂方式陈述的简单事实。非正式地说：只要知道映入一个对象的那些映射，你便基本可以复原范畴中的这个对象。例如，我们见过：映到 $X\times Y$ 的映射的数据，自然地（典范地）就是映到 $X$ 与映到 $Y$ 的映射的数据；的确，我们如今已把这话当作 $X\times Y$ 的\emph{定义}。
+
+回忆例 1.1.20。设 $A$ 是范畴 $\scr{C}$ 的一个对象。对任何对象 $C\in\scr{C}$，我们有态射的集合 $\Mor(C,A)$。若有态射 $\mathrm{f}\colon B\to C$，我们便得到一个集合的映射
+\begin{equation*}\tag{1.2.11.1}\label{eq:contravariant-composition-map}
+\Mor(C,A)\longrightarrow\Mor(B,A)
+\end{equation*}
+由复合给出：给定从 $C$ 到 $A$ 的映射，与 $\mathrm{f}\colon B\to C$ 预复合，便得到从 $B$ 到 $A$ 的映射。于是这给出一个反变函子 $\mathrm{h}_A\colon\scr{C}\to\catSets$。\trYonedaLemma{}断言：函子 $\mathrm{h}_A$ 在相差唯一同构的意义下确定 $A$。更精确地说：
+
+\begin{exercise}[一生只该做一次的重要练习：\trYonedaLemma]\label{ex:yoneda-lemma-simple-version}
+\begin{enumerate}[label=(\alph*)]
+\item 设 $A$ 与 $A'$ 是范畴 $\scr{C}$ 中的两个对象，并有映射
+\begin{equation*}\tag{1.2.11.2}\label{eq:indexed-family-of-maps}
+\mathrm{i}_C\colon\Mor(C,A)\longrightarrow\Mor(C,A')
+\end{equation*}
+与诸映射\eqref{eq:contravariant-composition-map}相容。证明诸 $\mathrm{i}_C$（$C$ 取遍 $\scr{C}$ 的对象）由某个唯一的态射 $\mathrm{g}\colon A\to A'$ 诱导。更精确地说：证明存在唯一的态射 $\mathrm{g}\colon A\to A'$，使得对一切 $C\in\scr{C}$，$\mathrm{i}_C$ 均为 $\mathrm{u}\mapsto\mathrm{g}\circ\mathrm{u}$。
+\item 若进而诸 $\mathrm{i}_C$ 都是\trBijection，证明所得的 $\mathrm{g}$ 是\trIsomorphism。（两个小问共用一个提示：这道题远比看上去容易。这个命题如此一般，你真正能尝试的东西其实只有那么一两样。例如，若你想找一个态射 $A\to A'$，该上哪儿找？嗯，你找的是 $\Mor[A,A']$ 的一个元素。那就把 $C=A$ 代入\eqref{eq:indexed-family-of-maps}，看看恒等去了哪里。）
+\end{enumerate}
+\end{exercise}
+
+还有一个把箭头反转的类似命题：此时你不想「映入 $A$ 的映射」，而想\emph{从} $A$ 出发的映射。例 1.1.20 的反变函子 $\mathrm{h}_A$ 的角色，由例 1.1.14 的协变函子 $\mathrm{h}^A$ 扮演。证明是一样的（把箭头反转即可），因此你不必把它想一遍。
+
+「\trYonedaLemma」这个名称严格来说指一个更一般的命题。它看上去更复杂，但证明并不更难。
+
+\begin{exercise}[\hard]\label{ex:general-yoneda-representables}
+\begin{enumerate}[label=(\alph*)]
+\item 设 $A$ 与 $B$ 是范畴 $\scr{C}$ 中的对象。在协变函子 $\scr{C}\to\catSets$ 的\trNaturalTransformation{} $\mathrm{h}^A\to\mathrm{h}^B$（定义见例 1.1.14）与态射 $B\to A$ 之间给出一个\trBijection。
+\item 陈述并证明反变函子 $\mathrm{h}_A$ 的相应事实（见例 1.1.20）。注记：从 $\scr{C}$ 到 $\catSets$ 的反变函子 $F$ 称为\textbf{\trRepresentable}（representable）的，若存在自然同构
+\[
+\xi\colon F\mathrel{\xrightarrow{\ \sim\ }}\mathrm{h}_A.
+\]
+于是，表示对象 $A$ 由二元组 $(F,\xi)$ 在相差唯一同构的意义下确定。协变函子也有类似的定义。（我们将在 \S7.6 重访此事；本题还会以练习~7.6.C 的面目再次出现。元素 $\xi^{-1}(\id_A)\in F(A)$ 常被称为「\trUniversalObject{}」（universal object）；你明白为什么吗？）
+\item \trYonedaLemma。设 $F$ 是协变函子 $\scr{C}\to\catSets$，$A\in\scr{C}$。在自然变换 $\mathrm{h}^A\to F$ 与 $F(A)$ 之间给出一个\trBijection{}。（反变函子的相应事实，本质上就是练习~10.1.B。）
+\end{enumerate}
+\end{exercise}
+
+用花哨的话说，\trYonedaLemma{}断言如下。给定范畴 $\scr{C}$，我们可以造出一个新范畴，称为 $\scr{C}$ 的\textbf{\trFunctorCategory}（functor category）：其对象是反变函子 $\scr{C}\to\catSets$，态射是这些函子之间的\trNaturalTransformation。我们有一个从 $\scr{C}$ 到其函子范畴的函子（不妨实用主义地把它叫做 $\mathrm{h}$），把 $A$ 送到 $\mathrm{h}_A$。\trYonedaLemma{}断言：这是一个完全忠实的函子，称为\emph{\trYonedaEmbedding}。（完全忠实函子定义于 \S1.1.15。）
+
+\textbf{1.2.12. 笑话。}\quad \trYoda{}嵌入，反变它是。%
+\footnote{译注：尤达（Yoda）是《星球大战》中的绝地大师，说话惯用宾语前置的倒装语序；「尤达嵌入」戏仿「\trYoneda{}嵌入」（Yoneda embedding），本句也仿其语序。}
+

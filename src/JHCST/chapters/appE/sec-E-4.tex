@@ -1,0 +1,262 @@
+
+\section{\BookRecordIndex{T0024}Hartman--Wintner 定理}\label{sec:E-4}
+
+\BookRecordIndex{T0024}Hartman--Wintner 定理刻画近似调和实值函数的最低阶项。全文简记 $z:=s+it$，以 $u(z)$ 代替 $u(s,t)$。特别地，定理中的实齐次多项式函数 $h(z)$ 应视为变量 $s,t$（或 $z,\bar z$）的多项式；它不是全纯函数。
+
+\begin{theorem}[Hartman--Wintner]\label{thm:E-4-1}
+设 $0<\alpha<1$，$a,b,c:\mathbb D\to\mathbb R$ 为三个 $C^{1+\alpha}$ 函数，满足
+\begin{equation}\label{eq:E-4-1}
+  a>0,\qquad c>0,\qquad ac-b^2>0.
+\end{equation}
+设 $u:\mathbb D\to\mathbb R^N$ 为满足 $u(0)=0$ 和估计
+\begin{equation}\label{eq:E-4-2}
+  |a\partial_s^2u+2b\partial_s\partial_tu+c\partial_t^2u|
+  \le C(|u|+|du|)
+\end{equation}
+的 $C^2$ 函数。若 $u$ 不恒为零，则存在整数 $m\ge1$ 及非零的 $m$ 次齐次多项式 $h:\mathbb C\to\mathbb R^N$，使
+\[
+  u(z)=h(z)+o(|z|^m),\qquad
+  du(z)=dh(z)+o(|z|^{m-1}).
+\]
+\end{theorem}
+
+\begin{remark}\label{rem:E-4-2}
+该定理并非 Aronszajn 定理的推论，后者只说明 $u$ 在原点不是平坦的。$u$ 的最低阶项构成多项式是相当强的断言：即使 $u\in C^2$，这样的多项式也未必存在，例如 $(s,t)\mapsto|t|^3$。此外，Aronszajn 定理不提供关于导数 $du$ 的信息。\BookRecordIndex{T0024}Hartman--Wintner 定理也不能从 \BookRecordIndex{T0013}Carleman 相似原理\BookRecordIndex{T0326}推出，尽管两者都蕴含强\BookRecordIndex{T0333}唯一延拓定理。定理~\ref{thm:E-4-1} 的证明可参见原始论文~\srcite{169} 和 Jost~\srcite{204} 的引理 8.2.6。文献~\srcite{204} 的假设略强，但对所有在 $a=c=1$、$b=0$ 时满足式~\eqref{eq:E-4-2} 的函数，证明仍成立。下面用推论~\ref{cor:E-3-3} 将一般情形化为这一特殊情形。
+\end{remark}
+
+下面的命题是 $a=c=1$、$b=0$ 时 \BookRecordIndex{T0024}Hartman--Wintner 定理的另一表述。它涉及实值映射 $v:\mathbb D\to\mathbb R^N\subset\mathbb C^N$。注意导数 $dv(z)$ 在切向量 $\zeta\in T_z\mathbb D=\mathbb C$ 上的值 $dv(z)\zeta$，可写成 $2\operatorname{Re}(\zeta\partial v(z))$，其中 $\partial v(z)\in\mathbb C^N$ 如式~\eqref{eq:E-3-2} 定义，$\zeta$ 以乘法作用。
+
+\begin{proposition}\label{prop:E-4-3}
+设 $v:\mathbb D\to\mathbb R^N\subset\mathbb C^N$ 为满足
+\begin{equation}\label{eq:E-4-3}
+  |\Delta v|\le C(|v|+|dv|)
+\end{equation}
+的 $C^2$ 函数。若 $n$ 是正整数，且
+\begin{equation}\label{eq:E-4-4}
+  v(z)=o(|z|^n),
+\end{equation}
+则存在向量 $c\in\mathbb C^N$，使对每个 $\zeta\in\mathbb C$ 有
+\[
+  dv(z)\zeta=\operatorname{Re}(\zeta z^nc)+o(|z|^n)\zeta.
+\]
+若式~\eqref{eq:E-4-4} 对每个 $n$ 成立，则 $v$ 在零点某邻域恒为零。
+\end{proposition}
+
+\begin{proof}
+第一项断言等价于 $z^{-n}\partial v(z)$ 在 $z\to0$ 时有极限。我们对 $n$ 作归纳，分四步证明。第一步建立 Green 公式与 Cauchy 公式；第二步据此给出逐点估计，第三步由自举论证\BookRecordIndex{T0326}推出 $z^{-n}\partial v(z)$ 有界，第四步结合 Green 公式取得第一项断言。第二项断言来自第三步的显式估计。
+
+取 $k\in\{0,\ldots,n\}$。我们将证明：若
+\begin{equation}\label{eq:E-4-5}
+  \partial v(z)=o(|z|^{k-1}),
+\end{equation}
+则 $z^{-k}\partial v$ 在 $z\to0$ 时有极限。全文记
+\[
+  \mathbb D_R:=\{\zeta\in\mathbb C\mid|\zeta|\le R\},
+  \qquad w(z):=|v(z)|+|\partial v(z)|.
+\]
+由于 $v$ 取值于 $\mathbb R^N$，而 $\partial v=(\partial_sv-i\partial_tv)/2$，故 $|\partial v|=|\bar\partial v|=|dv|/2$。
+
+\emph{第一步。}若 $0\le k\le n$ 且 $v$ 满足式~\eqref{eq:E-4-3}--\eqref{eq:E-4-5}，则对 $0<R\le1$、$0<|z|<R$ 有
+\begin{align}
+z^{-k}v(z)
+ &=\frac1{2\pi i}\int_{\partial\mathbb D_R}
+    \frac{\zeta^{-k}v(\zeta)}{\zeta-z}\,d\zeta
+   -\frac1\pi\int_{\mathbb D_R}
+    \frac{\zeta^{-k}\bar\partial v(\zeta)}{\zeta-z}
+    \frac{d\bar\zeta\wedge d\zeta}{2i},
+    \label{eq:E-4-6}\\
+z^{-k}\partial v(z)
+ &=\frac1{2\pi i}\int_{\partial\mathbb D_R}
+    \frac{\zeta^{-k}\partial v(\zeta)}{\zeta-z}\,d\zeta
+   -\frac1{4\pi}\int_{\mathbb D_R}
+    \frac{\zeta^{-k}\Delta v(\zeta)}{\zeta-z}
+    \frac{d\bar\zeta\wedge d\zeta}{2i}.
+    \label{eq:E-4-7}
+\end{align}
+Stokes 公式可写作
+\[
+  \int_{\partial\Omega}f(\zeta)\,d\zeta
+  =\int_\Omega\bar\partial f(\zeta)\,d\bar\zeta\wedge d\zeta
+\]
+（对复值或复向量值函数逐分量使用）。\sourcefootnote{原书实体页 684 仅把这条 Stokes 公式表述给实值 $f$，随后却代入复向量值函数 $\zeta^{-k}(\zeta-z)^{-1}v(\zeta)$；公式按实部、虚部逐分量线性延拓即可适用。}这里 $\Omega\subset\mathbb C$ 为边界光滑的有界开集，$f$ 在 $\bar\Omega$ 上光滑。固定 $0<|z|<R$ 及 $\varepsilon>0$，使 $2\varepsilon<|z|$、$|z|+\varepsilon<R$。对
+\[
+  \Omega_\varepsilon:=\{\zeta\in\mathbb C\mid
+  \varepsilon<|\zeta|<R,\ |\zeta-z|>\varepsilon\}
+\]
+及 $f(\zeta):=\zeta^{-k}(\zeta-z)^{-1}v(\zeta)$ 使用 Stokes 公式，得到
+\begin{equation}\label{eq:E-4-8}
+  \int_{\partial\Omega_\varepsilon}
+    \frac{\zeta^{-k}v(\zeta)}{\zeta-z}\,d\zeta
+  =\int_{\Omega_\varepsilon}
+    \frac{\zeta^{-k}\bar\partial v(\zeta)}{\zeta-z}
+    \,d\bar\zeta\wedge d\zeta.
+\end{equation}
+
+由式~\eqref{eq:E-4-5}，$|\bar\partial v(\zeta)|=|\partial v(\zeta)|=o(|\zeta|^{k-1})$。因此对固定 $z\ne0$，函数 $\zeta\mapsto\zeta^{-k}(\zeta-z)^{-1}\bar\partial v(\zeta)$ 在单位圆盘可积；当 $\varepsilon\to0$ 时，式~\eqref{eq:E-4-8} 右端趋于 $\mathbb D_R$ 上的积分。再者，
+\begin{equation}\label{eq:E-4-9}
+  \lim_{\varepsilon\to0}\int_{|\zeta|=\varepsilon}
+    \frac{\zeta^{-k}v(\zeta)}{\zeta-z}\,d\zeta=0,
+  \qquad
+  \lim_{\varepsilon\to0}\int_{|\zeta-z|=\varepsilon}
+    \frac{\zeta^{-k}v(\zeta)}{\zeta-z}\,d\zeta
+    =2\pi i z^{-k}v(z).
+\end{equation}
+第二式总成立；第一式则由 $|v(\zeta)|=o(|\zeta|^{k-1})$ 得出。令 $\varepsilon\to0$，式~\eqref{eq:E-4-8} 与~\eqref{eq:E-4-9} 给出式~\eqref{eq:E-4-6}。为证明式~\eqref{eq:E-4-7}，在式~\eqref{eq:E-4-6} 的论证中以 $\partial v$ 代 $v$，以 $\bar\partial\partial v=\Delta v/4$ 代 $\bar\partial v$。同样成立，因为式~\eqref{eq:E-4-5} 给出 $\partial v(\zeta)=o(|\zeta|^{k-1})$，而式~\eqref{eq:E-4-3}--\eqref{eq:E-4-5} 保证 $\zeta\mapsto\zeta^{-k}(\zeta-z)^{-1}\Delta v(\zeta)$ 可积。
+
+\emph{第二步。}若 $0\le k\le n$ 且 $v$ 满足式~\eqref{eq:E-4-3}--\eqref{eq:E-4-5}，则对 $0<R\le1$、$0<|z|\le R$ 有
+\begin{equation}\label{eq:E-4-10}
+  |z^{-k}w(z)|
+  \le2\max_{R/2\le|\zeta|\le R}|\zeta^{-k}w(\zeta)|
+   +\frac{C_1}{4\pi}
+    \left\|\frac{\zeta^{-k}w(\zeta)}{\zeta-z}\right\|_{L^1(\mathbb D_R)},
+  \qquad C_1:=C+4.
+\end{equation}
+其中 $C$ 是式~\eqref{eq:E-4-3} 中的常数。对 $0<|z|<R$，有弧长积分估计\sourcefootnote{原书实体页 685 把这里所需的积分绝对值上界印成 $\left|\int_{\partial\mathbb D_R}d\zeta/(\zeta-z)\right|$；该复积分恒为 $2\pi i$，不能直接上界带变权的边界积分。按紧接着的估计，实际所用的是绝对值置于被积式内的弧长积分，译文据此补正。}
+\[
+  \int_{\partial\mathbb D_R}\frac{|d\zeta|}{|\zeta-z|}
+  \le\frac{2\pi R}{R-|z|}.
+\]
+故由式~\eqref{eq:E-4-3}、\eqref{eq:E-4-6} 和~\eqref{eq:E-4-7} 得
+\begin{align*}
+|z^{-k}w(z)|
+&\le\frac{R}{R-|z|}\max_{\zeta\in\partial\mathbb D_R}
+       |\zeta^{-k}w(\zeta)|\\
+&\quad+\frac1{4\pi}\int_{\mathbb D_R}
+  \frac{|\zeta^{-k}|}{|\zeta-z|}
+  \bigl(Cw(\zeta)+4|\bar\partial v(\zeta)|\bigr)
+  \frac{d\bar\zeta\wedge d\zeta}{2i}\\
+&\le2\max_{\zeta\in\partial\mathbb D_R}
+       |\zeta^{-k}w(\zeta)|
+  +\frac{C+4}{4\pi}\int_{\mathbb D_R}
+       \frac{|\zeta^{-k}|w(\zeta)}{|\zeta-z|}
+       \frac{d\bar\zeta\wedge d\zeta}{2i}.
+\end{align*}
+最后一个不等式在 $0<|z|\le R/2$ 时成立，因而此范围满足式~\eqref{eq:E-4-10}；在 $R/2\le|z|\le R$ 时，该估计显然成立。
+
+\emph{第三步。}若 $0\le k\le n$ 且 $v$ 满足式~\eqref{eq:E-4-3}--\eqref{eq:E-4-5}，则当 $0<R<1/(2C_1)$ 时，
+\begin{equation}\label{eq:E-4-11}
+  0<|z|\le R\quad\Longrightarrow\quad
+  |z^{-k}w(z)|
+  \le\frac{2-2C_1R}{1-2C_1R}
+       \max_{R/2\le|\zeta|\le R}|\zeta^{-k}w(\zeta)|.
+\end{equation}
+固定 $0<R<1/(2C_1)$ 及 $z_0\in\mathbb D_R\setminus\{0\}$。将式~\eqref{eq:E-4-10} 的两边乘以 $|z-z_0|^{-1}$，在 $z\in\mathbb D_R$ 上积分。结合
+\[
+  \frac1{|z-z_0|\,|\zeta-z|}
+  \le\frac1{|\zeta-z_0|}
+      \left(\frac1{|z-z_0|}+\frac1{|\zeta-z|}\right)
+\]
+与
+\[
+  0<|\zeta|\le R\quad\Longrightarrow\quad
+  \int_{\mathbb D_R}\frac{d\bar z\wedge dz}{2i|\zeta-z|}
+  \le\int_{\mathbb D_{2R}}\frac{d\bar z\wedge dz}{2i|z|}
+  =4\pi R,
+\]
+可得
+\begin{align*}
+&\int_{\mathbb D_R}\frac{|z^{-k}|w(z)}{|z-z_0|}
+     \frac{d\bar z\wedge dz}{2i}\\
+&\quad\le 2\max_{R/2\le|\zeta|\le R}|\zeta^{-k}w(\zeta)|
+    \int_{\mathbb D_R}\frac{d\bar z\wedge dz}{2i|z-z_0|}\\
+&\qquad+\frac{C_1}{4\pi}\int_{\mathbb D_R}
+   \left(\int_{\mathbb D_R}\frac{d\bar z\wedge dz}{2i|z-z_0|}\right)
+   \frac{|\zeta^{-k}|w(\zeta)}{|\zeta-z_0|}
+   \frac{d\bar\zeta\wedge d\zeta}{2i}\\
+&\qquad+\frac{C_1}{4\pi}\int_{\mathbb D_R}
+   \left(\int_{\mathbb D_R}\frac{d\bar z\wedge dz}{2i|\zeta-z|}\right)
+   \frac{|\zeta^{-k}|w(\zeta)}{|\zeta-z_0|}
+   \frac{d\bar\zeta\wedge d\zeta}{2i}\\
+&\quad\le 8\pi R\max_{R/2\le|\zeta|\le R}|\zeta^{-k}w(\zeta)|
+  +2C_1R\int_{\mathbb D_R}
+     \frac{|\zeta^{-k}|w(\zeta)}{|\zeta-z_0|}
+     \frac{d\bar\zeta\wedge d\zeta}{2i}.
+\end{align*}
+由 $0<R<1/(2C_1)$，将 $z_0$ 重命名为 $z$ 后得到
+\[
+  \left\|\frac{\zeta^{-k}w(\zeta)}{\zeta-z}\right\|_{L^1(\mathbb D_R)}
+  \le\frac{8\pi R}{1-2C_1R}
+      \max_{R/2\le|\zeta|\le R}|\zeta^{-k}w(\zeta)|,
+  \qquad 0<|z|\le R.
+\]
+结合式~\eqref{eq:E-4-10} 即得式~\eqref{eq:E-4-11}。
+
+\emph{第四步。}极限 $c:=2\lim_{z\to0}z^{-n}\partial v(z)$ 存在。我们对 $k$ 归纳证明
+\[
+  \lim_{z\to0}z^{-k}\partial v(z)=0,
+  \qquad k=0,\ldots,n-1.
+\]
+$k=0$ 时，由 $v\in C^2$ 及式~\eqref{eq:E-4-4} 可知 $dv(0)=0$，故结论成立。\sourcefootnote{原书实体页 686 仅以“$v$ 为 $C^2$ 函数”说明 $k=0$ 的极限为零；还须用假设 $v(z)=o(|z|^n)$（$n\ge1$）\BookRecordIndex{T0326}推出 $dv(0)=0$。此处补明所用条件。}设 $k\in\{1,\ldots,n-1\}$，并归纳假设 $z^{1-k}\partial v(z)\to0$。于是 $v$ 满足式~\eqref{eq:E-4-5}。由第三步，例如取 $R:=1/(4C_1)$，知 $z\mapsto z^{-k}w(z)$ 有界；式~\eqref{eq:E-4-3} 进而给出 $z\mapsto z^{-k}\Delta v(z)$ 有界。又当 $z\to0$ 时，函数 $\zeta\mapsto(\zeta-z)^{-1}$ 在 $L^1(\mathbb D)$ 中收敛于 $\zeta\mapsto\zeta^{-1}$。因此式~\eqref{eq:E-4-7} 的右端收敛，极限 $\lim_{z\to0}z^{-k}\partial v(z)$ 存在。记
+\[
+  c:=\lim_{z\to0}\frac{2\partial v(z)}{z^k}\in\mathbb C^N.
+\]
+于是
+\begin{align*}
+v(z)
+ &=2\operatorname{Re}\left(\int_0^1\partial v(\tau z)z\,d\tau\right)\\
+ &=\operatorname{Re}\left(\int_0^1c(\tau z)^kz\,d\tau\right)
+   +o(|z|^{k+1})\\
+ &=\operatorname{Re}\left(\frac{c}{k+1}z^{k+1}\right)
+   +o(|z|^{k+1}).
+\end{align*}
+由于 $k\le n-1$ 且 $v(z)=o(|z|^n)$，必有 $c=0$，归纳完成。对 $k=n$ 重复归纳步骤的前半段，可知 $z^{-n}\partial v(z)$ 在 $z\to0$ 时收敛，第四步得证。
+
+第四步给出 $\partial v(z)=\tfrac12z^nc+o(|z|^n)$，从而
+\[
+  dv(z)\zeta=2\operatorname{Re}(\partial v(z)\zeta)
+  =\operatorname{Re}(\zeta z^nc)+o(|z|^n).
+\]
+这证明了命题的第一项断言。现在假设式~\eqref{eq:E-4-4} 对一切 $n$ 成立。回顾第三步的 $C_1=C+4$ 与 $k,n$ 无关。固定 $0<R<1/(2C_1)$ 和 $|z|<R/2$。由式~\eqref{eq:E-4-11}，对每个整数 $n>0$ 有
+\begin{align*}
+|v(z)|
+&\le |z|^n\frac{2-2C_1R}{1-2C_1R}
+   \max_{R/2\le|\zeta|\le R}|\zeta^{-n}w(\zeta)|\\
+&\le\frac{2-2C_1R}{1-2C_1R}
+   \max_{\zeta\in\mathbb D_R}w(\zeta)
+   \left(\frac{2|z|}{R}\right)^n.
+\end{align*}
+令 $n\to\infty$，得到 $v(z)=0$。
+\end{proof}
+
+\begin{proof}[定理~\ref{thm:E-4-1} 的证明]
+设 $a,b,c:\mathbb D\to\mathbb R$ 满足式~\eqref{eq:E-4-1}，$u:\mathbb D\to\mathbb R^N$ 为满足式~\eqref{eq:E-4-2} 的 $C^2$ 函数。
+
+\emph{情形一。}假设 $u$ 在零点的任何邻域都不恒为零。取满足推论~\ref{cor:E-3-3} 的局部 $C^{2+\alpha}$ 微分同胚 $\psi:(\mathbb D,0)\to(\mathbb D,0)$。于是 $v:=u\circ\psi^{-1}$ 是满足式~\eqref{eq:E-4-3} 的 $C^2$ 函数。由命题~\ref{prop:E-4-3}，存在整数 $n>0$，使 $v(z)=o(|z|^n)$ 但 $v(z)\ne o(|z|^{n+1})$。同一命题还给出 $c\in\mathbb C^N$，满足
+\[
+  dv(z)\zeta=\operatorname{Re}(\zeta z^nc)+o(|z|^n)\zeta.
+\]
+又 $\psi(z)=Az+o(|z|)\in\mathbb R^2=\mathbb C$，其中 $A:=d\psi(0)\in\operatorname{GL}(2,\mathbb R)$。定义多项式 $h:\mathbb C\to\mathbb R^N$ 为
+\[
+  h(z):=\operatorname{Re}\left(\frac{(Az)^{n+1}}{n+1}c\right).
+\]
+则
+\begin{align*}
+du(z)\zeta
+ &=dv(\psi(z))d\psi(z)\zeta\\
+ &=dv(Az)A\zeta+o(|z|^n)\zeta\\
+ &=\operatorname{Re}\bigl(A\zeta(Az)^nc\bigr)+o(|z|^n)\zeta\\
+ &=dh(z)\zeta+o(|z|^n)\zeta,
+\end{align*}
+进而
+\[
+  u(z)=\int_0^1du(\tau z)z\,d\tau
+      =\int_0^1dh(\tau z)z\,d\tau+o(|z|^{n+1})
+      =h(z)+o(|z|^{n+1}).
+\]
+因 $v(z)\ne o(|z|^{n+1})$，也有 $u(z)\ne o(|z|^{n+1})$，故 $h$ 不为零。这证明了定理的第一部分。
+
+\emph{情形二。}假设 $u$ 在零点某邻域恒为零。令 $R_{\max}$ 为使 $u$ 在闭圆盘 $\mathbb D_R$ 上恒为零的最大半径 $R\le1$。若 $R_{\max}<1$，则存在 $z_0\in\partial\mathbb D_{R_{\max}}$，使 $u$ 在 $z_0$ 的任何邻域都不恒为零。由情形一，存在某个 $m\ge1$ 次的非零齐次多项式 $h$，使
+\[
+  u(z)=h(z-z_0)+o(|z-z_0|^m).
+\]
+但这样的函数不可能在 $\mathbb D_R$ 的内部恒为零，矛盾。因此 $R_{\max}=1$，即 $u$ 恒为零。
+\end{proof}
+
+\begin{remark}\label{rem:E-4-4}
+设 $J$ 是 $\mathbb R^{2n}$ 上的光滑\BookRecordIndex{T0088}殆复结构，$u:\mathbb D\to\mathbb R^{2n}$ 是非恒定的 \BookRecordIndex{T0003}$J$-全纯曲线（$\mathbb D$ 取标准复结构 $i$）。把算子 $\partial_s-J\partial_t$ 作用于 $\bar\partial_J(u)$，得
+\[
+  \Delta u+\partial_s(J\circ u)\partial_tu
+  -\partial_t(J\circ u)\partial_su=0.
+\]
+因而 $u$ 满足式~\eqref{eq:E-4-3}。命题~\ref{prop:E-4-3} 表明 $u$ 在原点不是平坦的，即 $u$ 的各阶偏导数不可能在原点全为零。如第 2.3 节指出，类似论证给出\BookRecordIndex{T0333}唯一延拓定理 2.3.2。
+\end{remark}

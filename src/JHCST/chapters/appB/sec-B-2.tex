@@ -1,0 +1,548 @@
+
+\section{\BookRecordIndex{T0012}Calderón--Zygmund 不等式}\label{sec:B-2}
+
+\paragraph{\BookRecordIndex{T0220}拉普拉斯算子。}
+记
+\[
+  \Delta=\frac{\partial^2}{\partial x_1^2}
+  +\frac{\partial^2}{\partial x_2^2}
+  +\cdots+\frac{\partial^2}{\partial x_n^2}
+\]
+为 $\mathbb R^n$ 上的\BookRecordIndex{T0220}拉普拉斯算子。若开集 $\Omega\subset\mathbb R^n$ 上的
+$C^2$ 函数 $u:\Omega\to\mathbb R$ 满足 $\Delta u=0$，就称 $u$ 为
+\emph{\BookRecordIndex{T0104}调和函数}。\BookRecordIndex{T0104}调和函数是实解析的。（当 $n=2$ 时，函数调和当且仅当
+它局部为某个全纯函数的实部。）\BookRecordIndex{T0104}调和函数由\emph{\BookRecordIndex{T0267}平均值性质}刻画
+（见 John~\srcite{203}）。原书此处的半径幂次须按维数理解
+\sourcefootnote{原书平均值公式分母印作 $\omega_n r^2$；$\omega_n$ 是单位球面的
+面积，$n$ 维球体积为 $\omega_n r^n/n$，故一般维数下应为
+$\omega_n r^n$。原式仅在 $n=2$ 时成立。}：
+\[
+  u(x)=\frac{n}{\omega_n r^n}\int_{B_r(x)}u(\xi)\,d\xi,
+  \qquad B_r(x)\subset\Omega.
+\]
+这里 $\omega_n=2\pi^{n/2}\Gamma(n/2)^{-1}$ 是 $\mathbb R^n$ 中单位球面
+的体积。特别地，$\omega_2=2\pi$。
+
+\begin{exercise}\label{ex:B-2-1}
+证明\BookRecordIndex{T0104}调和函数具有\BookRecordIndex{T0267}平均值性质。（参见引理~\ref{lem:4-3-3} 证明的步骤 1。）
+\end{exercise}
+
+拉普拉斯方程的\emph{\BookRecordIndex{T0173}基本解}是函数
+\begin{equation}\label{eq:B-2-1}
+  K(x):=\begin{cases}
+    (2\pi)^{-1}\log|x|, & n=2,\\
+    (2-n)^{-1}\omega_n^{-1}|x|^{2-n}, & n\ge3.
+  \end{cases}
+\end{equation}
+其一阶和二阶导数如下；其中 $K_{jk}$ 的表达式取 $j\ne k$
+\sourcefootnote{原书将 $K_{jk}=-nx_jx_k/(\omega_n|x|^{n+2})$ 写成
+不加限制的二阶导数公式，随即另给 $K_{jj}$ 的正确公式；两式在
+$j=k$ 时相矛盾，故前者须限于 $j\ne k$。}：
+\[
+  K_j(x)=\frac{x_j}{\omega_n|x|^n},\qquad
+  K_{jk}(x)=\frac{-nx_jx_k}{\omega_n|x|^{n+2}},\qquad
+  K_{jj}(x)=\frac{|x|^2-nx_j^2}{\omega_n|x|^{n+2}},
+\]
+其中 $K_j=\partial K/\partial x_j$，
+$K_{jk}=\partial^2K/\partial x_j\partial x_k$。特别地，
+当 $x\ne0$ 时 $\Delta K=0$。
+函数 $K$ 及其一阶导数 $K_j$ 在紧集上可积，而二阶导数则不可积。因此，
+对紧支撑函数 $f:\mathbb R^n\to\mathbb R$，有
+$\partial_j(K*f)=K_j*f$，但二阶导数没有这样的公式。此外，
+由于 $K$ 及其导数在整个 $\mathbb R^n$ 上均不可积，处理非紧支撑的
+函数 $f$ 时必须小心。
+
+每个紧支撑的 $C^2$ 函数 $u:\mathbb R^n\to\mathbb R$ 都满足
+\[
+  u=K*\Delta u,\qquad \partial_j u=K_j*\Delta u,
+\]
+其中 $*$ 表示\BookRecordIndex{T0205}卷积。反之，对 $f\in C_0^\infty(\mathbb R^n)$，有
+\[
+  \Delta(K*f)=f,\qquad \Delta(K_j*f)=\partial_jf
+\]
+（见~\srcite{203}）。这就是 Poisson 恒等式。一般而言，$K*f$ 并不
+具有紧支撑。由于 $K$ 的二阶导数在紧集上不可积，存在连续函数
+$f:\mathbb R^n\to\mathbb R$，使得 $K*f\notin C^2$。对于这样的
+$f$，方程 $\Delta u=f$ 没有经典解。（这由下面两个引理\BookRecordIndex{T0326}推出。）
+然而，\BookRecordIndex{T0295}弱解的情形却很不同。设 $f\in L^1_{\mathrm{loc}}(\Omega)$。
+若 $u\in L^1_{\mathrm{loc}}(\Omega)$ 对每个
+$\phi\in C_0^\infty(\Omega)$ 均满足
+\[
+  \int_\Omega u(x)\Delta\phi(x)\,dx
+  =\int_\Omega f(x)\phi(x)\,dx,
+\]
+就称 $u$ 为 $\Delta u=f$ 的\emph{\BookRecordIndex{T0295}弱解}。类似地，若
+$f\in L^1_{\mathrm{loc}}(\Omega)$ 且 $u\in L^1_{\mathrm{loc}}(\Omega)$
+对每个 $\phi\in C_0^\infty(\Omega)$ 均满足
+\[
+  \int_\Omega u(x)\Delta\phi(x)\,dx
+  =-\int_\Omega f(x)\partial_j\phi(x)\,dx,
+\]
+就称 $u$ 为 $\Delta u=\partial_jf$ 的\BookRecordIndex{T0295}弱解。
+
+\begin{lemma}\label{lem:B-2-2}
+设 $u,f\in L^1(\mathbb R^n)$，且二者均有紧支撑。
+\begin{enumerate}[label=(\roman*)]
+\item $u$ 是 $\Delta u=f$ 的\BookRecordIndex{T0295}弱解，当且仅当 $u=K*f$。
+\item $u$ 是 $\Delta u=\partial_jf$ 的\BookRecordIndex{T0295}弱解，当且仅当 $u=K_j*f$。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+若 $u=K*f$，则对 $\phi\in C_0^\infty(\mathbb R^n)$，
+\[
+  \int u\Delta\phi
+  =\int(K*f)\Delta\phi
+  =\int f(K*\Delta\phi)
+  =\int f\phi.
+\]
+反之，设 $u$ 是 $\Delta u=f$ 的\BookRecordIndex{T0295}弱解。如命题~\ref{prop:B-1-4}
+的证明中那样选取 $\rho_\delta:\mathbb R^n\to\mathbb R$。于是，
+对每个 $\phi\in C_0^\infty(\mathbb R^n)$，
+\[
+  \int(\Delta\rho_\delta*u)\phi
+  =\int u(\Delta\rho_\delta*\phi)
+  =\int f(\rho_\delta*\phi)
+  =\int(\rho_\delta*f)\phi.
+\]
+因此 $\Delta(\rho_\delta*u)=(\Delta\rho_\delta)*u=\rho_\delta*f$。
+这表明 $\rho_\delta*u-K*\rho_\delta*f$ 是一个有界\BookRecordIndex{T0104}调和函数，
+且在无穷远处趋于零，故 $\rho_\delta*u=K*\rho_\delta*f$。
+令 $\delta\to0$，得到 $u=K*f$。这证明了 (i)。
+(ii) 的证明类似，留给读者。
+\end{proof}
+
+\begin{lemma}[Weyl 引理]\label{lem:B-2-3}
+$\Delta u=0$ 的每个\BookRecordIndex{T0295}弱解 $u\in L^1_{\mathrm{loc}}(\Omega)$ 都是\BookRecordIndex{T0104}调和函数。
+\end{lemma}
+
+\begin{proof}
+如引理~\ref{lem:B-2-2} 的证明中那样取 $\rho_\delta$。
+函数 $u_\delta=\rho_\delta*u$ 在
+\[
+  \Omega_\delta:=\{x\in\Omega\mid B_\delta(x)\subset\Omega\}
+\]
+上调和，因而满足\BookRecordIndex{T0267}平均值性质。由于 $u_\delta$ 在 $\Omega$ 的每个
+紧子集上以 $L^1$ 范数收敛于 $u$，可知 $u$ 也具有\BookRecordIndex{T0267}平均值性质。
+于是 $u$ 调和（参见~\srcite{203}）。
+\end{proof}
+
+上述关于\BookRecordIndex{T0295}弱解的结果也可以用\BookRecordIndex{T0123}分布语言表述如下。$\Omega$ 上的一个
+\emph{\BookRecordIndex{T0123}分布} $E$ 是试验函数空间 $C_0^\infty(\Omega)$ 的对偶空间中的
+一个元素。因而，$L^1_{\mathrm{loc}}(\Omega)$ 中的函数 $u$ 按公式
+\[
+  E_u(\phi):=\int_\Omega u\phi
+\]
+定义一个\BookRecordIndex{T0123}分布 $E_u$，其中 $\phi\in C_0^\infty(\Omega)$。
+每个线性微分算子 $L:C_0^\infty(\Omega)\to C_0^\infty(\Omega)$
+都有形式伴随 $L^*$；它按显然的方式作用于\BookRecordIndex{T0123}分布：
+$L^*E(\phi):=E(L\phi)$。恒等式
+\[
+  \int_\Omega u(\partial_j\phi)
+  =-\int_\Omega(\partial_j u)\phi
+\]
+对 $u\in C^\infty(\Omega)$ 和 $\phi\in C_0^\infty(\Omega)$ 成立，
+说明 $\partial_j^*$ 限制到 $C_0^\infty(\Omega)$ 后等于 $-\partial_j$。
+由此可知，$L^*$ 限制到 $C_0^\infty(\Omega)$ 后仍是微分算子，
+而其对偶 $L^{**}$ 限制到 $C_0^\infty(\Omega)$ 后与 $L$ 一致。
+因此，$C_0^\infty(\Omega)$ 上的微分算子 $L$ 自然延拓到\BookRecordIndex{T0123}分布空间，
+我们仍以 $L$ 表示这个延拓。注意\BookRecordIndex{T0220}拉普拉斯算子是对称的，即
+$\Delta^*$ 限制到 $C_0^\infty(\Omega)$ 后与 $\Delta$ 一致。
+
+现在考虑 $\Omega=\mathbb R^n$ 的情形。$\mathbb R^n$ 上的\BookRecordIndex{T0123}分布 $E$
+与试验函数 $\phi\in C_0^\infty(\mathbb R^n)$ 的\emph{\BookRecordIndex{T0205}卷积}定义为
+\[
+  (E*\phi)(x):=E\bigl(\phi(x-\cdot)\bigr).
+\]
+注意 $E*\phi$ 是光滑函数，但不一定有紧支撑。$\delta$ 函数
+起单位算子的作用。对于任何常系数微分算子 $L$ 及任意两个试验函数
+$\phi,\psi\in C_0^\infty(\mathbb R^n)$，有
+\[
+  L(\phi*\psi)=(L\phi)*\psi=\phi*(L\psi).
+\]
+将其与恒等式
+$\langle E*\psi,\bar\phi\rangle=E(\psi*\phi)$ 和
+$L^*\bar\phi=\overline{L\phi}$ 结合，其中
+$\bar\phi(x):=\phi(-x)$，便得到
+\begin{equation}\label{eq:B-2-2}
+  L(E*\psi)=(LE)*\psi=E*(L\psi)
+\end{equation}
+对每个\BookRecordIndex{T0123}分布 $E$ 和每个 $\psi\in C_0^\infty(\mathbb R^n)$ 均成立。
+
+用这种语言，方程 $Lu=0$ 的一个\BookRecordIndex{T0173}基本解
+$K\in L^1_{\mathrm{loc}}(\mathbb R^n)$ 就是\BookRecordIndex{T0123}分布方程
+\[
+  LK=\delta
+\]
+的一个解。因此，对于对称算子 $L=\Delta$，恒等式
+$\phi=K*\Delta\phi$ 和 $\Delta(K*\phi)=\phi$
+由式~\eqref{eq:B-2-2} 对试验函数成立。此外，$Lu=0$ 的\BookRecordIndex{T0295}弱解
+$u\in L^1_{\mathrm{loc}}(\Omega)$，恰是其对应\BookRecordIndex{T0123}分布 $E_u$ 满足
+$LE_u=0$ 的函数。
+
+\paragraph{一个插值引理。}
+对任意可测函数 $f:\mathbb R^n\to\mathbb R$，定义
+\[
+  \mu(t,f)=\bigl|\{x\in\mathbb R^n\mid |f(x)|>t\}\bigr|,
+\]
+其中 $t>0$，$|A|$ 表示集合 $A$ 的 Lebesgue 测度。
+
+\begin{lemma}\label{lem:B-2-4}
+对 $1\le p<\infty$ 和 $f\in L^p(\mathbb R^n)$，有
+\[
+  t^p\mu(t,f)\le\int_{\mathbb R^n}|f(x)|^p\,dx
+  =p\int_0^\infty s^{p-1}\mu(s,f)\,ds.
+\]
+此外，
+\[
+  \mu(t,f+g)\le\mu(t/2,f)+\mu(t/2,g).
+\]
+\end{lemma}
+
+\begin{proof}
+对函数 $F:\mathbb R^{n+1}\to\mathbb R$ 积分即可；这里当
+$0\le t\le|f(x)|$ 时，$F(x,t):=pt^{p-1}$，其余情形下 $F(x,t):=0$。
+\end{proof}
+
+\begin{lemma}[Marcinkiewicz]\label{lem:B-2-5}
+设 $T:L^2(\mathbb R^n)\to L^2(\mathbb R^n)$ 是有界线性算子，
+并假设存在常数 $C>0$，使得对每个 $t>0$ 和每个
+$f\in L^2(\mathbb R^n)\cap L^1(\mathbb R^n)$，均有
+\[
+  \mu(t,Tf)\le\frac{C\|f\|_{L^1}}{t}.
+\]
+则对每个满足 $1<p<2$ 的实数 $p$，存在常数
+$c=c(\|T\|,C,p)>0$，使得
+\[
+  \|Tf\|_{L^p}\le c\|f\|_{L^p}
+\]
+对每个 $f\in L^2(\mathbb R^n)\cap L^1(\mathbb R^n)$ 成立。
+特别地，$T$ 在 $L^2(\mathbb R^n)\cap L^1(\mathbb R^n)$ 上的限制
+（唯一地）延拓为 $L^p(\mathbb R^n)$ 到自身的有界线性算子。
+\end{lemma}
+
+\begin{proof}
+以 $\|T\|$ 表示 $T$ 作为 $L^2(\mathbb R^n)$ 上算子的范数。
+取 $f\in L^2(\mathbb R^n)\cap L^1(\mathbb R^n)$，考虑函数
+$f_t,g_t:\mathbb R^n\to\mathbb R$，其定义为
+\[
+  f_t(x):=\begin{cases}
+    f(x),&|f(x)|>t,\\ 0,&|f(x)|\le t,
+  \end{cases}
+  \qquad
+  g_t(x):=\begin{cases}
+    0,&|f(x)|>t,\\ f(x),&|f(x)|\le t.
+  \end{cases}
+\]
+于是，对每个 $t\ge0$，$f=f_t+g_t$；由引理~\ref{lem:B-2-4}，
+\[
+  \mu(t,Tf)
+  \le\mu(t/2,Tf_t)+\mu(t/2,Tg_t)
+  \le\frac{2C}{t}\|f_t\|_{L^1}
+     +\frac{4\|T\|^2}{t^2}\|g_t\|_{L^2}^2.
+\]
+因而再次由引理~\ref{lem:B-2-4}，
+\begin{align*}
+  \int_{\mathbb R^n}|Tf(x)|^p\,dx
+  &=p\int_0^\infty t^{p-1}\mu(t,Tf)\,dt\\
+  &\le2pC\int_0^\infty t^{p-2}\|f_t\|_{L^1}\,dt
+   +4p\|T\|^2\int_0^\infty t^{p-3}\|g_t\|_{L^2}^2\,dt\\
+  &=\left(\frac{2pC}{p-1}+\frac{4p\|T\|^2}{2-p}\right)
+    \int_{\mathbb R^n}|f(x)|^p\,dx.
+\end{align*}
+最后一个等号由 Fubini 定理得到。这就证明了引理~\ref{lem:B-2-5}。
+\end{proof}
+
+\begin{exercise}\label{ex:B-2-6}
+对 $f\in C_0^\infty(\mathbb R^n)$ 和 $1<p<2$，证明不等式
+\[
+  \|f\|_{L^p}
+  \le\|f\|_{L^1}^{2/p-1}\|f\|_{L^2}^{2-2/p}.
+\]
+由此\BookRecordIndex{T0326}推出 $L^2(\mathbb R^n)\cap L^1(\mathbb R^n)
+\subset L^p(\mathbb R^n)$。提示：使用 Hölder 不等式。
+\end{exercise}
+
+\paragraph{\BookRecordIndex{T0012}Calderón--Zygmund 不等式。}
+
+\begin{theorem}[\BookRecordIndex{T0012}Calderón--Zygmund 不等式]\label{thm:B-2-7}
+设 $K$ 是式~\eqref{eq:B-2-1} 给出的 $\mathbb R^n$ 上拉普拉斯方程
+的\BookRecordIndex{T0173}基本解，并设 $1<p<\infty$。则存在常数 $c=c(n,p)>0$，使得
+\begin{equation}\label{eq:B-2-3}
+  \|\nabla(K_j*f)\|_{L^p}\le c\|f\|_{L^p}
+\end{equation}
+对 $f\in C_0^\infty(\mathbb R^n)$ 及 $j=1,\ldots,n$ 成立。
+\end{theorem}
+
+\begin{corollary}\label{cor:B-2-8}
+对每个正整数 $n$ 及每个 $p>1$，存在常数 $c=c(n,p)>0$，使得
+\[
+  \sum_{j,k=1}^n\|\partial_j\partial_k u\|_{L^p}
+  \le c\|\Delta u\|_{L^p}
+\]
+对每个 $u\in C_0^\infty(\mathbb R^n)$ 成立。
+\end{corollary}
+
+\begin{proof}
+当 $n=1$ 时结论显然。对 $n\ge2$，由定理~\ref{thm:B-2-7}
+和引理~\ref{lem:B-2-2} 立即得到。
+\sourcefootnote{原书只引用定理 B.2.7 和引理 B.2.2，但其\BookRecordIndex{T0173}基本解
+式 (B.2.1) 未覆盖 $n=1$；这一维情形可直接由
+$\Delta u=\partial_1^2u$ 得到。}
+\end{proof}
+
+定理~\ref{thm:B-2-7} 是椭圆算子 $L^p$ 理论的基本估计。
+证明依照~\srcite{140}。第一步是 $p=2$ 的情形。
+
+\begin{lemma}\label{lem:B-2-9}
+估计~\eqref{eq:B-2-3} 在 $p=2$ 时以 $c=1$ 成立。
+\end{lemma}
+
+\begin{proof}
+设 $f:\mathbb R^n\to\mathbb R$ 是紧支撑光滑函数，定义
+\[
+  u:=K_j*f.
+\]
+此时 $u$ 未必有紧支撑。然而，由于
+$\partial_i u=K_j*\partial_i f$
+\sourcefootnote{原书此处左端印作 $\partial_i u_j$，但本证明只定义了
+标量函数 $u:=K_j*f$，未定义 $u_j$；依\BookRecordIndex{T0205}卷积求导式改为
+$\partial_i u$。} 和
+$K_j(x)=x_j/(\omega_n|x|^n)$，存在常数 $c>0$，使得
+\[
+  |x|\ge c\quad\Longrightarrow\quad
+  |u(x)|+|\nabla u(x)|\le\frac{c}{|x|^{n-1}}.
+\]
+现考虑等式
+\[
+  \int_{B_R}|\nabla u|^2
+  =-\int_{B_R}u\Delta u+\int_{\partial B_R}u\frac{\partial u}{\partial\nu}.
+\]
+由 Poisson 恒等式，$\Delta u=\partial_jf$，因此右边第一项在
+$R$ 足够大时与 $R$ 无关。而当 $R\to\infty$ 时，第二项趋于零。
+于是 $\nabla u\in L^2(\mathbb R^n,\mathbb R^n)$，并且
+\[
+  \|\nabla u\|_{L^2}^2
+  =-\langle u,\Delta u\rangle
+  =-\langle u,\partial_jf\rangle
+  =\langle\partial_j u,f\rangle
+  \le\|\nabla u\|_{L^2}\|f\|_{L^2}.
+\]
+这里含 $u$ 的配对按与紧支撑函数的积分理解
+\sourcefootnote{原书称这里所有内积都是 $L^2$ 内积；但当 $n=2$ 且
+$\int f\ne0$ 时，$u=K_j*f$ 在无穷远处通常按 $|x|^{-1}$ 衰减，
+不属于全局 $L^2$。此处 $\Delta u=\partial_jf$ 有紧支撑，
+故 $\langle u,\Delta u\rangle$ 仍可作为积分使用。}。
+现将不等式两边除以
+$\|\nabla u\|_{L^2}$，便得到所需估计。
+\end{proof}
+
+引理~\ref{lem:B-2-9} 表明：若 $f\in C_0^\infty(\mathbb R^n)$，
+则函数 $\partial_k(K_j*f)$ 属于 $L^2(\mathbb R^n)$（它未必有
+紧支撑）；映射 $f\mapsto\partial_k(K_j*f)$ 延拓为
+$L^2(\mathbb R^n)$ 到自身的有界线性算子，其范数至多为一。
+\sourcefootnote{原书称此单个分量算子的范数为一；引理~\ref{lem:B-2-9}
+仅给出上界一。实际上当 $j\ne k$ 时，其 Fourier 乘子为
+$\xi_j\xi_k/|\xi|^2$，范数为 $1/2$；当 $j=k$ 时范数才为一。}
+下一个引理表明，这个算子满足引理~\ref{lem:B-2-5} 的条件。
+
+\begin{lemma}\label{lem:B-2-10}
+存在常数 $c=c(n)>0$，使得每个
+$f\in L^2(\mathbb R^n)\cap L^1(\mathbb R^n)$ 对
+$j,k=1,\ldots,n$ 均满足估计
+\[
+  \mu\bigl(t,\partial_k(K_j*f)\bigr)
+  \le\frac{c}{t}\int_{\mathbb R^n}|f(x)|\,dx.
+\]
+\end{lemma}
+
+\begin{proof}
+证明分三步。简记 $Tf:=\partial_k(\partial_jK*f)$。
+
+\emph{步骤 1。}
+存在常数 $c=c(n)>0$，使下述断言成立。设 $B$ 是
+$\mathbb R^n$ 中一族可数个闭立方体 $Q_i$ 的并，且这些立方体的
+内部两两不交。假设 $h\in L^1(\mathbb R^n)\cap L^2(\mathbb R^n)$
+\sourcefootnote{原书此步骤只要求 $h\in L^1$，但此时 $T$ 仅由
+引理~\ref{lem:B-2-9} 在 $L^2$ 上定义，尚未给出一般 $L^1$
+函数的 $Th$ 的定义。步骤 3 的 $g$ 由 $f$ 在各立方体上取平均得到，
+由 Jensen 不等式 $g\in L^2$，故实际使用的 $h=f-g$ 属于
+$L^1\cap L^2$；将本步骤限于该交集足以完成证明。}
+支撑在 $B$ 中，且
+对每个 $i$ 满足
+\[
+  \int_{Q_i}h=0.
+\]
+则
+\[
+  \mu(t,Th)\le c\left(\operatorname{Vol}(B)
+    +\frac1t\|h\|_{L^1}\right).
+\]
+以 $h_i\in L^1(\mathbb R^n)\cap L^2(\mathbb R^n)$ 表示在 $Q_i$
+上等于 $h$、在 $\mathbb R^n\setminus Q_i$ 上等于零的函数。
+设 $q_i$ 为 $Q_i$ 的中心，
+并假设 $Q_i$ 的边长为 $2r_i$。于是 $Q_i$ 中任一点到 $q_i$ 的
+最大距离为 $\sqrt n\,r_i$。因此，当 $x\notin Q_i$ 时，
+\begin{align*}
+  |Th_i(x)|
+  &=\left|\int_{Q_i}\bigl(\partial_kK_j(x-y)
+    -\partial_kK_j(x-q_i)\bigr)h_i(y)\,dy\right|\\
+  &\le\max_{y\in Q_i}|\partial_kK_j(x-y)
+    -\partial_kK_j(x-q_i)|\,\|h\|_{L^1(Q_i)}\\
+  &\le\sqrt n\,r_i\max_{y\in Q_i}
+    |\nabla\partial_kK_j(x-y)|\,\|h\|_{L^1(Q_i)}\\
+  &\le c_1r_i\max_{y\in Q_i}\frac1{|x-y|^{n+1}}
+    \|h\|_{L^1(Q_i)}\\
+  &\le\frac{c_1r_i}{d(x,Q_i)^{n+1}}\|h\|_{L^1(Q_i)}.
+\end{align*}
+（以下用 $c_1,c_2,c_3$ 表示只依赖于 $n$ 的常数。）令
+\[
+  P_i:=\bigl\{x\in\mathbb R^n\mid
+    |x-q_i|<2\sqrt n\,r_i\bigr\}\supset Q_i.
+\]
+当 $x\in\mathbb R^n\setminus P_i$ 时，
+$d(x,Q_i)\ge|x-q_i|-\sqrt n\,r_i$。于是
+\begin{align*}
+  \int_{\mathbb R^n\setminus P_i}|Th_i|\,dx
+  &\le c_1r_i\int_{|x|>2\sqrt n\,r_i}
+    \frac{dx}{(|x|-\sqrt n\,r_i)^{n+1}}\,
+    \|h\|_{L^1(Q_i)}\\
+  &=c_1r_i\int_{2\sqrt n\,r_i}^{\infty}
+    \frac{\omega_n\rho^{n-1}\,d\rho}
+      {(\rho-\sqrt n\,r_i)^{n+1}}\,
+    \|h\|_{L^1(Q_i)}\\
+  &\le c_1\omega_n2^{n-1}r_i
+    \int_{\sqrt n\,r_i}^{\infty}\frac{d\rho}{\rho^2}\,
+    \|h\|_{L^1(Q_i)}\\
+  &=c_2\|h\|_{L^1(Q_i)}.
+\end{align*}
+因此，令 $A:=\bigcup_iP_i$，得到
+\[
+  \int_{\mathbb R^n\setminus A}|Th|\,dx
+  \le\sum_i\int_{\mathbb R^n\setminus P_i}|Th_i|\,dx
+  \le c_2\sum_i\|h\|_{L^1(Q_i)}
+  =c_2\|h\|_{L^1}.
+\]
+由于
+$\operatorname{Vol}(A)\le\sum_i\operatorname{Vol}(P_i)
+=c_3\sum_i\operatorname{Vol}(Q_i)=c_3\operatorname{Vol}(B)$，
+从而
+\begin{align*}
+  t\mu(t,Th)
+  &\le t\operatorname{Vol}(A)
+    +t\bigl|\{x\in\mathbb R^n\setminus A\mid |Th(x)|>t\}\bigr|\\
+  &\le t\operatorname{Vol}(A)
+    +\int_{\mathbb R^n\setminus A}|Th(x)|\,dx\\
+  &\le c_4\bigl(t\operatorname{Vol}(B)+\|h\|_{L^1}\bigr),
+\end{align*}
+其中 $c_4:=\max\{c_2,c_3\}$。步骤 1 得证。
+
+\emph{步骤 2。}
+设 $f\in L^2(\mathbb R^n)\cap L^1(\mathbb R^n)$ 且 $t>0$。
+则存在可数个内部两两不交的闭立方体 $Q_i\subset\mathbb R^n$，
+满足以下两条：
+\begin{enumerate}[label=(\roman*)]
+\item 对每个 $i$，
+$t\operatorname{Vol}(Q_i)<\|f\|_{L^1(Q_i)}
+\le2^nt\operatorname{Vol}(Q_i)$。
+\item 对几乎每个 $x\in\mathbb R^n\setminus B$，有 $|f(x)|\le t$，
+其中 $B:=\bigcup_iQ_i$。
+\end{enumerate}
+对 $k\in\mathbb Z^n$、$\ell\in\mathbb Z$，记
+\[
+  Q(k,\ell):=
+  \bigl\{x\in\mathbb R^n\mid
+    2^{-\ell}k_i\le x_i\le2^{-\ell}(k_i+1),
+    \ i=1,\ldots,n\bigr\}.
+\]
+令
+\[
+  \mathcal Q:=\{Q(k,\ell)\mid k\in\mathbb Z^n,\ \ell\in\mathbb Z\},
+\]
+并令 $\mathcal Q_0\subset\mathcal Q$ 为所有满足
+\[
+  t\operatorname{Vol}(Q)<\|f\|_{L^1(Q)}
+\]
+且
+\[
+  Q\subsetneq Q'\in\mathcal Q
+  \quad\Longrightarrow\quad
+  \|f\|_{L^1(Q')}\le t\operatorname{Vol}(Q')
+\]
+的 $Q\in\mathcal Q$ 的集合。那么，$\mathcal Q$ 中的每个递减
+立方体序列至多包含一个 $\mathcal Q_0$ 的元素。因此，
+$\mathcal Q_0$ 的每个 $Q$ 都满足断言 (i)，且 $\mathcal Q_0$
+中任意两个立方体的内部不交。现令
+\[
+  B:=\bigcup_{Q\in\mathcal Q_0}Q.
+\]
+那么，
+\[
+  x\in\mathbb R^n\setminus B,\qquad
+  x\in Q\in\mathcal Q
+  \quad\Longrightarrow\quad
+  \frac{\|f\|_{L^1(Q)}}{\operatorname{Vol}(Q)}\le t.
+\]
+（否则，取包含 $x$ 且满足
+$t\operatorname{Vol}(Q)<\|f\|_{L^1(Q)}$ 的极大立方体
+$Q\in\mathcal Q$。此立方体属于 $\mathcal Q_0$，从而 $x\in B$。）
+我们由此证明：对每个 $x\in\mathbb R^n\setminus B$，存在
+一列包含 $x$ 的递减立方体 $Q_\ell\in\mathcal Q$，使得
+$\operatorname{Vol}(Q_\ell)^{-1}\|f\|_{L^1(Q_\ell)}\le t$。
+由 Lebesgue 微分定理可知，对几乎每个
+$x\in\mathbb R^n\setminus B$，都有 $|f(x)|\le t$。
+步骤 2 得证。
+
+\emph{步骤 3。}我们证明本引理。
+固定常数 $t>0$，取步骤 2 中的 $Q_i$，并记 $B:=\bigcup_iQ_i$。
+由步骤 2，$t\operatorname{Vol}(B)\le\|f\|_{L^1}$。
+定义 $g,h:\mathbb R^n\to\mathbb R$ 为
+\[
+  g(x):=\begin{cases}
+    f(x),&x\notin B,\\
+    \operatorname{Vol}(Q_i)^{-1}\displaystyle\int_{Q_i}f,
+      &x\in Q_i,
+  \end{cases}
+  \qquad h:=f-g.
+\]
+则 $\|g\|_{L^1}\le\|f\|_{L^1}$，
+$\|h\|_{L^1}\le2\|f\|_{L^1}$。由 Jensen 不等式，
+$g\in L^2$，因此 $h\in L^2$。此外，$h$ 在
+$\mathbb R^n\setminus B$ 上为零，且在每个 $Q_i$ 上的平均值为零，
+因此满足步骤 1 的条件。于是存在只依赖于 $n$ 的常数 $c$，使得
+\[
+  \mu(t,Th)
+  \le c\left(\operatorname{Vol}(B)+\frac1t\|h\|_{L^1}\right)
+  \le\frac{3c}{t}\|f\|_{L^1}.
+\]
+又由步骤 2 可知，几乎处处有 $|g(x)|\le2^nt$。因此，
+由引理~\ref{lem:B-2-4}，
+\[
+  \mu(t,Tg)
+  \le\frac{\|g\|_{L^2}^2}{t^2}
+  \le\frac{2^n\|g\|_{L^1}}{t}
+  \le\frac{2^n\|f\|_{L^1}}{t}.
+\]
+结合上述不等式，再由引理~\ref{lem:B-2-4} 得
+\[
+  \mu(2t,Tf)
+  \le\mu(t,Tg)+\mu(t,Th)
+  \le\frac{2^{n+1}+6c}{2t}\|f\|_{L^1}.
+\]
+这就证明了引理~\ref{lem:B-2-10}。
+\end{proof}
+
+\begin{proof}[定理~\ref{thm:B-2-7} 的证明]
+由引理~\ref{lem:B-2-9} 和引理~\ref{lem:B-2-10}，线性算子
+$f\mapsto\partial_k(K_j*f)$ 满足引理~\ref{lem:B-2-5} 的条件。
+这证明了 $1<p<2$ 的情形。对 $2<p<\infty$，我们使用对偶性。
+取 $1<q<2$，使 $1/p+1/q=1$。则对
+$f,g\in C_0^\infty(\mathbb R^n)$，有
+\[
+  \int g(x)\partial_k(K_j*f)(x)\,dx
+  =\int\partial_k(K_j*g)(x)f(x)\,dx
+  \le c\|f\|_{L^p}\|g\|_{L^q}.
+\]
+因而，对每个 $f\in C_0^\infty(\mathbb R^n)$，
+$\|\partial_k(K_j*f)\|_{L^p}\le c\|f\|_{L^p}$。
+\end{proof}

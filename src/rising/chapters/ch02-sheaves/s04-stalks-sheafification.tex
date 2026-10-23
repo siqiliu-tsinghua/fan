@@ -1,0 +1,164 @@
+
+\section{茎上可判的性质与层化}
+
+\textbf{2.4.1.\ 由茎确定的性质。}\quad 现在我们来到章首提到过的第二种理解层的方式。本节将看到，关于层的许许多多事实都可以「在茎的层面上」加以检验。凡在茎的层面上确定的性质，我们都称之为\textbf{\trStalkLocal}（stalk-local）的性质。这一点对预层并不成立，恰好反映了层的局部本性。我们将看到：截面与态射都由「各自的茎」确定，而「一个态射是否为同构」也可以在茎上检验。（最后这件事最为微妙。）
+
+\begin{exercise}[重要而简单的练习：截面由\trGerm{}确定]\label{ex:sections-determined-by-germs}
+证明：集合的层的一个截面由它的诸\trGerm{}确定；换言之，自然映射
+\begin{equation*}\tag{2.4.1.1}\label{eq:sections-to-product-of-germs}
+\scr{F}(U)\longrightarrow\prod_{p\in U}\scr{F}_p
+\end{equation*}
+是单射。提示一：你用不到可粘性公理，所以此结论对\trSeparated\trPresheaf{}也成立。提示二：它对一般的预层并不成立——见 \cref{ex:counterexamples-for-presheaves}——所以你\emph{终归}要用到\trIdentityAxiom。（你的证明对群的层、环的层等等同样适用——亦即适用于「带有附加结构的集合」的那类范畴。本节的许多练习皆是如此。）
+\end{exercise}
+
+\cref{ex:sections-determined-by-germs}引出了一个问题：\eqref{eq:sections-to-product-of-germs} 右边的哪些元素落在左边映射的像之中？
+
+\textbf{2.4.2.\ 重要定义。}\quad 若 \eqref{eq:sections-to-product-of-germs} 右边 $\prod_{p\in U}\scr{F}_p$ 中的元素 $(s_p)_{p\in U}$ 满足：对一切 $p\in U$，$s_p$ 都有某个代表元
+\[
+(\tilde{s}_p\in\scr{F}(U_p),\ U_p\text{ 为 }U\text{ 中的开集})
+\]
+（其中 $p\in U_p\subset U$），使得 $\tilde{s}_p$ 在每个 $q\in U_p$ 处的\trGerm{}都是 $s_q$，则称它由\textbf{\trCompatibleGerm}（compatible germs）构成。等价地说：存在 $U$ 的一个\trOpenCover{} $\{U_i\}$ 与诸截面 $f_i\in\scr{F}(U_i)$，使得当 $p\in U_i$ 时，$s_p$ 就是 $f_i$ 在 $p$ 处的\trGerm。显然，$\scr{F}$ 在 $U$ 上的任一截面 $s$ 都给出 $U$ 的一组\trCompatibleGerm。
+
+\begin{exercise}[重要练习]\label{ex:compatible-germs-section-image}
+证明：集合的层 $\scr{F}$ 在 $U$ 上的任何一组\trCompatibleGerm，都是 $\scr{F}$ 在 $U$ 上某个截面的像。（提示：你会用到可粘性。）
+\end{exercise}
+
+至此，我们已经把 \eqref{eq:sections-to-product-of-germs} 的像完整地描述了出来，而且这种描述日后将证明是有用的。
+
+\vkthmsync{3}
+\begin{remark}\label{thm:sheaf-name-origin}
+这一视角正是「层」这个农学术语的由来：所谓层，无非是（一批数据的）一把茎秆，再按恰当的方式捆扎成束。\footnote{译注：法语原名 faisceau 与英文 sheaf 本义都是「捆成束的麦秆」，与「茎」正相呼应；中译名「层」未能保留这层意象，幸而「茎」字尚存。}
+\end{remark}
+
+现在我们把态射也掺和进来。回忆 \cref{ex:morphisms-induce-stalk-maps}：（预）层的态射诱导各茎之间的态射。
+
+\begin{exercise}[态射由茎确定]\label{ex:morphisms-determined-by-stalks}
+设 $\phi_1$ 与 $\phi_2$ 都是从集合的预层 $\scr{F}$ 到集合的层 $\scr{G}$ 的态射，并且二者在每个茎上诱导相同的映射。证明：$\phi_1=\phi_2$。提示：考虑下图。
+\begin{equation*}\tag{2.4.3.1}\label{eq:morphisms-stalks-diagram}
+\begin{tikzcd}[row sep=2.8em, column sep=3.6em]
+\scr{F}(U) \ar[r] \ar[d] & \scr{G}(U) \ar[d, hook] \\
+\prod_{p\in U}\scr{F}_p \ar[r] & \prod_{p\in U}\scr{G}_p
+\end{tikzcd}
+\end{equation*}
+\end{exercise}
+
+\begin{exercise}[棘手的练习：同构由茎确定]\label{ex:isomorphisms-determined-by-stalks}
+证明：集合的层之间的态射是\trIsomorphism，当且仅当它在所有茎上都诱导\trIsomorphism。提示：利用 \eqref{eq:morphisms-stalks-diagram}。一旦证得单射性，再来证满射性——或许可用 \cref{ex:compatible-germs-section-image}，或以别的方式动用可粘性；这一步更为微妙。\emph{警示：}本练习并\emph{不}是说：若两个层的诸茎都\trIsomorphic，则这两个层就\trIsomorphic。
+\end{exercise}
+
+\begin{exercise}\label{ex:counterexamples-for-presheaves}
+(a)~证明：\cref{ex:sections-determined-by-germs} 对一般预层不成立。
+
+(b)~证明：\cref{ex:morphisms-determined-by-stalks} 对一般预层不成立。
+
+(c)~证明：\cref{ex:isomorphisms-determined-by-stalks} 对一般预层不成立。
+
+（寻找这类反例的一般性提示：考虑带\trDiscreteTopology{}的两点空间。）
+\end{exercise}
+
+\textbf{2.4.4.\ 层化。}\quad 每个层都是预层（而且按定义，$X$ 上的层确实构成 $X$ 上的预层范畴的一个\trFullSubcategory）。正如\trGroupification（\S1.4.3）给出了最佳逼近\trAbelianSemigroup{}的\trAbelianGroups，\trSheafification{}给出了最佳逼近预层的层，并带有类似的\trUniversalProperty。（心里不妨揣着这样一个例子：带\trClassicalTopology{}的 $\mathbb{C}$ 上、容许存在平方根的全纯函数之预层的层化。另见\trExponentialSequence，即 \cref{thm:exponential-sequence-example}。）
+
+\vkthmsync{5}
+\begin{definition}\label{thm:definition-of-sheafification}
+设 $\scr{F}$ 是 $X$ 上的预层。预层态射 $\mathrm{sh}\colon\scr{F}\to\scr{F}^{\mathrm{sh}}$ 称为 $\scr{F}$ 的一个\textbf{层化}（sheafification），若 $\scr{F}^{\mathrm{sh}}$ 是层，并且对任何层 $\scr{G}$ 与任何预层态射 $g\colon\scr{F}\to\scr{G}$，都\emph{存在唯一}一个层的态射 $f\colon\scr{F}^{\mathrm{sh}}\to\scr{G}$，使得图
+\[
+\begin{tikzcd}
+\scr{F} \ar[r, "\mathrm{sh}"] \ar[dr, "g"'] & \scr{F}^{\mathrm{sh}} \ar[d, "f"] \\
+& \scr{G}
+\end{tikzcd}
+\]
+交换。
+\end{definition}
+
+我们仍须证明层化确实存在。下面两个练习需要用到存在性（我们稍后即证），但不需要构造的细节。
+
+\begin{exercise}\label{ex:sheafification-unique-isomorphism}
+在层化存在的前提下，证明层化在唯一的\trIsomorphism{}意义下唯一。再证明：若 $\scr{F}$ 是层，则其层化就是 $\id\colon\scr{F}\longrightarrow\scr{F}$。（此事如今应当已是你的第二天性。）
+\end{exercise}
+
+\begin{exercise}[简单练习：层化是函子]\label{ex:sheafification-is-functor}
+暂且假定层化存在。用\trUniversalProperty{}证明：对预层的任何态射 $\phi\colon\scr{F}\to\scr{G}$，都得到一个自然诱导的层的态射 $\phi^{\mathrm{sh}}\colon\scr{F}^{\mathrm{sh}}\to\scr{G}^{\mathrm{sh}}$。证明：层化是从 $X$ 上的预层到 $X$ 上的层的一个\trFunctor。
+\end{exercise}
+
+\textbf{2.4.6.\ 构造。}\quad 接下来我们证明：任何集合的预层（或群的、环的等等）都有层化。设 $\scr{F}$ 是一个预层。把 $\scr{F}^{\mathrm{sh}}(U)$ 定义为预层 $\scr{F}$ 在 $U$ 上的「\trCompatibleGerm（族）」全体，从而定义 $\scr{F}^{\mathrm{sh}}$。明确地写出来：
+\[
+\scr{F}^{\mathrm{sh}}(U):=\Bigl\{(f_p\in\scr{F}_p)_{p\in U}:\ \begin{array}{l}
+\text{对一切 }p\in U\text{，都存在 }p\text{ 的含于 }U\text{ 的开\trNeighborhood{} }V\\
+\text{与 }s\in\scr{F}(V)\text{，使得对一切 }q\in V\text{ 都有 }s_q=f_q
+\end{array}\Bigr\}.
+\]
+这里 $s_q$ 指 $s$ 在 $q$ 处的\trGerm{}——即 $s$ 在茎 $\scr{F}_q$ 中的像。
+
+\begin{exercise}[简单练习]\label{ex:sheafification-forms-sheaf}
+证明：$\scr{F}^{\mathrm{sh}}$（配以自带的\trRestrictionMap）构成一个层。
+\end{exercise}
+
+\begin{exercise}[简单练习]\label{ex:sheafification-natural-map}
+描述一个自然的预层态射 $\mathrm{sh}\colon\scr{F}\to\scr{F}^{\mathrm{sh}}$。
+\end{exercise}
+
+\begin{exercise}\label{ex:sheafification-universal-property}
+证明：映射 $\mathrm{sh}$ 满足\trSheafification{}的\trUniversalProperty（\cref{thm:definition-of-sheafification}）。（此事比你可能担心的要容易。）
+\end{exercise}
+
+\begin{exercise}[有用练习，不只为范畴爱好者而设]\label{ex:sheafification-left-adjoint}
+证明：\trSheafification{}函子是从「$X$ 上的层」到「$X$ 上的预层」的\trForgetfulFunctor{}的\trLeftAdjoint。这并不困难——它在很大程度上只是把\trUniversalProperty{}复述了一遍。但它让你得以援引 \S1.5.14 的结果，并且能够「解释」：为什么取\trKernel{}时无须层化（预层的\trKernel{}本来就已经是层的\trKernel{}），而取\trCokernel{}时——以及很快地，取\trTensorProduct{}时（\cref{ex:ox-module-tensor-product}）——却需要层化。
+\end{exercise}
+
+\begin{exercise}[简单练习]\label{ex:sheafification-stalk-isomorphism}
+证明 $\scr{F}\to\scr{F}^{\mathrm{sh}}$ 诱导诸茎之间的\trIsomorphism。（一个可能的提示：利用茎的显式描述。等读过 \cref{thm:stalk-skyscraper-adjoint} 之后还有另一种可能：明智地使用伴随。）
+\end{exercise}
+
+作为一个现实检验，你不妨验证一下「\trConstantPresheaf{}的层化就是相应的\trConstantSheaf」（见 \S2.2.10）：若 $X$ 是\trTopologicalSpace{}，$S$ 是一个集合，则 $(\underline{S}_{\mathrm{pre}})^{\mathrm{sh}}$ 可以自然地与 $\underline{S}$ 等同。
+
+\vkthmsync{7}
+\begin{remark}[\hard]\label{thm:sheafification-espace-etale}
+「\trSection{}空间」（即\trEspaceEtale，法语 espace étalé）的构造（\S2.2.11）给出了层化的另一种讲法，有些读者或许更偏爱它。主要思想完全一样：若 $\scr{F}$ 是预层，令 $\mathrm{F}$ 为 $\scr{F}$ 的截面空间（即\trEspaceEtale）。你可以试着证明：若 $\scr{F}$ 是预层，则 $\mathrm{F}\to X$ 的截面层（其定义见 \cref{ex:sections-of-a-map}的 (a)）就是 $\scr{F}$ 的层化。\cref{ex:constant-sheaves} 可以解读为这一构造的一个例子。层化的这种「截面空间」构造，本质上与 \mbox{构造~2.4.6} 相同。
+\end{remark}
+
+\textbf{2.4.8.\ 子层与商层。}\quad 现在我们从茎的视角来讨论\trSubsheaf{}与\trQuotientSheaf。
+
+\begin{exercise}\label{ex:mono-subsheaf-criteria}
+设 $\phi\colon\scr{F}\to\scr{G}$ 是\trTopologicalSpace{} $X$ 上集合层之间的态射。证明下列三条等价。
+
+(a)~$\phi$ 是层范畴中的\trMonomorphism。
+
+(b)~$\phi$ 在茎的层面上是单的：对一切 $p\in X$，$\phi_p\colon\scr{F}_p\to\scr{G}_p$ 是\trInjectiveMap。
+
+(c)~$\phi$ 在开集的层面上是单的：对一切\trOpenSubset{} $U\subset X$，$\phi(U)\colon\scr{F}(U)\to\scr{G}(U)$ 是\trInjectiveMap。
+
+（可能的提示：对于 (b) 蕴含 (a)，回忆态射由茎确定（\cref{ex:morphisms-determined-by-stalks}）。对于 (a) 蕴含 (c)，使用「\trIndicatorSheaf」（indicator sheaf）：它在含于 $U$ 的每个开集上恰有一个截面，而在任何其他开集上都没有截面。）如果这些条件都成立，我们就称 $\scr{F}$ 是 $\scr{G}$ 的一个\trSubsheaf（「包含」态射 $\phi$ 有时略去不写）。
+\end{exercise}
+
+（日后你或许愿意把 \cref{ex:mono-subsheaf-criteria} 的解答加以扩充，以证明：对预层的任何态射，若所有截面映射都是单射，则所有茎间映射都是单射。再者，若 $\phi\colon\scr{F}\to\scr{G}$ 是从\trSeparated\trPresheaf{}到任意预层的态射，则茎层面上的单性蕴含 $\phi$ 是预层范畴中的\trMonomorphism。这在处理 \cref{ex:image-sheaf-sheafification}的某些进路上有用。）
+
+\begin{exercise}\label{ex:epi-quotient-criteria}
+沿用上一练习的记号，证明下列两条等价。
+
+(a)~$\phi$ 是层范畴中的\trEpimorphism。
+
+(b)~$\phi$ 在茎的层面上是满的：对一切 $p\in X$，$\phi_p\colon\scr{F}_p\to\scr{G}_p$ 是\trSurjectiveMap。
+
+（可能的提示：用\trSkyscraperSheaf。）如果这些条件都成立，我们就称 $\scr{G}$ 是 $\scr{F}$ 的一个\trQuotientSheaf。
+\end{exercise}
+
+\emph{于是，单态射与满态射——子层性与商层性——都可以在茎的层面上检验。}
+
+上面两个练习都可以顺利推广到取值于任何说得过去的范畴的层：只需把「单射」换成「\trMonomorphism」、「满射」换成「\trEpimorphism」。
+
+注意，\cref{ex:epi-quotient-criteria} 并没有 (c) 这么一条，而 \cref{thm:exponential-sequence-example} 说明了这是为什么。（不过确有一种 (c) 是能蕴含 (a) 与 (b) 的：在一个拓扑的\emph{任意}基底的全部开集上都满射，即可推出相应的层的映射是\trEpimorphism，见 \cref{ex:surjectivity-on-base}。）
+
+\vkthmsync{9}
+\begin{example}\label{thm:exponential-sequence-example}
+（对照 \mbox{练习~2.3.J}。）取 $X=\mathbb{C}$（带\trClassicalTopology），令 $\OO_X$ 为\trHolomorphic{}函数的层，$\OO_X^*$ 为可逆（即处处非零）的\trHolomorphic{}函数的层。后者在乘法下是\trAbelianGroups{}的层。我们有层的映射
+\begin{equation*}\tag{2.4.9.1}\label{eq:exponential-sequence}
+0\longrightarrow\underline{\mathbb{Z}}\xrightarrow{\ \times 2\pi i\ }\OO_X\xrightarrow{\ \exp\ }\OO_X^*\longrightarrow 1,
+\end{equation*}
+（层 $0$ 与层 $1$ 是什么意思，你可以自行弄明白；二者\trIsomorphic，而之所以写成这样，个中缘由你应能自明。）我们很快将把它解读为\trAbelianGroups{}的层的一个\trExactSequence（\textbf{\trExponentialSequence}（exponential exact sequence）；见 \cref{ex:exponential-sequence-check}），尽管眼下我们还没有这样做的语言。
+\end{example}
+
+\begin{exercise}[富于启发的练习]\label{ex:exp-quotient-sheaf}
+证明 $\exp\colon\OO_X\longrightarrow\OO_X^*$ 把 $\OO_X^*$ 描述为 $\OO_X$ 的一个\trQuotientSheaf。找一个开集，使该映射在其上不是满射。
+\end{exercise}
+
+这是体会「满射」对层而言意味着什么的一个绝好例子：处处非零的\trHolomorphic{}函数（比如原点之外的那个函数 $x$）局部地总有对数，但未必整体地有对数。

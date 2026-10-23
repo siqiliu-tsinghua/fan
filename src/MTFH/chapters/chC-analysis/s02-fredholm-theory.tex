@@ -1,0 +1,348 @@
+
+\section{\trFredholm{}理论}
+\label{sec:appC-fredholm-theory}
+
+正如通常的做法，也为了简单起见，在本章中我们将把一个算子\footnote{在本书的其余部分里，我们偶尔曾把“算子”一词用于不必是线性的可微映射，也偶尔考虑过不连续的算子。作为通例，我们总会指明这个词所指为何。}称作从一个赋范\trVectorSpace{}到另一个赋范\trVectorSpace{}的连续线性映射（它有时也被称为\trBounded{}线性映射）。
+
+\subsection{\trFredholmOperator}
+\label{subsec:appC-fredholm-operators}\BookIndexDefinition{trFredholmOperator}
+
+我们说，从一个\trBanachSpace{} $E$ 到一个\trBanachSpace{} $F$ 的算子 $L$ 是\trFredholm{}的，如果它有一个\trIndex，也就是说，如果 $\operatorname{Ker} L$ 是一个有限维的子空间，而 $\operatorname{Im} L$ 是一个有限余维数的子空间（或者 $\operatorname{Coker} L$ 是一个有限维的空间）。这个算子的\trIndex{}于是是
+\[
+\operatorname{Ind}(L) = \dim \operatorname{Ker} L - \dim \operatorname{Coker} L.
+\]
+
+\begin{example}\label{thm:appC-fredholm-examples}
+\begin{enumerate}[label=(\arabic*)]
+\item 一个\trBijective{}算子有\trIndex，即零。
+\item 若 $E$ 是一个有限维\trVectorSpace，那么每个线性映射 $L : E \to E$ 的\trIndex{}都是零……因为这个断言等价于
+\[
+\dim \operatorname{Ker} L + \dim \operatorname{Im} L = \dim E.
+\]
+\end{enumerate}
+\end{example}
+
+\begin{remark}\label{thm:appC-fredholm-euler-characteristic}
+若 $L : E \to F$ 是一个\trFredholmOperator，那么 $\operatorname{Ind}(L)$ 就是\trChainComplex
+\[
+0 \longrightarrow E \xrightarrow{\ L\ } F \longrightarrow 0
+\]
+的\trEulerCharacteristic，因为在这个简单的情形里，\trEulerCharacteristic{}是
+\[
+\chi = \dim(\operatorname{Ker} L / \{0\}) - \dim(F / \operatorname{Im}(L)).
+\]
+\end{remark}
+
+\trFredholmOperator{}的理论在 Grisvard 的一个报告 [41] 中讲得非常好，我们毫不害臊地从那里借用，并希望这次借用能被原谅，因为它会给这篇鲜为人知的文章带来知名度（对此我们毫不怀疑）。下面是第一批性质，它们全都可以直接验证。
+
+\begin{proposition}\label{thm:appC-fredholm-direct-sum}
+设 $L_0 : E_0 \to F_0$、$L_1 : E_1 \to F_1$、$L : E \to F$ 与 $L' : F \to G$ 都是\trFredholmOperator。那么我们有：
+\begin{enumerate}[label=(\arabic*)]
+\item $L_0 \oplus L_1$ 是一个\trFredholmOperator，并且
+\[
+\operatorname{Ind}(L_0 \oplus L_1) = \operatorname{Ind}(L_0) + \operatorname{Ind}(L_1).
+\]
+\item 若 $H$ 是一个维数为 $m$ 的有限维\trVectorSpace，那么 $L \otimes \mathrm{Id}_H$ 是一个\trFredholmOperator，并且\trIndex{} $\operatorname{Ind}(L \otimes \mathrm{Id}_H) = m\,\operatorname{Ind}(L)$。
+\item $L' \circ L$ 是一个\trFredholmOperator，并且 $\operatorname{Ind}(L' \circ L) = \operatorname{Ind}(L') + \operatorname{Ind}(L)$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+第一条断言是显然的；第二条断言通过给 $H$ 选一组基并写成
+\[
+E \otimes H \cong E \oplus \cdots \oplus E \qquad\text{以及}\qquad L \otimes \mathrm{Id}_H = L \oplus \cdots \oplus L
+\]
+而由第一条得来。利用\cref{thm:appC-fredholm-euler-characteristic}，我们也可以考虑\trChainComplex{}的\trShortExactSequence
+\[
+\begin{tikzcd}
+ & 0 \arrow[d] & 0 \arrow[d] \\
+0 \arrow[r] & E_0 \arrow[r, "L_0"] \arrow[d] & F_0 \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & E_0 \oplus E_1 \arrow[r, "L_0 \oplus L_1"] \arrow[d] & F_0 \oplus F_1 \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & E_1 \arrow[r, "L_1"] \arrow[d] & F_1 \arrow[r] \arrow[d] & 0 \\
+ & 0 & 0
+\end{tikzcd}
+\]
+并应用\trEulerCharacteristic{}的可加性\footnote{这是与\trChainComplex{}的\trShortExactSequence{}相联系的\trLongExactSequence{}之存在性的一个推论；见\cref{subsec:appB-exact-sequences}。}来证明第一条断言。这就引出了 Grisvard 用来证明第三条断言的那个优雅的论证。该论证如下。我们考虑交换图
+\[
+\begin{tikzcd}
+ & 0 \arrow[d] & 0 \arrow[d] \\
+0 \arrow[r] & E \arrow[r, "L"] \arrow[d, "{(\mathrm{Id}_E,\ L)}"'] & F \arrow[r] \arrow[d, "{(L',\ \mathrm{Id}_F)}"] & 0 \\
+0 \arrow[r] & E \oplus F \arrow[r, "L' \circ L \oplus \mathrm{Id}_F"] \arrow[d, "L - \mathrm{Id}_F"'] & G \oplus F \arrow[r] \arrow[d, "\mathrm{Id}_G - L'"] & 0 \\
+0 \arrow[r] & F \arrow[r, "L'"] \arrow[d] & G \arrow[r] \arrow[d] & 0 \\
+ & 0 & 0
+\end{tikzcd}
+\]
+其竖直箭头构成\trComplex{}的\trShortExactSequence。由它我们推出
+\[
+\operatorname{Ind}(L) + \operatorname{Ind}(L') = \operatorname{Ind}(L' \circ L \oplus \mathrm{Id}_F) = \operatorname{Ind}(L' \circ L) + \operatorname{Ind}(\mathrm{Id}_F) = \operatorname{Ind}(L' \circ L).
+\]
+\end{proof}
+
+这样定义的\trFredholmOperator{}确实就是我们在第~8~章中定义的那些。我们有下述结果。
+
+\begin{proposition}\label{thm:appC-fredholm-image-closed}
+设 $L : E \to F$ 是一个\trKernel{}维数有限、而\trImage{}余维数有限的算子；那么它的\trImage{}是闭的。
+\end{proposition}
+
+\begin{proof}
+设 $H$ 是 $E$ 的一个闭子空间\footnote{这是\trHahnBanach{}定理的一个简单推论。}，满足 $\operatorname{Ker}(L) \oplus H = E$；又设 $G$ 是 $F$ 的一个有限维子空间，满足 $\operatorname{Im}(L) \oplus G = F$。考虑线性映射
+\[
+\begin{aligned}
+\Gamma : H \oplus G\ &\longrightarrow\ F \\
+(x, y)\ &\longmapsto\ L(x) + y.
+\end{aligned}
+\]
+由于 $G$ 的维数有限，这个映射是连续的。此外，容易验证它是\trBijective{}的。利用\trBanach{}定理，它的逆也是连续的，于是它的像 $\Gamma(H \oplus 0)$ 必定是闭的。但 $\Gamma(H \oplus 0) = \operatorname{Im}(L)$，证明即告完成。
+\end{proof}
+
+\subsection{基本性质}
+\label{subsec:appC-basic-properties}
+
+\begin{proposition}\label{thm:appC-fredholm-parametrix}
+设 $L : E \to F$ 是两个\trBanachSpace{}之间的一个算子。$L$ 为\trFredholm{}的，当且仅当存在一个算子 $L' : F \to E$，使得 $L \circ L' - \mathrm{Id}_F$ 与 $L' \circ L - \mathrm{Id}_E$ 都具有有限的秩。当此情形成立时，$L'$ 也是一个\trFredholmOperator，并且
+\[
+\operatorname{Ind}(L') = -\operatorname{Ind}(L).
+\]
+\end{proposition}
+
+\begin{proof}
+首先，设 $L$ 是一个\trFredholmOperator。我们选取 $\operatorname{Ker} L$ 在 $E$ 中的一个\trComplement{} $E_0$，使得 $L$ 在 $E_0$ 上的限制 $L_0$ 是从 $E_0$ 到 $\operatorname{Im}(L)$ 上的一个\trIsomorphism。我们考虑 $L_0$ 的逆 $L_0^{-1}$。我们还选取一个投影 $p : F \to \operatorname{Im}(L)$——我们把它取成连续的——并令
+\[
+L' = L_0^{-1} \circ p;
+\]
+那么 $L'$ 是连续的。我们有
+\[
+\operatorname{Im}(L' \circ L - \mathrm{Id}_E) = \operatorname{Ker}(L) \qquad\text{与}\qquad \operatorname{Im}(L \circ L' - \mathrm{Id}_F) = \operatorname{Ker}\, p,
+\]
+这两个空间都是有限维的。我们还有
+\[
+L \circ L' \circ L = L \qquad\text{与}\qquad L' \circ L \circ L' = L'.
+\]
+
+反过来，设 $L'$ 具有这两条性质，那么让我们来证明 $L$ 与 $L'$ 都是\trFredholmOperator。令 $A = L \circ L' - \mathrm{Id}_F$，又令 $B = L' \circ L - \mathrm{Id}_E$。我们有
+\[
+\operatorname{Ker}(L) \subset \operatorname{Ker}(L' \circ L) \subset \operatorname{Im}(B)
+\]
+（因此第一个\trKernel{}是有限维的），而且
+\[
+\operatorname{Im}(L) \supset \operatorname{Im}(L \circ L') = \operatorname{Im}(\mathrm{Id}_F + A).
+\]
+
+若 $G = \operatorname{Ker}(A)$，那么 $F/G$ \trIsomorphic{}于 $\operatorname{Im}(A)$，从而是有限维的。于是 $G$ 具有有限的余维数。然而，$\mathrm{Id}_F + A$ 在 $\operatorname{Ker}(A)$ 上等于 $\mathrm{Id}_F$，故 $\operatorname{Im}(\mathrm{Id}_F + A) \supset G$，这样一来像的确具有有限的余维数。
+
+于是 $L$ 有一个\trIndex，$L'$ 也一样。\trIndex{}的公式由\cref{thm:appC-fredholm-direct-sum}的可加性公式以及下面这条命题得到——后者将蕴含 $\mathrm{Id}_F + A$ 的\trIndex{}为零。
+\end{proof}
+
+\begin{proposition}\label{thm:appC-fredholm-finite-rank-perturbation}
+若 $u : E \to E$ 是一个具有有限秩的算子，那么
+\[
+\operatorname{Ind}(\mathrm{Id}_E + u) = 0.
+\]
+若 $L : E \to F$ 是一个\trFredholmOperator，而 $u : E \to F$ 是一个具有有限秩的算子，那么 $L + u$ 是\trFredholm{}的，并且它的\trIndex{}为
+\[
+\operatorname{Ind}(L + u) = \operatorname{Ind}(L).
+\]
+\end{proposition}
+
+\begin{proof}
+第一条断言是一个维数计算，我们可以借助\trEulerCharacteristic{}来完成。令 $G = \operatorname{Im}(u)$。它是 $E$ 的一个有限维子空间，并且在 $\mathrm{Id}_E + u$ 下稳定。\trChainComplex{}的\trExact{}列的图表为
+\[
+\begin{tikzcd}
+ & 0 \arrow[d] & 0 \arrow[d] \\
+0 \arrow[r] & G \arrow[r, "\mathrm{Id}_G + u"] \arrow[d] & G \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & E \arrow[r, "\mathrm{Id}_E + u"] \arrow[d] & E \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & E/G \arrow[r, "\mathrm{Id}_{E/G}"] \arrow[d] & E/G \arrow[r] \arrow[d] & 0 \\
+ & 0 & 0
+\end{tikzcd}
+\]
+（竖直箭头都是包含映射与投影）。于是\trIndex{}就是和
+\[
+\operatorname{Ind}(\mathrm{Id}_E + u) = \operatorname{Ind}(\mathrm{Id}_G + u) + \operatorname{Ind}(\mathrm{Id}_{E/G}),
+\]
+其中右边的第一项为零，因为 $G$ 是有限维的；而第二项为零，因为恒等映射的\trIndex{}总是零。
+
+既然我们已经完成了\cref{thm:appC-fredholm-parametrix}的证明，就没有什么能阻止我们应用它来证明第二条断言了。于是我们使用如该命题中的那个 $L'$。那么 $(L + u) \circ L' - \mathrm{Id}_F$ 也具有有限的秩，从而
+\[
+\operatorname{Ind}(L + u) + \operatorname{Ind}(L') = 0 \qquad\text{从而}\qquad \operatorname{Ind}(L + u) = \operatorname{Ind}(L).
+\]
+\end{proof}
+
+\begin{proposition}\label{thm:appC-compact-perturbation}
+若 $K : E \to E$ 是一个\trBanachSpace{}上的\trCompact{}算子，那么 $\mathrm{Id}_E + K$ 是一个\trFredholmOperator。
+\end{proposition}
+
+\begin{proof}
+我们考虑 $L = \mathrm{Id}_E + K : E \to E$。首先，$\mathrm{Id}_E\big|_{\operatorname{Ker}(L)} = -K\big|_{\operatorname{Ker}(L)}$，所以 $\mathrm{Id}_E\big|_{\operatorname{Ker}(L)}$ 是一个\trCompact{}算子，这就意味着 $\operatorname{Ker}(L)$ 的单位球是\trCompact{}的，从而 $\operatorname{Ker}(L)$ 是有限维的。
+
+现在让我们来证明 $L$ 的像是闭的。我们选取 $\operatorname{Ker}(L)$ 在 $E$ 中的一个\trComplement{} $E_0$，并证明存在一个常数 $C > 0$ 使得
+\[
+\forall x \in E_0, \quad \|x\| \le C\,\|L(x)\|.
+\]
+的确，若情形并非如此，那么我们就能找到由 $E_0$ 中范数为 $1$ 的元素组成的一个序列 $(x_k)$，使得
+\[
+\lim_{k \to +\infty} \bigl(x_k + K(x_k)\bigr) = 0.
+\]
+由于 $K$ 是\trCompact{}的，我们便能够抽取一个子序列使得 $(K(x_k))$ \trConvergence。但这样一来，$(x_k)$ 也会\trConvergence。极限 $x$ 于是就具有下列性质
+\[
+\|x\| = 1, \qquad x \in E_0 \cap \operatorname{Ker}(L),
+\]
+而这是荒谬的。
+
+于是我们得到了想要的不等式，它蕴含 $L$ 的像是闭的：若 $(x_k)$ 是 $E$ 中满足下列条件的一个序列
+\[
+\lim_{k \to +\infty} L(x_k) = y,
+\]
+那么 $(x_k)$ 是一个\trCauchy{}序列，从而\trConvergence{}到 $E$ 的一个向量，其像为 $y$。\footnote{译注：此段照原书排印，存疑备案：上面的估计 $\|x\| \le C\,\|L(x)\|$ 仅对 $E_0$ 中的 $x$ 建立，而此处却对 $E$ 中的任意序列 $(x_k)$ 由 $L(x_k) \to y$ 断言其本身为\trCauchy{}序列；当 $\operatorname{Ker} L \ne \{0\}$ 时该推理失效（取 $x_k = kv$，其中 $v \in \operatorname{Ker} L \setminus \{0\}$，则 $L(x_k) \equiv 0$，而 $(x_k)$ 显然不是\trCauchy{}序列）。补救之道是把\trPreimage{}序列换成其在闭\trComplement{} $E_0$ 中的代表元：将 $x_k$ 分解为 $x_k = v_k + w_k$（$v_k \in \operatorname{Ker} L$，$w_k \in E_0$），则 $L(w_k) = L(x_k) \to y$，且由估计知 $\|w_k - w_l\| \le C\,\|L(w_k) - L(w_l)\| \to 0$，故 $(w_k)$ 为\trCauchy{}序列，其极限 $w$ 即满足 $L(w) = y$，结论不受影响；命题（8.7.4）的证明在无界情形所用的正是这种取 $E_0$ 中代表元的手法，可资参照。——译者注}
+
+最后，我们考虑诸转置 $E' \to E'$（这里 $E'$ 表示 $E$ 的对偶，赋以弱\trTopology\footnote{我们总有 $\operatorname{Ker}\,{}^{t}L$ 是 $\operatorname{Im}(L)$ 的\trAnnihilator；我们并不总有 $\operatorname{Im}(L)$ 是 $\operatorname{Ker}\,{}^{t}L$ 的\trAnnihilator，但当 $\operatorname{Im}(L)$ 为闭时后者成立。}）。算子 ${}^{t}K$ 是\trCompact{}的，于是我们可以对 $\operatorname{Ker}({}^{t}L)$ 使用与 $\operatorname{Ker}(L)$ 相同的论证，来证明其维数是有限的。这个事实与 $\operatorname{Im}(L)$ 为闭的事实合在一起，就结束了该命题的证明。
+\end{proof}
+
+从这几条命题出发，我们推出三个对\trFredholmOperator{}理论必不可少的结果。
+
+\begin{theorem}\label{thm:appC-fredholm-compact-regularization}
+设 $L : E \to F$ 是\trBanachSpace{}之间的一个算子。$L$ 是一个\trFredholmOperator，当且仅当存在一个 $L' : F \to E$，使得
+\[
+L \circ L' - \mathrm{Id}_F \qquad\text{与}\qquad L' \circ L - \mathrm{Id}_E
+\]
+是\trCompact{}算子。
+\end{theorem}
+
+\begin{proof}
+具有有限秩的算子是\trCompact{}的，于是\cref{thm:appC-fredholm-parametrix}给出了该条件的必要性。其次，我们有
+\[
+\operatorname{Ker}(L) \subset \operatorname{Ker}(L' \circ L) \qquad\text{与}\qquad \operatorname{Im}(L) \supset \operatorname{Im}(L \circ L')
+\]
+从而结论由前一条命题得到。
+\end{proof}
+
+\begin{theorem}[小\trPerturbation{}下\trIndex{}的\trInvariance]\label{thm:appC-index-stability}\BookIndexDefinition{T018}
+设 $L : E \to F$ 是两个\trBanachSpace{}之间的一个\trFredholmOperator。存在一个常数 $\varepsilon > 0$，使得对每个范数 $\|u\| < \varepsilon$ 的算子 $u : E \to F$，算子 $L + u$ 都是\trFredholm{}的，并且
+\[
+\operatorname{Ind}(L + u) = \operatorname{Ind}(L).
+\]
+\end{theorem}
+
+\begin{proof}
+我们使用由\cref{thm:appC-fredholm-parametrix}给出的一个算子 $L'$，并令
+\[
+\varepsilon = \frac{1}{\|L'\|}.
+\]
+于是，对 $\|u\| < \varepsilon$，算子 $\mathrm{Id}_F + u \circ L'$ 与 $\mathrm{Id}_E + L' \circ u$ 都是\trInvertible{}的。特别地，它们的\trIndex{}都是零，而且我们有
+\[
+(L + u) \circ L' = L \circ L' + u \circ L' = \mathrm{Id}_F + A + u \circ L'
+\]
+对某个具有有限秩的算子 $A$。由于 $\mathrm{Id}_F + u \circ L'$ 是\trInvertible{}的，算子 $\mathrm{Id}_F + A + u \circ L'$ 的\trIndex{}为零（由\cref{thm:appC-fredholm-finite-rank-perturbation}）。由于
+\[
+\operatorname{Im}((L + u) \circ L') \subset \operatorname{Im}(L + u),
+\]
+这个像具有有限的余维数。我们可以用同样的方式（利用 $L' \circ L = \mathrm{Id}_E + B$，其中 $B$ 具有有限的秩）证明 $\operatorname{Ker}(L + u)$ 是有限维的。最后，一方面我们有
+\[
+\operatorname{Ind}(L + u) + \operatorname{Ind}(L') = 0,
+\]
+另一方面有
+\[
+\operatorname{Ind}(L) + \operatorname{Ind}(L') = 0,
+\]
+由此即得
+\[
+\operatorname{Ind}(L + u) = \operatorname{Ind}(L).
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:appC-compact-perturbation-index}
+设 $L : E \to F$ 是两个\trBanachSpace{}之间的一个\trFredholmOperator。对每个\trCompact{}算子 $K : E \to F$，算子 $L + K$ 都是\trFredholm{}的，并且
+\[
+\operatorname{Ind}(L + K) = \operatorname{Ind}(L).
+\]
+\end{theorem}
+
+\begin{proof}
+我们仍然使用\cref{thm:appC-fredholm-parametrix}中的算子 $L'$；算子
+\[
+(L + K) \circ L' - \mathrm{Id}_F \qquad\text{与}\qquad L' \circ (L + K) - \mathrm{Id}_E
+\]
+是\trCompact{}的，从而 $L + K$ 是\trFredholm{}的（由\cref{thm:appC-fredholm-compact-regularization}）。对每个 $t \in [0,1]$，$L + tK$ 也是如此，于是，由\cref{thm:appC-index-stability}，我们有
+\[
+\operatorname{Ind}(L + K) = \operatorname{Ind}(L).
+\]
+\end{proof}
+
+\begin{remark}\label{thm:appC-index-continuity}
+\cref{thm:appC-index-stability}断言：\trIndex{}是\trFredholmOperator{}的集合上的一个连续映射，而这个集合是从 $E$ 到 $F$ 的算子空间的一个\trOpen{}子集。
+\end{remark}
+
+\begin{remark}\label{thm:appC-id-plus-k-index-zero}
+算子 $\mathrm{Id}_E + K$ 由\cref{thm:appC-compact-perturbation}是\trFredholm{}的，因而其\trIndex{}为零。
+\end{remark}
+
+\subsection{另一个有用的结果}
+\label{subsec:appC-another-useful-result}
+
+为了证明\trFloerEquation{}的\trLinearization{}算子 $L$ 是一个\trFredholmOperator，我们曾用到\cref{thm:semi-fredholm-kernel}，此处把它重述于下。
+
+\noindent\textbf{命题（8.7.4）。}{\kaishu 设 $E$、$F$ 与 $G$ 是三个\trBanachSpace。设 $L : E \to F$ 是一个算子，又设 $K : E \to G$ 是一个\trCompact{}算子。我们假设存在一个常数 $C > 0$，使得
+\[
+\forall x \in E, \quad \|x\|_E \le C \left( \|L(x)\|_F + \|K(x)\|_G \right).
+\]
+那么，$L$ 的\trKernel{}是有限维的，并且 $L$ 的像是闭的。}
+
+\begin{proof}
+这个证明受到\cref{thm:appC-compact-perturbation}的证明的启发。让我们首先证明 $\operatorname{Ker} L$ 是 $E$ 的一个有限维子空间。为此，让我们证明它的单位球是\trCompact{}的。设 $(x_k)$ 是这个球中元素组成的一个序列：
+\[
+\|x_k\|_E \le 1 \qquad\text{与}\qquad L(x_k) = 0.
+\]
+假设即是
+\[
+\|x_k\|_E \le C\,\|K(x_k)\|.
+\]
+单位球在 $K$ 下的像是相对紧的，于是在必要时抽取一个子序列之后，我们可以——而且我们也确实——设序列 $(K(x_k))$ 在 $G$ 中\trConvergence。这就蕴含 $(x_k)$ 是一个\trCauchy{}序列，从而，由于 $E$ 是完备的，它在 $E$ 中、进而在单位球中\trConvergence。这就证明了单位球的\trCompact{}性。
+
+现在让我们证明 $\operatorname{Im}(L)$ 是 $F$ 的一个闭子空间。设 $(x_k)$ 是 $E$ 中元素组成的一个序列，使得序列 $(L(x_k))$ \trConvergence{}到一个元素 $y \in F$，让我们证明 $y$ 属于 $L$ 的\trImage：
+\begin{itemize}
+\item 若序列 $(x_k)$ 是\trBounded{}的，那么不等式给出
+\[
+\|x_k\|_E \le C \left( \|L(x_k)\|_F + \|K(x_k)\|_G \right),
+\]
+其中 $L(x_k) \to y$ 于 $F$ 中，而 $K(x_k)$ 保持在 $G$ 的一个\trCompact{}子集内。由此推出 $(x_k)$ 容许一个构成\trCauchy{}序列的子序列，从而该子序列\trConvergence。它的极限 $x$ 满足 $y = L(x)$。
+\item 若序列 $(x_k)$ 不是\trBounded{}的，那么让我们证明我们会得出一个矛盾。此时，该序列容许一个满足下式的子序列
+\[
+\lim_{k \to +\infty} \|x_k\| = +\infty.
+\]
+由于 $\operatorname{Ker} L$ 是一个有限维子空间，我们可以找到一个\trComplement{} $E_0$，并且我们可以——而且我们也确实——设对每个 $k$ 有 $x_k \in E_0$。令
+\[
+u_k = \frac{x_k}{\|x_k\|_E} \in E_0.
+\]
+我们的不等式给出
+\[
+\|u_k\|_E \le C \left( \|L(u_k)\|_F + \|K(u_k)\|_G \right).
+\]
+再一次，序列 $(K(u_k))$ 容许一个\trConvergence{}的子序列。此时序列 $(L(u_k))$ \trConvergence{}到 $0$，因此我们可以——而且我们也确实——设 $(u_k)$ 是一个\trCauchy{}序列，从而在 $E_0$ 中\trConvergence{}到一个极限
+\[
+u \in \operatorname{Ker} L \cap E_0 = \{0\}.
+\]
+因此 $u = 0$，尽管它本应具有范数 $1$，这就给出了所期待的矛盾。
+\end{itemize}
+\end{proof}
+
+\subsection{\trFredholm{}映射}
+\label{subsec:appC-fredholm-maps}
+
+我们称从一个\trBanachSpace{}到另一个\trBanachSpace{}的可微映射
+\[
+\scr{F} : E \longrightarrow F
+\]
+为一个\trFredholm{}映射，如果它在每一点都有一个（连续的）\trDifferential
+\[
+T_x\scr{F} : E \longrightarrow F
+\]
+并且后者还是一个\trFredholmOperator。让我们注意到，此时 $T_x\scr{F}$ 的\trIndex{}不依赖于 $x$（由\cref{thm:appC-index-stability}与\cref{thm:appC-index-continuity}）。因此我们把它记作 $\operatorname{Ind}(\scr{F})$。
+
+\trBanachSpace{}中的\trLocalInversionTheorem（参见 [19]）使我们能够像在有限维情形中那样证明下述结果。
+
+\begin{theorem}\label{thm:appC-fredholm-regular-value}
+设 $\scr{F} : E \to F$ 是一个\trFredholm{}映射，又设 $y \in F$ 使得
+\[
+\forall x \in \scr{F}^{-1}(y), \quad T_x\scr{F} : E \longrightarrow F
+\]
+是\trSurjective{}的。那么 $\scr{F}^{-1}(y)$ 是一个维数为 $\operatorname{Ind}(\scr{F})$ 的\trManifold，并且它在 $x$ 处的\trTangentSpace{}是 $\operatorname{Ker} T_x\scr{F}$。
+\end{theorem}

@@ -1,0 +1,74 @@
+\paragraph{扭转的\trComposition。}\label{sub:composition-of-twists}
+取一个 \trCfinite{}的\trTriangulated{}\trACategory{} $\scr{A}$，并取定%
+\trObject{} $Y_1,\ldots,Y_m$。从任意一个\trObject{} $X=X_m$ 出发，把它逐一
+扭转，作出 $X_{k-1}=T_{Y_k}X_k$。按定义，存在\trExactTriangle
+\begin{equation*}
+\begin{tikzcd}
+X_k \ar[rr,"{[i_j]}"] && X_{k-1} \ar[dl,"{[1]}"] \\
+& Z_k\otimes Y_k \ar[ul] &
+\end{tikzcd}
+\end{equation*}
+其中 $Z_k=\Hom_{H(\scr{A})}(Y_k,X_k)$\footnote{译注：此处原书印作 $[i_j]$；
+疑应为 $[i_k]$（图中\trMorphism{}是 $X_k\to X_{k-1}$，其下标应与所涉%
+\trObject{}一致，且下文\eqref{eq:combined-twist-triangle} 中的合成写作
+$[i_1]\circ\cdots\circ[i_m]$）；此处照原书排印，存疑备案。——译者注}。反复应用
+\cref{thm:composite-exact-triangle}，便得到一个合成的\trExactTriangle
+\begin{equation}\label{eq:combined-twist-triangle}
+\begin{tikzcd}
+X \ar[rr,"{[i_1]\circ\cdots\circ[i_m]}"] && T_{Y_1}\ldots T_{Y_m}(X)
+\ar[dl,"{[1]}"] \\
+& Y \ar[ul] &
+\end{tikzcd}
+\end{equation}
+其中\trObject{} $Y$ 是由诸 $Z_k\otimes Y_k$ 经一列\trExactTriangle{}构造出来的，
+因而落在 $\scr{A}$ 的由诸 $Y_k$ 生成的\trTriangulated{}子\trCategory{}之中。
+现在假设 $[i_1]\circ\cdots\circ[i_m]=0$。那么，如\cref{thm:vanishing-maps-splitting}
+中所讨论的，\eqref{eq:combined-twist-triangle} 就会\trSplitting，于是
+\begin{equation}\label{eq:combined-twist-split}
+X\oplus T_{Y_1}\ldots T_{Y_m}(X)[-1]\cong Y.
+\end{equation}
+显然，这一观察在任一给定情形中是否有用，取决于能否证明诸 $[i_k]$ 的%
+\trComposition{}为零。下面是两个特别简单的情形：
+
+\begin{corollary}\label{thm:zero-twist-generates}
+设 $\scr{A}$ 是一个 \trCfinite{}的\trTriangulated{}\trACategory。假设存在
+$Y_1,\ldots,Y_m$，使得对一切\trObject{} $X$，
+\begin{equation}\label{eq:iterated-twist-zero}
+T_{Y_1}\ldots T_{Y_m}X\cong 0
+\end{equation}
+是 $H^0(\scr{A})$ 中的零\trObject{}（换句话说，$T_{Y_1}\ldots T_{Y_m}X$ 在该%
+\trCategory{}中的\trEndomorphism{}群为零）。那么诸 $Y_k$ 生成 $\scr{A}$，而且
+该\trCategory{}还是\trSplitClosed{}的。
+\end{corollary}
+
+\begin{proof}
+第一个断言可直接由\eqref{eq:combined-twist-split} 得出。至于第二个断言，考虑%
+\trSplitClosure{} $\Pi\scr{A}$：它显然仍是 \trCfinite{}的，并且据%
+\cref{thm:split-closure-triangulated}是\trTriangulated{}的。由扭转的定义可以
+看出，$T_{Y_k}$ 保持\trDirectSum，这意味着\eqref{eq:iterated-twist-zero} 对
+$\Pi\scr{A}$ 的一切\trObject{} $X$ 都成立。于是诸 $Y_k$ 也生成 $\Pi\scr{A}$，
+这就意味着\trEmbedding{} $\scr{A}\hookrightarrow\Pi\scr{A}$ 是一个%
+\trQuasiequivalence。
+\end{proof}
+
+\begin{corollary}\label{thm:shifted-twist-split-generates}
+设 $\scr{A}$ 是一个 \trCfinite{}的\trTriangulated{}\trACategory，并且它还是%
+\trSplitClosed{}的。假设存在 $Y_1,\ldots,Y_m$ 和一个 $\sigma\neq 0$，使得对一切
+$X$，
+\begin{equation*}
+T_{Y_1}\ldots T_{Y_m}(X)\cong S^{\sigma}X
+\end{equation*}
+在 $H^0(\scr{A})$ 中成立。那么诸 $Y_k$ \trSplitGeneration{} $\scr{A}$。
+\end{corollary}
+
+\begin{proof}
+有限维性假设意味着，对任意 $X$，存在 $s>0$ 使得
+$\mathrm{Hom}^{s\sigma}_{H(\scr{A})}(X,X)=0$。取给定的这组\trObject{} $Y_k$，
+把它与其自身串联 $s$ 次。在所得的\trExactTriangle{}
+\eqref{eq:combined-twist-triangle} 中，\trMorphism
+\begin{equation*}
+X\longrightarrow\bigl(T_{Y_1}\ldots T_{Y_m}\bigr)^s(X)\cong S^{s\sigma}X
+\end{equation*}
+必然为零，而据\eqref{eq:combined-twist-split}，这意味着 $X$ 由诸 $Y_k$
+\trSplitGeneration。
+\end{proof}

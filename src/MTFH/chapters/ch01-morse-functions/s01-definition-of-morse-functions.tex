@@ -1,0 +1,49 @@
+
+我们在此考虑的所有\trManifold{}与函数都是 $\cC^\infty$ 类的，尽管一般情形下 $\cC^1$\trRegularity{}便已足够！
+
+\section{\trMorseFunction{}的定义}
+\label{sec:definition-of-morse-functions}\BookIndexDefinition{trCriticalPoint}\BookIndexDefinition{trMorseFunction}
+
+\subsection{\trCriticalPoint{}与\trNondegenerate{}性}
+\label{subsec:critical-points-nondegeneracy}
+
+设 $V$ 为一个\trManifold，并设 $f\colon V\to\RR$ 为一个函数。$f$ 的\trCriticalPoint{}是使 $(df)_x=0$ 的点 $x$。
+
+\begin{remark}\label{thm:critical-points-exist-compact}
+我们知道，至少当 $V$ \trCompact{}时，$f$ 必有\trCriticalPoint，因为它至少有一个极小值与一个极大值。
+\end{remark}
+
+在 $f$ 的一个\trCriticalPoint{}处，我们可以定义\textbf{\trHessian{}形式}（Hessian），亦即二阶导数。
+
+\begin{remark}\label{thm:hessian-only-at-critical-points}
+回顾一下，定义在\trManifold{}上的函数并没有二阶导数：在一张\trChart{}中固然总能算出一个二阶导数，但其结果依赖于\trChart{}的选取。二阶导数在一阶导数的\trKernel{}上是\trWellDefined{}的……我们将满足于在\trCriticalPoint{}处定义它。参见\cref{ex:ch01-01}。\footnote{译注：原书此句称二阶导数在一阶导数的\trKernel{}上是\trWellDefined{}的；此说有误——\trHessian{}在 $\operatorname{Ker}(dg)$ 上的坐标无关性一般并不成立，链式法则中 $(dg)\circ d^{2}\Phi$ 一项并不能仅因两个输入同属 $\operatorname{Ker}(dg)$ 而消去。例如取 $g(x,y)=x$ 与坐标变换 $\Phi(u,v)=(u+v^{2},\,v)$：在点 $(u,v)=(0,0)$ 处有 $d\Phi=I$、$\operatorname{Ker}(dg)=\operatorname{span}(\partial_{v})$，原坐标下的二阶导数在该向上取值为 $0$，而 $d^{2}(g\circ\Phi)(\partial_{v},\partial_{v})=2$。仅当限制到\trCriticalPoint{}（$dg=0$）处时，\trHessian{}才在整个\trTangentSpace{}上内禀。此处照原书排印，存疑备案。——译者注}
+\end{remark}
+
+与其取一张\trChart{}并证明结果不依赖于它，我们不如援引一个更内蕴的论证（正如 [54,~p.~4] 中的做法）。设 $x$ 是 $f$ 的一个\trCriticalPoint，而 $X$、$Y$ 是 $V$ 在 $x$ 处的两个切向量，那么我们令
+\[
+(d^2f)_x(X,Y)=X\cdot(\widetilde{Y}\cdot f)(x)\text{，}
+\]
+其中 $\widetilde{Y}$ 表示局部延拓 $Y$ 而得的一个\trVectorField。由于
+\[
+X\cdot(\widetilde{Y}\cdot f)(x)-Y\cdot(\widetilde{X}\cdot f)(x)=[\widetilde{X},\widetilde{Y}]_x\cdot f=(df)_x([\widetilde{X},\widetilde{Y}]_x)=0\text{，}
+\]
+该表达式便是 $X$ 与 $Y$ 的一个\trSymmetricBilinearForm。同样的计算还表明这个形式是\trWellDefined{}的，也就是说，其结果不依赖于所选取的延拓 $\widetilde{Y}$。
+
+若这个\trBilinearForm{}是\trNondegenerate{}的，我们就称这个\trCriticalPoint{}是\trNondegenerate{}的；进而，若一个函数的所有\trCriticalPoint{}都是\trNondegenerate{}的，我们就称它为一个\trMorseFunction。
+
+\subsection{例子与反例}
+\label{subsec:examples-and-counterexamples}
+
+\trSphere{}上\trHeightFunction{}的各\trCriticalPoint{}都是\trNondegenerate{}的。事实上，在点 $(0,0,\varepsilon)\in S^2$ 的邻域内，我们可以取 $(x,y)$ 作为局部坐标。于是，
+\[
+f(x,y)=z=\varepsilon\sqrt{1-x^2-y^2}
+\]
+便是一个函数，其二阶导数就是\textbf{\trQuadraticForm}（quadratic form）
+\[
+(d^2f)_{(0,0,\varepsilon)}(x,y)=-\varepsilon(x^2+y^2)\text{，}
+\]
+该形式确实是\trNondegenerate{}的。
+
+要构造带\trDegenerate\trCriticalPoint{}的函数非常容易：例如取一个\trDegenerate{}的\trQuadraticForm，它在 $0$ 处的二阶导数就是它自己；\footnote{译注：按本节 $(d^{2}f)_x(X,Y)=X\cdot(\widetilde{Y}\cdot f)(x)$ 的约定（上一段的 $-\varepsilon(x^{2}+y^{2})$ 正是按它算得的），一个\trQuadraticForm{} $q$ 在 $0$ 处的二阶导数是 $2q$ 而非它自己——原书此句与本章的约定差因子 $2$（“就是它自己”只在把 Hessian 取为\trTaylor{}展开二次项系数的那种约定下成立）；此处照原书排印。——译者注}或者更糟，取一个\trDegree{}高一些的多项式，比如从 $\RR$ 到 $\RR$ 的函数 $x\mapsto x^3$，它在 $0$ 处就有一个\trDegenerate{}的\trCriticalPoint。
+
+至于别的例子，可参见 [54] 与本章的练习（另见\cref{thm:three-critical-points-torus}）。

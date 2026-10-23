@@ -1,0 +1,749 @@
+\section{\termExponentialDecay{}}
+\label{sec:exponential-decay}
+
+本节在 $L_0$ 与 $L_1$ 横截相交\emph{时}，证明导数 $|du|$ 在
+$\tau\to+\infty$ 时的一个重要\termExponentialDecayEstimate{}。这对应于有限维流形上\personMorse{}函数之\emph{有界}梯度流线所具有的类似指数衰减性质。
+
+我们先给出经典线性 $\overline\partial$-算子的如下\termAprioriEstimate{}。对映射
+\[
+  u\in W^{k+1,p}(\Theta,M),
+\]
+以 $W^{k+1,p}(u^*TM)$ 表示沿 $u$ 的 $L^{k+1,p}$-向量场中满足边界条件
+\[
+  \xi(\tau,0)\in T_{u(\tau,0)}L_0,
+  \qquad
+  \xi(\tau,1)\in T_{u(\tau,1)}L_1
+\]
+者组成的集合；而 $L^{k,p}(u^*TM)$ 表示不施加边界条件的
+$W^{k,p}$-向量场集合。（关于推导，参见第 8.2 节或 (RS01)。）
+
+\begin{lemma}
+\label{lem:linear-dbar-boundary-estimate}
+设 $\Omega$ 与 $\Omega'$ 是\termUpperHalfSpace{}
+$\mathbb H\subset\mathbb C$ 的有界开子集，并且
+$\overline\Omega\subset\Omega'$。则对任意 $k\geq0$，存在
+$C=C(k,p;\Omega,\Omega')>0$，使得
+\begin{equation}
+  \|\xi\|_{W^{k+1,p}(\Omega)}
+  \leq
+  C\left(
+    \|\overline\partial\xi\|_{W^{k,p}(\Omega')}
+    +\|\xi\|_{L^{k,p}(\Omega')}
+  \right)
+\label{eq:linear-dbar-boundary-estimate}
+\end{equation}
+对每个满足
+\[
+  \xi(\tau,0)\in\mathbb R^n+0\cdot i\subset\mathbb C^n
+\]
+的光滑映射 $\xi:\Omega'\to\mathbb C^n$ 都成立。
+\end{lemma}
+
+记
+\[
+  \Theta=\mathbb R\times[0,1]\subset\mathbb C
+\]
+以及
+\[
+  \begin{aligned}
+  \mathcal F^{k+1,p}(\Theta,M)
+  &:={\mathcal F}^{k+1,p}
+    \bigl((\Theta,\partial_0\Theta,\partial_1\Theta);(M,L_0,L_1)\bigr)\\
+  &:=\left\{
+      u\in L^{k+1,p}
+      \ \middle|\
+      u(\tau,0)\in L_0,\quad u(\tau,1)\in L_1
+    \right\}.
+  \end{aligned}
+\]
+把对应
+\[
+  u\longmapsto\overline\partial_Ju,
+  \qquad
+  \overline\partial_Ju
+  :=\frac{\partial u}{\partial\tau}
+    +J_t\frac{\partial u}{\partial t}
+\]
+看成从 $\mathcal F^{k+1,p}(\Theta,M)$ 到 $L^{k,p}(u^*TM)$ 的映射。
+
+取 $\xi=\partial u/\partial\tau$，利用方程
+$\partial u/\partial\tau+J\partial u/\partial t=0$，并从命题 8.3.4
+出发，像前面一样对这里对应于 $k=1,p=2$ 的依时 $J$ 应用\termInterpolationTheorem{}，便得到下面的命题。
+
+\begin{proposition}
+\label{prop:nonlinear-dbar-boundary-estimate}
+设 $J=\{J_t\}_{0\leq t\leq1}$ 是单参数相容殆复结构族，
+$\Omega,\Omega'\subset\mathbb R\times[0,1]$ 是开子集。假设
+$\|du\|_p\leq K<\infty$。则对任意 $k\geq1$，存在
+$C_j=C_j(J,k,K;\Omega,\Omega')$，$j=1,2$，使得
+
+\begin{equation}
+  \|du\|_{W^{k,p}(\Omega)}
+  \leq
+  C_1\left(
+    \|\overline\partial_Ju\|_{L^{k,p}(\Omega')}
+    +\|du\|_{W^{k-1,p}(\Omega')}
+  \right),
+\label{eq:nonlinear-dbar-boundary-estimate}
+\end{equation}
+其中常数 $C_1$ 连续依赖于 $J$。
+\end{proposition}
+
+回忆，我们已经在 $M$ 上固定了一个\termReferenceMetric{}，并且所有估计都依这个度量
+进行。
+
+现在来作主要的指数衰减估计。我们从下面的\termSubsequenceConvergence{}结论开始。
+
+\begin{lemma}
+\label{lem:finite-energy-subsequence-limits}
+设 $u:\mathbb R\times[0,1]\to M$ 是方程
+\eqref{eq:unperturbed-floer-strip}的有限能量解。则分别存在序列
+$\tau_i\to\pm\infty$ 以及 $p_-,p_+\in L_0\cap L_1$，使得
+\[
+  \lim_{i\to\infty}\operatorname{dist}\bigl(u(\tau_i),p_\pm\bigr)=0,
+\]
+其中 $u(\tau):[0,1]\to M$ 是由 $u(\tau)(t)=u(\tau,t)$ 给出的道路。
+\end{lemma}
+
+\begin{proof}
+我们证明 $\tau\to+\infty$ 时的断言；$\tau\to-\infty$ 的情形相同。有限能量条件
+蕴含存在序列 $\tau_i\to\infty$
+\footnote{译者注：原书在这里先取 $\tau_i\to\infty$，却把同一极限的趋向写成
+$\tau_i\to0$。译文依序列的定义及后续论证补正为 $i\to\infty$。}，使得
+\[
+  \|u_t(\tau_i)\|^2\longrightarrow0
+  \qquad(i\to\infty).
+\]
+由于对 $0<\epsilon<\frac12$ 有
+\[
+  W^{1,2}([0,1])\hookrightarrow C^\epsilon([0,1]),
+\]
+道路 $u(\tau_i):[0,1]\to M$ 一致收敛到一条连续道路
+$z_\infty:[0,1]\to M$，而且 $z_\infty$ 弱满足
+$\partial z_\infty/\partial t=0$。由\personFatou{}引理，
+\[
+  \int_0^1
+    \left|\frac{\partial z_\infty}{\partial t}\right|^2dt
+  \leq
+  \lim_{i\to\infty}\int_0^1
+    \left|\frac{\partial u(\tau_i)}{\partial t}\right|^2dt
+  =0.
+\]
+因此 $z_\infty\equiv\mathrm{constant}$。把这个常值点记为 $p_+$，证明即告完成。
+\end{proof}
+
+下面证明如下的一致收敛。
+
+\begin{lemma}
+\label{lem:uniform-derivative-decay}
+对所有 $k=0,1,\ldots$，都有
+\begin{equation}
+  \lim_{\tau\to\infty}
+  \left\|
+    \frac{\partial u}{\partial\tau}
+  \right\|_{C^k([\tau,\infty)\times[0,1])}
+  =0.
+\label{eq:uniform-derivative-decay}
+\end{equation}
+在 $(-\infty,\tau]$ 上也有同样的结论。
+\end{lemma}
+
+\begin{proof}
+先对 $k=0$ 证明~\eqref{eq:uniform-derivative-decay}。反设不然，则存在序列
+$\tau_j\to\infty$、$t_j\in[0,1]$ 以及常数 $\delta>0$，使得
+\footnote{译者注：原书在本句及公式 (14.1.4) 中写 $t_i$，下一段却对同一序列写
+$t_j\to t_\infty$。译文依 $\tau_j$ 的指标统一为 $t_j$。}
+\begin{equation}
+  \left|
+    \frac{\partial u}{\partial\tau}(\tau_j,t_j)
+  \right|
+  \geq\delta.
+\label{eq:contradiction-pointwise-derivative}
+\end{equation}
+有限能量条件蕴含
+\begin{equation}
+  \int_{[\tau_j-1,\tau_j+1]\times[0,1]}
+    \left|\frac{\partial u}{\partial\tau}\right|_J^2
+  \longrightarrow0
+\label{eq:local-tail-energy}
+\end{equation}
+当 $j\to\infty$ 时成立。
+
+现在考虑平移后的序列
+\[
+  u_j(\tau,t):=u(\tau+\tau_j,t),
+\]
+并利用先验估计应用局部收敛论证。这给出一个极限 $u_\infty$，使 $u_j$ 在
+$C^k$ 拓扑中局部一致收敛到 $u_\infty$。取子列后，可以假设
+$t_j\to t_\infty$。于是有
+\[
+  \frac{\partial u_j}{\partial\tau}(0,t_j)
+  \longrightarrow
+  \frac{\partial u_\infty}{\partial\tau}(0,t_\infty),
+\]
+并且
+\[
+  \begin{aligned}
+  \int_{-1}^1\int_0^1
+    \left|\frac{\partial u_\infty}{\partial\tau}\right|^2dt\,d\tau
+  &=\lim_{j\to\infty}
+    \int_{-1}^1\int_0^1
+      \left|\frac{\partial u_j}{\partial\tau}\right|^2dt\,d\tau\\
+  &=\lim_{j\to\infty}
+    \int_{\tau_j-1}^{\tau_j+1}\int_0^1
+      \left|\frac{\partial u}{\partial\tau}\right|^2dt\,d\tau
+   =0.
+  \end{aligned}
+\]
+后一等式蕴含 $\partial u_\infty/\partial\tau=0$ 在
+$[-1,1]\times[0,1]$ 上成立，进而
+\[
+  \lim_{j\to\infty}
+    \frac{\partial u}{\partial\tau}(\tau_j,t_j)
+  =
+  \lim_{j\to\infty}
+    \frac{\partial u_j}{\partial\tau}(0,t_j)
+  =0.
+\]
+这与~\eqref{eq:contradiction-pointwise-derivative}矛盾，因而对 $k=0$ 证明了
+\eqref{eq:uniform-derivative-decay}。
+\footnote{译者注：原书在这里误称证明了公式 (14.1.7)；当前证明的结论是引理中的
+(14.1.3)，而 (14.1.7) 到下一命题才出现。译文改回当前公式。}
+同样的论证适用于 $k\geq1$，细节从略。
+\end{proof}
+
+下面是关于指数衰减的主要命题。
+
+\begin{proposition}
+\label{prop:finite-energy-exponential-decay}
+设 $u:\mathbb R\times[0,1]\to M$ 是方程
+\eqref{eq:unperturbed-floer-strip}的有限能量解，并令 $p_+$ 为
+\cref{lem:finite-energy-subsequence-limits}中得到的交点。假设当
+$\tau\to\infty$ 时，$u(\tau,t)$ 关于 $t\in[0,1]$ 一致收敛到 $p_+$。\footnote{译者注：原书把
+此假设写成 $u(\tau,t)=p_+$ 关于 $t$ 一致，但同一句随即写明
+$\tau\to\infty$，且命题的结论正是由渐近收敛推出指数衰减；故这里的
+等号应为趋近记号。原书还把单个 $p_+$ 称为 ``the intersection points''，
+译文按单数处理。}
+则存在常数 $R>0$ 以及 $C_k,\sigma_+>0$，$k=1,2,\ldots$，使得
+\begin{equation}
+  \operatorname{dist}\bigl(u(\tau,t),p_+\bigr)
+  \leq C_0e^{-\sigma_+\tau}
+\label{eq:exponential-distance-decay}
+\end{equation}
+以及
+\begin{equation}
+  \|\nabla^k u(\tau)\|_{C^k}
+  \leq C_ke^{-\sigma_+\tau}
+\label{eq:exponential-derivative-decay}
+\end{equation}
+对所有 $\tau\geq R$ 成立。在 $-\infty$ 端有类似结论。
+\footnote{译者注：原书只声明 $C_k$（$k\geq1$），公式 (14.1.6) 却使用未声明的
+$C_0$；公式 (14.1.7) 又写成 $\|\nabla^k u\|_{C^k}$，而证明最后所得并被称作
+$k=1$ 情形的是 $\|u\|_{C^1}$ 估计。前者需要补入 $C_0$，后者则可能意指
+$\|u\|_{C^k}$ 或 $\|\nabla^k u\|_{C^0}$，本段不足以唯一判定；译文保留原公式并
+明示不一致。}
+\end{proposition}
+
+这个指数衰减依赖于交 $L_0\cap L_1$ 的横截性。它蕴含\termAsymptoticOperator{}
+\[
+  J\frac d{dt}
+\]
+是如下空间上的核为零的\termSelfAdjointOperator{}：
+\[
+  \begin{aligned}
+  &W^{1,2}
+    \bigl([0,1],\{0,1\};T_pM,T_pL_0,T_pL_1\bigr)\\
+  &\qquad=
+    \left\{
+      \xi\in L^{1,2}([0,1],T_pM)
+      \ \middle|\
+      \xi(0)\in T_pL_0,\quad\xi(1)\in T_pL_1
+    \right\},
+  \end{aligned}
+\]
+其中 $p=p_\pm$。
+
+为便于计算，采用引理 8.3.1 所给类型的度量 $g$。把该引理分别应用于
+$(L_0,J_0)$ 与 $(L_1,J_1)$，得到这种类型的两个度量 $g_0,g_1$。现在用光滑族
+$g=\{g_t\}_{0\leq t\leq1}$ 连接 $g_0$ 与 $g_1$，并要求
+\[
+  g_t(J_t\mathord\cdot,J_t\mathord\cdot)=g_t(\mathord\cdot,\mathord\cdot).
+\]
+接着考虑 $g$ 的\termLeviCivitaConnection{}族
+$\nabla=\{\nabla^t\}_{0\leq t\leq1}$。度量 $g_t$ 的\personLeviCivita{}联络
+$\nabla^t$ 满足 $\nabla^tg_t=0$ 且挠率为零，但不一定保持 $J_t$。以
+$K=\{K^t\}_{0\leq t\leq1}$ 表示 $g_t$ 相应的\termCurvatureTensor{}。在不会混淆时，
+我们将省略 $\nabla^t,K^t$ 的上标 $t$ 以及 $J_t,g_t$ 的下标 $t$。
+
+由引理 8.3.1 中的 (8.3.24)，有\termOrthogonalityCondition{}
+\begin{equation}
+  T_pL_i\perp J_iT_pL_i,
+  \qquad i=0,1.
+\label{eq:lagrangian-boundary-orthogonality}
+\end{equation}
+对沿道路 $\gamma:[0,1]\to M$ 的向量场 $\xi$，定义其\termLtwoNorm{}为
+\[
+  \|\xi\|_g^2:=\int_0^1|\xi|_{g_t}^2\,dt,
+\]
+并以 $\langle\!\langle\mathord\cdot,\mathord\cdot\rangle\!\rangle_g$
+表示相伴的\termLtwoInnerProduct{}。
+
+\begin{proof}[命题~\ref{prop:finite-energy-exponential-decay} 的证明]
+我们仍只处理 $+\infty$ 端。由 $u(\tau)\to p_+$ 的一致收敛，当
+$\tau\to\infty$ 时，像 $u(\tau,t)$ 位于 $p_+$ 的一个\personDarboux{}邻域中，而且其
+导数趋于零。
+\footnote{译者注：原书本句把极限点简写成 $p$，而命题的固定极限点是 $p_+$。
+译文统一为 $p_+$。}
+
+以 $\varepsilon(\tau)$ 表示一个可在不同位置改变、且当 $\tau\to\infty$ 时一致趋于
+零的函数。
+
+对 $\partial u/\partial\tau+J\partial u/\partial t=0$ 关于 $\tau$ 微分，得到
+\[
+  \nabla_\tau\frac{\partial u}{\partial\tau}
+  +J\nabla_\tau\frac{\partial u}{\partial t}
+  +(\nabla J)\left(\frac{\partial u}{\partial\tau}\right)
+    \frac{\partial u}{\partial t}
+  =0,
+\]
+其中记
+\[
+  (\nabla J)\left(\frac{\partial u}{\partial\tau}\right)
+  :=\nabla_{\partial u/\partial\tau}J.
+\]
+若令 $\xi=\partial u/\partial\tau$，则由
+$\partial u/\partial t=J\partial u/\partial\tau=J\xi$ 以及
+$\nabla_\tau(\partial u/\partial t)=\nabla_t(\partial u/\partial\tau)$，上式化为
+\footnote{译者注：原书先把
+$(\nabla J)(\partial u/\partial\tau)$ 定义成
+$\nabla_{\partial u/\partial t}J$，方向与括号中的向量不符；又在公式 (14.1.9)
+的第二项重复写成 $J\nabla_\tau\xi$。由上一行对 $\tau$ 的微分及紧随其后的
+$\nabla_\tau u_t=\nabla_tu_\tau$，两处分别唯一补正为
+$\nabla_{u_\tau}J$ 与 $J\nabla_t\xi$。}
+\begin{equation}
+  \nabla_\tau\xi
+  +J\nabla_t\xi
+  +(\nabla J)(\xi)J\xi
+  =0.
+\label{eq:differentiated-floer-xi}
+\end{equation}
+
+考虑函数
+\[
+  f(\tau)=\frac12\|\xi(\tau)\|_g^2.
+\]
+我们将推导 $f$ 的一个二阶微分不等式。为此，实际上需要计算函数
+\[
+  e(\tau,t):=\langle\xi(\tau,t),\xi(\tau,t)\rangle_{g_t}
+\]
+的完整\personLaplace{}算子 $\Delta e$，其中
+\[
+  \Delta=\frac{\partial^2}{\partial\tau^2}
+         +\frac{\partial^2}{\partial t^2}.
+\]
+$\Delta e$ 的计算与推导 (7.3.27) 时所作的计算有些类似，但有三点不同：
+\begin{enumerate}[label=(\arabic*)]
+  \item 定义域 $\Theta$ 上采用标准\termFlatCylindricalMetric{}，故其曲率恒为零。
+  \item 这里采用依赖于 $t$ 的\personLeviCivita{}联络，而非典范联络；主要目的是消去
+  随后对积分 $\int_\Theta\Delta e$ 应用\personGreen{}公式时产生的边界贡献。参见
+  \cref{lem:boundary-second-derivative-vanishes}。
+  \footnote{译者注：原书写成“采用\personLeviCivita{}联络而非典范度量”，把联络与
+  度量作了类型不一致的对比。结合第 7 章的 (7.3.27) 所用对象，译文补正为“典范
+  联络”。}
+  \item 与 (7.3.27) 的情形不同，$J$ 依赖于定义域参数 $t$。
+\end{enumerate}
+由于这些差异，需要重新推导 $\Delta e$。不过，因为平坦度量存在整体\termIsothermalCoordinates{} $(\tau,t)$，这里的推导比 (7.3.27) 稍简单。
+
+首先，
+\[
+  \frac{\partial^2e}{\partial t^2}
+  =2\langle\nabla_t^2\xi,\xi\rangle_g
+   +2\langle\nabla_t\xi,\nabla_t\xi\rangle_g.
+\]
+把~\eqref{eq:differentiated-floer-xi}代入 $\nabla_t\xi$，并使用
+$\nabla_tJ=(\nabla J)(J\xi)$，得到
+\footnote{译者注：本页已明确 $J=J_t$ 依赖定义域参数 $t$，但原书随后直接使用
+$\nabla_tJ=(\nabla J)(J\xi)$，没有写出显含于 $t$ 的导数项。若 $\nabla_t$ 未按约定
+吸收这一参数导数，该等式并不完整；原书没有给出足以唯一重构的约定，译文保留其
+计算并明示此点。}
+\begin{align}
+  \langle\nabla_t^2\xi,\xi\rangle_g
+  &=\left\langle
+      \nabla_t\bigl(J\nabla_\tau\xi
+        +J(\nabla J)(\xi)J\xi\bigr),\xi
+    \right\rangle_g \notag\\
+  &=\langle\nabla_t(J\nabla_\tau\xi),\xi\rangle_g
+    +\langle\nabla_t(J(\nabla J)(\xi)J\xi),\xi\rangle_g \notag\\
+  &=\langle(\nabla_tJ)\nabla_\tau\xi
+      +J\nabla_t\nabla_\tau\xi,\xi\rangle_g
+    +\langle\nabla_t(J(\nabla J)(\xi)J\xi),\xi\rangle_g \notag\\
+  &=\langle(\nabla J)(J\xi)\nabla_\tau\xi,\xi\rangle_g
+    +\langle J\nabla_t\nabla_\tau\xi,\xi\rangle_g \notag\\
+  &\quad
+    +\langle\nabla(J\nabla J)(J\xi)(\xi)J\xi,\xi\rangle_g
+    +\langle J(\nabla J)(\nabla_t\xi)J\xi,\xi\rangle_g \notag\\
+  &\quad
+    +\langle J(\nabla J)(\xi)(\nabla J)(J\xi)\xi,\xi\rangle_g
+    +\langle J(\nabla J)(\xi)J\nabla_t\xi,\xi\rangle_g \notag\\
+  &=\langle J\nabla_t\nabla_\tau\xi,\xi\rangle_g
+    +\varepsilon(\tau)|\xi|_g^2,
+  \qquad
+  \varepsilon(\tau)\to0\quad(|\tau|\to\infty).
+\label{eq:second-t-derivative-pairing}
+\end{align}
+最后一个等式成立，是因为
+$\|\xi(\tau)\|_\infty,\|\nabla\xi(\tau)\|_\infty\to0$ 一致成立，并且
+\[
+  \|J\|_{\infty,M},
+  \quad
+  \|\nabla J\|_{\infty,M},
+  \quad
+  \|\nabla^2J\|_{\infty,M}
+  <C;
+\]
+而且除第一项外，倒数第二行之和的每一项都至少含有 $\xi$ 或其导数的三个因子，
+并至少含有 $\xi$ 本身的两个因子。因此
+\begin{equation}
+  \frac{\partial^2e}{\partial t^2}
+  =2\langle J\nabla_t\nabla_\tau\xi,\xi\rangle_g
+   +\varepsilon(\tau)|\xi|_g^2
+   +2\langle\nabla_t\xi,\nabla_t\xi\rangle_g.
+\label{eq:t-second-energy-density}
+\end{equation}
+
+接着计算
+\begin{equation}
+  \frac{\partial^2e}{\partial\tau^2}
+  =2\langle\nabla_\tau\xi,\nabla_\tau\xi\rangle_g
+   +2\langle\nabla_\tau^2\xi,\xi\rangle_g.
+\label{eq:tau-second-energy-density}
+\end{equation}
+由~\eqref{eq:differentiated-floer-xi}得到
+\begin{align}
+  \nabla_\tau\xi
+  &=-J\nabla_\tau\frac{\partial u}{\partial t}
+    -(\nabla J)(\xi)J\xi \notag\\
+  &=-J\nabla_t\frac{\partial u}{\partial\tau}
+    -(\nabla J)(\xi)J\xi \notag\\
+  &=-J\nabla_t\xi-(\nabla J)(\xi)J\xi.
+\label{eq:tau-derivative-xi}
+\end{align}
+第二个等号使用了 $\nabla$ 是挠率为零的\personLeviCivita{}联络这一事实。利用该式
+\footnote{译者注：原书由上一行展开到下一行时，把最后一项写成
+$+\nabla_\tau((\nabla J)(\xi)J\xi)$，同时丢掉外层 $J$ 并反转符号；随后一段又实际
+计算 $\nabla_\tau(J(\nabla J)(\xi)J\xi)$。译文依上一行唯一补回外层 $J$ 与负号。
+此外，原书紧接的导数展开首项少一个 $(\nabla J)(\xi)$ 因子，译文依乘积法则补足。}，
+\[
+  \begin{aligned}
+  \nabla_\tau^2\xi
+  &=\nabla_\tau(\nabla_\tau\xi)
+   =-\nabla_\tau\bigl(J(\nabla_t\xi+(\nabla J)(\xi)J\xi)\bigr)\\
+  &=-J(\nabla_\tau\nabla_t\xi)
+    -(\nabla_\tau J)\nabla_t\xi
+    -\nabla_\tau\bigl(J(\nabla J)(\xi)J\xi\bigr).
+  \end{aligned}
+\]
+依照我们的记号约定，第二项为
+\[
+  (\nabla_\tau J)\nabla_t\xi
+  =(\nabla J)(\xi)\nabla_t\xi.
+\]
+此外，
+\[
+  \begin{aligned}
+  \nabla_\tau\nabla_t\xi
+  &=\nabla_t\nabla_\tau\xi
+    +K\left(\frac{\partial u}{\partial\tau},
+             \frac{\partial u}{\partial t}\right)\xi\\
+  &=\nabla_t\nabla_\tau\xi+K(\xi,J\xi)\xi,
+  \end{aligned}
+\]
+并且
+\[
+  \begin{aligned}
+  \nabla_\tau\bigl(J(\nabla J)(\xi)J\xi\bigr)
+  &=(\nabla J)(\xi)(\nabla J)(\xi)J\xi
+    +J\nabla^2J(\xi)(\xi)J\xi\\
+  &\quad+J(\nabla J)(\nabla_\tau\xi)J\xi
+    +J(\nabla J)(\xi)(\nabla J)(\xi)\xi\\
+  &\quad+J(\nabla J)(\xi)J\nabla_\tau\xi.
+  \end{aligned}
+\]
+再次利用一致收敛
+$\|\xi(\tau)\|_\infty,\|\nabla\xi(\tau)\|_\infty\to0$ 以及
+\[
+  \|J\|_{\infty,M},
+  \quad
+  \|\nabla J\|_{\infty,M},
+  \quad
+  \|\nabla^2J\|_{\infty,M}
+  <C,
+\]
+得到
+\[
+  \langle\nabla_\tau^2\xi,\xi\rangle_g
+  =-\langle J\nabla_t\nabla_\tau\xi,\xi\rangle_g
+   +\varepsilon(\tau)|\xi|_g^2.
+\]
+因此
+\begin{equation}
+  \frac{\partial^2e}{\partial\tau^2}
+  =2\langle\nabla_\tau\xi,\nabla_\tau\xi\rangle_g
+   -2\langle J\nabla_t\nabla_\tau\xi,\xi\rangle_g
+   +\varepsilon(\tau)|\xi|_g^2.
+\label{eq:tau-second-energy-density-expanded}
+\end{equation}
+把~\eqref{eq:t-second-energy-density}与
+\eqref{eq:tau-second-energy-density-expanded}相加，得到
+\[
+  \Delta e
+  =2|\nabla_\tau\xi|_g^2
+   +2|\nabla_t\xi|_g^2
+   +\varepsilon(\tau)e.
+\]
+另一方面，把~\eqref{eq:tau-derivative-xi}代入 $\nabla_\tau\xi$，容易看出
+\[
+  \langle\nabla_\tau\xi,\nabla_\tau\xi\rangle_g
+  =|J\nabla_t\xi|_g^2+\varepsilon(\tau)|\xi|_g^2,
+\]
+且 $|\nabla_t\xi|_g^2=|J\nabla_t\xi|_g^2$。这蕴含
+\begin{equation}
+  \Delta e=4|J\nabla_t\xi|_g^2+\varepsilon(\tau)e.
+\label{eq:laplacian-energy-density}
+\end{equation}
+
+现在回忆
+\[
+  f(\tau):=\frac12\|\xi(\tau)\|_g^2
+  =\frac12\int_0^1e(\tau,t)\,dt.
+\]
+把~\eqref{eq:laplacian-energy-density}在 $t\in[0,1]$ 上积分，得到
+\[
+  f''(\tau)
+  +\frac12\int_0^1\frac{\partial^2e}{\partial t^2}(\tau,t)\,dt
+  =2\|J\nabla_t\xi(\tau)\|_g^2+\varepsilon(\tau)f(\tau).
+\]
+这里
+\[
+  \begin{aligned}
+  \int_0^1\frac{\partial^2e}{\partial t^2}(\tau,t)\,dt
+  &=\frac{\partial e}{\partial t}(\tau,1)
+    -\frac{\partial e}{\partial t}(\tau,0)\\
+  &=2\bigl(
+      \langle\nabla_t\xi,\xi\rangle_{g_1}(\tau,1)
+      -\langle\nabla_t\xi,\xi\rangle_{g_0}(\tau,0)
+    \bigr).
+  \end{aligned}
+\]
+
+\begin{lemma}
+\label{lem:boundary-second-derivative-vanishes}
+对 $i=0,1$ 都有
+\[
+  \langle\nabla_t\xi(\tau,i),\xi(\tau,i)\rangle_{g_i}\equiv0,
+\]
+因而
+\[
+  \int_0^1\frac{\partial^2e}{\partial t^2}(\tau,t)\,dt=0.
+\]
+\end{lemma}
+
+\begin{proof}
+回忆 $\xi(\tau,i)=(\partial u/\partial\tau)(\tau,i)$ 与 $L_i$ 相切，而
+\[
+  \frac{\partial u}{\partial t}(\tau,i)
+  =J(i,u(\tau,i))\frac{\partial u}{\partial\tau}(\tau,i)
+\]
+与 $L_i$ 垂直。于是，由 $L_i$ 关于 $g_i$ 的\termSecondFundamentalForm{} $B_i$
+之定义，
+\[
+  \langle\nabla_t\xi(\tau,i),\xi(\tau,i)\rangle_g
+  =\left\langle
+    B_i\left(
+      \frac{\partial u}{\partial\tau},
+      \frac{\partial u}{\partial\tau}
+    \right),
+    \frac{\partial u}{\partial t}
+  \right\rangle_g.
+\]
+但由 $L_i$ 关于 $g_i$ 为\termTotallyGeodesic{}的要求，$B_i$ 消失。证明完成。
+\end{proof}
+
+总结以上计算，得到
+\begin{equation}
+  f''(\tau)
+  =2\|J\nabla_t\xi(\tau)\|_g^2
+   +\varepsilon(\tau)f(\tau).
+\label{eq:f-second-derivative}
+\end{equation}
+现在考虑一阶线性微分算子
+\[
+  J\nabla_t:
+  W^{k+1,2}(u(\tau)^*TM)
+  \longrightarrow
+  L^{k,2}(u(\tau)^*TM).
+\]
+此算子具有\termClosedRange{}，并在 $\tau\to\infty$ 时收敛到
+\[
+  J\frac d{dt}:
+  W^{1,2}\bigl([0,1],\{0,1\};T_pM,T_pL_0,T_pL_1\bigr)
+  \longrightarrow
+  L^2([0,1],T_pM).
+\]
+更准确地说，在丛的一个\termUnitaryTrivialization{}
+\[
+  \Phi:
+  u^*TM|_{[R,\infty)\times[0,1]}
+  \longrightarrow
+  [R,\infty)\times[0,1]\times\mathbb R^{2n}
+\]
+之下，推出算子
+\[
+  \Phi_{\tau,*}(J\nabla_t):
+  W^{1,2}\bigl([0,1],\{0,1\};T_pM,T_pL_0,T_pL_1\bigr)
+  \longrightarrow
+  L^2([0,1],T_pM)
+\]
+可证明具有形式
+\[
+  J\frac d{dt}+A(\tau),
+\]
+其中 $A(\tau)$ 是一个光滑\termCompactOperator{}族；由
+$u(\tau)\to p$ 的一致 $C^1$-收敛，当 $\tau\to\infty$ 时，
+$A(\tau)$ 在范数拓扑中一致趋于零。特别地，
+$\Phi_{\tau,*}(J\nabla_t)$ 具有闭像，而且当 $\tau\to\infty$ 时，
+\[
+  \Phi_{\tau,*}(J\nabla_t)
+  \longrightarrow J\frac d{dt}
+\]
+在范数拓扑中成立。
+\footnote{译者注：原书把平凡化的定义域印成无意义的
+$[R,\mathord\times\infty)\times[0,1]$，译文补正为
+$[R,\infty)\times[0,1]$；随后同一个推出算子先记为 $\Phi_{\tau,*}$，结尾却改成
+$\Phi_\tau^*$，译文统一为推出记号。}
+
+\begin{exercise}
+\label{ex:asymptotic-operator-kernel}
+证明 $\ker(Jd/dt)$ 与 $T_pL_0\cap T_pL_1$ 一一对应。
+\end{exercise}
+
+由于 $T_pL_0\cap T_pL_1=\{0\}$，有 $\ker(Jd/dt)=0$；由\termOpenMappingTheorem{}
+\footnote{译者注：原书在本句中改取 $J\xi$，并写成
+$\|J\,d(J\xi)/dt\|_g^2\geq2\sigma\|J\xi\|_g^2$；但 $\xi$ 的端点属于
+$T_pL_i$ 时，$J\xi$ 一般属于 $J(T_pL_i)$，并不满足前述算子定义域的边界条件，
+该估计也不能直接推出下一行关于 $J\nabla_t\xi$ 的不等式。译文依前述算子的定义
+改回 $\xi$。}，对相应定义域中的 $\xi$，存在 $\sigma>0$ 使
+\[
+  \left\|J\frac{d\xi}{dt}\right\|_g^2
+  \geq2\sigma\|\xi\|_g^2.
+\]
+因此，由 $C^1$-收敛
+\footnote{译者注：原书把这里所用的 $C^1$-收敛归因于正在证明的命题 14.1.5，
+形成循环引用；所需导数一致收敛已由引理 14.1.4 给出，译文依此补正引用来源。}
+及 $J\nabla_t\to Jd/dt$，对所有充分大的 $\tau$，有
+\[
+  \|J\nabla_t\xi(\tau)\|_g^2
+  \geq\frac{4\sigma}{3}\|\xi(\tau)\|_g^2.
+\]
+把该式代入~\eqref{eq:f-second-derivative}，得到
+\[
+  f''(\tau)
+  \geq\left(\frac{4\sigma}{3}-\varepsilon(\tau)\right)f(\tau)
+  \geq\sigma f(\tau).
+\]
+由此以及 $f(\tau)\to0$（$\tau\to\infty$），通过\termMaximumPrinciple{}得到
+\begin{equation}
+  f(\tau)\leq Ce^{-\sigma\tau}
+\label{eq:f-exponential-decay}
+\end{equation}
+对所有充分大的 $\tau$ 成立。把它从 $R$ 到 $\infty$ 关于 $\tau$ 积分，得到
+\[
+  \|u\|_{W^{1,2}([R,\infty)\times[0,1])}
+  \leq\frac C\sigma e^{-\sigma R}.
+\]
+结合~\eqref{eq:f-exponential-decay}与
+\eqref{eq:uniform-derivative-decay}（$k=0$），还有
+\footnote{译者注：此处 $f$ 控制的是 $u_\tau$ 的平方范数，但原书未经局部坐标
+归一化便写出映射 $u$ 本身的 $W^{1,2}$ 范数，并在积分后仍保留同一指数与未平方的
+范数；下一行 $\|u\|_{1,p}$ 也没有写定义域。若不把 $p_+$ 在\personDarboux{}坐标中置于
+零点并补充相应估计，这些式子不能按通常映射范数直接推出。译文保留原式并明示
+缺口。}
+\[
+  \|u\|_{1,p}<\infty.
+\]
+
+现在把\cref{prop:nonlinear-dbar-boundary-estimate}应用两次，其中
+$\Omega'=[0,3]\times[0,1]$、$\Omega=[1,2]\times[0,1]$，得到不等式
+\[
+  \|u\|_{W^{3,2}([1,2]\times[0,1])}
+  \leq C_2\|u\|_{W^{1,2}([0,3]\times[0,1])}
+\]
+对任意满足
+\[
+  \overline\partial_Ju=0,
+  \qquad
+  u(\tau,0)\in L_0,
+  \qquad
+  u(\tau,1)\in L_1
+\]
+的 $u$ 成立。只要 $\|du\|_{1,p}\leq K$ 且 $K$ 固定，$C_2$ 就不依赖于 $u$；
+又因为平移映射
+\footnote{译者注：原书把这里的平移序列写成未定义的复合 $u\circ\tau$。译文把
+所指平移显式写成 $u_\tau(s,t)=u(s+\tau,t)$。}
+\[
+  u_\tau(s,t):=u(s+\tau,t)
+\]
+具有与 $u$ 相同的 $W^{1,p}$-范数，所以
+\[
+  \|u\|_{W^{3,2}([\tau+1,\tau+2]\times[0,1])}
+  \leq
+  C_2\|u\|_{W^{1,2}([\tau,\tau+3]\times[0,1])}.
+\]
+因此，考虑 $\tau\geq R$，得到
+\[
+  \|u\|_{W^{3,2}([\tau+1,\tau+2]\times[0,1])}
+  \leq\frac{CC_2}{\sigma}e^{-\sigma\tau}.
+\]
+由\termSobolevEmbedding{}
+\[
+  W^{3,2}([\tau+1,\tau+2]\times[0,1])
+  \hookrightarrow
+  C^1([\tau+1,\tau+2]\times[0,1]),
+\]
+得到 $C^1$-估计
+\[
+  \|u\|_{C^1([\tau+1,\tau+2]\times[0,1])}
+  \leq C'e^{-\sigma\tau}
+\]
+对所有 $\tau\geq R$ 成立，其中 $C'$ 不依赖于 $\tau$。这证明了
+\[
+  \|u\|_{C^1([\tau,\infty)\times[0,1])}
+  \leq C'e^{-\sigma\tau},
+\]
+原书称它对应于~\eqref{eq:exponential-derivative-decay}的 $k=1$ 情形。类似的\termBootstrapArgument{}对一般 $k\geq1$ 证明
+\eqref{eq:exponential-derivative-decay}。证明完成。
+\end{proof}
+
+\begin{remark}
+\label{rem:decay-rate-kahler-angle}
+仔细处理上述证明可见，可以选取由下式确定的 $\sigma$：
+\[
+  \sqrt\sigma
+  =\min\left\{
+    |\lambda|
+    \ \middle|\
+    \lambda\text{ 是 }J\frac d{dt}\text{ 的一个特征值}
+  \right\}.
+\]
+特别地，当 $J_t\equiv J_0$ 不依赖于 $t$ 时，这个 $\sqrt\sigma$ 与\personHermitian{}内积空间 $(T_pM,J_{0,p},g_p)$ 中 $T_pL_0$ 与 $T_pL_1$ 在
+$p\in L_0\cap L_1$ 处的\emph{\termKahlerAngle{}}重合。
+\footnote{译者注：由前文 $f''\geq\sigma f$ 通常得到的衰减率是
+$e^{-\sqrt\sigma\tau}$，原书的 (14.1.17) 及后续估计却写成
+$e^{-\sigma\tau}$；本注又以 $\sqrt\sigma$ 等同于渐近算子谱隙。除非在中途重新命名
+常数，这三处对同一符号 $\sigma$ 的用法不一致。译文保留原书各式，不静默重命名。}
+\end{remark}
+
+\begin{exercise}
+\label{ex:kahler-angle-decay-rate}
+证明上一注中的最后一个断言。
+\end{exercise}

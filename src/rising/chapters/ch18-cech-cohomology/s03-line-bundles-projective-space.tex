@@ -1,0 +1,89 @@
+
+\section{射影空间上线丛的上同调}
+
+我们终于要来证明关于\trCohomology{}的最后一条许诺过的基本事实，即 \S18.1 中的性质 \textbf{(viii)}（\mbox{定理~18.1.2}）：射影空间上线丛的\trCohomology。但在此之前，我们先讨论一个看似不同的问题：去掉原点的\trAffine{}空间之\trStructureSheaf{}的\trCohomology。
+
+\textbf{18.3.1.}\ \emph{问题。}\quad 对任意环 $A$，设 $X=\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n)$，其中 $n\ge 1$。这里 $\mathbb{A}^{n+1}$ 上的坐标便是 $x_0,\dots,x_n$，如此下标的用意很快就会明白。试求 $\mathrm{H}^i(X,\OO_X)$。
+
+\textbf{18.3.2.}\ \emph{答案。}\quad 我们将证明：除非 $i=0$（此时它将是 $A[x_0,\dots,x_n]$）或 $i=n$，否则 $\mathrm{H}^i(X,\OO_X)=0$。我们将会看到，$\mathrm{H}^n(X,\OO_X)$ 可以与形如下式的那些「Laurent 多项式」（Laurent polynomials）相等同：$(x_0x_1\cdots x_n)^{-1}A[x_0^{-1},x_1^{-1},\dots,x_n^{-1}]$。（这给出了「$\mathbb{A}^2_k\setminus\{(0,0)\}$ 不是\trAffine{}的」的又一个证明；参看 \S4.4.3。）（另请参看\trSerre{}的仿射性\trCohomology{}判别法，\S18.8.4。）
+
+$X$ 有一个自然的\trOpenCover{} $\{\mathfrak{U}_i\}$，其中 $\mathfrak{U}_i=\mathrm{D}(x_i)$，我们就使用与之相应的\trCech\trComplexN。
+
+我们讨论 $n=2$ 的情形，因为一切复杂之处都在这里现身。此时\trCech\trComplexN{}为
+\begin{equation*}\tag{18.3.2.1}\label{eq:cech-complex-n2}
+\begin{aligned}
+0\longrightarrow A[x_0,x_1,x_2,x_0^{-1}]\times A[x_0,x_1,x_2,x_1^{-1}]\times A[x_0,x_1,x_2,x_2^{-1}]\longrightarrow{}\\
+A[x_0,x_1,x_2,x_0^{-1},x_1^{-1}]\times A[x_0,x_1,x_2,x_1^{-1},x_2^{-1}]\times A[x_0,x_1,x_2,x_0^{-1},x_2^{-1}]\longrightarrow{}\\
+A[x_0,x_1,x_2,x_0^{-1},x_1^{-1},x_2^{-1}]\longrightarrow 0.
+\end{aligned}
+\end{equation*}
+
+我们如此扩充 \eqref{eq:cech-complex-n2}：把左端的「$0\to$」换成「$0\to A[x_0,x_1,x_2]\to$」：
+\begin{equation*}\tag{18.3.2.2}\label{eq:extended-complex-n2}
+\begin{tikzcd}[row sep=2.6em, column sep=1.55em]
+& \mathrm{H}^0 & \mathfrak{U}_0\ \mathfrak{U}_1\ \mathfrak{U}_2 & & \mathfrak{U}_{012} & \\
+0 \ar[r] & A[x_0,x_1,x_2] \ar[r] & \cdots \ar[r] & \cdots \ar[r] & A[x_0,x_1,x_2,x_0^{-1},x_1^{-1},x_2^{-1}] \ar[r] & 0.
+\end{tikzcd}
+\end{equation*}
+
+\textbf{18.3.A.（练习）}\quad 证明：若 \eqref{eq:extended-complex-n2} 正合，唯独在 $\mathfrak{U}_{012}$ 处的\trCohomology{}/余核是 $x_0^{-1}x_1^{-1}x_2^{-1}A[x_0^{-1},x_1^{-1},x_2^{-1}]$，则\mbox{答案~18.3.2} 对 $n=2$ 是正确的。
+
+由于 \eqref{eq:extended-complex-n2} 中的诸映射保持多重次数（multidegree）——也就是说，每个 $x_i$ 的次数各自独立地保持——我们可以按\trMonomial{}逐一研究 \eqref{eq:extended-complex-n2} 的正合性。
+
+\emph{「3 个负指数」的情形。}\quad 先考虑\trMonomial{} $x_0^{a_0}x_1^{a_1}x_2^{a_2}$，其中诸指数 $a_i$ 全为负数。此时 \eqref{eq:extended-complex-n2} 在这个多重次数下为：
+\[
+0\longrightarrow 0_{\mathrm{H}^0}\longrightarrow 0_0\times 0_1\times 0_2\longrightarrow 0_{01}\times 0_{12}\times 0_{02}\longrightarrow A_{012}\longrightarrow 0.
+\]
+这里的下标只是提醒我们，各个因子对应于哪个「\trCech{}」项。例如，$A_{012}$ 对应的是 $x_0^{a_0}x_1^{a_1}x_2^{a_2}$ 在 $A[x_0,x_1,x_2,x_0^{-1},x_1^{-1},x_2^{-1}]$ 中的系数。显然，这个复形只在 $\mathfrak{U}_{012}$ 那一处有（上）\trHomology，正如所愿。
+
+\emph{「2 个负指数」的情形。}\quad 接下来考虑两个指数（比如说 $a_0$ 与 $a_1$）为负数的情形。此时该复形在这个多重次数下为
+\[
+0\longrightarrow 0_{\mathrm{H}^0}\longrightarrow 0_0\times 0_1\times 0_2\longrightarrow A_{01}\times 0_{12}\times 0_{02}\longrightarrow A_{012}\longrightarrow 0,
+\]
+显然正合。
+
+\emph{「1 个负指数」的情形。}\quad 我们接下来考虑其中一个指数（比如说 $a_0$）为负数的情形。此时该复形在这个多重次数下为
+\[
+0\longrightarrow 0_{\mathrm{H}^0}\longrightarrow A_0\times 0_1\times 0_2\longrightarrow A_{01}\times 0_{12}\times A_{02}\longrightarrow A_{012}\longrightarrow 0.
+\]
+稍加思考（留意那些箭头 $A\to A$ 上的符号），你就会看出它是正合的。（这些下标提醒我们原\trCech\trComplexN{}中的下标，从而提醒我们在诸映射中该取什么符号。）
+
+\emph{「0 个负指数」的情形。}\quad 最后，考虑诸指数皆不为负的情形。此时该复形在这个多重次数下为
+\begin{equation*}\tag{18.3.2.3}\label{eq:multidegree-zero-negative}
+0\longrightarrow A_{\mathrm{H}^0}\longrightarrow A_0\times A_1\times A_2\longrightarrow A_{01}\times A_{12}\times A_{02}\longrightarrow A_{012}\longrightarrow 0.
+\end{equation*}
+
+我们想证明它是正合的。我们采用在 \eqref{eq:sleight-short-exact} 处用过的同一策略：把 \eqref{eq:multidegree-zero-negative} 写成诸复形的一个\trShortExactSequence{}的中间一行：
+\begin{equation*}\tag{18.3.2.4}\label{eq:ses-complexes-multidegree}
+\begin{tikzcd}[row sep=3.0em, column sep=1.5em]
+0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & A_2 \ar[r] \ar[d] & A_{02}\times A_{12} \ar[r] \ar[d] & A_{012} \ar[r] \ar[d] & 0 \ar[d] \\
+0 \ar[r] \ar[d] & A_{\mathrm{H}^0} \ar[r] \ar[d] & A_0\times A_1\times A_2 \ar[r] \ar[d] & A_{01}\times A_{12}\times A_{02} \ar[r] \ar[d] & A_{012} \ar[r] \ar[d] & 0 \ar[d] \\
+0 \ar[r] & A_{\mathrm{H}^0} \ar[r] & A_0\times A_1 \ar[r] & A_{01} \ar[r] & 0 \ar[r] & 0.
+\end{tikzcd}
+\end{equation*}
+
+于是我们得到\trCohomology{}的\trLongExactSequence（\mbox{定理~1.5.8}）。但顶行与底行都是正合的（基本上来自「1 个负指数」的情形），也就是说不含\trCohomology，故中间一行也必定正合。（另一种做法：如 \eqref{eq:sleight-short-exact} 那样，设 $\mathrm{id}$ 是复形 \eqref{eq:multidegree-zero-negative} 与其自身之间的恒等映射。请描述 $\mathrm{id}$ 与零映射之间的一个显式\trHomotopy。那么\trHomology{}上的恒等映射便等于\trHomology{}上的零映射（\mbox{练习~1.5.E}），这就意味着\trHomology{}为零。）
+
+\textbf{18.3.B.（练习）}\quad 证明：\mbox{答案~18.3.2} 对一切 $n\ge 1$ 都成立。（我当然本可以直接给出一般 $n$ 的证明，但亲眼看到这套论证运转起来或许更有启发。特别是，你的论证可能要短得多。例如，「2 个负指数」的情形可以照「1 个负指数」的情形那样处理，所以只要你安排得当，其实并不需要 $n+1$ 个分开的情形。）
+
+\textbf{18.3.3.}\ \emph{\trhRemark{}。}\quad 这套论证基本上就是下述结论的证明：单形（simplex）$S$ 的\trBoundary{}（在某些圈子里被称作『球面』）的约化同调（reduced homology）是 $0$，除非 $S$ 是空集——在那种情形，它是一维的。\footnote{译注：原文 circles 一语双关：既指「圈子」，也暗合「圆」，与「球面」相映成趣。}「空集」的情形对应于「3 个负指数」的情形。
+
+现在我们已准备好证明\mbox{定理~18.1.2}了。
+
+\textbf{18.3.4.}\ \emph{\mbox{定理~18.1.2} 的证明。}\quad 我们使用 $\mathbb{P}^n_A$ 的标准覆盖 $\mathfrak{U}_0=\mathrm{D}(x_0)$，…，$\mathfrak{U}_n=\mathrm{D}(x_n)$。
+
+我们来到了那个核心技巧（\mbox{练习~18.3.C}）：$\OO(m)$ 的\trCech\trComplexN{}就是 $\mathrm{H}^i(\mathbb{A}^{n+1}_A,\OO_X)$ 的\trCech\trComplexN{}的次数 $m$ 部分！（如果有帮助的话，你可以盯着 $n=2$ 的情形 \eqref{eq:cech-complex-n2} 看。）
+
+\textbf{18.3.C.（练习；参看\mbox{注记~18.3.5}）}\quad 设 $I\subset\{0,\dots,n\}$，请给出 $\Gamma(\mathfrak{U}_I,\OO(m))$ 与那些 $m$ 次\trHomogeneous{}的 Laurent 单项式（于 $x_0,\dots,x_n$ 中，以 $A$ 为系数，其中每个满足 $i\notin I$ 的 $x_i$ 都以非负次数出现）之间的一个同构（作为 $A$-\trModule{}的同构）。你的构造应当使得限制映射 $\Gamma(\mathfrak{U}_I,\OO(m))\to\Gamma(\mathfrak{U}_J,\OO(m))$（$I\subset J$）对应于自然的包含关系：$\Gamma(\mathfrak{U}_I,\OO(m))$ 中的一个 Laurent 多项式被映到 $\Gamma(\mathfrak{U}_J,\OO(m))$ 中\emph{同一个} Laurent 多项式。
+
+\textbf{18.3.D.（练习）}\quad 证明\mbox{定理~18.1.2}。\hfill$\square$
+
+\textbf{18.3.5.}\ \emph{\trhRemark{}。}\quad \mbox{练习~15.1.C} 与 \mbox{练习~15.1.D} 曾把 $\mathrm{H}^0(\mathbb{P}^n_A,\OO_{\mathbb{P}^n_A}(m))$ 解释为 $x_0,\dots,x_n$ 中 $m$ 次\trHomogeneous{}的多项式（以 $A$ 为系数）。现在我们可以用更好的方式来陈述这件事。设
+\[
+\pi\colon\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n)\longrightarrow\mathbb{P}^n_A
+\]
+是\mbox{练习~7.3.F} 与\mbox{例~7.3.12} 的那个\trMorphism。你可以证明，诱导映射
+\[
+\pi^*\colon\mathrm{H}^n(\mathbb{P}^n_A,\OO(m))\longrightarrow\mathrm{H}^n(\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n),\OO)
+\]
+是一个\trInclusionMap，并请「辨识出它的像」。

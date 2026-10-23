@@ -1,0 +1,154 @@
+
+\section{一点代数\trHomology}
+\label{sec:appB-algebraic-homology}
+
+让我们回忆（例如参见 [25]）：所谓\trChainComplex，就是一个由赋予线性映射的\trModule{}组成的序列 $C_{\bullet}$，
+\[
+\partial : C_k \longrightarrow C_{k-1}
+\]
+且满足 $\partial \circ \partial = 0$。
+
+\subsection{\texorpdfstring{$\ZZ/2$}{Z/2} 上的\trKunneth{}公式}
+\label{subsec:appB-kunneth-z2}
+
+在本小节中，$C_{\bullet}$ 与 $D_{\bullet}$ 是 $\ZZ/2$ 上由\trVectorSpace\footnote{该结果在任意域上都成立，但对环不成立；特别地，它对整系数\trHomology{}不成立。参见\cref{thm:appB-kunneth-integral-fails}与 [25]。}组成的\trComplex。它们的\trTensorProduct{}是由
+\[
+(C \otimes D)_k = \bigoplus_{i+j=k} C_i \otimes D_j
+\]
+定义的\trComplex，其\trBoundaryOperator{}为
+$\partial_k^{C \otimes D}(c \otimes d) = \bigl( (\partial_i^C c) \otimes d,\ c \otimes (\partial_j^D d) \bigr) \in C_{i-1} \otimes D_j \oplus C_i \otimes D_{j-1} \subset (C \otimes D)_{k-1}$，
+其中 $c \otimes d \in C_i \otimes D_j \subset (C \otimes D)_k$。
+
+我们将证明下述结果。
+
+\begin{proposition}\label{thm:appB-kunneth-tensor-product}
+\trTensorProduct\trComplex{}的\trHomology{}是诸\trHomology{}的\trTensorProduct：
+\[
+H_*(C_{\bullet} \otimes D_{\bullet}) = H_*(C_{\bullet}) \otimes H_*(D_{\bullet}).
+\]
+\end{proposition}
+
+\begin{proof}
+首先注意：
+\begin{itemize}
+\item $C \otimes 0 = 0$。
+\item $H_*(C_{\bullet} \oplus C'_{\bullet}) = H_*(C_{\bullet}) \oplus H_*(C'_{\bullet})$。
+\item $(C \oplus C') \otimes D = C \otimes D \oplus C' \otimes D$。
+\item 若该命题对 $C_{\bullet}$ 与 $D_{\bullet}$ 成立，且对 $C'_{\bullet}$ 与 $D_{\bullet}$ 也成立，那么它对 $(C \oplus C')_{\bullet}$ 与 $D_{\bullet}$ 成立。
+\end{itemize}
+
+于是我们按第二个\trChainComplex{}的长度 $\ell(D_{\bullet})$ 归纳证明本命题，这里当然有
+\[
+\ell(D_{\bullet}) = \#\,\{\, j \mid D_j \neq 0 \,\}.
+\]
+
+$\ell(D_{\bullet}) = 1$ 时无物可证。考虑一个长度为 $2$ 的\trComplex。若 $D_{\bullet}$ 中两个非零\trVectorSpace{}的\trIndex{}不相邻，那么由取\trDirectSum{}性质显然。于是我们设\trChainComplex $D_{\bullet}$ 为
+\[
+0 \longrightarrow D_j \xrightarrow{\ \partial\ } D_{j-1} \longrightarrow 0.
+\]
+若 $\partial = 0$，那么由取\trDirectSum{}同样得到结果。\footnote{译注：上行原书印作 $0 \to D_{j-1} \xrightarrow{\ \partial\ } D_{j-1} \to 0$（两处\trIndex{}同作 $j-1$）；此处是长度为 $2$、两个非零空间\trIndex{}相邻的\trComplex，且下文即论 $\partial : D_j \to D_{j-1}$，疑首项应为 $D_j$，系排印之误。此处径改。——译者注}
+
+我们先设 $\partial$ 是一个\trIsomorphism。此时，\trChainComplex $D_{\bullet}$ 的\trHomology{}为零，于是我们要证 $(C \otimes D)_{\bullet}$ 的\trHomology{}也为零。考虑
+\[
+\partial_{i+j} : C_i \otimes D_j \oplus C_{i+1} \otimes D_{j-1} \longrightarrow C_{i-1} \otimes D_j \oplus C_i \otimes D_{j-1}
+\]
+的\trKernel{}中的一个元素（上标表示\trDegree），并证明它包含在
+\[
+\partial_{i+j+1} : C_{i+1} \otimes D_j \longrightarrow C_i \otimes D_j
+\]
+的\trImage{}中。\footnote{译注：上行原书印作 $\partial_{i+j+1} : C_{i+1} \otimes D_j \longrightarrow C_i \otimes D_j$；按 $(C \otimes D)_{i+j} = C_i \otimes D_j \oplus C_{i+1} \otimes D_{j-1}$，$\partial_{i+j+1}$ 的靶应为整个 $(C \otimes D)_{i+j}$，此处漏排第二个\trDirectSum{}项 $C_{i+1} \otimes D_{j-1}$——下文求边缘所得的 $\bigl( \sum_a x_a^i \otimes y_a^j,\ \sum_b z_b^{i+1} \otimes t_b^{j-1} \bigr)$ 之第二分量恰非零地落在该分量之中，疑为排印之疏。此处照原书排印，存疑备案。——译者注}
+
+于是我们写
+\[
+\partial \Bigl( \sum_a x_a^i \otimes y_a^j,\ \sum_b z_b^{i+1} \otimes t_b^{j-1} \Bigr) = 0,
+\]
+即
+\[
+\sum_a (\partial x_a^i) \otimes y_a^j = 0
+\]
+且\footnote{译注：下行第一项原书印作 $\partial y_a^{i}$（上标 $i$）；按 $y_a^j \in D_j$、$\partial y_a^j \in D_{j-1}$，疑应为 $\partial y_a^j$，系排印之误。此处径改。——译者注}
+\[
+\sum_a x_a^i \otimes \partial y_a^j + \sum_b \partial z_b^{i+1} \otimes t_b^{j-1} = 0.
+\]
+在我们的假设下，$\partial^D$ 是一个\trIsomorphism。于是我们对第二个关系式应用 $\mathrm{Id} \otimes \partial^{-1}$，得到
+\[
+\sum_a x_a^i \otimes y_a^j = \sum_b \partial z_b^{i+1} \otimes \partial^{-1} t_b^{j-1}
+\]
+（按模 $2$ 计算）。最后，我们有
+\[
+\partial \Bigl( \sum_b z_b^{i+1} \otimes \partial^{-1} t_b^{j-1},\ 0 \Bigr) = \Bigl( \sum_a x_a^i \otimes y_a^j,\ \sum_b z_b^{i+1} \otimes t_b^{j-1} \Bigr),
+\]
+于是 $\partial_{i+j}$ 的\trKernel{}的这个元素属于 $\partial_{i+j+1}$ 的\trImage{}。
+
+现在考虑长度为 $2$ 的\trChainComplex{} $D_{\bullet}$ 的一般情形。我们把 $D_j$ 与 $D_{j-1}$ 分解为\trDirectSum
+\[
+D_j = \operatorname{Ker}(\partial) \oplus D'_j \qquad\text{以及}\qquad D_{j-1} = E'_{j-1} \oplus \operatorname{Im}(\partial);
+\]
+那么 $D_{\bullet}$ 就是两个\trChainComplex{}的\trDirectSum
+\[
+0 \longrightarrow \operatorname{Ker}(\partial) \xrightarrow{\ 0\ } E'_{j-1} \longrightarrow 0
+\qquad\text{以及}\qquad
+0 \longrightarrow D'_j \xrightarrow{\ \cong\ } \operatorname{Im}(\partial) \longrightarrow 0
+\]
+由前述诸结果即得结论。\footnote{译注：上行第一个\trComplex{}的中间项原书印作 $E_{j-1}$（无撇）；按其上式分解即作 $D_{j-1} = E'_{j-1} \oplus \operatorname{Im}(\partial)$，且下文长度 $k+1$ 情形的同类处亦作 $E'_k$，疑应同作 $E'_{j-1}$，系排印之误。此处径改。——译者注}
+
+最后，设该命题对长度为 $k$ 的\trChainComplex{}已经得证，并设 $D_{\bullet}$ 是一个长度为 $k+1$ 的\trChainComplex，即
+\[
+0 \longrightarrow D_{k+1} \xrightarrow{\ \partial\ } D_k \longrightarrow \cdots \longrightarrow D_1 \longrightarrow 0.
+\]
+我们如上分解：
+\[
+D_{k+1} = \operatorname{Ker}(\partial) \oplus D'_{k+1} \qquad\text{以及}\qquad D_k = \operatorname{Im}(\partial) \oplus E'_k.
+\]
+这个\trChainComplex{}于是是三个\trComplex{}的\trDirectSum：
+\[
+0 \longrightarrow \operatorname{Ker}(\partial) \longrightarrow 0,
+\]
+以及
+\[
+0 \longrightarrow E'_k \longrightarrow D_{k-1} \longrightarrow \cdots\ 0 \longrightarrow D'_{k+1} \xrightarrow{\ \cong\ } \operatorname{Im}(\partial) \longrightarrow 0,
+\]
+它们的长度都小于 $k+1$。
+\end{proof}
+
+\begin{remark}\label{thm:appB-kunneth-integral-fails}
+正是当我们把 $D_j$ 或 $D_{k+1}$ 分解为 $\partial$ 的\trKernel{}与一个\trComplement{}的\trDirectSum{}时，我们才真正用到了我们的\trComplex{}由\trVectorSpace{}组成、而不仅仅是\trCommutativeRing{}上的\trModule{}这一事实。
+\end{remark}
+
+\subsection{\trComplex{}的\trExact{}列}
+\label{subsec:appB-exact-sequences}
+
+让我们快速回忆：若 $A_{\bullet}$、$B_{\bullet}$ 与 $C_{\bullet}$ 是\trChainComplex，那么由\trChainComplex{}及其\trMorphism{}构成的\trExact{}列
+\[
+0 \longrightarrow A_{\bullet} \xrightarrow{\ i\ } B_{\bullet} \xrightarrow{\ j\ } C_{\bullet} \longrightarrow 0
+\]
+对每个 $k$ 都诱导出一个\trExact{}列
+\[
+H_k(A) \xrightarrow{\ i_\star\ } H_k(B) \xrightarrow{\ j_\star\ } H_k(C)
+\]
+（这可以直接验证），而由 $i$ 与 $j$ 所诱导的\trMorphism{}一般而言分别不是\trInjective{}与\trSurjective{}的。这种\trExact{}性的缺失由一个\trLongExactSequence{}来“衡量”：
+\[
+\begin{tikzcd}
+H_k(A) \arrow[r] & H_k(B) \arrow[r] & H_k(C) \arrow[dll, "\partial"'] \\
+H_{k-1}(A) \arrow[r] & \cdots
+\end{tikzcd}
+\]
+我们只来说明\trConnectingHomomorphism{} $\partial$ 是如何定义的（其余的验证都是类似的直接计算）。设 $[c] \in H_k(C)$ 是由一个满足 $\partial_C(c) = 0$ 的 $c \in C_k$ 所代表的元素。图
+\[
+\begin{tikzcd}
+ & 0 \arrow[d] \\
+ & A_{k-1} \arrow[r, "\partial_A"] \arrow[d, "i"'] & A_{k-2} \\
+B_k \arrow[r, "\partial_B"] \arrow[d, "j"'] & B_{k-1} \arrow[d, "j"] \\
+C_k \arrow[r, "\partial_C"'] \arrow[d] & C_{k-1} \\
+0
+\end{tikzcd}
+\]
+给出 $c = j(b)$，满足
+\[
+j(\partial_B b) = \partial_C(j(b)) = \partial_C c = 0,
+\]
+于是 $\partial_B(b) \in \operatorname{Ker}(j)$，从而 $\partial_B(b) = i(a)$，其中 $a \in A_{k-1}$。此外，这个元素是一个\trCycle：我们有
+\[
+i(\partial_A a) = \partial_B(i(a)) = \partial_B \partial_B(b) = 0
+\]
+而 $i$ 是\trInjective{}的。

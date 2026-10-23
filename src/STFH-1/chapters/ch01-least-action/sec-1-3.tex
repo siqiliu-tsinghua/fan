@@ -1,0 +1,490 @@
+\section{勒让德变换}
+\stfhIndex{I195}{lei^rang^de^bian^huan}{勒让德变换（Legendre transform）}
+\label{sec:legendre-transform}
+
+求解力学问题时，人们常常先求出动量 $p_i$ 随时间变化的公式，然后希望把它转化为位置坐标 $q^i$ 的公式。不过，这并非总能做到。拉格朗日量 $L$ 的一个必要条件是：对每个固定的位置向量 $x$，它关于 $\dot x$ 是\emph{凸}的。这样的函数应当看作一族凸函数
+\[
+  \dot x\longmapsto L(t,x,\dot x);\quad\mathbb R^n\to\mathbb R,
+\]
+其参数是位置向量 $(t,x)\in\mathbb R\times\mathbb R^n$。
+
+本节讨论一个在数学许多分支中都会出现的重要运算——\emph{勒让德变换}。近来，在与斯特罗明格--丘成桐--扎斯洛纲领相关的镜像对称严格表述中，勒让德变换发挥了重要作用。关于这一方面的更多说明，可参阅 (SYZ01)、(Hi99) 和 (GrSi03)。部分由于近期人们重新对此产生兴趣，我们将以不依赖坐标的方式对勒让德变换给出较详细的数学说明。之后再回到经典力学的哈密顿表述。
+
+\subsection{函数的勒让德变换}
+\label{sec:legendre-transform-function}
+
+设 $V$ 是一个（有限维）向量空间，$V^*$ 是其对偶向量空间。用 $\langle\ ,\ \rangle$ 表示 $V$ 与 $V^*$ 之间的典范配对。
+
+\begin{definition}
+\label{def:convex-function}
+设 $U\subset V$ 为开子集。若函数 $f:V\to\mathbb R$ 对所有 $t\in[0,1]$ 及所有 $x_1,x_2\in U$ 都满足
+\begin{equation}\label{eq:convex-function}
+  f((1-t)x_1+tx_2)\leq(1-t)f(x_1)+tf(x_2),
+\end{equation}
+则称 $f$ 在 $U\subset V$ 上是\emph{凸}的；若对所有 $t\in(0,1)$ 及所有 $x_1,x_2\in U$ 都满足
+\begin{equation}\label{eq:strictly-convex-function}
+  f((1-t)x_1+tx_2)<(1-t)f(x_1)+tf(x_2),
+\end{equation}
+则称 $f$ 是\emph{严格凸}的。
+\end{definition}
+
+下面的结论不难作为习题证明。
+
+\begin{lemma}
+\label{lem:convex-function-basics}
+\begin{enumerate}[label=(\arabic*)]
+  \item $U$ 上的任意凸函数 $f$ 在 $U$ 上连续。
+  \item 任意有下界的严格凸函数 $f:V\to\mathbb R$，只要存在极小点，该极小点就是唯一的。
+\end{enumerate}
+\end{lemma}
+
+\begin{example}
+\label{ex:power-function-convexity}
+令 $V=\mathbb R$，考虑函数 $f(x)=x^\alpha/\alpha$，其中 $\alpha>1$。则 $f$ 在 $\mathbb R$ 上是凸的。
+\end{example}
+
+对给定函数 $f:V\to\mathbb R$，考虑函数 $F:V\times V^*\to\mathbb R$，定义为
+\[
+  F(x,p)\coloneqq\langle x,p\rangle-f(x),
+\]
+以及值
+\begin{equation}\label{eq:legendre-transform-supremum}
+  g(p)=\sup_{x\in V}F(x,p).
+\end{equation}
+若这个新函数 $g$ 有定义，则称它为\emph{勒让德变换}或\emph{芬切尔变换}。
+
+一般而言，$g$ 的值未必有限。然而，只要这个值有定义，就有不等式
+\begin{equation}\label{eq:fenchel-inequality}
+  \langle x,p\rangle\leq f(x)+g(p),
+\end{equation}
+称为\emph{芬切尔不等式}。\stfhIndex{I124}{fen^qie^er^bu^deng^shi}{芬切尔不等式（Fenchel inequality）}要使 $g$ 处处取有限值，需要对 $f$ 施加如下超线性条件。
+
+\begin{definition}
+\label{def:superlinear-function}
+设 $V$ 是一个（有限维）向量空间。若函数 $f:V\to\mathbb R$ 有下界，且
+\begin{equation}\label{eq:superlinear-function}
+  \lim_{|x|\to\infty}\frac{f(x)}{|x|}=+\infty,
+\end{equation}
+则称 $f$ 是超线性的。
+\stfhIndex{I265}{chao^xian^xing}{超线性（superlinear）}
+\end{definition}
+
+\begin{exercise}
+\label{ex:superlinearity-equivalence}
+证明：本定义中的超线性等价于如下陈述——对每个 $K<\infty$，存在 $C(K)>-\infty$，使得对所有 $x\in V$ 都有
+\[
+  f(x)\geq K|x|+C(K).
+\]
+\end{exercise}
+
+函数 $f(x)=e^{-x}$（视为 $V=\mathbb R$ 上的函数）是凸但非超线性函数的一个例子。
+
+下面的命题取自阿尔贝·法蒂（Albert Fathi）的著作 (Fa05) 的命题 1.3.5，并限于有限维情形。
+
+\begin{proposition}
+\label{prop:legendre-basic-properties}
+设 $f:V\to\mathbb R$ 为函数。则有：
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $f$ 超线性，则 $g$ 处处有限；
+  \item 若 $g$ 处处有限，则它是凸的；
+  \item 若 $f$ 连续，则 $g$ 是超线性的。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+先证 (1)。由超线性条件~\eqref{eq:superlinear-function} 和习题~\ref{ex:superlinearity-equivalence}，存在常数 $C=C(|p|)$，使得对所有 $x\in V$ 都有
+\[
+  f(x)\geq |p||x|+C(|p|).
+\]
+因此
+\[
+  \langle x,p\rangle-f(x)
+  \leq |x||p|-f(x)
+  \leq |x||p|-(|x||p|+C(|p|))
+  =-C(|p|)<\infty.
+\]
+这证明了
+\[
+  g(p)=\sup_{x\in V}(\langle x,p\rangle-f(x))<\infty.
+\]
+另一方面，
+\[
+  g(p)=\sup_{x\in V}(\langle x,p\rangle-f(x))\geq-f(0)>-\infty,
+\]
+从而 (1) 得证。对于性质 (2)，注意 $g$ 是如下显然为凸的线性函数族的上界：
+\[
+  p\longmapsto\langle x,p\rangle-f(x),
+\]
+故 $g$ 必为凸函数。为证 (3)，应用习题~\ref{ex:superlinearity-equivalence}。对任意 $K$，都有
+\[
+  g(p)\geq\sup_{|x|=K}\langle x,p\rangle-\sup_{|x|=K}f(x).
+\]
+但 $\sup_{|x|=K}\langle x,p\rangle=K|p|$，且由于假定 $f$ 连续，$\sup_{|x|=K}f(x)$ 有界。注意球面 $\{x\in V\mid |x|=K\}$ 是紧的，因为我们假设 $V$ 有限维。这就完成了证明。
+\end{proof}
+
+下面的定理由维尔纳·芬切尔（Werner Fenchel）给出。我们把它的证明留作习题，读者也可参阅 (Fa05)。
+
+\begin{theorem}[芬切尔]
+\stfhIndex{I125}{fen^qie^er^yin^li}{芬切尔引理（Fenchel’s lemma）}
+\label{thm:fenchel}
+设 $f:V\to\mathbb R$ 在 $V$ 上连续且超线性。
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $f$ 凸且可微，则
+  \[
+    \forall x\in V,\qquad g\circ df(x)=df(x)(x)-f(x).
+  \]
+  而且，$\langle x,p\rangle=g(p)+f(x)$ 当且仅当 $p=df(x)$。
+  \item $f(x)=\sup_{p\in V^*}(\langle x,p\rangle-g(p))$ 当且仅当 $f$ 是凸函数。
+\end{enumerate}
+\end{theorem}
+
+\begin{exercise}
+\label{ex:prove-fenchel}
+证明芬切尔引理，即定理~\ref{thm:fenchel}。
+\end{exercise}
+
+\begin{proposition}
+\label{prop:legendre-extrema-exist}
+设有限维向量空间 $V$ 上的函数 $f:V\to\mathbb R$ 连续且超线性，并令 $g:V^*\to\mathbb R$ 为它的勒让德变换。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item $g$ 处处连续；
+  \item 对每个 $p\in V^*$，存在 $v\in V$，使得 $\langle v,p\rangle=f(v)+g(p)$；
+  \item 若 $f$ 凸，则对每个 $x\in V$，存在 $p\in V^*$，使得 $\langle x,p\rangle=f(x)+g(p)$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+陈述 (1) 由 $g$ 的凸性推出。为证 (2)，先注意
+\[
+  |\langle x,p\rangle|\leq |x||p|,
+  \qquad \lim_{|x|\to\infty}\frac{f(x)}{|x|}=\infty.
+\]
+由此可见
+\[
+  \lim_{|x|\to\infty}\frac{\langle x,p\rangle-f(x)}{|x|}=-\infty.
+\]
+因此，连续函数 $p\longmapsto\langle x,p\rangle-f(x)$ 的上确界 $g(p)$，与其在某个充分大的有界集上的限制的上确界相同。所以 $g$ 的上确界可以达到。换言之，存在 $v\in V$，使得
+\[
+  g(p)=\langle v,p\rangle-f(v),
+\]
+这便完成了证明。对于 (3)，注意 $(V^*)^*=V$，且由定理~\ref{thm:fenchel} (2)，$f$ 是 $g$ 的勒让德变换。因此结论由 (2) 推出。
+\end{proof}
+
+\begin{corollary}[满射性]
+\label{cor:legendre-map-surjective}
+若 $f$ 凸、处处可微且超线性，则 $df:V\to V^*$ 是满射。
+\end{corollary}
+
+\begin{proof}
+这由定理~\ref{thm:fenchel} (1) 与命题~\ref{prop:legendre-extrema-exist} (2) 共同推出。
+\end{proof}
+
+映射
+\[
+  \mathcal L:x\longmapsto df(x);\quad V\to V^*
+\]
+称为与函数 $f$ 相伴的\emph{勒让德变换映射}。下面是定理~\ref{thm:fenchel} 的重述。
+
+\begin{proposition}
+\label{prop:legendre-map-identity}
+设 $f:V\to\mathbb R$ 是 $C^1$ 且超线性的，$\mathcal L:V\to V^*$ 为其勒让德变换映射。若 $g:V^*\to\mathbb R$ 是 $f$ 的勒让德变换，则
+\begin{equation}\label{eq:legendre-map-identity}
+  \forall x\in V,\qquad g\circ\mathcal L(x)=df(x)(x)-f(x).
+\end{equation}
+而且，$\langle x,p\rangle=f(x)+g(p)$ 当且仅当 $p=df(x)$。
+\end{proposition}
+
+\begin{theorem}[单射性]
+\label{thm:legendre-map-injective}
+设 $f:V\to\mathbb R$ 是一个 $C^1$ 凸函数。则其相伴勒让德变换映射 $\mathcal L:V\to V^*$ 为单射，当且仅当 $f$ 严格凸。
+\end{theorem}
+
+\begin{proof}
+设 $p\in V^*$，令 $F:V\times V^*\to\mathbb R$ 为函数
+\[
+  F(x,p)=\langle x,p\rangle-f(x).
+\]
+于是 $p=df(x)$ 当且仅当 $dF_p(x)=0$。因此 $x$ 是严格凹函数
+\[
+  F_p:x\longmapsto\langle x,p\rangle-f(x)
+\]
+的唯一极大点，故 $\mathcal L$ 为单射。
+
+反过来，若 $\mathcal L$ 为单射，则凹函数
+\[
+  x\longmapsto\langle x,df(v)\rangle-f(x)
+\]
+只有 $v$ 这一个临界点，因而 $v$ 必为唯一极大点。令
+\[
+  v=(1-t)x+ty,
+  \qquad t\in(0,1),\qquad x\neq v\neq y.
+\]
+则
+\begin{align*}
+  \langle df(v),x\rangle-f(x)&<\langle df(v),v\rangle-f(v),\\
+  \langle df(v),y\rangle-f(y)&<\langle df(v),v\rangle-f(v).
+\end{align*}
+由于 $t,1-t>0$，取这两个不等式的凸组合，再乘以 $-1$，得到
+\[
+  (1-t)f(x)+tf(y)-df(v)((1-t)x+ty)
+  >\langle df(v),v\rangle-f(v).
+\]
+但 $x,y$ 的选取使得 $(1-t)x+ty=v$，故这蕴含
+\[
+  (1-t)f(x)+tf(y)>f(v).
+\]
+这就证明了 $f$ 的严格凸性。
+\end{proof}
+
+结合推论~\ref{cor:legendre-map-surjective} 与定理~\ref{thm:legendre-map-injective}，得到下述结论。
+
+\begin{corollary}[双射性]
+\label{cor:legendre-map-bijective}
+设 $f:V\to\mathbb R$ 是一个 $C^1$ 凸函数。则其相伴勒让德变换映射 $\mathcal L:V\to V^*$ 为双射，当且仅当 $f$ 严格凸且超线性。在这种情况下，$\mathcal L$ 是同胚。
+\end{corollary}
+
+还容易看出，若 $f$ 是 $C^2$ 且超线性的，则 $\mathcal L$ 是 $C^1$ 微分同胚。
+
+下面这个来自 (Ar89) 的有趣例子表明，经典分析中的\emph{杨不等式}是芬切尔不等式~\eqref{eq:fenchel-inequality} 的一个特殊情形。
+
+\begin{example}
+\label{ex:young-inequality}
+考虑函数 $f:\mathbb R_+\to\mathbb R_+$，定义为
+\[
+  f(v)=\frac{v^\alpha}{\alpha},\qquad\alpha>1.
+\]
+此函数是 $C^1$、严格凸且超线性的，故其勒让德变换 $g:\mathbb R\to\mathbb R$ 处处有定义，并且同样严格凸且超线性。事实上，可以运用
+\begin{equation}\label{eq:young-legendre}
+  g(p)=\langle v,p\rangle-f(v),
+  \qquad p=\frac{df}{dv}(v),
+\end{equation}
+求出 $g$ 的显式公式。计算得 $df/dx=x^{\alpha-1}$。对任意给定的 $p$，由 $p=x^{\alpha-1}$ 解出 $x$，得到
+\[
+  v=p^{1/(\alpha-1)}.
+\]
+将它代入式~\eqref{eq:young-legendre}，便有
+\[
+  g(p)=p^{1+1/(\alpha-1)}-\frac{p^{\alpha/(\alpha-1)}}{\alpha}
+  =\frac{p^\beta}{\beta},
+\]
+其中 $\beta>1$ 是满足
+\[
+  \frac1\alpha+\frac1\beta=1
+\]
+的唯一正数。因此在此情形，芬切尔不等式~\eqref{eq:fenchel-inequality} 化为杨不等式
+\[
+  xp\leq\frac{x^\alpha}{\alpha}+\frac{p^\beta}{\beta},
+\]
+其中 $x,p>0$ 任意。
+\end{example}
+
+\subsection{勒让德变换与作用量泛函}
+\label{sec:legendre-transform-action-functional}
+
+现在考虑乘积 $V\times V$，将它看作 $V$ 的切丛 $TV$。用 $x$ 表示 $V$ 中的一点。任选坐标 $(q^1,\ldots,q^n)$，并以
+\[
+  (q^1,\ldots,q^n,\dot q^1,\ldots,\dot q^n)
+\]
+表示 $V\times V\cong TV$ 的相应\emph{典范坐标}。回顾一下，在任意给定点 $x\in V$ 处，典范坐标沿 $TV$ 的纤维方向关于基
+\[
+  \left\{
+    \left.\frac{\partial}{\partial q^1}\right|_x,
+    \ldots,
+    \left.\frac{\partial}{\partial q^n}\right|_x
+  \right\}
+\]
+是线性的。因此，对任意给定函数
+\[
+  L=L(x,\dot x):V\times V\to\mathbb R,
+\]
+在任意给定 $x\in V$ 处，我们可以典范地讨论它关于纤维坐标 $(\dot q^1,\ldots,\dot q^n)$ 的\emph{逐纤维凸性}。类似地，还考虑 $V\times V^*=T^*V$ 的典范坐标
+\[
+  (q^1,\ldots,q^n,p_1,\ldots,p_n).
+\]
+
+我们也考虑依赖时间的函数族
+\[
+  L=L(t,x,\dot x):\mathbb R\times TV\to\mathbb R.
+\]
+把 $L$ 的（逐纤维）勒让德变换记为 $H:\mathbb R\times V\times V^*\to\mathbb R$，定义为
+\begin{equation}\label{eq:fiberwise-legendre-hamiltonian}
+  H(t,x,p)=\sup_{\dot x\in V}
+  (\langle\dot x,p\rangle-L(t,x,\dot x)).
+\end{equation}
+函数 $H$ 称为与拉格朗日量 $L$ 相伴的\emph{哈密顿量}或\emph{哈密顿函数}。
+\stfhSubIndex{I153}{ha^mi^dun}{哈密顿（Hamiltonian）}{ha^mi^dun^han^shu}{哈密顿函数（Hamiltonian function）}
+
+假设 $L$（逐纤维地）为 $C^1$、严格凸且超线性，则逐纤维勒让德变换映射
+\[
+  \mathcal L:\mathbb R\times TV\to\mathbb R\times T^*V
+\]
+定义了一个保纤维的双射同胚。此外，有恒等式
+\begin{equation}\label{eq:hamiltonian-from-lagrangian}
+  H(t,x,p)=\langle v,p\rangle-L(t,x,v),
+\end{equation}
+其中 $v=v(t,x,p)\in V$ 是方程
+\begin{equation}\label{eq:fiberwise-legendre-equation}
+  p=d_{\dot x}L(t,x,v)
+\end{equation}
+的唯一解。在典范坐标中，
+\[
+  p_i=\frac{\partial L}{\partial\dot q^i},
+  \qquad i=1,\ldots,n;
+\]
+这些恰好就是定义~\ref{def:generalized-momenta} 中与拉格朗日量 $L$ 相伴的广义动量。于是欧拉--拉格朗日方程变为 $\dot p_i=\partial L/\partial q^i$。
+
+现在推导哈密顿力学中的一个基本定理。先引入延拓的概念。
+
+\begin{definition}
+\label{def:prolongation}
+给定道路 $\gamma=\gamma(t)$，定义其延拓，记为 $\widetilde\gamma:\mathbb R\times V\times V^*$，由
+\[
+  \widetilde\gamma(t)=(\gamma(t),p(t)),
+\]
+其中
+\[
+  p(t)=d_{\dot x}L(\gamma(t),\dot\gamma(t)).
+\]
+我们称这个 $p$ 为 $L$ 的\emph{广义动量}。
+\stfhIndex{I135}{guang^yi^dong^liang}{广义动量（generalized momenta）}
+\end{definition}
+
+设 $H$ 是 $L$ 的勒让德变换。我们用两种不同方式计算 $H$ 在 $\mathbb R\times V\times V^*$ 上的微分。首先，
+\begin{equation}\label{eq:differential-hamiltonian-coordinates}
+  dH=\frac{\partial H}{\partial t}\,dt
+  +\frac{\partial H}{\partial p_i}\,dp_i
+  +\frac{\partial H}{\partial q^j}\,dq^j.
+\end{equation}
+另一方面，在式~\eqref{eq:hamiltonian-from-lagrangian} 中把 $v$ 看作 $(t,x,p)$ 的函数并求微分，得到
+\begin{align*}
+  dH
+  &=v^i\,dp_i+dv^i\,p_i
+    -\left(
+      \frac{\partial L}{\partial t}\,dt
+      +\frac{\partial L}{\partial q^j}\,dq^j
+      +\frac{\partial L}{\partial\dot q^i}\,dv^i
+    \right)\\
+  &=v^i\,dp_i-\frac{\partial L}{\partial t}\,dt
+    -\frac{\partial L}{\partial q^j}\,dq^j
+    +\left(p_i-\frac{\partial L}{\partial\dot q^i}\right)dv^i.
+\end{align*}
+最后一项在这里消失，因为 $v$ 是 $p=d_{\dot x}L$ 的解，即
+\[
+  p_i=\frac{\partial L}{\partial\dot q^i},
+  \qquad i=1,\ldots,n.
+\]
+所以该方程化为
+\begin{equation}\label{eq:differential-hamiltonian-legendre}
+  dH=-\frac{\partial L}{\partial t}\,dt
+  +v^i\,dp_i-\frac{\partial L}{\partial q^j}\,dq^j.
+\end{equation}
+比较式~\eqref{eq:differential-hamiltonian-coordinates} 与~\eqref{eq:differential-hamiltonian-legendre}，得到
+\[
+  \frac{\partial H}{\partial t}=-\frac{\partial L}{\partial t},
+  \qquad
+  \frac{\partial H}{\partial p_i}=v^i,
+  \qquad
+  \frac{\partial H}{\partial q^j}=-\frac{\partial L}{\partial q^j}.
+\]
+
+\begin{theorem}
+\label{thm:euler-lagrange-hamilton-coordinate}
+设 $H$ 是 $L$ 的勒让德变换。则道路 $\gamma=\gamma(t)$ 是 $V$（位形空间）上欧拉--拉格朗日方程的解，当且仅当其延拓 $\widetilde\gamma:\mathbb R\times V\times V^*$ 满足 $T^*V$（相空间）上的方程
+\stfhIndex{I078}{wei^xing^kong^jian}{位形空间（configuration space）}
+\begin{equation}\label{eq:hamilton-equation}
+  \dot q^i=\frac{\partial H}{\partial p_i},
+  \qquad
+  \dot p_j=-\frac{\partial H}{\partial q^j}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+假设道路 $x=x(t)$ 是欧拉--拉格朗日方程
+\[
+  \frac d{dt}\left(\frac{\partial L}{\partial\dot q^i}\right)
+  -\frac{\partial L}{\partial q^i}=0
+\]
+的解。令 $p(t)$ 由 $p_i=\partial L/\partial\dot q^i$ 给出，则延拓 $t\longmapsto(x(t),p(t))$ 满足
+\[
+  \dot p_j=-\frac{\partial H}{\partial q^j},
+  \qquad
+  \dot q^i(=v^i)=\frac{\partial H}{\partial p_i}.
+\]
+反过来的结论也只需倒过来阅读上述证明即可得到。
+\end{proof}
+
+方程~\eqref{eq:hamilton-equation} 称为与函数 $H$ 相伴的\emph{哈密顿方程}。\stfhIndex{I147}{ha^mi^dun^fang^cheng}{哈密顿方程（Hamilton’s equation）}此时我们注意到，对\emph{任意}函数 $H:\mathbb R\times V\times V^*$ 都可以考虑哈密顿方程；它不必来自某个拉格朗日量 $L$ 的勒让德变换。定理~\ref{thm:euler-lagrange-hamilton-coordinate} 于是说明，当 $H$ 由拉格朗日量 $L$ 的勒让德变换产生时，哈密顿方程化为欧拉--拉格朗日方程。我们把定理~\ref{thm:euler-lagrange-hamilton-coordinate} 改述为如下不依赖坐标的形式。
+
+\begin{theorem}
+\label{thm:euler-lagrange-hamilton-invariant}
+设 $L$ 是严格凸、超线性的 $C^2$ 函数，$\mathcal L:TV\to T^*V$ 为相应的勒让德变换映射。则道路 $\gamma:\mathbb R\to V$ 是 $L$ 的欧拉--拉格朗日方程的解，当且仅当 $\mathcal L(\dot\gamma)$ 是与 $L$ 的勒让德变换 $H$ 相伴的哈密顿方程的解。
+\end{theorem}
+
+此后除非另有说明，我们一律假定所有映射都是光滑的。
+
+事实表明，\emph{相空间} $T^*V$ 上的一般哈密顿方程也有相应的最小作用量原理；下面对此加以说明。\emph{经典相空间}对应于
+\[
+  T^*\mathbb R^n=\mathbb R^n\times(\mathbb R^n)^*.
+\]
+
+\begin{definition}[相空间上的作用量泛函]
+\label{def:hamiltonian-action-functional}
+设 $[t_0,t_1]$ 为一个区间，$\lambda:[t_0,t_1]\to T^*V$ 为一条曲线。$\lambda$ 的\emph{作用量}定义为
+\begin{equation}\label{eq:hamiltonian-action-functional}
+  \mathcal A_H(\lambda)
+  =\int_\lambda p\,dq-\int_{t_0}^{t_1}H(t,\lambda(t))\,dt.
+\end{equation}
+我们称 $\mathcal A_H$ 为与哈密顿函数 $H$ 相伴的\emph{哈密顿作用量泛函}，或简称（受扰动）\emph{作用量泛函}。
+\end{definition}
+
+下面的命题表明，通过勒让德变换，哈密顿作用量泛函特化为拉格朗日作用量泛函。证明是直接的，故从略。
+
+\begin{proposition}
+\label{prop:hamiltonian-lagrangian-action}
+设 $H$ 是 $L$ 的勒让德变换，$\mathcal L$ 是 $L$ 的勒让德变换映射。任取道路 $\gamma:[t_0,t_1]\to V$，令 $\lambda=\widetilde\gamma$ 为 $\gamma$ 的延拓。则
+\[
+  \mathcal A_H(\lambda)
+  =\int_{t_0}^{t_1}L(t,\gamma(t),\dot\gamma(t))\,dt.
+\]
+\end{proposition}
+
+直接计算即可证明式~\eqref{eq:hamiltonian-action-functional} 所给 $\mathcal A_H$ 的下述第一变分公式。
+
+\begin{exercise}
+\label{ex:hamiltonian-action-first-variation}
+证明如下第一变分公式：
+\begin{equation}\label{eq:first-variation-hamiltonian-action}
+  \delta\mathcal A_H
+  =\left.p\cdot\delta x\right|_{t_0}^{t_1}
+  -\int_{t_0}^{t_1}\left(
+    \dot p\cdot\delta x-\dot x\cdot\delta p
+    +\frac{\partial H}{\partial x}\,\delta x
+    +\frac{\partial H}{\partial p}\,\delta p
+  \right)dt.
+\end{equation}
+\end{exercise}
+
+这里沿用物理学家的记号，把 $\lambda$ 的变分向量记为 $\xi=(\delta x,\delta p)$，并记 $\delta\mathcal A_H\coloneqq d\mathcal A_H(\xi)$。这一公式给出相空间上的如下最小作用量原理。
+
+\begin{theorem}
+\label{thm:hamilton-least-action}
+考虑以下两种情形之一。
+\begin{enumerate}[label=(\arabic*)]
+  \item \textup{\bfseries（两点边界条件）}设 $H:[t_0,t_1]\times T^*V\to\mathbb R$ 为任意哈密顿量。对给定固定点 $x_0,x_1\in V$，令
+  \[
+    x(t_0)=x_0,\qquad x(t_1)=x_1.
+  \]
+  \item \textup{\bfseries（周期边界条件）}假设 $H:\mathbb R\times T^*V\to\mathbb R$ 关于时间是周期的，即对所有 $(x,p)\in T^*V$ 满足
+  \[
+    H(t_0,x,p)\equiv H(t_1,x,p).
+  \]
+  令 $x(t_0)=x(t_1)$ 且 $p(t_0)=p(t_1)$。
+\end{enumerate}
+则道路 $\lambda:[t_0,t_1]\to T^*V$ 满足哈密顿方程，当且仅当 $\lambda$ 是 $\mathcal A_H$ 的极值道路，即满足 $\delta\mathcal A_H(\lambda)=0$。
+\end{theorem}
+
+\begin{proof}
+证明是第一变分公式~\eqref{eq:first-variation-hamiltonian-action} 的直接推论。
+\end{proof}
+
+\emph{从此以后，除非另有说明，我们总把单位区间 $[0,1]$ 作为道路 $\lambda$ 的定义域。}考虑周期边界条件时，通常还要求 $H$ 以 $1$ 为周期。

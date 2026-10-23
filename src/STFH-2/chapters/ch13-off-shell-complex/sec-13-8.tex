@@ -1,0 +1,377 @@
+\section{\termAbstractFloerComplex{}及其同调}
+\label{sec:abstract-floer-complex-homology}
+
+本节给出所有已知的一般\personFloer{}同调构造背后的纯代数框架。我们沿用
+\stfhIndex{I190}{Eshe}{厄舍（Usher）}
+M. \personUsher{} (Ush08) 的叙述，并略作扩充。
+
+\begin{definition}
+\label{def:graded-filtered-floer-novikov-complex}
+环 $R$ 上的一个\termGradedFilteredFloerNovikovComplex{} $\mathfrak c$ 由如下数据组成。
+\begin{enumerate}[label=(\arabic*)]
+  \item 一个群 $\Gamma$ 和一个（带离散拓扑的）主 $\Gamma$-丛
+  \[
+    P\longrightarrow S,
+  \]
+  其中
+  \begin{enumerate}[label=(\alph*)]
+    \item $S$ 是有限集；
+    \item $\Gamma$ 是以乘法记号书写的有限生成阿贝尔群，而 $P$ 是一个
+    $\Gamma$-集（即带 $\Gamma$-作用的集合）。
+  \end{enumerate}
+  \item 一个作用量泛函
+  \[
+    \mathcal A:P\longrightarrow\mathbb R
+  \]
+  和一个\termPeriodHomomorphism{}
+  \footnote{译者注：原书把 $\Gamma$ 称为“群胚”及“有限生成阿贝尔群胚”，并把
+  $\omega$ 称为“周期群胚同态”；但本定义使用全局乘法与群作用，本节后文还使用
+  $\ker\omega$、群环和群的正合序列，均要求 $\Gamma$ 是群。原书又把 $P$ 写成
+  未定义的 $G$-集（或 $G$-作用）。译文依这些代数结构统一为群 $\Gamma$、
+  $\Gamma$-集和群同态。}
+  \[
+    \omega:\Gamma\longrightarrow\mathbb R,
+  \]
+  满足
+  \[
+    \mathcal A(g\cdot p)=\mathcal A(p)-\omega(g),
+    \qquad g\in\Gamma,\ p\in P.
+  \]
+
+  \item 一个分次
+  \[
+    \operatorname{gr}:P\longrightarrow\mathbb Z
+  \]
+  和一个\termDegreeHomomorphism{}
+  \[
+    d:\Gamma\longrightarrow\mathbb Z,
+  \]
+  满足
+  \footnote{译者注：原书在下式写成加号；但第 13.9 节由\personMaslov{}--\personMorse{}指标直接
+  算得 $\operatorname{gr}([\widehat p,u\#w])
+  =\operatorname{gr}([\widehat p,w])-\mu(u)$，并随即把
+  $\operatorname{gr}(g\cdot p)=\operatorname{gr}(p)-d(g)$ 称为抽象定义所要求的
+  公式。译文依这个具体构造及同章后文的明确复述补正为减号。}
+  \[
+    \operatorname{gr}(g\cdot p)
+    =\operatorname{gr}(p)-d(g),
+    \qquad g\in\Gamma,\ p\in P.
+  \]
+
+  \item 一个映射
+  \[
+    n:P\times P\longrightarrow R,
+  \]
+  满足如下条件。
+  \begin{enumerate}[label=(\alph*)]
+    \item 除非同时有
+    \[
+      \mathcal A(p)>\mathcal A(p')
+      \quad\text{和}\quad
+      \operatorname{gr}(p)=\operatorname{gr}(p')+1,
+    \]
+    否则 $n(p,p')=0$。
+
+    \item 对所有 $p,p'\in P$ 和 $g\in\Gamma$，有
+    \[
+      n(g\cdot p,g\cdot p')=n(p,p').
+    \]
+
+    \item 对每个\termFormalSum{}
+    \[
+      \beta=\sum_{q\in P}a_q q,
+      \qquad a_q\in R,
+    \]
+    定义其\emph{支集}为
+    \[
+      \operatorname{supp}(\beta)
+      =\{q\in P\mid a_q\ne0\}.
+    \]
+    现在定义\termFloerChainGroup{}
+    \footnote{译者注：原书在本节三个\personNovikov{}有限性公式中都把条件排成
+    “$\forall C\#(\cdots)<\infty$”，既没有写出 $C$ 的取值范围，也缺少分隔。
+    译文依各式所用的实区间明示“对每个 $C\in\mathbb R$”；另外两处同样处理。}
+    \[
+      C_*(\mathfrak c)
+      :=
+      \left\{
+        \beta=\sum_{q\in P}a_q q
+        \ \middle|\
+        \begin{gathered}
+          a_q\in R,\quad
+          \#\bigl(\operatorname{supp}(\beta)
+            \cap\mathcal A^{-1}((C,\infty))\bigr)<\infty\\
+          \text{对每个 }C\in\mathbb R
+        \end{gathered}
+      \right\}.
+    \]
+    于是，对每个 $p\in P$，形式和
+    \[
+      \partial p=\sum_{q\in P}n(p,q)q
+    \]
+    属于 $C_*(\mathfrak c)$。
+    \footnote{译者注：原书在求和号下写成 $p\in P$，但被求和项及本句已经固定的
+    输入分别使用 $q$ 与 $p$；译文把哑指标补正为 $q\in P$。}
+
+    \item 定义 $\Gamma$ 的\termNovikovRing{}
+    \footnote{译者注：原书定义的环元素写成 $\sum_{g\in\Gamma}b_g g$，有限性条件
+    却取前一项链 $\beta$ 的 $\operatorname{supp}(\beta)$；译文将其补正为当前
+    环元素 $\sigma$ 的支集。}为
+    \[
+      \Lambda^\uparrow_{\Gamma,\omega}
+      :=
+      \left\{
+        \sigma=\sum_{g\in\Gamma}b_g g
+        \ \middle|\
+        \begin{gathered}
+          b_g\in R,\quad
+          \#\bigl(\operatorname{supp}(\sigma)
+            \cap\omega^{-1}((-\infty,C))\bigr)<\infty\\
+          \text{对每个 }C\in\mathbb R
+        \end{gathered}
+      \right\}.
+    \]
+    由 $\Gamma$ 在 $P$ 上的作用，$C_*(\mathfrak c)$ 以显然方式继承
+    $\Lambda^\uparrow_{\Gamma,\omega}$-模结构。上面定义的算子
+    \[
+      \partial:P\longrightarrow C_*(\mathfrak c)
+    \]
+    延拓为一个 $\Lambda^\uparrow_{\Gamma,\omega}$-模同态
+    \[
+      \partial:C_*(\mathfrak c)\longrightarrow C_*(\mathfrak c),
+    \]
+    并且满足 $\partial\circ\partial=0$。
+  \end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\stfhIndex{I027}{Zuoyongpu}{作用谱（action spectrum）}
+\stfhIndex{I151}{Zhouqiqun}{周期群（period group）}
+称 $\mathcal A$ 的像为复形 $\mathfrak c$ 的\emph{\termActionSpectrum{}}，称 $\omega$
+的像为 $\Gamma$ 的\emph{\termPeriodGroup{}}；分别记作
+\[
+  \operatorname{Spec}(\mathfrak c)
+  \quad\text{和}\quad
+  \Gamma_\omega\subset\mathbb R.
+\]
+
+注意，\termNovikovFinitenessCondition{}蕴含每条\personFloer{}--\personNovikov{}链
+\[
+  \beta=\sum_{q\in P}a_q q,
+  \qquad a_q\in R,
+\]
+都有一个“最高峰”，因而可以把它的\emph{层级}定义为
+\[
+  \ell(\beta)
+  :=\max\{\mathcal A(q)\mid q\in\operatorname{supp}(\beta)\}.
+\]
+当 $\beta=0$ 时，约定 $\ell(\beta)=-\infty$。这定义了\emph{\termLevelFunction{}}
+\footnote{译者注：原书先约定 $\ell(0)=-\infty$，紧接着却把 $\ell$ 的值域只写成
+$\mathbb R$。译文补入该约定所需的扩充值 $-\infty$。}
+\[
+  \ell:C_*(\mathfrak c)\longrightarrow
+  \mathbb R\cup\{-\infty\},
+\]
+并在 $C_*(\mathfrak c)$ 上诱导滤过
+\[
+  C_*^\lambda(\mathfrak c)
+  :=\{\beta\mid \ell(\beta)\leq\lambda\}.
+\]
+由定义，映射 $\partial$ 保持该滤过，即
+\[
+  \partial\bigl(C_*^\lambda(\mathfrak c)\bigr)
+  \subset C_*^\lambda(\mathfrak c).
+\]
+层级函数还在 $C_*(\mathfrak c)$ 上诱导一个拓扑；这个拓扑由如下\termNonArchimedeanMetric{}给出：
+\begin{equation}
+  d(\beta_1,\beta_2)
+  =e^{\ell(\beta_1-\beta_2)}.
+\label{eq:abstract-floer-nonarchimedean-metric}
+\end{equation}
+
+\stfhIndex{I191}{Fuzhi}{赋值（valuation）}
+类似地，在\personNovikov{}环 $\Lambda^\uparrow_{\Gamma,\omega}$ 上定义\emph{\termValuation{}}
+\[
+  \nu(a)
+  =\min\{\omega(g)\mid g\in\operatorname{supp}(a)\},
+  \qquad
+  a=\sum_{g\in\Gamma}b_g g\ne0,
+\]
+并约定 $\nu(0)=+\infty$
+\footnote{译者注：原书没有定义 $\nu(0)$，但随后的度量在 $a_1=a_2$ 时需要
+$e^{-\nu(0)}=0$。译文补出与该式相容的约定 $\nu(0)=+\infty$。}。它又在
+$\Lambda^\uparrow_{\Gamma,\omega}$ 上诱导度量
+\[
+  d(a_1,a_2)=e^{-\nu(a_1-a_2)}.
+\]
+把以上讨论总结为如下命题。
+
+\begin{proposition}
+\label{prop:abstract-floer-continuity-equivariance}
+映射
+\[
+  \partial:C_*(\mathfrak c)\longrightarrow C_*(\mathfrak c)
+\]
+关于\eqref{eq:abstract-floer-nonarchimedean-metric}中的距离 $d$ 连续。
+$\Lambda^\uparrow_{\Gamma,\omega}$ 在 $C_*(\mathfrak c)$ 上的作用
+\[
+  \Lambda^\uparrow_{\Gamma,\omega}\times C_*(\mathfrak c)
+  \longrightarrow C_*(\mathfrak c)
+\]
+也是连续的。此外，映射 $\partial$ 关于这个作用等变，因而该作用在
+\[
+  H_*(\mathfrak c,\partial)
+\]
+上诱导一个 $\Lambda^\uparrow_{\Gamma,\omega}$-模结构。
+\end{proposition}
+
+限制
+\[
+  \partial:C_*^\lambda(\mathfrak c)\longrightarrow
+  C_*^\lambda(\mathfrak c)
+\]
+以及包含链映射
+\[
+  \iota:C_*^\lambda(\mathfrak c)\longrightarrow C_*(\mathfrak c)
+\]
+诱导映射
+\[
+  \iota_*:H_*^\lambda(\mathfrak c)\longrightarrow H_*(\mathfrak c).
+\]
+这使我们可以引入如下定义。
+
+\begin{definition}
+\label{def:abstract-spectral-number}
+\stfhIndex{I176}{Pushu}{谱数（spectral number）}
+对 $a\in H_*(\mathfrak c)$，定义 $a$ 的谱数为
+\[
+  \rho(a)
+  =\inf\left\{
+    \lambda\in\mathbb R
+    \ \middle|\
+    a\in\operatorname{Im}\bigl(
+      \iota_*:H_*^\lambda(\mathfrak c)\to H_*(\mathfrak c)
+    \bigr)
+  \right\}.
+\]
+\end{definition}
+
+等价地，可以把 $\rho(a)$ 定义为如下极小极大值：
+\begin{equation}
+  \rho(a)
+  =\inf\{\ell(\beta)\mid
+    \beta\in C_*(\mathfrak c),\ [\beta]=a\},
+\label{eq:abstract-spectral-number-minimax}
+\end{equation}
+其中 $[\beta]$ 是 $\beta$ 的同调类。显然有 $\rho(0)=-\infty$。不过，即使
+$a\ne0$，$\rho(a)>-\infty$ 是否成立也并非完全显然；而且当
+$\rho(a)>-\infty$ 时，其值能否由一个代表同调类 $a$ 的闭链 $\beta$ 实现，也并非
+完全显然。在经典临界点理论中，$\rho(a)$ 的有限性对应于代表给定同调类 $a$
+的闭链所具有的某种“\termLinkingProperty{}” (BnR79)，而谱数 $\rho(a)$ 的可实现性
+则对应于作用量泛函 $\mathcal A$ 的某种“\termPalaisSmaleCondition{}”。在这个一般
+抽象框架中，\personUsher{}在 (Ush08) 中证明了这两个性质。
+
+\begin{theorem}[\personUsher{} (Ush08)]
+\label{thm:usher-abstract-spectrality}
+对任意 $0\ne a\in H_*(\mathfrak c)$，有 $\rho(a)>-\infty$，并且存在闭链
+$\alpha\in C_*(\mathfrak c)$，使得
+\[
+  \rho(a)=\ell(\alpha).
+\]
+特别地，对所有 $0\ne a\in H_*(\mathfrak c)$，都有
+\footnote{译者注：原书在“特别地”之后把范围扩大为所有
+$a\in H_*(\mathfrak c)$，但上一段已经给出 $\rho(0)=-\infty$，而
+$-\infty$ 一般不属于作用谱。译文依定理首句保留条件 $a\ne0$。}
+\[
+  \rho(a)\in\operatorname{Spec}(\mathfrak c).
+\]
+\end{theorem}
+
+这推广了 (Oh05c, Oh09a) 中在哈密顿\personFloer{}同调语境下以更几何的方法证明的结果。
+我们将在第 21.3 节于这个几何语境中给出本定理的证明；一般抽象框架中的证明则请
+\stfhIndex{I042}{Bianjieshendu}{边界深度（boundary depth）}
+读者参见 (Ush08)。证明所用的一个重要成分是\termBoundaryDepth{}的概念；\personUsher{}在 (Ush11) 中把它正式引入\personFloer{}理论。（关于同一概念在链层\personFloer{}理论中的一些
+用法，见 (FOOO09)、(Oh09a)。）
+
+\begin{definition}
+\label{def:boundary-depth}
+设 $(C,\partial)$ 是一个 $\mathbb R$-\termFilteredChainComplex{}。定义其边界深度
+$\beta(\partial)$
+\footnote{译者注：原书把候选深度的范围写成 $\beta\in\mathbb R$；例如当
+$\partial=0$ 时，这会使右端成为 $-\infty$，而不是边界深度的非负值。译文补为
+$\beta\in[0,\infty)$。}为
+\[
+  \beta(\partial)
+  =\inf\left\{
+    \beta\in[0,\infty)
+    \ \middle|\
+    \text{对每个 }\lambda\in\mathbb R,\quad
+    C^\lambda\cap\partial C
+    \subset\partial\bigl(C^{\lambda+\beta}\bigr)
+  \right\}.
+\]
+\end{definition}
+
+下面证明一个由 $\Lambda^\uparrow_{\Gamma,\omega}$ 的有限性条件导出的有用结构
+定理。首先有正合序列
+\[
+  0\longrightarrow\ker\omega
+  \longrightarrow\Gamma
+  \xrightarrow{\ \omega\ }\Gamma_\omega
+  \longrightarrow0.
+\]
+因此，可以把
+\[
+  \sigma=\sum_{g\in\Gamma}a_g g
+  \in\Lambda^\uparrow_{\Gamma,\omega}
+\]
+改写成
+\[
+  \sigma
+  =\sum_{\lambda\in\Gamma_\omega}
+    \left(
+      \sum_{\substack{g\in\Gamma\\\omega(g)=\lambda}}a_g g
+    \right).
+\]
+注意，每个内和
+\[
+  \sum_{\substack{g\in\Gamma\\\omega(g)=\lambda}}a_g g
+\]
+都是有限和。
+
+\begin{proposition}
+\label{prop:novikov-ring-period-group-coefficients}
+考虑环
+\[
+  K=R[\ker\omega],
+\]
+并定义环
+\[
+  \Lambda^\uparrow_{\Gamma_\omega,K}
+  :=
+  \left\{
+    \sum_{\lambda\in\Gamma_\omega}p_\lambda T^\lambda
+    \ \middle|\
+    \begin{gathered}
+      p_\lambda\in K,\quad
+      \#\{\lambda\in\Gamma_\omega\cap(-\infty,C)
+        \mid p_\lambda\ne0\}<\infty\\
+      \text{对每个 }C\in\mathbb R
+    \end{gathered}
+  \right\}.
+\]
+则映射
+\[
+  \sigma=\sum_{g\in\Gamma}a_g g
+  \longmapsto
+  \sum_{\lambda\in\Gamma_\omega}p_\lambda(\sigma)T^\lambda
+\]
+是一个环同构。
+\footnote{译者注：原书没有定义 $p_\lambda(\sigma)$。按 $\omega$ 的纤维分组所得
+的内和位于群环的相应陪集分量，并不直接属于
+$K=R[\ker\omega]$。要得到所称的环同构，需要选取上述正合序列的一个群同态分裂
+$s:\Gamma_\omega\to\Gamma$，再令
+$p_\lambda(\sigma)=\sum_{\omega(g)=\lambda}
+a_g\,s(\lambda)^{-1}g\in K$。这里 $\Gamma_\omega$ 是有限生成无挠阿贝尔群，故这种
+分裂存在，但一般不典范；译文保留原书的公式并明示所缺选取。}
+\end{proposition}

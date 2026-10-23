@@ -1,0 +1,883 @@
+
+\section{有边稳定映射与马斯洛夫指标}
+\label{sec:2-1}
+
+当没有冒泡现象发生时，弗洛尔最初的弗洛尔上同调构造不会遇到任何障碍。当冒泡发生时，就需要研究冒泡如何同经典的斯梅尔--莫尔斯--威腾--弗洛尔边界映射相互作用。如今，对于哈密顿微分同胚的弗洛尔上同调，这一分析已经借助 \textbf{[FuOn99II, LiTi98, Rua99]} 中的虚基本闭链技术得到彻底完成；其结果是，在这种情形下构造弗洛尔上同调不会出现反常。
+
+然而，对于拉格朗日交弗洛尔上同调，即便冒泡贡献处在最简单的情形——非正合单调拉格朗日子流形的情形——也会出现反常。本章回顾单调拉格朗日对 $(L_0,L_1)$ 的弗洛尔上同调构造，并说明反常如何发生，以及在某些有利情形下，如何仅凭一般地选取殆复结构来消除反常。关于单调情形下这一构造的更多细节，参见 \textbf{[Oh93,96I,96II]}。不过，为了构造超出单调情形的拉格朗日交弗洛尔上同调，我们需要更清楚地说明诺维科夫环的用法以及所需的几何设置；这些要点在 \textbf{[Oh93,96I,96II]} 和此前其他文献中都没有处理。（除此之外，本章内容并非新的。）为了自足地说明这些要点，我们回顾拉格朗日子流形的马斯洛夫指标与诺维科夫环。
+
+\subsection{马斯洛夫指标：相对第一陈数}
+\label{sec:2-1-1}
+\liftIndex{I054}
+
+考虑标准辛向量空间 $(\mathbb R^{2n},\omega_0)$，其典范坐标为
+$(x_1,\ldots,x_n,y_1,\ldots,y_n)$，且
+$\omega_0=\sum_{i=1}^n dx_i\wedge dy_i$。$(\mathbb R^{2n},\omega_0)$ 中的拉格朗日格拉斯曼流形\liftIndex{I055}定义为
+\[
+  \Lambda(n)
+  =\{V\mid V\text{ 是 }(\mathbb R^{2n},\omega_0)
+      \text{ 的拉格朗日子空间}\}.
+\]
+赋予 $\mathbb R^{2n}$ 标准复乘法，并通过映射
+$(x_i,y_i)\mapsto z_i=x_i+\sqrt{-1}y_i$ 把它等同于 $\mathbb C^n$。于是，任意拉格朗日子空间 $V\subset\mathbb C^n$ 都可写成
+$V=A\cdot\mathbb R^n$，其中 $A\in U(n)$。显然，
+$A\cdot\mathbb R^n=\mathbb R^n$ 当且仅当矩阵 $A$ 是实矩阵。因此，
+$\Lambda(n)$ 是齐性空间
+$\Lambda(n)\cong U(n)/O(n)$。\textbf{[Arn67]} 中证明了
+$H^1(\Lambda(n),\mathbb Z)\cong\mathbb Z$，并且 $\Lambda(n)$ 带有熟知的特征类
+$\mu\in H^1(\Lambda(n),\mathbb Z)$，即马斯洛夫类 \textbf{[Arn67]}。它为每个给定环路
+$\gamma:S^1\to\Lambda(n)$ 配置整数
+\[
+  \mu(\gamma)=\deg(\det^2\circ\gamma).
+\]
+此外，两个环路 $\gamma_1,\gamma_2$ 同伦，当且仅当
+$\mu(\gamma_1)=\mu(\gamma_2)$。
+
+事实上，马斯洛夫类还有如下纯辛描述。设 $(S,\Omega)$ 是辛向量空间，以
+$\Lambda(S,\Omega)$ 表示其拉格朗日子空间之集合。给定一个拉格朗日子空间
+$V_0$，考虑 $\Lambda(S,\Omega)$ 的分层
+\[
+  \Lambda(S,\Omega)
+  \supset\Lambda_1(S,\Omega;V_0)
+  \supset\cdots\supset
+  \Lambda_n(S,\Omega;V_0)=\{V_0\},
+\]
+其中，对 $k=0,\ldots,n$，
+\[
+  \Lambda_k(S,\Omega;V_0)
+  =\{V\in\Lambda(S,\Omega)\mid\dim(V\cap V_0)\geq k\}.
+\]
+文献 \textbf{[Arn67]} 证明了 $\Lambda_k(S,\Omega;V_0)$ 是紧的，而
+$\Lambda_1(S,\Omega;V_0)$ 是余定向的，因而定义一个闭链；该闭链的庞加莱对偶恰是马斯洛夫类
+$\mu\in H^1(\Lambda(S,\Omega),\mathbb Z)$。
+
+更准确地说，弗拉基米尔·阿诺尔德（Vladimir I. Arnol'd）证明了下面的命题 2.1.3。下一节构造诺维科夫覆盖空间时将使用这个命题。
+
+\begin{lemma}{2.1.1}\label{lem:2-1-1}
+存在 $V_0\in\Lambda(S,\Omega)$ 的一个邻域 $U$，使得
+\[
+  U\setminus\Lambda_1(S,\Omega;V_0)
+\]
+恰有 $n+1$ 个连通分支，而且每个分支的闭包都含有 $V_0$。
+\end{lemma}
+
+\begin{proof}
+把 $S=T^*V_0$ 等同为辛向量空间。于是，对任意 $V\in U$，都存在唯一的函数
+$f_V:V_0\to\mathbb R$，满足 $f_V(0)=0$，并使 $V$ 等同于图像
+$\operatorname{Graph}(df_V)$。这里 $f_V$ 是二次型。若
+$V\notin\Lambda_1(S,\Omega;V_0)$，则 $f_V$ 非退化。令
+\begin{equation}
+  U_k(V_0)
+  =\{\operatorname{Graph}(df_V)\mid
+      \operatorname{Index}f_V=k\}
+    \setminus\Lambda_1(S,\Omega;V_0).
+  \tag{2.1.2}\label{eq:2-1-2}
+\end{equation}
+容易看出，$U_k(V_0)$ 是连通的（并且当 $k=0,\ldots,n$ 时非空）。引理得证。
+\end{proof}
+
+\begin{proposition}{2.1.3}\label{prop:2-1-3}
+设 $(S,\Omega)$ 是辛向量空间，且 $V_0\in\Lambda(S,\Omega)$ 是
+$(S,\Omega)$ 的一个给定拉格朗日子空间。设
+$V_1\in\Lambda(S,\Omega)\setminus\Lambda_1(S,\Omega;V_0)$，也就是说，
+$V_1$ 是满足 $V_0\cap V_1=\{0\}$ 的拉格朗日子空间。考虑满足下列条件的光滑道路
+$\alpha:[0,1]\to\Lambda(S,\Omega)$：
+\begin{align}
+  \alpha(0)&=V_0,\qquad \alpha(1)=V_1;
+    \tag{2.1.4.1}\label{eq:2-1-4-1}\\
+  \alpha(t)&\in\Lambda(S,\Omega)\setminus
+    \Lambda_1(S,\Omega;V_0)
+    \quad\text{对所有 }0<t\leq1;
+    \tag{2.1.4.2}\label{eq:2-1-4-2}\\
+  \alpha(t)&\in U_0(V_0)\quad\text{当 }t\text{ 足够小时},
+    \tag{2.1.4.3}\label{eq:2-1-4-3}
+\end{align}
+其中 $U_0(V_0)$ 如式~\eqref{eq:2-1-2} 所示。那么，任意两条这样的道路
+$\alpha_1,\alpha_2$ 都可通过同伦 $s\in[0,1]\mapsto\alpha_s$ 彼此同伦，而且每条
+$\alpha_s$ 也满足条件 (2.1.4)。
+\end{proposition}
+
+\footnote{译者注：原书此处写作 $V_0\in(S,\Omega)$；依前文对拉格朗日格拉斯曼流形的定义补正为 $V_0\in\Lambda(S,\Omega)$。}
+
+命题 2.1.3 的证明见 \textbf{[Arn67]} 或 \textbf{[GuiSt77]}。
+
+在研究相对黎曼--罗赫公式时，把马斯洛夫指标推广到（极大）全实子空间的环路很有用。实子空间
+$V\subset\mathbb C^n$ 称为\emph{全实的}\liftIndex{I058}，如果
+$V\cap\sqrt{-1}V=\{0\}$ 且 $\dim_{\mathbb R}V=n$。以 $R(n)$ 表示全实子空间之集合。
+
+$\mathbb C^n$ 中任意全实子空间 $V$ 都可写成
+$V=A\cdot\mathbb R^n$，其中 $A\in GL(n,\mathbb C)$；并且
+$A_1\cdot\mathbb R^n=A_2\cdot\mathbb R^n$ 当且仅当
+$A_2^{-1}A_1\in GL(n,\mathbb R)$。因此，全实子空间之集合 $R(n)$ 是齐性空间
+\[
+  R(n)=GL(n,\mathbb C)/GL(n,\mathbb R).
+\]
+下面这个出自 \textbf{[Oh95II]} 的引理，是研究指标问题时的一个有用事实。
+
+\begin{lemma}{2.1.5}\label{lem:2-1-5}
+考虑子集
+\[
+  \widetilde R(n)
+  =\{D\in GL(n,\mathbb C)\mid D\overline D=I_n\},
+\]
+其中 $I_n$ 是单位矩阵。那么映射
+\[
+  B:R(n)\cong GL(n,\mathbb C)/GL(n,\mathbb R)
+  \longrightarrow\widetilde R(n),
+  \qquad A\cdot\mathbb R^n\longmapsto A^{-1}\overline A
+\]
+关于 $R(n)$ 与 $\widetilde R(n)$ 上显然的光滑结构是微分同胚。
+\end{lemma}
+
+下面把引理 2.1.5 特化到拉格朗日子空间的子集。注意，当 $A$ 是酉矩阵时，
+$\overline A^{-1}=A^t$，其中 $A^t$ 是 $A$ 的转置。因此得到引理 2.1.5 的如下推论。
+
+\begin{corollary}{2.1.6}\label{cor:2-1-6}
+以 $\widetilde\Lambda(n)\subset\widetilde R(n)$ 表示 $B$ 在
+$\Lambda(n)\subset R(n)$ 上限制之像，也就是说，
+\begin{equation}
+  \widetilde\Lambda(n)
+  :=\{D\in U(n)\mid D=D^t\},
+  \tag{2.1.7}\label{eq:2-1-7}
+\end{equation}
+即对称酉矩阵之集合。那么 $B$ 在 $\Lambda(n)$ 上的限制是微分同胚。
+\end{corollary}
+
+下面把上述马斯洛夫指标推广到全实子空间的环路。
+
+\begin{definition}{2.1.8}\label{def:2-1-8}
+（广义马斯洛夫指标）设 $\gamma:S^1\to R(n)$ 是一个环路。广义马斯洛夫指标
+$\mu(\gamma)$ 定义为映射
+\[
+  \det\circ B\circ\gamma:S^1\longrightarrow\mathbb C\setminus\{0\}
+\]
+的绕数。
+\end{definition}
+
+现在采用 de Silva \textbf{[Sil97]} 和 Katz--Liu \textbf{[KatLi01]} 所用的“丛对”\liftIndex{I043}术语。我们分别处理两种情形：复情形与辛情形。
+
+设 $\Sigma$ 是带边界 $\partial\Sigma$ 的定向紧曲面。以 $g$ 表示 $\Sigma$ 的亏格，以
+$h$ 表示 $\partial\Sigma$ 的连通分支数。
+
+先考虑复向量丛 $\mathcal V\to\Sigma$ 的情形。注意，若
+$\partial\Sigma\ne\varnothing$，则 $\Sigma$ 上任意复向量丛
+$\mathcal V\to\Sigma$ 在拓扑上都是平凡的。
+
+\begin{definition}{2.1.9}\label{def:2-1-9}
+一个\emph{复丛对} $(\mathcal V,\lambda)$，是一个复向量丛
+$\mathcal V\to\Sigma$ 连同一个（极大）全实丛
+$\lambda\to\partial\Sigma$，并带有一个同构
+\begin{equation}
+  \mathcal V|_{\partial\Sigma}\cong\lambda\otimes\mathbb C.
+  \tag{2.1.10}\label{eq:2-1-10}
+\end{equation}
+\end{definition}
+
+固定一个平凡化 $\Phi:\mathcal V\to\Sigma\times\mathbb C^n$，并设
+$\partial_1\Sigma,\ldots,\partial_h\Sigma$ 是 $\partial\Sigma$ 的连通分支，各自取由
+$\Sigma$ 诱导的边界定向。于是，由给定的同构
+$\mathcal V|_{\partial\Sigma}\cong\lambda\otimes\mathbb C$，
+$\Phi(\lambda\otimes\mathbb R|_{\partial_i\Sigma})$ 给出一个环路
+$\gamma^i_{\Phi,\lambda}:S^1\to R(n)$。令
+$\mu(\Phi,\partial_i\Sigma)=\mu(\gamma^i_{\Phi,\lambda})$，便有下述命题。
+
+\begin{proposition}{2.1.11}\label{prop:2-1-11}
+设 $(\mathcal V,\lambda)$ 是 $(\Sigma,\partial\Sigma)$ 上的复丛对。则和
+\[
+  \sum_{i=1}^h\mu(\Phi,\partial_i\Sigma)
+\]
+与平凡化 $\Phi:\mathcal V\to\Sigma\times\mathbb C^n$ 的选取无关，而只依赖于丛对
+$(\mathcal V,\lambda)$。
+\end{proposition}
+
+例如，命题证明的细节可参见 \textbf{[KatLi01]}；也可参见下文辛丛对情形的类似证明。命题 2.1.11 说明下面的定义是良定义的。
+
+\begin{definition}{2.1.12}\label{def:2-1-12}
+复丛对 $(\mathcal V,\lambda)$ 的马斯洛夫指标定义为
+\[
+  \mu(\mathcal V,\lambda)
+  =\sum_{i=1}^h\mu(\Phi,\partial_i\Sigma),
+\]
+其中 $\Phi:\mathcal V\to\Sigma\times\mathbb C^n$ 是一个平凡化（因而可以是任意一个平凡化）。
+\end{definition}
+
+下面考虑辛向量丛 $\mathcal V\to\Sigma$ 的情形：每个纤维
+$\mathcal V_x$ 都带有一个随 $x\in\Sigma$ 光滑变化的辛内积 $\omega_x$。
+
+先注意，辛李群
+\[
+  \operatorname{Sp}(2n)
+  =\{A\in GL(2n,\mathbb R)\mid A^*\omega_0=\omega_0\}
+\]
+具有由下列矩阵组成的极大紧子群：
+\[
+  \widehat U(n)
+  :=\left\{
+    \begin{pmatrix}X&Y\\-Y&X\end{pmatrix}
+    \in GL(2n,\mathbb R)
+    \mathrel{\Big|}X+\sqrt{-1}Y\in U(n)
+  \right\}.
+\]
+特别地，对 $A\in\operatorname{Sp}(2n)$，有极分解 $A=UP$，其中
+$U\in\widehat U(n)$。记 $U=\widehat A$，并称之为 $A$ 的\emph{角部}。
+
+由这一观察可知，与复向量丛的情形一样，如果
+$\partial\Sigma\ne\varnothing$，则 $\Sigma$ 上任意辛向量丛都是辛平凡的。
+
+\begin{definition}{2.1.13}\label{def:2-1-13}
+一个\emph{辛丛对}是一个对子 $(\mathcal V,\lambda)$，其中
+$\mathcal V\to\Sigma$ 是辛向量丛，而
+$\lambda\to\partial\Sigma$ 是 $\mathcal V|_{\partial\Sigma}$ 的拉格朗日子丛。
+\end{definition}
+
+固定一个平凡化
+$\Psi:\mathcal V\to\Sigma\times(\mathbb R^{2n},\omega_0)$。与复情形类似，限制
+$\Psi(\lambda|_{\partial_i\Sigma})$ 给出一个环路
+$\gamma^i_{\Psi,\lambda}:S^1\to\Lambda(n)$。记
+$\mu(\Psi,\partial_i\Sigma)=\mu(\gamma^i_{\Psi,\lambda})$。于是有：
+
+\begin{proposition}{2.1.14}\label{prop:2-1-14}
+设 $(\mathcal V,\lambda)$ 是 $(\Sigma,\partial\Sigma)$ 上的辛丛对。则和
+$\sum_{i=1}^h\mu(\Psi,\partial_i\Sigma)$ 与辛平凡化
+$\Psi:\mathcal V\to\Sigma\times(\mathbb R^{2n},\omega_0)$ 的选取无关。
+\end{proposition}
+
+\footnote{译者注：原书在命题中把辛平凡化写成 $\Psi:\Sigma\to\Sigma\times\mathbb C^n$，并在证明中漏去靶空间的底空间因子；这里依紧前定义和证明实际使用的 $(x,v)\mapsto(x,g(x)v)$ 统一补正。}
+
+\begin{proof}
+设 $\Psi_1,\Psi_2:\mathcal V\to\Sigma\times(\mathbb R^{2n},\omega_0)$ 是两个平凡化。映射
+\[
+  \Psi_2\circ\Psi_1^{-1}:
+  \Sigma\times(\mathbb R^{2n},\omega_0)\longrightarrow
+  \Sigma\times(\mathbb R^{2n},\omega_0)
+\]
+由赋值 $(x,v)\mapsto(x,g(x)v)$ 给出，其中
+$g:\Sigma\to\operatorname{Sp}(2n,\mathbb R)$。把
+$\operatorname{Sp}(2n,\mathbb R)$ 在 $\Lambda(n)$ 上的自然作用写作 $g\cdot V$。于是有恒等式
+\[
+  g(x)\gamma^i_{\Psi_1,\lambda}(x)
+  =\gamma^i_{\Psi_2,\lambda}(x)
+  \qquad(x\in\partial_i\Sigma).
+\]
+这个恒等式给出
+\[
+  \mu(\Psi_2,\partial_i\Sigma)
+  =\mu(\Psi_1,\partial_i\Sigma)
+   +2\operatorname{ind}(g|_{\partial_i\Sigma}).
+\]
+这里 $\operatorname{ind}(g|_{\partial_i\Sigma})$ 定义为环路
+\[
+  \det(\widehat g|_{\partial_i\Sigma}):S^1\longrightarrow U(1)
+\]
+的次数，其中 $\widehat g|_{\partial_i\Sigma}$ 是
+$g|_{\partial_i\Sigma}$ 的角部。由于
+$\widehat g|_{\partial\Sigma}
+=\coprod_{i=1}^h\widehat g|_{\partial_i\Sigma}$，而 $g$ 可延拓到 $\Sigma$ 上，
+$\widehat g$ 也同样可以，故由次数映射的配边不变性，
+\[
+  \sum_{i=1}^h\deg(\widehat g|_{\partial_i\Sigma})=0.
+\]
+证明完成。
+\end{proof}
+
+这个命题使我们能够定义辛丛对 $(\mathcal V,\lambda)$ 的马斯洛夫指标
+$\mu(\mathcal V,\lambda)$。
+
+\begin{definition}{2.1.15}\label{def:2-1-15}
+辛丛对 $(\mathcal V,\lambda)$ 的马斯洛夫指标定义为
+\[
+  \mu(\mathcal V,\lambda)
+  =\sum_{i=1}^h\mu(\Psi,\partial_i\Sigma),
+\]
+其中 $\Psi:\mathcal V\to\Sigma\times(\mathbb R^{2n},\omega_0)$ 是一个辛平凡化（因而可以是任意一个辛平凡化）。
+\end{definition}
+
+现在给定光滑映射 $f:(\Sigma,\partial\Sigma)\to(M,L)$，其中
+$L\subset(M,\omega)$ 是拉格朗日子流形；可为它配置辛丛对
+$(f^*TM,f|_{\partial\Sigma}^*TL)$。定义光滑映射
+$f:(\Sigma,\partial\Sigma)\to(M,L)$ 的马斯洛夫指标\liftIndex{I054} $\mu_L(f)$ 为
+\[
+  \mu_L(f)=\mu(f^*TM,f|_{\partial\Sigma}^*TL).
+\]
+在不会引起混淆时，只记 $\mu(f)=\mu_L(f)$。容易验证，$\mu_L(f)$ 在 $f$ 的同伦下不变。
+
+\subsection{有边稳定映射的模空间}
+\label{sec:2-1-2}
+
+先回忆，带标记点的半稳定曲线 $(S,\vec z)$ 是一个对子，其中 $S$ 是一维（复）簇，而
+$\vec z=(z_1,\ldots,z_k)$，各 $z_i\in S$，且当 $i\ne j$ 时
+$z_i\ne z_j$；$S$ 的奇点至多是普通二重点，并且所有 $z_i$ 都不在二重点上。带标记点的半稳定曲线
+$(S,\vec z)$ 稳定，当且仅当 $(S,\vec z)$ 的自同构群有限（例如见 \textbf{[KoMa94]}）。下面先回顾有边黎曼曲面的几个基本事实（参见 \textbf{[Sep84,91, SeSi89]}）。
+
+\begin{definition}{2.1.16}\label{def:2-1-16}
+一个\emph{带实标记点的半稳定曲线}\liftIndex{I062}是一个系统
+\[
+  (S,\tau,\vec z,\vec z^{\,\pm})
+  =\bigl(S,\tau,(z_1,\ldots,z_k),
+    (\{z_1^+,z_1^-\},\ldots,\{z_\ell^+,z_\ell^-\})\bigr),
+\]
+其中 $S$ 是一条半稳定曲线（无边界），而
+$\tau:S\to S$ 是反全纯对合，满足
+\[
+  \tau(z_i)=z_i\quad(i=1,\ldots,k),
+  \qquad
+  \tau(z_i^+)=z_i^-\quad(i=1,\ldots,\ell),
+\]
+并且
+$z_1,\ldots,z_k,z_1^+,\ldots,z_\ell^+,z_1^-,\ldots,z_\ell^-$
+全都互不相同，且均为非奇异点。
+\end{definition}
+
+注意，互换 $z_i^+$ 与 $z_i^-$ 不会改变
+$(S,\tau,\vec z,\vec z^{\,\pm})$，因为对子
+$\{z_i^+,z_i^-\}$ 被假定为无序的。
+
+把带实标记点的半稳定曲线 $(S,\tau,\vec z,\vec z^{\,\pm})$ 的亏格定义为
+$S$ 的亏格。以 $\mathcal M^{\mathbb R}_{g,k,\ell}$ 表示亏格为 $g$、带有
+$(k,\ell)$ 个标记点的带实标记点稳定曲线之所有同构类的集合。对每个
+$(S,\tau,\vec z,\vec z^{\,\pm})\in\mathcal M^{\mathbb R}_{g,k,\ell}$，考虑
+$\tau$ 的不动点集
+\[
+  S^\tau=\{z\in S\mid\tau z=z\}.
+\]
+注意，若 $S^\tau$ 非空，则它是有限多个圆在有限多个点粘合而成的并。
+
+\begin{definition}{2.1.17}\label{def:2-1-17}
+亏格 $g=0$、带有 $(k,\ell)$ 个标记点的\emph{带标记点半稳定有边黎曼曲面}，是亏格为零、带有
+$(k,\ell)$ 个标记点的带实标记点半稳定曲线，连同 $S^\tau$ 的一个定向
+$\mathit{ori}$；这里假定 $S^\tau$ 非空。
+
+若相应的半稳定曲线 $(S,\vec z,\vec z^{\,\pm})$ 稳定，则称带标记点的有边半稳定黎曼曲面
+$(S,\tau,\vec z,\vec z^{\,\pm},\mathit{ori})$ 是稳定的。
+\end{definition}
+
+当 $g\geq1$ 时（尽管本书不需要这种情形），还需要对 $\mathit{ori}$ 附加两个假设；下面的描述会把它们包括在内。
+
+对每个带标记点半稳定有边黎曼曲面
+$(S,\tau,\vec z,\vec z^{\,\pm},\mathit{ori})$，按照如下方式选取闭子集
+$\Sigma\subset S$，使 $\partial\Sigma=S^\tau$。设 $S_i\subset S$ 是满足
+$S_i\cap S^\tau\ne\varnothing$ 的一个不可约分支。集合
+$S_i\setminus S^\tau$ 有两个连通分支；从中选取一个，记作 $\Sigma_i$，使诱导在
+$\partial\Sigma_i=S^\tau\cap S_i$ 上的定向与给定定向
+$\mathit{ori}$ 相同。当 $S^\tau\cap S_i$ 连通时（$g=0$ 时总是如此），
+$\Sigma_i$ 自动存在。否则，把 $\Sigma_i$ 的存在性作为有边黎曼曲面定义的一部分加以要求。
+
+取 $\Sigma_0$ 为
+\[
+  S\setminus
+  \bigcup_{i:S_i\cap S^\tau\ne\varnothing}\overline{\Sigma_i}
+\]
+的若干连通分支之并，使得集合
+$\Sigma_0\cup\bigcup_{i:S_i\cap S^\tau\ne\varnothing}\Sigma_i$ 连通、
+$\Sigma_0\cap\tau(\Sigma_0)=\varnothing$，并使
+\[
+  \left(
+    \Sigma_0\cup
+    \bigcup_{i:S_i\cap S^\tau\ne\varnothing}\Sigma_i
+  \right)
+  \cup
+  \left(
+    \tau(\Sigma_0)\cup
+    \bigcup_{i:S_i\cap S^\tau\ne\varnothing}\tau(\Sigma_i)
+  \right)
+\]
+在 $S$ 中稠密。当 $g=0$ 时，这样的 $\Sigma_0$ 总是存在。否则，
+$\Sigma_0$ 可能存在，也可能不存在；于是，把 $\Sigma_0$ 的存在性作为有边半稳定曲线定义的一部分加以要求。若
+$\Sigma_0$ 存在，则它总是唯一的。然后令
+\[
+  \Sigma
+  =\overline{
+    \Sigma_0\cup
+    \bigcup_{i:S_i\cap S^\tau\ne\varnothing}\Sigma_i
+  }.
+\]
+见图 2.1.1。
+
+\begin{figure}[htbp]
+  \centering
+  \setlength{\unitlength}{1mm}
+  \begin{picture}(105,106)
+    \put(20,54){\oval(30,32)}
+    \qbezier(5,54)(20,48)(35,54)
+    \qbezier[18](5,54)(20,60)(35,54)
+    \put(50,54){\oval(30,32)}
+    \qbezier(35,54)(50,48)(65,54)
+    \qbezier[18](35,54)(50,60)(65,54)
+    \put(80,54){\oval(30,32)}
+    \qbezier(65,54)(80,48)(95,54)
+    \qbezier[18](65,54)(80,60)(95,54)
+    \put(50,82){\oval(25,27)}
+    \qbezier(37.5,82)(50,77)(62.5,82)
+    \qbezier[16](37.5,82)(50,87)(62.5,82)
+    \put(80,82){\oval(25,27)}
+    \qbezier(67.5,82)(80,77)(92.5,82)
+    \qbezier[16](67.5,82)(80,87)(92.5,82)
+    \put(50,26){\oval(25,27)}
+    \qbezier(37.5,26)(50,21)(62.5,26)
+    \qbezier[16](37.5,26)(50,31)(62.5,26)
+    \put(80,26){\oval(25,27)}
+    \qbezier(67.5,26)(80,21)(92.5,26)
+    \qbezier[16](67.5,26)(80,31)(92.5,26)
+    \qbezier(9,56)(13,63)(17,68)
+    \qbezier(17,54)(22,63)(26,68)
+    \qbezier(26,54)(30,60)(33,63)
+    \qbezier(39,56)(43,63)(47,68)
+    \qbezier(47,54)(52,63)(56,68)
+    \qbezier(56,54)(60,60)(63,63)
+    \qbezier(69,56)(73,63)(77,68)
+    \qbezier(77,54)(82,63)(86,68)
+    \qbezier(86,54)(90,60)(93,63)
+    \qbezier(40,76)(47,87)(52,94)
+    \qbezier(47,70)(55,83)(60,91)
+    \qbezier(70,76)(77,87)(82,94)
+    \qbezier(77,70)(85,83)(90,91)
+    \put(67,101){$\overline{\Sigma}_0$}
+    \put(61,5){$\tau(\overline{\Sigma}_0)$}
+  \end{picture}
+  \par\smallskip
+  \renewcommand{\thefigure}{2.1.1}
+  \refstepcounter{figure}
+  \textbf{\figurename~\thefigure}\label{fig:2-1-1}
+\end{figure}
+
+一旦选定 $\Sigma$，就可以而且总要选取标记点 $z_i^+,z_i^-$，使
+$z_i^+\in\Sigma$。
+
+从现在起，把带标记点半稳定有边黎曼曲面
+$(S,\tau,\vec z,\vec z^{\,\pm},\mathit{ori})$ 记作
+$(\Sigma,\vec z,\vec z^{\,+})$。注意，
+$(\Sigma,\vec z,\vec z^{\,+})$ 以显然的方式确定
+$(S,\tau,\vec z,\vec z^{\,\pm},\mathit{ori})$。
+
+\begin{definition}{2.1.18}\label{def:2-1-18}
+以 $\mathcal M_{g,k,\ell}$ 表示亏格为 $g$、带有 $(k,\ell)$ 个标记点的带标记点稳定有边黎曼曲面之所有同构类的集合。
+\end{definition}
+
+利用稳定曲线集合 $\mathcal M_{g,k+2\ell}$ 上的拓扑，可以在
+$\mathcal M_{g,k,\ell}$ 上给出一个拓扑（细节见 \textbf{[FuOn99II]} 第 10 节）。
+
+为了对 $\mathcal M_{g,k,\ell}$ 上的上述拓扑给出一些直观认识，考虑
+$g=0,k=2,\ell=1$ 的情形。此时 $\mathcal M_{0,2,1}$ 上的拓扑由
+$\mathcal M_{0,4}$ 诱导。考虑序列
+$(\Sigma_j,\vec z_j,\{z_j^+\})\in\mathcal M_{0,2,1}$：它没有光滑极限，且内部标记点趋向边界。按照复倍曲面的定义，此时两个标记点
+$z_j^+$ 与 $z_j^-$ 在 $j\to\infty$ 时碰撞。因此，相应的复倍曲面序列
+$(S_j,\tau_j,\vec z_j,\{z_j^+,z_j^-\})$ 作为
+$\mathcal M_{0,4}$ 的元素，收敛到由两个不可约分支之并构成的稳定曲线
+\[
+  (S_\infty^1,\tau_\infty^1,\vec z_\infty^1,\varnothing)
+  \cup
+  (S_\infty^2,\tau_\infty^2,\vec z_\infty^2,
+    \{z_\infty^+,z_\infty^-\}).
+\]
+这里 $\#(\vec z_\infty^1)=3$，$\#(\vec z_\infty^2)=1$；
+$S_\infty^1$ 与 $S_\infty^2$ 在 $\vec z_\infty^1$ 的一个元素和
+$\vec z_\infty^2=\{z_\infty^2\}$ 的唯一元素处粘合。因此，
+$(\Sigma_j,\vec z_j,\{z_j^+\})$ 的极限是半曲面
+\[
+  (\Sigma_\infty^1,\vec z_\infty^1,\varnothing)
+  \cup
+  (\Sigma_\infty^2,\{z_\infty^2\},\{z_\infty^+\}),
+\]
+其中 $\Sigma_\infty^1$ 与 $\Sigma_\infty^2$ 以类似方式粘合。见图 2.1.2 与图 2.1.3。
+\footnote{译者注：原书此处写作“稳定映射”，但本段尚无映射数据，且所述序列位于稳定曲线模空间 $\mathcal M_{0,4}$；译文依对象类型补正。}
+
+\begin{figure}[htbp]
+  \centering
+  \setlength{\unitlength}{0.88mm}
+  \begin{picture}(145,55)
+    \put(24,27){\oval(38,38)}
+    \put(15,10){\circle*{1.4}}
+    \put(11,5){$z_1$}
+    \put(34,10){\circle*{1.4}}
+    \put(35,5){$z_2$}
+    \put(39,26){\circle*{1.4}}
+    \put(31,29){$z_1^+$}
+    \put(51,24){$\Longrightarrow$}
+    \put(91,27){\oval(42,42)}
+    \put(112,27){\circle*{1.4}}
+    \put(77,25){$\overline\Sigma_\infty^1$}
+    \put(80,8){\circle*{1.4}}
+    \put(75,3){$z_1$}
+    \put(102,8){\circle*{1.4}}
+    \put(103,3){$z_2$}
+    \put(126,27){\oval(28,28)}
+    \put(126,27){\circle*{1.4}}
+    \put(121,32){$z_1^+$}
+    \put(116,44){$\overline\Sigma_\infty^2$}
+  \end{picture}
+  \par\smallskip
+  \renewcommand{\thefigure}{2.1.2}
+  \refstepcounter{figure}
+  \textbf{\figurename~\thefigure}\label{fig:2-1-2}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \setlength{\unitlength}{0.88mm}
+  \begin{picture}(145,58)
+    \put(24,29){\oval(38,42)}
+    \qbezier(5,29)(24,23)(43,29)
+    \qbezier[22](5,29)(24,35)(43,29)
+    \put(16,26){\circle*{1.4}}
+    \put(13,20){$z_1$}
+    \put(33,26){\circle*{1.4}}
+    \put(31,20){$z_2$}
+    \put(43,33){\circle*{1.4}}
+    \put(45,35){$z_1^+$}
+    \put(43,25){\circle*{1.4}}
+    \put(45,20){$z_1^-$}
+    \put(51,26){$\Longrightarrow$}
+    \put(92,29){\oval(42,42)}
+    \qbezier(71,29)(92,23)(113,29)
+    \qbezier[22](71,29)(92,35)(113,29)
+    \put(82,26){\circle*{1.4}}
+    \put(79,20){$z_1$}
+    \put(103,26){\circle*{1.4}}
+    \put(101,20){$z_2$}
+    \put(92,31){$S_\infty^1$}
+    \put(127,29){\oval(28,31)}
+    \qbezier(113,29)(127,25)(141,29)
+    \qbezier[18](113,29)(127,33)(141,29)
+    \put(127,38){\circle*{1.4}}
+    \put(130,38){$z_1^+$}
+    \put(127,20){\circle*{1.4}}
+    \put(130,17){$z_1^-$}
+    \put(122,49){$S_\infty^2$}
+  \end{picture}
+  \par\smallskip
+  \renewcommand{\thefigure}{2.1.3}
+  \refstepcounter{figure}
+  \textbf{\figurename~\thefigure}\label{fig:2-1-3}
+\end{figure}
+
+还要指出，在我们的紧化中，边界处的球面气泡被看成一个（平凡）圆盘气泡，连同附着在这个圆盘气泡内部的一个球面气泡（见图 2.1.4）。
+
+\begin{figure}[htbp]
+  \centering
+  \setlength{\unitlength}{1mm}
+  \begin{picture}(105,65)
+    \put(30,30){\oval(45,45)}
+    \qbezier(12,17)(22,29)(38,48)
+    \qbezier(10,25)(22,39)(32,51)
+    \qbezier(16,10)(31,27)(47,44)
+    \qbezier(24,8)(38,24)(51,36)
+    \qbezier(36,10)(45,20)(52,28)
+    \put(61,30){\oval(18,18)}
+    \put(52,30){\circle*{1.4}}
+    \put(61,36){\circle*{1.4}}
+    \put(61,48){\oval(20,26)}
+    \qbezier(51,48)(61,44)(71,48)
+    \qbezier[14](51,48)(61,52)(71,48)
+  \end{picture}
+  \par\smallskip
+  \renewcommand{\thefigure}{2.1.4}
+  \refstepcounter{figure}
+  \textbf{\figurename~\thefigure}\label{fig:2-1-4}
+\end{figure}
+
+从现在起，只考虑 $g=0$ 且有一个边界分支的情形，并以
+$\mathcal M_{k,\ell}$ 代替 $\mathcal M_{0,k,\ell}$。换言之，
+$\Sigma$ 没有孔洞，或者说定义域 $\Sigma$ 的边界是有限多个圆组成的连通并。
+
+还把 $\mathcal M_{k,0}$ 写成 $\mathcal M_k$。也就是说，
+$\mathcal M_k$ 是亏格零、带有 $k$ 个边界标记点而没有内部标记点的有边黎曼曲面之模空间。文献
+\textbf{[FuOh97]} 已经对 $\mathcal M_k$ 作过一些讨论。这里的讨论基本依循该文，不过需要稍作修改。
+
+\begin{lemma}{2.1.19}\label{lem:2-1-19}
+$\mathcal M_{k,\ell}$ 恰有 $(k-1)!$ 个连通分支。
+\end{lemma}
+
+\begin{proof}
+设
+$(\Sigma,\vec z,\vec z^{\,+})
+=(S,\tau,\vec z,\vec z^{\,\pm},\mathit{ori})
+\in\mathcal M_{k,\ell}$。$S^{\mathbb R}=S^\tau$ 的定向确定了
+$\{z_1,\ldots,z_k\}$ 的一个循环次序。一个有 $k$ 个元素的集合有
+$(k-1)!$ 种循环排序方式。不难看出，这种循环次序的选择确定了
+$\mathcal M_{k,\ell}$ 的一个连通分支。
+\end{proof}
+
+现在研究模空间 $\mathcal M_{k,\ell}$ 的定向。以
+$\mathcal M_{k,\ell}^{\mathrm{reg}}$ 表示 $\mathcal M_{k,\ell}$ 中所有满足
+$S$ 非奇异的元素 $(S,\tau,\vec z,\vec z^{\,\pm},\mathit{ori})$ 之集合。注意，有一个显然的纤维化
+\[
+  \mathcal M_{k,\ell}^{\mathrm{reg}}
+  \longrightarrow\mathcal M_k^{\mathrm{reg}},
+\]
+其纤维是复簇；因此，只需定义 $\mathcal M_k$ 的定向。
+
+以 $\mathbb H$ 表示上半平面。
+
+\begin{definition}{2.1.20}\label{def:2-1-20}
+设 $k\geq3$。考虑对子 $(D^2,(z_1,\ldots,z_k))$，其中
+$z_i\in\partial D^2$，而 $(z_1,\ldots,z_k)$ 遵循
+$\partial D^2=S^1$ 关于 $\partial D^2=S^1$ 通常逆时针定向的循环次序。
+$\mathcal M_k$ 有一个包含此元素的连通分支。称之为\emph{主分支}\liftIndex{I061}，并记作
+$\mathcal M_k^{\mathrm{main}}$。令
+\[
+  \mathcal M_k^{\mathrm{main,reg}}
+  =\mathcal M_k^{\mathrm{main}}\cap\mathcal M_k^{\mathrm{reg}}.
+\]
+\end{definition}
+
+当 $k\geq3$ 时，主分支
+$\mathcal M_k^{\mathrm{main,reg}}$ 微分同胚于 $\mathbb R^{k-3}$。为方便读者，下面回顾这一熟知事实的证明。通过忘掉最后一个标记点 $z_k$，定义映射
+\[
+  \mathcal M_k^{\mathrm{main,reg}}
+  \longrightarrow\mathcal M_{k-1}^{\mathrm{main,reg}},
+  \qquad
+  (D^2,(z_1,\ldots,z_k))
+  \longmapsto(D^2,(z_1,\ldots,z_{k-1})).
+\]
+\footnote{译者注：原书在这个遗忘映射的定义域中出现未定义的下标 $m$ 和上标 $b$；这里依同段固定的标记点数 $k$ 及紧接的目标与元组补正。}
+把 $D^2$ 等同于上半平面 $\mathbb H\cup\infty$，便有等同
+\[
+  (\partial D^2,(z_1,\ldots,z_k))
+  \cong(\mathbb R\cup\infty,(x_1,\ldots,x_k)),
+\]
+其中 $x_1<\cdots<x_k$。容易看出，上述遗忘映射定义了一个纤维丛，其纤维微分同胚于
+$\mathbb R$。注意，$\mathcal M_3^{\mathrm{main,reg}}$ 只含一个点。因此，归纳可得
+\[
+  \mathcal M_k^{\mathrm{main,reg}}\cong\mathbb R^{k-3}.
+\]
+（为方便读者，第 7.1.3 小节将证明
+$\mathcal M_{k,\ell}^{\mathrm{main}}$ 是光滑流形（定理 7.1.44）。）
+
+现在利用这个微分同胚定义 $\mathcal M_k^{\mathrm{main,reg}}$ 的定向。当
+$k\geq4$ 时，在
+$(D^2,(z_1,\ldots,z_{k-1}))\in
+\mathcal M_{k-1}^{\mathrm{main,reg}}$ 上方，纤维化
+\[
+  \mathcal M_k^{\mathrm{main,reg}}
+  \longrightarrow\mathcal M_{k-1}^{\mathrm{main,reg}}
+\]
+的纤维可以等同于 $S^1\cong\mathbb R\cup\{\infty\}$ 的一个开子集，即
+$x_{k-1}$ 与 $x_1$ 之间的区间。因此，每个纤维都有自然定向；它同
+$\mathcal M_{k-1}^{\mathrm{main}}$ 的定向一起，诱导
+$\mathcal M_k^{\mathrm{main}}$ 的定向。由归纳便得到主分支的定向。
+
+再看 $\mathcal M_k$ 的其他连通分支。每个置换
+$\sigma:\{1,\ldots,k\}\to\{1,\ldots,k\}$ 都诱导一个同胚
+\[
+  \sigma_*:\mathcal M_k\longrightarrow\mathcal M_k,
+  \qquad
+  (S,\tau,(z_1,\ldots,z_k))
+  \longmapsto(S,\tau,(z_{\sigma(1)},\ldots,z_{\sigma(k)})).
+\]
+
+以 $\sigma_0:\{1,\ldots,k\}\to\{1,\ldots,k\}$ 表示移位置换
+$\sigma_0(i)=i+1\pmod{k}$。映射
+$(\sigma_0)_*:\mathcal M_k^{\mathrm{reg}}
+\to\mathcal M_k^{\mathrm{reg}}$ 保持
+$\mathcal M_k^{\mathrm{reg}}$ 的每个连通分支，特别保持主分支。
+
+\begin{lemma}{2.1.21}\label{lem:2-1-21}
+映射
+\[
+  (\sigma_0)_*:\mathcal M_k^{\mathrm{main,reg}}
+  \longrightarrow\mathcal M_k^{\mathrm{main,reg}}
+\]
+保持定向，当且仅当 $k$ 是奇数。
+\end{lemma}
+
+\begin{proof}
+令 $\widehat{\mathcal M}_k^{\mathrm{main,reg}}$ 为所有满足
+\[
+  (z_1,\ldots,z_k)\in(\mathbb RP^1)^k,
+  \qquad
+  [\mathbb CP^1,\mathbb RP^1,(z_1,\ldots,z_k)]
+  \in\mathcal M_k^{\mathrm{main,reg}}
+\]
+的 $(z_1,\ldots,z_k)$ 之集合。注意，
+\[
+  \widehat{\mathcal M}_k^{\mathrm{main,reg}}/\operatorname{PSL}(2,\mathbb R)
+  \cong\mathcal M_k^{\mathrm{main,reg}}.
+\]
+映射
+$(\sigma_0)_*:\mathcal M_k^{\mathrm{main,reg}}
+\to\mathcal M_k^{\mathrm{main,reg}}$ 提升为
+$\widehat{\mathcal M}_k^{\mathrm{main,reg}}$ 上一个
+$\operatorname{PSL}(2,\mathbb R)$-不变映射；它无非是
+$(\mathbb RP^1)^k$ 上的移位映射。这个移位映射 $\sigma_0$ 的奇偶性为
+$k-1\pmod 2$。引理 2.1.21 得证。
+\end{proof}
+
+\begin{proposition}{2.1.22}\label{prop:2-1-22}
+$\mathcal M_k^{\mathrm{reg}}$ 上存在唯一的定向，满足：
+
+\par\smallskip\noindent\textup{(2.1.23.1)}\quad
+它与上面所述 $\mathcal M_k^{\mathrm{main,reg}}$ 的定向相同。
+
+\par\smallskip\noindent\textup{(2.1.23.2)}\quad
+$\sigma_*:(S,\tau,(z_1,\ldots,z_k))
+\mapsto(S,\tau,(z_{\sigma(1)},\ldots,z_{\sigma(k)}))$
+保持定向，当且仅当 $\sigma$ 是偶置换。
+\end{proposition}
+
+\begin{proof}
+注意，
+$\sigma_*(\mathcal M_k^{\mathrm{main,reg}})
+\cap\mathcal M_k^{\mathrm{main,reg}}\ne\varnothing$
+当且仅当对某个 $i$ 有 $\sigma=\sigma_0^i$，而
+$\sigma_0$ 是偶置换当且仅当 $k$ 是奇数。因此，由引理 2.1.21，通过适当的
+$\sigma_*$ 把 $\mathcal M_k^{\mathrm{main,reg}}$ 上的定向传递到其他连通分支，便得到命题 2.1.22。相应的定向显然满足 (2.1.23.1) 与 (2.1.23.2)。
+\end{proof}
+
+第 8 章将使用命题 2.1.22，为下面即将定义的亏格零有边黎曼曲面稳定映射模空间\liftIndexRangeStart{I059}赋予定向。还要指出，刘秋菊（Melissa Chiu-Chu Liu）已经证明了高亏格情形下模空间
+$\mathcal M_{g,k,\ell}$ 的可定向性，即 \textbf{[Liu02]} 的定理 3.9。
+
+设 $(M,\omega,J)$ 是带有相容殆复结构 $J$ 的辛流形 $(M,\omega)$，并设
+$L\subset(M,\omega)$ 是拉格朗日子流形。
+
+\begin{definition}{2.1.24}\label{def:2-1-24}
+亏格零有边黎曼曲面上带有 $(k,\ell)$ 个标记点的一个\emph{稳定映射}\liftIndex{I060}，是一个对子
+$((\Sigma,\vec z,\vec z^{\,+}),w)$，其中
+$(\Sigma,\vec z,\vec z^{\,+})$ 是带有 $(k,\ell)$ 个标记点的亏格零有边半稳定曲线，而
+$w:(\Sigma,\partial\Sigma)\to(M,L)$ 是伪全纯映射，并且所有满足下列性质的
+$\varphi:\Sigma\to\Sigma$ 之集合是有限的：
+
+\par\smallskip\noindent\textup{(2.1.25.1)}\quad
+$\varphi$ 是双全纯映射。
+
+\par\smallskip\noindent\textup{(2.1.25.2)}\quad
+$\varphi(z_i)=z_i$，$\varphi(z_i^+)=z_i^+$。
+
+\par\smallskip\noindent\textup{(2.1.25.3)}\quad
+$w\circ\varphi=w$\translatornote{原书 (2.1.25.3) 的右端写成辛形式 $\omega$，与左端映射类型不合；依稳定映射自同构的定义及紧接的 (2.1.26.1) 补正为 $w$。}。
+\end{definition}
+
+有边曲线上的每个亏格零稳定映射
+$((\Sigma,\vec z,\vec z^{\,+}),w)$ 都以显然方式确定一个同调类
+\[
+  w_*([\Sigma])\in H_2(M,L;\mathbb Z).
+\]
+
+若存在双全纯映射 $\varphi:\Sigma\to\Sigma'$，使得
+
+\par\smallskip\noindent\textup{(2.1.26.1)}\quad
+$w'=w\circ\varphi^{-1}$；
+
+\par\smallskip\noindent\textup{(2.1.26.2)}\quad
+$\varphi(z_i)=z_i'$，$\varphi(z_i^+)=z_i^{\prime+}$，
+
+\noindent 则称
+$((\Sigma,\vec z,\vec z^{\,+}),w)$ 与
+$((\Sigma',\vec z\,',\vec z\,^{\prime+}),w')$ 同构。
+
+\begin{definition}{2.1.27}\label{def:2-1-27}
+\par\smallskip\noindent\textup{(2.1.28.1)}\quad
+设 $\beta\in H_2(M,L;\mathbb Z)$。以
+$\mathcal M_{k,\ell}(\beta)$ 表示所有带有 $(k,\ell)$ 个标记点、满足
+$w_*([\Sigma])=\beta$ 的亏格零有边黎曼曲面稳定映射
+$((\Sigma,\vec z,\vec z^{\,+}),w)$ 之同构类的集合。令
+\[
+  \mathcal M_{k,\ell}^{\mathrm{sing}}(\beta)
+  =\mathcal M_{k,\ell}(\beta)
+   \setminus\mathcal M_{k,\ell}^{\mathrm{reg}}(\beta).
+\]
+
+\par\smallskip\noindent\textup{(2.1.28.2)}\quad
+\liftIndex{I061}
+记
+\[
+  \mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+  =\left\{
+    ((\Sigma,\vec z,\vec z^{\,+}),w)
+    \mathrel{\Big|}
+    (\Sigma,\vec z,\vec z^{\,+})
+      \in\mathcal M_{k,\ell}^{\mathrm{main}},\ [w]=\beta
+  \right\}.
+\]
+\end{definition}
+
+与 \textbf{[FuOn99II]} 第 10 节类似地定义模空间
+$\mathcal M_{k,\ell}(\beta)$ 的拓扑（见第 7.1.4 小节）。不过，有一种情形需要特别留意：
+$k=0$，并且 $\beta\in H_2(M,L)$ 在边界映射
+$H_2(M,L)\to H_1(L)$ 下映到零元。此时，标准的稳定映射模空间并不紧，需要作紧化，把一些具有连续自同构族的映射包括进来。关于这一现象的相关讨论，参见第 3 章第 3.8 节和第 7 章第 7.4.1 小节。
+
+知道这一点后，可以陈述下面的基本结果。（仓西结构的定义见第 A1 节。）
+
+\begin{theorem}{2.1.29}\label{thm:2-1-29}
+假设 $k\ne0$。那么稳定映射的模空间
+$\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)$ 是紧豪斯多夫空间\liftIndex{I052}，并且带有仓西结构。此外，对
+$(k,\ell;\beta)$ 的不同选择所得的仓西结构族彼此相容。
+\end{theorem}
+
+当 $\ell=0$ 时，定理 2.1.29 就是命题 7.1.1 与 7.1.2；包括
+$\ell\ne0$ 情形在内的证明见第 7.1.5 小节。
+
+下面陈述定理 2.1.30，其证明将在第 8 章给出。设
+$L\subset M$ 是相对 spin 拉格朗日子流形；换言之，假设存在一个类
+$st\in H^2(M;\mathbb Z_2)$，其在 $L$ 上的限制是 $L$ 的第二施蒂费尔--惠特尼类。第 8 章第 8.1 节将证明，在这个条件下
+$\mathcal M_{k,\ell}(\beta)$ 可定向。
+
+事实上，那里将证明下面这个更强的定理。嵌入 $L\subset M$ 的相对 spin 结构之定义见第 8.1 节。
+
+\begin{theorem}{2.1.30}\label{thm:2-1-30}
+设 $L$ 相对 spin。那么，$L\subset M$ 上一个相对 spin 结构的选择，会在
+$\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)$ 上典范地诱导一个定向。
+\end{theorem}
+
+下面考虑评价映射。
+
+\begin{definition}{2.1.31}\label{def:2-1-31}
+\begin{samepage}
+定义
+\[
+  \operatorname{ev}:\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+  \longrightarrow L^k\times M^\ell
+\]
+为
+\[
+  \operatorname{ev}((\Sigma,\vec z,\vec z^{\,+}),w)
+  =\bigl(w(z_1),\ldots,w(z_k),
+    w(z_1^+),\ldots,w(z_\ell^+)\bigr).
+\]
+\end{samepage}
+\end{definition}
+
+我们希望把 $\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)$ 看成
+$L^k\times M^\ell$ 上的一条光滑奇异链。然而一般而言，空间
+$\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)$ 不是（带边界或带角的）光滑流形，其维数也不正确。就此而言，下面这个横截性结果是构造我们的障碍类所必需的。后面的各章会把本陈述中的“虚基本链”概念说得精确（见命题 3.5.2、7.2.35 和定义 A1.28）。\liftIndexRangeEnd{I059}
+
+\begin{theorem}{2.1.32}\label{thm:2-1-32}
+定理 2.1.29 所给仓西结构的障碍丛上存在一族多值截面
+$\mathfrak s=\{\mathfrak s(k,\ell;\beta)\}$，使得扰动后的模空间
+\[
+  \mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+    ^{\mathfrak s(k,\ell;\beta)}
+\]
+具有一条 $\mathbb Q$ 系数的（虚）基本链，其维数为
+\[
+  n+\mu_L(\beta)+k+2\ell-3,
+\]
+其中 $\mu_L(\beta)$ 是
+$\beta\in H_2(M,L)$ 的马斯洛夫指标。此外，这些扰动在粘合映射下彼此相容。
+\end{theorem}
+
+下面描述闭链
+$\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+ ^{\mathfrak s(k,\ell;\beta)}$ 的边界。
+
+\begin{theorem}{2.1.33}\label{thm:2-1-33}
+设 $\mathfrak s$ 如定理 2.1.32 所示。那么，闭链
+$\mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+ ^{\mathfrak s(k,\ell;\beta)}$ 的边界，是由所有满足
+\[
+  ((\Sigma,\vec z,\vec z^{\,+}),w)
+  \in
+  \mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+    ^{\mathfrak s(k,\ell;\beta)}
+\]
+并且 $\Sigma$ 恰有一个奇点的元素之等价类所成空间的虚基本链。
+\end{theorem}
+
+以后定义弗洛尔上同调时，将使用链
+\[
+  \left(
+    \mathcal M_{k,\ell}^{\mathrm{main}}(\beta)
+      ^{\mathfrak s(k,\ell;\beta)},
+    \operatorname{ev}
+  \right)
+\]
+来识别障碍闭链。

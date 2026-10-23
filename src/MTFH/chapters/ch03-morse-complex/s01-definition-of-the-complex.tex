@@ -1,0 +1,197 @@
+
+在这一章中，我们考虑一个\trCompact\trManifold{} $V$，其上被赋予了一个\trMorseFunction{} $f$ 与一个\trGeneric{}的（即满足\trSmaleCondition{}的）\trPseudogradient{}场 $X$。对每个整数 $k$，我们令 $C_k(f)$ 为 $\ZZ/2$ 上的、由 $f$ 的\trIndex{}为 $k$ 的那些\trCriticalPoint{}所生成的\trVectorSpace{}；在不致混淆的场合，我们将简单地把它记作 $C_k$。利用由 $X$ 的诸\trTrajectory{}所建立的诸\trCriticalPoint{}之间的连接，我们定义映射
+\[
+\partial_X\colon C_k\longrightarrow C_{k-1}\text{。}
+\]
+我们还证明
+\[
+\partial_X\circ\partial_X\colon C_{k+1}\longrightarrow C_{k-1}
+\]
+是零映射，从而 $\bigl(C_{\star}(f),\partial_X\bigr)$ 是 $\ZZ/2$ 上\trVectorSpace{}的一个\trComplex，其\trHomology{}为
+\[
+H_k\bigl(C_{\star}(f),\partial_X\bigr)
+  =\operatorname{Ker}\partial_X/\operatorname{Im}\partial_X
+  =H_k(f,X)\text{。}
+\]
+最后，我们证明：尽管这个\trComplex{}本身依赖于 $f$ 与 $X$ 的选取，它的\trHomology{}却不依赖（对于知道这是什么的人来说，它其实就是 $V$ 的模 2 \trHomology）。
+
+这里所用的诸对象的定义与基本性质，参见\cref{sec:appB-algebraic-homology}。
+
+\section{\trComplex{}的定义}
+\label{sec:definition-of-the-complex}
+
+我们定义\trVectorSpace
+\[
+C_k(f)=\Bigl\{\,\sum_{c\in\operatorname{Crit}_k(f)} a_c\,c
+  \Bigm|\ a_c\in\ZZ/2\,\Bigr\}\text{，}
+\]
+其中 $\operatorname{Crit}_k(f)$ 当然表示 $f$ 的\trIndex{}为 $k$ 的那些\trCriticalPoint{}所成之集。
+
+\subsection{\trDifferential}
+\label{subsec:the-differential}
+
+为了在 $C_k(f)$ 上定义 $\partial_X$，只需知道如何对 $f$ 的一个\trIndex{}为 $k$ 的\trCriticalPoint{} $a$ 定义 $\partial_X(a)$ 就够了。它必须是\trIndex{}为 $k-1$ 的诸\trCriticalPoint{}的一个线性组合：
+\[
+\partial_X(a)=\sum_{b\in\operatorname{Crit}_{k-1}} n_X(a,b)\,b\text{，}
+\qquad \text{其中 } n_X(a,b)\in\ZZ/2\text{。}
+\]
+其想法是：把 $n_X(a,b)$ 定义为 $X$ 的那些从 $a$ 走到 $b$ 的\trTrajectory{}的条数（模 2），也就是说，把它定义为 $\mathcal{L}(a,b)$ 的\trCardinality。我们将在 3.2 节中证明，这个数确实是有限的。
+
+\subsection{它是\trComplex}
+\label{subsec:it-is-a-complex}
+
+一个\textbf{\trComplex}（complex）\footnote{关于这一代数形式体系，参见\cref{sec:appB-algebraic-homology}以及那里给出的参考文献。}是一个\trVectorSpace{}族 $\bigl(C_{\star}\bigr)_{\star=1,\dotsc,n}$，\footnote{这里我们用的是 $\ZZ/2$ 上的\trVectorSpace；正确的一般概念要使用\trCommutativeRing{}上的\trModule，其中也包括\trAbelianGroup{}的情形。参见 3.3 节。}它由线性映射
+\[
+\partial^k\colon C_k\longrightarrow C_{k-1}
+\]
+相连接，并且满足 $\partial^k\circ\partial^{k+1}=0$。于是，$\partial^{k+1}$ 的\trImage{}包含在 $\partial^k$ 的\trKernel{}之中，而商
+\[
+H_k=\operatorname{Ker}\partial^k/\operatorname{Im}\partial^{k+1}\text{，}
+\]
+它衡量着这个\trComplex{}的非\trExact{}程度，是一个\trVectorSpace，称为该\trComplex{}的\trHomology{}（在\trDegree{} $k$ 处）。
+
+为了证明我们所处理的确实是一个\trComplex，必须验证 $\partial_X\circ\partial_X=0$。由于
+\[
+\partial_X\circ\partial_X(a)
+  =\sum_{b\in\operatorname{Crit}_{k-1}}
+   \Bigl(\sum_{c\in\operatorname{Crit}_k} n_X(a,c)\,n_X(c,b)\Bigr)b
+\]
+（其中 $a\in\operatorname{Crit}_{k+1}$），故只需证明：给定两个\trCriticalPoint{} $a$ 与 $b$，其中 $a$ 的\trIndex{}为 $k+1$、$b$ 的\trIndex{}为 $k-1$，则和式
+\[
+\sum_{c\in\operatorname{Crit}_k} n_X(a,c)\,n_X(c,b)
+\]
+为零。这个数等于\trDisjointUnion
+\[
+\coprod_{c\in\operatorname{Crit}_k(f)}\mathcal{L}(a,c)\times\mathcal{L}(c,b)\text{。}
+\]
+的\trCardinality。于是，这个想法便是去证明：这个由点构成的集合（我们将已证明它是有限的）是某个维数为~1 的\trManifold{}的边界。
+
+\cref{fig:compactification-interval}给出了一个使这条结论显得可信的启发性论证。图中画的是 $a$ 的\trUnstableManifold，它由连接 $a$ 与 $b$ 的那些\trTrajectory{}组成（这幅图是\cref{fig:torus-again}的四分之一）。由这些\trTrajectory{}构成的集合应当是一个维数为~1 的\trManifold{}（图中右侧画出的），亦即一些\trOpen{}区间的并；在添加上经过\trIndex{}居中的点 $c_1$、$c_2$ 的那些\textbf{“破碎”\trTrajectory}（broken trajectory）{}之后，便可把它们\trCompactification{}成\trClosed{}区间或者\trCircle。这条性质源于这样一个事实：维数为~1 的\trManifoldWithBoundary{}的边界由偶数个点组成，正如我们在\cref{thm:classification-circle-interval}中所看到的那样（况且我们算的是模 2）。\footnote{译注：原书此处印作 “can indeed by compactified”；疑应为 “can indeed be compactified”（by→be，显见排印笔误）；此处径改。——译者注}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[line width=0.6pt,scale=0.95]
+  \begin{scope}[shift={(0,0)}]
+    \draw[dashed] (0,1.75) -- (-0.78,0.875);
+    \draw[dashed,->] (-0.78,0.875) -- (-1.55,0);
+    \draw[dashed] (0,1.75) -- (0.78,0.875);
+    \draw[dashed,->] (0.78,0.875) -- (1.55,0);
+    \draw[dashed] (-1.55,0) -- (-0.78,-0.875);
+    \draw[dashed,->] (-0.78,-0.875) -- (0,-1.75);
+    \draw[dashed] (1.55,0) -- (0.78,-0.875);
+    \draw[dashed,->] (0.78,-0.875) -- (0,-1.75);
+    \draw (0,1.73) .. controls (-0.72,0.85) and (-0.72,-0.85) .. (0,-1.73);
+    \draw (0,1.73) .. controls (0.72,0.85) and (0.72,-0.85) .. (0,-1.73);
+    \draw (0,1.73) -- (0,-1.73);
+    \draw[->] (-0.53,0.2) -- (-0.53,-0.14);
+    \draw[->] (0.53,0.2) -- (0.53,-0.14);
+    \draw[->] (0,0.2) -- (0,-0.14);
+    \fill (0,1.75) circle (1.2pt);
+    \fill (0,-1.75) circle (1.2pt);
+    \fill (-1.55,0) circle (1.2pt);
+    \fill (1.55,0) circle (1.2pt);
+    \node at (0,2.0) {$a$};
+    \node at (0,-2.08) {$b$};
+    \node at (-1.92,0.02) {$c_1$};
+    \node at (1.92,0.02) {$c_2$};
+  \end{scope}
+  \begin{scope}[shift={(6.1,0)}]
+    \draw (-1.05,0) -- (1.35,0);
+    \fill (-1.05,0) circle (1.3pt);
+    \fill (1.35,0) circle (1.3pt);
+  \end{scope}
+\end{tikzpicture}
+\caption{}
+\label{fig:compactification-interval}
+\end{figure}
+
+要把这一切严格化，我们将需要一条\trCompact{}性结果（在 3.2.b 小节中建立），以及对边界的一个精确描述——也就是说，从 $c$ 到 $e$ 的诸连接所成之集确实可以通过添加诸\trBrokenTrajectory{}而\trCompactification{}（参见 3.2.c 小节）。
+
+\subsection{例子}
+\label{subsec:examples}
+
+让我们回到\cref{subsec:examples-stable-unstable}中所给出的带\trGeneric{}\trPseudogradient{}的那些\trMorseFunction{}的例子（沿用该小节的记号）。
+
+\emph{圆\trSphere{}上的高度。}
+
+在此情形，$C_0=\ZZ/2$，以 $a$ 为\trGenerator；$C_1=0$；而 $C_2=\ZZ/2$，以 $b$ 为\trGenerator。其\trHomology{}为
+\[
+H_{\star}=
+\begin{cases}
+0 & \text{若 } \star\neq 0,2\\
+\ZZ/2 & \text{对 } \star=0,2\text{。}
+\end{cases}
+\]
+
+对 $\RR^{n+1}$ 中的单位\trSphere{} $S^n$ 上的\trHeightFunction{}作同样的计算——它同样只有一个极小值与一个极大值——便给出
+\[
+H_{\star}=
+\begin{cases}
+0 & \text{若 } \star\neq 0,n\\
+\ZZ/2 & \text{对 } \star=0,n\text{。}
+\end{cases}
+\]
+
+\emph{“另一”\trSphere{}上的高度。}
+
+这一回，$C_0=\ZZ/2$，以 $a$ 为\trGenerator；$C_1=\ZZ/2$，以 $b$ 为\trGenerator；而 $C_2=\ZZ/2\oplus\ZZ/2$，以 $c$ 与 $d$ 为\trGenerator。天真地清点一下连接诸\trCriticalPoint{}的诸\trTrajectory，我们便得到
+\[
+\partial c=b\text{，}\qquad \partial d=b\text{，}\qquad \partial b=2a=0\text{，}
+\]
+于是
+\[
+\begin{cases}
+H_0=\ZZ/2\\
+H_1=0\\
+H_2=\ZZ/2\text{。}
+\end{cases}
+\]
+尽管这个\trComplex{}颇为不同，它的\trHomology{}却是相同的。
+
+\emph{\trTorus。}
+
+现在让我们考虑\trTorus{}上的函数 $\cos(2\pi x)+\cos(2\pi y)$。我们有 $C_0=\ZZ/2$，以 $a$ 为\trGenerator；$C_1=\ZZ/2\oplus\ZZ/2$，以 $b$ 与 $c$ 为\trGenerator；以及 $C_2=\ZZ/2$，以 $d$ 为\trGenerator。诸\trDifferential{}为
+\[
+\partial d=2b+2c=0\text{，}\qquad \partial b=\partial c=2a=0\text{。}
+\]
+于是，模 2 的\trHomology{}为
+\[
+\begin{cases}
+H_0=\ZZ/2\\
+H_1=\ZZ/2\oplus\ZZ/2\\
+H_2=\ZZ/2
+\end{cases}
+\]
+（这确实就是\trTorus{} $T^2$ 的\trHomology）。读者们应当证明：与\trHeightFunction{}以及\cref{fig:modified-field}所描绘的那个\trVectorField{}相伴的\trComplex，也具有相同的\trHomology。
+
+\emph{复\trProjectiveSpace。}
+
+这一回，只有\trIndex{}为偶数的\trCriticalPoint，并且在每个维数上各有一个。当 $k$ 为偶数且不超过 $2n$ 时，诸 $C_k$ 为 $\ZZ/2$，否则为 $0$。诸\trDifferential{}全为零，而\trComplex{}的\trHomology{}为
+\[
+H_{\star}=
+\begin{cases}
+\ZZ/2 & \text{若 } \star=2k\text{，其中 } k\le n\\
+0 & \text{否则。}
+\end{cases}
+\]
+
+\emph{实\trProjectivePlane。}
+
+现在，$C_0=\ZZ/2$，以 $a$ 为\trGenerator；$C_1=\ZZ/2$，以 $b$ 为\trGenerator；而 $C_2=\ZZ/2$，以 $c$ 为\trGenerator。我们有 $\partial c=0$ 与 $\partial b=0$，于是
+\[
+H_{\star}=
+\begin{cases}
+\ZZ/2 & \text{若 } 0\le\star\le 2\\
+0 & \text{否则。}
+\end{cases}
+\]
+
+我们将会证明（这就是注记~4.1.2）：\trComplex{}的\trHomology{}只依赖于\trManifold{}的\trDiffeomorphism{}型。特别地，从上面给出的诸例子出发，我们可以推出以下两条推论。
+
+\begin{corollary}\label{thm:complex-projective-not-sphere}
+（复）维数为 $n\ge 2$ 的复\trProjectiveSpace{}不\trDiffeomorphic{}于\trSphere{} $S^{2n}$。
+\end{corollary}
+
+\begin{corollary}\label{thm:sphere-torus-plane-distinct}
+\trSphere{} $S^2$、\trTorus{} $T^2$ 与实\trProjectivePlane{} $\CP^2(\RR)$ 具有互不相同的\trDiffeomorphism{}型。
+\end{corollary}

@@ -1,0 +1,140 @@
+
+\section{定理~12.1.2 的证明}
+\label{sec:proof-theorem-1212}
+
+我们将按对 $k$ 的归纳来证明\cref{thm:local-regularity-estimate}。当 $k=0$ 时，我们有
+\[
+\bar{\partial}u=f\text{，}\qquad\text{其中 }u,f\in L^{p}_{\mathrm{loc}}\text{。}
+\]
+再施加算子 $\partial$，我们便得到
+\[
+\Delta u=\partial f
+\]
+（相差一个因子 $4$）。这使我们能把问题化归为 $u$ 是一个取实值的函数、并且是
+\[
+\Delta u=\frac{\partial}{\partial s}g+\frac{\partial}{\partial t}h
+\]
+的一个解的情形，其中 $g$ 与 $h$ 属于 $L^{p}_{\mathrm{loc}}(U)$（诸导数都按\trDistribution{}的意义来取）。我们将证明下面这条更一般的结果。
+
+\begin{proposition}\label{thm:bar-partial-regularity-criterion}
+设 $u\in L^{p}_{\mathrm{loc}}(U)$ 是一个取实值的函数，并且在\trDistribution{}的意义下满足
+\[
+\Delta u=f+\frac{\partial}{\partial s}g+\frac{\partial}{\partial t}h
+\]
+（其中 $f$、$g$ 与 $h$ 都属于 $L^{p}_{\mathrm{loc}}(U)$），那么 $u\in W^{1,p}_{\mathrm{loc}}(U)$，而且对每个满足 $\overline{V}\subset U$ 的相对紧\trOpen{}集 $V$，都存在一个常数 $C=C(p,V,U)>0$，使得
+\[
+\|u\|_{W^{1,p}(V)}\le C\left(\|f\|_{L^{p}(U)}+\|g\|_{L^{p}(U)}+\|h\|_{L^{p}(U)}+\|u\|_{L^{p}(U)}\right)\text{。}
+\]
+\end{proposition}
+
+\begin{proof}
+让我们先考虑方程 $\Delta u=0$ 的情形。此时 $u$ 是\trHarmonic{}的，并且满足平均值性质（\cref{thm:mean-value-property}）。特别地，它是 $\cC^{\infty}$ 类的（\cref{thm:mean-value-regularity}），因而属于 $W^{1,p}_{\mathrm{loc}}(U)$。设 $V$ 是如同命题中所设的那类\trOpen{}集。利用\cref{thm:mean-value-regularity}的证明中的记号，我们有 $u=\psi\star u$，其中
+\[
+\psi=\chi_{r}\star\chi_{r}\star\chi_{r}
+\]
+是 $\cC^{1}_{0}$ 类的，并且这个等式在 $U_{3r}$ 中成立；我们假设 $\overline{V}\subset U_{3r}$（只须 $r$ 取得充分小即可）。于是
+\[
+\begin{aligned}
+\left\|\frac{\partial}{\partial s}u\right\|_{L^{p}(V)}&=\left\|\frac{\partial}{\partial s}\psi\star u\right\|_{L^{p}(V)}\\
+&\le\sup_{z\in U}\left\|\frac{\partial}{\partial s}\psi(z)\right\|\cdot\|u\|_{L^{p}(V)}\\
+&=C\|u\|_{L^{p}(V)}
+\end{aligned}
+\]
+而对 $\partial u/\partial t$ 也有一个类似的估计。\footnote{译注：原书如此，照排；本证明有两处估计缺口，注此备案。其一（本式）：\trConvolution{} $(\partial\psi/\partial s)\star u$ 在 $x\in V$ 处取到的是 $u$ 在 $V-\operatorname{Supp}\psi$（$V$ 的一个邻域，由 $\overline{V}\subset U_{3r}$ 知其含于 $U$）上的值，仅以 $\|u\|_{L^{p}(V)}$ 控制不足——应改取该稍大集上的 $L^{p}$ 范数，末了仍归入 $\|u\|_{L^{p}(U)}$，结论不受影响。其二（下文由 $\|\nabla v\|_{L^{p}(V)}$ 过渡到 $\|v\|_{W^{1,p}(V)}$ 处）：所用\trPoincare{}不等式以 $u\in W^{1,p}_{0}$（或平均值为零）为前提，而 $v=K\star\beta f+K_{1}\star\beta g+K_{2}\star\beta h$ 未必满足；此处可用上文已用的\trYoung{}不等式修复——对 $v$ 的三项逐一估计 $\|K\star(\beta f)\|_{L^{p}(V)}$、$\|K_{1}\star(\beta g)\|_{L^{p}(V)}$、$\|K_{2}\star(\beta h)\|_{L^{p}(V)}$（做法与上面对 $\nabla(K\star(\beta f))$ 的估计相同，诸核在相应的 $V-\operatorname{Supp}\beta$ 上可积），即得 $\|v\|_{L^{p}(V)}$ 的相应上界。——译者注}我们于是得到
+\[
+\|u\|_{W^{1,p}(V)}\le C(V,U)\,\|u\|_{L^{p}(V)}\le C(V,U)\,\|u\|_{L^{p}(U)}\text{。}
+\]
+
+现在让我们转向一般的情形。为了能定义诸\trConvolution，我们取一个在 $V$ 上取值为 $1$ 的函数 $\beta\in\cC^{\infty}_{0}(U)$。设
+\[
+v=K\star\beta f+K_{1}\star\beta g+K_{2}\star\beta h\text{，}
+\]
+其中 $K$ 是\trLaplacian{}的\trFundamentalSolution（见\cref{sec:cauchy-riemann-equation}），而 $K_{1}$、$K_{2}$ 是它的两个偏导数：
+\[
+K(z)=\frac{1}{2\pi}\log|z|\text{，}\qquad K_{1}(s,t)=\frac{s}{2\pi(s^{2}+t^{2})}\text{，}\qquad K_{2}(s,t)=\frac{t}{2\pi(s^{2}+t^{2})}\text{。}
+\]
+设 $(g_{i})$ 是一个由属于 $\cC^{\infty}_{0}(U)$ 的函数组成的序列，它在 $L^{p}(U)$ 中趋于 $\beta g$。利用\trCalderonZygmund{}不等式（\cref{thm:calderon-zygmund-inequality}），我们发现序列 $\nabla(K_{1}\star g_{i})=\nabla K_{1}\star g_{i}$ 是 $L^{p}$ 中的一个\trCauchy{}序列，因而 $(\nabla(K_{1}\star g_{i}))$ \trConvergence{}到 $(\nabla K_{1}\star(\beta g))$，后者属于 $L^{p}(U)$。此外，
+\[
+\begin{aligned}
+\|\nabla(K_{1}\star(\beta g))\|_{L^{p}(U)}&\le C_{1}\|\beta g\|_{L^{p}(U)}\\
+&\le C_{2}\|g\|_{L^{p}(\operatorname{Supp}\beta)}\text{。}
+\end{aligned}
+\]
+同理，
+\[
+\|\nabla(K_{2}\star(\beta h))\|_{L^{p}(U)}\le C_{3}\|h\|_{L^{p}(\operatorname{Supp}\beta)}
+\]
+并且最后
+\[
+\begin{aligned}
+\|\nabla(K\star(\beta f))\|_{L^{p}(V)}&=\|\nabla K\star(\beta f)\|_{L^{p}(V)}\\
+&\le\|K_{1}\star(\beta f)\|_{L^{p}(V)}+\|K_{2}\star(\beta f)\|_{L^{p}(V)}\text{。}
+\end{aligned}
+\]
+利用\trYoung{}不等式（注见第~8~章），我们推出
+\[
+\begin{aligned}
+\|\nabla(K\star(\beta f))\|_{L^{p}(V)}&\le\|K_{1}\|_{L^{1}(V-\operatorname{Supp}\beta)}\,\|\beta f\|_{L^{p}(\operatorname{Supp}\beta)}\\
+&\qquad+\|K_{2}\|_{L^{1}(V-\operatorname{Supp}\beta)}\,\|\beta f\|_{L^{p}(\operatorname{Supp}\beta)}\\
+&\le C_{4}\|f\|_{L^{p}(\operatorname{Supp}\beta)}\text{。}
+\end{aligned}
+\]
+这里当然有 $V-\operatorname{Supp}\beta=\{x-y\mid x\in V\text{ 且 }y\in\operatorname{Supp}\beta\}$。把这些不等式结合起来，我们便得到
+\[
+\|\nabla v\|_{L^{p}(V)}\le C_{5}\left(\|f\|_{L^{p}(U)}+\|g\|_{L^{p}(U)}+\|h\|_{L^{p}(U)}\right)\text{，}
+\]
+再利用\trPoincare{}不等式（\cref{thm:poincare-inequality}），便有
+\[
+\|v\|_{W^{1,p}(V)}\le C_{6}\left(\|f\|_{L^{p}(U)}+\|g\|_{L^{p}(U)}+\|h\|_{L^{p}(U)}\right)\text{。}
+\]
+我们随后有\footnote{译注：下式末行第三项原书印作 $\partial(\beta g)/\partial t$；按同式首行中 $\Delta K_{2}\star(\beta h)$ 与次行中 $\partial\delta/\partial t$ 同 $\beta h$ 的配对（$K_{2}$ 对应 $h$、$K_{1}$ 对应 $g$），疑应为 $\partial(\beta h)/\partial t$。此处径改。——译者注}下列按\trDistribution{}的意义成立的等式：
+\[
+\begin{aligned}
+\Delta v&=\Delta K\star(\beta f)+\Delta K_{1}\star(\beta g)+\Delta K_{2}\star(\beta h)\\
+&=\delta\star(\beta f)+\frac{\partial}{\partial s}\delta\star(\beta g)+\frac{\partial}{\partial t}\delta\star(\beta h)\\
+&=\beta f+\frac{\partial(\beta g)}{\partial s}+\frac{\partial(\beta h)}{\partial t}
+\end{aligned}
+\]
+（这里的 $\delta$ 是狄拉克\trDistribution；参见\cref{subsec:fundamental-solution-weak-solutions}）。特别地，在 $V$ 中有 $\Delta(u-v)=0$。利用上面为 $u$ 的 $W^{1,p}$ 范数得到的上界（把它应用于 $u-v$），以及为 $v$ 的范数得到的那个上界，我们发现
+\[
+\begin{aligned}
+\|u\|_{W^{1,p}(V)}&\le\|u-v\|_{W^{1,p}(V)}+\|v\|_{W^{1,p}(V)}\\
+&\le C\left(\|f\|_{L^{p}(U)}+\|g\|_{L^{p}(U)}+\|h\|_{L^{p}(U)}+\|u\|_{L^{p}(U)}\right)\text{，}
+\end{aligned}
+\]
+这正是我们所要证的。
+\end{proof}
+
+由此我们如今知道，$\bar{\partial}u=f$（其中 $f\in L^{p}_{\mathrm{loc}}(U)$）的每一个解 $u\in L^{p}_{\mathrm{loc}}(U)$ 都属于 $W^{1,p}_{\mathrm{loc}}(U)$。更确切地说，存在一个常数 $C$（它只依赖于 $U$、$p$，以及那个满足 $\overline{V}\subset U$ 的相对紧\trOpen{}集 $V$），使得
+\[
+\|u\|_{W^{1,p}(V)}\le C\left(\|f\|_{L^{p}(U)}+\|u\|_{L^{p}(U)}\right)\text{。}
+\]
+
+如今我们可以继续\cref{thm:local-regularity-estimate}的证明了（按对 $k$ 的归纳）。我们假设这条定理对 $k-1$ 成立，现在要对 $k$ 证明它。\footnote{译注：原书此处印作 “We assume that it holds for $k$……”并 “will now prove it for $k+1$”（假设对 $k$ 成立、证对 $k+1$）；然下文实设 $u$、$f\in W^{k,p}_{\mathrm{loc}}$（这正是定理在 $k$ 层的假设）而行 $k$ 层的结论（$u\in W^{k+1,p}_{\mathrm{loc}}$），且“by the induction hypothesis”所标注的归纳假设是 $k-1$ 层的——它正是把 $k-1$ 层的估计用于 $\partial u/\partial s$（数据为 $\partial f/\partial s$），下式中 $\|\partial f/\partial s\|_{W^{k-1,p}(U')}$ 一项即其痕迹。叙述与所证错位一格，此处径改为“假设对 $k-1$ 成立、证对 $k$”。——译者注}
+
+若 $u$ 与 $f$ 都属于 $W^{k,p}_{\mathrm{loc}}(U)$，那么对一个长度为 $k$ 的多重\trIndex{} $\alpha$，我们有
+\[
+\bar{\partial}\partial^{\alpha}u=\partial^{\alpha}\bar{\partial}u=\partial^{\alpha}f\text{，}\qquad\text{其中 }\partial^{\alpha}u\text{ 与 }\partial^{\alpha}f\in L^{p}_{\mathrm{loc}}(U)\text{。}
+\]
+由此推出 $\partial^{\alpha}u\in W^{1,p}_{\mathrm{loc}}(U)$，也就是说 $u\in W^{k+1,p}_{\mathrm{loc}}(U)$。若 $V$ 是一个满足 $\overline{V}\subset U$ 的相对紧\trOpen{}集，那么
+\[
+\|u\|_{W^{k+1,p}(V)}=\|u\|_{L^{p}(V)}+\left\|\frac{\partial u}{\partial s}\right\|_{W^{k,p}(V)}+\left\|\frac{\partial u}{\partial t}\right\|_{W^{k,p}(V)}\text{。}
+\]
+利用诸等式
+\[
+\bar{\partial}\,\frac{\partial u}{\partial s}=\frac{\partial f}{\partial s}\qquad\text{与}\qquad\bar{\partial}\,\frac{\partial u}{\partial t}=\frac{\partial f}{\partial t}
+\]
+以及归纳假设，我们便有
+\[
+\begin{aligned}
+\left\|\frac{\partial u}{\partial s}\right\|_{W^{k,p}(V)}&\le C'_{1}\left(\left\|\frac{\partial f}{\partial s}\right\|_{W^{k-1,p}(U')}+\left\|\frac{\partial u}{\partial s}\right\|_{L^{p}(U')}\right)\\
+&\qquad\text{由归纳假设}\\
+&\le C'_{1}\left(\|f\|_{W^{k,p}(U')}+\|u\|_{W^{1,p}(U')}\right)\\
+&\le C_{1}\left(\|f\|_{W^{k,p}(U)}+\|u\|_{L^{p}(U)}\right)\text{，}
+\end{aligned}
+\]
+其中 $V\subset U'\subset U$ 都是紧的包含。同理，
+\[
+\left\|\frac{\partial u}{\partial t}\right\|_{W^{k,p}(V)}\le C_{2}\left(\|f\|_{W^{k,p}(U)}+\|u\|_{L^{p}(U)}\right)\text{。}
+\]
+这就结束了\cref{thm:local-regularity-estimate}的证明。\noqed

@@ -1,0 +1,109 @@
+
+\section{$\mathrm{Tor}$ 函子}
+
+我们从一道热身开始：$\mathrm{Tor}$ 的情形。这是一个可以亲手操作的例子，但如果你把它理解透彻了，你也就理解了一般的\trDerivedFunctor。$\mathrm{Tor}$ 将有助于证明关于\trFlatness{}的若干事实，我们将在 \S24.2 中讨论平坦性。$\mathrm{Tor}$ 是「torsion」（\trTorsion）的缩写（见\mbox{注记~24.2.1}）。
+
+如果你从未见过这个概念，你或许只须记住它的性质即可。不过我反正会把一切都证明一遍——出奇地容易。
+
+$\mathrm{Tor}$ 背后的想法如下。每当见到一个\trRightExact{}函子，我们总是希望它是一条\trLongExactSequence{}的末端。非正式地说，给定\trShortExactSequence
+\[
+\tag{23.1.0.1}\label{eq:tor-ses}
+0 \longrightarrow N' \longrightarrow N \longrightarrow N'' \longrightarrow 0,
+\]
+我们希望 $M\otimes_A N' \to M\otimes_A N \to M\otimes_A N'' \to 0$ 能延拓成一条\trLongExactSequence
+\begin{equation*}\tag{23.1.0.2}\label{eq:tor-les}
+\begin{tikzcd}[row sep=2.9em, column sep=2.2em]
+\cdots \ar[r] & \mathrm{Tor}^A_i(M,N') \ar[r] & \mathrm{Tor}^A_i(M,N) \ar[r] & \mathrm{Tor}^A_i(M,N'') \ar[r] & \cdots \\
+ \ar[r] & \mathrm{Tor}^A_1(M,N') \ar[r] & \mathrm{Tor}^A_1(M,N) \ar[r] & \mathrm{Tor}^A_1(M,N'') & \\
+ \ar[r] & M\otimes_A N' \ar[r] & M\otimes_A N \ar[r] & M\otimes_A N'' \ar[r] & 0.
+\end{tikzcd}
+\end{equation*}
+
+更精确地说，我们所期望的是\emph{\trCovariantFunctor}{} $\mathrm{Tor}^A_i(M,\cdot)$：从 $A$-\trModule{}到 $A$-\trModule{}（其\trFunctoriality{}给出 \eqref{eq:tor-les} 中 $2/3$ 的态射），满足 $\mathrm{Tor}^A_0(M,N)\equiv M\otimes_A N$，并带有自然的\emph{\trConnectingHomomorphism}
+\[
+\delta\colon \mathrm{Tor}^A_{i+1}(M,N'') \longrightarrow \mathrm{Tor}^A_i(M,N')
+\]
+使得每个\trShortExactSequence{} \eqref{eq:tor-ses} 都给出\trLongExactSequence{} \eqref{eq:tor-les}。（「自然的」意思是：给定\trShortExactSequence{}之间的一个态射，你会写下的那个涉及 $\delta$-态射的自然方块必须交换。）
+
+事实证明，把这件事做成并不太难，而这也将顺带为\trDerivedFunctor{}提供动机。我们现在来定义 $\mathrm{Tor}^A_i(M,N)$。
+
+取 $N$ 的任意一个由自由模构成的分解 $\mathscr{R}$：
+\[
+\cdots \longrightarrow A^{\oplus n_2} \longrightarrow A^{\oplus n_1} \longrightarrow A^{\oplus n_0} \longrightarrow N \longrightarrow 0.
+\]
+
+更精确地说，从右往左构造这个分解。先选取 $N$ 作为 $A$-\trModule{}的一组\trGenerator，这便给出 $A^{\oplus n_0}\to N\to 0$；然后选取\trKernel{}的\trGenerator，依此类推。注意我们并不要求诸 $n_i$ 有限（尽管若 $N$ 是\trFinitelyGenerated{}的\trModule{}而 $A$ \trNoether，本来是可以取成有限的）。截断这个分解：把最后一项 $N$ 剥掉（把 $\to N\to 0$ 换成 $\to 0$）。然后与 $M$ 作张量（这并\emph{不}保持正合性）。注意 $M\otimes A^{\oplus n_1}=M^{\oplus n_1}$，因为与 $M$ 作张量和任意\trDirectSum{}交换（\mbox{练习~1.2.M}）。把 $\mathrm{Tor}^A_i(M,N)_{\mathscr{R}}$ 定义为这个\trComplexN{}在第 $i$ 级（$i\ge 0$）处的\trHomology。下标 $\mathscr{R}$ 提醒我们：这个构造依赖于所选取的分解，尽管我们很快就会看到，它其实与 $\mathscr{R}$ 无关。
+
+我们来作几条快速的观察。
+\begin{itemize}
+\item $\mathrm{Tor}^A_0(M,N)_{\mathscr{R}}\cong M\otimes_A N$，\trCanonically。理由：由于作张量是\trRightExact{}的，而 $A^{\oplus n_1}\to A^{\oplus n_0}\to N\to 0$ 正合，故 $M^{\oplus n_1}\to M^{\oplus n_0}\to M\otimes_A N\to 0$ 正合，从而截断后的\trComplexN{} $M^{\oplus n_1}\to M^{\oplus n_0}\to 0$ 之\trHomology{}为 $M\otimes_A N$。
+\item 若 $M\otimes\cdot$ 是\trExact{}的（即 $M$ \trFlat，\S1.5.13），则对一切 $i>0$ 有 $\mathrm{Tor}^A_i(M,N)_{\mathscr{R}}=0$。（这刻画了\trFlatness；见\mbox{练习~23.1.C}。）
+\end{itemize}
+
+现在给定两个\trModule{} $N$ 与 $N'$，以及它们各自的分解 $\mathscr{R}$ 与 $\mathscr{R}'$，我们可以把任意态射 $N\to N'$ 「提升」为这两个分解之间的一个态射：
+\[
+\begin{tikzcd}[row sep=2.9em, column sep=2em]
+\cdots \ar[r] & A^{\oplus n_i} \ar[r] \ar[d] & \cdots \ar[r] & A^{\oplus n_1} \ar[r] \ar[d] & A^{\oplus n_0} \ar[r] \ar[d] & N \ar[r] \ar[d] & 0 \\
+\cdots \ar[r] & A^{\oplus n'_i} \ar[r] & \cdots \ar[r] & A^{\oplus n'_1} \ar[r] & A^{\oplus n'_0} \ar[r] & N' \ar[r] & 0
+\end{tikzcd}
+\]
+我们对 $i$ 归纳地做这件事。这里用到了 $A^{\oplus n_i}$ 的自由性：设 $a_1,\dots,a_{n_i}$ 是 $A^{\oplus n_i}$ 的\trGenerator，为把映射 $b\colon A^{\oplus n_i}\to A^{\oplus n'_{i-1}}$（它是微分 $A^{\oplus n_i}\to A^{\oplus n_{i-1}}$ 与先前构造好的 $A^{\oplus n_{i-1}}\to A^{\oplus n'_{i-1}}$ 的复合）提升为 $c\colon A^{\oplus n_i}\to A^{\oplus n'_i}$，我们随意地把诸 $b(a_j)$ 从 $A^{\oplus n'_{i-1}}$ 提升到 $A^{\oplus n'_i}$，并宣布这就是 $c(a_j)$。（给在意这类事情的人一个警示：我们在这里用到了选择公理。）
+
+把这一组提升的选取记作 $\mathscr{R}\to\mathscr{R}'$。现在把两个\trComplexes{}都截断（去掉 $N\to N'$ 这一列），再与 $M$ 作张量。\trComplexes{}之间的映射诱导出\trHomology{}上的映射（\mbox{练习~1.5.D}），于是我们就描述了如下一些映射（先验地依赖于 $\mathscr{R}\to\mathscr{R}'$）：
+\[
+\mathrm{Tor}^A_i(M,N)_{\mathscr{R}} \longrightarrow \mathrm{Tor}^A_i(M,N')_{\mathscr{R}'}.
+\]
+
+回想（\S1.5.7）：若存在一列映射 $w\colon C_i\to C'_{i+1}$ 使得 $f-g=dw+wd$，则称\trComplexes{}的两个映射 $f\colon C_\bullet\to C'_\bullet$ 与 $g\colon C_\bullet\to C'_\bullet$ 是\trHomotopic。我们见过，两个同伦的映射在\trHomology{}上给出同一个映射（\mbox{练习~1.5.E}）。
+
+\textbf{23.1.A.（关键练习）}\quad 证明：任意两个提升 $\mathscr{R}\to\mathscr{R}'$ 都是\trHomotopic。
+
+现在我们把这些观察拢在一起。（请务必把它们彻底消化！）
+
+（1）我们得到一个 $A$-\trModule{}的映射 $\mathrm{Tor}^A_i(M,N)_{\mathscr{R}}\to\mathrm{Tor}^A_i(M,N')_{\mathscr{R}'}$，它无关于提升 $\mathscr{R}\to\mathscr{R}'$ 的选取。
+
+（2）从而，对 $A$-\trModule{} $N$ 的任意两个分解 $\mathscr{R}$ 与 $\mathscr{R}'$，我们得到一个\emph{\trCanonical}同构 $\mathrm{Tor}^A_i(M,N)_{\mathscr{R}}\overset{\sim}{\longrightarrow}\mathrm{Tor}^A_i(M,N)_{\mathscr{R}'}$。缘由如下。选取提升 $\mathscr{R}\to\mathscr{R}'$ 与 $\mathscr{R}'\to\mathscr{R}$。复合 $\mathscr{R}\to\mathscr{R}'\to\mathscr{R}$ 与恒等\trHomotopy（因为它是恒等映射 $N\to N$ 的一个提升）。于是，若 $f_{\mathscr{R}\to\mathscr{R}'}\colon\mathrm{Tor}^A_i(M,N)_{\mathscr{R}}\to\mathrm{Tor}^A_i(M,N)_{\mathscr{R}'}$ 是由 $\mathscr{R}\to\mathscr{R}'$ 诱导的映射，且类似地 $f_{\mathscr{R}'\to\mathscr{R}}$ 是由 $\mathscr{R}'\to\mathscr{R}$ 诱导的映射，则 $f_{\mathscr{R}'\to\mathscr{R}}\circ f_{\mathscr{R}\to\mathscr{R}'}$ 是恒等，同理 $f_{\mathscr{R}\to\mathscr{R}'}\circ f_{\mathscr{R}'\to\mathscr{R}}$ 亦然。
+
+（3）从而 $\mathrm{Tor}^A_i(M,\cdot)$ 无关于分解的选取。它是一个\trCovariantFunctor{} $\mathit{Mod}_A\to\mathit{Mod}_A$。
+
+\textbf{23.1.1.}\ \emph{\trhRemark。}\quad 注意：若 $N$ 是一个自由\trModule，则对一切 $M$ 与一切 $i>0$ 都有 $\mathrm{Tor}^A_i(M,N)=0$，因为 $N$ 具有平凡的分解 $0\to N\to N\to 0$（它是「自己的分解」）。
+
+最后，我们得到\trLongExactSequence：
+
+\textbf{23.1.2. \trhProposition。}\ ——\ \emph{对任意\trShortExactSequence{} \eqref{eq:tor-ses}，我们得到诸 $\mathrm{Tor}$ 的\trLongExactSequence{} \eqref{eq:tor-les}。}
+
+\emph{证明。}\quad 给定一个\trShortExactSequence{} \eqref{eq:tor-ses}，选取 $N'$ 与 $N''$ 的分解。然后用它们按下述方式得到 $N$ 的一个分解。
+\begin{equation*}\tag{23.1.2.1}\label{eq:tor-horseshoe}
+\begin{tikzcd}[row sep=2.4em, column sep=2.2em]
+ & 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+\cdots \ar[r] & A^{\oplus n'_i} \ar[r] \ar[d] & A^{\oplus n'_0} \ar[r] \ar[d] & N' \ar[r] \ar[d] & 0 \\
+\cdots \ar[r] & A^{\oplus(n'_i+n''_i)} \ar[r] \ar[d] & A^{\oplus(n'_0+n''_0)} \ar[r] \ar[d] & N \ar[r] \ar[d] & 0 \\
+\cdots \ar[r] & A^{\oplus n''_i} \ar[r] \ar[d] & A^{\oplus n''_0} \ar[r] \ar[d] & N'' \ar[r] \ar[d] & 0 \\
+ & 0 & 0 & 0 &
+\end{tikzcd}
+\end{equation*}
+映射 $A^{\oplus(n'_{i+1}+n''_{i+1})}\to A^{\oplus(n'_i+n''_i)}$ 是复合 $A^{\oplus n'_{i+1}}\to A^{\oplus n'_i}\hookrightarrow A^{\oplus(n'_i+n''_i)}$ 连同 $A^{\oplus n''_{i+1}}\to A^{\oplus n''_i}$ 到 $A^{\oplus(n'_i+n''_i)}$ 的一个提升一起给出的，这就保证中行是一个\trComplexN。
+
+\textbf{23.1.B.（练习）}\quad 验证：可以选取从 $A^{\oplus n''_{i+1}}\to A^{\oplus n''_i}$ 到 $A^{\oplus(n'_i+n''_i)}$ 的这样一个提升。
+
+于是，利用上同调的\trLongExactSequence（\mbox{定理~1.5.8}）以及顶行与底行正合这两个事实，\eqref{eq:tor-horseshoe} 的中行是\emph{正合}的（而不只是一个\trComplexN）。从而中行是一个分解，而 \eqref{eq:tor-horseshoe} 是分解的一个\trShortExactSequence。（这种构造有时被称作\emph{马蹄构造}（horseshoe construction），因为补全中行的样子，就像补全马蹄的中间部分。）注意到「$N$ 列」以外的各列都是「直和正合列」，而中行里的诸水平映射是「块上三角」的，这或许会有帮助。
+
+然后截断（去掉最右一列 $0\to N'\to N\to N''\to 0$），与 $M$ 作张量（得到\trComplexes{}的一个\trShortExactSequence），再取上同调，便得到所要的\trLongExactSequence。\hfill$\square$
+
+\textbf{23.1.C.（练习：$\mathrm{Tor}_1$ 平坦性判别法）}\quad 证明：以下条件关于 $A$-\trModule{} $M$ 等价。
+
+（i）$M$ 是\trFlat{}的。
+
+（ii）对一切 $i>0$ 与一切 $A$-\trModule{} $N$，$\mathrm{Tor}^A_i(M,N)=0$。
+
+（iii）对一切 $A$-\trModule{} $N$，$\mathrm{Tor}^A_1(M,N)=0$。
+
+\textbf{23.1.3.}\ \emph{\trhCaveat。}\quad 鉴于自由模显然是\trFlat{}的，你可能会以为\mbox{练习~23.1.C} 蕴含\mbox{注记~23.1.1}。如果我们知道 $\mathrm{Tor}^A_i(M,N)\cong\mathrm{Tor}^A_i(N,M)$，这的确会随之而来——当 $i=0$ 时这是清楚的（因为 $\otimes$ 是对称的），但当 $i>0$ 时，关于 $\mathrm{Tor}_i$ 的这件事我们要到\mbox{练习~23.3.A} 才会知道。
+
+\textbf{23.1.D.（练习）}\quad 证明：上文构造的\trConnectingHomomorphism{} $\delta$ 无关于一切选择（诸分解等）。请以尽可能少的不快把这件事做出来。（可能的提示：给定用于构造 \eqref{eq:tor-horseshoe} 的两组选择，构造一个映射——一张三维的图——把 \eqref{eq:tor-horseshoe} 的一个版本连到另一个版本。）
+
+\textbf{23.1.E.（不重要练习）}\quad 证明：$\mathrm{Tor}^A_i(M,\cdot)$ 是一个\trAdditiveFunctor（\mbox{定义~1.5.1}）。（我们后面不会用到它，你大可跳过。）
+
+这样，我们就打好了 $\mathrm{Tor}$ 的地基。
+
+

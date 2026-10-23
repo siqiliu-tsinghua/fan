@@ -1,0 +1,167 @@
+
+\section{用泛性质胀开}
+
+现在我们用\trUniversalProperty{}来定义\trBlowup。从这里讲起的不利之处在于：一眼看不出这个定义与 \S22.1 中的那些例子相同（甚至看不出它们有任何关系）。
+
+设 $X\hookrightarrow Y$ 是一个\trClosedSubscheme，相应于某个\trFiniteType\trQC\trIdealSheaf。（若 $Y$ \trLocally\trNoetherian，则「\trFiniteType」这条假设自动成立，诺特读者尽可对它置之不理。）
+
+$X\hookrightarrow Y$ 的\trBlowup{}是一个\trCartesianDiagram
+\[
+\tag{22.2.0.1}\label{eq:blowup-cartesian-diagram}
+\begin{tikzcd}[row sep=3.2em, column sep=4.6em]
+\mathrm{E}_X\,Y \ar[r,hook] \ar[d] & \mathrm{Bl}_X\,Y \ar[d,"\beta"'] \\
+X \ar[r,hook] & Y
+\end{tikzcd}
+\]
+使得 $\mathrm{E}_X\,Y$（$X$ 在 $\beta$ 之下的\trSchemeTheoreticPreimage）是 $\mathrm{Bl}_X\,Y$ 上的一个\trEffectiveCartierDivisor（定义于 \S9.5.1），使得其他任何一个这样的\trCartesianDiagram
+\[
+\tag{22.2.0.2}\label{eq:blowup-competing-diagram}
+\begin{tikzcd}[row sep=3.2em, column sep=4.6em]
+D \ar[r,hook] \ar[d] & W \ar[d] \\
+X \ar[r,hook] & Y,
+\end{tikzcd}
+\]
+其中 $D$ 是 $W$ 上的一个\trEffectiveCartierDivisor，都唯一地穿过它：
+\[
+\begin{tikzcd}[row sep=2.5em, column sep=4.2em]
+D \ar[r,hook] \ar[d] & W \ar[d] \\
+\mathrm{E}_X\,Y \ar[r,hook] \ar[d] & \mathrm{Bl}_X\,Y \ar[d] \\
+X \ar[r,hook] & Y.
+\end{tikzcd}
+\]
+
+我们称 $\mathrm{Bl}_X\,Y$ 为\textbf{\trBlowup}（沿 $X$ 对 $Y$ 胀开，或以 $X$ 为\textbf{\trCenter}（center）对 $Y$ 胀开）。（这项构造还有一些略显古旧的别名：\emph{单项变换}（monoidal transformation）、\emph{$\sigma$-过程}（$\sigma$-process）、\emph{二次变换}（quadratic transformation）与\emph{膨胀}（dilation）。）我们称 $\mathrm{E}_X\,Y$ 为这次\trBlowup{}的\trExceptionalDivisor。（$\mathrm{Bl}$ 与 $\beta$ 取自「blow-up（胀开）」，$\mathrm{E}$ 取自「exceptional（例外）」。）
+
+（当心：在\trMinimalModelProgram（minimal model program）中，「\trExceptionalDivisor」的含义与此略有不同：若 $X\to Y$ 是一个\trBirational\trMorphism，则 $X$ 上任何一个在 $Y$ 中的像维数更低的\trWeilDivisor，在这种语境下也称作例外除子。）
+
+由\trUniversalProperty{}的典型论证可知：若\trBlowup{}存在，则它在唯一\trIsomorphism{}的意义下唯一。（我们甚至可以借\trYonedaLemma{}的语言把它说得更显式：考虑由形如 \eqref{eq:blowup-competing-diagram} 的图组成的\trCategory，其中的\trMorphism{}是形如下图的资料
+\[
+\begin{tikzcd}[row sep=2.3em, column sep=2.7em]
+D \ar[r,hook] \ar[drr] \ar[ddr] & W \ar[drr] \ar[ddr] & & \\
+& & D' \ar[r,hook] \ar[dl] & W' \ar[dl] \\
+& X \ar[r,hook] & Y. &
+\end{tikzcd}
+\]
+那么\trBlowup{}就是这个\trCategory{}中的一个\trFinalObject——倘若它存在的话。）
+
+若 $Z\hookrightarrow Y$ 是 $Y$ 的任一\trClosedSubscheme，则\trSchemeTheoreticPreimage{} $\beta^{-1}Z$ 称作 $Z$ 的\textbf{\trTotalTransform}（total transform）。我们很快会看到，$\beta$ 在离开 $X$ 的地方是一个\trIsomorphism（\mbox{观察~22.2.2}）。$\overline{\beta^{-1}(Z-X)}$ 则称作 $Z$ 的\textbf{\trProperTransform}、\textbf{严格变换}（strict transform）或\textbf{双有理变换}（birational transform）。（我们将采用第一个名称；后面还会在更一般的情形下定义它。）我们很快会看到（\mbox{\trBlowupClosureLemma~22.2.7}），\trProperTransform{}\trNaturalIsomorphism{}于 $\mathrm{Bl}_{Z\cap X}\,Z$，其中 $Z\cap X$ 是\trSchemeTheoretic{}交。
+
+我们随后会证明\trBlowup{}总是存在，并把它显式地描述出来。首先我们来做一列观察——\emph{假定\trBlowup{}存在}。
+
+\textbf{22.2.1.}\ \emph{观察。}\quad 若 $X$ 是空集，则 $\mathrm{Bl}_X\,Y=Y$。更一般地，若 $X$ 是一个\trEffectiveCartierDivisor，则\trBlowup{}是一个\trIsomorphism。（理由：$\id_Y\colon Y\to Y$ 满足这条\trUniversalProperty。）
+
+\textbf{22.2.A.（练习）}\quad 若 $U$ 是 $Y$ 的一个\trOpenSubset，则 $\mathrm{Bl}_{U\cap X}\,U\cong\beta^{-1}(U)$，其中 $\beta\colon\mathrm{Bl}_X\,Y\to Y$ 是那个\trBlowup。
+
+于是，「我们可以局部地计算\trBlowup。」
+
+\textbf{22.2.B.（练习）}\quad 证明：若 $(Y_\alpha)$ 是 $Y$ 的一个\trOpenCover（$\alpha$ 跑遍某个\trIndexSet），而 $Y_\alpha$ 沿 $X\cap Y_\alpha$ 的\trBlowup{}存在，则 $Y$ 沿 $X$ 的\trBlowup{}存在。
+
+\textbf{22.2.2.}\ \emph{观察。}\quad 把\mbox{观察~22.2.1} 与\mbox{练习~22.2.A} 结合起来便知：\trBlowup{}在你所胀开的轨迹之外是一个\trIsomorphism：
+\[
+\beta|_{\mathrm{Bl}_X\,Y\setminus\mathrm{E}_X\,Y}\colon \mathrm{Bl}_X\,Y\setminus\mathrm{E}_X\,Y \longrightarrow Y\setminus X
+\]
+是一个\trIsomorphism。
+
+\textbf{22.2.3.}\ \emph{观察。}\quad 若 $X=Y$，则\trBlowup{}是空集：使得 $X$ 的拉回是一个\trEffectiveCartierDivisor{}的\trMorphism{} $W\to Y$ 唯有 $\varnothing\hookrightarrow Y$。这一下我们可就把 $Y$「胀没了」！
+
+\textbf{22.2.C.（练习：\trBlowup{}保持\trIrreducibility{}与\trReducedness）}\quad 证明：若 $Y$ \trIrreducible，而 $X$ 不包含 $Y$ 的\trGenericPoint，则 $\mathrm{Bl}_X\,Y$ \trIrreducible。再证明：若 $Y$ \trReduced，则 $\mathrm{Bl}_X\,Y$ \trReduced。
+
+\textbf{22.2.4. 首个非平凡情形中的存在性：胀开一个局部主闭子概形。}\quad
+接下来我们来看为什么当 $X\hookrightarrow Y$ 局部地由一个方程切出时，$\mathrm{Bl}_X\,Y$ 存在。由于这个问题在 $Y$ 上是局部的（\mbox{练习~22.2.B}），我们化归到仿射情形 $\Spec A/(t)\hookrightarrow\Spec A$。（一个好例子是 $A=k[x,y]/(xy)$、$t=x$，值得把它想透。）令
+\[
+I=\ker(A\to A_t)=\{a\in A\;:\;t^na=0\ \text{对某个 } n>0\},
+\]
+并令 $\phi\colon A\to A/I$ 为\trProjection。
+
+\textbf{22.2.D.（练习）}\quad 证明：$\phi(t)$ 在 $A/I$ 中不是\trZerodivisor。
+
+\textbf{22.2.E.（练习）}\quad 证明：$\beta\colon\Spec A/I\to\Spec A$ 是 $\Spec A$ 沿 $\Spec A/t$ 的\trBlowup。换言之，证明
+\[
+\begin{tikzcd}[row sep=3em, column sep=5.4em]
+\Spec A/(t,I) \ar[r] \ar[d] & \Spec A/I \ar[d,"\beta"'] \\
+\Spec A/t \ar[r] & \Spec A
+\end{tikzcd}
+\]
+是一个「胀开图」\eqref{eq:blowup-cartesian-diagram}。提示：在验证\trUniversalProperty{}时，先化归到 $W$（即 \eqref{eq:blowup-competing-diagram} 中的 $W$）为\trAffine{}的情形，再去解决由此产生的关于环的问题。视你的做法而定，你或许会觉得\mbox{练习~11.3.G}——它讲的是在\trEffectiveCartierDivisor{}之上\trMorphism{}延拓的唯一性——有帮助。
+
+\textbf{22.2.F.（练习）}\quad 证明：$\Spec A/I$ 是 $D(t)$ 在 $\Spec A$ 中的\trSchemeTheoretic{}闭包。
+
+于是你尽可以在几何上把 $\Spec A/I\to\Spec A$ 解读为「把支撑在 $V(t)$ 中的任何毛絮统统剃掉」。在诺特情形，这可以解读为删去那些落在 $V(t)$ 中的\trAssociatedPoint。这个说法本来就是刻意含糊的；只有当你自己想弄精确时，才需要去琢磨如何把它说精确。
+
+\textbf{22.2.5. \trBlowupClosureLemma。}\quad
+设有\trCartesianDiagram
+\[
+\begin{tikzcd}[row sep=3em, column sep=5.6em]
+W \ar[r,hook,"\text{cl.~emb.}"'] \ar[d] & Z \ar[d] \\
+X \ar[r,hook,"\text{cl.~emb.}"'] & Y,
+\end{tikzcd}
+\]
+其中下面的那个\trClosedEmbedding{}相应于一个\trFiniteType\trIdealSheaf（从而上面的那个亦然）。头一遍读到这里时，只考虑 $Z\to Y$ 为\trClosedEmbedding{}的特殊情形，或许会有帮助。
+
+然后把这个方块沿\trBlowup{} $\beta\colon\mathrm{Bl}_X\,Y\to Y$ 取\trFiberProduct，便得到\trFiberedCube（fibered cube）
+\[
+\tag{22.2.5.1}\label{eq:blowup-fibered-cube}
+\begin{tikzcd}[row sep=2.2em, column sep=3.4em]
+W\times_Y\mathrm{E}_X\,Y \ar[r,hook] \ar[d] \ar[ddr] & Z\times_Y\mathrm{Bl}_X\,Y \ar[d] \ar[ddr] \\
+\mathrm{E}_X\,Y \ar[r,hook,"\text{Cartier}"'] \ar[ddr] & \mathrm{Bl}_X\,Y \ar[ddr] \\
+& W \ar[r,hook,"\text{cl.~emb.}"'] \ar[d] & Z \ar[d] \\
+& X \ar[r,hook,"\text{cl.~emb.}"'] & Y.
+\end{tikzcd}
+\]
+其中顶部的方块正是\trCartesianDiagram
+\[
+\tag{22.2.5.2}\label{eq:blowup-top-square}
+\begin{tikzcd}[row sep=3em, column sep=6.6em]
+W\times_Y\mathrm{E}_X\,Y \ar[r,hook] \ar[d] & Z\times_Y\mathrm{Bl}_X\,Y \ar[d] \\
+\mathrm{E}_X\,Y \ar[r,hook,"\text{Cartier}"'] & \mathrm{Bl}_X\,Y.
+\end{tikzcd}
+\]
+
+\textbf{22.2.G.（简单练习）}\quad 为什么 \eqref{eq:blowup-top-square} 是一个\trCartesianDiagram？证明下面这批有用的\trCanonical{}同构：
+\[
+W\times_Y\mathrm{E}_X\,Y\cong Z\times_Y\mathrm{E}_X\,Y\cong W\times_Y\mathrm{Bl}_X\,Y.
+\]
+
+\textbf{22.2.6.}\quad \eqref{eq:blowup-top-square} 中下面的那个\trClosedEmbedding{}局部地由一个方程切出，于是上面的那个\trClosedEmbedding{}亦复如此。然而，$Z\times_Y\mathrm{Bl}_X\,Y$ 上的局部方程未必是\trNonZerodivisor，因而上面的\trClosedEmbedding{}未必是一个\trEffectiveCartierDivisor。
+
+设 $\bar{Z}$ 为
+\[
+(Z\times_Y\mathrm{Bl}_X\,Y)\setminus(W\times_Y\mathrm{Bl}_X\,Y)
+\]
+在 $Z\times_Y\mathrm{Bl}_X\,Y$ 中的\trSchemeTheoretic{}闭包。（由于 $W\times_Y\mathrm{Bl}_X\,Y$ 是\trLocallyPrincipal{}的，我们恰好就处在 \S22.2.4 的情形之中，故这个\trSchemeTheoretic{}闭包并不神秘。）注意：在 $Z\to Y$ 为\trClosedEmbedding{}的特殊情形，$\bar{Z}$ 就是 \S22.2 中定义的\trProperTransform。有鉴于此，即便 $Z\to Y$ \emph{不}是\trClosedEmbedding，把 $\bar{Z}$ 称作 $Z$ 的\textbf{\trProperTransform}、把 $Z\times_Y\mathrm{Bl}_X\,Y$ 称作 $Z$ 的\textbf{\trTotalTransform}，也是合理的。
+
+把 $\mathrm{E}_{\bar{Z}}\hookrightarrow\bar{Z}$ 定义为 $\mathrm{E}_X\,Y$ 拉回到 $\bar{Z}$ 上的结果，亦即由如下\trCartesianDiagram{}给出：
+\[
+\begin{tikzcd}[row sep=2.5em, column sep=5.2em]
+\mathrm{E}_{\bar{Z}} \ar[r,hook] \ar[d,hook,"\text{cl.~emb.}"'] & \bar{Z} \ar[d,hook,"\text{cl.~emb.}"'] & \text{真变换} \\
+W\times_Y\mathrm{E}_X\,Y \ar[r,hook,"\text{loc.~prin.}"'] \ar[d] & Z\times_Y\mathrm{Bl}_X\,Y \ar[d] & \text{\trTotalTransform} \\
+\mathrm{E}_X\,Y \ar[r,hook,"\text{Cartier}"'] & \mathrm{Bl}_X\,Y. &
+\end{tikzcd}
+\]
+
+注意，$\mathrm{E}_{\bar{Z}}$ 是 $\bar{Z}$ 上的一个\trEffectiveCartierDivisor。（它局部地由一个方程切出，而这个方程是把 $\mathrm{E}_X\,Y$ 在 $\mathrm{Bl}_X\,Y$ 上的某个局部方程拉回而来。你能看出为什么它在局部上不是\trZerodivisor{}吗？不妨注意：依据\mbox{练习~22.2.E} 与\mbox{练习~22.2.F}（外加\trBlowup{}可以仿射局部地计算这一事实），上图的顶部方块是一个胀开方块，这一点会有帮助。）
+
+\textbf{22.2.7.\ \trBlowupClosureLemma。}\ ——\ \emph{沿用前述记号：$(\mathrm{Bl}_W\,Z,\ \mathrm{E}_W\,Z)$ \trCanonically\trIsomorphic{}于 $(\bar{Z},\ \mathrm{E}_{\bar{Z}})$。更精确地说：若\trBlowup{} $\mathrm{Bl}_X\,Y$ 存在，则 $(\bar{Z},\ \mathrm{E}_{\bar{Z}})$ 就是 $Z$ 沿 $W$ 的\trBlowup。}
+
+这将会非常有用。我们先做几点初步评论。头三点适用于 $Z\to Y$ 为\trClosedEmbedding{}的特殊情形，而第四点评论基本上是在告诉我们：本不该把注意力都集中在这个特殊情形上。
+
+（1）首先，注意若 $Z\to Y$ 是\trClosedEmbedding，则\mbox{\trBlowupClosureLemma}断言：\trProperTransform{}（如 \S22.2 中所定义）正是 $Z$ 沿\trSchemeTheoretic{}交 $W=X\cap Z$ 的\trBlowup。
+
+（2）特别地，\mbox{\trBlowupClosureLemma}让你真能动手算出\trBlowup，我们很快就会做一大批例子。例如，设 $C$ 是一条平面\trCurve，在点 $p$ 处\trSingular，而我们想把 $C$ 在 $p$ 处胀开。那么我们可以转而把平面在 $p$ 处胀开（至于具体怎么做，我们已经描述过了，哪怕我们还未证明它满足胀开的\trUniversalProperty），然后再取 $C\setminus\{p\}$ 在这个\trBlowup{}中的\trSchemeTheoretic{}闭包。
+
+（3）更一般地，若 $W$ 是某个我们想要胀开的讨厌子概形，而 $Z$ 是一个\trFiniteType{} $k$-\trScheme，则同样的技巧也能奏效。我们可以局部地工作（\mbox{练习~22.2.A}），故不妨假设 $Z$ \trAffine。若 $W$ 由 $r$ 个方程 $f_1,\dots,f_r\in\Gamma(Z,\OO_Z)$ 切出，则把这 $f$ 补全成 $\Gamma(Z,\OO_Z)$ 的一组生成元 $f_1,\dots,f_n$。这给出 $Z$ 向 $\mathbb{A}^n$ 中的一个\trClosedEmbedding，使得 $W$ 是 $Z$ 与一个坐标线性空间 $\mathbb{A}^{n-r}$ 的\trSchemeTheoretic{}交。
+
+（4）还要更一般地，这把\trBlowup{}的存在性化归到了一个特定的特殊情形。（若你更愿意在固定的域 $k$ 上工作，尽可把这段讨论中的 $\mathbb{Z}$ 换成 $k$。）假设对每个 $n$，$\mathrm{Bl}_{V(x_1,\dots,x_n)}\Spec\mathbb{Z}[x_1,\dots,x_n]$ 都存在。那么我断言：\trBlowup{}总是存在。道理如下。我们不妨设 $Y$ \trAffine，比如说 $\Spec B$，而 $X=\Spec B/(f_1,\dots,f_n)$。于是我们有\trMorphism{} $Y\to\mathbb{A}^n_{\mathbb{Z}}$，它由 $x_i\mapsto f_i$ 给出，使得 $X$ 是原点的\trSchemeTheoreticPreimage。于是由\mbox{\trBlowupClosureLemma}，$\mathrm{Bl}_X\,Y$ 存在。（不过，我们并不会走这条路线。）
+
+\textbf{22.2.H.（练习）}\quad 证明\mbox{\trBlowupClosureLemma~22.2.7}。提示：显然，应当用\trUniversalProperty{}来构造两个方向上的\trMorphism。构造下面这张图，也许有用，也许没用。（你会认出其中的底层立方体正是 \eqref{eq:blowup-fibered-cube}。）
+\[
+\begin{tikzcd}[row sep=1.7em, column sep=2.5em]
+& \mathrm{E}_{\bar{Z}} \ar[rr,hook,"\text{eff.~Cartier}"] \ar[dl] \ar[dd,hook] & & \bar{Z} \ar[dl] \ar[dd,hook] \\
+\mathrm{E}_W\,Z \ar[rr,hook,"\text{eff.~Cartier}"] \ar[dd] \ar[dr] & & \mathrm{Bl}_W\,Z \ar[dr] \ar[dd] & \\
+& Z\times_Y\mathrm{E}_X\,Y \ar[rr,hook,"\text{loc.~prin.}"] \ar[dl] \ar[dd] & & Z\times_Y\mathrm{Bl}_X\,Y \ar[dl] \ar[dd] \\
+W \ar[rr,hook] \ar[dd] & & Z \ar[dd] & \\
+& \mathrm{E}_X\,Y \ar[rr,hook,"\text{eff.~Cartier}"] \ar[dl] & & \mathrm{Bl}_X\,Y \ar[dl] \\
+X \ar[rr,hook] & & Y &
+\end{tikzcd}
+\]
+钩形箭头表示\trClosedEmbedding；当这些\trMorphism{}进而还是\trLocallyPrincipal{}的、甚至是有效\trCartier{}除子时，图中也相应予以标注。\mbox{练习~11.3.G}（关于在\trEffectiveCartierDivisor{}之上\trMorphism{}延拓的唯一性）也许有用，也许没用。注意：若 $Z\to Y$ 实际上是\trClosedEmbedding，则 $Z\times_Y\mathrm{Bl}_X\,Y\to\mathrm{Bl}_X\,Y$ 亦然，从而 $\bar{Z}\to\mathrm{Bl}_X\,Y$ 也是如此。

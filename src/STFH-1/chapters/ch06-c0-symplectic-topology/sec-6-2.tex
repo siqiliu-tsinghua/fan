@@ -1,0 +1,299 @@
+\section{拓扑哈密顿流与哈密顿量}
+\label{sec:topological-hamiltonian-flows-hamiltonians}
+
+辛流形 $(M,\omega)$ 上的含时哈密顿方程是一阶常微分方程
+\[
+ \dot x=X_H(t,x),
+\]
+其中，与函数 $H:\mathbb R\times M\to\mathbb R$ 相伴的含时向量场
+$X_H$ 由定义方程
+\begin{equation}
+ dH_t=X_{H_t}\mathbin{\lrcorner}\omega
+ \label{eq:topological-hamiltonian-vector-field}
+\end{equation}
+给出。\emph{因此，如果考虑 $C^{1,1}$ 的函数 $H$，从而可以应用上述哈密顿方程解的存在唯一性定理}，那么微分同胚同痕
+$t\mapsto\phi_H^t$ 就由哈密顿量 $H$ 唯一确定。反过来，如果给定哈密顿微分同胚的一个光滑同痕
+$\lambda$，则可以先对该同痕微分，再解方程
+\eqref{eq:topological-hamiltonian-vector-field}，从而得到相应的归一化哈密顿量 $H$。所以，在\emph{光滑范畴}中，这种对应是双射。
+
+另一方面，由于这种对应涉及对函数微分以及求解哈密顿方程，当哈密顿量的正则性弱于
+$C^{1,1}$ 时，哈密顿方程的可解性问题使这种对应变得更为模糊。
+
+为了处理这种差异，穆勒与吴龙根在 (OhM07) 中引入了光滑哈密顿流的\emph{哈密顿极限}概念，并把由此得到的哈密顿极限定义为\emph{拓扑哈密顿流}。
+
+我们先给出 (OhM07) 中采用的辛同胚群之定义。在
+$\operatorname{Homeo}(M)$ 上赋予紧开拓扑；当 $M$ 是紧流形时，它等价于由度量
+\[
+ \overline d(\phi,\psi)
+ =\max\bigl\{d_{C^0}(\phi,\psi),
+ d_{C^0}(\phi^{-1},\psi^{-1})\bigr\}
+\]
+诱导的度量拓扑。
+
+\begin{definition}[辛同胚群]\label{def:symplectic-homeomorphism-group}
+\stfhIndex{I279}{xin^tong^pei^qun}{辛同胚群（symplectic homeomorphism group）}
+定义
+\[
+ \operatorname{Sympeo}(M,\omega)
+ :=\overline{\Symp(M,\omega)}
+\]
+为 $\Symp(M,\omega)$ 在 $\operatorname{Homeo}(M)$ 中的
+$C^0$-闭包，并称 $\operatorname{Sympeo}(M,\omega)$ 为\emph{辛同胚群}。
+\end{definition}
+
+以
+\[
+ \mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})
+\]
+表示满足 $\lambda(0)=\operatorname{id}$ 的光滑哈密顿路径
+$\lambda:[0,1]\to\Symp(M,\omega)$ 的集合，并在其上赋予
+$C^0$-哈密顿拓扑。这个概念是在 (OhM07) 中引入的。
+
+\begin{definition}[\texorpdfstring{$C^0$-哈密顿拓扑}{C0-哈密顿拓扑}]
+\label{def:c0-hamiltonian-topology}
+\stfhIndex{I006}{00-symbol-006}{$C^0$-哈密顿拓扑（$C^0$ Hamiltonian topology）}
+设 $(M,\omega)$ 是闭辛流形。哈密顿路径集合
+$\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})$
+的 $C^0$-哈密顿拓扑，是以如下子集族为基的拓扑：
+\[
+\begin{split}
+ \mathcal U(\phi_H,\epsilon_1,\epsilon_2):={}&
+ \bigl\{\phi_{H'}\in
+ \mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})\mathrel{\big|}\;
+ \|\overline H\#H'\|_\infty<\epsilon_1,\\
+ &\hspace{48mm}
+ \overline d(\phi_H,\phi_{H'})<\epsilon_2\bigr\},
+\end{split}
+\]
+其中 $\epsilon_1,\epsilon_2>0$，并且
+$\phi_H\in\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})$。
+\end{definition}
+
+\begin{exercise}\label{ex:c0-hamiltonian-metric-topology}
+证明上述哈密顿拓扑等价于由度量
+\[
+ d_{\mathrm{ham}}(\lambda,\mu)
+ :=\overline d(\lambda,\mu)+\operatorname{leng}(\lambda^{-1}\mu)
+\]
+诱导的度量拓扑，其中 $\overline d$ 是
+$\mathcal P(\operatorname{Homeo}(M),\operatorname{id})$ 上的
+$C^0$-度量。（证明见 (OhM07) 的命题 3.10。）
+\end{exercise}
+
+考虑\emph{展开映射}
+\stfhIndex{I013}{00-symbol-013}{$\operatorname{Dev}$}
+\stfhIndex{I100}{zhan^kai^ying^she}{展开映射（developing map）}
+\[
+ \operatorname{Dev}:\mathcal P^{\mathrm{ham}}
+ (\Symp(M,\omega),\operatorname{id})
+ \longrightarrow C_0^\infty([0,1]\times M,\mathbb R).
+\]
+当 $\lambda=\phi_H:t\mapsto\phi_H^t$ 时，这个映射把
+$\lambda$ 赋为其归一化生成哈密顿量 $H$。我们还考虑映射
+\[
+ \iota_{\mathrm{ham}}:\mathcal P^{\mathrm{ham}}
+ (\Symp(M,\omega),\operatorname{id})
+ \longrightarrow\mathcal P(\Symp(M,\omega),\operatorname{id})
+ \lhook\joinrel\longrightarrow
+ \mathcal P(\operatorname{Homeo}(M,\omega),\operatorname{id}).
+\]
+这里第一个映射连续，第二个映射是典范包含映射。
+
+我们称乘积映射 $(\iota_{\mathrm{ham}},\operatorname{Dev})$ 为\emph{解折叠映射}，并把它的像记为
+\stfhIndex{I295}{jie^zhe^die^ying^she}{解折叠映射（unfolding map）}
+\begin{equation}
+ \mathcal Q:=\operatorname{Image}(\iota_{\mathrm{ham}},\operatorname{Dev})
+ \subset\mathcal P(\operatorname{Homeo}(M),\operatorname{id})
+ \times L_0^{1,\infty}([0,1]\times M,\mathbb R).
+ \label{eq:unfolding-map-image}
+\end{equation}
+这里 $L_0^{1,\infty}([0,1]\times M,\mathbb R)$ 是
+\stfhIndex{I026}{00-symbol-026}{$L_0^{1,\infty}([0,1]\times M,\mathbb R)$}
+$C_0^\infty([0,1]\times M,\mathbb R)$ 的闭包。于是，依定义，映射
+$\operatorname{Dev}$ 与 $\iota_{\mathrm{ham}}$ 关于
+$\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})$ 上的度量
+$d_{\mathrm{ham}}$ 都是利普希茨的；因而，解折叠映射典范地延拓到
+$\mathcal P(\operatorname{Homeo}(M),\operatorname{id})\times
+L_0^{1,\infty}([0,1]\times M,\mathbb R)$ 中的闭包
+$\overline{\mathcal Q}$，也就是说，有连续投影
+\begin{align}
+ \overline\pi_1:\overline{\mathcal Q}
+ &\longrightarrow\mathcal P(\operatorname{Homeo}(M),\operatorname{id}),
+ \label{eq:projection-topological-hamiltonian-paths}\\
+ \overline\pi_2:\overline{\mathcal Q}
+ &\longrightarrow L_0^{1,\infty}([0,1]\times M,\mathbb R).
+ \label{eq:projection-topological-hamiltonians}
+\end{align}
+
+还要指出，依定义，评价映射
+$\operatorname{ev}_1:\mathcal P^{\mathrm{ham}}
+(\Symp(M,\omega),\operatorname{id})\to\Symp(M,\omega)
+\to\operatorname{Homeo}(M)$ 也延拓为
+\begin{equation}
+ \overline{\operatorname{ev}}_1:
+ \operatorname{Image}(\overline\pi_1)\longrightarrow
+ \operatorname{Homeo}(M).
+ \label{eq:extended-time-one-evaluation}
+\end{equation}
+
+下面的定义是在 (OhM07) 中引入的。
+
+\begin{definition}\label{def:topological-hamiltonian-path}
+\stfhIndex{I040}{00-symbol-040}{$\mathcal P^{\mathrm{ham}}(\operatorname{Sympeo}(M,\omega),\operatorname{id})$}
+\stfhIndex{I023}{00-symbol-023}{$\mathcal H_0^{(1,\infty)}([0,1]\times M)$}
+定义集合
+\[
+\begin{split}
+ \mathcal P^{\mathrm{ham}}
+ (\operatorname{Sympeo}(M,\omega),\operatorname{id})
+ &:={\operatorname{Image}}(\overline\pi_1)\\
+ &\subset\mathcal P(\operatorname{Homeo}(M),\operatorname{id}),
+\end{split}
+\]
+并称其中任意元素为\emph{拓扑哈密顿路径}。我们还把
+\stfhIndex{I286}{ta^pu^ha^mi^dun^lu^jing}{拓扑哈密顿路径（topological Hamiltonian path）}
+\[
+ \mathcal H_0^{(1,\infty)}([0,1]\times M)
+\]
+定义为 $\overline\iota_{\mathrm{ham}}$ 的像，并称其中任意元素为\emph{拓扑哈密顿量}。
+\stfhIndex{I285}{ta^pu^ha^mi^dun^liang}{拓扑哈密顿量（topological Hamiltonian）}
+\end{definition}
+
+自然要问，投影 $\overline\pi_1$ 与 $\overline\pi_2$ 是否为一一映射。这个问题触及
+$C^0$-辛拓扑的核心，并涉及辛流形上的一些函数论。我们将在第 22.6 节详细研究这个单射性问题。
+
+把上述定义展开可知，对任意给定元素
+$H\in\mathcal H_0^{(1,\infty)}([0,1]\times M)$，存在光滑哈密顿量序列
+$H_i$，使得
+\begin{enumerate}[label=(\arabic*)]
+ \item $H_i\to H$ 在 $L^{(1,\infty)}$-拓扑中收敛；
+ \item $\phi_{H_i}$ 与 $\phi_{H_i}^{-1}$ 都在 $[0,1]\times M$ 上一致收敛。
+\end{enumerate}
+我们称任何这样的序列为拓扑哈密顿量 $H$ 的\emph{逼近序列}。
+
+以 $C^0(M)$ 表示 $M$ 上连续函数的集合，并赋予它
+$C^0$-范数 $\|\mathord\cdot\|_{C^0}$。
+
+\begin{definition}\label{def:l1-c0-valued-functions}
+\stfhIndex{I025}{00-symbol-025}{$L^1([0,1],C^0(M))$}
+\stfhIndex{I046}{00-symbol-046}{$\operatorname{tmint}(H)$}
+定义 $L^1([0,1],C^0(M))$ 为几乎处处定义的映射
+\[
+ H:t\in[0,1]\longmapsto C^0(M)
+\]
+的集合，其中要求函数
+\[
+ \operatorname{tmint}(H)(t,x):=\int_0^t H(s,x)\,ds
+\]
+关于 $(t,x)$ 联合连续；我们称它为 $[0,1]$ 上取值于
+$C^0(M)$ 的 $L^1$-函数空间。
+\end{definition}
+
+有典范嵌入
+\[
+ L^1([0,1],C^0(M))\lhook\joinrel\longrightarrow
+ L^{(1,\infty)}([0,1]\times M).
+\]
+在这方面，我们先证明如下定理。
+
+\begin{theorem}\label{thm:topological-hamiltonian-l1-c0}
+设
+$H\in\mathcal H_0^{(1,\infty)}([0,1]\times M)
+\subset L^{(1,\infty)}([0,1]\times M)$。则下列命题成立：
+\begin{enumerate}[label=(\arabic*)]
+ \item $H$ 属于 $L^1([0,1],C^0(M))$，即
+ \[
+  \mathcal H_0^{(1,\infty)}([0,1]\times M)
+  \subset L^1([0,1],C^0(M));
+ \]
+ \item 函数
+ $\operatorname{osc}(H)(t):=\operatorname{osc}(H_t(\mathord\cdot))$
+ 关于 $t\in[0,1]$ 几乎处处有定义，并且属于
+ $L^1([0,1],\mathbb R)$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+设 $H_i$ 是 $H$ 的一个逼近序列。依上述逼近序列的定义，有收敛
+\[
+ \int_0^1\operatorname{osc}(H_i-H)\,dt\longrightarrow0.
+\]
+特别地，
+\[
+ \int_0^1\operatorname{osc}(H_i-H_j)\,dt\longrightarrow0
+ \qquad\text{当 }i,j\to\infty.
+\]
+我们先考察函数
+$(t,x)\mapsto\int_0^tH(s,x)\,ds$。考虑函数
+$\operatorname{osc}(H_i):[0,1]\to\mathbb R_+$，其定义为
+\[
+ \operatorname{osc}(H_i)(t):=\operatorname{osc}(H_{i,t})
+ \qquad(t\in[0,1]),
+\]
+这里回忆，对函数 $h:M\to\mathbb R$，有
+$\operatorname{osc}(h)=\max h-\min h$。由于
+$H_i\to H$ 在 $L^{(1,\infty)}$ 中收敛，序列
+$\operatorname{osc}(H_i)$ 是 $L^1([0,1],\mathbb R)$ 中的柯西序列。注意
+\begin{equation}
+ \bigl|\operatorname{osc}(H_i)-\operatorname{osc}(H_j)\bigr|
+ \leq\operatorname{osc}(H_i-H_j).
+ \label{eq:oscillation-lipschitz}
+\end{equation}
+我们还考虑 $\operatorname{osc}(H_i-H_j)$。由 $H_i$ 的
+$L^{(1,\infty)}$-收敛性，有
+\[
+ \operatorname{osc}(H_i-H_j)\longrightarrow0
+ \quad\text{于 }L^1([0,1],\mathbb R),
+ \qquad i,j\to\infty.
+\]
+特别地，\eqref{eq:oscillation-lipschitz} 蕴含：存在子序列
+$H_{i_k}$，使得当 $k\to\infty$ 时
+$\operatorname{osc}(H_{i_k})$ 在 $[0,1]$ 上几乎处处收敛，并且
+\[
+ \operatorname{osc}(H_{i_k}-H_{i_j})(t)\longrightarrow0
+ \quad\text{在 }[0,1]\text{ 上几乎处处},
+ \qquad k,j\to\infty.
+\]
+记
+\[
+ A=\{t\in[0,1]\mid \operatorname{osc}H_{i_k}(t)\text{ 收敛}\},
+\]
+它具有满测度。设 $t\in A$。由振幅的定义，
+\begin{equation}
+\begin{split}
+ \operatorname{osc}(H_{i_k}-H_{i_j})(t)
+ &={\max}_{x\in M}(H_{i_k,t}-H_{i_j,t})\\
+ &\quad-{\min}_{x\in M}(H_{i_k,t}-H_{i_j,t}),
+\end{split}
+ \label{eq:oscillation-pointwise-difference}
+\end{equation}
+所以 $H_{i_k}(\mathord\cdot,t):M\to\mathbb R$ 是
+$C^0$-拓扑中的柯西序列，因而对每个 $t\in A$ 一致收敛于连续函数
+$H_{\infty,t}$。只要 $H_{\infty,t}$ 有定义，就对
+$(t,x)\in A\times M$ 置
+$H_\infty(t,x)=H_{\infty,t}(x)$；于是 $H_\infty$ 是一个几乎处处定义的函数。由
+\eqref{eq:oscillation-pointwise-difference} 与法图引理，得到
+\[
+ \int_0^1\operatorname{osc}(H_{i_k}-H_\infty)(t)\,dt
+ \leq\liminf_{j\to\infty}
+ \int_0^1\operatorname{osc}(H_{i_k}-H_{i_j})(t)\,dt.
+\]
+令 $k\to\infty$，便得到
+\[
+ \lim_{k\to\infty}
+ \int_0^1\operatorname{osc}(H_{i_k}-H_\infty)(t)\,dt=0.
+\]
+这蕴含 $H_\infty$ 也是 $H_{i_k}$ 的一个
+$L^{(1,\infty)}$-极限。由 $L^{(1,\infty)}$-极限的唯一性，得到
+$H=H_\infty$ 是一个 $L^{(1,\infty)}$-函数。于是
+$H(t,\mathord\cdot)$ 有定义且连续，并且对几乎所有
+$t\in[0,1]$，$H_i(t,\mathord\cdot)\to H(t,\mathord\cdot)$ 一致收敛。这证明了
+\[
+ \mathcal H_0^{(1,\infty)}([0,1]\times M)
+ \subset L^1([0,1],C^0(M)).
+\]
+
+在上述证明过程中，我们还证明了
+$\operatorname{osc}(H)(t):=\operatorname{osc}(H(\mathord\cdot,t))$
+几乎处处有定义，并且属于 $L^1([0,1],\mathbb R)$。
+\end{proof}

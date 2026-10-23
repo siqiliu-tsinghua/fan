@@ -1,0 +1,124 @@
+\appendix
+\part*{附录一：抽象废话}
+\addcontentsline{toc}{part}{附录一：抽象废话}
+\chapter{富集范畴论基本概念}\label{ch:enriched-category-theory}
+
+
+\providecommand{\Cat}{\mathcal{C}at}
+\providecommand{\sSet}{s\mathcal{S}et}
+\providecommand{\Set}{\mathcal{S}et}
+
+\trEnrichedCategory{}论之所以存在，是因为\trEnrichedCategory{}天然存在。为作
+说明，试考虑由下列数据给出的一个 1-\trCategory{} $\mathcal{C}$：
+\begin{itemize}
+\item 对象的一个汇集；
+\item 对每一对对象 $x$，$y\in\mathcal{C}$，一个由 $\mathcal{C}$ 中从 $x$ 到%
+  $y$ 的箭头组成的集合 $\mathcal{C}(x,y)$；
+\item 对每个 $x\in\mathcal{C}$，一个指定的单位元%
+  $\mathrm{id}_x\colon 1\to\mathcal{C}(x,x)$；并且对每三个对象 $x$，$y$，%
+  $z\in\mathcal{C}$，一个指定的复合映射
+  $\circ\colon\mathcal{C}(y,z)\times\mathcal{C}(x,y)\to\mathcal{C}(x,z)$，
+  满足下述结合律与单位\footnote{令人困惑的是，这一\trDiagram{}包含两种不同
+  样式的恒等箭头：例如，顶部的那条水平箭头便是指定的单位元
+  $\mathrm{id}_x\colon 1\to\mathcal{C}(x,x)$ 与相伴于对象 $\mathcal{C}(x,y)$
+  的恒等箭头这二者的乘积。}条件：
+\end{itemize}
+
+\rvsync{1}%
+\begin{rveq}\label{eq:assoc-unit-squares}
+\begin{tikzpicture}[x=1.6em,y=1.5em]
+  \node (TL) at (0,2.8)  {$\mathcal{C}(y,z)\times\mathcal{C}(x,y)\times\mathcal{C}(w,x)$};
+  \node (TR) at (10,2.8) {$\mathcal{C}(x,z)\times\mathcal{C}(w,x)$};
+  \node (BL) at (0,0.8)  {$\mathcal{C}(y,z)\times\mathcal{C}(w,y)$};
+  \node (BR) at (10,0.8) {$\mathcal{C}(w,z)$};
+  \draw[->] (4.4,2.8) -- (7.0,2.8);
+  \node at (5.7,3.25) {$\scriptstyle\circ\times\mathrm{id}$};
+  \draw[->] (0,2.45) -- (0,1.15);
+  \node at (-1.35,1.8) {$\scriptstyle\mathrm{id}\times\circ$};
+  \draw[->] (10,2.45) -- (10,1.15);
+  \node at (10.6,1.8) {$\scriptstyle\circ$};
+  \draw[->] (2.7,0.8) -- (8.8,0.8);
+  \node at (5.7,0.35) {$\scriptstyle\circ$};
+  \node (tl2) at (0,-1.2)  {$\mathcal{C}(x,y)$};
+  \node (tr2) at (10,-1.2) {$\mathcal{C}(x,y)\times\mathcal{C}(x,x)$};
+  \node (bl2) at (0,-3.2)  {$\mathcal{C}(y,y)\times\mathcal{C}(x,y)$};
+  \node (br2) at (10,-3.2) {$\mathcal{C}(x,y)$};
+  \draw[->] (1.2,-1.2) -- (7.0,-1.2);
+  \node at (4.1,-0.7) {$\scriptstyle\mathrm{id}\times\mathrm{id}_x$};
+  \draw[->] (0,-1.65) -- (0,-2.75);
+  \node at (-1.45,-2.2) {$\scriptstyle\mathrm{id}_y\times\mathrm{id}$};
+  \draw[->] (10,-1.65) -- (10,-2.75);
+  \node at (10.55,-2.2) {$\scriptstyle\circ$};
+  \draw[->] (1.1,-1.45) -- (8.85,-2.95);
+  \node at (4.7,-1.85) {$\scriptstyle\mathrm{id}$};
+  \draw[->] (2.7,-3.2) -- (8.8,-3.2);
+  \node at (5.7,-3.65) {$\scriptstyle\circ$};
+\end{tikzpicture}
+\end{rveq}
+
+在许多令人感兴趣的数学例子中，集合 $\mathcal{C}(x,y)$ 都可以被赋予额外的
+结构；在此情形下，若在施行进一步的范畴论构造时不将它考虑在内，就未免奇怪了。
+
+或许在每个 hom-集中都存在一个指定的零箭头 $0_{x,y}\in\mathcal{C}(x,y)$，它为
+复合定义一个双侧理想：$g\circ 0\circ f=0$。或者将此延伸，或许每个
+$\mathcal{C}(x,y)$ 都是一个\trAbelianGroup{}，且复合为 $\mathbb{Z}$-\trBilinear。
+又或者在另一个方向上，或许 $\mathcal{C}$ 中从 $x$ 到 $y$ 的箭头之集构成某个
+1-\trCategory{}的对象。在此设定下，我们把 $\mathcal{C}(x,y)$ 的对象视作
+$\mathcal{C}$ 中从 $x$ 到 $y$ 的「$1$ 维」态射，而把 $\mathcal{C}(x,y)$ 的
+箭头视作 $\mathcal{C}$ 中从 $x$ 到 $y$ 的「$2$ 维」态射；此处，自然会要求复合
+映射定义一个\trFunctor。又或许，$\mathcal{C}$ 中从 $x$ 到 $y$ 的箭头之集构成
+一个\trSimplicialSet{}的顶点，其更高维的诸\trSimplex{}便在每个正维数下提供
+箭头；此处，自然会要求复合定义一个\trSimplicialMap。在上述所有情境中，人们说
+1-\trCategory{} $\mathcal{C}$ 可以\emph{在范畴 $\mathcal{V}$ 上富集}——%
+$\mathcal{V}$ 即诸对象 $\mathcal{C}(x,y)$ 与诸\trDiagram{}
+\eqref{eq:assoc-unit-squares} 所栖居\footnote{要在 $\mathcal{V}$ 中诠释%
+\trDiagram{} \eqref{eq:assoc-unit-squares}，需要为\trMonoidalProduct「$\times$」及其
+单位对象 $1$ 指定一种诠释（图中并未将后者显示出来）。在我们考虑的诸例中，
+这一乘积是笛卡尔积，而这一单位是\trTerminal{}对象。}的那个范畴；在刚才描述
+的诸例中，$\mathcal{V}$ 分别为带点的集合的范畴、\trAbelianGroup{}的范畴、%
+\trCategory{}的范畴，或\trSimplicialSet{}的范畴。
+关于\trEnrichedCategory{}论的另一种观点也常被强调——例如经典教科书%
+\cite{bib68} 便采纳了这一观点，而本章的标题正是从它那里偷来的。借用%
+Peter May 使用过的一个区分，术语「富集」既可以用作复合名词——%
+\emph{\trEnrichedCategory}——也可以用作形容词——\emph{富集的}\trCategory。
+在名词形态下，\trEnrichedCategory{} $\mathcal{C}$ 并没有先在的底通常范畴，
+不过我们将会在\cref{def:underlying-category}中看到：底下的非富集 1-\trCategory{}总能够被事后
+辨认出来。
+而当用作形容词时，一个\trEnrichedCategory{} $\mathcal{C}$ 或许最自然地就是
+一个通常范畴，其诸 hom-集可以被赋予额外的结构。\footnote{试引 \cite{bib84}
+的话：「同时从这两个观点出发进行思考，至关重要的一点在于：所构造出的通常
+范畴与人们最初着手的那一通常范畴是同构的。不论采取哪种观点，范畴论家所
+偏好的记号与『从事实际工作的数学家』所通用的记号之间都存在冲突
+（\cite{bib81} 所面向的读者正是后者）。」}虽然在讨论\trEnrichedCategory{}的
+一般理论时，名词视角可以说更为优雅，但在讨论例子时占据主导的却是形容词
+视角，因此我们在此选择强调形容词形态，专注于将非富集的范畴加以富集。
+
+在 A.2 节中给出\trEnrichedCategory{}及两者之间富集\trFunctor{}的精确定义
+之前，我们在 A.1 节中研究定义富集之基的范畴 $\mathcal{V}$——诸 hom-对象
+最终即栖居于其中。本书中出现的首要例子是 $\mathcal{V}=\Cat$ 与
+$\mathcal{V}=\sSet$——以及非富集的情形 $\mathcal{V}=\Set$——它们每一个都
+具有作为\trCartesianClosed{}范畴的这一特殊性质。既然在\trCartesianClosed{}%
+范畴上作富集有若干简化之处，我们便容许自己奢侈一回，显式地以这些基展开
+工作。\footnote{更一般地，一个范畴可以在一个\trMonoidalCategory{}
+\cite{bib68}、一个\trBicategory（bicategory）\cite{bib17} 或一个%
+\trVirtualDoubleCategory{} \cite{bib75} 上富集，其中每一者都推广了前面的诸
+富集基。}
+我们接着在 A.3 节中介绍富集\trNaturalTransformation{}与富集\trYonedaLemma。
+这些概念使我们得以正确地陈述那些在 A.4 节中刻画\emph{\trCotensor}与%
+\emph{\trTensor}、在 A.5 节中刻画\emph{锥形极限}与\emph{\trColimit}的%
+\trUniversalProperty{}——它们涉及一个富集自然同构。它们各自都是%
+\emph{\trWeightedLimit}与\emph{\trWeightedColimit}的特殊情形，后者将在
+A.6 节中引入。我们最后在 A.7 节中以「\trChangeOfBase」的一般理论作结——
+这是\trEnrichedCategory{}理论中唯一未被 \cite{bib68} 以百科全书式的细节加以
+覆盖的部分，其原始文献反而是 \cite{bib41}——它使我们能够更精确地把握下述
+过程：一个 2-\trCategory{}如何可以被看作一个\trSimplicialCategory，或者一个%
+\trSimplicialCategory{}如何可以经作商而定义一个 2-\trCategory，一如第 1 章
+中的\cref{dig:change-of-base}所顺带提及的那样。
+
+\input{chapters/chA-enriched-category-theory/sA1-cartesian-closed-categories}   %
+\input{chapters/chA-enriched-category-theory/sA2-enriched-categories-and-enriched-functors}   %
+\input{chapters/chA-enriched-category-theory/sA3-the-enriched-yoneda-lemma}   %
+\input{chapters/chA-enriched-category-theory/sA4-tensors-and-cotensors}   %
+\input{chapters/chA-enriched-category-theory/sA5-conical-limits-and-colimits}   %
+\input{chapters/chA-enriched-category-theory/sA6-weighted-limits-and-colimits}   %
+\input{chapters/chA-enriched-category-theory/sA7-change-of-base}   %

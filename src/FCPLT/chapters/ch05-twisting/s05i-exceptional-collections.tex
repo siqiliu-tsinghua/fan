@@ -1,0 +1,85 @@
+\paragraph{\trExceptionalCollection{}。}\label{sub:exceptional-collections}
+在下面的整个讨论中，$\scr{A}$ 总是一个 \trCfinite{}且\trTriangulated{}的%
+\trACategory。$\scr{A}$ 的\trObject{}的一个有限有序族
+$\mathbf{Y}=(Y_1,\ldots,Y_m)$ 称为一个\textbf{\trExceptionalCollection}
+（exceptional collection），若下列两个条件得到满足：
+\begin{itemize}
+\item 每个 $Y_k$ 都是一个例外\trObject{}（exceptional object），按定义，这意为
+它的\trEndomorphism{}空间由恒等所张成：
+\begin{equation*}
+\Hom_{H(\scr{A})}(Y_k,Y_k)=\KK\cdot[e_{Y_k}].
+\end{equation*}
+\item 在\trCohomology{}层面上，不同 $Y_k$ 之间的\trMorphism{}是\trDirected{}的，
+意即
+\begin{equation*}
+\Hom_{H(\scr{A})}(Y_k,Y_l)=0\quad\text{当 }k>l\text{ 时。}
+\end{equation*}
+\end{itemize}
+此外，若诸 $Y_k$ 在\cref{sub:generators}的意义下生成 $\scr{A}$，则称
+$\mathbf{Y}$ 是一个\textbf{完整\trExceptionalCollection}（full exceptional
+collection）。
+
+\begin{lemma}\label{thm:full-collection-vanishing-composition}
+设 $\mathbf{Y}$ 是一个完整\trExceptionalCollection。那么对任意 $X$，在
+$H^0(\scr{A})$ 中有\trIsomorphism
+\begin{equation*}
+T_{Y_1}\ldots T_{Y_m}(X)\cong 0.
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+令 $X_m=X$，$X_{k-1}=T_{Y_k}(X_k)$，如\cref{sub:composition-of-twists}中那样。
+我们的目标是证明：
+对一切 $X$ 都有 $X_0\cong 0$。先考虑 $X=Y_l$（$l$ 为某个下标）的情形。只要
+$k>l$，就有 $\Hom_{H(\scr{A})}(Y_k,X)=0$，从而据
+\eqref{eq:twisted-yoneda-triangle} 得 $X_{k-1}\cong X_k\cong\cdots\cong X$。
+在下一步中，该三角形约化为
+\begin{equation*}
+\begin{tikzcd}
+Y_l \ar[rr,"{[e_{Y_l}]}"] && X_l\cong Y_l \ar[dl] \\
+& X_{l-1}, \ar[ul,"{[1]}"] &
+\end{tikzcd}
+\end{equation*}
+故 $X_{l-1}\cong\mathrm{Cone}(e_{Y_l})\cong 0$。从这里起，立即可见所有更靠下的
+$X_k$（$k<l$）都是零。
+
+$\mathscr{F}=T_{Y_1}\ldots T_{Y_m}$ 是从 $\scr{A}$ 到其自身的一个 \trAFunctor，
+从而据\cref{thm:afunctor-maps-exact-triangles}保持\trExactTriangle。这就是说，
+若我们有两个\trObject{} $X_0$、$X_1$，使得 $\mathscr{F}(X_0)$、
+$\mathscr{F}(X_1)$ 都是零，那么对它们之间任一\trMorphism{}的\trMappingCone{}%
+$X_2=\mathrm{Cone}(X_0\to X_1)$ 也是如此。更平凡地说，$\mathscr{F}$ 还与%
+\trSuspension{}\trCompatible{}至相差\trIsomorphism{}的程度。由于诸 $Y_k$ 生成
+$\scr{A}$，这就蕴含了所要的结果。
+\end{proof}
+
+这一论证事实上给出了任意\trObject{} $X$ 分解为诸 $Y_k$ 的\trSuspension{}副本的
+一个显式 \emph{Postnikov 分解}（Postnikov decomposition；在一般%
+\trTriangulated{}\trCategory{}的\trExceptionalCollection{}框架中，这是众所周知的，
+例如见 [66, §2]）。具体地说，取 $Z_k=\Hom_{H(\scr{A})}(Y_k,X_k)$（同前），则有
+一架梯子：其左边由\trExactTriangle{}组成，右边由交换三角形组成，
+\begin{equation}\label{eq:postnikov-ladder}
+\begin{tikzcd}
+0\cong X_0 \ar[dr,"{[1]}"] & & \\
+ & Z_1\otimes Y_1 \ar[dl] \ar[dd,"{[1]}"] & \\
+X_1 \ar[uu] & & \\
+\vdots \ar[u] & \vdots \ar[d,"{[1]}"] & \\
+ & Z_{m-1}\otimes Y_{m-1} \ar[dl] \ar[dd,"{[1]}"] & \\
+X_{m-1} \ar[uu] \ar[dr,"{[1]}"] & & \\
+ & Z_m\otimes Y_m \ar[dl] & \\
+X_m=X. \ar[uu] & &
+\end{tikzcd}
+\end{equation}
+
+\begin{remark}\label{thm:full-collection-split-closed}
+由\cref{thm:zero-twist-generates}可以看出，若 $\scr{A}$ 容许一个完整%
+\trExceptionalCollection，则它是\trSplitClosed{}的。事实上还有略强一点的结论：若
+$\mathscr{Q}^{\mathrm{fin}}\subset\scr{Q}=\mathit{mod}(\scr{A})$ 是由那些使得
+$H(\mathscr{M}(X))$ 对每个 $X\in\Ob\scr{A}$ 都有限维的 \trAinfty-模
+$\mathscr{M}$ 组成的\trFull{}子\trCategory，则\trYonedaEmbedding{}给出一个%
+\trQuasiequivalence{} $\scr{A}\hookrightarrow\mathscr{Q}^{\mathrm{fin}}$。
+古典框架中与之对应的定理是 [27, Corollary, p. 530]，它说：若 $\mathscr{T}$ 是
+一个带有完整\trExceptionalCollection{}的\trTriangulated{}\trCategory，则从
+$\mathscr{T}$ 到有限维 $\KK$-\trVectorSpace{}\trCategory{}的任何%
+\trCohomology\trFunctor{}都是可表示的（由于\trTriangulated{}\trCategory{}理论的
+局限性，其证明要比我们这里处理的情形困难得多）。
+\end{remark}

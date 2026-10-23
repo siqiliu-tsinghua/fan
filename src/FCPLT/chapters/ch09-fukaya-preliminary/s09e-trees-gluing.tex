@@ -1,0 +1,38 @@
+\paragraph{树与\trGluing。}\label{sub:trees-gluing}
+设有一棵 $d$ \trLeafedTree{}$T$；对每个\trVertex{}$v$，有一个带\trStriplikeEnd{}的
+$|v|$ \trPointedDisc{}$S_v$；并对每条\trInteriorEdge{}$e$，给定一个\trGluingLength{}$l_e>0$。从这组资料出发，\trGluingConstruction{}便产出一个新的带\trStriplikeEnd{}的
+$(d+1)$ \trPointedDisc{}$S_l$。
+首先注意，在诸\trFlag{}$f=(v,e)$ 与 $S_v$ 的诸无穷远点之间存在\trCanonical{}的\trBijective，使得负旗／正旗对应于\trIncomingPoint{}／\trOutgoingPoint：也就是说，我们把 $S_v$ 的第 $k$ 个无穷远点对应到旗 $f_k(v)$。记号也随之调整，以 $\epsilon_f$ 表示 $S_v$ 上围绕 $f$ 所对应的无穷远点的那个\trStriplikeEnd。\trGluing{}过程的第一部分，是从每条归属于\trInteriorFlag{}的端上切下一块：
+\begin{equation}\label{eq:gluing-cut}
+S'_v=S_v\setminus\Bigl(\coprod_{\substack{f=(v,e)\\ \in\mathrm{Fl}^{\mathrm{int}}(T)}}\epsilon_f(Z^{\pm}_{l_e})\Bigr),
+\end{equation}
+其中视旗为负或为正，而分别取 $Z^{-}_{l_e}=(-\infty;-l_e]\times[0;1]$ 或
+$Z^{+}_{l_e}=(l_e;\infty)\times[0;1]$。此后，把这些被切下端的残端彼此等同：令
+$S_l=\coprod_v S'_v/\sim$，其中
+\begin{equation}\label{eq:gluing-identify}
+\epsilon_{f^-(e)}(s-l_e,t)\sim\epsilon_{f^+(e)}(s,t)
+\end{equation}
+对每条\trInteriorEdge{}$e$ 及 $(s,t)\in[0;l_e]\times[0;1]$ 成立。$S_l$ 的诸\trStriplikeEnd{}承袭自与 $T$ 的诸\trExteriorFlag{}相关联的那些。更确切地说，若从\trRoot{}开始、按\trCyclicOrder{}把这些旗编号为 $f_0,\ldots,f_d$，则 $S_l$ 的第 $k$ 个\trStriplikeEnd{}便是
+\begin{equation}\label{eq:gluing-end}
+\epsilon_{l,k}=\epsilon_{f_k}:Z^{\pm}\longrightarrow\coprod_v S'_v\longrightarrow S_l.
+\end{equation}
+在 $T$ 仅有一个\trVertex{}的平凡情形，\trGluing{}过程什么也不做（仍还给原来的\trSurface）；若它有两个\trVertex，则它就是\eqref{eq:striplike-gluing} 的基本\trConnectedSum{}运算；而一般地，可以把整个过程看作按任意次序施行的此类运算的有限序列。
+\begin{remark}\label{thm:thick-thin-decomposition}
+\trSurface{}$S_l$ 承袭有一个\textbf{\trThickThin{}分解}（thick--thin decomposition）（它来自\trGluing{}过程，并非\trSurface{}本身固有的，因而有别于双曲几何所提供的同名分解）。薄部是诸\trStriplikeEnd{}与长度为 $l_e$ 的有限\trStrip{}的并：
+\begin{equation*}
+\begin{aligned}
+S_l^{\mathrm{thin}}&=\coprod_{k=0}^{d}\epsilon_{l,k}(Z^{\pm})\;\sqcup\coprod_{e\in\mathrm{Ed}^{\mathrm{int}}(T)}\epsilon_{f^+(e)}([0;l_e]\times[0;1]),\\
+S_l^{\mathrm{thick}}&=\coprod_{v}\Bigl(S_v\setminus\coprod_{k=0}^{|v|-1}\epsilon_{f_k(v)}(Z^{\pm})\Bigr).
+\end{aligned}
+\end{equation*}
+稍后我们会看到，更好的做法是采用作为长度之逆指数的\textbf{\trGluingParameter}（gluing parameter）；确切地说，$\rho_e\in(-1;0)$ 通过 $l_e=-\log(-\rho_e)/\pi$ 与相应的长度相联系，于是 $\rho_e\to 0$ 对应于 $l_e\to\infty$。\trGluing{}而成的诸\trSurface{}$S_\rho=S_l$ 拼合成一个 $(d+1)$ \trPointedDisc{}的\trFamily，
+\begin{equation*}
+\scr{S}\longrightarrow\scr{R}=(-1;0)^{\mathrm{Ed}^{\mathrm{int}}(T)},
+\end{equation*}
+并配有\trStriplikeEnd{}$\scr{R}\times Z^{\pm}\to\scr{S}$，其在每条\trFiber{}上的形状由\eqref{eq:gluing-end} 给出。在某种意义上，还可以容许某些\trGluingParameter{}为零的极限情形。这时的规则是：\trGluing{}过程的两步——\eqref{eq:gluing-cut}{}与\ \eqref{eq:gluing-identify}——中，都略去\trDegenerate{}的\trEdge（即\trGluingParameter{}消失的那些）。其结果不再是一个单独的\trPointedDisc，而是这种\trDisk{}的一个\trDisjointUnion，由从 $T$ 出发\trCollapse{}所有\trNondegenerate\trEdge{}所得的\trTree{}$\bar{T}$ 描述；这特别意味着，$\bar{T}$ 的每个\trVertex{}$\bar{v}$ 都对应一个\trConnectedComponent，它是 $|\bar{v}|$ \trPointedDisc（在所有\trGluingParameter{}皆为零的平凡情形，则还回诸 $S_v$ 的\trDisjointUnion）。把这些\trFiber{}添加到 $\scr{S}$ 上，便得到一个\trPartialCompactification{}$\bar{\scr{S}}$，它是一个\trSmooth{}的\trCorneredBoundary\trManifold，并带有\trSubmersion（显然不是\trFibration）$\bar{\scr{S}}\to\bar{\scr{R}}=(-1;0]^{\mathrm{Ed}^{\mathrm{int}}(T)}$。
+\end{remark}
+\trGluingConstruction{}的一个直截了当的推广，是从下列资料出发：对每个\trVertex{}$v$，给定带\trStriplikeEnd{}的 $|v|$ \trPointedDisc{}的一个\trFamily{}$\scr{S}_v\to\scr{R}_v$。\trGluing{}随之产出一个新的\trFamily
+\begin{equation*}
+\scr{S}\longrightarrow\scr{R}=(-1;0)^{\mathrm{Ed}^{\mathrm{int}}(T)}\times\prod_v\scr{R}_v.
+\end{equation*}
+与前面一样，它有一个\trPartialCompactification{}$\bar{\scr{S}}\to\bar{\scr{R}}$，其中容许\trGluingParameter{}变为零。

@@ -1,0 +1,241 @@
+\section{锚定拉格朗日子流形}
+\label{sec:anchored-lagrangian-submanifolds}
+
+\stfhIndexRangeStart{I036}{Maodinglagelangriziliuxing}{锚定拉格朗日子流形（anchored Lagrangian submanifold）}
+现在要把 $\mu(\mathcal L,\vec p;B)$ 与作用量泛函 $\mathcal A$ 的临界点
+$[\widehat x,w]$ 的\personMaslov{}--\personMorse{}指标联系起来。回忆，\personMaslov{}--\personMorse{}指标依赖于\termBasePath{}
+\[
+  \ell_0\in\Omega(L_0,L_1)
+\]
+以及拉格朗日子丛
+\[
+  \lambda^0\subset\ell_0^*TM
+\]
+的选取。
+这时自然会问，命题 13.6.3 是否可推广到任意多边形映射。由于\personMaslov{}--\personMorse{}指标依赖于 $\ell_0$ 与 $\lambda^0$ 的选取，上面的证明需要作适当改写。这就要求在\personMaslov{}--\personMorse{}指标的定义中建立选取参考对子 $(\ell_0,\lambda^0)$ 的程序。为以相容
+方式进行这种比较，我们将采用\emph{\termPointedLagrangianSubmanifold{}} $(L,x)$ 的观点，
+而不只考虑 $L$ 本身。
+
+再一劳永逸地固定环境辛流形 $(M,\omega)$ 的一个基点 $y$。不难看出，
+$\Omega(L,L')$ 中道路的任意同伦类，都可以由一条经过给定点 $y$ 的道路代表。
+把这样的代表中从 $L$ 到 $y$ 的一段称为 $L$ 的一个\termAnchor{}；把与拉格朗日链
+$\mathcal L$ 相伴的一组锚 $\{\gamma_i\}$ 称为一个\termAnchorSystem{}。
+\footnote{译者注：原书先把 $\Omega(L,L')$ 中整条经过 $y$ 的道路称为 $L$ 的锚，
+但紧接的 $\gamma_i$ 以及本节全部拼接公式实际使用的是从 $L_i$ 到 $y$ 的半段。
+译文依后续构造明确这一对象。原书下一页还把 $\gamma_i(0)$ 的所属写成未带下标的
+$L$；译文补为 $L_i$。}
+取一个拉格朗日链
+\[
+  \mathcal L=(L_0,L_1,\ldots,L_k),
+\]
+并为每个 $i=0,\ldots,k$ 配备一条道路
+\[
+  \gamma_i:[0,1]\longrightarrow M
+\]
+使得
+\[
+  \gamma_i(0)\in L_i,
+  \qquad
+  \gamma_i(1)=y.
+\]
+
+这些道路系统地给出了\termBasePath{}的选取：
+\[
+  \ell_{ij}=\gamma_i\#\overline\gamma_j
+  \in\Omega(L_i,L_j),
+\]
+也就是 $\gamma_i$ 与 $\gamma_j$ 的时间反演 $\overline\gamma_j$ 的拼接；这里当然有
+$\overline\gamma_j$ 是 $\gamma_j$ 的时间反演。这个构造的要点是如下\termOverlappingProperty{}：
+\begin{equation}
+  \begin{aligned}
+    \ell_{ij}(t)&=\ell_{i\ell}(t)
+      &&\text{当 }0\leq t\leq\frac12,\\
+    \ell_{ij}(t)&=\ell_{\ell j}(t)
+      &&\text{当 }\frac12\leq t\leq1.
+  \end{aligned}
+\label{eq:anchor-base-path-overlap}
+\end{equation}
+
+\begin{definition}
+\label{def:anchor-admissible-class}
+若同伦类 $B\in\pi_2(\mathcal L;\vec p)$ 可以由一个多边形表示，而该多边形是
+$k+1$ 条\termBoundingBand{}
+\[
+  w_{i(i+1)}:[0,1]\times[0,1]\longrightarrow M,
+  \qquad i=0,\ldots,k,
+\]
+的粘合，并且这些带满足
+\[
+  w_{i(i+1)}(0,t)=
+  \begin{cases}
+    \gamma_i(2t),&0\leq t\leq\frac12,\\
+    \gamma_{i+1}(2-2t),&\frac12\leq t\leq1,
+  \end{cases}
+\]
+\[
+  w_{i(i+1)}(s,0)\in L_i,
+  \qquad
+  w_{i(i+1)}(s,1)\in L_{i+1},
+\]
+以及
+\[
+  w_{i(i+1)}(1,t)=p_{i(i+1)},
+\]
+则称 $B$ 相对于该锚系统是\termAdmissible{}的。这里下标按模 $k+1$ 理解。
+\footnote{译者注：原书称该多边形由“$k$ 条”定界带粘合而成，但随后的分解明确
+列出 $w_{01},w_{12},\ldots,w_{k0}$，共有 $k+1$ 条；原书也没有给
+$w_{i(i+1)}$ 写出下标范围和循环约定。译文依所列分解补为 $i=0,\ldots,k$ 并明示
+循环下标。}
+在这种情形下，把同伦类 $B$ 记作
+\[
+  B=[w_{01};\ell_{01}]\#[w_{12};\ell_{12}]\#\cdots
+    \#[w_{k0};\ell_{k0}],
+\]
+并以
+\[
+  \pi_2^{\mathrm{ad}}(\mathcal L;\vec p)
+\]
+\stfhIndex{I030}{Kerongxutonglunlei}{可容许同伦类（admissible homotopy class）}
+表示这类可容许同伦类的集合。
+\end{definition}
+
+把
+\[
+  \mathcal E=\bigl((L_0,\gamma_0),\ldots,(L_k,\gamma_k)\bigr)
+\]
+\stfhIndex{I035}{Maodinglagelangrilian}{锚定拉格朗日链（anchored Lagrangian chain）}
+这样的元组称为一条\emph{\termAnchoredLagrangianChain{}}；以 $\mathcal L$ 表示拉格朗日
+子流形链 $(L_0,\ldots,L_k)$，以 $\mathcal E$ 表示相应的锚定拉格朗日子流形链。
+\footnote{译者注：原书先称“不含锚记号的元组 $\mathcal L$”为锚定拉格朗日链，
+紧接着却又明确规定 $\mathcal L$ 表示未锚定的链、$\mathcal E$ 表示锚定链。
+译文依后一项明确约定补全 $\mathcal E$ 的元组。}
+\emph{给定}集合
+\[
+  \mathcal E=\{(L_i,\gamma_i)\}_{0\leq i\leq k}
+\]
+时，并非 $\pi_2(\mathcal L;\vec p)$ 中所有同伦类都是可容许的。不过，下面这个
+基本引理已经足以用于构造\personFloer{}同调中的高阶乘积。其证明很容易，故原书省略。
+一般\termFukayaCategory{}的构造也需要这个引理 (FOOO10a)。
+
+\begin{lemma}
+\label{lem:complete-admissible-anchor-bands}
+给定 $i=0,\ldots,k-1$ 时的 $w_{i(i+1)}$ 以及
+$B\in\pi_2(\mathcal L;\vec p)$，它们通过
+\[
+  [w_{k0}]
+  :=[\overline w_{01}]\#\cdots
+    \#[\overline w_{(k-1)k}]\#B
+\]
+典范地定义一个类
+\[
+  [w_{k0}]\in\pi_1(\ell_{k0},p_{k0}),
+\]
+使 $B$ 对给定锚系统 $\{\gamma_i\}_{i=0}^k$ 成为可容许的。
+\footnote{译者注：原书把已知带的范围写成 $i=1,\ldots,k$，但下式正在定义
+末带 $w_{k0}$，右端则从 $w_{01}$ 起、到 $w_{(k-1)k}$ 止；故已知范围应为
+$i=0,\ldots,k-1$。译文依公式补正。}
+\end{lemma}
+
+同样地，对每个 $i=0,\ldots,k$，选取拉格朗日子丛
+\[
+  \lambda_i\subset\gamma_i^*TM,
+\]
+使 $\lambda_i(0)=T_{\gamma_i(0)}L_i$，并使所有 $\lambda_i(1)$ 在 $T_yM$ 中取
+同一个拉格朗日子空间；然后以显然的方式定义
+\[
+  \lambda_{ij}=\lambda_i\#\overline\lambda_j.
+\]
+\footnote{译者注：原书没有写出这些端点条件，但若各 $\lambda_i$ 在 $y$ 处的取值
+不同，$\lambda_i\#\overline\lambda_j$ 便不能连续拼接；若在 $L_i$ 端不取
+$T_{\gamma_i(0)}L_i$，它也不能作为上一节\personMaslov{}--\personMorse{}指标所需的参考边界条件。
+译文把使下述构造有定义的必要条件明示。定义 13.7.4 同样漏写了拉格朗日端的条件。}
+于是 $\lambda_{ij}$ 也满足重叠性质
+\[
+  \left.\lambda_{ij}\right|_{[0,\frac12]}
+  =\left.\lambda_{i\ell}\right|_{[0,\frac12]},
+  \qquad
+  \left.\lambda_{ij}\right|_{[\frac12,1]}
+  =\left.\lambda_{\ell j}\right|_{[\frac12,1]}.
+\]
+
+下面这个基本恒等式直接来自定义。
+
+\begin{proposition}
+\label{prop:anchored-polygon-index-action-sums}
+设 $B\in\pi_2^{\mathrm{ad}}(\mathcal L;\vec p)$ 如定义 13.7.1 所给出，并写成
+\[
+  B=[w_0;\ell_{01}]+\cdots+[w_k;\ell_{k0}],
+\]
+其中 $w_i=w_{i(i+1)}$、$p_i=p_{i(i+1)}$。\footnote{译者注：原书把这里的
+交叉引用写成不存在的“引理 13.7.1”；编号 13.7.1 实为定义，译文依此补正。}
+则
+\begin{align}
+  \mu(\mathcal L,\vec p;B)
+    &=\sum_{i=0}^k
+      \mu\bigl([p_i,w_i];\lambda_{i(i+1)}\bigr),
+  \label{eq:anchored-polygon-maslov-sum}\\
+  \omega(B)
+    &=-\sum_{i=0}^k\mathcal A([p_i,w_i]).
+  \label{eq:anchored-polygon-action-sum}
+\end{align}
+\footnote{译者注：原书在第一式左端把此前始终表示交点链的 $\vec p$ 突然写成
+$\vec v$；译文统一为定义 13.7.1 所用的 $\vec p$。}
+\end{proposition}
+
+\begin{proof}
+由丛对马斯洛夫指标的定义可见，在底空间作粘合时，多边形马斯洛夫指标对相应丛对
+的显然纤维和可加。因此，由拉格朗日环路 $\widetilde\alpha_w$ 的定义即可得到命题，
+因为后者蕴含
+\[
+  \widetilde\alpha_w
+  \sim\sum_{i=0}^k
+    \left.w_{i(i+1)}\right|_{\partial([0,1]\times[0,1])}
+\]
+在 $\pi_2(\mathcal L;\vec p)$ 中成立。\footnote{译者注：原书称
+$\widetilde\alpha_w$ 为取值于拉格朗日--\personGrassmann{}流形的“拉格朗日环路”，
+右端却是取值于 $M$ 的带边界限制，并称二者的关系位于多边形映射同伦类集合
+$\pi_2(\mathcal L;\vec p)$ 中；这些对象的靶和类型不相容，且本章此前没有定义
+记号 $\widetilde\alpha_w$。因无法由本段唯一重构预期公式，译文照录并明示疑误。}
+公式\eqref{eq:anchored-polygon-action-sum}中的负号来自作用量泛函的定义
+\[
+  \mathcal A([\ell,w])=-\int w^*\omega.
+\]
+\footnote{译者注：原书在此把被积的辛形式 $\omega$ 误写成映射 $w$，即
+$-\int w^*w$；译文依本章作用量泛函的定义补正。}
+\end{proof}
+
+这些选取在\termFukayaCategory{}的分次和滤过问题之相容组织中扮演重要角色，因而值得专门
+命名。
+
+\begin{definition}
+\label{def:graded-anchor-anchored-lagrangian}
+设 $(M,\omega)$ 是任意辛流形，$y\in M$ 是基点。一条满足
+\[
+  \gamma(0)\in L,
+  \qquad
+  \gamma(1)=y
+\]
+\stfhIndex{I104}{Fencimao}{分次锚（graded anchor）}
+的道路 $\gamma:[0,1]\to M$，称为 $L$ 的一个\termAnchor{}（相对于 $y$）。若
+$\lambda$ 是 $\gamma^*\Lambda(M)$ 的一个截面，且
+\[
+  \lambda(0)=T_{\gamma(0)}L,
+\]
+则称对子 $(\gamma,\lambda)$ 为一个\termGradedAnchor{}。称对子
+$(L,(\gamma,\lambda))$ 为一个\termAnchoredLagrangianSubmanifold{}。
+\footnote{译者注：原书在这个总结性定义中反而写成
+$\ell(0)=y,\ \ell(1)\in L$，与本节此前所有 $\gamma_i(0)\in L_i$、
+$\gamma_i(1)=y$ 及 $\ell_{ij}=\gamma_i\#\overline\gamma_j$ 的构造方向相反；
+它随后又把刚定义的 $\ell$ 改称未引入的 $\gamma$，并把第 13.6 节已改记为
+$\Lambda(M)$ 的\personGrassmann{}流形丛写回 $\mathcal L(M,\omega)$。译文依本节实际构造
+统一道路方向、字母和丛记号；拉格朗日端的截面条件依上文拼接所需条件明示。}
+\end{definition}
+
+\begin{remark}
+\label{rem:anchored-lagrangians-syz}
+锚定拉格朗日子流形似乎在\personFloer{}同调族版本的研究中扮演重要角色；这个族版本进入
+SYZ 纤维化的同调镜像对称中镜像对象的构造。已知环面纤维化的拉格朗日截面对镜像
+构造十分重要。事实表明，在\personFloer{}复形的构造中，这个截面还扮演了上文基点的角色
+(Ab14)。
+\end{remark}
+\stfhIndexRangeEnd{I036}{Maodinglagelangriziliuxing}{锚定拉格朗日子流形（anchored Lagrangian submanifold）}

@@ -1,0 +1,217 @@
+\section{哈密顿微分同胚的谱范数}
+\label{sec:spectral-norm-hamiltonian-diffeomorphisms}
+
+本节依照 (Oh05d) 说明哈密顿微分同胚的一种不变范数的构造；它称为\emph{谱范数}。
+这里需要谨慎使用对应于量子上同调类 $1\in QH^*(M)$ 的谱不变量 $\rho(H;1)$。
+
+回忆 $C^\infty([0,1]\times M)$ 上有自然对合
+\[
+ H\longmapsto\overline H;\qquad
+ \overline H(t,x)=-H(t,\phi_H^t(x)),
+\]
+它也等价于取逆的对合
+\[
+ \lambda\longmapsto\lambda^{-1};\qquad
+ \mathcal P^{\mathrm{ham}}(\operatorname{Symp}(M,\omega),\mathrm{id})
+ \longrightarrow
+ \mathcal P^{\mathrm{ham}}(\operatorname{Symp}(M,\omega),\mathrm{id}).
+\]
+我们关于这个对合将 $\rho(\mathord\cdot;1)$ 对称化，并定义函数
+\[
+ \gamma:C^\infty([0,1]\times M)\longrightarrow\mathbb R
+\]
+为
+\begin{equation}
+ \gamma(H)=\rho(H;1)+\rho(\overline H;1)
+ \label{eq:22-gamma-hamiltonian}
+\end{equation}
+（定义域为 $C^\infty([0,1]\times M)$）。显然，对任意 $H$ 都有
+$\gamma(H)=\gamma(\overline H)$。一般三角不等式
+\[
+ \rho(H;a)+\rho(F;b)\geq\rho(H\#F;a\cdot b)
+\]
+限制到 $a=b=1$，再结合定理 21.3.7 的归一化公理 $\rho(\mathrm{id};1)=0$，便给出
+\begin{equation}
+ \gamma(H)=\rho(H;1)+\rho(\overline H;1)\geq\rho(0;1)=0.
+ \label{eq:22-gamma-nonnegative}
+\end{equation}
+这里 $a\cdot b$ 是量子上同调类 $a,b\in QH^*(M)$ 的量子乘积，$0$ 是零函数。
+
+下面把 $\gamma(H)$ 与 $L^{(1,\infty)}$-范数
+$\lVert H\rVert=\int_0^1\operatorname{osc}(H_t)\,dt$ 比较。回忆定义
+\begin{equation}
+ E^-(H)=\int_0^1-\min H\,dt,
+ \qquad
+ E^+(H)=\int_0^1\max H\,dt,
+ \label{eq:22-hofer-lengths}
+\end{equation}
+\stfhSubIndex{I109}{Huofeierchangdu}{霍费尔长度（Hofer length）}{Fu}{负霍费尔长度（negative Hofer length）}
+\stfhSubIndex{I110}{Huofeierchangdu}{霍费尔长度（Hofer length）}{Zheng}{正霍费尔长度（positive Hofer length）}
+分别称为负霍费尔长度与正霍费尔长度。显然
+$E^+(\overline H)=E^-(H)$。我们证明下面的引理。
+
+\begin{lemma}
+\label{lem:22-spectral-hofer-bounds}
+对任意 $H$ 和 $0\neq a\in QH^*(M)$，有
+\begin{equation}
+ -E^+(H)+v(a)\leq\rho(H;a)\leq E^-(H)+v(a),
+ \label{eq:22-spectral-valuation-bounds}
+\end{equation}
+其中 $v(a)$ 是 $a$ 的\termValuation{}。特别地，对任意经典上同调类
+$b\in H^*(M)\hookrightarrow QH^*(M)$，任意哈密顿量 $H$ 都满足
+\begin{equation}
+ -E^+(H)\leq\rho(H;b)\leq E^-(H).
+ \label{eq:22-classical-hofer-bounds}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+从不等式 (21.3.22) 出发，即
+\[
+ \int_0^1-\max(H-K)\,dt
+ \leq\rho(H;a)-\rho(K;a)
+ \leq\int_0^1-\min(H-K)\,dt.
+\]
+可将它改写成
+\[
+ \rho(K;a)+\int_0^1-\max(H-K)\,dt
+ \leq\rho(H;a)\leq
+ \rho(K;a)+\int_0^1-\min(H-K)\,dt.
+\]
+令 $K\to0$，得到
+\begin{equation}
+ \rho(0;a)+\int_0^1-\max H\,dt
+ \leq\rho(H;a)\leq
+ \rho(0;a)+\int_0^1-\min H\,dt.
+ \label{eq:22-zero-hamiltonian-bound}
+\end{equation}
+由归一化公理，$\rho(0;a)=v(a)$，故 (21.3.22) 变为
+\[
+ v(a)-E^+(H)\leq\rho(H;a)\leq v(a)+E^-(H).
+\]
+经典上同调类 $b$ 满足 $v(b)=0$，于是由定义立刻得到
+\eqref{eq:22-classical-hofer-bounds}。
+\end{proof}
+
+把~\eqref{eq:22-classical-hofer-bounds} 的右侧分别用于 $b=1$ 和
+$H,\overline H$，便有 $\rho(H;1)\leq E^-(H)$ 以及
+$\rho(\overline H;1)\leq E^-(\overline H)$。另一方面，对任意 $H$，
+$E^-(\overline H)=E^+(H)$，所以
+\begin{equation}
+ \gamma(H)\leq\lVert H\rVert.
+ \label{eq:22-gamma-hofer-bound}
+\end{equation}
+非负性~\eqref{eq:22-gamma-nonnegative} 引出如下定义。
+
+\begin{definition}
+\label{def:22-spectral-norm}
+定义 $\gamma:\operatorname{Ham}(M,\omega)\to\mathbb R_+$ 为
+\[
+ \gamma(\phi):=\inf_{H\mapsto\phi}\gamma(H)
+ =\inf_{H\mapsto\phi}\bigl(\rho(H;1)+\rho(\overline H;1)\bigr).
+\]
+\stfhIndex{I175}{Pufanshu}{谱范数（spectral norm）}
+称 $\gamma(\phi)$ 为 $\phi$ 的\emph{谱范数}。
+\end{definition}
+
+下面的定理概括函数 $\gamma$ 的基本性质。在本小节余下部分，我们将证明这些陈述；
+其中最非平凡的非退化性留到下一小节。
+
+\begin{theorem}
+\label{thm:22-spectral-norm-properties}
+设 $\gamma$ 如上。则
+$\gamma:\operatorname{Ham}(M,\omega)\to\mathbb R_+$ 定义一个不变范数，即它满足：
+\begin{enumerate}
+ \item （非退化性）$\phi=\mathrm{id}$ 当且仅当 $\gamma(\phi)=0$；
+ \item （辛不变性）对任意辛微分同胚 $\eta$，
+ $\gamma(\eta^{-1}\phi\eta)=\gamma(\phi)$；
+ \item （三角不等式）$\gamma(\phi\psi)\leq\gamma(\phi)+\gamma(\psi)$；
+ \item （取逆不变性）$\gamma(\phi^{-1})=\gamma(\phi)$；
+ \item $\gamma(\phi)\leq\lVert\phi\rVert$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[辛不变性的证明]
+回忆谱不变量的辛不变性
+$\rho(H;a)=\rho(\eta_*H;\eta_*a)$。把它用于 $a=1$，并利用
+$\eta_*1=1$，得到
+\[
+ \begin{aligned}
+ \gamma(\phi)
+ &=\inf_{H\mapsto\phi}\bigl(\rho(H;1)+\rho(\overline H;1)\bigr)\\
+ &=\inf_{H\mapsto\phi}
+ \bigl(\rho(\eta_*H;1)+\rho(\overline{\eta_*H};1)\bigr)
+ =\gamma(\eta^{-1}\phi\eta).
+ \end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[三角不等式的证明]
+先回忆三角不等式
+\begin{equation}
+ \rho(H\#K;1)\leq\rho(H;1)+\rho(K;1)
+ \label{eq:22-triangle-forward}
+\end{equation}
+以及
+\begin{equation}
+ \rho(\overline K\#\overline H;1)
+ \leq\rho(\overline K;1)+\rho(\overline H;1).
+ \label{eq:22-triangle-inverse}
+\end{equation}
+将~\eqref{eq:22-triangle-forward} 与~\eqref{eq:22-triangle-inverse} 相加，得到
+\begin{align}
+ \rho(H\#K;1)+\rho(\overline{H\#K};1)
+ &=\rho(H\#K;1)+\rho(\overline K\#\overline H;1)\notag\\
+ &\leq\bigl(\rho(H;1)+\rho(\overline H;1)\bigr)
+ +\bigl(\rho(K;1)+\rho(\overline K;1)\bigr).
+ \label{eq:22-gamma-triangle-hamiltonians}
+\end{align}
+现令 $H\mapsto\phi$、$K\mapsto\psi$。因为 $H\#K$ 生成 $\phi\psi$，所以
+\[
+ \gamma(\phi\psi)\leq\gamma(H\#K)
+ =\rho(H\#K;1)+\rho(\overline{H\#K};1),
+\]
+进而由~\eqref{eq:22-gamma-triangle-hamiltonians} 得
+\[
+ \gamma(\phi\psi)\leq
+ \bigl(\rho(H;1)+\rho(\overline H;1)\bigr)
+ +\bigl(\rho(K;1)+\rho(\overline K;1)\bigr).
+\]
+让右端对所有 $H\mapsto\phi$ 与 $K\mapsto\psi$ 取下确界，即证性质 (3)。
+\end{proof}
+
+\begin{proof}[取逆不变性的证明]
+由 $\gamma$ 的定义关于映射 $\phi\mapsto\phi^{-1}$ 对称，结论立即成立。
+\end{proof}
+
+\begin{proof}[性质 (5) 的证明]
+令~\eqref{eq:22-gamma-hofer-bound} 对 $H\mapsto\phi$ 取下确界，便得
+$\gamma(\phi)\leq\lVert\phi\rVert$。
+\end{proof}
+
+现在只剩证明 $\gamma$ 的非退化性。(Oh05d) 中的原证明使用了特定伪全纯曲线的一条
+相当精细的存在性定理。尽管这条存在性定理本身对刚性问题有重要应用，我们仍将把非退化性
+作为一个更熟悉的能量--容量型不等式的推论来给出另一证明；这个证明由厄舍 (Ush10a)
+提出。它较为间接，需要暂时转向研究 $\operatorname{Ham}(M,\omega)$ 上的霍费尔几何。
+（麦克达夫与萨拉蒙在 (MSa04) 中还给出了另一证明。）
+
+\begin{remark}
+\label{rem:22-medium-hofer-norm}
+事实上，如果把 $\rho(\mathord\cdot;1)$ 的同伦不变性纳入
+$\gamma(\phi)\leq\lVert\phi\rVert$ 的证明，就可以如下改进该不等式。定义\emph{中等霍费尔}
+范数
+\[
+ \lVert\phi\rVert_{\mathrm{med}}
+ :=\inf\{\lVert h\rVert\mid\pi(h)=\phi\},
+\]
+其中对 $h\in\widetilde{\operatorname{Ham}}(M,\omega)$ 定义
+\[
+ \lVert h\rVert:=\inf\{\lVert H\rVert
+ \mid h=[\phi_H]\in\widetilde{\operatorname{Ham}}(M,\omega)\}.
+\]
+于是上述证明给出 $\gamma(H)\leq\lVert[\phi_H]\rVert$，从而
+\[
+ \gamma(\phi)\leq\lVert\phi\rVert_{\mathrm{med}}.
+\]
+更多相关讨论见 (Oh09a) 第 11 节。
+\end{remark}

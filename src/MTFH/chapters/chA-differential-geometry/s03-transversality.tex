@@ -1,0 +1,224 @@
+
+\section{\trTransversality}
+\label{sec:appA-transversality}
+
+这一概念由\trThom{}于 20 世纪 50 年代初提出，在几何中必不可少。它涉及两个\trSubmanifold{}的相对位置。
+
+\subsection{\trTransversality{}的第一个概念}
+\label{subsec:first-notion-transversality}
+
+故事从\trImplicitFunctionTheorem{}的（又一次）应用开始。
+
+\begin{theorem}\label{thm:tangent-sum-submanifold}
+设 $M$ 与 $N$ 是\trManifold{} $P$ 的两个\trSubmanifold。设 $u$ 是 $M\cap N$ 的一点，使得
+\[
+T_{u}M+T_{u}N=T_{u}P\text{。}
+\]
+那么在 $u$ 的邻域内，交 $M\cap N$ 是 $P$ 的一个\trSubmanifold。它的余维数是 $M$ 的余维数与 $N$ 的余维数之和，并且它在 $u$ 处的\trTangentSpace{}是
+\[
+T_{u}(M\cap N)=T_{u}M\cap T_{u}N\text{。}
+\]
+\end{theorem}
+
+我们已经假定一切都属于 $\cC^{\infty}$ 类，但 $\cC^{1}$ 类就足够了。
+
+\begin{proof}
+这个陈述在 $u$ 的邻域内是局部的。因此，让我们设 $P=\RR^{p}$。设 $m$ 是 $M$ 的余维数、$n$ 是 $N$ 的余维数，于是在 $u$ 的邻域内，我们总还可以设 $M=f^{-1}(0)$、$N=g^{-1}(0)$，其中 $f$ 与 $g$ 是\trSubmersion。诸\trTangentSpace{}上的一般位置条件于是可以写成
+\[
+\dim(\operatorname{Ker}T_{u}f+\operatorname{Ker}T_{u}g)=p\text{。}
+\]
+因此让我们考虑映射 $F=(f,g):\RR^{p}\to\RR^{m}\times\RR^{n}$。它满足 $F^{-1}(0)=M\cap N$，而它的\trDifferential{}在 $u$ 处的核是
+\[
+\operatorname{Ker}T_{u}F=\operatorname{Ker}T_{u}f\cap\operatorname{Ker}T_{u}g\text{，}
+\]
+一个子空间，其维数因此为
+\[
+\begin{aligned}
+\dim\operatorname{Ker}T_{u}F&=\dim\operatorname{Ker}T_{u}f+\dim\operatorname{Ker}T_{u}g-\dim(\operatorname{Ker}T_{u}f+\operatorname{Ker}T_{u}g)\\
+&=p-m+p-n-p=p-(m+n)\text{。}
+\end{aligned}
+\]
+从而 $T_{u}F$ 是\trSurjective{}的，而 $F$ 在 $u$ 的邻域内是一个\trSubmersion，于是 $M\cap N$ 是一个\trSubmanifold。这个证明还给出了它的\trTangentSpace——即 $T_{u}F$ 的核，也就是诸\trTangentSpace{}的交——以及它的余维数，即诸余维数之和。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85]
+\begin{scope}[xshift=0cm]
+  \draw (-1.7,0) -- (1.7,0);
+  \draw[domain=-1.35:1.35,smooth,samples=60] plot (\x,{1.05*\x*\x});
+\end{scope}
+\begin{scope}[xshift=4.6cm]
+  \draw (-1.7,0) -- (1.7,0);
+  \draw[domain=-1.35:1.35,smooth,samples=60] plot (\x,{1.05*\x*\x+0.5});
+\end{scope}
+\begin{scope}[xshift=9.2cm]
+  \draw (-1.7,0) -- (1.7,0);
+  \draw[domain=-1.35:1.35,smooth,samples=60] plot (\x,{1.05*\x*\x-0.55});
+\end{scope}
+\end{tikzpicture}
+\caption{}\label{fig:transversality-deformation}
+\end{figure}
+
+\begin{example}\label{thm:surface-plane-example}
+$P=\RR^{3}$ 中一张曲面 $M$ 与一张平面 $N$ 的例子已经颇有教益。这两个\trSubmanifold{}的余维数都是 $1$，因此“一般位置”条件无非就是它们不相切。$\RR^{n}$ 的一个\trSubmanifold{}与它的（仿射）\trTangentSpace{}永远不\trTransverse。
+\end{example}
+
+我们说 $P$ 的两个\trSubmanifold{} $M$ 与 $N$ 在点 $u\in P$ 处是\textbf{\trTransverse}（transverse）的，如果
+\[
+\begin{cases}
+\text{或者 }u\notin M\cap N\text{，}\\
+\text{或者 }u\in M\cap N\quad\text{且}\quad T_{u}M+T_{u}N=T_{u}P\text{。}
+\end{cases}
+\]
+如果它们在每一点处都\trTransverse，我们就称它们是\trTransverse{}的，并记作 $M\pitchfork N$。
+\cref{fig:transversality-deformation} 展示了 $\RR^{2}$ 的两个不\trTransverse{}的\trSubmanifold……以及它们在一次微小\trDeformation{}之后变得\trTransverse{}的事实。
+
+\begin{remark}\label{thm:transversality-generic-stable}
+这个性质是完全一般的：\trTransversality{}是一个\textbf{\trGeneric}（generic）概念，它总可以通过一次微小\trDeformation{}来达到。它也是一个\textbf{稳定}（stable）的概念：两个\trTransverse{}的\trSubmanifold{}的微小\trDeformation{}保持它们的\trTransversality。为了证明第一个断言，我们可以使用\trSardTheorem。就是说，既然 $M$ 与 $N$ 像上面的证明中那样由\trSubmersion{} $f$ 与 $g$ 描述，那么对 $F$ 而言几乎所有的值都是\trRegular{}的，于是对 $(0,0)$ 附近几乎所有的 $(\varepsilon,\eta)$，$f^{-1}(\varepsilon)$ 与 $g^{-1}(\eta)$ 都\trTransverse。
+\end{remark}
+
+\begin{remark}\label{thm:transversality-no-intersection}
+对两个维数之和小于外围\trManifold{}维数的\trSubmanifold（例如 $\RR^{3}$ 中的两条曲线）而言，\trTransversality{}意味着没有任何交。
+\end{remark}
+
+更一般地，如果 $f:M\to N$ 是一个可微映射，且 $P\subset N$ 是一个\trSubmanifold，那么我们说 $f$ 与 $P$ \trTransverse（在 $u$ 处），如果
+\[
+\begin{cases}
+\text{或者 }u\notin f(M)\cap P\text{，}\\
+\text{或者 }u=f(x)\in f(M)\cap P\quad\text{且}\quad T_{x}f(T_{x}M)+T_{u}P=T_{u}N\text{。}
+\end{cases}
+\]
+与前面一样，我们把它记作 $f\pitchfork P$。
+
+\begin{proposition}\label{thm:preimage-submanifold}
+如果 $f$ 与 $P$ \trTransverse（在每一点处），并且 $f^{-1}(P)$ 非空，那么 $f^{-1}(P)$ 是 $M$ 的一个\trSubmanifold。
+\end{proposition}
+\noqed
+
+\begin{remark}\label{thm:preimage-orientable}
+如果 $N\subset P$ 是\trOrientable\trManifold{} $P$ 的一个（可\trCoorientation{}的）\trOrientable\trSubmanifold，并且 $f:M\to P$ 与 $N$ \trTransverse，那么 $f^{-1}(N)$ 在\trOrientable\trManifold{} $M$ 中是（可\trCoorientation{}的）\trOrientable{}的。\cref{subsec:orientation-matters} 中所处理的情形，就是\trSubmanifold{} $N$ 为点 $0$、$P=\RR$ 的情形。
+\end{remark}
+
+\trSardTheorem{}的一个直接应用，是下述关于\trTransversality{}的第一个结果。
+
+\begin{theorem}\label{thm:transversality-parameter}
+设 $M$、$N$ 与 $S$ 是三个\trManifold，并设 $P$ 是 $N$ 的一个\trSubmanifold。设
+\[
+F:M\times S\longrightarrow N
+\]
+是一个与 $P$ \trTransverse{}的映射。那么对几乎所有的 $s\in S$，映射 $F_{s}:M\to N$ 都与 $P$ \trTransverse。
+\end{theorem}
+
+实际上，我们是把\trManifold{} $S$ 视作一个参数空间。
+
+\begin{proof}[\cref{thm:transversality-parameter}的证明]
+应用\cref{thm:preimage-submanifold}，我们看到 $F^{-1}(P)$ 是 $M\times S$ 的一个\trSubmanifold{} $Q$。投影
+\[
+\pi:Q\subset M\times S\longrightarrow S
+\]
+是一个可微映射，由\trSardTheorem，对它而言几乎所有的 $s\in S$ 都是\trRegularValue。我们可以容易地验证：$\pi$ 的诸\trRegularValue{}恰好就是那些使映射 $F_{s}$ 与 $P$ \trTransverse{}的 $s$。
+\end{proof}
+
+\begin{remark}\label{thm:parameter-space-larger}
+参数空间 $S$ 越大，一个映射 $M\times S\to N$ 与\trSubmanifold{} $P$ \trTransverse{}的概率就越高。这解释了这个结果的极大用处。
+\end{remark}
+
+\subsection{\texorpdfstring{$\cC^{k}$}{Ck}\trTopology}
+\label{subsec:ck-topology}
+
+诸\trTransversality{}定理说的是：在离一个给定的映射足够近的地方，存在一个与给定\trSubmanifold{}\trTransverse{}的映射；换句话说，我们可以“\trPerturbation”一个映射（“轻微”二字内含）使之与一个\trSubmanifold{}\trTransverse。为了陈述这些定理，我们需要在从\trManifold{} $M$ 到\trManifold{} $N$ 的映射所成的空间上定义一种邻近性概念，也就是一个\trTopology——毋宁说是好几个。
+让我们从两个\trManifold{}都是\trEuclidean{}空间的\trOpen{}子集的情形开始。$\cC^{\infty}$（相应地，$\cC^{k}$）\trTopology，就是函数与其全部导数（相应地，阶数至多为 $k$ 的那些导数）在诸\trCompact{}子集上\trUniformConvergence{}的那个\trTopology。
+
+\begin{remark}\label{thm:ck-topology-metrizable}
+这个\trTopology{}是可\trMetric{}化的：我们使用诸伪距离
+\[
+d^{r}_{K}(f,g)=\sup_{x\in K}\bigl|f^{(r)}(x)-g^{(r)}(x)\bigr|
+\]
+并让 $K$ 取遍\trCovering{}源空间的一个可数紧集族。
+\end{remark}
+
+在两个\trManifold{} $M$ 与 $N$ 的一般情形，我们通过给出它的一个开邻域基本系来定义 $\cC^{k}$ \trTopology（这里的 $k$ 可以是无穷）。对一个函数 $f$ 而言，这些邻域由那些满足下列条件的 $(K,V,\varepsilon)$ 标引：
+\begin{itemize}
+\item $\varepsilon>0$；
+\item $K$ 是 $M$ 的某张\trChart{}的\trOpen{}集的一个\trCompact{}子集；
+\item $V$ 是 $N$ 的某张\trChart{}的\trOpen{}集；
+\item 并且我们有 $f(K)\subset V$。
+\end{itemize}
+我们令
+\[
+\scr{U}^{k}_{K,V,\varepsilon}(f)=\bigl\{g\in\cC^{k}(M,N)\mid g(K)\subset V\ \text{且}\ d^{r}_{K}<\varepsilon\ \text{对}\ |r|\le k\bigr\}\text{。}
+\]
+这个\trTopology{}是可\trMetric{}化的，因为 $M$ 被假定为\trSeparable{}的——本书中的一切\trManifold{}都是如此。我们将让 $d_{\infty}$ 表示定义 $\cC^{\infty}$ \trTopology{}的一个距离。
+
+\subsection{\trTransversality{}定理}
+\label{subsec:transversality-theorems}
+
+\begin{theorem}[局部\trTransversality]\label{thm:local-transversality}
+设 $M$ 与 $N$ 是两个\trManifold，并设 $P$ 是 $N$ 的一个\trProper\trSubmanifold。设 $f:M\to N$ 是一个可微映射，并设 $a$ 是 $M$ 的一点。那么存在 $M$ 中 $a$ 的一个\trCompact{}邻域 $K$ 与 $\cC^{\infty}(M,N)$ 中 $f$ 的一个\trOpen{}邻域 $\scr{U}$，使得
+\[
+\bigl\{g\in\scr{U}\mid g\pitchfork P\ \text{于}\ K\ \text{的每一点处}\bigr\}
+\]
+是 $\scr{U}$ 的一个\trDense\trOpen{}子集。
+\end{theorem}
+
+\begin{theorem}[\trTransversality]\label{thm:transversality-compact}
+设 $K$ 是 $M$ 的一个\trCompact{}子集。从 $M$ 到 $N$、沿 $K$ 与 $N$ 的\trSubmanifold{} $P$ \trTransverse{}的映射所成之集，是 $\cC^{\infty}(M,N)$ 的一个\trDense\trOpen{}子集。
+\end{theorem}
+
+\begin{corollary}\label{thm:transversality-dense}
+与 $N$ 的\trSubmanifold{} $P$ \trTransverse{}的映射 $f:M\to N$ 所成之集在 $\cC^{\infty}(M,N)$ 中是\trDense{}的；此外，当 $M$ 是\trCompact{}时，它还是\trOpen{}的。
+\end{corollary}
+
+\begin{proof}[\cref{thm:local-transversality}的证明概要]
+如果 $f(a)\notin P$，那么设 $K$ 是 $a$ 的一个满足 $f(K)\cap P=\varnothing$ 的\trCompact{}邻域，并设 $\scr{U}$ 为开集
+\[
+\scr{U}=\bigl\{g\in\cC^{\infty}(M,N)\mid g(K)\cap P=\varnothing\bigr\}\text{。}
+\]
+多亏了 $P$ 的\trProper{}性，这些集合便具有所需要的性质。
+如果 $f(a)\in P$，那么让我们考虑\trSubmanifold{} $P\subset N$ 在 $f(a)$ 的邻域内的一张\trChart{}的\trOpen{}集。我们可以——而且我们也确实——设 $V=\RR^{n}$、$V\cap P=\RR^{p}\times\{0\}\subset\RR^{p}\times\RR^{q}=\RR^{n}$，其中 $f(a)=0$。设 $U$ 是 $M$ 中 $a$ 的一个满足 $f(\overline{U})\subset V$ 的邻域，并设 $K$ 是含于 $U$ 内的 $a$ 的一个\trCompact{}邻域。最后，让我们令
+\[
+\scr{U}=\bigl\{g\in\cC^{\infty}(M,N)\mid g(\overline{U})\subset V\bigr\}
+\]
+并让我们证明 $K$ 与 $\scr{U}$ 是合用的。
+设 $\alpha$ 是一个取值于 $[0,1]$、\trSupport{}在 $U$ 内且在 $K$ 上恒等于 $1$ 的函数。我们定义一个映射 $G:M\times(\{0\}\times\RR^{q})\to N$，令
+\[
+G(x,v)=
+\begin{cases}
+g(x)\qquad\qquad\ \ \text{若 }x\notin U\\
+g(x)+\alpha(x)v\quad\text{若 }x\in U\text{。}
+\end{cases}
+\]
+显然，$G$ 与 $\RR^{p}\times\{0\}$ \trTransverse，而这由\cref{thm:transversality-parameter} 就给出了所想要的\trDense{}性。\footnote{译注：上式第二支原书印作 $g(x)+\alpha(v)v$；按 $\alpha$ 是一个取值于 $[0,1]$、\trSupport{}在 $U$ 内且在 $K$ 上恒等于 $1$ 的 $x$ 的函数，而 $v$ 是参数空间 $\{0\}\times\RR^{q}$ 的变量，$\alpha(v)$ 无定义，疑为 $\alpha(x)$ 之误。正是经 $g\mapsto g+\alpha(x)v$，在 $K$ 上（其处 $\alpha\equiv1$）沿参数方向的\trDifferential{}为恒等，$U$ 外又借 $\alpha$ 在 $U$ 外为零平滑接合，$G$ 才与 $\RR^{p}\times\{0\}$ \trTransverse。此处径改。——译者注}
+沿 $K$ 与 $P$ \trTransverse{}的那些映射所成之集的\trOpen{}性，由矩阵空间中具有极大\trRank{}的矩阵所成之集的\trOpen{}性而来。
+\end{proof}
+
+\begin{proof}[\cref{thm:transversality-compact}的证明]
+设 $f\in\cC^{\infty}(M,N)$。对每个 $a\in K$，设 $K_{a}$ 与 $\scr{U}_{a}$ 分别是像\cref{thm:local-transversality} 所保证其存在的那样的一个\trCompact{}集与一个\trOpen{}集，使得
+\[
+\scr{U}'_{a}=\bigl\{g\in\scr{U}_{a}\mid f\pitchfork P\ \text{沿}\ K_{a}\bigr\}\footnote{译注：原书此处及下一段开头的行文均印作 $f$（$fpitchfork P$ along $K_a$）；按 $\scr{U}'_{a}$ 系由诸 $g\in\scr{U}_{a}$ 组成之集的定义，此处应指 $g$，疑为 $f$／$g$ 笔误。此处照原书排印，存疑备案。——译者注}
+\]
+是 $\scr{U}_{a}$ 的一个\trDense\trOpen{}子集。由于 $K$ 是\trCompact{}的，我们可以用有限多个 $K_{a_{i}}$ \trCovering{}它；我们于是令
+\[
+\scr{U}'=\bigcap_{i=1}^{N}\scr{U}'_{a_{i}}\text{。}
+\]
+作为\trDense\trOpen{}子集的一个有限交，这是 $\scr{U}_{a}$ 的一个\trDense\trOpen{}子集\footnote{译注：原书此处印作“this is a dense open subset of $\scr{U}_{a}$”。就集合包含而论，$\scr{U}'=\bigcap_{i}\scr{U}'_{a_{i}}\subset\scr{U}_{a_{i}}$ 对每个参与的 $i$ 本来就成立，粗疏不在“包含”而在“\trDense”：诸 $\scr{U}'_{a_{i}}$ 只各在 $\scr{U}_{a_{i}}$ 中\trDense，有限交 $\scr{U}'$ 未必再于单独某个 $\scr{U}_{a_{i}}$ 中\trDense；稠开性在有限交下传递的正确表述，应是取共同邻域 $\bigcap_{i}\scr{U}_{a_{i}}$ 而言 $\scr{U}'$ 于其中稠且开。此处照原书排印，存疑备案。——译者注}。如果 $g\in\scr{U}'$，那么 $f$ 沿诸 $K_{a_{i}}$ 之并与 $P$ \trTransverse，从而沿 $K$ 亦然。
+\end{proof}
+
+偶尔会出现（而且今后也将偶尔出现）这样的情况：我们需要一个稍有不同的\trTransversality{}性质。我们不想考虑从 $M$ 到 $N$ 的一切函数，而只想考虑那些带有手头问题所特有的性质的函数——这一性质未必是\trOpen{}的。换句话说，我们只想考虑满足某个约束的函数。
+仿照 [47]，让我们说：$\cC^{\infty}(M,N)$ 的一个子集 $\scr{F}$ 与 $P$ 局部\trTransverse，如果对每个函数 $f\in\scr{F}$ 与每个 $a\in M$，都存在 $M$ 中 $a$ 的一个邻域 $K$ 与 $\scr{F}$ 中 $f$ 的一个邻域 $\scr{V}$，使得对每个 $g\in\scr{V}$，都存在某个空间 $\RR^{q}$ 中 $0$ 的一个邻域 $U$ 与一个族
+\[
+G:M\times U\longrightarrow N
+\]
+满足：
+\begin{itemize}
+\item $G_{0}=g$；
+\item 对一切 $t\in U$，$G_{t}\in\scr{F}$；
+\item $G$ 在 $K\times U$ 上与 $P$ \trTransverse。
+\end{itemize}
+这个定义自适应于大多数的约束，而这些约束一般并不定义\trOpen{}集。它被用于——例如——证明\trImmersion{}定理与\trWhitney{}\trEmbedding{}定理。另一个好处是：\trTransversality{}定理的证明无须任何修改就给出“带约束的\trTransversality”。
+
+\begin{theorem}\label{thm:constrained-transversality}
+如果 $\scr{F}\subset\cC^{\infty}(M,N)$ 与\trSubmanifold{} $P\subset N$ 局部\trTransverse，那么对每个\trCompact{}子集 $K\subset M$，$\scr{F}$ 中沿 $K$ 与 $P$ \trTransverse{}的那些元素所成之集，是 $\scr{F}$ 的一个\trDense\trOpen{}子集。
+\end{theorem}
+\noqed

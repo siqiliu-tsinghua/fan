@@ -1,0 +1,538 @@
+
+\section{带\BookRecordIndex{T0415}逐点约束的曲线}\label{sec:3-4}
+\zhindex{daizhudianyueshudexian}{带逐点约束的曲线}
+
+本节是预备性的，初次阅读时可以略过；以下证明的结果将在第 6 章使用。主要的技术性结果是
+引理~\ref{lem:3-4-3}，它把命题~\ref{prop:3-2-1} 的论证推广到向量场
+$\xi\in\Omega^0(\Sigma,u^*TM)$ 在一个或多个点消失的情形。引理~\ref{lem:3-4-3}
+的证明以引理~\ref{lem:3-4-4} 中发展出的新分析思想为基础。最后一个结果
+（引理~\ref{lem:3-4-6}）则以一种更具构造性和几何性的方式处理这些问题。尽管这些几何
+思想只在光滑情形下适用，但它们可用于许多场合，因而值得作出说明。
+
+本节始终固定一个类 $A\in H_2(M;\mathbb Z)$ 和一个闭黎曼曲面 $\Sigma$。除非另有说明，
+我们不假设 $\Sigma$ 连通，并以 $\mathcal M^*(A,\Sigma;J)$ 表示类 $A$ 中所有
+\BookRecordIndex{T0003}$J$-全纯曲线 $u:\Sigma\to M$ 所成的\BookRecordIndex{T0246}模空间，其中 $u$ 在 $\Sigma$ 每个连通分支上的
+限制都是单纯的，而且任意两个分支都没有相同的像。因此，
+$\mathcal M^*(A,\Sigma;J)$ 是定义域光滑但不连通的单纯映射的\BookRecordIndex{T0246}模空间；这个空间将在
+第 6 章中起重要作用。
+
+在许多情形下，人们希望考虑满足某些几何约束的曲线 $u:\Sigma\to M$。这里固定一列
+两两不同的点
+\[
+  \mathbf w:=(w_1,\ldots,w_m)\in\Sigma^m,
+\]
+并考虑\BookRecordIndex{T0283}求值映射 $\operatorname{ev}_{\mathbf w}:\mathcal M^*(A,\Sigma;J)\to M^m$，其定义为
+\[
+  \operatorname{ev}_{\mathbf w}(u):=(u(w_1),\ldots,u(w_m)).
+\]
+给定光滑子流形 $X\subset M^m$，考察\BookRecordIndex{T0246}模空间
+\[
+  \mathcal M^*(A,\Sigma;\mathbf w,X;J)
+  :=\bigl\{u\in\mathcal M^*(A,\Sigma;J)
+  \bigm|\operatorname{ev}_{\mathbf w}(u)\in X\bigr\},
+\]
+即把点组 $(w_1,\ldots,w_m)$ 映入 $X$ 的\BookRecordIndex{T0091}单纯曲线所成的\BookRecordIndex{T0246}模空间。与前面一样，
+$\mathcal J$ 表示被 $\omega$ \BookRecordIndex{T0372}驯服或与 $\omega$ \BookRecordIndex{T0348}相容的\BookRecordIndex{T0088}殆复结构空间。若
+$J\in\mathcal J_{\mathrm{reg}}(A,\Sigma)$，并且\BookRecordIndex{T0283}求值映射
+$\operatorname{ev}_{\mathbf w}:\mathcal M^*(A,\Sigma;J)\to M^m$ 与 $X$ 横截，
+就称\BookRecordIndex{T0088}殆复结构 $J\in\mathcal J$ 对点组 $(A,\Sigma,\mathbf w,X)$ 是\emph{正则的}。
+所有这类正则\BookRecordIndex{T0088}殆复结构组成的集合记为
+$\mathcal J_{\mathrm{reg}}(A,\Sigma;\mathbf w,X)$。
+
+\begin{theorem}\label{thm:3-4-1}
+集合 $\mathcal J_{\mathrm{reg}}(A,\Sigma;\mathbf w,X)$ 在 $\mathcal J$ 中是\BookRecordIndex{T0300}剩余集。此外，
+若 $J\in\mathcal J_{\mathrm{reg}}(A,\Sigma;\mathbf w,X)$，则\BookRecordIndex{T0246}模空间
+$\mathcal M^*(A,\Sigma;\mathbf w,X;J)$ 是维数为
+\[
+  d=\dim\mathcal M^*(A,\Sigma;J)-\operatorname{codim}X
+\]
+的有限维光滑流形。
+\end{theorem}
+
+定理~\ref{thm:3-4-1} 可以直接推广到其他\BookRecordIndex{T0088}殆复结构空间 $\mathcal J$。例如，有时需要限制
+$J$，使其中的元素满足某些几何约束。注~\ref{rem:3-4-5} 将讨论这个问题。
+
+定理~\ref{thm:3-4-1} 的证明依赖如下观察：\BookRecordIndex{T0268}普适模空间上的\BookRecordIndex{T0283}求值映射在每一点都有满射微分。
+为了使这一陈述有意义，首先需要验证：当 $\Sigma$ 不连通时，\BookRecordIndex{T0268}普适模空间
+$\mathcal M^*(A,\Sigma;\mathcal J^\ell)$ 是流形。这只是命题~\ref{prop:3-2-1}
+极轻微的推广，现阶段把证明细节留作习题；稍后在命题 6.2.7 的证明中会给出这些细节。
+现在考虑\BookRecordIndex{T0269}普适求值映射
+\[
+  \operatorname{ev}_{\mathbf w,\mathcal J}:
+  \mathcal M^*(A,\Sigma;\mathcal J^\ell)\longrightarrow M^m,
+\]
+其定义为
+\[
+  \operatorname{ev}_{\mathbf w,\mathcal J}(u,J)
+  :=(u(w_1),\ldots,u(w_m)).
+\]
+
+\begin{proposition}\label{prop:3-4-2}
+$M^m$ 中每一点都是 $\operatorname{ev}_{\mathbf w,\mathcal J}$ 的\BookRecordIndex{T0409}正则值。
+\end{proposition}
+
+这个命题的证明颇为复杂，占据本节余下的部分。先说明它如何蕴含
+定理~\ref{thm:3-4-1}。
+
+\begin{proof}[命题~\ref{prop:3-4-2} 蕴含定理~\ref{thm:3-4-1}]
+命题~\ref{prop:3-4-2} 表明，\BookRecordIndex{T0269}普适求值映射
+\[
+  \operatorname{ev}_{\mathbf w,\mathcal J}:
+  \mathcal M^*(A,\Sigma;\mathcal J^\ell)\longrightarrow M^m
+\]
+与 $M^m$ 的每个子流形都横截。因此，\BookRecordIndex{T0268}普适模空间
+\[
+  \mathcal M^*(A,\Sigma;\mathbf w,X;\mathcal J^\ell)
+  :=\bigl\{(u,J)\in\mathcal M^*(A,\Sigma;\mathcal J^\ell)
+  \bigm|\operatorname{ev}_{\mathbf w,\mathcal J}(u,J)\in X\bigr\}
+\]
+对每个 $\ell\ge2$ 都是 $C^{\ell-1}$ \BookRecordIndex{T0053}巴拿赫流形。余下论证沿用
+定理~\ref{thm:3-1-6} 的证明：先证明投影
+\[
+  \pi:\mathcal M^*(A,\Sigma;\mathbf w,X;\mathcal J^\ell)
+  \longrightarrow\mathcal J^\ell
+\]
+是具有预期指标的弗雷德霍姆映射，再使用 萨德--斯梅尔定理和 Taubes 的论证。细节留给
+读者。当 $X$ 是与一棵树 $T$ 对应的\BookRecordIndex{T0112}多重对角线 $\Delta^E$ 时，这个特殊情形的完整细节
+见第 6.2 节定理 6.2.6 的证明。这就证明了定理~\ref{thm:3-4-1}。
+\end{proof}
+
+下面给出一个初等证明，说明 $M$ 中由两两不同点组成的每个 $m$-元组
+$\mathbf x=(x_1,\ldots,x_m)\in M^m$ 都是
+$\operatorname{ev}_{\mathbf w,\mathcal J}$ 的\BookRecordIndex{T0409}正则值。论证所依据的观察是：$M$ 的辛同胚群
+的单位连通分支在 $M$ 的每个连通分支上传递地作用。它通过
+\[
+  \phi^*(u,J):=(\phi^{-1}\circ u,\phi^*J)
+\]
+作用在 $\mathcal M^*(A,\Sigma;\mathcal J^\ell)$ 上，而\BookRecordIndex{T0283}求值映射
+$\operatorname{ev}_{\mathbf w,\mathcal J}$ 关于这个作用等变。
+
+设 $(u,J)\in\mathcal M^*(A,\Sigma;\mathcal J^\ell)$，并假设各点
+$u(w_1),\ldots,u(w_m)$ 两两不同。于是，对任意一组切向量
+$v_i\in T_{u(w_i)}M$，都存在哈密顿函数 $H:M\to\mathbb R$，使得
+\[
+  X_H(u(w_i))+v_i=0,\qquad i=1,\ldots,m.
+\]
+以 $\phi_t$ 表示 $H$ 的哈密顿流。由习题~\ref{ex:3-1-4}，对子
+$(-X_H(u),\mathcal L_{X_H}J)$ 切于
+$\mathcal M^*(A,\Sigma;\mathcal J^\ell)$，并且
+\[
+  d\operatorname{ev}_{\mathbf w,\mathcal J}(u,J)
+  \bigl(-X_H(u),\mathcal L_{X_H}J\bigr)
+  =\left.\frac d{dt}\right|_{t=0}
+  \operatorname{ev}_{\mathbf w,\mathcal J}
+  (\phi_t^{-1}\circ u,\phi_t^*J)
+  =(v_1,\ldots,v_m).
+\]
+所以，只要 $u(w_1),\ldots,u(w_m)$ 两两不同，
+$d\operatorname{ev}_{\mathbf w,\mathcal J}(u,J)$ 就是满射。
+
+如果 $X$ 与\BookRecordIndex{T0082}大对角线 $\Delta^m\subset M^m$ 不相交，上述结论已经足以证明
+定理~\ref{thm:3-4-1}；这里 $\Delta^m$ 由 $M^m$ 中所有并非两两不同的点组
+$\mathbf x=(x_1,\ldots,x_m)$ 组成。然而，有些情形必须考虑与\BookRecordIndex{T0082}大对角线相交的子流形。
+例如，第 6 章需要知道不同\BookRecordIndex{T0246}模空间上的\BookRecordIndex{T0283}求值映射彼此横截。最简单的情形是
+$\Sigma=\Sigma_1\cup\Sigma_2$ 有两个亏格为零的连通分支，且
+$\mathbf w=(w_1,w_2)$，其中 $w_i\in\Sigma_i$。在这种情形下，定理~\ref{thm:3-4-1}
+断言：对通有的\BookRecordIndex{T0088}殆复结构 $J$，\BookRecordIndex{T0283}求值映射
+$\operatorname{ev}_{\mathbf w}:\mathcal M^*(A,\Sigma;J)\to M\times M$ 与对角线
+$X=\Delta\subset M\times M$ 横截。因此，对通有的\BookRecordIndex{T0088}殆复结构 $J$，相交的、彼此不同的
+单纯 $J$-全纯球面所成的\BookRecordIndex{T0246}模空间是具有预期维数的光滑流形。\footnote{这类\BookRecordIndex{T0246}模空间的元素是
+\BookRecordIndex{T0340}稳定映射的例子。有些文献使用“\BookRecordIndex{T0181}尖点曲线”（cusp curves）这一术语。}这个观察在
+$J$-全纯球面的\BookRecordIndex{T0256}粘合定理中也起重要作用。总之，存在一些重要例子满足
+$X\cap\Delta^m\ne\varnothing$，在这些情形下，定理~\ref{thm:3-4-1} 的证明需要
+命题~\ref{prop:3-4-2}。对某些用途，只证明各点 $w_i$ 位于 $\Sigma$ 不同连通分支上这一
+较容易的特殊情形也已足够；但我们将证明完整的一般结果。证明以接下来的引理为基础。
+
+\begin{lemma}\label{lem:3-4-3}
+设 $p>2$，且 $\ell\ge2$ 是整数或 $\ell=\infty$。设 $J\in\mathcal J^\ell$，并设
+$u:\Sigma\to M$ 是定义在连通黎曼曲面 $\Sigma$ 上的单纯 \BookRecordIndex{T0003}$J$-全纯曲线。假设
+$w_0,w_1,\ldots,w_m\in\Sigma$ 两两不同。则对每个 $\varepsilon>0$ 以及每组切向量
+\[
+  v_i\in T_{u(w_i)}M,\qquad i=1,\ldots,m,
+\]
+都存在向量场 $\xi\in W^{\ell,p}(\Sigma,u^*TM)$ 和截面
+$Y\in C^\ell(M,\End(TM,J,\omega))$，使得
+\begin{equation}\label{eq:3-4-1}
+  \xi(w_i)=v_i,\qquad
+  D_u\xi+\frac12Y(u)du\circ j=0,\qquad
+  \operatorname{supp}Y\subset B_\varepsilon(u(w_0)),
+\end{equation}
+其中 $i=1,\ldots,m$。
+\end{lemma}
+
+\begin{proof}[引理~\ref{lem:3-4-3} 蕴含命题~\ref{prop:3-4-2}]
+回忆 $\Sigma$ 未必连通，以 $\Sigma_j$ 表示它的各个连通分支。\BookRecordIndex{T0268}普适模空间
+$\mathcal M^*(A,\Sigma;\mathcal J^\ell)$ 在 $(u,J)$ 处的切空间由所有满足
+式~\eqref{eq:3-4-1} 中第二个方程的对子
+\[
+  (\xi,Y)\in W^{\ell,p}(\Sigma,u^*TM)
+  \times C^\ell(M,\End(TM,J,\omega))
+\]
+组成，并且
+\[
+  d\operatorname{ev}_{\mathbf w,\mathcal J}(u,J)(\xi,Y)
+  =(\xi(w_1),\ldots,\xi(w_m)).
+\]
+选取常数 $\varepsilon>0$，并在 $\Sigma$ 的每个连通分支 $\Sigma_j$ 中各选一点
+$w_{0j}$，使得各球 $B_\varepsilon(u(w_{0j}))$ 两两不交，并且除非 $i=j$，否则它不与
+$u(\Sigma_i)$ 相交。这里用到 $u$ 是单纯的，即它在每个分支 $\Sigma_j$ 上的限制都单纯，
+且不同分支的像彼此不同。给定任意一组向量 $v_i\in T_{u(w_i)}M$，对 $\Sigma$ 的每个
+连通分支 $\Sigma_j$ 应用引理~\ref{lem:3-4-3}，得到切于
+$\mathcal M^*(A,\Sigma_j;\mathcal J^\ell)$ 的元素 $(\xi_j,Y_j)$，使得
+\[
+  \operatorname{supp}Y_j\subset B_\varepsilon(u(w_{0j})),
+\]
+且只要 $w_i\in\Sigma_j$，就有 $\xi_j(w_i)=v_i$。令
+$\xi\in W^{\ell,p}(\Sigma,u^*TM)$ 在每个 $\Sigma_j$ 上的限制为 $\xi_j$，则对子
+$(\xi,\sum_jY_j)$ 切于 $\mathcal M^*(A,\Sigma;\mathcal J^\ell)$。所以对每个
+$(u,J)\in\mathcal M^*(A,\Sigma;\mathcal J^\ell)$，
+$d\operatorname{ev}_{\mathbf w,\mathcal J}(u,J)$ 都是满射。这就证明了
+命题~\ref{prop:3-4-2}。
+\end{proof}
+
+上面的证明表明，引理~\ref{lem:3-4-3} 对 $Y$ 的支集所作的精确控制十分重要。为了得到
+这种精确性，需要一个改进的\BookRecordIndex{T0408}正则性结果；它适用于把算子 $D_u$ 限制在有限多个点消失的
+截面 $\xi\in\Omega^0(\Sigma,u^*TM)$ 上的情形。回忆命题~\ref{prop:3-1-10}：若
+$J$ 属于 $C^\ell$，则每条 \BookRecordIndex{T0003}$J$-全纯曲线 $u$ 都属于 $W^{\ell+1,p}$，而\BookRecordIndex{T0346}线性化算子
+$D_u$ 良定义为从 $W^{\ell,p}$ 到 $W^{\ell-1,p}$ 的算子。
+
+\begin{lemma}\label{lem:3-4-4}
+设 $p>2$，且 $\ell\ge2$ 是整数或 $\ell=\infty$。设
+$J\in\mathcal J^\ell$，$u:\Sigma\to M$ 是定义在连通黎曼曲面 $\Sigma$ 上的单纯
+\BookRecordIndex{T0003}$J$-全纯曲线，并设 $Z\subset\Sigma$ 是有限集。取 $q>1$ 满足
+$1/p+1/q=1$，并假设
+$\eta\in L^q(\Sigma,\Lambda^{0,1}\otimes_Ju^*TM)$ 对每个
+$\xi\in W^{1,p}(\Sigma,u^*TM)$ 都满足
+\begin{equation}\label{eq:3-4-2}
+  \xi(Z)=0
+  \quad\Longrightarrow\quad
+  \int_\Sigma\langle\eta,D_u\xi\rangle\,
+  d\operatorname{vol}_\Sigma=0.
+\end{equation}
+则
+\[
+  \eta\in W_{\mathrm{loc}}^{\ell,p}
+  (\Sigma\setminus Z,\Lambda^{0,1}\otimes_Ju^*TM),
+  \qquad
+  D_u^*\eta=0\quad\text{在 }\Sigma\setminus Z\text{ 上}.
+\]
+此外，若 $\eta$ 在某个非空开集上消失，则 $\eta\equiv0$。
+\end{lemma}
+
+\begin{proof}[引理~\ref{lem:3-4-4} 蕴含引理~\ref{lem:3-4-3}]
+先考察算子
+\[
+  (\xi,Y)\longmapsto D_u\xi+\frac12Y(u)du\circ j_\Sigma
+\]
+在如下对子上的像：
+$ (\xi,Y)\in W^{k,p}(\Sigma,u^*TM)\times T_J\mathcal J^\ell$，其中 $\xi$ 在有限集
+\[
+  Z:=\{w_1,\ldots,w_m\}
+\]
+上消失，而 $Y$ 支撑在 $u(w_0)$ 附近。于是定义子空间
+\[
+  \mathcal Z^k:=
+  \left\{
+    D_u\xi+\frac12Y(u)du\circ j_\Sigma
+    \ \middle|\,
+    \begin{array}{l}
+      \xi\in W^{k,p},\ Y\in C^\ell,\ \xi(Z)=0,\\
+      \operatorname{supp}Y\subset B_\varepsilon(u(w_0))
+    \end{array}
+  \right\}.
+\]
+我们断言
+\begin{equation}\label{eq:3-4-3}
+  \mathcal Z^k=W^{k-1,p}
+  (\Sigma,\Lambda^{0,1}\otimes_Ju^*TM),
+\end{equation}
+其中 $k=1,\ldots,\ell$。先设 $k=1$。由于
+\[
+  D_u:W^{1,p}(\Sigma,u^*TM)
+  \longrightarrow L^p(\Sigma,\Lambda^{0,1}\otimes_Ju^*TM)
+\]
+是\BookRecordIndex{T0128}弗雷德霍姆算子，子空间
+$\{\xi\in W^{1,p}(\Sigma,u^*TM)\mid\xi(Z)=0\}$ 在 $D_u$ 下的像是闭的，并且具有有限
+余维。因此 $\mathcal Z^1$ 是
+$L^p(\Sigma,\Lambda^{0,1}\otimes_Ju^*TM)$ 的闭子空间。只须证明它稠密。
+
+为此，设 $\eta\in L^q(\Sigma,\Lambda^{0,1}\otimes_Ju^*TM)$ 零化
+$\mathcal Z^1$，其中 $1/p+1/q=1$。于是 $\eta$ 满足式~\eqref{eq:3-4-2}，故由
+引理~\ref{lem:3-4-4}，
+\[
+  \eta\in W_{\mathrm{loc}}^{\ell,p}
+  (\Sigma\setminus Z,\Lambda^{0,1}\otimes_Ju^*TM),
+  \qquad
+  D_u^*\eta=0\quad\text{在 }\Sigma\setminus Z\text{ 上}.
+\]
+此外，对每个满足
+$\operatorname{supp}Y\subset B_\varepsilon(u(w_0))$ 的
+$Y\in C^\ell(M,\End(TM,J,\omega))$，都有
+\[
+  \int_\Sigma\langle\eta,Y(u)du\circ j_\Sigma\rangle\,
+  d\operatorname{vol}_\Sigma=0.
+\]
+由于 $u$ 单纯，存在\BookRecordIndex{T0094}单射点 $z\in\Sigma$，使得
+$d(u(z),u(w_0))<\varepsilon$。若 $\eta(z)\ne0$，仿照命题~\ref{prop:3-2-1} 的证明，
+可找到支撑在 $B_\varepsilon(u(w_0))$ 中的\BookRecordIndex{T0343}无穷小殆复结构
+$Y\in C^\ell(M,\End(TM,J,\omega))$，使函数
+$\langle\eta,Y(u)du\circ j_\Sigma\rangle$ 处处非负，并且在 $z$ 点为正。于是上面的积分
+不为零，矛盾。这说明 $\eta$ 在 $w_0$ 附近的每个\BookRecordIndex{T0094}单射点都消失，因而在某个开集上消失。
+由引理~\ref{lem:3-4-4}，$\eta=0$。所以 $\mathcal Z^1$ 的零化子为零；再由
+Hahn--Banach 定理，$\mathcal Z^1$ 如所断言在
+$L^p(\Sigma,\Lambda^{0,1}\otimes_Ju^*TM)$ 中稠密。
+
+这就证明了 $k=1$ 时的式~\eqref{eq:3-4-3}。为证明 $k>1$ 的情形，给定
+$\eta\in W^{k-1,p}(\Sigma,\Lambda^{0,1}\otimes_Ju^*TM)$。由刚才证明的结论，存在
+$(\xi,Y)\in W^{1,p}(\Sigma,u^*TM)\times T_J\mathcal J^\ell$，使得
+\begin{equation}\label{eq:3-4-4}
+  \xi(Z)=0,\qquad
+  D_u\xi+\frac12Y(u)du\circ j_\Sigma=\eta,\qquad
+  \operatorname{supp}Y\subset B_\varepsilon(u(w_0)).
+\end{equation}
+由式~\eqref{eq:3-4-4}，$D_u\xi\in W^{k-1,p}$。又因 $k\le\ell$，定理 C.2.3
+给出 $\xi\in W^{k,p}$。这就证明了任意 $k$ 下的式~\eqref{eq:3-4-3}。
+
+为证明引理~\ref{lem:3-4-3}，沿 $u$ 任取向量场
+$\xi'\in W^{\ell,p}(\Sigma,u^*TM)$，使得
+$\xi'(w_i)=v_i$，$i=1,\ldots,m$。由式~\eqref{eq:3-4-3}，存在
+$(\xi'',Y)\in W^{\ell,p}(\Sigma,u^*TM)\times T_J\mathcal J^\ell$，使得
+式~\eqref{eq:3-4-4} 对 $\eta:=-D_u\xi'$ 以及用 $\xi''$ 替代 $\xi$ 成立。因此
+$(\xi'+\xi'',Y)$ 满足式~\eqref{eq:3-4-1}。这就证明了引理~\ref{lem:3-4-3}。
+\end{proof}
+
+\begin{proof}[引理~\ref{lem:3-4-4} 的证明]
+为了证明\BookRecordIndex{T0408}正则性陈述，在 $\Sigma\setminus Z$ 上选取一个与
+$\mathbb C$ 的开集 $\Omega$ 等同的\BookRecordIndex{T0149}共形坐标邻域，坐标记为 $s+it$，使得
+$d\operatorname{vol}_\Sigma=\lambda^2ds\wedge dt$。写成
+\[
+  \eta=: \xi'\,ds-J(u)\xi'\,dt,
+  \qquad
+  \xi'(s,t)\in T_{u(s,t)}M.
+\]
+若 $\xi\in W^{1,p}(\Sigma,u^*TM)$ 的支集包含在 $\Omega$ 中
+\sourcefootnote{原书此处把测试截面写作
+$\eta\in W^{1,p}(\Sigma,u^*TM)$；但 $\eta$ 已被假设为取值于
+$\Lambda^{0,1}\otimes_Ju^*TM$ 的 $L^q$ 形式，而紧随其后的式子使用的是
+$D_u\xi$。故依式~\eqref{eq:3-4-2} 唯一改为 $\xi$。}，则式~\eqref{eq:3-4-2}
+具有形式
+\begin{align*}
+  0
+  &=\int_\Omega\langle\eta,D_u\xi\rangle\lambda^2\,dsdt\\
+  &=\int_\Omega
+    \bigl\langle\xi',\nabla_s\xi+J(u)\nabla_t\xi
+    +(\nabla_\xi J)(u)\partial_tu\bigr\rangle
+    \lambda^2\,dsdt\\
+  &=\int_\Omega
+    \langle\xi',\nabla_s\xi+J(u)\nabla_t\xi\rangle
+    \lambda^2\,dsdt
+    +\int_\Omega
+    \langle B_{s,t}(\xi',\partial_tu),\xi\rangle
+    \lambda^2\,dsdt.
+\end{align*}
+这里 $B_{s,t}:T_{u(s,t)}M\times T_{u(s,t)}M\to T_{u(s,t)}M$ 是由下式定义的双线性映射：
+\[
+  \langle B_{s,t}(v_1,v_2),v_3\rangle
+  :=\langle v_1,(\nabla_{v_3}J)(u)v_2\rangle.
+\]
+注意，由于 $J$ 与 $u$ 属于 $C^\ell$，只要导数阶数不超过 $\ell-1$，截面
+$B_{s,t}(\xi',\partial_tu)$ 就与 $\xi'$ 属于同一\BookRecordIndex{T0319}索伯列夫空间。
+
+一开始 $\xi'\in L^q$。所以对引理 B.4.6 取 $r=q$，得到
+\[
+  \xi'\in W_{\mathrm{loc}}^{1,q}\subset L_{\mathrm{loc}}^{q'},
+  \qquad q':=\frac{2q}{2-q}>2,
+\]
+其中 $W_{\mathrm{loc}}^{1,q}:=W_{\mathrm{loc}}^{1,q}(\Omega,u^*TM)$。再次应用
+引理 B.4.6，把其中的 $r$ 和 $q$ 都换成 $q'$，得到
+$\xi'\in W_{\mathrm{loc}}^{1,q'}\subset L_{\mathrm{loc}}^p$。现在归纳应用命题 B.4.9，
+便有 $\xi'\in W_{\mathrm{loc}}^{k,p}$，$k=1,\ldots,\ell$。这证明了\BookRecordIndex{T0408}正则性。分部积分
+立即给出方程 $D_u^*\eta=0$。
+
+为证明最后一个断言，注意方程 $D_u^*\eta=0$ 在局部坐标中具有形式
+\[
+  -\nabla_s\xi'+J(u)\nabla_t\xi'+C\xi'=0,
+\]
+其中 $C:\Omega\to\mathbb R^{2n\times2n}$ 是 $C^{\ell-1}$ 类矩阵值函数。由 \BookRecordIndex{T0013}Carleman
+相似原理（定理~\ref{thm:2-3-5}），$\Sigma\setminus Z$ 中 $\xi'$ 无穷阶消失的点集既开
+又闭。根据假设，这个集合非空，因而 $\eta$ 在 $\Sigma\setminus Z$ 上消失。这就证明了
+引理~\ref{lem:3-4-4}。
+\end{proof}
+
+\begin{remark}\label{rem:3-4-5}
+有时需要对一个受限制的\BookRecordIndex{T0088}殆复结构集合证明\BookRecordIndex{T0408}正则性结果。例如，在构造对子 $(M,V)$ 的相对
+\BookRecordIndex{T0143}格罗莫夫--威滕不变量时，其中 $V$ 是 $M$ 中实余维为 $2$ 的辛子流形，把注意力限制到
+$\mathcal J_V$ 上会很有用；这里 $\mathcal J_V$ 是使 $V$ 为 $J$-全纯子流形的
+$\omega$-\BookRecordIndex{T0372}驯服（或\BookRecordIndex{T0348}相容）\BookRecordIndex{T0088}殆复结构空间，即 $J(TV)\subset TV$。（可能还需施加更多限制；
+例如见 Ionel--Parker \srcite{200}。）无论 $V$ 的余维是多少，都容易验证：只要添加条件
+$u(w_0)\notin V$，引理~\ref{lem:3-4-3} 在这种情形下仍然成立。因此，\BookRecordIndex{T0246}模空间
+\[
+  \mathcal M^*(A,\Sigma;V,\mathbf w,X;J)
+  :=\bigl\{u\in\mathcal M^*(A,\Sigma;J)
+  \bigm|\operatorname{ev}_{\mathbf w}(u)\in X,\ u(\Sigma)\not\subset V\bigr\}
+\]
+由把点组 $(w_1,\ldots,w_m)$ 映入 $X$ 且像不完全包含在 $V$ 中的\BookRecordIndex{T0091}单纯曲线组成；对通有的
+$J\in\mathcal J_V$，它是具有正确维数的光滑流形。
+\end{remark}
+
+本节最后证明引理~\ref{lem:3-4-3} 的一个光滑版本。它给出的\BookRecordIndex{T0343}无穷小殆复结构 $Y$ 支撑在
+以各点 $w_i$ 为中心的一些小\BookRecordIndex{T0170}环域之并的 $u$-像的邻域中，而不是支撑在某个与它们无关的
+集合 $u(B_\varepsilon(w_0))$ 中。思路是在各点 $w_i$ 附近构造 $D_u\xi=0$ 的局部解
+$\xi$，再用\BookRecordIndex{T0188}截断函数修改 $\xi$，使它在这些点的一个小邻域之外消失。随后需要引入一个
+\BookRecordIndex{T0343}无穷小殆复结构 $Y$，来补偿\BookRecordIndex{T0188}截断函数造成的影响；$Y$ 支撑在以 $w_i$ 为中心的小\BookRecordIndex{T0170}环域之并
+的 $u$-像的一个邻域内。这个论证可以看作 McDuff \srcite{254, Proposition 4.1} 的线性化
+版本；在后者中，\BookRecordIndex{T0003}$J$-全纯曲线 $u$ 本身在各点 $w_i$ 附近受到扰动。
+
+\begin{lemma}\label{lem:3-4-6}
+设 $u:\Sigma\to M$ 是关于某个光滑\BookRecordIndex{T0088}殆复结构 $J$ 的单纯 \BookRecordIndex{T0003}$J$-全纯曲线，并且
+$w_1,\ldots,w_m$ 是 $\Sigma$ 中两两不同的点。则存在常数 $\delta>0$，使下述结论成立。
+对每组切向量
+$v_i\in T_{u(w_i)}M$，$1\le i\le m$，以及每一对满足 $0<\rho<r<\delta$ 的实数，
+都存在沿 $u$ 的光滑向量场 $\xi\in\Omega^0(\Sigma,u^*TM)$ 和\BookRecordIndex{T0343}无穷小殆复结构
+$Y\in\Omega^0(M,\End(TM,J,\omega))$，使得
+\[
+  \xi(w_i)=v_i,\qquad
+  D_u\xi+\frac12Y(u)du\circ j_\Sigma=0,\qquad
+  \operatorname{supp}\xi\subset\bigcup_{i=1}^mB_r(w_i),
+\]
+其中 $i=1,\ldots,m$。此外，$Y$ 支撑在集合
+\[
+  \bigcup_{i=1}^m u\bigl(B_r(w_i)\setminus B_\rho(w_i)\bigr)
+\]
+的任意小邻域中。
+\end{lemma}
+
+\begin{proof}
+先考虑 $m=1$ 的情形。在 $\Sigma$ 上 $w_1$ 的附近选取\BookRecordIndex{T0149}共形坐标 $s+it$，使 $w_1$ 的
+坐标为 $s=t=0$。于是
+\[
+  D_u\xi+\frac12Y(u)du\circ j_\Sigma
+  =\frac12\bigl(\eta\,ds-J(u)\eta\,dt\bigr),
+\]
+其中
+\[
+  \eta:=\nabla_s\xi+J(u)\nabla_t\xi
+  +(\nabla_\xi J)(u)\partial_tu+Y(u)\partial_tu.
+\]
+论证的第一步是把这个方程化为用常矩阵
+\[
+  J_0:=
+  \begin{pmatrix}
+    0&-\mathbf1\\
+    \mathbf1&0
+  \end{pmatrix}
+\]
+取代 $J(u)$ 的方程。为此，选取一个（光滑）\BookRecordIndex{T0391}酉平凡化
+$\Phi(s,t):\mathbb R^{2n}\to T_{u(s,t)}M$，使得
+\[
+  J(u(s,t))\Phi(s,t)=\Phi(s,t)J_0,
+  \qquad
+  \omega(\Phi v,\Phi w)=(J_0v)^Tw,
+\]
+其中上标 $T$ 表示转置；并写成
+\[
+  \xi(s,t)=\Phi(s,t)\xi_0(s,t),\qquad
+  v_1=\Phi(0,0)v_0,\qquad
+  \partial_tu(s,t)=-\Phi(s,t)\zeta_0(s,t).
+\]
+于是，由前一个显示式以及 $\eta=\Phi\eta_0$，应有下式
+\sourcefootnote{原书此式右端漏印因子 $1/2$。由本证明前一显示式以及
+$\eta=\Phi\eta_0$ 可唯一确定该因子；后文只使用这个表达式等于零，故原书后续论证
+不受影响。}：
+\[
+  D_u\xi+\frac12Y(u)du\circ j_\Sigma
+  =\frac12\Phi\bigl(\eta_0\,ds-J_0\eta_0\,dt\bigr)
+\]
+其中
+\[
+  \eta_0=\partial_s\xi_0+J_0\partial_t\xi_0+A_0\xi_0-Y_0\zeta_0,
+\]
+并且
+\[
+  Y_0:=\Phi^{-1}Y(u)\Phi,\qquad
+  A_0:=\Phi^{-1}
+  \bigl(\nabla_s\Phi+J(u)\nabla_t\Phi+(\nabla_\Phi J)(u)\partial_tu\bigr).
+\]
+
+对 $x\in M$，\BookRecordIndex{T0348}相容性条件
+$Y(x)\in\End(T_xM,J_x,\omega_x)$ 化为
+\[
+  Y_0=Y_0^T=J_0Y_0J_0.
+\]
+用这种语言，我们的问题是寻找这样的函数
+$Y_0:B_1\to\mathbb R^{2n\times2n}$ 以及向量场
+$\xi_0:B_1\to\mathbb R^{2n}$，使得
+\[
+  \partial_s\xi_0+J_0\partial_t\xi_0+A_0\xi_0=Y_0\zeta_0,
+  \qquad
+  \xi_0(0)=v_0,
+\]
+其中向量场 $\zeta_0$ 和向量 $v_0$ 已经给定。注意，$Y_0$ 必须是 $M$ 上所定义函数经
+$\Phi$ 的拉回。因此，它必须支撑在 $B_1$ 中 $u$ 为单射的一个子集上。
+
+先考虑方程
+\begin{equation}\label{eq:3-4-5}
+  \partial_s\xi_0+J_0\partial_t\xi_0+A_0\xi_0=0,
+  \qquad
+  \xi_0(0)=v_0.
+\end{equation}
+如果 $A_0=0$，并且在单位圆盘的边界上施加适当的拉格朗日边界条件，那么
+式~\eqref{eq:3-4-5} 在 $B_1$ 中有唯一一个满足该边界条件的解。例如，当 $n=1$ 时，
+考虑边界条件
+$\xi_0(e^{i\theta})\in e^{i\theta/2}\mathbb R$。每个满足该条件的全纯映射
+$\xi_0:B_1\to\mathbb C$ 都具有形式
+$\xi_0(z)=a+\bar a z$，其中 $a\in\mathbb C$；见定理 C.4.1 证明中的第 2 步。对一般的
+$n$，可以在 $\mathbb R^{2n}=\mathbb C^n$ 中取这些边界环路的直和。由此，对 $v_0$ 的
+每个取值，$A_0=0$ 时的式~\eqref{eq:3-4-5} 在 $B_1$ 中都有唯一一个满足边界条件的解。
+当 $A_0$ 充分小时，这一结论继续成立。通过缩放论证，可以把它推广到任意 $A_0$；但解
+$\xi_0$ 的定义域要限制为 $B_\delta$，其中 $\delta$ 依赖于 $A_0$。
+
+现在取满足 $0<\rho<r<\delta$ 的实数 $\rho,r$。必要时缩小\BookRecordIndex{T0170}环域
+$B_r\setminus B_\rho$，由推论~\ref{cor:2-5-5}，可以假设 $u$ 在
+$B_r\setminus B_\rho$ 上的限制是嵌入，并且
+\[
+  u^{-1}\bigl(u(B_r\setminus B_\rho)\bigr)=B_r\setminus B_\rho.
+\]
+这里用到了 $u$ 是单纯的。再选取\BookRecordIndex{T0188}截断函数 $\beta:\mathbb C\to[0,1]$，使得当
+$|z|\le\rho$ 时 $\beta(z)=1$，当 $|z|\ge r$ 时 $\beta(z)=0$。于是
+\[
+  \partial_s(\beta\xi_0)+J_0\partial_t(\beta\xi_0)+A_0(\beta\xi_0)
+  =(\partial_s\beta)\xi_0+(\partial_t\beta)J_0\xi_0=: \eta_0.
+\]
+所以需要找一个支撑在 $B_r\setminus B_\rho$ 中的函数
+$Y_0:B_1\to\mathbb R^{2n\times2n}$，使得
+\begin{equation}\label{eq:3-4-6}
+  Y_0\zeta_0=\eta_0,\qquad
+  Y_0=Y_0^T=J_0Y_0J_0,
+\end{equation}
+其中 $\zeta_0=-\Phi^{-1}\partial_tu$。注意，$\eta_0$ 支撑在\BookRecordIndex{T0170}环域
+$B_r\setminus B_\rho$ 中，而且 $\zeta_0$ 在 $B_r\setminus B_\rho$ 的闭包上不为零。
+所以引理~\ref{lem:3-2-2} 给出满足式~\eqref{eq:3-4-6} 的函数 $Y_0$ 的一个显式公式。
+（注意，只要 $\xi(z)\ne0$，这个公式便光滑地依赖于 $\eta(z)$。）
+
+最后一步是验证 $Y_0$ 是 $M$ 上某个截面
+$Y\in C^\infty(M,\End(TM,J,\omega))$ 的拉回，即
+\[
+  Y_0=\Phi^{-1}Y(u)\Phi.
+\]
+这是因为 $u$ 在 $B_r\setminus B_\rho$ 上的限制是嵌入。此外，由于
+$B_r\setminus B_\rho=u^{-1}(u(B_r\setminus B_\rho))$，可以把 $Y$ 的支集选得充分靠近
+$u(B_r\setminus B_\rho)$，从而 $Y(u)$ 在 $B_r\setminus B_\rho$ 的补集上消失。因此，
+$Y$ 与 $\xi:=\beta\Phi\xi_0$ 满足引理的要求。
+
+这就完成了 $m=1$ 时的证明。推广到任意 $m$ 时，唯一的困难在于保证：为了修正每个
+$w_i$ 处的\BookRecordIndex{T0188}截断函数而需要的不同元素
+$Y_i\in C^\infty(M,\End(TM,J,\omega))$ 彼此不干扰。更确切地说，每个
+截面 $Y_i(u)$ 都应支撑在 $w_i$ 周围的一个适当\BookRecordIndex{T0170}环域中。由推论~\ref{cor:2-5-5}，这是
+可以做到的。
+\end{proof}
+
+\begin{exercise}\label{ex:3-4-7}
+由引理~\ref{lem:3-4-6} 和推论~\ref{cor:2-5-5} 证明命题~\ref{prop:3-4-2}。再按照
+注~\ref{rem:3-2-7} 中概述的 Floer 思路证明定理~\ref{thm:3-4-1}。
+\end{exercise}
+
+\begin{exercise}\label{ex:3-4-8}
+引理~\ref{lem:3-4-6} 的证明会损失导数。假设该引理中的\BookRecordIndex{T0088}殆复结构 $J$ 属于 $C^\ell$。
+你能把 $Y_0$ 和 $\xi_0$ 取到何种光滑程度？构造中的哪些步骤会损失光滑性？
+\end{exercise}

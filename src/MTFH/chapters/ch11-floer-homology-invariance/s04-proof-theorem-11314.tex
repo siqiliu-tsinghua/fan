@@ -1,0 +1,541 @@
+
+\section{定理 11.3.14 的证明}
+\label{sec:proof-theorem-11314}
+
+我们接着进行\cref{thm:gluing-gamma}的证明（见\cref{sec:proof-theorem-11116}），并把那些必要的修改着重指出来。
+
+首先注意到，陈述中的 $\lambda_{\star}$ 属于开区间 $]0,1[$。事实上，\trManifold{} $\scr{M}^{\Gamma}(x,y)$（维数为 $0$）由那些使得\trHomotopy{} $\Gamma_{\lambda}$ 不是\trRegular{}的偶对 $(\lambda,u)$ 组成（\cref{thm:gamma-i-not-regular}）。这就排除了 $\lambda_{\star}=0$ 与 $\lambda_{\star}=1$ 这两个值。我们的目标是：对 $\rho\ge\rho_{0}$，定义一个映射
+\[
+\psi_{\rho}\colon\RR\times S^{1}\longrightarrow W
+\]
+与一个常数 $\lambda_{\rho}$，使得 $\psi_{\rho}$ 是带参数的\trFloerEquation
+\[
+\frac{\partial\psi_{\rho}}{\partial s}+J_{s}^{\lambda_{\rho}}\frac{\partial\psi_{\rho}}{\partial t}+\operatorname{grad}_{\psi_{\rho}}H^{\lambda_{\rho}}_{s,t}=0
+\]
+的一个解，并且满足条件\footnote{译注：原书此式第二项印作 $\lim_{s\to+\infty}\psi(s,\bullet)=z$；按上一项 $\psi_{\rho}(s,\bullet)=x$ 与本节正在定义的映射记号，$\psi$ 的下标 $\rho$ 疑为排印所漏。此处径改。——译者注}
+\[
+\lim_{s\to-\infty}\psi_{\rho}(s,\bullet)=x
+\qquad\text{与}\qquad
+\lim_{s\to+\infty}\psi_{\rho}(s,\bullet)=z\text{。}
+\]
+
+\begin{remark}\label{thm:naive-constant-lambda}
+一个天真的解法是取 $\lambda_{\rho}=\lambda_{\star}$，然后试着像\cref{sec:proof-theorem-11116}中那样，从 $u$ 与 $\widehat{v}$ 的一个\trLift{} $v\in\scr{M}_{(H^{b},J^{b})}(y,z)$ 的\trPregluing{}出发来定义 $\psi_{\rho}$。这个方法注定要失败，因为\trHomotopy{} $\Gamma_{\lambda_{\star}}$ 不是\trRegular{}的（\cref{thm:gamma-i-not-regular}），于是我们无法推出\trLinearization{}算子 $L_{u}=(d\scr{F}^{\Gamma_{\lambda_{\star}}})_{u}$ 是\trSurjective{}的，也就无法构造出那个对\cref{sec:construction-psi-rho}与\cref{sec:proof-theorem-11116}中的\trNewton--\trPicard{}方法必不可少的逆算子 $G_{\rho}$。在这里，$\operatorname{Coker}L_{u}$ 的维数是 $1$，而正是 $\lambda$ 的变化将提供所缺的那一维。
+\end{remark}
+
+仍然沿着\cref{sec:construction-psi-rho}，我们施行代换
+\[
+\varphi_{\rho}(s,t)=\psi_{\rho}(s+\rho,t)\text{。}
+\]
+映射 $\varphi_{\rho}$ 将需要满足方程
+\[
+\frac{\partial\varphi_{\rho}}{\partial s}+J_{s+\rho}^{\lambda_{\rho}}\frac{\partial\varphi_{\rho}}{\partial t}+\operatorname{grad}_{\varphi_{\rho}}H^{\lambda_{\rho}}_{s+\rho,t}=0\text{。}
+\]
+我们沿用与\cref{sec:construction-psi-rho}和\cref{sec:proof-theorem-11116}中相同的纲要，也就是：
+\begin{enumerate}[label=(\arabic*)]
+\item \trPregluing；
+\item $\varphi$ 的构造（从而也就是 $\psi$ 的构造，经由上面给出的代换）；
+\item $\psi$ 的诸性质。
+\end{enumerate}
+
+\subsection{\trPregluing}
+\label{subsec:pregluing-lambda}
+
+我们取定 $\widehat{v}$ 的一个\trLift{} $v\in\scr{M}_{(H^{b},J^{b})}(y,z)$。\trPregluing{}公式 $w_{\rho}=u\,\#_{\rho}\,v$ 保持不变：
+\[
+w_{\rho}(s,t)=
+\left\{
+\begin{array}{ll}
+u(s+\rho,t) & \text{若 } s\le -1\\[10pt]
+\begin{aligned}
+\exp_{y(t)}\Bigl(\beta^{-}(s)\exp_{y(t)}^{-1}&\bigl(u(s+\rho,t)\bigr)\\
+&+\ \beta^{+}(s)\exp_{y(t)}^{-1}\bigl(v(s-\rho,t)\bigr)\Bigr)
+\end{aligned}
+& \text{若 } s\in[-1,1]\\[10pt]
+v(s-\rho,t) & \text{若 } s\ge 1\text{，}
+\end{array}
+\right.
+\]
+而它的性质与\cref{sec:pregluing}中给出的那些类似。
+
+同样地，\trPregluing{}的线性版本
+\[
+Y\,\#_{\rho}\,Z\text{，}\qquad \text{其中 } Y\in T\scr{P}_{u}(x,y)\ \text{且 } Z\in T\scr{P}_{v}(y,z)\text{，}
+\]
+也由同一个公式定义，并且与它在\cref{sec:pregluing}中的类似对象具有同样的性质。
+
+\subsection{$\varphi$ 的构造}
+\label{subsec:construction-phi-lambda}
+
+如同\cref{sec:construction-psi-rho}与\cref{subsec:construction-phi}中那样，我们再次使用\trNewton--\trPicard{}方法。受了\cref{thm:naive-constant-lambda}的启发，我们对 $\lambda=\lambda_{\star}$ 照抄\cref{subsec:construction-phi}的开头。我们定义（非线性的）算子
+\[
+F_{u},F_{v},F_{\rho}^{\Gamma_{\lambda_{\star}}}\colon B(0,r)\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+以及它们各自的\trLinearization{}（即 $0$ 处的\trDifferential）
+\[
+L^{u},L^{v},L_{\rho}^{\Gamma_{\lambda_{\star}}}\colon W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{。}
+\]
+如同\cref{subsec:construction-phi}中那样，这些都是\trFredholmOperator。另一方面，它们的\trIndex{}被修改如下：
+\[
+\operatorname{Ind}L^{u}=\mu(x)-\mu(y)=-1
+\]
+\[
+\operatorname{Ind}L^{v}=\mu(y)-\mu(z)=1
+\]
+\[
+\operatorname{Ind}L_{\rho}^{\Gamma_{\lambda_{\star}}}=\mu(x)-\mu(z)=0\text{。}
+\]
+
+我们在上面（\cref{thm:naive-constant-lambda}）已经注意到，把 $\lambda$ 保持为常值 $\lambda_{\star}$ 就无法构造出 $\varphi$。于是，对 $\lambda\in\,]0,1[$，我们考虑由
+\[
+\scr{F}_{\rho}^{\Gamma_{\lambda}}=\frac{\partial}{\partial s}+J_{s+\rho}^{\lambda}\frac{\partial}{\partial t}+\operatorname{grad}H^{\lambda}_{s+\rho,t}
+\]
+定义的\trFloer{}算子 $\scr{F}_{\rho}^{\Gamma_{\lambda}}$。利用\cref{subsec:construction-phi}中的诸\trTrivialization，$\scr{F}_{\rho}^{\Gamma_{\lambda}}$ 定义出一个（非线性）算子
+\[
+F_{\rho}^{\Gamma_{\lambda}}\colon B(0,r)\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{。}
+\]
+仍然利用同样的诸\trTrivialization，这又经由公式
+\[
+F_{\rho}^{\Gamma}(\lambda,Y)=F_{\rho}^{\Gamma_{\lambda}}(Y)
+\]
+定义出一个（非线性）算子
+\[
+F_{\rho}^{\Gamma}\colon\,]0,1[\,\times\, W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{。}
+\]
+注意到，如果 $(\lambda_{\rho},Y_{\rho})$ 是 $F_{\rho}^{\Gamma}$ 的一个零点，那么 $\scr{F}_{\rho}^{\Gamma_{\lambda_{\rho}}}\bigl(\exp_{w_{\rho}}Y_{\rho}\bigr)=0$，这就是说，$\varphi_{\rho}=\exp_{w_{\rho}}(Y_{\rho})$ 满足所要的\trFloerEquation。
+
+因此，我们的目标便是找到这样一个零点……，用的正是\trNewton--\trPicard{}方法。为此，我们首先确定\trLinearization{}算子 $L_{\rho}^{\Gamma}=(dF_{\rho}^{\Gamma})_{(\lambda_{\star},0)}$。注意到 $L_{\rho}^{\Gamma}(0,\bullet)$ 按定义就是算子 $L_{\rho}^{\Gamma_{\lambda_{\star}}}=(d\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}})_{0}$。接着，
+\[
+\begin{aligned}
+L_{\rho}^{\Gamma}(a,0)&=\frac{\partial}{\partial\lambda}\Bigm|_{\lambda=0}\Bigl(\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}+a\lambda}}\exp_{w_{\rho}}(0)\Bigr)_{(Z_{i}^{\rho})_{i=1,\dots,2n}}\\
+&=\frac{\partial}{\partial\lambda}\Bigm|_{\lambda=0}\Bigl(\frac{\partial w_{\rho}}{\partial s}+J_{s+\rho}^{\lambda_{\star}+a\lambda}\frac{\partial w_{\rho}}{\partial t}+\operatorname{grad}_{w_{\rho}}H^{\lambda_{\star}+a\lambda}_{s+\rho,t}\Bigr)_{(Z_{i}^{\rho})_{i=1,\dots,2n}}\\
+&=a\Bigl(\frac{\partial J}{\partial\lambda}\bigl(\lambda_{\star},s+\rho\bigr)\Bigl(\frac{\partial w_{\rho}}{\partial t}-X_{H^{\lambda_{\star}}_{s+\rho,t}}\bigl(w_{\rho}\bigr)\Bigr)\\
+&\qquad+\operatorname{grad}_{w_{\rho}}\frac{\partial H}{\partial\lambda}\bigl(\lambda_{\star},s+\rho,t\bigr)\Bigr)_{(Z_{i}^{\rho})_{i=1,\dots,2n}}\\
+&=a\,(V_{\rho})_{(Z_{i}^{\rho})_{i=1,\dots,2n}}\text{，}
+\end{aligned}
+\]
+其中\footnote{译注：原书此式第二行的第二项印作 $\frac{\partial w}{\partial t}$；按同一等式的首项 $\frac{\partial w_{\rho}}{\partial s}$ 与末项 $\operatorname{grad}_{w_{\rho}}$，整个表达式皆沿 $w_{\rho}$ 展开，此项疑漏下标 $\rho$。此处径改。——译者注}该公式定义了 $V_{\rho}$，即一个沿 $w_{\rho}$ 的\trVectorField。它的形状与\trVectorField{} $V$ 的形状极为相似，后者是沿 $u\in\scr{M}^{\Gamma}(x,y)$（此处 $\Gamma=\Gamma_{\lambda_{\star}}$）的\trVectorField，定义于\cref{thm:pi-regular-values}的证明中。从现在起，在写 $L_{\rho}^{\Gamma}$ 的公式时，我们将不再提及\trFrame{} $(Z_{i}^{\rho})_{i=1,\dots,2n}$。
+
+这两个\trVectorField{}满足关系
+\[
+V_{\rho}(s,t)=V(s+\rho,t)\qquad\text{若 } s\le -1\text{。}
+\]
+还要注意，由于对 $s\ge R$ 有 $\Gamma=(H^{b},J^{b})$ 且 $\lambda\in[0,1]$，我们有
+\[
+V_{\rho}(s,t)=0\qquad\text{若 } s+\rho\ge R\text{，}
+\]
+这就把 $s\ge 1$ 且 $\rho\ge R$ 的情形也包括在内了。概括起来，我们得到了
+\[
+L_{\rho}^{\Gamma}=a(V_{\rho})+L_{\rho}^{\Gamma_{\lambda_{\star}}}(Y)\text{。}
+\]
+
+通过如同\cref{thm:pi-regular-values}的证明中那样的推理，我们发现 $L_{\rho}$ 是一个\trFredholmOperator，它的\trIndex{}可以借助\trFredholmOperator{}的路径\footnote{译注：原书此式左端印作 $L_{\rho,\sigma}$、无上标 $\Gamma$；按紧随其后的 $\operatorname{Ind}L_{\rho,0}^{\Gamma}$ 一式与本节的算子记号，此处疑漏 $\Gamma$ 上标。此处径改。——译者注}
+\[
+L_{\rho,\sigma}^{\Gamma}(a,Y)=a\sigma V_{\rho}+L_{\rho}^{\Gamma_{\lambda_{\star}}}(Y)\qquad\text{对 } \sigma\in[0,1]
+\]
+来计算。我们发现
+\[
+\operatorname{Ind}L_{\rho}^{\Gamma}=\operatorname{Ind}L_{\rho,0}^{\Gamma}=\operatorname{Ind}L_{\rho}^{\Gamma_{\lambda_{\star}}}+1=1\text{。}
+\]
+
+让我们回忆一下：由\cref{thm:y-surjective}，算子
+\[
+\scr{Y}^{u}\colon\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+由\footnote{译注：原书此式左端印作 $\scr{Y}(a,Y)$、无上标 $u$；按上一行所定义的算子记号 $\scr{Y}^{u}$ 与下文“$\scr{Y}^{u}$ 是\trBijective{}的”，此处疑漏上标 $u$。此处径改。——译者注}
+\[
+\scr{Y}^{u}(a,Y)=aV+L^{u}(Y)
+\]
+所定义，它是一个\trFredholmOperator{}并且具有\trIndex
+\[
+\operatorname{Ind}\scr{Y}^{u}=1+\operatorname{Ind}L^{u}=0
+\]
+（如上面那样计算）。此外，由于\trHomotopy{} $\Gamma$ 是\trRegular{}的，\cref{thm:y-surjective}断言 $\scr{Y}^{u}$ 是\trSurjective{}的，于是 $\operatorname{Ker}\scr{Y}^{u}=0$，从而 $\scr{Y}^{u}$ 是\trBijective{}的。
+
+另一方面，\trHomotopy{} $(H^{b},J^{b})$ 也是\trRegular{}的，因此 $L^{v}$ 是\trSurjective{}的。从而它的\trKernel{}的维数是 $1$，并且我们有
+\[
+\operatorname{Ker}L^{v}=\Bigl\{\alpha\Bigl(\frac{\partial v}{\partial s}\Bigr)_{(Z_{i}^{v})}\ \Bigm|\ \alpha\in\RR\Bigr\}\text{。}
+\]
+仍然沿着\cref{subsec:construction-phi}，我们对 $\rho\ge\rho_{0}$ 定义诸空间
+\[
+W_{\rho}=\bigl\{0\,\#_{\rho}\,\beta\ \bigm|\ \beta\in\operatorname{Ker}L^{v}\bigr\}
+\]
+与
+\[
+W_{\rho}^{\perp}=\Bigl\{Y\in W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\ \Bigm|\ \int_{\RR\times S^{1}}\langle Y,Z\rangle=0\quad\text{对每个 } Z\in W_{\rho}\Bigr\}\text{。}
+\]
+
+这里，我们把 $W_{\rho}$ 视为含于 $L^{q}\bigl(\RR\times S^{1};\RR^{2n}\bigr)$ 之中（其中 $1/p+1/q=1$），如同\cref{sec:construction-psi-rho}中那样，利用\trFrame{} $(Z_{i}^{\rho})$ 与\trExponentialDecay{}性质（见\cref{sec:exponential-decay}，更准确地说是\cref{thm:du-ds-decay-remark}）。
+
+为了应用\trNewton--\trPicard{}方法（\cref{thm:abstract-newton-picard}），我们需要为算子 $L_{\rho}^{\Gamma}$ 定义一个右逆。为此，我们需要\cref{thm:lrho-lower-bound}的一个类似物。
+
+\begin{proposition}\label{thm:lrho-pair-lower-bound}
+存在一个实数 $\rho_{0}>0$ 与一个常数 $C>0$，使得对 $\rho\ge\rho_{0}$，
+\[
+\forall Y\in W_{\rho}^{\perp}\text{， }\forall a\in\RR\text{，}\quad
+\bigl\|L_{\rho}^{\Gamma}(a,Y)\bigr\|_{L^{p}}\ge C\bigl(\|Y\|_{W^{1,p}}+|a|\bigr)\text{。}
+\]
+\end{proposition}
+
+至于 $\rho\ge\rho_{0}$ 的含义，我们沿用\cref{sec:pregluing}处的约定（换言之，我们不需要把 $\rho_{0}$ 说得更精确）。
+
+\begin{proof}[\cref{thm:lrho-pair-lower-bound}的证明]
+假设结果不成立（如同\cref{thm:lrho-lower-bound}的证明开头那样）。于是存在序列
+\[
+\rho_{n}\longrightarrow+\infty
+\qquad\text{与}\qquad
+(a_{n},Y_{n})\in\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+使得
+\[
+|a_{n}|+\|Y_{n}\|_{W^{1,p}}=1
+\qquad\text{以及}\qquad
+\lim_{n\to+\infty}\bigl\|L_{\rho_{n}}^{\Gamma}(a_{n},Y_{n})\bigr\|_{L^{p}}=0\text{。}
+\]
+令 $r_{n}=\rho_{n}/2$。我们有
+\[
+V_{\rho_{n}}(s,t)=0\qquad\text{对 } (s,t)\in[-r_{n},r_{n}]\times S^{1}\ \text{且 } n\ \text{充分大}
+\]
+（一般地，我们已经看到，对 $s+\rho>R$ 有 $V_{\rho}(s,t)=0$，其中 $R$ 是从它开始 $\Gamma_{s}$ 成为\trStationary{}的那个常数）。于是，对充分大的 $n$，
+\[
+\bigl\|L_{\rho_{n}}^{\Gamma}(a_{n},Y_{n})\bigr\|_{L^{p}([-r_{n},r_{n}]\times S^{1})}
+=\bigl\|L_{\rho_{n}}^{\Gamma_{\lambda_{\star}}}Y_{n}\bigr\|_{L^{p}([-r_{n},r_{n}]\times S^{1})}\text{。}
+\]
+特别地，这最后一项当 $n$ 趋于无穷时趋于 $0$。于是我们可以使用与\cref{thm:yn-locally-small}中相同的论证来证明下面这条引理。
+
+\begin{lemma}\label{thm:yn-compact-w1p}
+对 $\RR\times S^{1}$ 的每个\trCompact{}子集 $K$，我们有
+\[
+\lim_{n\to+\infty}\|Y_{n}\|_{W^{1,p}(K)}=0\text{。}
+\]
+\end{lemma}
+\noqed
+
+接下来，这一次沿着\cref{thm:translated-subsequences}的证明，我们考虑用来构造\trPregluing{} $w_{\rho}$ 的实函数 $\beta^{-}$：它的\trSupport{}含于 $]{-\infty},0]$，并且在 $]{-\infty},-1]$ 上取值为 $1$。如同\cref{thm:translated-subsequences}中那样，我们使用\footnote{译注：原书此式第二行首项印作 $\dot{\beta}^{-}Y_{n}(s+1,t)$；按对 $\beta^{-}(s+1)Y_{n}(s,t)$ 施行算子求导的链式法则（并比照\cref{thm:translated-subsequences}的证明中同一算式 $\dot{\beta}^{-}(s+1)Y_{n}(s,t)$），此处 $(s+1)$ 疑为排印所误置。此处径改。——译者注}
+\[
+\begin{aligned}
+\bigl\|L_{\rho_{n}}^{\Gamma}\bigl(a_{n},\beta^{-}(s+1)Y_{n}(s,t)\bigr)\bigr\|_{L^{p}}
+&=\Bigl\|\dot{\beta}^{-}(s+1)Y_{n}(s,t)+\beta^{-}(s+1)L_{\rho_{n}}^{\Gamma}\bigl(a_{n},Y_{n}(s,t)\bigr)\Bigr\|_{L^{p}}\\
+&\le\bigl(\sup\dot{\beta}^{-}\bigr)\|Y_{n}\|_{L^{p}([-1,1]\times S^{1})}+\bigl\|L_{\rho_{n}}^{\Gamma}(a_{n},Y_{n})\bigr\|_{L^{p}}\text{，}
+\end{aligned}
+\]
+于是
+\[
+\lim_{n\to+\infty}\bigl\|L_{\rho_{n}}^{\Gamma}\bigl(a_{n},\beta^{-}(s+1)Y_{n}(s,t)\bigr)\bigr\|_{L^{p}}=0\text{，}
+\]
+这等价于
+\[
+\lim_{n\to+\infty}\bigl\|\scr{Y}^{u(s+\rho_{n},t)}\bigl(a_{n},\beta^{-}(s+1)Y_{n}(s,t)\bigr)\bigr\|_{L^{p}}=0\text{，}
+\]
+也就是说，等价于
+\[
+\lim_{n\to+\infty}\bigl\|\scr{Y}^{u}\bigl(a_{n},\beta^{-}(s-\rho_{n}+1)Y_{n}(s-\rho_{n},t)\bigr)\bigr\|_{L^{p}}=0\text{。}
+\]
+但是我们已经说过，$\scr{Y}^{u}$ 是一个\trBijective{}的\trFredholmOperator。换句话说：
+\begin{itemize}
+\item 我们有 $\lim a_{n}=0$（这就蕴含
+\[
+\lim_{n\to+\infty}\|Y_{n}\|_{W^{1,p}}=1
+\]
+因为两者之和为 $1$）。
+\item 在 $W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)$ 中，我们有
+\[
+\lim_{n\to+\infty}\beta^{-}(s-\rho_{n}+1)Y_{n}(s-\rho_{n},t)=0\text{，}
+\]
+这正是\cref{thm:translated-subsequences}之结果的第一部分。
+\end{itemize}
+这个结果的第二部分与\cref{thm:lrho-pair-lower-bound}的证明的结尾，可以照\cref{sec:construction-psi-rho}中的方式得到。
+\end{proof}
+
+\begin{corollary}\label{thm:lgamma-surjective}
+对 $\rho\ge\rho_{0}$，$L_{\rho}^{\Gamma}$ 是\trSurjective{}的，并且承认一个右逆
+\[
+G_{\rho}\colon L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{。}
+\]
+\end{corollary}
+
+\begin{proof}
+我们已经看到 $W_{\rho}$ 的维数是 $1$，并且显然有
+\[
+W_{\rho}\oplus W_{\rho}^{\perp}=W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{。}
+\]
+另一方面，\cref{thm:lrho-pair-lower-bound}蕴含
+\[
+\operatorname{Ker}L_{\rho}^{\Gamma}\cap\bigl(\RR\times W_{\rho}^{\perp}\bigr)=\{0\}\text{，}
+\]
+从而 $\dim\operatorname{Ker}L_{\rho}^{\Gamma}\le 1$，于是，由于 $L_{\rho}^{\Gamma}$ 的\trIndex{}为 $1$，这个算子必定是\trSurjective{}的，而它的\trKernel{}必定是维数为 $1$ 的。由此推出
+\[
+\operatorname{Ker}L_{\rho}^{\Gamma}\oplus\bigl(\RR\times W_{\rho}^{\perp}\bigr)=\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{，}
+\]
+这就使我们能够定义右逆 $G_{\rho}$，并且由\cref{thm:lrho-pair-lower-bound}，它是连续的，其范数小于一个不依赖于 $\rho$ 的常数。
+\end{proof}
+
+现在，我们把\trNewton--\trPicard{}方法、也就是\cref{thm:abstract-newton-picard}，应用于算子
+\[
+\overline{F}_{\rho}\colon\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+它由
+\[
+\overline{F}_{\rho}(\lambda,Y)=F_{\rho}^{\Gamma_{\lambda+\lambda_{\star}}}(Y)
+\]
+定义。我们有
+\[
+\overline{F}_{\rho}(\lambda,Y)=
+\left\{
+\begin{array}{ll}
+F_{\rho}^{\Gamma_{0}}(Y) & \text{若 } \lambda+\lambda_{\star}<0\\[6pt]
+F_{\rho}^{\Gamma_{1}}(Y) & \text{若 } \lambda+\lambda_{\star}>1\text{，}
+\end{array}
+\right.
+\]
+而我们的算子 $L_{\rho}^{\Gamma}$ 恰好就是 $\overline{F}_{\rho}$ 在 $0$ 处的\trDifferential（这正是我们借助对 $\lambda_{\star}$ 的平移来修改 $F_{\rho}^{\Gamma}$ 的原因）。
+
+现在让我们来验证\cref{thm:abstract-newton-picard}的诸条件都得到满足。条件 (1) 就是\cref{thm:lgamma-surjective}的结论。
+接下来，我们验证条件 (3)。利用由\cref{thm:lrho-pair-lower-bound}给出的常数 $C$，我们首先有
+\[
+\bigl\|G_{\rho}\bigl(\overline{F}_{\rho}(0,0)\bigr)\bigr\|_{W^{1,p}}\le C^{-1}\bigl\|\overline{F}_{\rho}(0,0)\bigr\|_{L^{p}}\text{，}
+\]
+然后有
+\[
+\bigl\|\overline{F}_{\rho}(0,0)\bigr\|_{L^{p}}
+=\bigl\|F_{\rho}^{\Gamma_{\lambda_{\star}}}(0)\bigr\|_{L^{p}}
+=\bigl\|\bigl(\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}(w_{\rho})\bigr)_{(Z_{i}^{\rho})}\bigr\|_{L^{p}}\text{，}
+\]
+其中 $\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}$ 是\trFloer{}算子
+\[
+\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}=\frac{\partial}{\partial s}+J_{s+\rho}^{\lambda_{\star}}\frac{\partial}{\partial t}+\operatorname{grad}H^{\lambda_{\star}}_{s+\rho,t}\text{。}
+\]
+现在，对 $|s|\ge1$ 有 $\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}(w_{\rho})(s,t)=0$，而 $\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}(w_{\rho})$ 在 $[-1,1]\times S^{1}$ 上一致地趋于 $0$，这就蕴含\footnote{译注：原书此式两处极限的下标均印作 $\rho\to0$；按本节自始恒有 $\rho\ge\rho_{0}>0$、上一句“一致趋于 $0$”即对 $\rho\to+\infty$ 而言（\cref{thm:abstract-newton-picard}的条件 (3) 也按 $\rho\to+\infty$ 陈述），疑应为 $\rho\to+\infty$。此处径改。——译者注}
+\[
+\lim_{\rho\to+\infty}\bigl\|\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}(w_{\rho})\bigr\|_{L^{p}}=0
+\qquad\text{从而}\qquad
+\lim_{\rho\to+\infty}\bigl\|\overline{F}_{\rho}(0,0)\bigr\|_{L^{p}}=0\text{。}
+\]
+这又进而蕴含\cref{thm:abstract-newton-picard}的条件 (3) 得到满足。
+
+条件 (2) 如同\cref{sec:construction-psi-rho}中那样验证（我们正是在那里验证了引理的条件 (2)），并利用\cref{thm:lrho-pair-lower-bound}，只是有一个例外：我们需要把\cref{thm:dn-op-estimate}改造成如下形式。
+
+\begin{lemma}\label{thm:dfbar-lipschitz}
+设 $r_{0}>0$。存在一个常数 $K>0$，使得对每个 $\rho\ge\rho_{0}$ 与每个 $(\lambda,Z)\in\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)$（其中 $\|Z\|\le r_{0}$），我们有
+\[
+\bigl\|(d\overline{F}_{\rho})_{(\lambda,Z)}-(d\overline{F}_{\rho})_{(0,0)}\bigr\|^{\mathrm{op}}\le K\bigl(\|Z\|_{W^{1,p}}+|\lambda|\bigr)\text{。}
+\]
+\end{lemma}
+
+这个版本的证明可以在\cref{sec:variants-parameters}中找到。
+
+\trNewton--\trPicard{}方法（\cref{thm:abstract-newton-picard}）随后便给出一个偶对 $(\overline{\lambda}_{\rho},\gamma_{\rho})$，使得
+\[
+\overline{F}_{\rho}\bigl(\overline{\lambda}_{\rho},\gamma_{\rho}\bigr)=0\text{，}
+\]
+而按 $\overline{F}_{\rho}$ 的定义，这等价于
+\[
+F_{\rho}^{\Gamma}\bigl(\overline{\lambda}_{\rho}+\lambda_{\star},\gamma_{\rho}\bigr)=0\text{。}
+\]
+于是，$\varphi_{\rho}=\exp_{w_{\rho}}\gamma_{\rho}$ 是方程
+\[
+\scr{F}_{\rho}^{\Gamma_{\lambda_{\rho}}}(\,\cdot\,)=0
+\qquad\bigl(\text{其中 } \lambda_{\rho}=\overline{\lambda}_{\rho}+\lambda_{\star}\bigr)
+\]
+的一个解。
+
+就我们把\cref{thm:gluing-near-broken}的证明剖分成的这三个部分而言（见本节开头），$\varphi$ 的这个构造把我们带到了第二部分的终点。我们令
+\[
+\psi_{\rho}(s,t)=\varphi_{\rho}(s-\rho,t)
+\]
+并且发现
+\[
+\frac{\partial\psi_{\rho}}{\partial s}+J_{s}^{\lambda_{\rho}}\frac{\partial\psi_{\rho}}{\partial t}+\operatorname{grad}_{\psi_{\rho}}H^{\lambda_{\rho}}_{s,t}=0\text{，}
+\]
+也就是说，$(\lambda_{\rho},\psi_{\rho})\in\scr{M}^{\Gamma}(x,z)$。我们令
+\[
+\begin{aligned}
+\psi\colon[\rho_{0},+\infty[&\longrightarrow\scr{M}^{\Gamma}(x,z)\\
+\rho&\longmapsto(\lambda_{\rho},\psi_{\rho})\text{。}
+\end{aligned}
+\]
+
+按照本节开头所建立的纲要，作为\cref{thm:gluing-near-broken}的证明的第三部分也是最后一部分，我们现在需要确立 $\psi$ 所要的那些性质。
+
+\subsection{$\psi$ 的诸性质}
+\label{subsec:properties-psi-lambda}
+
+如同\cref{thm:gamma-rho-tends-zero}中那样，我们有
+\[
+\lim_{\rho\to+\infty}\overline{\lambda}_{\rho}=0
+\qquad\text{以及}\qquad
+\lim_{\rho\to+\infty}\|\gamma_{\rho}\|_{W^{1,p}}=0\text{。}
+\]
+第一个等式蕴含 $\lim_{\rho\to+\infty}\lambda_{\rho}=\lambda_{\star}$。利用第二个等式，我们按照\cref{sec:construction-psi-rho}与\cref{subsec:properties-psi-rho}中的推理证明
+\[
+\lim_{\rho\to+\infty}\varphi_{\rho}(s-\rho,t)=u(s,t)
+\qquad\text{以及}\qquad
+\lim_{\rho\to+\infty}\varphi_{\rho}(s+\rho,t)=v(s,t)
+\]
+在 $\cC^{\infty}_{\mathrm{loc}}$ \trTopology{}下成立。由此推出
+\[
+\lim_{\rho\to+\infty}\psi(\rho)=\bigl[(\lambda_{\star},u),\widehat{v}\bigr]
+\]
+（其中的\trConvergence{}就是\cref{thm:convergence-broken-gamma}所定义的那一个）。
+
+现在让我们来证明映射 $\psi$ 是（连续且）可微的。为此，我们需要对映射 $\rho\mapsto(\overline{\lambda}_{\rho},\gamma_{\rho})$ 证明这些性质。我们如同\cref{sec:construction-psi-rho}中那样使用\trImplicitFunctionTheorem。我们必须证明：对充分大的 $\rho$，算子 $(d\overline{F}_{\rho})_{(\overline{\lambda}_{\rho},\gamma_{\rho})}$ 是\trInvertible{}的；这件事我们完全照\cref{thm:d2f-invertible}的证明来做，并利用\cref{thm:dfbar-lipschitz}。
+
+现在让我们来证明 $\psi$ 是一个\trEmbedding。我们将需要下面所陈述的结果，它是\cref{thm:dgamma-rho-tends-zero}与\cref{thm:gamma-newton-picard}的性质 (3) 的一个类似物。
+
+\begin{proposition}\label{thm:drho-gamma-rho}
+\[
+\lim_{\rho\to+\infty}\Bigl\|\frac{\partial\gamma_{\rho}}{\partial\rho}\Bigr\|_{W^{1,p}}=0
+\qquad\text{与}\qquad
+\lim_{\rho\to+\infty}\frac{\partial\lambda_{\rho}}{\partial\rho}=0\text{。}
+\]
+\end{proposition}
+
+\begin{proof}
+由于 $\lambda_{\rho}=\lambda_{\star}+\overline{\lambda}_{\rho}$，第二个关系等价于 $\partial\overline{\lambda}_{\rho}/\partial\rho=0$。令
+\[
+\widetilde{F}(\rho,\lambda,Y)=\overline{F}_{\rho}(\lambda,Y)\text{，}
+\]
+于是
+\[
+\widetilde{F}\bigl(\rho,\overline{\lambda}_{\rho},\gamma_{\rho}\bigr)=0\text{。}
+\]
+对这个恒等式关于 $\rho$ 求导，我们便得到
+\[
+\frac{\partial\overline{F}_{\rho}}{\partial\rho}\bigl(\overline{\lambda}_{\rho},\gamma_{\rho}\bigr)
++(d\overline{F}_{\rho})_{(\overline{\lambda}_{\rho},\gamma_{\rho})}
+\Bigl(\frac{\partial\overline{\lambda}_{\rho}}{\partial\rho},\frac{\partial\gamma_{\rho}}{\partial\rho}\Bigr)=0\text{。}
+\]
+如同\cref{thm:dgamma-rho-tends-zero}的证明中那样，这个关系蕴含
+\[
+\begin{aligned}
+\Bigl\|\Bigl(\frac{\partial\overline{\lambda}_{\rho}}{\partial\rho},\frac{\partial\gamma_{\rho}}{\partial\rho}\Bigr)\Bigr\|_{\RR\times W^{1,p}}
+&\le k_{1}\bigl\|(\overline{\lambda}_{\rho},\gamma_{\rho})\bigr\|_{\RR\times W^{1,p}}\,
+\Bigl\|\Bigl(\frac{\partial\overline{\lambda}_{\rho}}{\partial\rho},\frac{\partial\gamma_{\rho}}{\partial\rho}\Bigr)\Bigr\|_{\RR\times W^{1,p}}\\
+&\qquad+k_{2}\,\Bigl\|\frac{\partial\overline{F}_{\rho}}{\partial\rho}\bigl(\overline{\lambda}_{\rho},\gamma_{\rho}\bigr)\Bigr\|_{L^{p}}
+\end{aligned}
+\]
+其中正常数 $k_{1}$ 与 $k_{2}$ 不依赖于 $\rho$。我们将使用下面这个结果。
+
+\begin{lemma}\label{thm:dfbar-drho-estimate}
+存在一个不依赖于 $\rho$ 的常数 $C>0$，使得对 $\rho\ge\rho_{0}$，我们有
+\[
+\Bigl\|\frac{\partial\overline{F}_{\rho}}{\partial\rho}\bigl(\overline{\lambda}_{\rho},\gamma_{\rho}\bigr)
+-\frac{\partial\overline{F}_{\rho}}{\partial\rho}(0,0)\Bigr\|_{L^{p}}
+\le C\,\bigl\|(\overline{\lambda}_{\rho},\gamma_{\rho})\bigr\|_{\RR\times W^{1,p}}\text{。}
+\]
+\end{lemma}
+
+这条引理的证明可以在\cref{sec:variants-parameters}中找到，与它类似的诸条引理的证明也在那里。
+
+在刚才那个不等式中使用\cref{thm:dfbar-drho-estimate}，我们便得到
+\[
+\begin{aligned}
+\Bigl\|\Bigl(\frac{\partial\overline{\lambda}_{\rho}}{\partial\rho},\frac{\partial\gamma_{\rho}}{\partial\rho}\Bigr)\Bigr\|_{\RR\times W^{1,p}}
+\Bigl(1-k_{1}\bigl\|(\overline{\lambda}_{\rho},\gamma_{\rho})\bigr\|_{\RR\times W^{1,p}}\Bigr)
+&\le k_{2}C\,\bigl\|(\overline{\lambda}_{\rho},\gamma_{\rho})\bigr\|_{\RR\times W^{1,p}}\\
+&\qquad+\Bigl\|\frac{\partial\overline{F}_{\rho}}{\partial\rho}(0,0)\Bigr\|_{L^{p}}\text{。}
+\end{aligned}
+\]
+最后一项是
+\[
+\Bigl\|\frac{\partial\overline{F}_{\rho}}{\partial\rho}(0,0)\Bigr\|_{L^{p}}
+=\Bigl\|\Bigl(\frac{\partial\scr{F}_{\rho}^{\Gamma_{\lambda_{\star}}}}{\partial\rho}(w_{\rho})\Bigr)_{Z_{i}^{\rho}}\Bigr\|_{L^{p}}
+\]
+并且当 $\rho$ 趋于 $+\infty$ 时趋于 $0$，完全如同\cref{thm:dgamma-rho-tends-zero}的证明中那样。由于
+\[
+\lim_{\rho\to+\infty}\|(\overline{\lambda}_{\rho},\gamma_{\rho})\|_{\RR\times W^{1,p}}=0\text{，}
+\]
+我们的不等式随后便蕴含等式
+\[
+\lim_{\rho\to+\infty}\Bigl\|\Bigl(\frac{\partial\overline{\lambda}_{\rho}}{\partial\rho},\frac{\partial\gamma_{\rho}}{\partial\rho}\Bigr)\Bigr\|_{\RR\times W^{1,p}}=0\text{。}
+\]
+
+这就结束了\cref{thm:drho-gamma-rho}的证明。
+\end{proof}
+
+为了完成对 $\psi$ 所要诸性质的证明，我们还需要证明它是一个\trEmbedding。要做到这一点，只需证明它是一个\trImmersion{}即可（用一个我们已经在\cref{subsec:properties-psi-rho}中使用过的论证）。但是，如果 $\psi'_{\rho}=0$，那么如同\cref{subsec:properties-psi-rho}中那样，就必须有
+\[
+\frac{\partial\varphi_{\rho}}{\partial\rho}=\frac{\partial\varphi_{\rho}}{\partial s}
+\]
+（这是因为 $\psi_{\rho}(s,t)=\varphi_{\rho}(s-\rho,t)$）。所要的矛盾可以借助\cref{sec:psi-immersion}的方法（取 $\alpha_{n}=1$）并结合\cref{thm:drho-gamma-rho}得到。
+
+我们还需要证明\cref{thm:gluing-near-broken}的最后一部分，即“唯一性”：也就是说，由 $\scr{M}^{\Gamma}(x,z)$ 的元素组成的一个趋于 $[(\lambda_{\star},u),\widehat{v}]$ 的序列 $[\lambda_{n},\ell_{n}]$，对充分大的 $n$ 包含在 $\psi$ 的像之中。
+
+为此，我们需要与\cref{thm:exists-rho-n-yn}和\cref{thm:yn-w1p-null}所给出的那些结果相类似的结果。
+
+\begin{proposition}\label{thm:exists-rho-n-yn-lambda}
+存在一个趋于 $+\infty$ 的实数序列 $(\rho_{n})$，并且对每个 $n$，存在一个向量 $Y_{n}\in w_{\rho_{n}}^{\star}TW$，\footnote{译注：原书此处印作“and, for every $u$, a vector $Y_{n}$”；按上下文，$u$ 乃极限点 $[(\lambda_{\star},u),\widehat{v}]$ 中已固定的元素，而 $Y_{n}$ 随 $n$ 逐项存在，且\cref{thm:exists-rho-n-yn}的平行表述亦作“对每个 $n$”，疑应为 for every $n$。此处径改。——译者注}使得对每个 $(s,t)\in\RR\times S^{1}$，我们有
+\[
+\ell_{n}(s+\rho_{n},t)=\exp_{w_{\rho_{n}}(s,t)}Y_{n}(s,t)\text{。}
+\]
+此外，$\lim_{n\to+\infty}\|Y_{n}\|_{L^{\infty}}=0$。
+\end{proposition}
+
+\begin{proposition}\label{thm:yn-w1p-lambda}
+\trVectorField{} $Y_{n}$ 属于 $W^{1,p}\bigl(w_{\rho_{n}}^{\star}TW\bigr)$，并且
+\[
+\lim_{n\to+\infty}\|Y_{n}\|_{W^{1,p}}=0\text{。}
+\]
+\end{proposition}
+
+\cref{thm:exists-rho-n-yn-lambda}的证明在每一个细节上都与\cref{thm:exists-rho-n-yn}的证明相类似。它利用这样一个事实：$\ell_{n}$ 位于解空间 $\scr{M}^{\Gamma_{\lambda_{n}}}(x,z)$ 之中，其中\trHomotopy{} $\Gamma_{\lambda_{n}}=(H^{\lambda_{n}}_{s,t},J^{\lambda_{n}}_{s})$ 对 $s\le-R$ 与 $s\ge R$ 都是\trStationary{}的；还利用 $\ell_{n}$ 到 $(u,\widehat{v})$ 的\trConvergence{}（在\cref{thm:broken-limit-gamma}的意义下），而这后一\trConvergence{}由 $[\lambda_{n},\ell_{n}]$ 到 $[\lambda_{\star},(u,\widehat{v})]$ 的\trConvergence{}推出。
+
+\cref{thm:yn-w1p-lambda}的证明沿着\cref{thm:yn-w1p-null}的证明进行，只是有一点例外：在这个新的环境里，证明中所用的\trTaylor{}公式变为
+\[
+\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}}(Y_{n})
+=\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}}(0)
++(d\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}})_{0}(Y_{n})
++\scr{N}(Y_{n})\text{。}
+\]
+左边不为零，这是因为
+\[
+\ell_{n}=\exp_{w_{\rho_{n}}}(Y_{n})\in\scr{M}^{\Gamma_{\lambda_{n}}}(x,z)
+\]
+（换句话说，等式 $\widetilde{\scr{F}}^{\Gamma_{\lambda_{n}}}(Y_{n})=0$ 对 $\lambda_{n}$ 成立，而对 $\lambda_{\star}$ 不成立）。为了完成证明，我们需要下面这个上界。
+
+\begin{lemma}\label{thm:ftilde-upper-bound}
+存在不依赖于 $n$ 的正常数 $C$ 与 $k$，使得
+\[
+\bigl\|\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}}(Y_{n})\bigr\|_{L^{p}}
+\le C\,|\lambda_{n}-\lambda_{\star}|\,\|Y_{n}\|_{W^{1,p}}+k\,|\lambda_{n}-\lambda_{\star}|\text{。}
+\]
+\end{lemma}
+
+\begin{proof}
+我们有
+\[
+\begin{aligned}
+\bigl\|\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}}(Y_{n})\bigr\|_{L^{p}}
+&=\bigl\|\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}}(Y_{n})-\widetilde{\scr{F}}^{\Gamma_{\lambda_{n}}}(Y_{n})\bigr\|_{L^{p}}\\
+&\le|\lambda_{n}-\lambda_{\star}|\,\Bigl\|\sup_{\lambda}\frac{\partial\widetilde{\scr{F}}}{\partial\lambda}(\lambda,Y_{n})\Bigr\|_{L^{p}}\\
+&=|\lambda_{n}-\lambda_{\star}|\,\Bigl\|\sup_{\lambda}\widetilde{V}_{\rho_{n}}(\lambda,Y_{n})\Bigr\|_{L^{p}}\text{。}
+\end{aligned}
+\]
+接着，由\cref{thm:vtilderho-estimate}，
+\[
+\Bigl\|\sup_{\lambda}\widetilde{V}_{\rho_{n}}(\lambda,Y_{n})\Bigr\|_{L^{p}}
+\le C\,\|Y_{n}\|_{W^{1,p}}+\Bigl\|\sup_{\lambda}\widetilde{V}_{\rho_{n}}(\lambda,0)\Bigr\|_{L^{p}}\text{。}
+\]
+因为，按定义，
+\[
+\widetilde{V}_{\rho_{n}}(\lambda,0)=\frac{\partial J}{\partial\lambda}(\lambda,s+\rho_{n})\Bigl(\frac{\partial w_{\rho_{n}}}{\partial t}-X_{H^{\lambda}_{s+\rho_{n},t}}\bigl(w_{\rho_{n}}\bigr)\Bigr)
++\operatorname{grad}_{w_{\rho_{n}}}\frac{\partial H}{\partial\lambda}(\lambda,s+\rho_{n},t)\text{，}
+\]
+所以 $\widetilde{V}_{\rho_{n}}(\lambda,0)$ 就 $L^{\infty}$ 范数而言是\trBounded{}的。它的\trSupport{}是 $[-R-\rho_{n},R-\rho_{n}]\times S^{1}$。由此推出
+\[
+\bigl\|\widetilde{V}_{\rho_{n}}(\lambda,0)\bigr\|_{L^{p}}\le k\text{，}
+\]
+这就证明了这条引理。
+\end{proof}
+
+利用这条引理以及 $\widetilde{\scr{F}}^{\Gamma_{\lambda_{\star}}}$ 所对应的\cref{thm:taylor-remainder-estimate}的类似物，\cref{thm:yn-w1p-lambda}便可以照\cref{sec:proof-theorem-11116}中的方式得证，其中用到 $\lim\lambda_{n}=\lambda_{\star}$ 这一事实。
+
+唯一性的证明可以这样收尾：把\cref{thm:general-newton-picard}与\cref{thm:gamma-n-continuous}应用于算子
+\[
+\overline{F}_{\rho}\colon\RR\times W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+并且完全照\cref{subsec:properties-psi-rho}中的方式进行。
+
+\cref{thm:gluing-near-broken}的证明至此结束。\noqed
+
+\cref{thm:homology-independent-gamma}也随之得证。\noqed

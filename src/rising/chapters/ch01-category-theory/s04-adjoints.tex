@@ -1,0 +1,121 @@
+\section{伴随}
+
+下面登场的是一个与\trUniversalProperty{}密切相关的极为有用的观念。正如一个\trUniversalProperty{}「本质上」（在相差唯一同构的意义下）确定范畴中的一个对象（假定这样的对象存在），「伴随」也在本质意义上确定一个函子（同样假定它存在）。若对一切 $A\in\scr{A}$ 与 $B\in\scr{B}$，都存在\trNatural\trBijection
+\begin{equation*}\tag{1.4.0.1}\label{eq:adjoint-bijection}
+\tau_{AB}\colon\Mor_{\scr{B}}(F(A),B)\longrightarrow\Mor_{\scr{A}}(A,G(B)),
+\end{equation*}
+则称协变函子 $F\colon\scr{A}\to\scr{B}$ 与 $G\colon\scr{B}\to\scr{A}$ \trAdjoint。我们说 $(F,G)$ 构成一个\trAdjointPair，并说 $F$ 左伴随于 $G$（而 $G$ 右伴随于 $F$）；也说 $F$ 是一个\trLeftAdjoint（$G$ 是一个\trRightAdjoint）。所谓「\trNatural」，含义如下：对 $\scr{A}$ 中的一切 $f\colon A\to A'$，我们要求
+\begin{equation*}\tag{1.4.0.2}\label{eq:adjoint-naturality}
+\begin{tikzcd}[row sep=2.6em, column sep=3.8em]
+\Mor_{\scr{B}}(F(A'),B) \ar[r,"{Ff_*}"] \ar[d,"\tau_{A'B}"'] & \Mor_{\scr{B}}(F(A),B) \ar[d,"\tau_{AB}"] \\
+\Mor_{\scr{A}}(A',G(B)) \ar[r,"{f_*}"'] & \Mor_{\scr{A}}(A,G(B))
+\end{tikzcd}
+\end{equation*}
+交换；对 $\scr{B}$ 中的一切 $g\colon B\to B'$，则要求一幅类似的\trCommutativeDiagram{}交换。（这里 $f_*$ 是由 $f\colon A\to A'$ 诱导的映射，$Ff_*$ 是由 $Ff\colon F(A)\to F(A')$ 诱导的映射。）
+
+\begin{exercise}\label{ex:reverse-naturality-square}
+请写下这个图应当是什么样子。
+\end{exercise}
+
+\begin{exercise}\label{ex:unit-counit-construction}
+证明：\eqref{eq:adjoint-bijection}中的映射 $\tau_{AB}$ 具有如下性质。对每个 $A$，存在映射 $\eta_A\colon A\to GF(A)$，使得对任何 $g\colon F(A)\to B$，相应的 $\tau_{AB}(g)\colon A\to G(B)$ 由复合
+\[
+A \mathrel{\xrightarrow{\ \eta_A\ }} GF(A) \mathrel{\xrightarrow{\ Gg\ }} G(B)
+\]
+给出。类似地，对每个 $B$，存在映射 $\epsilon_B\colon FG(B)\to B$，使得对任何 $f\colon A\to G(B)$，相应的映射 $\tau_{AB}^{-1}(f)\colon F(A)\to B$ 由复合
+\[
+F(A) \mathrel{\xrightarrow{\ Ff\ }} FG(B) \mathrel{\xrightarrow{\ \epsilon_B\ }} B
+\]
+给出。
+\end{exercise}
+
+下面是\trAdjointPair{}的一个关键例子。
+
+\begin{exercise}\label{ex:modules-hom-tensor}
+设 $M$、$N$、$P$ 都是 $A$-模（$A$ 为环）。请描述一个双射
+\[
+\Hom_A(M\otimes_A N,P)\longleftrightarrow\Hom_A(M,\Hom_A(N,P)).
+\]
+（提示：试着用 $\otimes$ 的\trUniversalProperty。）
+\end{exercise}
+
+\begin{exercise}[\trTensorProduct{}--$\Hom$ 伴随]\label{ex:tensor-hom-adjoint}
+证明 $(\cdot)\otimes_A N$ 与 $\Hom_A(N,\cdot)$ 是伴随函子。
+\end{exercise}
+
+\begin{exercise}\label{ex:extension-of-scalars}
+设 $B\to A$ 是环映射。若 $M$ 是 $A$-模，则把它当作 $B$-模看待，便可造出一个 $B$-模 $M_B$。这给出一个函子 $(\cdot)_B\colon\catMod{A}\to\catMod{B}$。证明：这个函子右伴随于 $(\cdot)\otimes_B A$。换言之，请描述一个双射
+\[
+\Hom_A(N\otimes_B A,M)\xrightarrow{\ \sim\ }\Hom_B(N,M_B)
+\]
+对两个变元都有函子性。（这个\trAdjointPair{}非常重要。）
+\end{exercise}
+
+\textbf{1.4.1. \hard\ 我们不会用到的更花哨的注记。}\quad 你可以验证：左伴随在相差\trNaturalIsomorphism{}的意义下确定右伴随，反之亦然。\cref{ex:unit-counit-construction}中的映射 $\eta_A$ 与 $\epsilon_B$ 称为该伴随的\trAdjunctionUnit{}（unit）与\trAdjunctionCounit{}（counit）。由此可得到对伴随的另一番刻画。设给定函子 $F\colon\scr{A}\to\scr{B}$ 与 $G\colon\scr{B}\to\scr{A}$，连同\trNaturalTransformation{} $\eta\colon\id_{\scr{A}}\to GF$ 与 $\epsilon\colon FG\to\id_{\scr{B}}$，满足性质 $G\epsilon\circ\eta G=\id_G$（即对每个 $B\in\scr{B}$，$\eta_{G(B)}\colon G(B)\to GFG(B)$ 与 $G(\epsilon_B)\colon GFG(B)\to G(B)$ 的复合是恒等）与 $\epsilon F\circ F\eta=\id_F$。那么你可以验证：$F$ 左伴随于 $G$。这些事实验证起来并不难；所以你若想使用它们，就应当亲自把一切验证一遍。
+
+\textbf{1.4.2. 来自其他领域的例子。}\quad 对熟悉\trRepresentationTheory{}的读者：\trFrobeniusReciprocity{}可以用伴随来理解。设 $V$ 是\trFiniteGroup{} $G$ 的一个\trFiniteDimensional\trRepresentation，$W$ 是\trSubgroup{} $H<G$ 的一个\trRepresentation。那么\trInduction{}与\trRestriction{}构成一个介于 $G$-模范畴与 $H$-模范畴之间的\trAdjointPair{} $(\Ind_H^G,\Res_H^G)$。
+拓扑学家最钟爱的\trAdjointPair，也许是\trSuspensionFunctor{}（suspension functor）与\trLoopSpace{}函子（loop space functor）。
+
+\textbf{1.4.3. 例：\trAbelianSemigroup{}的\trGroupification。}\quad 下面是另一个动机性的例子：从一个\trAbelianSemigroup{}得到一个\trAbelianGroups。（\trAbelianSemigroup{}与\trAbelianGroups{}几乎一样，只是不要求存在\trUnit{}或\trInverseElement。\trAbelianSemigroup{}之间的态射是保持\trBinaryOperation{}的集合映射。一个例子是加法之下的非负整数 $\mathbb{Z}^{\ge0}=\{0,1,2,\dots\}$；另一个是加法之下的正整数 $\mathbb{Z}^{+}=\{1,2,3,\dots\}$；再一个是乘法之下的正整数 $\mathbb{Z}^{+}$。你也许会乐于把这三个都\trGroupification{}一番。）从一个\trAbelianSemigroup{}出发，你可以造出一个\trAbelianGroups。在我们的例子里，从加法之下的非负整数 $(\mathbb{Z}^{\ge0},+)$ 出发，造出整数 $(\mathbb{Z},+)$；从乘法之下的正整数 $(\mathbb{Z}^{+},\times)$ 出发，造出正有理数 $(\mathbb{Q}^{+},\times)$。下面把这个观念形式化。\trAbelianSemigroup{} $S$ 的一个\trGroupification{}是\trAbelianSemigroup{}之间的一个映射 $\pi\colon S\to G$，使得 $G$ 是\trAbelianGroups，并且任何从 $S$ 到\trAbelianGroups{} $G'$ 的\trAbelianSemigroup{}映射都唯一地穿过 $G$ 分解：
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=3.2em]
+S \ar[r,"\pi"] & G \\
+ & & G' \ar[lu,dashed,"\exists!"']
+\end{tikzcd}
+\]
+（也许「\trAbelian\trGroupification{}」会比「\trGroupification{}」更准确。）
+
+\begin{exercise}[\trAbelianGroups{}被自身\trGroupification]\label{ex:group-self-groupification}
+证明：若一个\trAbelianSemigroup{}本来就已经是\trGroup，则\trIdMorphism{}就是\trGroupification。（更正确的说法：\trIdMorphism{}是\emph{一个}\trGroupification。）注意：要解这道题，你无须构造\trGroupification{}（甚至无须知道它一般而言存在）。
+\end{exercise}
+
+\begin{exercise}\label{ex:groupification-left-adjoint}
+构造「\trGroupification{}函子」$H$：从非空\trAbelianSemigroup{}的范畴到\trAbelianGroups{}的范畴。（一个可能的构造：给定\trAbelianSemigroup{} $S$，其\trGroupification{} $H(S)$ 的元素是有序对 $(a,b)\in S\times S$——你不妨把它们想成 $a-b$——并赋以等价关系：$(a,b)\sim(c,d)$ 当对某个 $e\in S$ 有 $a+d+e=b+c+e$。请描述这个群里的加法，并证明它满足\trAbelianGroups{}的各项性质。请描述\trAbelianSemigroup{}的映射 $S\to H(S)$。）设 $F$ 是从\trAbelianGroups{}范畴 $\catAb$ 到\trAbelianSemigroup{}范畴的\trForgetfulFunctor。证明 $H$ 左伴随于 $F$。
+
+（这里是给行家的一般想法：设有某个范畴的一个\trFullSubcategory，我们想从这个范畴「投射」到该子范畴。我们自动地有
+\[
+\Mor_{\text{范畴}}(S,H)=\Mor_{\text{子范畴}}(G,H);
+\]
+因此我们所描述的，正是\trForgetfulFunctor{}的左伴随。这个论证的机理在于：我们构造出的东西落在较小的范畴之内，于是自动满足\trUniversalProperty。）
+\end{exercise}
+
+\begin{exercise}[参看\cref{ex:extension-of-scalars}]\label{ex:localization-forgetful-adjoint}
+本练习的目的，是让你多练习一下「\trForgetfulFunctor{}的左伴随」——我们正是靠它们从\trAbelianSemigroup{}得到\trAbelianGroups、从\trPresheaf{}得到\trSheaf。设 $A$ 是环，$S$ 是\trMultiplicativeSubset。那么，借助显然的包含 $\catMod{S^{-1}A}\hookrightarrow\catMod{A}$，$S^{-1}A$-模构成 $A$-模范畴的一个\trFullSubcategory{}（\S1.1.15）。于是 $\catMod{A}\to\catMod{S^{-1}A}$ 可以解释为\trForgetfulFunctor{} $\catMod{S^{-1}A}\to\catMod{A}$ 的一个伴随。请陈述并证明正确的命题。
+
+（这里是比较完整的故事。每一个 $S^{-1}A$-模都是一个 $A$-模，而且这个映射是\trInjectiveMap，于是我们有\trForgetfulFunctor{} $F\colon\catMod{S^{-1}A}\to\catMod{A}$。事实上它还是完全忠实函子：它在对象上是单射的，而且任意两个 $S^{-1}A$-模之间作为 $A$-模的态射，与把它们看作 $S^{-1}A$-模时的态射完全相同。于是存在函子 $G\colon\catMod{A}\to\catMod{S^{-1}A}$——不妨恰如其分地称之为「对 $S$ 作局部化」——它左伴随于该\trForgetfulFunctor。翻译：若 $M$ 是 $A$-模而 $N$ 是 $S^{-1}A$-模，则 $\Mor(GM,N)$（作为 $S^{-1}A$-模的态射，也就是作为 $A$-模的态射）与 $\Mor(M,FN)$（作为 $A$-模的态射）之间有\trNatural\trBijection。）
+\end{exercise}
+
+表~1 给出了我们今后将会遇到的大部分伴随。别的例子也会陆续登场，例如\trGradedRing{}上的\trGradedModule{}与相应\trProjectiveScheme{}上的\trQCSheaf{}之间的\trAdjointPair{} $(\sim,\Gamma_\bullet)$（\S15.7）。
+
+\textbf{1.4.4. 仅供此前见过伴随的读者的最后几句评注。}\quad 若 $(F,G)$ 是函子的一个\trAdjointPair，则 $F$ 与\trColimit{}交换，$G$ 与\trLimit{}交换。此外，\trLimit{}与\trLimit{}交换，\trColimit{}与\trColimit{}交换。这些事实（以及略多于此的内容）将在 \S1.5.14 中证明。
+
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \begin{tabular}{|>{\raggedright\arraybackslash}p{4.0cm}|>{\centering\arraybackslash}p{1.6cm}|>{\centering\arraybackslash}p{1.6cm}|>{\centering\arraybackslash}p{2.7cm}|>{\centering\arraybackslash}p{2.7cm}|}
+    \hline
+    情形 & 范畴 $\scr{A}$ & 范畴 $\scr{B}$ & 左伴随 $F\colon\scr{A}\to\scr{B}$ & 右伴随 $G\colon\scr{B}\to\scr{A}$ \\
+    \hline
+    $A$-模（\mbox{\cref{ex:tensor-hom-adjoint}}） & $\catMod{A}$ & $\catMod{A}$ & $(\cdot)\otimes_A N$ & $\Hom_A(N,\cdot)$ \\
+    \hline
+    环映射 $B\to A$（\mbox{\cref{ex:extension-of-scalars}}） & $\catMod{B}$ & $\catMod{A}$ & $(\cdot)\otimes_B A$\newline（\trExtensionOfScalars） & $M\mapsto M_B$\newline（\trRestrictionOfScalars） \\
+    \hline
+    拓扑空间 $X$ 上的（预）\trSheaf{}（\mbox{练习~2.4.K}） & $X$ 上的\trPresheaf & $X$ 上的\trSheaf & \trSheafification & \trForgetful \\
+    \hline
+    （半）群（\mbox{\S1.4.3}） & \trSemigroup & \trGroup & \trGroupification & \trForgetful \\
+    \hline
+    \trSheaf，$\pi\colon X\to Y$（\mbox{练习~2.7.B}） & $Y$ 上的\trSheaf & $X$ 上的\trSheaf & $\pi^{-1}$ & $\pi_*$ \\
+    \hline
+    \trAbelianGroups{}的\trSheaf{}或 $\OO$-\trModule{}的\trSheaf，开嵌入 $\pi\colon U\hookrightarrow Y$（\mbox{练习~23.4.G}） & $U$ 上的\trSheaf & $Y$ 上的\trSheaf & $\pi_!$ & $\pi^{-1}$ \\
+    \hline
+    \trQCSheaf，$\pi\colon X\to Y$（\mbox{命题~14.5.7}） & $\mathbf{QCoh}_Y$ & $\mathbf{QCoh}_X$ & $\pi^*$ & $\pi_*$ \\
+    \hline
+    环映射 $B\to A$（\mbox{练习~17.1.J}） & $\catMod{A}$ & $\catMod{B}$ & $M\mapsto M_B$\newline（\trRestrictionOfScalars） & $N\mapsto\Hom_B(A,N)$ \\
+    \hline
+    \trQCSheaf，\trAffine{} $\pi\colon X\to Y$（\mbox{练习~17.1.K(b)}） & $\mathbf{QCoh}_X$ & $\mathbf{QCoh}_Y$ & $\pi_*$ & $\pi^{!?}$ \\
+    \hline
+  \end{tabular}
+  \par\vspace{3pt}
+  {\footnotesize\textbf{表 1.}\quad 一些重要的伴随对。}
+\end{table}
+

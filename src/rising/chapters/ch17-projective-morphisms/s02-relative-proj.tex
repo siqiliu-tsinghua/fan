@@ -1,0 +1,110 @@
+
+\section{（拟凝聚）分次代数层的相对 $\Proj$}
+
+与 $\Spec$ 的相对版本 $\mathit{Spec}$ 相平行，我们对概形 $X$ 上一个拟凝聚的\trSheafOfGradedAlgebras（在满足某些假设之下）定义 $\Proj$ 的一个相对版本，记作 $\mathit{Proj}$（称作「相对 $\Proj$」或「层 $\Proj$」）。基 $X$ 为仿射的情形，我们已经在 \S4.5.7 中处理过了，那里用的是环 $A$ 上的常规 $\Proj$ 构造。优雅的推进办法，本是先陈述恰当的\trUniversalProperty，然后聪明地利用它把各个仿射片上的构造粘合起来，正如我们在\trFiberProduct、\trNormalization{}与 $\mathit{Spec}$ 的构造中所做的那样。但由于\trGradedRing{}和\trGradedModule{}会把一切都搅得令人糊涂，我们并不这样做，而是心虚地采取一条更为平淡无奇的路线。\footnote{译注：pedestrian 本义为「步行的」，引申为「平淡乏味、缺乏想象力」，作者在此自嘲这条路线缺乏格调。}（这个\trUniversalProperty{}是可以做成的，见 [Stacks, tag 01O0]。但我建议你莫这么做——一个\trUniversalProperty{}应当让你的日子更好过，而不是更难过。）
+
+\textbf{17.2.A.（练习：$\Proj$ 与仿射基变换交换）}\quad 设 $A\to B$ 是环映射\footnote{原书此处作「is map of rings」，当为「is a map of rings」之脱漏，译文径顺化。——译者注}，而 $S_\bullet$ 是 $A$ 上一个 $\mathbb{Z}^{\ge0}$-\trGradedRing。
+
+（a）给出一个典范的\trIsomorphism
+\begin{equation*}\tag{17.2.0.1}\label{eq:relproj-affine-base-change}
+\alpha\colon\Proj_B(S_\bullet\otimes_A B)\overset{\sim}{\longrightarrow}(\Proj_A S_\bullet)\times_{\Spec A}\Spec B.
+\end{equation*}
+（$\Proj$ 上的\textbf{这些下标}是一种新记号。它们是多余的，只不过是提醒我们，比如说，此刻我们是把 $\Proj_A S_\bullet$ 当作一个 $A$-\trScheme{}来想的。）
+
+（b）（容易）设 $X$ 是一个射影 $A$-\trScheme（\S4.5.10）。证明：$X\times_{\Spec A}\Spec B$ 是一个射影 $B$-\trScheme。
+
+（c）设 $S_\bullet$ 在次数 $1$ 处生成，于是 $\OO_{\Proj_A S_\bullet}(1)$ 是一个\trInvertibleSheaf（\mbox{练习~15.1.G}）。显然，$S_\bullet\otimes_A B$ 作为一个 $B$-\trAlgebra{}也在次数 $1$ 处生成。描述一个\trIsomorphism
+\[
+\OO_{\Proj_B(S_\bullet\otimes_A B)}(1)\overset{\sim}{\longleftarrow}\alpha^*\gamma^*\OO_{\Proj_A S_\bullet}(1),
+\]
+其中 $\gamma$ 是如下\trCartesianDiagram{}中上方的那条\trMorphism：
+\[
+\begin{tikzcd}
+(\Proj_A S_\bullet)\times_{\Spec A}\Spec B \ar[r, "\gamma"] \ar[d] & \Proj_A S_\bullet \ar[d] \\
+\Spec B \ar[r] & \Spec A.
+\end{tikzcd}
+\]
+可能的提示：\trTransitionFunction。
+
+现在我们给出一个在 $X$ 上构造概形的通用办法（取自 [Stacks, tag 01LH]），它适用于这样的场合：我们知道这些概形在任何\trAffine{}开集上应当是什么，也知道它们在从一个\trAffine{}开集开嵌入另一个\trAffine{}开集之时如何表现。
+
+\textbf{17.2.B.（练习）}\quad 设给定一个\trScheme{} $X$，以及如下数据：
+
+（i）对每个\trAffine{}开子集 $U\subset X$，给定某个\trMorphism{} $\pi_U\colon Z_U\to U$（「$U$ 上的一个概形」）。
+
+（ii）对仿射开子集的每个（开）包含 $V\subset U\subset X$，给定一个\trOpenEmbedding{} $\rho^U_V\colon Z_V\hookrightarrow Z_U$。
+
+假设这份数据满足：
+
+（a）对每个 $V\subset U\subset X$，$\rho^U_V$ 诱导出 $V$ 上概形的一个\trIsomorphism{} $Z_V\overset{\sim}{\longrightarrow}\pi_U^{-1}(V)$；并且
+
+（b）只要 $W\subset V\subset U\subset X$ 是三个依次相嵌的\trAffine{}开子集，就有 $\rho^U_W=\rho^U_V\circ\rho^V_W$。
+
+证明：存在一个 $X$-\trScheme{} $\pi\colon Z\to X$，并且在每个\trAffine{}开集 $U$ 上存在\trIsomorphism{} $i_U\colon\pi^{-1}(U)\overset{\sim}{\longrightarrow}Z_U$，使得对依次相嵌的\trAffine{}开集 $V\subset U$，$\rho^U_V$ 与下述复合一致：
+\[
+\begin{tikzcd}
+Z_V \ar[r, "i_V^{-1}"] & \pi^{-1}(V) \ar[r, hook] & \pi^{-1}(U) \ar[r, "i_U"] & Z_U.
+\end{tikzcd}
+\]
+提示（参\mbox{练习~4.4.A}）：先把 $Z$ 作为\trSet{}构造出来，再作为\trTopologicalSpace{}构造出来，最后作为\trScheme{}构造出来。（你的构造将不依赖于种种选择。你的解法在更一般的情形也会奏效，比如说，把概形的\trCategory{}换成赋环空间，把\trAffine{}开子集换成拓扑的任意一组\trBase。）
+
+\textbf{17.2.C.（重要练习与定义：相对 $\mathit{Proj}$）}\quad 设 $\mathscr{S}_\bullet=\oplus_{n\ge0}\mathscr{S}_n$ 是概形 $X$ 上一个拟凝聚的 $\mathbb{Z}^{\ge0}$-\trSheafOfGradedAlgebras。在每个\trAffine{}开子集 $\Spec A\cong U\subset X$ 上，我们有一个 $U$-\trScheme{} $\Proj_A\mathscr{S}_\bullet(U)\to U$。证明：它们可以粘合起来，形成一个 $X$-\trScheme，我们称之为 $\mathit{Proj}_X\mathscr{S}_\bullet$；我们有一条「\trStructureMorphism」$\beta\colon\mathit{Proj}_X\mathscr{S}_\bullet\to X$。（\trStructureMorphism{} $\beta$ 是定义的一部分。）提示／警告：倘若\mbox{练习~17.2.B} 只要求考虑\emph{特异的}仿射包含，这个问题会更容易；但那又会使\mbox{练习~17.2.B} 明显变难。所以，请改用\mbox{练习~17.2.A}。
+
+由\mbox{练习~17.2.B} 的构造，任何\trAffine{}开集之上的原像都可以用原本的 $\Proj$ 构造算出。（你或许乐于回头用这个想法，给出 $X^{\mathrm{red}}$、$X$ 的\trNormalization，以及一个拟凝聚 $\OO$-\trAlgebra{}层的 $\mathit{Spec}$ 的构造。但放弃\trUniversalProperty{}，是要付出道德代价的。）
+
+\textbf{17.2.1.}\ \textbf{关于 $\mathscr{S}_\bullet$ 的常设（合理）假设：「在次数 $1$ 处有限生成」。}\quad $\Proj$ 构造最有用的场合，是把它施加于一个满足某些合理假设的 $A$-\trAlgebra{} $S_\bullet$（\S4.5.6）；特别是当 $S_\bullet$ 是一个\trFinitelyGenerated{}的 $\mathbb{Z}^{\ge0}$-分次 $A$-\trAlgebra{}时，而若它还在次数 $1$ 处生成，则最为理想。因此，在本书余下的部分里，一旦我们对拟凝聚\trSheafOfAlgebras{}把这些假设说清楚，我们就会对 $\mathscr{S}_\bullet$ 一律强制执行它们。（如果你日后需要放宽这些假设——比如说，保留有限生成假设而去掉「在次数 $1$ 处生成」假设——也不会太困难。）确切地说，\textbf{我们现在总是要求：（i）$\mathscr{S}_0=\OO_X$；（ii）$\mathscr{S}_\bullet$ 「在次数 $1$ 处生成」；（iii）$\mathscr{S}_1$ 是\trFiniteType{}的。}把条件（ii）说精确的最干净方式，是要求自然映射
+\[
+\Sym^\bullet_{\OO_X}\mathscr{S}_1\longrightarrow\mathscr{S}_\bullet
+\]
+为\trSurjectiveMap。由于 $\Sym^\bullet$ 构造可以仿射局部地计算（\S14.2.6），我们可以在任何\trAffine\trCover{}上检验「在次数 $1$ 处生成」。这些假设的动机，来自下面这个构造。
+
+\textbf{17.2.D.（重要练习：$\mathit{Proj}_X\mathscr{S}_\bullet$ 上的 $\OO(1)$）}\quad 若 $\mathscr{S}_\bullet$ 在次数 $1$ 处有限生成（\mbox{假设~17.2.1}），构造 $\mathit{Proj}_X\mathscr{S}_\bullet$ 上的一个\trInvertibleSheaf{} $\OO_{\mathit{Proj}_X\mathscr{S}_\bullet}(1)$，使之「在每个\trAffine{}开子集 $\Spec A\subset X$ 上，限制为 $\OO_{\Proj_A\mathscr{S}_\bullet(\Spec A)}(1)$」。
+
+\textbf{17.2.E.（练习：「$\mathit{Proj}$ 与基变换交换」）}\quad 设 $\mathscr{S}_\bullet$ 是 $X$ 上一个拟凝聚的 $\mathbb{Z}^{\ge0}$-\trSheafOfGradedAlgebras。令 $\rho\colon Z\to X$ 为任一\trMorphism。给出一个自然的\trIsomorphism
+\[
+(\mathit{Proj}\,\rho^*\mathscr{S}_\bullet\,,\ \OO_{\mathit{Proj}\,\rho^*\mathscr{S}_\bullet}(1))\overset{\sim}{\longleftarrow}(Z\times_X\mathit{Proj}\,\mathscr{S}_\bullet\,,\ \psi^*\OO_{\mathit{Proj}\,\mathscr{S}_\bullet}(1)),
+\]
+其中 $\psi$ 是基变换图中「上方」的那条\trMorphism：
+\[
+\begin{tikzcd}
+Z\times_X\mathit{Proj}\,\mathscr{S}_\bullet \ar[r, "\psi"] \ar[d] & \mathit{Proj}\,\mathscr{S}_\bullet \ar[d, "\beta"] \\
+Z \ar[r, "\rho"] & X.
+\end{tikzcd}
+\]
+
+\textbf{17.2.2.}\ \emph{\trhDefinition：$\pi$-极丰富。}\quad 设 $\pi\colon X\to Y$ 是\trProper{}的。若 $\mathscr{L}$ 是 $X$ 上的一个\trInvertibleSheaf，则我们说 $\mathscr{L}$ 是\textbf{相对于 $\pi$ 极丰富}的、\textbf{相对极丰富}的，或者（说得很别扭）\textbf{$\pi$-极丰富}的，若我们能写成 $X=\mathit{Proj}_Y\mathscr{S}_\bullet$ 且 $\mathscr{L}\cong\OO(1)$，其中 $\mathscr{S}_\bullet$ 是 $Y$ 上一个满足\mbox{假设~17.2.1}（「在次数 $1$ 处有限生成」）的拟凝聚\trSheafOfAlgebras。（\trVeryAmpleness{}的概念可以推广到更一般的情形；例如见 [Stacks, tag 01VM]。但这只对趣味冷僻的人才有意思。）
+
+\textbf{17.2.F.（练习）}\quad 设 $\mathscr{S}_\bullet$ 在次数 $1$ 处有限生成（\mbox{假设~17.2.1}）。描述分次\trQCSheaf{}之间的一个映射 $\phi\colon\mathscr{S}_\bullet\to\oplus_{n=0}^{\infty}\beta^*\OO(n)$（$\beta$ 是\trStructureMorphism；见\mbox{练习~17.2.C}）。提示：\mbox{练习~15.7.C}。
+
+\textbf{17.2.G.（练习）}\quad 设 $\mathscr{L}$ 是 $X$ 上的一个\trInvertibleSheaf，而 $\mathscr{S}_\bullet$ 是 $X$ 上一个在次数 $1$ 处生成的拟凝聚\trSheafOfGradedAlgebras（\mbox{假设~17.2.1}）。定义 $\mathscr{S}_\bullet'=\oplus_{n=0}^{\infty}(\mathscr{S}_n\otimes\mathscr{L}^{\otimes n})$。于是 $\mathscr{S}_\bullet'$ 从 $\mathscr{S}_\bullet$ 那里继承了一个自然的代数结构；请描述它。给出「带线丛的 $X$-概形」之间的一个自然\trIsomorphism
+\[
+(\mathit{Proj}\,\mathscr{S}_\bullet'\,,\ \OO_{\mathit{Proj}\,\mathscr{S}_\bullet'}(1))\overset{\sim}{\longleftrightarrow}(\mathit{Proj}\,\mathscr{S}_\bullet\,,\ \OO_{\mathit{Proj}\,\mathscr{S}_\bullet}(1)\otimes\beta^*\mathscr{L}),
+\]
+其中 $\beta\colon\mathit{Proj}\,\mathscr{S}_\bullet\to X$ 是\trStructureMorphism。换句话说，撇开形式地说：$\mathit{Proj}$ 还是原来那一个，只是 $\OO(1)$ 被 $\mathscr{L}$ 扭转了一下。
+
+\textbf{17.2.3.}\ \textbf{\trVectorBundle{}的\trProjectivization。}
+
+\textbf{17.2.4.}\ \emph{\trhDefinition。}\quad 若 $\mathscr{F}$ 是 $X$ 上一个\textbf{有限秩的\trLocallyFreeSheaf}，则 $\mathit{Proj}(\Sym^\bullet\mathscr{F}^\vee)$ 称为它的\textbf{\trProjectivization}（projectivization），并记作 $\mathbb{P}\mathscr{F}$。（取对偶的理由，与\mbox{定义~17.1.5} 中取 $\mathit{Spec}(\Sym^\bullet\mathscr{F}^\vee)$ 的理由相同。）你可以自行检验，这一构造在\trBaseChange{}下表现良好。定义 $\mathbb{P}^n_X:=\mathbb{P}(\OO_X^{\oplus(n+1)})$。（于是 $\mathbb{P}^n_{\Spec A}$ 与我们早先对 $\mathbb{P}^n_A$ 的定义相符——参\mbox{练习~4.5.Q}——而 $\mathbb{P}^n_X$ 与我们早先的用法相符；例如见\mbox{定理~11.4.5} 的证明。）若 $\mathscr{F}$ 是秩为 $n+1$ 的\trLocallyFreeSheaf，则 $\mathbb{P}\mathscr{F}$ 是 $X$ 上的一束\textbf{射影丛}或 $\mathbb{P}^n$-\textbf{丛}。由\mbox{练习~17.2.G}，若 $\mathscr{F}$ 是 $X$ 上一个有限秩的\trLocallyFreeSheaf，则存在典范的\trIsomorphism{} $\mathbb{P}\mathscr{F}\overset{\sim}{\longleftarrow}\mathbb{P}(\mathscr{L}\otimes\mathscr{F})$。
+
+更一般地，若 $\mathscr{F}$ 是 $X$ 上一个\trFiniteType{}的\trQCSheaf，那么也可以类似地定义它的\trProjectivization{} $\mathit{Proj}(\Sym^\bullet\mathscr{F}^\vee)$。不过要当心。例如，若 $\mathscr{G}$ 是某个整概形上的\trTorsion\trSheaf，则 $\mathscr{F}^\vee=0$\footnote{原书此句先设 $\mathscr{G}$ 为挠层，随后却作「$\mathscr{F}^\vee=0$」与「$\mathbb{P}\mathscr{F}=\varnothing$」，疑当为 $\mathscr{G}$，兹照录原书。——译者注}，于是按这个定义便有 $\mathbb{P}\mathscr{F}=\varnothing$。所以这并不是一个多好的概念。
+
+\textbf{17.2.5.}\ \emph{记号的特大警示。}\quad 关于 $\mathbb{P}\mathscr{F}$ 究竟应当定义为 $\Sym^\bullet\mathscr{F}$ 还是 $\Sym^\bullet\mathscr{F}^\vee$，各家势同水火，正如所谓「向量空间的\trProjectivization{}到底参数化一维\trSubspace{}还是一维商」的说法（参\mbox{练习~17.2.I}）一样。因此，最稳妥的办法是避开记号 $\mathbb{P}\mathscr{F}$，或者至少开宗明义地声明你遵循的是哪一种约定。\emph{在本书中，我们将尽量避免使用记号 $\mathbb{P}\mathscr{F}$，并且只在 $\mathscr{F}$ 是有限秩局部自由层（即「一个\trVectorBundle」）时才使用它，而它的含义将永远指这里所定义的 $\mathit{Proj}(\Sym^\bullet\mathscr{F}^\vee)$。}
+
+\textbf{17.2.6.}\ \emph{例：\trRuling{}曲面。}\quad 若 $C$ 是一条\trRegular\trCurve，而 $\mathscr{F}$ 是秩 $2$ 的\trLocallyFreeSheaf，则 $\mathbb{P}\mathscr{F}$ 称为 $C$ 上的一张\textbf{\trRuling{}曲面}（ruled surface）。若 $C$ 还\trIsomorphic{}于 $\mathbb{P}^1$，则 $\mathbb{P}\mathscr{F}$ 称为一张\textbf{\trHirzebruchSurface}（Hirzebruch surface）。$\mathbb{P}^1$ 上的所有\trVectorBundle{}都分裂为\trLineBundle{}的\trDirectSum（证明见 \S18.5.5），故每张\trHirzebruchSurface{}都形如 $\mathbb{P}(\OO(n_1)\oplus\OO(n_2))$。由\mbox{练习~17.2.G}，这只依赖于 $n_2-n_1$。\trHirzebruchSurface{} $\mathbb{P}(\OO\oplus\OO(n))$（$n\ge0$）常记作 $\mathbb{F}_n$。我们将在 \S20.2.10 中用更长的篇幅讨论\trHirzebruchSurface{}；在\mbox{练习~20.2.Q} 中我们将会看到，诸 $\mathbb{F}_n$ 两两互异。
+
+\textbf{17.2.H.（练习）}\quad 若 $\mathscr{S}_\bullet$ 在次数 $1$ 处有限生成（\mbox{假设~17.2.1}），描述一个典范的\trClosedEmbedding
+\[
+\begin{tikzcd}
+\mathit{Proj}\,\mathscr{S}_\bullet \ar[rr, hook, "i"] \ar[dr, "\beta"'] && \mathit{Proj}_X\Sym^\bullet\mathscr{S}_1 \ar[dl] \\
+& X &
+\end{tikzcd}
+\]
+以及一个\trIsomorphism{} $\OO_{\mathit{Proj}\,\mathscr{S}_\bullet}(1)\overset{\sim}{\longleftarrow}i^*\OO_{\mathit{Proj}_X\Sym^\bullet\mathscr{S}_1}(1)$，它由满射
+\[
+\Sym^\bullet\mathscr{S}_1\twoheadrightarrow\mathscr{S}_\bullet.
+\]
+诱导而来。特别地，若 $\mathscr{S}_1$ 是\trLocallyFree{}的，则 $\mathit{Proj}\,\Sym^\bullet\mathscr{S}_1=\mathbb{P}\mathscr{S}_1^\vee$，于是我们便把 $\mathit{Proj}\,\mathscr{S}_\bullet$ 嵌入了 $X$ 上的一束射影丛。
+
+\textbf{17.2.I.（练习）}\quad 设 $\mathscr{F}$ 是 $X$ 上秩为 $n+1$ 的\trLocallyFreeSheaf。在「$\mathbb{P}\mathscr{F}\to X$ 的\trSection{} $s\colon X\to\mathbb{P}\mathscr{F}$」全体所成之集，与「$\mathscr{F}$ 到 $X$ 上诸\trInvertibleSheaf{}的满同态 $\mathscr{F}\to\mathscr{L}\to 0$」全体所成之集之间，给出一个双射。$\mathbb{P}\mathscr{F}$ 的这一函子式描述，在某种意义上推广了 \S15.2.3 中对\trProjectiveSpace{}的函子式描述。
+
+\textbf{17.2.7.}\ \emph{\trhRemark{}（\trProjective\trCone{}与\trAffine\trCone{}的相对版本）。}\quad 从 $\mathit{Spec}\,\mathscr{S}_\bullet$ 去掉零截面之后，有一个到 $\mathit{Proj}\,\mathscr{S}_\bullet$ 的自然\trMorphism（参\mbox{练习~9.3.N}）。正如 $\Proj S_\bullet[T]$ 含有一个可与 $\Proj S_\bullet$ 相认同的\trClosedSubscheme、其补集可与 $\Spec S_\bullet$ 相认同（\mbox{练习~9.3.O}），$\mathit{Proj}\,\mathscr{S}_\bullet[T]$ 也含有一个可与 $\mathit{Proj}\,\mathscr{S}_\bullet$ 相认同的\trClosedSubscheme，其补集可与 $\mathit{Spec}\,\mathscr{S}_\bullet$ 相认同。欢迎你把这件事想清楚。

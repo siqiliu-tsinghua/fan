@@ -1,0 +1,374 @@
+\section{\termLocalFloerHomology{}}
+\label{sec:local-floer-homology}
+
+本节依照 (Fl89b)、(Oh96b) 的思路，定义\personFloer{}上同调 $HF(L,L)$ 的一个局部版本，
+它只取像包含在给定\personDarboux{}--\personWeinstein{}邻域 $U$ 中的\personFloer{}流线所作的贡献。把
+这个\termLocalFloerHomology{}记作 $HF(L,L;U)$。我们将证明，这个局部贡献只依赖于
+$(L,U)$，因而可以在零截面 $o_L\cong L$ 的一个邻域
+$V\subset T^*L$ 中，对 $(o_L,V)$ 作计算。此外，根据定义，
+\stfhIndexRangeStart{I120}{Jubufuluoertongdiao}{局部弗洛尔同调（local Floer homology）}
+$HF(L,L;U)$ 总是良定义的，并不需要 $L\subset M$ 满足诸如 $\omega$ 正合或
+$(L,M)$ 单调之类的无障碍假设。
+
+作为直接应用，我们依照 (Oh96b) 的方案证明\personGromov{}关于正合拉格朗日嵌入的两个
+著名定理。
+
+\subsection{局部\personFloer{}同调的定义}
+\label{subsec:definition-local-floer}
+
+我们从\personFloer{}在 (Fl89b) 的哈密顿情形中引入的如下灵活概念开始。它是动力系统中
+\stfhIndex{I062}{Kangli}{康利（Conley）}
+\personConley{} (Co78) 引入的\emph{孤立块}概念的\personFloer{}理论对应物。这个定义可以在更一般的抽象
+框架中表述，但我们将集中于当前几何情形。
+
+设 $U\subset M$ 是 $L$ 的一个\personDarboux{}邻域。引入如下定义。
+
+\stfhIndex{I114}{Gulibubianji}{孤立不变集（isolated invariant set）}
+\begin{definition}
+\label{def:isolated-invariant-set}
+设 $L'\subset U$ 是任意紧拉格朗日子流形，$J\in\mathcal J_\omega$。考虑带一个
+标记点的\personFloer{}流线集合 $\mathcal M_1(L,L';J)$ 及其评价映射
+$\mathcal M_1(L,L';J)\to M$。定义子集
+\[
+ \mathcal M(L,L';J;U):=\{u\in\mathcal M(L,L';J)\mid
+ \operatorname{Image}u\subset U\}
+\]
+及其评价像
+\[
+ S(L,L';J;U)=\operatorname{ev}(\mathcal M_1(L,L';J;U)).
+\]
+称 $S(L,L';J;U)$ 为 $U$ 中的一个不变集。若
+$\overline{S(L,L';J;U)}\subset U$，其中闭包在 $M$ 中取，则称它（在\personCauchy{}--\personRiemann{}流下）孤立于 $U$。当其孤立时，称
+$\overline{S(L,L';J;U)}$ 为 $U$ 中的极大不变集。
+\end{definition}
+
+\stfhIndex{I067}{Yantuo}{延拓（continuation）}
+现在定义极大不变集之间的延拓。
+
+\begin{definition}
+\label{def:continuation-maximal-invariant-sets}
+设 $\{L^s\}_{s\in[0,1]}$ 是紧拉格朗日子流形 $L^0$ 的一个同痕。考虑
+\[
+ (\mathbb J,\mathbb H)\in
+ \mathcal P([0,1]^2,\mathcal J_\omega)
+ \times C^\infty([0,1]^2\times M,\mathbb R)
+\]
+以及开子集 $\mathbb U\subset[0,1]\times M$。以
+$S_0:=S(J^0,(L,L^0);U^0)$ 和
+$S_1:=S(J^1,(L,L^1);U^1)$ 表示上述极大不变集。若满足：
+\begin{enumerate}[label=(\arabic*)]
+\item 对每个 $s\in[0,1]$ 及所有 $t\in[0,1]$，
+\[
+ L^s\subset U^s:=\{x\in M\mid(s,x)\in\mathbb U\};
+\]
+\item 对所有 $s\in[0,1]$，每个不变集
+\[
+ S^s:=S(J^s,(L,L^s);U^s)
+\]
+都孤立于 $U^s$，
+\end{enumerate}
+\footnote{译者注：原书此式写作 $\{x\in P\mid(x,s)\in\mathbb U\}$，但 $P$
+未定义，且与 $\mathbb U\subset[0,1]\times M$ 的坐标次序相反；译文据后者改正。}
+则称 $(\mathbb J,\mathbb H,\mathbb U)$ 是极大不变集
+$S_0\subset U^0$ 与 $S_1\subset U^1$ 之间的一个延拓。
+\end{definition}
+
+下面考虑按如下意义接近 $L$ 的拉格朗日子流形族。
+
+\stfhSubIndex{I076}{Zhenghe}{正合（exact）}{XiangduiyuLzhenghe}{相对于 $L$ 正合（exact relative to $L$）}
+\begin{definition}
+\label{def:exact-relative-to-L}
+若存在包含 $L$ 的\personDarboux{}邻域 $U$，使得在
+$U\cong V\subset T^*L$ 中 $L'$ 是正合的，则称拉格朗日子流形
+$L'\subset(M,\omega)$ \termExactRelativeToL{}。
+\end{definition}
+
+有了这些定义，下面的结论容易证明。
+
+\begin{lemma}
+\label{lem:regular-perturbation-isolated-set}
+设 $L\subset M$，且 $L'$ 相对于 $L$ 正合并与 $L$ 横截相交。假设
+$S(L,L';J;U)$ 孤立于 $U$。则存在 $J$ 的一个 $C^\infty$ 扰动 $J'$，使得
+$\mathcal M(J',L,L';U)$ 是\personFredholm{}正则的，且 $S(J',L,L';U)$ 仍孤立于
+$U$。特别地，对任意满足 $\mu(x;U)-\mu(y;U)=1$ 的
+$x,y\in L\cap L'$，
+$\mathcal M(x,y;J';U)\subset\mathcal M(L,L';J';U)$ 的基数有限。
+\end{lemma}
+
+\begin{proof}
+按定义，孤立性在 $C^\infty$ 扰动下稳定，故这样的扰动 $J'$ 立即存在。又因
+$(L,L')$ 在 $U$ 中不会冒泡，紧性给出有限性。
+\end{proof}
+
+设 $(L,L';J;U)$ 和 $J'$ 如引理 17.2.4 所述。定义
+\[
+ n_U(x,y;J'):=\#\{\mathcal M((x,y);J';U)\text{ 中的孤立流线}\}\pmod2.
+\]
+若 $L'=\phi_H^1(L)$，则利用第 15.6 节建立的相容定向，可以定义整数
+$n_U(x,y;J')$。
+
+\begin{theorem}
+\label{thm:local-floer-boundary-continuation}
+假设 $(L,L';J;U)$ 如引理 17.2.4 所述。对任意使
+$\mathcal M(L,L';J';U)$ \personFredholm{}正则的 $J$ 的小扰动 $J'$，同态
+\[
+ \partial_U:CF(L,L';J';U)\longrightarrow CF(L,L';J';U),
+ \qquad
+ \partial_Ux=\sum_{y\in L\cap L'}n_U(x,y;J')y
+\]
+满足 $\partial_U\circ\partial_U=0$。此外，只要延拓
+$(S,\mathbb J,\mathbb H,\mathbb U)$ 在端点 $s=0,1$ \personFloer{}正则，相应商空间
+\[
+ HF^*(L,L';J';U)=\ker\partial_U/\operatorname{im}\partial_U
+\]
+在该延拓下同构。
+\footnote{译者注：定理前半以一般 $L'$ 为对象，但原书求和指标印作
+$y\in L\cap\phi_H^1(L)$；译文按定理设定改为 $y\in L\cap L'$。}
+\end{theorem}
+
+\begin{proof}
+关于边界映射的断言来自孤立性假设，因为三元组 $(L,L';U)$ 不承载任何气泡。
+对延拓不变性，我们取单位区间的一个分割
+$0=t_0<t_1<\cdots<t_N=1$，并把与之相伴的一列“绝热链映射”复合起来，构造两端
+之间的链映射。因此在余下证明中，可以假设两端之间的 $C^1$ 距离任意小。
+
+考虑“非自治”\personFloer{}流线方程
+\begin{equation}
+ \left\{
+ \begin{aligned}
+ &\partial u/\partial\tau+J_t^{\rho(\tau)}\partial u/\partial t=0,\\
+ &u(\tau,0)\in L^{\rho(\tau)},\qquad u(\tau,1)\in L,
+ \end{aligned}
+ \right.
+\label{eq:17-nonautonomous-floer}
+\end{equation}
+其中 $\mathbb J=\{J^s\}$ 是两个\personFredholm{}正则结构 $J^0,J^1$ 之间的同伦，
+$\mathbb L=\{L^s\}$ 是 $L^0$ 与 $L^1$ 之间的哈密顿同痕。以
+$\mathcal M(L,L^\rho;J^\rho)$ 表示~\eqref{eq:17-nonautonomous-floer} 的解的模空间，
+以 $\overline{\mathcal M}(L,L^\rho;J^\rho)$ 表示其闭包；后者由第 14.3 节所定义的
+稳定断裂\personFloer{}流线组成。
+
+定义
+\begin{equation}
+ d_{C^1}(L',\mathbb L):=\max_{s\in[0,1]}d_{C^1}(L',L^s),
+ \qquad
+ d_{C^0}(J_0,\mathbb J):=\max_{(s,t)\in[0,1]^2}|J_0-J_t^s|_{C^0}.
+\label{eq:17-continuation-distances}
+\end{equation}
+令 $L^s=\phi_{H_i}^s(L')$。只需证明如下结论。
+
+\begin{lemma}
+\label{lem:continuation-evaluation-in-U}
+考虑评价映射
+$\overline{\operatorname{ev}}^\rho:
+\overline{\mathcal M}(L,L^\rho;J^\rho)\to M$。存在
+$\epsilon>0$，使得若
+$d_{C^1}(L',\mathbb L)<\epsilon$ 且
+$d_{C^0}(J_0,\mathbb J)<\epsilon$，则
+\[
+ \operatorname{Image}\overline{\operatorname{ev}}^\rho\subset U.
+\]
+\footnote{译者注：原书引理条件中第二个距离的首项印作 $J$，即
+$d_{C^0}(J,\mathbb J)$，但式 (17.2.8) 定义的是
+$d_{C^0}(J_0,\mathbb J)$；译文按该定义改正。}
+\end{lemma}
+
+\begin{proof}
+我们知道
+\[
+ \mathcal M(L,L^\rho;J^\rho)
+ =\bigcup_{x\in L\cap L^0,\ y'\in L\cap L^1}
+ \overline{\mathcal M}(x,y';J^\rho).
+\]
+反设存在 $\mathbb J_i=\{J_i^s\}$ 和 $H_i$，其中
+$L^s=\phi_{H_i^s}(L')$，且当 $i\to\infty$ 时
+$d_{C^1}(L,\phi_{H_i}^1(L'))\to0$、
+$d_{C^0}(J,\mathbb J_i)\to0$，并存在
+$u_i\in\mathcal M(x,y;L,L^\rho;J^\rho)$ 及点 $(\tau_i,t_i)$，使得
+\begin{equation}
+ u_i(\tau_i,t_i)\in M\setminus U.
+\label{eq:17-continuation-escapes-U}
+\end{equation}
+取子列后可设 $\rho(\tau_i)\to s_0$、$t_i\to t_0$。利用能量界与条件
+\[
+ d_{C^1}(L,\mathbb L)\to0,
+ \qquad d_{C^0}(J,\mathbb J)\to0,
+\]
+并适当沿 $\tau$ 方向平移序列，可以抽取一个满足关于 $J_0$ 的方程
+\eqref{eq:17-nonautonomous-floer} 的局部极限 $u_\infty$，使得对某些
+$x_0,y_0\in L\cap L'$，
+\[
+ u_\infty(-\infty)\to x_0,\quad u_\infty(\infty)\to y_0,\quad
+ u_\infty(0,t_0)\in M\setminus U.
+\]
+这与 $S(L,L';J;U)$ 孤立于 $U$ 的假设矛盾。
+\end{proof}
+
+对引理中的同伦 $(\mathbb J,\{L^s\})$，可定义
+\[
+ n_U(p,q';J^\rho)=\#\mathcal M(p,q';J^\rho;U).
+\]
+于是同态
+\[
+ h_{(J^\rho,L^\rho;U)}:CF(L,L^0;U)\longrightarrow CF(L,L^1;U)
+\]
+良定义，且对任意\personFloer{}正则的 $\mathbb J$ 满足
+\[
+ h_{(J^\rho,L^\rho;U)}\partial_{(L,L^0;J^0;U)}
+ +\partial_{(L,L^1;J^1;U)}h_{(J^\rho,L^\rho;U)}=0.
+\]
+这就建立了 $h_{(J^\rho,L^\rho;U)}$ 的链性质。用与第 12.5.2 节相同的论证可证明
+它在同调上诱导同构，从而完成定理 17.2.5 的证明。
+\footnote{译者注：原书此处印作“定理 17.2.7”，但本段属于定理 17.2.5 的证明，
+且真正的定理 17.2.7 尚在后文出现；译文据此改正。}
+\end{proof}
+
+这就完成了任意相对于 $L$ 正合的 $L'$ 的局部\personFloer{}上同调
+$HF(L,L';U)$ 的构造。
+
+\subsection{吞没哈密顿同痕}
+\label{subsec:engulfed-hamiltonian-isotopy}
+
+本节余下部分考虑给定紧拉格朗日子流形 $L\subset(M,\omega)$ 的\termLocalFloerHomology{}得以定义的自然情形。设 $V\subset\overline V\subset U$ 是 $L$ 的一对给定\personDarboux{}邻域。
+
+先在 $U$ 中以孤立延拓，把 $(L,\phi_H^1(L);J;U)$ 的极大不变集形变到
+$(L,\phi_H^1(L);J_0;U)$ 的极大不变集；这里 $J_0$ 不依赖于时间，并且在
+$U\subset T^*L$ 上限制为与 $L$ 上\personRiemann{}度量 $g$ 相伴的典范殆复结构 $J_g$。
+（$J_g$ 的定义见定义 12.2.1。）引理 17.2.6 保证这种形变是可能的。
+
+再用 (Fl89a) 中的论证，即可完成如下计算。
+
+\begin{theorem}
+\label{thm:local-floer-is-morse}
+设 $L\subset M$ 如上，$U$ 是 $L$ 的一个\personDarboux{}邻域。若对某个不依赖于时间的
+$J_0$，有
+$d_{C^1}(L,\phi_H^1(L))\leq\epsilon_3$、
+$d_{C^0}(J_0,J)<\epsilon_3$，且 $J$ 是 $(L,\phi_H^1(L))$-正则的，则
+\[
+ HF((L,\phi_H^1(L));J;U)\cong H_*(L;\mathbb Z_2).
+\]
+\end{theorem}
+
+\begin{proof}
+选择一个可以显式计算 $HF(J,(L,\phi_H^1(L));U)$ 的特殊正则对
+$(J,\phi_H)$。为此，利用 $U$ 辛同胚于 $T^*L$ 零截面的一个邻域，把一个
+$C^2$-小\personMorse{}函数 $f$ 的图像 $\operatorname{Graph}df\subset T^*L$ 植入
+$U$。
+
+取零截面的邻域 $V$，满足 $V\subset\overline V\subset U$。考虑与 $g$ 相伴的
+典范殆复结构 $J_g$，以及自治哈密顿量 $H=f\circ\pi$ 诱导的哈密顿同痕
+$\phi^{f\circ\pi}:T^*L\to T^*L$，其中 $f$ 是 $L$ 上的\personMorse{}函数，
+$\pi:T^*L\to L$ 是典范投影。一般而言，$\phi^{f\circ\pi}$ 未必把 $U$ 映到
+$U$；但若 $f$ 在 $C^1$ 意义下充分小，则对所有 $t\in[0,1]$，
+\[
+ \phi_{f\circ\pi}^t(\overline V)\subset U.
+\]
+对每个光滑映射 $\chi:\mathbb R\to L$，定义映射
+$u_\chi:\mathbb R\times[0,1]\to P$：
+\[
+ u_\chi(\tau,t)=\phi_{f\circ\pi}^t(\chi(\tau)),
+ \qquad (\tau,t)\in\mathbb R\times[0,1].
+\]
+仍在 $f$ 为 $C^1$-小的条件下，对所有 $t\in[0,1]$ 有
+$\phi_{f\circ\pi}^t(L)\subset V$，从而
+\[
+ \operatorname{Im}u_\chi\subset V\subset U.
+\]
+在 $T^*L$ 上定义殆复结构族 $J^f=\{J_t^f\}$：
+\[
+ J_t^f=(\phi_{f\circ\pi}^t)_*J_g(\phi_{f\circ\pi}^t)_*^{-1}.
+\]
+让 $f$ 在 $C^1$ 意义下变小，就能使它任意接近不依赖于时间的 $J_g$。
+最后对余切丛 $T^*N$ 中的 $L=o_N$ 应用推论 12.5.7，即得结论。
+\end{proof}
+
+值得指出，若 $L$ 是正合 $(M,\omega)$ 中的紧正合拉格朗日子流形，则
+$A(\omega,J;L)=\infty$。即使非紧正合辛流形 $M$ 在无穷远处驯服或有界，这一
+结论仍成立。于是立即得到：
+
+\begin{theorem}
+\label{thm:exact-lagrangian-floer-homology}
+设 $(M,\omega)$ 是驯服的正合辛流形，$L\subset(M,\omega)$ 是紧正合拉格朗日
+子流形。则
+\[
+ HF_*(L,L)\cong H_*(L).
+\]
+\end{theorem}
+
+\begin{proof}
+固定 $L$ 的\personDarboux{}--\personWeinstein{}邻域 $U$。取\personMorse{}函数 $f:L\to\mathbb R$，
+并令 $\epsilon>0$ 充分小。由于 $A(\omega,J;L)=\infty$，命题 17.1.3 中只有情形
+(1) 发生：当 $\epsilon>0$ 充分小且 $|J-J_0|_{C^0}\leq\epsilon$ 时，
+$\mathcal M(L,\phi_{\epsilon f}(L);J)$ 中所有流线都包含在 $U$ 中。因此
+\[
+ HF_*(L,\phi_{\epsilon f}(L))
+ \cong HF_*(L,\phi_{\epsilon f}(L);U)
+ \cong H_*(L).
+\]
+\end{proof}
+
+这个定理立即给出\personGromov{} (Gr85) 的以下两个定理；正如 (Oh96b) 所展示的，它们
+揭示了环境辛流形的两种不同特征。
+
+\begin{theorem}[\personGromov{}]
+\label{thm:no-exact-lagrangian-in-Cn}
+$\mathbb C^n$ 中不存在正合拉格朗日嵌入。
+\end{theorem}
+
+\begin{proof}
+若存在这样的嵌入 $L\subset\mathbb C^n$，则它的\personFloer{}同调（例如取
+$\mathbb Z_2$ 系数）同构于 $H_*(L;\mathbb Z_2)$。由于 $L$ 紧，至少有
+$H_0(L;\mathbb Z_2)\neq0$，故对任意哈密顿同痕 $\phi_H$，
+$HF_*(L,\phi_H^1(L);J;\mathbb Z_2)\neq0$。特别地，对任意（不一定横截的）
+哈密顿微分同胚 $\phi_H^1$，都有
+\[
+ L\cap\phi_H^1(L)\neq\varnothing.
+\]
+另一方面，显然可以用一个本身为哈密顿同痕的平移把 $L$ 从自身移开，矛盾。
+\end{proof}
+
+这次考虑任意紧流形 $N$ 的余切丛 $T^*N$。
+
+\begin{theorem}[\personGromov{}]
+\label{thm:exact-lagrangian-meets-zero-section}
+设 $L\subset T^*N$ 是任意紧正合拉格朗日嵌入。则
+$L\cap o_N\neq\varnothing$。
+\end{theorem}
+
+\begin{proof}
+仍用反证法。设 $L\cap o_N=\varnothing$。考虑径向数乘映射
+\[
+ R_\lambda:T^*N\to T^*N,\qquad(q,p)\longmapsto(q,\lambda p),\qquad\lambda>0.
+\]
+由 $L\cap o_N=\varnothing$，当 $\lambda>0$ 充分大时，
+\begin{equation}
+ R_\lambda(L)\cap L=\varnothing.
+\label{eq:17-radial-displacement}
+\end{equation}
+$R_\lambda$ 并非辛映射，而只是共形辛映射：
+$R_\lambda^*\omega_0=\lambda\omega_0$。然而，把 $R_\lambda$ 的共形辛性质与
+$L$ 的正合性结合起来可知，同痕
+\[
+ \lambda\longmapsto R_\lambda(L)
+\]
+是正合拉格朗日同痕。由定理 3.6.7，可找出哈密顿量 $H$，使得
+$\phi_H^\lambda(L)=R_\lambda(L)$；因此对任意 $\lambda$ 都有
+$R_\lambda(L)\cap L\neq\varnothing$，再次矛盾。
+\end{proof}
+
+\stfhIndex{I094}{Shengu-Saideer-Shimisi}{深谷--塞德尔--史密斯（Fukaya--Seidel--Smith）}
+\stfhIndex{I135}{Nadele}{纳德勒（Nadler）}
+近来\personNadler{} (Na09) 以及\personFukaya{}、\personSeidel{}、\personIvanSmith{} (FSS08) 借助\termFukayaCategory{}的同调
+工具，大大加强了定理 17.2.10。
+
+\begin{remark}
+\label{rem:c0-localization-engulfed-H}
+在 (Oh11b) 对拓扑哈密顿路径的谱不变量的研究中，理解时间一映射在 $C^0$ 意义下
+充分小的 $V$-吞没哈密顿量 $H$ 的\personFloer{}复形局部化非常重要。对这样的哈密顿量，
+第 17.1 节通过考察面积和作用量来建立\termThickThinDichotomy{}的方法并不合适，因为当
+$\phi_H^1$ 仅在 $C^0$ 意义下小时，我们无法控制对子
+$(\phi_H^1(L),L)$ 的面积或作用量。事实表明，获得\personFloer{}模空间厚--薄分解的正确
+方法，是利用殆复结构 $J_g$ 的\emph{最大值原理}。当 $H$ 在 $C^2$ 意义下小时，这一分解
+与第 17.1 节给出的分解一致。详见 (Oh11b)。
+\end{remark}
+\stfhIndexRangeEnd{I120}{Jubufuluoertongdiao}{局部弗洛尔同调（local Floer homology）}

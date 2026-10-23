@@ -1,0 +1,403 @@
+\section{开流形上的卡拉比同态}
+\label{sec:calabi-open-manifolds}
+
+到目前为止，我们考虑的是闭辛流形 $(M,\omega)$ 上的 $\Ham(M,\omega)$。本节总结开辛流形上 $\Ham(M,\omega)$ 的结构；这里所谓开辛流形，是指 $(M,\omega)$ 非紧，或虽紧但具有非空边界 $\partial M$。
+
+以 $\Symp_c(M,\omega)\subset\Diff_c(M,\omega)$ 表示具有紧支集（包含于 $\operatorname{Int}M$）的辛微分同胚集合。接下来，把哈密顿函数 $H=H(t,x)$ 的支集定义为
+\[
+  \operatorname{supp}(H)
+  =\overline{\bigcup_{t\in[0,1]}\operatorname{supp}(H_t)}.
+\]
+
+\begin{definition}
+\label{def:compactly-supported-hamiltonian-path}
+若光滑路径 $\lambda:[0,1]\to\Symp_c(M,\omega)$ 满足 $\lambda=\phi_H$，其中哈密顿函数
+$H:[0,1]\times M\to\mathbb R$ 的 $\operatorname{supp}H$ 紧且
+$\operatorname{supp}H\subset\operatorname{Int}(M)$，则称 $\lambda$ 是\emph{紧支哈密顿路径}。定义
+\[
+  \mathcal P^{\mathrm{ham}}(\Symp_c(M,\omega),\operatorname{id})
+\]
+为所有此类且满足 $\lambda(0)=\operatorname{id}$ 的 $\lambda$ 组成的集合。若紧支辛微分同胚 $\phi$ 可写成
+$\phi=\operatorname{ev}_1(\lambda)$，其中
+$\lambda\in\mathcal P^{\mathrm{ham}}(\Symp_c(M,\omega),\operatorname{id})$，则称 $\phi$ 是\emph{紧支哈密顿微分同胚}。所有紧支哈密顿微分同胚组成的集合记为
+\[
+  \Ham_c(M,\omega)
+  =\operatorname{ev}_1\bigl(
+    \mathcal P^{\mathrm{ham}}(\Symp_c(M,\omega),\operatorname{id})
+  \bigr).
+\]
+\end{definition}
+
+回忆，辛形式 $\omega$ 通过对体积形式
+\[
+  \Omega=\frac1{n!}\omega^n
+\]
+积分，在 $M$ 上诱导刘维尔测度。对紧支哈密顿量 $H$，考虑积分
+\[
+  \operatorname{Cal}(H)=\int_0^1\int_M H_t\,\Omega\wedge dt.
+\]
+记 $H:=\operatorname{Dev}(\lambda)$。
+
+\begin{lemma}
+\label{lem:calabi-path-homotopy}
+设 $\lambda,\lambda'$ 是两条哈密顿路径，满足
+$\lambda(0)=\operatorname{id}=\lambda'(0)$、$\lambda(1)=\lambda'(1)$，且
+$\lambda\sim\lambda'$。若
+$\operatorname{Dev}(\lambda)=H$、$\operatorname{Dev}(\lambda')=H'$，则
+$\operatorname{Cal}(H)=\operatorname{Cal}(H')$。
+\end{lemma}
+
+\begin{proof}
+设 $\lambda^s$（$s\in[0,1]$）是一个相对于端点的同伦，满足
+$\lambda^0=\lambda$、$\lambda^1=\lambda'$。考虑单参数哈密顿量族
+\[
+  H^s=\operatorname{Dev}(\lambda^s),
+\]
+并以 $\{H_t^s\}$ 表示相伴的 $M$ 上紧支光滑函数之双参数族。用映射
+$\rho:[0,1]\to[0,1]$ 对 $s$ 重新参数化，其中在 $s=0$ 附近
+$\rho(s)\equiv0$，在 $s=1$ 附近 $\rho(s)\equiv1$；这会把 $H^s$ 的端部压平。因此总可以假设 $H^s$ 是\emph{端部平坦}的。再以
+$F:[0,1]^2\times M\to\mathbb R$ 表示生成 $s$-哈密顿同痕
+$(s,t)\mapsto\lambda^s(t)$ 的哈密顿量。由 $H^s$ 的端部平坦性，在 $s=0,1$ 附近有 $F(s,t,x)\equiv0$。
+
+利用支集条件 $\operatorname{supp}H\subset\operatorname{Int}M$，由 \eqref{eq:2.4.26} 得到
+\begin{equation}
+  \frac{\partial H}{\partial s}
+  =\frac{\partial F}{\partial t}-\{H,F\}.
+  \label{eq:2.5.34}
+\end{equation}
+（这个推导的详细讨论见第 18.3 节。）现在计算
+\[
+\begin{aligned}
+ \operatorname{Cal}(H')-\operatorname{Cal}(H)
+ &=\int_0^1\int_MH'_t\,d\mu\,dt
+   -\int_0^1\int_MH_t\,d\mu\,dt\\
+ &=\int_0^1\int_0^1\int_M
+   \frac{\partial H^s}{\partial s}\,d\mu\,dt\,ds\\
+ &=\int_0^1\int_0^1\int_M
+   \left(\frac{\partial F}{\partial t}-\{H,F\}\right)
+   d\mu\,dt\,ds.
+\end{aligned}
+\]
+对第一项，
+\[
+\begin{aligned}
+ \int_0^1\int_0^1\int_M\frac{\partial F}{\partial t}
+   \,d\mu\,dt\,ds
+ &=\int_0^1\int_M\int_0^1\frac{\partial F}{\partial t}
+   \,dt\,d\mu\,ds\\
+ &=\int_0^1\int_M(F(s,1,x)-F(s,0,x))\,d\mu\,ds=0.
+\end{aligned}
+\]
+另一方面，回忆公式
+\[
+ \{H,F\}\,d\mu
+ =\mathcal L_{X_F}(H)\frac{\omega^n}{n!}
+ =\mathcal L_{X_F}\left(H\frac{\omega^n}{n!}\right)
+ =\frac{d(X_F\mathbin{\lrcorner}H\omega^n)}{n!},
+\]
+其中最后一个恒等式来自 $d(H\omega^n)=0$。于是
+\[
+ \int_M\{H,F\}\,d\mu
+ =\int_M\frac{d(X_F\mathbin{\lrcorner}H\omega^n)}{n!}
+ =\int_{\partial M}\frac{X_F\mathbin{\lrcorner}H\omega^n}{n!}=0,
+\]
+因为 $F_t^s$ 的支集包含在 $\operatorname{Int}M$ 中。这就证明
+$\operatorname{Cal}(H')=\operatorname{Cal}(H)$。
+\end{proof}
+
+这个引理立刻给出 $\widetilde{\Ham}_c(M,\omega)$ 上如下非平凡同态的构造。
+
+\begin{proposition}
+\label{prop:calabi-path-homomorphism}
+\stfhSubIndex{I068}{ka^la^bi^tong^tai}{卡拉比同态（Calabi homomorphism）}{ka^la^bi^bu^bian^liang}{卡拉比不变量（Calabi invariant）}\stfhSubIndex{I069}{ka^la^bi^tong^tai}{卡拉比同态（Calabi homomorphism）}{dao^lu^de}{道路的（of the path）}
+映射
+\[
+ \operatorname{Cal}^{\mathrm{path}}:
+ \mathcal P^{\mathrm{ham}}(\Symp_0(M,\omega),\operatorname{id})
+ \longrightarrow\mathbb R,
+ \qquad
+ \operatorname{Cal}^{\mathrm{path}}(\lambda)
+ =\operatorname{Cal}(\operatorname{Dev}(\lambda)),
+\]
+定义一个非平凡同态。它只依赖于 $\lambda$ 相对于端点的路径同伦类，因而在
+$\widetilde{\Ham}_c(M,\omega)$ 上诱导一个同态。称
+$\operatorname{Cal}^{\mathrm{path}}$ 为\emph{路径的卡拉比同态}。
+\end{proposition}
+
+\begin{proof}
+为证明同态性质，计算
+\[
+\begin{aligned}
+ \operatorname{Cal}^{\mathrm{path}}(\lambda\cdot\lambda')
+ &=\operatorname{Cal}(\operatorname{Dev}(\lambda\cdot\lambda'))\\
+ &=\int_0^1\int_M
+   \bigl(H_t+H'_t\circ(\phi_H^t)^{-1}\bigr)\Omega\,dt\\
+ &=\int_0^1\int_M(H_t+H'_t)\Omega\,dt\\
+ &=\operatorname{Cal}^{\mathrm{path}}(\lambda)
+   +\operatorname{Cal}^{\mathrm{path}}(\lambda').
+\end{aligned}
+\]
+第二个等式来自复合公式
+\[
+  (H\#H')_t=H_t+H'_t\circ(\phi_H^t)^{-1},
+\]
+第三个等式来自 $(\phi_H^t)^*\Omega=\Omega$。
+
+再回忆，万有覆盖空间 $\widetilde{\Ham}_c(M,\omega)$ 由相对于端点的路径同伦类 $[\lambda]$ 实现。于是命题的陈述只是上述引理的改述。
+\end{proof}
+
+\begin{corollary}
+\label{cor:calabi-kernel-normal}
+以 $\overline{\operatorname{Cal}}:
+\widetilde{\Ham}_c(M,\omega)\longrightarrow\mathbb R$
+表示 $\operatorname{Cal}^{\mathrm{path}}$ 的下降映射，则
+$\ker\overline{\operatorname{Cal}}$ 是
+$\widetilde{\Ham}_c(M,\omega)$ 的真正规子群。
+\end{corollary}
+
+事实上，巴尼亚加 (Ba78) 证明了：当 $M$ 连通时，
+$\ker\overline{\operatorname{Cal}}$ 是单群。
+
+一般而言，$\overline{\operatorname{Cal}}$ 不能进一步下降为 $\Ham_c(M,\omega)$ 本身上的同态，除非 $\Ham_c(M,\omega)$ 单连通。例如 $M=D^{2n}$ 时，后一个条件成立。
+
+\subsection{正合辛流形}
+\stfhSubIndex{I070}{ka^la^bi^tong^tai}{卡拉比同态（Calabi homomorphism）}{zai^zheng^he^xin^liu^xing^shang}{在正合辛流形上（on exact symplectic manifold）}
+
+有一种特殊情形可使 $\operatorname{Cal}$ 下降到 $\Ham_c(M,\omega)$：即 $(M,\omega)$ 是正合的情形。
+
+设 $\omega$ 正合且 $\omega=d\alpha$。注意
+$\beta:=\phi^*\alpha-\alpha$ 是闭 1-形式，并在 $\partial M$ 附近满足 $\beta\equiv0$。取
+$\phi\in\Ham_c(M,\omega)$，并设 $\lambda$ 是由
+\[
+  \lambda(t)=\phi_H^t,
+  \qquad \lambda(0)=\operatorname{id},
+  \qquad \lambda(1)=\phi_H^1=\phi
+\]
+给出的哈密顿路径。考虑形式族
+\[
+  (\phi^t)^*\alpha-\alpha,
+  \qquad \phi^t=\phi_H^t.
+\]
+由于 $\phi^t=\operatorname{id}$ 于 $\partial M$ 附近，这个形式族显然具有紧支集。计算
+\[
+\begin{aligned}
+ \frac d{dt}\bigl((\phi^t)^*\alpha-\alpha\bigr)
+ &=(\phi^t)^*(\mathcal L_{X_H}(\alpha))\\
+ &=d(\phi^t)^*(X_H\mathbin{\lrcorner}\alpha)
+   +(\phi^t)^*(X_H\mathbin{\lrcorner}d\alpha)\\
+ &=d\bigl((\phi^t)^*(X_H\mathbin{\lrcorner}\alpha)
+   +(\phi^t)^*(H_t)\bigr).
+\end{aligned}
+\]
+另一方面，有如下有用公式，可由直接计算证明。
+
+\begin{lemma}
+\label{lem:calabi-exact-identity}
+\begin{equation}
+ (\phi^t)^*(X_H\mathbin{\lrcorner}\alpha)\wedge\omega^n
+ =(\phi^t)^*\bigl(nH_t\omega^n-d(nH_t\alpha\wedge\omega^{n-1})\bigr).
+ \label{eq:2.5.35}
+\end{equation}
+\end{lemma}
+
+作上述代换，得到
+\[
+\begin{aligned}
+ &\int_M(\phi^*\alpha-\alpha)\wedge\alpha\wedge\omega^{n-1}\\
+ &\quad=\int_M\left(\int_0^1\frac d{dt}
+   \bigl((\phi^t)^*\alpha-\alpha\bigr)\,dt\right)
+   \wedge\alpha\wedge\omega^{n-1}\\
+ &\quad=\int_0^1\left(\int_M
+   d\bigl((\phi^t)^*(X_H\mathbin{\lrcorner}\alpha)
+   +(\phi^t)^*(H_t)\bigr)\wedge\alpha\wedge\omega^{n-1}\right)dt\\
+ &\quad=\int_0^1\left(\int_M
+   \bigl((\phi^t)^*(X_H\mathbin{\lrcorner}\alpha)
+   +(\phi^t)^*(H_t)\bigr)d\alpha\wedge\omega^{n-1}\right)dt\\
+ &\quad=\int_0^1\int_M
+   \bigl((\phi^t)^*(X_H\mathbin{\lrcorner}\alpha)
+   +(\phi^t)^*(H_t)\bigr)\wedge\omega^n\wedge dt\\
+ &\quad=(n+1)\int_0^1\int_M(\phi^t)^*H_t\omega^n\wedge dt
+   =(n+1)\operatorname{Cal}(\lambda),
+\end{aligned}
+\]
+其中第五个等式使用了 \eqref{eq:2.5.35}。
+
+把上述讨论总结为下面的定理。
+
+\begin{theorem}[巴尼亚加 (Ba78)]
+\label{thm:calabi-exact-manifold}
+设 $\omega=d\alpha$，取 $\phi\in\Ham_c(M,\omega)$，并设 $\lambda$ 是任意满足 $\lambda(1)=\phi$ 的哈密顿路径。则
+\begin{equation}
+  \operatorname{Cal}^{\mathrm{path}}(\lambda)
+  =\frac1{n+1}\int_M
+  (\phi^*\alpha-\alpha)\wedge\alpha\wedge\omega^{n-1}.
+  \label{eq:2.5.36}
+\end{equation}
+特别地，$\operatorname{Cal}^{\mathrm{path}}(\lambda)$ 只依赖终点
+$\lambda(1)=\phi$，从而定义非平凡同态
+\[
+  \operatorname{Cal}:\Ham_c(M,d\alpha)\longrightarrow\mathbb R.
+\]
+特别地，$\Ham_c(M,d\alpha)$ 不是单群。
+\end{theorem}
+
+\begin{remark}
+\label{rem:calabi-general-quotient}
+在一般的 $(M,\omega)$ 上，只有形如
+\[
+  \operatorname{Cal}:\Ham_c(M,\omega)\longrightarrow\mathbb R/\Lambda
+\]
+的同态，它仍是满的；这里 $\Lambda\subset\mathbb R$ 为
+\[
+  \Lambda=\{\widetilde{\operatorname{Cal}}(g)
+  \mid g\in\pi_1(\Ham_c(M,\omega))\}.
+\]
+上面已经证明，当 $\omega$ 正合时，$\Lambda=\{0\}$。无论如何，我们得到 $\Ham_c(M,\omega)$ 一般不是单群。
+\end{remark}
+
+\subsection{一个例子：二维圆盘情形}
+
+考虑二维圆盘 $D^2$，在极坐标 $(r,\theta)$ 中取标准辛形式
+\[
+  \omega=dx\wedge dy=r\,dr\wedge d\theta.
+\]
+由于
+\[
+ \Ham(D^2,\partial D^2)=\Symp(D^2,\partial D^2)
+ =\Diff^\omega(D^2,\partial D^2)
+\]
+是可缩的，存在非平凡同态
+\[
+  \operatorname{Cal}:\Ham(D^2,\partial D^2)\longrightarrow\mathbb R.
+\]
+这里，对 $G$ 的三种取法，群 $G(D^2,\partial D^2)$ 都表示相应的、支集包含于圆盘 $D^2$ 内部的微分同胚集合。
+
+现在给出一些有趣的哈密顿微分同胚序列（在这里等价地说，就是保面积微分同胚序列）。关于亚历山大同痕下 $D^2$ 上卡拉比不变量的行为，有如下重要公式。
+
+\begin{corollary}
+\label{cor:calabi-alexander-scaling}
+设 $\lambda$ 是 $D^2$ 上给定的哈密顿路径，定义映射
+\[
+ \lambda_a(t,x)=
+ \begin{cases}
+  a\lambda(t,x/a),&|x|\le a(1-\eta),\\
+  x,&\text{其他情形},
+ \end{cases}
+\]
+其中 $0<a\le1$。则 $\lambda_a$ 满足
+\begin{equation}
+  \operatorname{Cal}^{\mathrm{path}}(\lambda_a)
+  =a^4\operatorname{Cal}^{\mathrm{path}}(\lambda).
+  \label{eq:2.5.37}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+直接计算表明，$\lambda_a$ 由如下唯一的哈密顿量生成：
+\[
+ \operatorname{Dev}(\lambda_a)(t,x)=
+ \begin{cases}
+  a^2H(t,x/a),&|x|\le a(1-\eta),\\
+  0,&\text{其他情形},
+ \end{cases}
+\]
+其中 $H=\operatorname{Dev}(\lambda)$。由此得到
+\[
+\begin{aligned}
+ \operatorname{Cal}^{\mathrm{path}}(\lambda_a)
+ &=\int_0^1\int_{D^2(a(1-\eta))}
+   a^2H\left(t,\frac xa\right)\Omega\wedge dt\\
+ &=a^4\int_0^1\int_{D^2}H(t,y)\Omega\wedge dt
+  =a^4\operatorname{Cal}^{\mathrm{path}}(\lambda).
+\end{aligned}
+\]
+这证明了 \eqref{eq:2.5.37}。
+\end{proof}
+
+作好这些准备后，考虑二进数集合 $1/2^k$，其中 $k=0,\ldots$。设 $(r,\theta)$ 是 $D^2$ 上的极坐标，则标准面积形式为
+\[
+  \omega=r\,dr\wedge d\theta.
+\]
+考虑形如下式的映射 $\phi_k:D^2\to D^2$：
+\[
+  \phi_k=\phi_{\rho_k}:(r,\theta)
+  \longmapsto(r,\theta+\rho_k(r)),
+\]
+其中 $\rho_k:(0,1]\to[0,\infty)$ 是支集包含于 $(0,1)$ 的光滑函数。于是 $\phi_{\rho_k}$ 是保面积映射，并由自治哈密顿量
+\[
+  F_{\phi_k}(r,\theta)=-\int_1^r s\rho_k(s)\,ds
+\]
+生成。因此其卡拉比不变量为
+\begin{equation}
+ \operatorname{Cal}(\phi_k)
+ =-\int_{D^2}\left(\int_1^r s\rho_k(s)\,ds\right)r\,dr\,d\theta
+ =\pi\int_0^1r^3\rho_k(r)\,dt.
+ \label{eq:2.5.38}
+\end{equation}
+
+现在按如下方式选取 $\rho_k$：
+\begin{enumerate}[label=(\arabic*)]
+  \item $\rho_k$ 的支集包含于 $1/2^k<r<1/2^{k-1}$；
+  \item 对每个 $k=1,\ldots$，当 $r\in(1/2^k,1/2^{k-1})$ 时，有
+  \begin{equation}
+    \rho_k(r)=2^4\rho_{k-1}(2r);
+    \label{eq:2.5.39}
+  \end{equation}
+  \item $\operatorname{Cal}(\phi_1)=1$。
+\end{enumerate}
+由构造，$\phi_k$ 的支集两两不交，故可以任意复合而无须顾虑复合顺序。于是无穷乘积
+\[
+  \prod_{k=0}^\infty\phi_k
+\]
+有良好定义，并给出一个连续映射；除原点外它是光滑的，在原点处 $\phi_\rho$ 连续但不可微。这个无穷乘积也可以写成如下同胚：$\phi_\rho(0)=0$，且
+\[
+  \phi_\rho(r,\theta)=(r,\theta+\rho(r)),
+\]
+其中光滑函数 $\rho:(0,1]\to\mathbb R$ 定义为
+\[
+  \rho(r)=\rho_k(r)
+  \quad\text{当}\quad
+  r\in\left[\frac1{2^k},\frac1{2^{k-1}}\right],
+  \qquad k=1,2,\ldots.
+\]
+容易验证，$\phi_\rho$ 在 $D^2\setminus\{0\}$ 上光滑，并且即使在 $0$ 处也连续，且与上述无穷乘积相同。显然 $\phi_{-\rho}$ 是 $\phi_\rho$ 的逆映射，所以它是同胚。此外，
+\[
+  \phi_\rho^*(r\,dr\wedge d\theta)
+  =r\,dr\wedge d\theta
+  \qquad\text{于 }D^2\setminus\{0\},
+\]
+这说明 $\phi_\rho$ 确实保面积。再定义另一列保面积微分同胚 $\psi_k$：
+\[
+  \psi_k=\prod_{i=1}^k\phi_k.
+\]
+
+将这个例子的上述讨论总结为下面的命题。自让-马克·冈博多（Jean-Marc Gambaudo）与艾蒂安·吉斯（Étienne Ghys）在 (GG04) 中的工作以来，这种序列的存在性便已为人所知。
+
+\begin{proposition}
+\label{prop:calabi-noncontinuous-sequences}
+考虑上面定义的 $\phi_k$ 与 $\psi_k$。
+\begin{enumerate}[label=(\arabic*)]
+  \item $\phi_k$ 一致收敛到 $\operatorname{id}$，但对所有 $k$ 都有 $\operatorname{Cal}(\phi_k)=1$；
+  \item $\psi_k$ 一致收敛到一个在原点不可微的保面积同胚，并且
+  $\operatorname{Cal}(\psi_k)\nearrow\infty$。
+\end{enumerate}
+\end{proposition}
+
+它立即推出如下经典事实。
+
+\begin{corollary}[与 (GG04) 比较]
+\label{cor:calabi-c0-discontinuous-unbounded}
+考虑同态
+\[
+  \operatorname{Cal}:\Diff^\Omega(D^2,\partial D^2)\longrightarrow\mathbb R.
+\]
+\begin{enumerate}[label=(\arabic*)]
+  \item 映射 $\operatorname{Cal}$ 关于 $\Diff^\Omega(D^2,\partial D^2)$ 的 $C^0$ 拓扑不连续；
+  \item 同态 $\operatorname{Cal}$ 关于 $C^0$ 拓扑无界；即存在序列
+  $\psi_k\in\Diff^\Omega(D^2,\partial D^2)$，满足
+  $d_{C^0}(\psi_k,\operatorname{id})\le C$，但
+  $\operatorname{Cal}(\psi_k)\nearrow\infty$。
+\end{enumerate}
+\end{corollary}
+
+事实表明，这一现象与二维保面积动力学的辛本质紧密相关。我们将在第 6 章与第 22.6 节重新讨论二维动力学的这个重要方面。

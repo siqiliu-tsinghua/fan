@@ -1,0 +1,751 @@
+
+\section{滤过 $A_\infty$ 代数的代数框架}
+\label{sec:3-2}
+
+本节将在纯代数语境中引入滤过 $A_\infty$ 代数和 $A_\infty$ 同态的概念，
+因而不涉及拉格朗日子流形。我们的 $A_\infty$ 代数定义与文献中的标准定义
+（\textbf{[Sta63]}）略有不同，因为这里的系数环是滤过交换环
+$\Lambda_{0,\mathrm{nov}}$。为此，第 3.2.1 小节先回顾无滤过
+$A_\infty$ 代数及其同态，下一小节再引入滤过 $A_\infty$ 代数和滤过
+$A_\infty$ 同态。为了把通常的无滤过 $A_\infty$ 代数同这里的滤过
+$A_\infty$ 代数区分开来，我们在前者的记号上加横线。
+
+\subsection{$A_\infty$ 代数与同态}
+\label{subsec:3-2-1}
+
+令 $R$ 为带幺交换环，并令
+$\overline C=\bigoplus_{m\in\mathbb Z}\overline C^m$ 为自由分次
+$R$-模。我们始终假定 $\overline C$ 由可数多个元素生成。置
+$(\overline C[1])^m=\overline C^{m+1}$，并令
+\[
+  B_k(\overline C[1])
+  =\bigoplus_{m_1,\ldots,m_k}
+  (\overline C[1])^{m_1}\otimes\cdots\otimes
+  (\overline C[1])^{m_k}.
+\]
+有些文献把上式右端记作 $B_k(\overline C)$，而不是
+$B_k(\overline C[1])$。不过，本书始终采用后一个记号；有时也把
+$B_k(\overline C[1])$ 简写为 $B_k\overline C[1]$。假设给定一列次数为
+$+1$ 的映射 $\overline{\mathfrak m}
+=\{\overline{\mathfrak m}_k\}_{k\geq1}$：
+\[
+  \overline{\mathfrak m}_k\colon B_k(\overline C[1])
+  \longrightarrow\overline C[1],
+  \qquad k=1,2,\ldots.
+\]
+
+直和
+$B(\overline C[1]):=\bigoplus_k B_k(\overline C[1])$ 具有分次余代数结构。
+其余积\liftIndex{I035} $\Delta$ 定义为
+\[
+  \Delta(x_1\otimes\cdots\otimes x_n)
+  =\sum_{k=0}^{n}
+  (x_1\otimes\cdots\otimes x_k)
+  \otimes(x_{k+1}\otimes\cdots\otimes x_n).
+\]
+可以把 $\overline{\mathfrak m}_k$ 唯一延拓为余导子\liftIndex{I092}
+\[
+  \widehat{\overline{\mathfrak m}}_k\colon
+  \bigoplus_n B_n(\overline C[1])
+  \longrightarrow
+  \bigoplus_n B_{n-k+1}(\overline C[1]),
+\]
+其公式为
+\begin{equation}
+\begin{aligned}
+  &\widehat{\overline{\mathfrak m}}_k
+  (x_1\otimes\cdots\otimes x_n)\\
+  &\quad={}
+  \sum_{\ell=1}^{n-k+1}
+  (-1)^{\deg x_1+\cdots+\deg x_{\ell-1}+\ell-1}
+  x_1\otimes\cdots\otimes
+  \overline{\mathfrak m}_k
+  (x_\ell,\ldots,x_{\ell+k-1})
+  \otimes\cdots\otimes x_n .
+\end{aligned}
+\tag{3.2.1}\label{eq:3-2-1}
+\end{equation}
+这里 $k\leq n$；当 $k>n$ 时，令
+$\widehat{\overline{\mathfrak m}}_k=0$。这里以及下文中，$\deg x$ 都指
+移位之前 $x$ 的次数。
+
+以后，对 $x\in(\overline C[1])^m=\overline C^{m+1}$，置
+\begin{equation}
+  \deg' x=m=\deg x-1.
+  \tag{3.2.2}\label{eq:3-2-2}
+\end{equation}
+这称为移位次数\liftIndex{I028}。用这个记号，式~\eqref{eq:3-2-1} 中的符号就是
+$(-1)^{\deg' x_1+\cdots+\deg' x_{\ell-1}}$。置
+\[
+  \widehat{\overline d}
+  =\sum_k\widehat{\overline{\mathfrak m}}_k.
+\]
+
+\begin{definition}{3.2.3}\label{def:3-2-3}
+若 $\widehat{\overline d}\circ\widehat{\overline d}=0$，就称
+$\overline{\mathfrak m}=\{\overline{\mathfrak m}_k\}_{k\geq1}$
+在 $\overline C$ 上定义了一个 $R$ 上的
+$A_\infty$ 代数结构\liftIndex{I002}。
+\end{definition}
+
+\begin{remark}{3.2.4}\label{rem:3-2-4}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.8em]
+  \item 算子 $\overline{\mathfrak m}_k$ 只对 $k>0$ 定义，也就是说
+  $\overline{\mathfrak m}_0=0$。对下一小节定义的滤过 $A_\infty$ 代数，
+  则要考虑所有 $k\geq0$ 的 $\mathfrak m_k$。由于
+  $\overline{\mathfrak m}_0=0$，有
+  $\overline{\mathfrak m}_1\overline{\mathfrak m}_1=0$，所以得到上链复形
+  $(\overline C[1],\overline{\mathfrak m}_1)$；另见注 3.2.21 (1)。
+
+  \item 把 $R$ 上的微分分次代数（D.G.A.）视为 $A_\infty$ 代数时，只需令
+  $\overline{\mathfrak m}_k=0$（$k\geq3$）。不过要注意，
+  $\overline{\mathfrak m}_2$ 的符号与 D.G.A. 中乘积的符号不同：
+  \begin{equation}
+  \begin{aligned}
+    \overline{\mathfrak m}_1(x)
+      &=(-1)^{\deg x}dx,\\
+    \overline{\mathfrak m}_2(x,y)
+      &=(-1)^{\deg x(\deg y+1)}x\mathbin{\cdot}y.
+  \end{aligned}
+  \tag{3.2.5}\label{eq:3-2-5}
+  \end{equation}
+  这里 $x\mathbin{\cdot}y$ 是 D.G.A. 中的乘积；另见下面的注 3.2.21 (2)。
+\end{enumerate}
+\end{remark}
+
+下面定义 $A_\infty$ 同态。令
+$(\overline C_i,\overline{\mathfrak m}^{\,i})$（$i=1,2$）为带幺交换环
+$R$ 上的 $A_\infty$ 代数。对 $k=1,2,\ldots$，考虑次数为 $0$ 的映射族
+\[
+  \overline f_k\colon B_k(\overline C_1[1])
+  \longrightarrow\overline C_2[1].
+\]
+这些映射诱导
+$\widehat{\overline f}\colon B(\overline C_1[1])\to
+B(\overline C_2[1])$；它在 $B_k(\overline C_1[1])$ 上由下式给出：
+\begin{equation}
+\begin{aligned}
+  &\widehat{\overline f}(x_1\otimes\cdots\otimes x_k)\\
+  &\quad={}
+  \sum_{0<k_1<\cdots<k_n<k}
+  \overline f_{k_1}(x_1,\ldots,x_{k_1})\otimes\cdots\\
+  &\qquad\quad{}\otimes
+  \overline f_{k_{i+1}-k_i}
+  (x_{k_i+1},\ldots,x_{k_{i+1}})\otimes\cdots\\
+  &\qquad\quad{}\otimes
+  \overline f_{k-k_n}(x_{k_n+1},\ldots,x_k).
+\end{aligned}
+\tag{3.2.6}\label{eq:3-2-6}
+\end{equation}
+容易看出，$\widehat{\overline f}$ 是一个余代数同态。这里
+$\overline f_0=0$。
+
+\begin{definition}{3.2.7}\label{def:3-2-7}
+若
+\[
+  \widehat{\overline f}\circ\widehat{\overline d}^{\,1}
+  =\widehat{\overline d}^{\,2}\circ\widehat{\overline f},
+\]
+就称 $\overline f=\{\overline f_k\}_{k\geq1}$ 是从
+$\overline C_1$ 到 $\overline C_2$ 的
+$A_\infty$ 同态\liftIndex{I087}，简记为
+$\overline f\colon\overline C_1\to\overline C_2$。
+\end{definition}
+
+根据定义，从 $\overline C_1$ 到 $\overline C_2$ 的 $A_\infty$ 同态
+$\overline f$ 诱导同态
+\[
+  H^*\bigl(B(\overline C_1[1]),\widehat{\overline d}^{\,1}\bigr)
+  \longrightarrow
+  H^*\bigl(B(\overline C_2[1]),\widehat{\overline d}^{\,2}\bigr).
+\]
+设
+$\overline f_k^{\,i}\colon B_k(\overline C_i[1])\to
+\overline C_{i+1}[1]$（$i=1,2$）各自定义一个 $A_\infty$ 同态。
+
+\begin{definition}{3.2.8}\label{def:3-2-8}
+$\overline f^{\,1}$ 与 $\overline f^{\,2}$ 的复合
+$\overline f^{\,2}\circ\overline f^{\,1}
+=\{(\overline f^{\,2}\circ\overline f^{\,1})_k\}_{k\geq1}$
+\liftIndex{I088}由下式定义：
+\[
+\begin{aligned}
+  &(\overline f^{\,2}\circ\overline f^{\,1})_k
+  (x_1,\ldots,x_k)\\
+  &\quad={}
+  \sum_m\sum_{k_1+\cdots+k_m=k}
+  \overline f_m^{\,2}\bigl(
+    \overline f_{k_1}^{\,1}(x_1,\ldots,x_{k_1}),\ldots,
+    \overline f_{k_m}^{\,1}(x_{k-k_m+1},\ldots,x_k)
+  \bigr).
+\end{aligned}
+\]
+\end{definition}
+
+\begin{lemma}{3.2.9}\label{lem:3-2-9}
+$\overline f^{\,2}\circ\overline f^{\,1}$ 定义了从
+$\overline C_1$ 到 $\overline C_3$ 的 $A_\infty$ 同态。
+\end{lemma}
+
+\begin{proof}
+若 $\widehat{\overline f}^{\,1}$、$\widehat{\overline f}^{\,2}$ 分别由
+$\overline f_k^{\,1}$、$\overline f_k^{\,2}$ 通过~\eqref{eq:3-2-6} 诱导，
+则复合 $\widehat{\overline f}^{\,2}\circ
+\widehat{\overline f}^{\,1}$ 由
+$(\overline f^{\,2}\circ\overline f^{\,1})_k$ 诱导，结论立即成立。
+\end{proof}
+
+注意
+\[
+  \widehat{\overline f}^{\,2}\circ\widehat{\overline f}^{\,1}
+  =\widehat{\overline f^{\,2}\circ\overline f^{\,1}}.
+\]
+次数为 $+1$ 的映射 $\overline{\mathfrak m}_1$ 满足
+$\overline{\mathfrak m}_1\circ\overline{\mathfrak m}_1=0$（见注 3.2.4
+(1)），因而有复形 $(\overline C[1],\overline{\mathfrak m}_1)$。
+$A_\infty$ 同态会诱导上同调之间的同态。
+
+\begin{definition}{3.2.10}\label{def:3-2-10}
+令 $(\overline C_i,\overline{\mathfrak m}^{\,i})$ 为 $R$ 上的
+$A_\infty$ 代数。若 $A_\infty$ 同态
+\[
+  \overline f\colon
+  (\overline C_1,\overline{\mathfrak m}^{\,1})
+  \longrightarrow
+  (\overline C_2,\overline{\mathfrak m}^{\,2})
+\]
+的线性项 $\overline f_1$ 诱导上链同伦等价，就称 $\overline f$ 为
+\emph{弱同伦等价}。
+\end{definition}
+
+\begin{remark}{3.2.11}\label{rem:3-2-11}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.8em]
+  \item 当 $R$ 是域或 $\mathbb Z$ 时，$\overline f$ 是弱同伦等价，当且仅当
+  $\overline f_1$ 是拟同构；也就是说，$\overline f_1$ 诱导同构
+  \[
+    H^*(\overline C_1[1],\overline{\mathfrak m}^{\,1}_1)
+    \xrightarrow{\ \cong\ }
+    H^*(\overline C_2[1],\overline{\mathfrak m}^{\,2}_1).
+  \]
+  回忆我们假定 $\overline C_i$ 都是由可数多个元素生成的自由 $R$-模。
+
+  \item 第 4 章将说明，弱同伦等价在 $A_\infty$ 代数之间定义了一个等价关系；
+  见推论 4.2.44 和定理 4.2.45。
+\end{enumerate}
+\end{remark}
+
+\subsection{滤过 $A_\infty$ 代数与同态}
+\label{subsec:3-2-2}
+
+现在引入滤过 $A_\infty$ 代数的概念。令
+$\bigoplus_{m\in\mathbb Z}C^m$ 为自由分次
+$\Lambda_{0,\mathrm{nov}}$-模。对每个 $\lambda\in\mathbb R_{\geq0}$，
+$C^m$ 上有滤过 $F^\lambda C^m$，满足
+\begin{align}
+  F^\lambda C^m&\subset F^{\lambda'}C^m
+    \quad\text{若 }\lambda>\lambda',
+    \tag{3.2.12.1}\label{eq:3-2-12-1}\\
+  T^{\lambda_0}\cdot F^\lambda C^m
+    &\subset F^{\lambda+\lambda_0}C^m,
+    \tag{3.2.12.2}\label{eq:3-2-12-2}\\
+  e^kC^m&\subset C^{m+2k},
+    \tag{3.2.12.3}\label{eq:3-2-12-3}\\
+  C^m&\text{ 关于该滤过完备},
+    \tag{3.2.12.4}\label{eq:3-2-12-4}\\
+  C^m&\text{ 有一组基 }\{v_i\}\text{，使得 }
+  v_i\in F^0C^m\setminus\bigcup_{\lambda>0}F^\lambda C^m.
+    \tag{3.2.12.5}\label{eq:3-2-12-5}
+\end{align}
+称滤过 $F C$ 为能量滤过，并以 $C$ 表示
+$\bigoplus_{m\in\mathbb Z}C^m$ 关于能量滤过的完备化。式
+\eqref{eq:3-2-12-3} 表示 $e$ 的次数为 $2$。考虑由
+$(C[1])^m=C^{m+1}$ 定义的移位复形 $C[1]$，并令
+\[
+  B_k(C[1])
+  =\bigoplus_{m_1,\ldots,m_k}
+  (C[1])^{m_1}\otimes\cdots\otimes(C[1])^{m_k}.
+\]
+假设给定一列次数为 $+1$ 的映射
+$\mathfrak m=\{\mathfrak m_k\}_{k\geq0}$：
+\[
+  \mathfrak m_k\colon B_k(C[1])\longrightarrow C[1],
+  \qquad k=0,1,\ldots.
+\]
+注意 $\mathfrak m_0\colon\Lambda_{0,\mathrm{nov}}\to C[1]$。我们假定
+\begin{align}
+  &\mathfrak m_k\bigl(
+  F^{\lambda_1}C^{m_1}\otimes\cdots\otimes
+  F^{\lambda_k}C^{m_k}\bigr)
+  \subset
+  F^{\lambda_1+\cdots+\lambda_k}
+  C^{m_1+\cdots+m_k-k+2},
+  \tag{3.2.12.6}\label{eq:3-2-12-6}\\
+  &\mathfrak m_0(1)\in F^{\lambda'}C[1]
+  \qquad\text{对某个 }\lambda'>0.
+  \tag{3.2.12.7}\label{eq:3-2-12-7}
+\end{align}
+可见，对滤过 $A_\infty$ 代数，运算 $\mathfrak m_k$ 也在 $k=0$ 时定义。
+
+由于 $C$ 是自由 $\Lambda_{0,\mathrm{nov}}$-模，存在自由 $R$-模
+$\overline C$ 以及同构
+\begin{equation}
+  \overline C\otimes_R\Lambda_{0,\mathrm{nov}}\cong C.
+  \tag{3.2.13.1}\label{eq:3-2-13-1}
+\end{equation}
+此外还假定 $\overline C$ 具有下面的性质。环 $\Lambda_{0,\mathrm{nov}}$
+有理想 $\Lambda^+_{0,\mathrm{nov}}$，并且
+\[
+  \Lambda_{0,\mathrm{nov}}/\Lambda^+_{0,\mathrm{nov}}
+  \cong R[e,e^{-1}]
+\]
+（见 (Conv.4) 与 (1.37)）。对 $k=1,2,\ldots$，置
+\begin{equation}
+  \overline{\mathfrak m}_k(x_1,\ldots,x_k)
+  \equiv\mathfrak m_k(x_1,\ldots,x_k)
+  \pmod{\Lambda^+_{0,\mathrm{nov}}C}.
+  \tag{3.2.13.2}\label{eq:3-2-13-2}
+\end{equation}
+这里 $\overline{\mathfrak m}_k$ 是同态
+\[
+  B_k\overline C[1]\otimes_RR[e,e^{-1}]
+  \longrightarrow\overline C[1]\otimes_RR[e,e^{-1}].
+\]
+我们假定它由一个 $R$-模同态
+\begin{equation}
+  B_k\overline C[1]\longrightarrow\overline C[1]
+  \tag{3.2.13.3}\label{eq:3-2-13-3}
+\end{equation}
+诱导。换言之，我们假定 $\overline{\mathfrak m}_k$ 不含 $e,e^{-1}$，并仍用
+$\overline{\mathfrak m}_k$ 表示~\eqref{eq:3-2-13-3} 中的 $R$-模同态。
+
+现在直和 $B(C[1]):=\bigoplus_kB_k(C[1])$ 具有分次余代数结构。我们把
+$B(C[1])$ 看作余代数，并在其上构造余导子。余积 $\Delta$ 定义为
+\begin{equation}
+  \Delta(x_1\otimes\cdots\otimes x_n)
+  =\sum_{k=0}^{n}
+  (x_1\otimes\cdots\otimes x_k)
+  \otimes(x_{k+1}\otimes\cdots\otimes x_n).
+  \tag{3.2.14}\label{eq:3-2-14}
+\end{equation}
+可以把 $\mathfrak m_k$ 唯一延拓为余导子\liftIndex{I092}
+\[
+  \widehat{\mathfrak m}_k\colon
+  \bigoplus_nB_n(C[1])
+  \longrightarrow
+  \bigoplus_nB_{n-k+1}(C[1]),
+\]
+其定义为
+\begin{equation}
+\begin{aligned}
+  &\widehat{\mathfrak m}_k(x_1\otimes\cdots\otimes x_n)\\
+  &\quad={}
+  \sum_{\ell=1}^{n-k+1}
+  (-1)^{\deg x_1+\cdots+\deg x_{\ell-1}+\ell-1}
+  x_1\otimes\cdots\otimes
+  \mathfrak m_k(x_\ell,\ldots,x_{\ell+k-1})
+  \otimes\cdots\otimes x_n .
+\end{aligned}
+\tag{3.2.15}\label{eq:3-2-15}
+\end{equation}
+这里 $k\leq n$；当 $k>n$ 时，令 $\widehat{\mathfrak m}_k=0$。在
+$k=0$ 的情形，把右端的 $\mathfrak m_k$ 换成 $\mathfrak m_0(1)$；也就是说，
+\[
+\begin{aligned}
+  &\widehat{\mathfrak m}_0(x_1\otimes\cdots\otimes x_n)\\
+  &\quad={}
+  \sum_{\ell=1}^{n+1}
+  (-1)^{\deg x_1+\cdots+\deg x_{\ell-1}+\ell-1}
+  x_1\otimes\cdots\otimes x_{\ell-1}\otimes
+  \mathfrak m_0(1)\otimes x_\ell\otimes\cdots\otimes x_n.
+\end{aligned}
+\]
+
+下面考虑 $B(C[1])$ 的完备化 $\widehat B(C[1])$。在 $B_k(C[1])$ 上定义滤过
+\[
+  F^\lambda B_k(C[1])
+  =\bigcup_{\lambda_1+\cdots+\lambda_k\geq\lambda}
+  \bigl(F^{\lambda_1}C^{m_1}\otimes\cdots\otimes
+  F^{\lambda_k}C^{m_k}\bigr).
+\]
+这里的分次指标 $m_1,\ldots,m_k$ 按各分次分量逐一理解。
+令 $\widehat B_k(C[1])$ 为 $B_k(C[1])$ 关于这个滤过的完备化；仍称该滤过为
+能量滤过\liftIndex{I081}\liftIndex{I093}。$B(C[1])$ 上还有由
+\[
+  \bigoplus_{k\geq k_0}B_k(C[1]),
+  \qquad k_0=1,2,\ldots,
+\]
+给出的另一滤过，称为\emph{数目滤过}\liftIndex{I094}。
+
+\begin{definition}{3.2.16}\label{def:3-2-16}
+$\widehat B(C[1])$ 是所有形式和 $\sum_kx_k$ 构成的集合，其中
+$x_k\in\widehat B_k(C[1])$，并且存在 $\lambda_k$ 使
+\[
+  x_k\in F^{\lambda_k}\widehat B_k(C[1]),
+  \qquad \lambda_k\longrightarrow\infty\quad(k\longrightarrow\infty).
+\]
+\end{definition}
+
+定义
+\[
+  \widehat d\colon\widehat B(C[1])\longrightarrow\widehat B(C[1]),
+  \qquad
+  \widehat d=\sum_{k=0}^{\infty}\widehat{\mathfrak m}_k.
+\]
+
+\begin{lemma}{3.2.17}\label{lem:3-2-17}
+若 (3.2.12) 成立，则 $\widehat d$ 是从 $\widehat B(C[1])$ 到自身的
+良定义映射。
+\end{lemma}
+
+\begin{proof}
+令 $\sum_kx_k$ 如定义 3.2.16。$\widehat d\sum_kx_k$ 的
+$\widehat B_k(C[1])$-分量是
+$\sum_\ell\widehat{\mathfrak m}_\ell(x_{k+\ell-1})$。由 (3.2.12) 和定义
+3.2.16，
+\[
+  \widehat{\mathfrak m}_\ell(x_{k+\ell-1})
+  \in F^{\lambda_{k+\ell-1}}\widehat B_k(C[1]).
+\]
+因此，$\widehat B_k(C[1])$ 的完备性蕴含
+$\widehat d\sum_kx_k$ 收敛，引理得证。
+\end{proof}
+
+现在对元素 $e\in C^0=C[1]^{-1}$ 引入下述条件；另可比较
+\textbf{[Fuk97II]} 第 11 节。
+
+\begin{statement}{条件}{3.2.18}\label{cond:3-2-18}
+\begin{align}
+  \mathfrak m_{k+1}(x_1,\ldots,e,\ldots,x_k)&=0,
+  &&k\geq2\text{ 或 }k=0,
+  \tag{3.2.19.1}\label{eq:3-2-19-1}\\
+  \mathfrak m_2(e,x)&=(-1)^{\deg x}\mathfrak m_2(x,e)=x.
+  \tag{3.2.19.2}\label{eq:3-2-19-2}
+\end{align}
+\end{statement}
+
+\pagebreak
+\begin{definition}{3.2.20}\label{def:3-2-20}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.8em]
+  \item $C$ 上的一个\emph{滤过 $A_\infty$ 代数结构}
+  \liftIndex{I002}\liftIndex{I082}，是满足
+  (3.2.12.1)--(3.2.12.7)、(3.2.13.1)--(3.2.13.3) 以及
+  $\widehat d\circ\widehat d=0$ 的一族
+  $\mathfrak m=\{\mathfrak m_k\}_{k\geq0}$。称
+  $\widehat B(C[1])$ 为与 $A_\infty$ 代数 $(C,\mathfrak m)$ 相伴的
+  （完备）bar 复形\liftIndex{I095}。
+
+  若 $(C,\mathfrak m)$ 是滤过 $A_\infty$ 代数，则
+  (3.2.13) 中的
+  $(\overline C,\overline{\mathfrak m}_k)$ 是 $A_\infty$ 代数。称它为
+  $(C,\mathfrak m_k)$ 的 $R$-约化\liftIndex{I084}。本书常把
+  $(C,\mathfrak m_k)$ 等的 $R$-约化直接记作
+  $(\overline C,\overline{\mathfrak m}_k)$，不再另行说明。
+
+  \item 若滤过 $A_\infty$ 代数 $(C,\mathfrak m)$ 满足
+  $\mathfrak m_0=0$，就称它是\emph{严格的}\liftIndex{I085}。
+
+  \item 若一个（滤过）$A_\infty$ 代数含有次数为 $0$（移位前）的元素
+  $e$，并且 $e$ 满足条件 3.2.18，就称该代数为\emph{带幺
+  （滤过）$A_\infty$ 代数}，称 $e$ 为它的\emph{幺元}
+  \liftIndex{I086}；有时也简称\emph{含幺滤过 $A_\infty$ 代数}。
+  对含幺滤过 $A_\infty$ 代数 $(C,\mathfrak m)$，置
+  \[
+    C_{\mathrm{red}}=C/\Lambda_{0,\mathrm{nov}}[e],
+  \]
+  并且本书始终假定存在分裂
+  \[
+    C=C_{\mathrm{red}}\oplus\Lambda_{0,\mathrm{nov}}[e].
+  \]
+  对 $R$ 上的无滤过 $A_\infty$ 代数
+  $(\overline C,\overline{\mathfrak m})$，也以同样方式定义幺元并假定上述
+  分裂存在。关于 $C_{\mathrm{red}}$ 的一些讨论，见第 4.4.4、4.4.7 小节。
+\end{enumerate}
+\end{definition}
+
+\begin{remark}{3.2.21}\label{rem:3-2-21}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.8em]
+  \item 方程 $\widehat d\circ\widehat d=0$ 在各个 $\mathfrak m_k$ 之间产生
+  无穷多个关系。例如，最初几个关系为
+  \[
+  \begin{aligned}
+    &\mathfrak m_1(\mathfrak m_0(1))=0,\\
+    &\mathfrak m_2(\mathfrak m_0(1),x)
+      +(-1)^{\deg x+1}\mathfrak m_2(x,\mathfrak m_0(1))\\
+    &\qquad{}+\mathfrak m_1(\mathfrak m_1(x))=0,\\
+    &\mathfrak m_3(\mathfrak m_0(1),x,y)
+      +(-1)^{\deg x+1}\mathfrak m_3(x,\mathfrak m_0(1),y)\\
+    &\qquad{}+(-1)^{\deg x+\deg y+2}
+      \mathfrak m_3(x,y,\mathfrak m_0(1))\\
+    &\qquad{}+\mathfrak m_2(\mathfrak m_1(x),y)
+      +(-1)^{\deg x+1}\mathfrak m_2(x,\mathfrak m_1(y))\\
+    &\qquad{}+\mathfrak m_1(\mathfrak m_2(x,y))=0,
+  \end{aligned}
+  \]
+  等等。一般地，容易证明 $\widehat d\circ\widehat d=0$ 等价于：对每个
+  $k$，都有
+  \begin{equation}
+  \begin{aligned}
+    &\sum_{k_1+k_2=k+1}\sum_i
+    (-1)^{\deg x_1+\cdots+\deg x_{i-1}+i-1}\\
+    &\qquad\mathfrak m_{k_1}
+    \bigl(x_1,\ldots,
+      \mathfrak m_{k_2}(x_i,\ldots,x_{i+k_2-1}),
+      \ldots,x_k\bigr)=0.
+  \end{aligned}
+  \tag{3.2.22}\label{eq:3-2-22}
+  \end{equation}
+  称这个恒等式为 $A_\infty$ 公式或 $A_\infty$ 关系。若
+  $\mathfrak m_0=0$，则 $\mathfrak m_1\mathfrak m_1=0$；此时
+  $\mathfrak m_1$ 起上边界算子的作用。
+
+  \item 假设 $\mathfrak m_0=0$ 且
+  $\mathfrak m_3=\mathfrak m_4=\cdots=0$。那么
+  $\widehat d\circ\widehat d=0$ 蕴含
+  \begin{equation}
+    \mathfrak m_2(\mathfrak m_2(x,y),z)
+    +(-1)^{\deg x+1}\mathfrak m_2(x,\mathfrak m_2(y,z))=0.
+    \tag{3.2.23}\label{eq:3-2-23}
+  \end{equation}
+  式~\eqref{eq:3-2-23} 与~\eqref{eq:3-2-5} 以及 D.G.A. 中乘积的结合律相容。
+
+  \item 置\liftIndexRangeStart{I097}
+  \begin{equation}
+    \mathfrak l_k(x_1,\ldots,x_k)
+    =\frac1{k!}\sum_{\sigma\in S_k}(-1)^{\epsilon(\sigma)}
+    \mathfrak m_k(x_{\sigma(1)},\ldots,x_{\sigma(k)}),
+    \tag{3.2.24}\label{eq:3-2-24}
+  \end{equation}
+  其中
+  \begin{equation}
+    \epsilon(\sigma)
+    =\sum_{i<j;\,\sigma(i)>\sigma(j)}
+    (\deg x_i+1)(\deg x_j+1).
+    \tag{3.2.25}\label{eq:3-2-25}
+  \end{equation}
+  这可以看作对算子 $\mathfrak m_k$ 的对称化
+  \liftIndex{I096}。$\mathfrak m_k$ 的 $A_\infty$ 公式在算子
+  $\mathfrak l_k$ 之间导出若干关系，而这些关系定义一个
+  $L_\infty$ 结构\liftIndexRangeEnd{I097}。关于 $A_\infty$ 结构的对称化，
+  见第 A3 节以及例如 \textbf{[LaMa95]}。有些文献采用的符号约定与本书略有不同。
+
+  \item 第 3.5 节将构造一个与拉格朗日子流形关联的滤过 $A_\infty$ 代数。
+  它没有定义 3.2.20 (3) 意义下的幺元；但第 7.3 节将证明它有同伦幺元。
+  我们将在第 3.3 节定义 $A_\infty$ 代数中同伦幺元的概念。
+
+  \item 注意，完备化 $\widehat B(C[1])$ 并不是通常意义下的余代数，但存在运算
+  \[
+    \Delta\colon\widehat B(C[1])
+    \longrightarrow
+    \widehat B(C[1])\widehat\otimes\widehat B(C[1]),
+  \]
+  满足
+  \[
+    (\Delta\widehat\otimes1)\circ\Delta
+    =(1\widehat\otimes\Delta)\circ\Delta.
+  \]
+  这里以及下文中，$\widehat\otimes$ 表示
+  $\Lambda_{0,\mathrm{nov}}$ 上张量积的完备化。称这样的代数结构为
+  \emph{形式余代数}。这一概念也出现在形式群理论中
+  \textbf{[Die73]}。我们的 $\widehat d$ 是这个形式余代数的余导子。
+\end{enumerate}
+\end{remark}
+
+下面定义有隙条件。令
+$G\subset\mathbb R_{\geq0}\times2\mathbb Z$ 为子幺半群，并把它写成
+\[
+  G=\{\beta=(\lambda(\beta),\mu(\beta))
+  \in\mathbb R_{\geq0}\times2\mathbb Z\mid\beta\in G\}.
+\]
+
+\begin{definition}{3.2.26}\label{def:3-2-26}
+假设 $G$ 满足条件 3.1.6。若 $\mathfrak m_k$ 有分解
+\[
+  \mathfrak m_k
+  =\sum_{\beta\in G}T^{\lambda(\beta)}e^{\mu(\beta)/2}
+  \mathfrak m_{k,\beta},
+\]
+其中对 $k=0,1,2,\ldots$ 及
+$\beta=(\lambda(\beta),\mu(\beta))\in G$，
+\[
+  \mathfrak m_{k,\beta}\colon
+  B_k\overline C[1]\longrightarrow\overline C[1]
+\]
+是一族 $R$-模同态，就称滤过 $A_\infty$ 代数 $(C,\mathfrak m)$ 是
+\emph{$G$-有隙的}\liftIndex{I067}\liftIndex{I083}。这里把
+$C$ 与 $\overline C\otimes_R\Lambda_{0,\mathrm{nov}}$ 等同。若对某个 $G$，
+$(C,\mathfrak m)$ 是 $G$-有隙的，就简称它\emph{有隙}。
+\end{definition}
+
+注意，(3.1.7.2) 蕴含 (3.2.13.3)。在构造谱序列时，以及对滤过作各种归纳构造
+时，都要使用有隙条件；见第 4、5、6 章。
+
+下面定义滤过 $A_\infty$ 同态。令
+$(C_i,\mathfrak m^{\,i})$（$i=1,2$）为环
+$\Lambda_{0,\mathrm{nov}}$ 上的滤过 $A_\infty$ 代数。对
+$k=0,1,2,\ldots$，考虑次数为 $0$ 的 $\Lambda_{0,\mathrm{nov}}$-模同态族
+\[
+  f_k\colon B_k(C_1[1])\longrightarrow C_2[1],
+\]
+满足
+\begin{align}
+  f_k\bigl(F^\lambda B_k(C_1[1])\bigr)
+  &\subset F^\lambda C_2[1],
+  \tag{3.2.27.1}\label{eq:3-2-27-1}\\
+  f_0(1)&\in F^{\lambda'}C_2[1]
+  \qquad\text{对某个 }\lambda'>0.
+  \tag{3.2.27.2}\label{eq:3-2-27-2}
+\end{align}
+注意 $f_0\colon\Lambda_{0,\mathrm{nov}}\to C_2[1]$，这里并不假定
+$f_0(1)=0$。这些映射诱导
+\[
+  \widehat f\colon\widehat B(C_1[1])\longrightarrow\widehat B(C_2[1]),
+\]
+它在 $B_k(C_1[1])$ 上由下式给出：
+\begin{equation}
+\begin{aligned}
+  &\widehat f(x_1\otimes\cdots\otimes x_k)\\
+  &\quad={}
+  \sum_{0\leq k_1\leq\cdots\leq k_n\leq k}
+  f_{k_1}(x_1,\ldots,x_{k_1})\otimes\cdots\\
+  &\qquad\quad{}\otimes
+  f_{k_{i+1}-k_i}(x_{k_i+1},\ldots,x_{k_{i+1}})\otimes\cdots\\
+  &\qquad\quad{}\otimes
+  f_{k-k_n}(x_{k_n+1},\ldots,x_k).
+\end{aligned}
+\tag{3.2.28}\label{eq:3-2-28}
+\end{equation}
+条件 (3.2.27) 蕴含 $\widehat f$ 收敛。当 $f_0$ 出现在
+\eqref{eq:3-2-28} 右端时，以 $f_0(1)$ 代入。特别地，按本书的指数函数记号，
+\[
+  \widehat f(1)
+  =1+f_0(1)+f_0(1)\otimes f_0(1)+\cdots=e^{f_0(1)}.
+\]
+另见下面的 (3.6.1)。由 (3.2.27.2)，上式右端收敛。容易看出
+\[
+  \widehat f\colon\widehat B(C_1[1])\longrightarrow\widehat B(C_2[1])
+\]
+是形式余代数同态；另见引理 3.6.2。
+
+\begin{definition}{3.2.29}\label{def:3-2-29}
+令 $f_k\colon B_k(C_1[1])\to C_2[1]$ 如上满足 (3.2.27)。我们假定
+$R[e,e^{-1}]$-模同态\translatornote{原书在这里的两个映射中都把
+源、目标的下标 $1,2$ 漏去；但本定义开头已指定
+$f_k\colon B_k(C_1[1])\to C_2[1]$，故在约化后补为
+$B_k\overline C_1[1]\to\overline C_2[1]$。}
+\[
+  f_k\bmod\Lambda^+_{0,\mathrm{nov}}\colon
+  B_k\overline C_1[1]\otimes_RR[e,e^{-1}]
+  \longrightarrow
+  \overline C_2[1]\otimes_RR[e,e^{-1}]
+\]
+由某个 $R$-模同态
+\[
+  \overline f_k\colon
+  B_k\overline C_1[1]\longrightarrow\overline C_2[1]
+\]
+诱导。
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.8em]
+  \item 若
+  $\widehat f\circ\widehat d^{\,1}
+  =\widehat d^{\,2}\circ\widehat f$，就称
+  $f=\{f_k\}_{k\geq0}$ 为从 $C_1$ 到 $C_2$ 的
+  \emph{滤过 $A_\infty$ 同态}\liftIndex{I089}，简记为
+  $f\colon C_1\to C_2$。
+
+  \item 若 $f_0=0$，就称滤过 $A_\infty$ 同态 $f$ 是
+  \emph{严格的}\liftIndex{I091}。
+
+  \item 令 $G\subset\mathbb R_{\geq0}\times2\mathbb Z$ 为满足条件 3.1.6
+  的离散子幺半群，并令 $C_i$（$i=1,2$）为有隙滤过 $A_\infty$ 代数。
+  若存在映射
+  $f_{k,\beta}\colon B_k\overline C_1[1]\to\overline C_2[1]$
+  （$k=0,1,2,\ldots$，$\beta\in G$），使得
+  \begin{equation}
+    f_k=\sum_{\beta\in G}f_{k,\beta}
+    T^{\lambda(\beta)}e^{\mu(\beta)/2},
+    \tag{3.2.30}\label{eq:3-2-30}
+  \end{equation}
+  就称 $f$ 是\emph{$G$-有隙的}\liftIndex{I090}。
+\end{enumerate}
+\end{definition}
+
+如果 $G'$ 是另一个满足条件 3.1.6 并且包含 $G$ 的离散子幺半群，那么每个
+$G$-有隙滤过 $A_\infty$ 同态也都是 $G'$-有隙的。不明确指定子幺半群
+$G$ 时，只说 $f$ 是有隙的。
+
+设 $f_k^{\,i}\colon B_k(C_i[1])\to C_{i+1}[1]$（$i=1,2$）定义了滤过
+$A_\infty$ 同态。
+
+\begin{definition}{3.2.31}\label{def:3-2-31}
+$f^{\,1}$ 与 $f^{\,2}$ 的复合
+$f^{\,2}\circ f^{\,1}=\{(f^{\,2}\circ f^{\,1})_k\}$
+\liftIndex{I088}由下式定义：
+\[
+\begin{aligned}
+  &(f^{\,2}\circ f^{\,1})_k(x_1,\ldots,x_k)\\
+  &\quad={}
+  \sum_m\sum_{k_1+\cdots+k_m=k}
+  f_m^{\,2}\bigl(
+    f_{k_1}^{\,1}(x_1,\ldots,x_{k_1}),\ldots,
+    f_{k_m}^{\,1}(x_{k-k_m+1},\ldots,x_k)
+  \bigr).
+\end{aligned}
+\]
+\end{definition}
+
+\begin{lemma}{3.2.32}\label{lem:3-2-32}
+$f^{\,2}\circ f^{\,1}$ 定义了从 $C_1$ 到 $C_3$ 的滤过
+$A_\infty$ 同态。
+\end{lemma}
+
+\begin{proof}
+注意到 $\widehat f(1)=e^{f_0(1)}$，证明就与引理 3.2.9 的证明相同。
+\end{proof}
+
+令 $(C_i,\mathfrak m^{\,i})$（$i=1,2$）为
+$\Lambda_{0,\mathrm{nov}}$ 上的滤过 $A_\infty$ 代数，并令
+$f\colon(C_1,\mathfrak m^{\,1})\to(C_2,\mathfrak m^{\,2})$ 为滤过
+$A_\infty$ 同态。那么 $f$ 自然诱导 $A_\infty$ 同态
+\[
+  \overline f\colon
+  (\overline C_1,\overline{\mathfrak m}^{\,1})
+  \longrightarrow
+  (\overline C_2,\overline{\mathfrak m}^{\,2}),
+\]
+其中 $(\overline C_i,\overline{\mathfrak m}^{\,i})$ 是
+$(C_i,\mathfrak m^{\,i})$ 的 $R$-约化。
+
+\begin{definition}{3.2.33}\label{def:3-2-33}
+令 $(C_i,\mathfrak m^{\,i})$（$i=1,2$）为
+$\Lambda_{0,\mathrm{nov}}$ 上的滤过 $A_\infty$ 代数，并且
+$\overline{\mathfrak m}^{\,i}_0=0$。若滤过 $A_\infty$ 同态
+\[
+  f\colon(C_1,\mathfrak m^{\,1})
+  \longrightarrow(C_2,\mathfrak m^{\,2})
+\]
+所诱导的 $A_\infty$ 同态
+$\overline f\colon(\overline C_1,\overline{\mathfrak m}^{\,1})
+\to(\overline C_2,\overline{\mathfrak m}^{\,2})$ 是定义 3.2.10 意义下的
+弱同伦等价，就称 $f$ 是\emph{弱同伦等价}\liftIndex{I098}。进一步，若
+$(C_i,\mathfrak m^{\,i})$ 与 $f$ 都是 $G$-有隙的，就称它为
+\emph{$G$-有隙弱同伦等价}。
+\end{definition}
+
+\begin{definition}{3.2.34}\label{def:3-2-34}
+对滤过 $A_\infty$ 代数 $(C,\mathfrak m)$，若其 $R$-约化与某个滤过
+$A_\infty$ 代数 $(C',\mathfrak m')$ 的 $R$-约化之间存在弱同伦等价
+\[
+  \overline f\colon(\overline C,\overline{\mathfrak m})
+  \longrightarrow(\overline C',\overline{\mathfrak m}'),
+\]
+就称 $(C',\mathfrak m')$ 是 $(C,\mathfrak m)$ 的一个
+\emph{$A_\infty$ 形变}\liftIndex{I080}。类似地，若无滤过
+$A_\infty$ 代数 $(\overline C,\overline{\mathfrak m})$ 与滤过
+$A_\infty$ 代数 $(C',\mathfrak m')$ 的 $R$-约化之间存在弱同伦等价
+\[
+  \overline f\colon(\overline C,\overline{\mathfrak m})
+  \longrightarrow(\overline C',\overline{\mathfrak m}'),
+\]
+也称 $(C',\mathfrak m')$ 是
+$(\overline C,\overline{\mathfrak m})$ 的一个 $A_\infty$ 形变。
+\end{definition}

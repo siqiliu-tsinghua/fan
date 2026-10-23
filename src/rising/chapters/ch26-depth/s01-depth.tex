@@ -1,0 +1,112 @@
+
+\section{深度}
+
+\textbf{26.1.1.}\ \emph{非正式导言。}\quad 给定\trScheme{} $X$ 上一点 $\mathrm{p}$，有时你可以局部地「切」过这个点——也就是说，存在一个经过 $\mathrm{p}$ 的\trEffectiveCartierDivisor（比如说在 $\mathrm{p}$ 的某个\trNeighborhood 中）。你能否这样做，当且仅当这个点\emph{不是} $X$ 的\trAssociatedPoint。有时你还能再切一刀：只要切出的第一片仍不以 $\mathrm{p}$ 为\trAssociatedPoint。（$X$ 在点 $\mathrm{p}$ 处）的\trDepth{}说的正是你能切多深——即在这个点变成\trAssociatedPoint{}而把你挡住之前，你总共能切出多少刀。显然切数不可能超过 $\dim X$：因为每切一刀便失去一维，而切满 $\dim X$ 刀之后，（在集合论意义下）就只剩下点 $\mathrm{p}$ 了（此时它便是一个\trAssociatedPoint）。于是\trDepth{}以\trDimension{}为上界。在求\trDepth{}时，你或许以为必须小心地切，才能让切出的刀数最多。不必担心：随手乱切，最后也总会停在同一步上。
+
+\textbf{26.1.2.}\ \emph{\trhDefinition。}\quad 设 $(A,\mathfrak{m})$ 是一个\trNoetherian\trLocalRing，$M$ 是一个\trFinitelyGenerated{}的 $A$-\trModule。$M$ 的\textbf{\trDepth}（记作 $\operatorname{depth}M$）是取值于 $\mathfrak{m}$ 中的最长 $M$-\trRegularSequence{}的\trLength。（\trRegularSequence{}的理论曾在 \S9.5.3 中讨论。）
+
+（更一般地，若 $R$ 是\trNoetherian{}环，$I\subset R$ 是一个\trIdeal，而 $M$ 是一个\trFinitelyGenerated{}的 $R$-\trModule，则 $M$ 的\textbf{$I$-\trDepth}（记作 $\operatorname{depth}_I M$）是取值于 $I$ 中的最长 $M$-\trRegularSequence{}的\trLength。我们用不到这个概念。）
+
+\textbf{26.1.A.（重要练习）}\quad 设 $M$ 是\trNoetherian\trLocalRing{} $(A,\mathfrak{m})$ 上一个非零\trFinitelyGenerated{}的\trModule。证明：$\operatorname{depth}M=0$，当且仅当 $\mathfrak{m}$ 的每个元素都是 $M$ 的\trZerodivisor，当且仅当 $\mathfrak{m}$ 是 $M$ 的一个\trAssociatedPrimeIdeal。
+
+\textbf{26.1.B.（练习）}\quad 设 $M$ 是\trNoetherian\trLocalRing{} $A$ 上一个\trFinitelyGenerated{}的\trModule。证明：$\operatorname{depth}M\le\dim\Supp M$。特别地，
+\[
+\tag{26.1.2.1}\label{eq:depth-le-dim}
+\operatorname{depth}A\le\dim A.
+\]
+（我们将在\mbox{定理~26.1.7} 中改进这个结果。）
+
+到了这一步，要确定一个 $A$-\trModule{} $M$ 的\trDepth{}仍然很难。你可以试着依次选取 $x_1,x_2,\dots$ 来构造一条 $M$-\trRegularSequence，可你怎么知道自己做出的选取恰好给出了\emph{最长}的那条？令人高兴的答案是：你不可能出错；这正是下一条结果的内容。（随后我们将在 \S26.1.5 中描述实际操作中如何求出一个\trModule{} $M$ 的\trDepth。）
+
+\textbf{26.1.3. \trhTheorem。}\ ——\ \emph{设 $M$ 是\trNoetherian\trLocalRing{} $(A,\mathfrak{m})$ 上一个\trFinitelyGenerated{}的\trModule。那么含于 $\mathfrak{m}$ 中的所有极大 $M$-\trRegularSequence（即 $\mathfrak{m}$ 中那些不能延长为 $x_1,\dots,x_{n+1}$ 的 $M$-\trRegularSequence{} $x_1,\dots,x_n$）都有相同的\trLength。于是 $M$ 的\trDepth{}就是任何极大 $M$-\trRegularSequence{}的\trLength。}
+
+我们将给出刻画「\trRegularSequence{}何时极大」的一个\trCohomology{}判别法（\mbox{定理~26.1.4}），以此证明\mbox{定理~26.1.3}。（然后你将在\mbox{练习~26.1.D} 中证明\mbox{定理~26.1.3}。）我们还将用这个判别法，在\mbox{定理~26.1.7} 中给出对\trDepth{}的一个更好的界。\mbox{定理~26.1.3} 是本章关键的技术性结果。一条重要的寓意是：应当把\trDepth{}理解为一种「\trCohomology{}」性质。
+
+\textbf{26.1.4. \trhTheorem{}（\trRegularSequence{}存在性的\trCohomology{}判别法）。}\ ——\ \emph{设 $(A,\mathfrak{m})$ 是一个\trNoetherian\trLocalRing，$M$ 是一个非零\trFinitelyGenerated{}的 $A$-\trModule。则以下诸条等价。}
+
+(i) \emph{对每个满足 $\Supp N=\{[\mathfrak{m}]\}$ 的\trFinitelyGenerated{} $A$-\trModule{} $N$（即 $N$ 具有\trFiniteLength，\mbox{练习~6.6.X}(a)），当 $i<n$ 时都有 $\mathrm{Ext}^i_A(N,M)=0$。}
+
+(ii) \emph{当 $i<n$ 时都有 $\mathrm{Ext}^i_A(A/\mathfrak{m},M)=0$。}
+
+(iii) \emph{在 $\mathfrak{m}$ 中存在一条长度为 $n$ 的 $M$-\trRegularSequence。}
+
+这个结果可以用多种方式推广；例如参看 [Mat1, Thm.~28]。
+
+\emph{证明。}\quad 显然 (i) 蕴含 (ii)。
+
+\textbf{26.1.C.（练习）}\quad 证明 (ii) 蕴含 (i)。提示：对 $N$ 的\trLength{}作归纳，并用 $\mathrm{Ext}^i_A(\cdot,M)$ 的\trLongExactSequence。
+
+\emph{(iii) 蕴含 (ii) 的证明。}\quad $n=0$ 的情形是空洞的。我们对一切 $n$ 归纳地证明该结果。设 (iii) 在 $n\ge 1$ 时满足，并假设已知 (ii) 对「所有更小的 $n$」成立。取一条长度为 $n$ 的\trRegularSequence{} $x_1,\dots,x_n$。于是 $x_1$ 是 $M$ 上的一个\trNonZerodivisor，故我们有\trExactSequence{}
+\[
+\tag{26.1.4.1}\label{eq:depth-regular-ses}
+0 \longrightarrow M \overset{\times x_1}{\longrightarrow} M \longrightarrow M/x_1 M \longrightarrow 0.
+\]
+于是 $M/x_1 M$ 有长度为 $n-1$ 的\trRegularSequence{} $x_2,\dots,x_{n-1}$，故由归纳假设，当 $i<n-1$ 时 $\mathrm{Ext}^i_A(A/\mathfrak{m},M/x_1 M)=0$。对 \eqref{eq:depth-regular-ses} 取 $\mathrm{Ext}^i_A(A/\mathfrak{m},\cdot)$ 的 Ext \trLongExactSequence，我们发现
+\[
+\mathrm{Ext}^i_A(A/\mathfrak{m},M) \overset{\times x_1}{\longrightarrow} \mathrm{Ext}^i_A(A/\mathfrak{m},M)
+\]
+当 $i<n$ 时是\trInjectiveMap。现在，$\mathrm{Ext}^i_A(A/\mathfrak{m},M)$ 可以通过取 $M$ 的一个\trInjective{}分解并施加 $\mathrm{Hom}_A(A/\mathfrak{m},\cdot)$ 来计算。于是，由于 $x_1$ 落在 $\mathfrak{m}$ 中（从而零化 $A/\mathfrak{m}$），乘以 $x_1$ 的映射是零映射。故 (ii) 对 $n$ 同样成立。
+
+\emph{(ii) 蕴含 (iii) 的证明。}\quad $n=0$ 的情形是空洞的。
+
+接下来我们处理 $n=1$ 的情形，办法是证明其逆否命题。假设 $\mathfrak{m}$ 中没有 $M$ 上的\trNonZerodivisor，于是由\mbox{练习~26.1.A}，$\mathfrak{m}$ 是 $M$ 的一个\trAssociatedPrimeIdeal。这样（\S6.6.7）我们有一个\trInjectiveMap{} $A/\mathfrak{m}\hookrightarrow M$，从而 $\mathrm{Hom}_A(A/\mathfrak{m},M)\neq 0$，正合所需。
+
+现在我们对一切 $n>1$ 归纳地证明该结果。设 (ii) 在 $n\ge 2$ 时满足，并假设已知 (iii) 对「所有更小的 $n$」成立。那么由 $n=1$ 的情形，存在 $M$ 上的一个\trNonZerodivisor{} $x_1$，于是我们有\trShortExactSequence{} \eqref{eq:depth-regular-ses}。对 \eqref{eq:depth-regular-ses} 施加 $\mathrm{Ext}^i_A(A/\mathfrak{m},\cdot)$ 所得 Ext \trLongExactSequence{}的一个片段是
+\[
+\mathrm{Ext}^i_A(A/\mathfrak{m},M) \longrightarrow \mathrm{Ext}^i_A(A/\mathfrak{m},M/x_1 M) \longrightarrow \mathrm{Ext}^{i+1}_A(A/\mathfrak{m},M).
+\]
+由假设，当 $i<n-1$ 时 $\mathrm{Ext}^i_A(A/\mathfrak{m},M)$ 与 $\mathrm{Ext}^{i+1}_A(A/\mathfrak{m},M)$ 均为 $0$，故当 $i<n-1$ 时 $\mathrm{Ext}^i_A(A/\mathfrak{m},M/x_1 M)=0$，于是由归纳假设，我们有一条在 $\mathfrak{m}$ 中长度为 $n-1$ 的 $(M/x_1 M)$-\trRegularSequence{} $x_2,\dots,x_n$。把 $x_1$ 添加到这条序列的最前端，即得所证。\hfill$\square$
+
+\textbf{26.1.D.（练习）}\quad 证明\mbox{定理~26.1.3}。提示：由\mbox{定理~26.1.4}（尤其是 (ii) 与 (iii) 的等价性），你已经掌控了 $\mathfrak{m}$ 中的 $M$-\trRegularSequence{}至多能有多长。请使用这个判别法，以及\mbox{定理~26.1.4} 的证明中所用的那条\trLongExactSequence，证明 $\mathfrak{m}$ 中的任何 $M$-\trRegularSequence{}都能延长到这个长度。
+
+\textbf{26.1.E.（练习）}\quad 设 $M$ 是\trNoetherian\trLocalRing{} $(A,\mathfrak{m})$ 上一个\trFinitelyGenerated{}的\trModule。若 $x$ 是 $\mathfrak{m}$ 中的一个\trNonZerodivisor，证明：$\operatorname{depth}(M/xM)=\operatorname{depth}M-1$。提示：\mbox{定理~26.1.3}。
+
+\textbf{26.1.5.}\ \emph{求\trModule{}的\trDepth。}\quad 我们现在可以按如下方式，通过逐个找出\trNonZerodivisor{}来计算 $M$ 的\trDepth。在 $\mathfrak{m}$ 中是否存在 $M$ 上的\trNonZerodivisor{} $x$？
+
+(a) 若不存在，则 $\operatorname{depth}M=0$（\mbox{练习~26.1.A}）。
+
+(b) 若存在，则任取这样一个 $x$，并（用上一道练习）对 $M/xM$ 重复这一过程。
+
+由\mbox{练习~26.1.B}，这一过程必定终止。
+
+\textbf{26.1.F.（重要练习）}\quad 设 $(A,\mathfrak{m})$ 是维数为 $d$ 的\trRegular\trLocalRing。证明：$\operatorname{depth}A=d$。提示：\mbox{练习~13.2.B}。
+
+\textbf{26.1.G.（练习（参看\mbox{练习~24.3.I}））}\quad 设 $X=\Spec R$，其中
+\[
+R = k[w,x,y,z]/(wy,wz,xy,xz),
+\]
+即 $\mathbb{A}^4_k$ 中相交于原点的两个坐标二维平面的并。证明：$X$ 在原点处的\trLocalRing{}的\trDepth{}为 $1$。提示：证明 $w-y$ 不是\trZerodivisor，而 $R/(w-y)$ 在原点处有一个\trEmbeddedPoint。
+
+\textbf{26.1.6. \trDepth{}以\trAssociatedPrimeIdeal{}的\trDimension{}为上界。}
+
+\mbox{定理~26.1.4} 可用来对「以维数限制\trDepth」的界 \eqref{eq:depth-le-dim} 给出一个重要的改进：
+
+\textbf{26.1.7. \trhTheorem。}\ ——\ \emph{\trModule{} $M$ 的\trDepth{}至多是诸 $\dim A/\mathfrak{p}$ 中的最小者，其中 $\mathfrak{p}$ 取遍 $M$ 的诸\trAssociatedPrimeIdeal。}
+
+（\mbox{练习~26.1.G} 中两张平面交于一点的例子表明，这个界并不锐利。）\mbox{定理~26.1.7} 证明中的关键一步，是下述属于 Ischebeck 的结果。
+
+\textbf{26.1.8. \trhLemma。}\ ——\ \emph{设 $(A,\mathfrak{m})$ 是一个\trNoetherian\trLocalRing，$M$ 与 $N$ 是非零\trFinitelyGenerated{}的 $A$-\trModule。那么当 $i<\operatorname{depth}M-\dim\Supp N$ 时 $\mathrm{Ext}^i_A(N,M)=0$。}
+
+\emph{证明。}\quad 考虑如下诸论断。
+
+(general$_\tau$) \emph{\mbox{\trhLemma~26.1.8} 在 $\dim\Supp N\le\tau$ 时成立。}
+
+(prime$_\tau$) \emph{\mbox{\trhLemma~26.1.8} 在 $\dim\Supp N\le\tau$ 且 $N=A/\mathfrak{p}$（$\mathfrak{p}$ 为某个\trPrimeIdeal）时成立。}
+
+注意（general$_0$）（从而（prime$_0$））为真：因为此时 $\Supp N=\{[\mathfrak{m}]\}$，而该结果由\mbox{定理~26.1.4}（由「(iii) 蕴含 (i)」）推出。
+
+\textbf{26.1.H.（练习）}\quad 证明（prime$_\tau$）蕴含（general$_\tau$）。提示：对\trShortExactSequence{} $0\to M'\to M\to M''\to 0$，有 $\Supp M=\Supp M'\cup\Supp M''$（\mbox{练习~6.6.B}）。
+
+我们最后证明：当 $\tau\ge 1$ 时，（general$_{\tau-1}$）蕴含（prime$_\tau$），以此结束证明。取定一个满足 $\dim A/\mathfrak{p}=\tau$ 的\trPrimeIdeal{} $\mathfrak{p}\subset A$。由于 $\dim A/\mathfrak{p}>0$，我们可以选取 $x\in\mathfrak{m}\setminus\mathfrak{p}$。考虑\trExactSequence{}
+\[
+\tag{26.1.8.1}\label{eq:depth-quotient-ses}
+0 \longrightarrow A/\mathfrak{p} \overset{\times x}{\longrightarrow} A/\mathfrak{p} \longrightarrow A/(\mathfrak{p}+(x)) \longrightarrow 0,
+\]
+注意 $\dim\Supp A/(\mathfrak{p}+(x))\le\tau-1$（你明白这是为什么吗？）。然后，对 \eqref{eq:depth-quotient-ses} 施加 $\mathrm{Hom}_A(\cdot,M)$ 得到的 Ext \trLongExactSequence，连同 $\mathrm{Ext}^i_A(A/(\mathfrak{p}+(x)),M)$\footnote{原书此处作「$\mathrm{Ext}^i_A(A/(\mathfrak{p}+(x))),M)$」，其中「$A/(\mathfrak{p}+(x))$」之后多印了一枚右括号，当为「$\mathrm{Ext}^i_A(A/(\mathfrak{p}+(x)),M)$」之误，径改。——译者注}在 $i<\operatorname{depth}M-\tau+1$ 时的消失（由（general$_{\tau-1}$）），便蕴含
+\[
+\mathrm{Ext}^i_A(A/\mathfrak{p},M) \overset{\times x}{\longrightarrow} \mathrm{Ext}^i_A(A/\mathfrak{p},M)
+\]
+在 $i<\operatorname{depth}M-\tau$ 时是\trIsomorphism。但 $\mathrm{Ext}^i_A(A/\mathfrak{p},M)$ 是一个\trFinitelyGenerated{}的 $A$-\trModule（\mbox{练习~23.2.F}），故由\mbox{\trNakayama{}引理~8.2.8}，当 $i<\operatorname{depth}M-\tau$ 时 $\mathrm{Ext}^i_A(A/\mathfrak{p},M)=0$。\hfill$\square$
+
+\textbf{26.1.I.（容易的练习）}\quad 证明\mbox{定理~26.1.7}。提示：$\mathfrak{p}\in\operatorname{Ass}(M)$ 时 $\mathrm{Hom}_A(A/\mathfrak{p},M)\ne 0$（\S6.6.7）。
+

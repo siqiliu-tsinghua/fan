@@ -1,0 +1,33 @@
+\makeatletter
+\newif\ifBookIndexing
+\BookIndexingfalse
+\newcommand{\BookBoldPage}[1]{\textbf{\hyperpage{#1}}}
+\DeclareRobustCommand{\BookRecordIndex}[1]{%
+  \ifBookIndexing
+    \expandafter\index\expandafter{\csname BookIndex@#1\endcsname|hyperpage}%
+  \fi}
+\DeclareRobustCommand{\BookIndexDefinition}[1]{%
+  \ifBookIndexing
+    \expandafter\index\expandafter{\csname BookIndex@#1\endcsname|BookBoldPage}%
+  \fi}
+\DeclareRobustCommand{\BookTerm}[2]{%
+  \BookRecordIndex{#1}%
+  \begingroup\let\BookRecordIndex\@gobble #2\endgroup}
+\AddToHook{cmd/@outputpage/before}{\let\BookRecordIndex\@gobble}
+\pdfstringdefDisableCommands{%
+  \def\BookTerm#1#2{#2}%
+  \let\BookRecordIndex\@gobble
+  \let\BookIndexDefinition\@gobble}
+\expandafter\def\csname BookIndex@T0001\endcsname{weiquanchunquxian@伪全纯曲线（pseudoholomorphic curve）}
+\expandafter\let\csname BookOriginal@termPseudoholomorphicCurve\endcsname\termPseudoholomorphicCurve
+\renewcommand{\termPseudoholomorphicCurve}{\BookTerm{T0001}{\csname BookOriginal@termPseudoholomorphicCurve\endcsname}}
+\expandafter\def\csname BookIndex@T0002\endcsname{daifujiegou@殆复结构（almost complex structure）}
+\expandafter\let\csname BookOriginal@termAlmostComplexStructure\endcsname\termAlmostComplexStructure
+\renewcommand{\termAlmostComplexStructure}{\BookTerm{T0002}{\csname BookOriginal@termAlmostComplexStructure\endcsname}}
+\expandafter\def\csname BookIndex@T0003\endcsname{fuluoertongdiao@弗洛尔同调（Floer homology）}
+\expandafter\let\csname BookOriginal@termFloerHomology\endcsname\termFloerHomology
+\renewcommand{\termFloerHomology}{\BookTerm{T0003}{\csname BookOriginal@termFloerHomology\endcsname}}
+\expandafter\def\csname BookIndex@T0004\endcsname{huofeierfanshu@霍费尔范数（Hofer norm）}
+\expandafter\let\csname BookOriginal@termHoferNorm\endcsname\termHoferNorm
+\renewcommand{\termHoferNorm}{\BookTerm{T0004}{\csname BookOriginal@termHoferNorm\endcsname}}
+\makeatother

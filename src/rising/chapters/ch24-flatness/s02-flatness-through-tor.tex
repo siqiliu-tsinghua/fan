@@ -1,0 +1,101 @@
+
+\section{经 $\mathrm{Tor}$ 看平坦性}
+
+我们在 \S23.1 中定义了 $\mathrm{Tor}$（双）函子：$\mathrm{Tor}^A_i(M,N)$ 的作法是取 $N$ 的一个\trFreeModule{}分解，剥掉 $N$，与 $M$ 作张量，再取\trHomology。\mbox{练习~23.1.C} 已经用 $\mathrm{Tor}$ 刻画了\trFlatness：若对一切 $N$ 都有 $\mathrm{Tor}^A_i(M,N)=0$，则 $M$ 是 $A$-\trFlat{}的。本节中，我们来收割这一刻画所带来的那些较为容易的回报，需要时顺带回顾 $\mathrm{Tor}$ 的几条关键性质。到了 \S24.3，我们会更加下力气地从 $\mathrm{Tor}$ 中榨取更多。
+
+有时，直接从定义出发也能算出 $\mathrm{Tor}$，下面这道我们将反复用到的练习便是一例。
+
+\textbf{24.2.A.（练习）}\quad 把 $(M:x)$ 定义为 $\{m\in M:xm=0\}\subset M$——它由 $M$ 中被 $x$ \trAnnihilate{}的那些元素组成。若 $x$ 不是\trZerodivisor，证明：
+\[
+\mathrm{Tor}^A_i(M,A/(x))=
+\begin{cases}
+M/xM & \text{若 } i=0\text{；}\\
+(M:x) & \text{若 } i=1\text{；}\\
+0 & \text{若 } i>1.
+\end{cases}
+\]
+提示：用 $A/(x)$ 的如下分解：
+\[
+0 \longrightarrow A \overset{\times x}{\longrightarrow} A \longrightarrow A/(x) \longrightarrow 0.
+\]
+
+\textbf{24.2.1.}\ \emph{\trhRemark。}\quad 作为\mbox{练习~24.2.A} 的一个推论，我们再次看到：\trIntegralDomain{}上的\trFlat\trModule{}都\trTorsionFree（而且，更一般地，见\mbox{观察~24.1.2}）。此外，\mbox{练习~24.2.A} 也交代了记号 $\mathrm{Tor}$ 的缘由——它是 torsion（\trTorsion）的缩写。
+
+\textbf{24.2.B.（练习）}\quad 若 $B$ 在 $A$ 上\trFlat，用 FHHF 定理（\mbox{练习~1.5.I}(c)）给出同构 $B\otimes_A\mathrm{Tor}^A_i(M,N)\overset{\sim}{\longleftarrow}\mathrm{Tor}^B_i(B\otimes M,B\otimes N)$。
+
+回想：$\mathrm{Tor}$ 函子对其两个变元是对称的（存在同构 $\mathrm{Tor}^A_i(M,N)\overset{\sim}{\longleftarrow}\mathrm{Tor}^A_i(N,M)$，见\mbox{练习~23.3.A}）。由这条我们立得一个快捷却极为有用的结果。
+
+\textbf{24.2.C.（容易练习）}\quad 若 $0\to N'\to N\to N''\to 0$ 是 $A$-\trModule{}的一个\trExactSequence，且 $N''$ \trFlat（例如自由），证明：对\emph{任何} $A$-\trModule{} $M$，$0\to M\otimes_A N'\to M\otimes_A N\to M\otimes_A N''\to 0$ 皆\trExact。
+
+早在见到 $\mathrm{Tor}$ 之前，我们本来就会关心这个结果，所以它为学习 $\mathrm{Tor}$ 提供了一些动机。（不重要的旁问：不用 $\mathrm{Tor}$、只用追图，你能证明它吗？）
+
+\textbf{24.2.D.（练习：\mbox{练习~24.2.C} 的重要推论）}\quad 设 $0\to\mathscr{F}'\to\mathscr{F}\to\mathscr{F}''\to 0$ 是\trScheme{} $Y$ 上诸\trQCSheaf{}的一个\trShortExactSequence，且 $\mathscr{F}''$ \trFlat（例如局部自由）。证明：若 $\pi\colon X\to Y$ 是概形之间的任意\trMorphism，则拉回后的序列 $0\to\pi^*\mathscr{F}'\to\pi^*\mathscr{F}\to\pi^*\mathscr{F}''\to 0$ 仍\trExact。
+
+\textbf{24.2.E.（练习：关于\trVectorBundle{}的相应事实，参看\mbox{练习~14.2.H}）}\quad 设 $0\to M'\to M\to M''\to 0$ 是 $A$-\trModule{}的一个\trExactSequence。
+
+（a）若 $M$ 与 $M''$ 都\trFlat，证明 $M'$ 也\trFlat。（提示：回想诸 $\mathrm{Tor}$ 的\trLongExactSequence（\mbox{命题~23.1.2}）；再利用：$N$ \trFlat{}当且仅当对一切 $i>0$ 与一切 $N'$ 都有 $\mathrm{Tor}_i(N,N')=0$（\mbox{练习~23.1.C}）。）
+
+（b）若 $M'$ 与 $M''$ 都\trFlat，证明 $M$ 也\trFlat。（同样的提示。）
+
+（c）若 $M'$ 与 $M$ 都\trFlat，证明 $M''$ 未必\trFlat。
+
+\textbf{24.2.F.（练习）}\quad 若 $\cdots\to M_{-2}\to M_{-1}\to M_0\to 0$ 是\trFlat{} $A$-\trModule{}的一个\trExactSequence，证明它与任何别的 $A$-\trModule{}作张量后仍\trExact。（一种可行的做法：把这个\trExactSequence{}拆成若干\trShortExactSequence。）
+
+\textbf{24.2.G.（容易练习）}\quad 若 $0\to M_0\to M_1\to\cdots\to M_n\to 0$ 是一个\trExactSequence，且诸 $M_i$（$i>0$）都\trFlat，证明 $M_0$ 也\trFlat。（提示：把这个\trExactSequence{}拆成若干\trShortExactSequence。）
+
+\mbox{练习~24.2.F} 与\mbox{练习~24.2.G} 将会派上用场。
+
+\textbf{24.2.2. 用任意\trMorphism{}拉回\trFlat\trClosedSubscheme{}的\trQC\trIdealSheaf（\S24.1.10 已预许）。}\quad 设
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=3em]
+W \ar[r, "\alpha"] \ar[d] & X \ar[d] \\
+Y \ar[r, "\beta"] & Z
+\end{tikzcd}
+\]
+是一个\trFiberProduct，而 $V\hookrightarrow X$ 是一个\trClosedSubscheme。于是 $Y\times_Z V$ 是 $W$ 的一个\trClosedSubscheme（\S10.2.2）。把 $\mathscr{I}_{V/X}$「拉回」到 $W$ 上有两种可能的意义：一是作为\trQCSheaf{} $\alpha^*\mathscr{I}_{V/X}$，二是作为「拉回后的」\trClosedSubscheme{}之\trIdealSheaf{} $\mathscr{I}_{Y\times_Z V/W}$。如\mbox{注记~14.5.9} 所指出，二者未必相同；但当 $\beta$ \trFlat{}时，二者相同。现在我们再给出一个二者相同的重要情形。
+
+\textbf{24.2.H.（练习）}\quad 若 $V$ 在 $Z$ 上\trFlat（对 $\beta$ 不作任何假设），证明 $\alpha^*\mathscr{I}_{V/X}\cong\mathscr{I}_{Y\times_Z V/W}$。提示：\mbox{练习~24.2.D}。
+
+\textbf{24.2.3.}\ \hard\ \textbf{\trQCSheaf{}的 K\"unneth 公式。}\quad 知道 K\"unneth 公式对\trQCSheaf{}成立是值得的，而且其证明也颇为讲道理。但我们不会用到它，所以唯有在你特别有兴致时才去读这一小节。
+
+\textbf{24.2.I.（练习）}\quad 设 $X$ 是一个\trSeparated\trScheme，而 $j\colon\Spec A\hookrightarrow X$ 是一个\trOpenEmbedding。证明 $j_*\OO_{\Spec A}$ 是 $X$ 上的一个\trQCSheaf，且\trFlat（于 $\OO_X$）。（部分提示：关于仿射\trMorphism{}的\mbox{\trCancellationTheorem{}~11.1.1}。）
+
+再设 $X=\bigcup_{i=1}^{n}U_i$ 是 $X$ 的一个由有限多个\trAffine{}开集组成的覆盖，于是 $X$ \trQuasicompact。（我们仍假设 $X$ \trSeparated。）把该覆盖记作 $\mathfrak{U}:=\{U_i\}$。依照\trCech{}覆盖的惯例，对 $I\subset\{1,\dots,n\}$，定义 $U_I=\bigcap_{i\in I}U_i$，并令 $j^I\colon U_I\hookrightarrow X$ 为相应的\trOpenEmbedding。
+
+仅在本段讨论中，为 $X$ 的覆盖 $\mathfrak{U}$ 定义\emph{层的\trCech\trComplexN}，记作 $C^{\bullet}_X(\mathfrak{U})$：
+\[
+0 \longrightarrow \bigoplus_{|I|=1} j^I_*\OO_{U_I} \longrightarrow \bigoplus_{|I|=2} j^I_*\OO_{U_I} \longrightarrow \cdots \longrightarrow \bigoplus_{|I|=n} j^I_*\OO_{U_I} \longrightarrow 0.
+\]
+
+再把 $\OO_X=\bigoplus_{|I|=0}j^I_*\OO_{U_I}$ 添到最前端，便定义了对 $X=\{U_i\}$ 的\emph{层的增广\trCech\trComplexN}，记作 $C^{\bullet}_{X,\mathrm{aug}}(\mathfrak{U})$：\footnote{原书此处记号作「$C^{\bullet}_{X,\mathrm{aug}}(\mathscr{F})$」，准\mbox{练习~24.2.J} 与\mbox{练习~24.2.L}，当为「$C^{\bullet}_{X,\mathrm{aug}}(\mathfrak{U})$」之误，径改。——译者注；又，原书左端作「$j^I_*\mathscr{O}_{U_i}$」，其下标与求和指标 $|I|=0$ 不协（$I=\varnothing$ 时 $U_I=X$，恰为 $\OO_X$），当为「$U_I$」之误，径改。——译者注}
+\[
+0 \longrightarrow \OO_X \longrightarrow \bigoplus_{|I|=1} j^I_*\OO_{U_I} \longrightarrow \cdots \longrightarrow \bigoplus_{|I|=n} j^I_*\OO_{U_I} \longrightarrow 0.
+\]
+
+（请务必搞懂这两个\trComplexN{}中诸映射的定义。）
+
+\textbf{24.2.J.（练习）}\quad 证明：层的增广\trCech\trComplexN{} $C^{\bullet}_{X,\mathrm{aug}}(\mathfrak{U})$ 是 $X$ 上诸\trFlat\trQCSheaf{}的一个\trExactSequence。（提示：在 $X$ 的任一\trAffine{}开子集上检验。）
+
+在继续往下之前，我们先证明一条有用的同调代数命题。回想：\trFlat\trModule{}的有限\trExactSequence{}与任何其他\trModule{}作张量后仍\trExact（\mbox{练习~24.2.F}）。再回想：模的\trExactSequence{}与任何\trFlat\trModule{}作张量后仍\trExact（FHHF 定理的一个版本，\mbox{练习~1.5.I}(c)）。下面这条命题自然而然地把这两者都推广了。
+
+\textbf{24.2.K.（练习）}\quad 设 $C^\bullet$ 是 $A$-\trModule{}的一个有限\trExactSequence，而 $F^\bullet$ 是\trFlat{} $A$-\trModule{}的一个有限\trExactSequence。证明：双\trComplexN{} $C^\bullet\otimes_A F^\bullet$ 的\trTotalComplex{}也是 $A$-\trModule{}的一个\trExactSequence。（如果你愿意，还可以证明：若 $C^\bullet$ 只是一个\trComplexN{}而未必\trExact，则 $C^\bullet\otimes_A F^\bullet$ 与 $C^\bullet$ 具有「相同的上同调」，这就把 FHHF 定理又向前推广了一步。你也不妨把与你的解法无关的有限性假设去掉。）
+
+\textbf{24.2.L.（练习）}\quad 我们回到\mbox{练习~24.2.J} 的情形。设 $\mathscr{F}$ 是 $X$（它\trQuasicompact{}且\trSeparated）上的一个\trQCSheaf（未必\trFlat）。证明：$\mathscr{F}\otimes C^{\bullet}_{X,\mathrm{aug}}(\mathfrak{U})$ 是 $X$ 上诸\trQCSheaf{}的一个\trExactSequence。\footnote{原书此处作「an exact sequence sequence」，当为「an exact sequence」之误，径改。——译者注}（等价地：$\mathscr{F}\otimes C^{\bullet}_X(\mathfrak{U})$ 是一个\trComplexN，唯独在第一步例外，那里它具有典范地等同于 $\mathscr{F}$ 的\trKernel／\trCohomology{}层。）提示：在 $X$ 的每个\trAffine{}开子集上检验。
+
+遵循\trSerre{}的思路，你不妨借\trPartitionOfUnity{}的语言来解读\mbox{练习~24.2.J} 与\mbox{练习~24.2.L}。
+
+我们将用这些令人愉悦的\trExactSequence 来证明 K\"unneth 公式的一个形式。设 $X$ 与 $Y$ 都是\trQuasicompact\trSeparated{}的 $k$-\trScheme（例如 $k$ 上的\trVariety）。把两个\trProjection{}分别记为 $\pi_X\colon X\times_k Y\to X$ 与 $\pi_Y\colon X\times_k Y\to Y$。设 $\mathfrak{U}_X$ 与 $\mathfrak{U}_Y$ 分别是 $X$ 与 $Y$ 的由\trAffine{}开集组成的有限覆盖。
+
+\textbf{24.2.M.（练习）}\quad 证明：$\pi_X^* C^{\bullet}_{X,\mathrm{aug}}(\mathfrak{U}_X)$ 是 $X\times_k Y$ 上诸\trFlat\trQCSheaf{}的一个\trExact\trComplexN。
+
+定义 $C^{\bullet}_X\boxtimes C^{\bullet}_Y:=\pi_X^* C^{\bullet}_X(\mathfrak{U}_X)\otimes\pi_Y^* C^{\bullet}_Y(\mathfrak{U}_Y)$，把它理解为右端\trDoubleComplex{}所连带的\trTotalComplex。
+
+\textbf{24.2.N.（练习）}\quad 证明：$C^{\bullet}_X\boxtimes C^{\bullet}_Y$ 是 $X\times_k Y$ 上诸\trFlat\trQCSheaf{}的一个\trComplexN，唯独在第一步例外，那里上同调／\trKernel{}典范地等同于 $\OO_{X\times_k Y}$。（对一个类似定义的 $C^{\bullet}_{X,\mathrm{aug}}\boxtimes C^{\bullet}_{Y,\mathrm{aug}}$ 证明类似的命题，或许对你有帮助，或许没有。）
+
+\textbf{24.2.O.（练习）}\quad 现在设 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf，而 $\mathscr{G}$ 是 $Y$ 上的一个\trQCSheaf。证明：$(\mathscr{F}\boxtimes\mathscr{G})\otimes(C^{\bullet}_X\boxtimes C^{\bullet}_Y)$ 是 $X\times_k Y$ 上诸\trQCSheaf{}的一个\trComplexN，唯独在第一步例外，那里上同调／\trKernel{}典范地等同于 $\mathscr{F}\boxtimes\mathscr{G}$。
+
+\textbf{24.2.P.（练习：\trQCSheaf{}的 K\"unneth 公式）}\quad 通过把 $(\mathscr{F}\boxtimes\mathscr{G})\otimes(C^{\bullet}_X\boxtimes C^{\bullet}_Y)$ 恰当地等同于 $(\mathscr{F}\otimes C^{\bullet}_X)\boxtimes(\mathscr{G}\otimes C^{\bullet}_Y)$，证明：对一切 $n$，$\mathrm{H}^n(X\times_k Y,\mathscr{F}\boxtimes\mathscr{G})=\bigoplus_{i+j=n}\mathrm{H}^i(X,\mathscr{F})\otimes_k\mathrm{H}^j(Y,\mathscr{G})$。（提示：不要动用\trSpectralSequence，直接在\trComplexN{}上做。用直接计算证明：若有两个由 $k$-\trModule{}构成的\trComplexN，则其\trTensorProduct{}之\trTotalComplex{}的\trCohomology{}是「诸\trCohomology{}的\trTensorProduct{}之直和」。）
+
+\textbf{24.2.4.}\ \emph{关于假设的\trhRemark。}\quad 我们为什么要求\trQC？我们究竟在哪里用到了「在域 $k$ 上工作」这一事实？
+
+\textbf{24.2.5.}\ \extrahard\ \textbf{推广。}\quad 给定概形的\trQuasicompact\trSeparated{}\trMorphism{} $\rho^X\colon X\to Z$ 与 $\rho^Y\colon Y\to Z$、由此得到的 $\rho^{X\times Y}\colon X\times_Z Y\to Z$，以及 $X$ 上的\trQCSheaf{} $\mathscr{F}$ 与 $Y$ 上的\trQCSheaf{} $\mathscr{G}$，\footnote{原书此处作「quasicoherent sheaves $\mathscr{F}$ and X and $\mathscr{G}$ on Y」，其中「and X」当为「on X」之误，径改。——译者注}那么 $R^n\rho^{X\times Y}_*\mathscr{F}\boxtimes_Z\mathscr{G}$、$R^i\rho^X_*\mathscr{F}$ 与 $R^j\rho^Y_*\mathscr{G}$ 之间有何关系？若把你的证明一路贯彻到底，你也许能把\mbox{练习~24.2.P} 的结论推广得相当可观。

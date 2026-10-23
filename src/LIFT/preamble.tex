@@ -1,0 +1,149 @@
+\begin{filecontents*}[overwrite]{\jobname.ist}
+headings_flag 1
+numhead_positive "符号"
+symhead_positive "符号"
+heading_prefix "{\\bfseries "
+heading_suffix "}\\nopagebreak\\par\\vskip 2pt "
+delim_0 "，"
+delim_1 "，"
+delim_2 "，"
+delim_n "，"
+\end{filecontents*}
+
+
+\usepackage[
+  paperwidth=170mm,
+  paperheight=248.2mm,
+  inner=22mm,
+  outer=18mm,
+  top=20mm,
+  bottom=22mm,
+  headheight=15pt
+]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm,bm}
+\usepackage{graphicx}
+\usepackage{pict2e}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{imakeidx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\definecolor{liftblue}{HTML}{1F4E79}
+\hypersetup{
+  unicode=true,
+  colorlinks=true,
+  linkcolor=liftblue,
+  citecolor=liftblue,
+  urlcolor=liftblue,
+  pdftitle={拉格朗日交弗洛尔理论（GLM \& GPT 译）},
+  pdfauthor={深谷贤治; 吴龙根; 太田啓史; 小野薫}
+}
+
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \arabic{chapter}
+  }
+}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\emergencystretch=2em
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\renewcommand{\contentsname}{目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\proofname}{证明}
+\newcommand{\translatornote}[1]{\footnote{\textup{译者注：#1}}}
+
+\makeindex[title={主题索引},noautomatic]
+\input{index-terms}
+
+\makeatletter
+\renewenvironment{theindex}{%
+  \chapter*{\indexname}%
+  \addcontentsline{toc}{chapter}{\indexname}%
+  \markboth{\indexname}{\indexname}%
+  \begingroup
+  \footnotesize
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0pt}%
+  \rightskip=0pt plus 1fil\relax
+  \setlength{\columnsep}{1.5em}%
+  \noindent\textbf{凡例}\quad 本索引按中文无声调拼音排序；括号中保留英文源词，页码使用本译本正文印刷页码。人名对照另见“双向人名检索表”。%
+  \par\vspace{0.55\baselineskip}%
+  \begin{multicols}{2}%
+  \raggedcolumns
+  \let\item\@idxitem
+}{%
+  \end{multicols}%
+  \endgroup
+}
+\renewcommand{\@idxitem}{\par\hangindent=1em\hangafter=1\relax}
+\renewcommand{\subitem}{\par\hangindent=2.8em\hangafter=1\hspace*{1.4em}}
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\thepage\quad\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\nouppercase{\rightmark}\quad\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\makeatletter
+\newcommand{\liftstatementhead}[2]{%
+  \par\addvspace{\topsep}%
+  \noindent\phantomsection%
+  \protected@edef\@currentlabel{#2}%
+  \textbf{#1~#2.}\enspace\ignorespaces
+}
+\makeatother
+\newcommand{\liftstatementend}{\par\addvspace{\topsep}}
+
+\newenvironment{statement}[2]
+  {\liftstatementhead{#1}{#2}}
+  {\liftstatementend}
+\newenvironment{theorem}[1]
+  {\begin{statement}{定理}{#1}\itshape}
+  {\end{statement}}
+\newenvironment{proposition}[1]
+  {\begin{statement}{命题}{#1}\itshape}
+  {\end{statement}}
+\newenvironment{lemma}[1]
+  {\begin{statement}{引理}{#1}\itshape}
+  {\end{statement}}
+\newenvironment{corollary}[1]
+  {\begin{statement}{推论}{#1}\itshape}
+  {\end{statement}}
+\newenvironment{conjecture}[1]
+  {\begin{statement}{猜想}{#1}\itshape}
+  {\end{statement}}
+\newenvironment{definition}[1]
+  {\begin{statement}{定义}{#1}}
+  {\end{statement}}
+\newenvironment{example}[1]
+  {\begin{statement}{例}{#1}}
+  {\end{statement}}
+\newenvironment{exercise}[1]
+  {\begin{statement}{习题}{#1}}
+  {\end{statement}}
+\newenvironment{remark}[1]
+  {\begin{statement}{注}{#1}}
+  {\end{statement}}
+
+
+\usepackage{booktabs,longtable,multicol}
+\newcommand{\BookGlossEntry}[2]{%
+  \par\noindent\hangindent=1em\hangafter=1 #1\quad #2\par}
+\newcommand{\BookSourceIndexEntry}[2]{%
+  \par\begingroup\leftskip=#1em\relax\hangindent=1em\relax
+  \noindent #2\par\endgroup}
+\input{backmatter/index-hooks}
+\let\BookOriginalIndex\index
+\renewcommand{\index}[1]{\ifBookIndexing\BookOriginalIndex{#1}\fi}

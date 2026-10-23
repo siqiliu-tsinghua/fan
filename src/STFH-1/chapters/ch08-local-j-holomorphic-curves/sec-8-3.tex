@@ -1,0 +1,111 @@
+\section{消去边界贡献}
+\label{sec:removing-boundary-contributions}
+
+迄今的计算一直强调典范联络的使用。不过，为了在以后证明边界奇点可去时，
+导出密度估计 (8.1.3) 的边界版本，我们需要诺伊曼边界条件下的壳上积分公式，
+以得到
+\begin{equation}
+ \|du\|_{\infty,D(r)}^2\leq CE(u|_{D(2r)})=C\|du\|_{2,D(2r)}^2
+ \label{eq:ch8-boundary-density-target}
+\end{equation}
+这一类不等式。为此，重要的是消去 (7.4.31) 中的边界贡献。若使用某个使边界子流形
+$L$ 成为全测地子流形的度量之列维--奇维塔联络，就能做到这一点。本节说明如何在离壳层面作这种调整。
+为便于计算，下面这个引理很有用；其证明取自 (Ye94), p.~683。
+
+\begin{lemma}\label{lem:ch8-hermitian-metric-totally-real-orthogonal}
+存在 $M$ 上另一个埃尔米特度量 $g$，使 $N$ 对每个 $p\in N$ 满足
+\begin{equation}
+ JT_pN\perp T_pN.
+ \label{eq:ch8-totally-real-orthogonal}
+\end{equation}
+\end{lemma}
+\begin{proof}
+令 $\{e_1,\ldots,e_n\}$ 为 $N$ 上局部正交标架。因 $N$ 关于 $J$ 全实，
+$\{e_1,\ldots,e_n,Je_1,\ldots,Je_n\}$ 是 $TM|_N$ 的局部标架。用单位分解得到
+$TM|_N$ 上的度量 $\widetilde g$，把它延拓到 $N$ 的管状邻域。令
+$\overline g=\widetilde g(J,J)+\widetilde g$；在 $g$ 与 $\overline g$ 之间插值即得埃尔米特度量 $g_0$。
+\end{proof}
+
+\begin{remark}\label{rem:ch8-totally-geodesic-metric}
+向量丛 $E\to N$ 上的任意度量都可延拓为把 $E$ 上反射变换保持不变的流形度量；特别地，零截面全测地。由此可把上引理加强为：所得 $g$ 还使 $N$ 全测地。
+\end{remark}
+
+记
+\[
+ \nabla=\nabla^{LC_g}+P
+\]
+其中 $P$ 是 $(2,1)$-张量，于是
+\[
+ \nabla_X(du)=\nabla_X^{LC_g}(du)+P(X,du),
+\]
+\begin{equation}
+ |\nabla(du)|^2\leq2\bigl(|\nabla^{LC_g}(du)|^2+|P(\cdot,du)|^2\bigr).
+ \label{eq:ch8-canonical-vs-levi-civita}
+\end{equation}
+\begin{sloppypar}
+由边界 $L$ 全测地，可建立没有边界贡献的 (7.4.31) 型积分恒等式。
+其余内部积分由 $|du|^2,|du|^3,|du|^4$ 控制；相关系数只涉及
+\[
+ \|\nabla^{LC_g}J\|\quad\text{与}\quad\|(\nabla^{LC_g})^2J\|
+\]
+这两个有界量。还要注意，对列维--奇维塔联络，在 $L$ 上 $T=0$ 且 $B=0$。故
+\[
+ \int_\Sigma|\nabla^{LC_g}(du)|^2\leq C\int_\Sigma
+ \bigl(|\nabla\bar\partial u|^2+|du|^2+|du|^3+|du|^4\bigr),
+\]
+完全不含边界积分。
+\end{sloppypar}
+
+\begin{exercise}\label{ex:ch8-verify-no-boundary-contribution}
+仿照定理 8.2.6 的证明作相应张量计算，验证上述断言。
+\end{exercise}
+
+把这一点与 \eqref{eq:ch8-canonical-vs-levi-civita} 结合，便得到以下积分不等式。
+\begin{proposition}\label{prop:ch8-integral-estimate-no-boundary}
+设 $\nabla$ 是典范联络，$u:(\Sigma,\partial\Sigma)\to(M,L)$ 是满足诺伊曼边界条件的光滑映射。则存在 $C'>0$ 使
+\[
+ \int_\Sigma|\nabla(du)|^2\leq C'\int_\Sigma
+ (|\nabla\bar\partial u|^2+|du|^2+|du|^3+|du|^4).
+\]
+此外，对任意半径 $r>0$ 的圆盘 $D(r)\subset D(r')\subset\Sigma$，
+\[
+ \int_{D(r)}|\nabla(du)|^2\leq C'\int_{D(r')}
+ (|\nabla\bar\partial u|^2+|du|^2+|du|^3+|du|^4),
+\]
+其中 $C'=C'(r,r')$。特别地，对任意 $J$-全纯映射 $u$，
+\begin{equation}
+ \int_{D(r)}|\nabla(du)|^2\leq C'\int_{D(r')}
+ (|du|^2+|du|^3+|du|^4).
+ \label{eq:ch8-local-no-boundary-estimate}
+\end{equation}
+\end{proposition}
+
+局部估计由整体估计导出的细节见上一节定理 8.2.9。得到该式后，用索伯列夫嵌入以及下述标准插值不等式（例如见 (GT77) 中的 (7.10)）：对 $q<r<s$，
+\[
+ \|\xi\|_r\leq\delta\|\xi\|_s+\delta^{-a}\|\xi\|_q,\qquad
+ a=\frac{1/q-1/r}{1/r-1/s},\quad\delta>0,
+\]
+可把指数 $4$ 换成任意 $p>2$。
+
+\begin{theorem}[主要离壳椭圆估计]\label{thm:ch8-main-off-shell-elliptic-estimate}
+设 $l>k$、$l-2/q>k-2/p$，其中 $q,p>2$，并令 $J$ 为任意相容殆复结构。对任意紧子集 $K\subset D$，存在连续依赖于 $\|du\|_p,J,K$ 的
+$C=C(\|du\|_p,J,K)$，使所有光滑 $u$（从而所有 $u\in W^{1,p}(D,M)$）满足
+\begin{equation}
+ \|du\|_{1,q,K}\leq C(\|\bar\partial_Ju\|_{1,q}+\|du\|_q).
+ \label{eq:ch8-main-off-shell-local}
+\end{equation}
+若 $J$ 在 $\mathcal J_\omega$ 的一个紧集中变化，则 $C$ 有连续依赖于 $J$ 的一致界。
+\end{theorem}
+
+下面的推论将用于从给定近似解构造真正解的扰动论证。
+
+\begin{corollary}\label{cor:ch8-approximate-solutions-subsequence}
+若光滑序列 $u_\alpha$ 的 $\|du_\alpha\|_p$ 有界且
+$\lim_\alpha\|\bar\partial_Ju_\alpha\|_{1,p}=0$，则存在子列在
+$W^{2,q}(K,M)$ 中收敛到某个 $J$-全纯映射 $u:K\to M$。
+\end{corollary}
+
+下面是一个值得提出的有趣问题。
+\begin{question}\label{ques:ch8-avoid-special-metric}
+能否在导出上述无边界贡献的估计时避免使用特殊度量，而始终使用相容度量及其典范联络？
+\end{question}

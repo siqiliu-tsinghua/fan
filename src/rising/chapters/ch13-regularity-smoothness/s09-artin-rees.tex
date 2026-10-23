@@ -1,0 +1,48 @@
+
+\section{\hard\ 滤过环与模、\trArtin--\trRees{}引理}
+
+我们以讨论\trArtin--\trRees{}引理~13.9.3 来为第 13 章收尾，这条引理曾被用来证明命题~13.5.2。\trArtin--\trRees{}引理推广了命题~13.5.2 背后的直观：在一点处解析地为零的任何函数，实际上都在该点的一个开\trNeighborhood{}内消失（\S13.5.3）。由于我们日后会用到它，也由于能在其他情境中认出它来是件有用的事，我们将对它作颇为细致的讨论。
+
+\textbf{13.9.1.}\ \emph{\trhDefinition{}。}\quad 设 $I$ 是环 $A$ 的一个\trIdeal。$A$-模 $M$ 的一个递降滤过
+\begin{equation*}\tag{13.9.1.1}\label{eq:i-filtration}
+M=M_0\supset M_1\supset M_2\supset\cdots
+\end{equation*}
+称为\textbf{一个 $I$-\trFiltration}（$I$-filtration），若对一切 $d$、$n\ge0$ 都有 $I^dM_n\subset M_{n+d}$。一个例子是\textbf{$I$-进滤过}（$I$-adic filtration），即 $M_k=I^kM$ 的情形。我们称一个 $I$-\trFiltration{}是\textbf{$I$-稳定}的（$I$-stable），若存在某个 $s$，使得对一切 $d\ge0$ 都有 $I^dM_s=M_{d+s}$。例如，$I$-进滤过就是 $I$-稳定的。
+
+令 $A(I)_\bullet$ 为\trGradedRing{} $\bigoplus_{n\ge0}I^n$（约定 $I^0=A$）。它称为 $A$ 中\trIdeal{} $I$ 的\textbf{\trRees{}代数}（Rees algebra），尽管我们并不需要这个术语。定义 $M(I)_\bullet:=\bigoplus_n M_n$。它自然是 $A(I)_\bullet$ 上的一个\emph{\trGradedModule}。
+
+\textbf{13.9.2.\ \trhProposition{}。}\ ——\ \emph{设 $A$ \trNoetherian，$M$ 是有限生成的 $A$-模，而滤过~\eqref{eq:i-filtration} 是一个 $I$-\trFiltration。则 $M(I)_\bullet$ 是有限生成的 $A(I)_\bullet$-模，当且仅当滤过~\eqref{eq:i-filtration} 是 $I$-稳定的。}
+
+\emph{证明。}\ 注意 $A(I)_\bullet$ 是\trNoetherian{}的（由\mbox{练习~4.5.G(b)}，因为 $A$ 是\trNoetherian{}的，而 $I$ 是有限生成的 $A$-模）。
+
+先设 $M(I)_\bullet$ 在\trNoetherian{}环 $A(I)_\bullet$ 上有限生成，从而它是\trNoetherian{}的。考虑由 $A(I)_\bullet$-\trSubmodule{}构成的递增链，其第 $k$ 项 $L_k$ 为
+\[
+M\oplus M_1\oplus M_2\oplus\cdots\oplus M_k\oplus IM_k\oplus I^2M_k\oplus\cdots
+\]
+（它在到达 $M_k$ 之前与 $M(I)_\bullet$ 一致，随后便「$I$-稳定化」）。由\trNoetherian{}性，这条链必将稳定。但 $\bigcup L_k=M(I)_\bullet$，于是对某个 $s\in\mathbb{Z}^{\ge0}$ 有 $L_s=M(I)_\bullet$，从而对一切 $d\ge0$ 都有 $I^dM_s=M_{s+d}$——\eqref{eq:i-filtration} 是 $I$-稳定的。
+
+另一个方向：设对某个固定的 $s$ 与一切 $d\ge0$ 都有 $M_{d+s}=I^dM_s$。那么 $M(I)_\bullet$ 在 $A(I)_\bullet$ 上由 $M\oplus M_1\oplus\cdots\oplus M_s$ 生成。但每个 $M_j$ 都有限生成，故 $M(I)_\bullet$ 的确是一个有限生成的 $A(I)_\bullet$-模。\hfill$\square$
+
+\textbf{13.9.3.\ \trArtin--\trRees{}引理。}\ ——\ \emph{设 $A$ 是\trNoetherian{}环，而 \eqref{eq:i-filtration} 是有限生成 $A$-模 $M$ 的一个 $I$-稳定滤过。设 $L\subset M$ 是一个\trSubmodule，并令 $L_n:=L\cap M_n$。则}
+\[
+L=L_0\supset L_1\supset L_2\supset\cdots
+\]
+\emph{是 $L$ 的一个 $I$-稳定滤过。}
+
+\emph{证明。}\ 注意 $L_\bullet$ 是一个 $I$-\trFiltration，因为 $IL_n\subset IL\cap IM_n\subset L\cap M_{n+1}=L_{n+1}$。此外，$L(I)_\bullet$ 是有限生成的 $A(I)_\bullet$-模 $M(I)_\bullet$ 的一个 $A(I)_\bullet$-\trSubmodule，从而由\mbox{练习~3.6.Y}它是有限生成的（因为 $A(I)_\bullet$ 是\trNoetherian{}的，见命题~13.9.2 的证明）。\hfill$\square$
+
+一个重要的特殊情形如下。
+
+\textbf{13.9.4.\ \trhCorollary{}。}\ ——\ \emph{设 $I\subset A$ 是\trNoetherian{}环的一个\trIdeal，$M$ 是有限生成的 $A$-模，而 $L$ 是一个\trSubmodule。则对某个整数 $s$，对一切 $d\ge0$ 都有 $I^d(L\cap I^sM)=L\cap I^{d+s}M$。}
+
+\trhWarning{}：对于一切 $d$ 而言，$I^dL=L\cap I^dM$ 未必成立。（你能想出这个陈述的一个反例吗？）
+
+\emph{证明。}\ 对滤过 $M_n=I^nM$ 应用\trArtin--\trRees{}引理~13.9.3。\hfill$\square$
+
+\textbf{13.9.A.（练习：\trKrull{}交定理）}\quad
+\begin{enumerate}[label=(\alph*)]
+\item 设 $I$ 是\trNoetherian{}环 $A$ 的一个\trIdeal，而 $M$ 是有限生成的 $A$-模。证明：存在某个满足 $a\equiv1\pmod{I}$ 的 $a$，使得 $a\bigcap_{j=1}^{\infty}I^jM=0$。（提示：取 $L=\bigcap_{j=1}^{\infty}I^jM$、$M_n=I^nM$，应用\trArtin--\trRees{}引理~13.9.3。证明 $L=IL$，然后应用\trNakayama{}引理的第一种版本（引理~8.2.8）。）
+\item 证明：若 $A$ 是\trNoetherian\trIntegralDomain{}或\trNoetherian\trLocalRing，而 $I$ 是一个\trProperIdeal，则 $\bigcap_{j=1}^{\infty}I^j=0$。特别地，你将由此证得命题~13.5.2：若 $(A,\mathfrak{m})$ 是\trNoetherian\trLocalRing，则 $\bigcap_i\mathfrak{m}^i=0$。
+\end{enumerate}
+
+\textbf{13.9.B.（练习）}\quad 请把下面这件事精确化，并证明之（从而印证 \S13.5.3 的直观）：若 $X$ 是一个\trLocally\trNoetherian{}概形，而 $f$ 是 $X$ 上在一个点 $p\in X$ 处解析地为零的函数，则 $f$ 在 $p$ 的一个（扎里斯基）开\trNeighborhood{}内消失。

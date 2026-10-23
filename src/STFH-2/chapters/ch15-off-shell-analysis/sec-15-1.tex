@@ -1,0 +1,346 @@
+\section{光滑\personFloer{}模空间的离壳框架}
+\label{sec:off-shell-framework-smooth-floer}
+
+设 $L_0,L_1\subset(M,\omega)$ 是两个横截相交的紧\termLagrangianSubmanifold{}。
+固定 $x,y\in L_0\cap L_1$ 以及同伦类 $B\in\pi_2(x,y)$。
+我们将定义容纳非线性 $\overline\partial_J$-算子的\termBanachManifold{}
+$\mathcal F(x,y;B)$。这里紧随\personFloer{}在 (Fl88a) 中对\termWeightedSobolevSpace{}框架的描述。
+
+\begin{remark}
+\label{rem:weighted-off-shell-decay}
+为研究横截相交对 $L_0,L_1$，大部分时候可以使用标准 $L^{k,p}$ \personSobolev{}空间，
+线性分析尤其如此。然而，要建立\termBanachManifold{} $\mathcal F(x,y;B)$，就必须在
+无穷远处施加某种衰减条件，以控制映射在 $\tau\to\pm\infty$ 时的行为。
+这种衰减\emph{在壳上}，即对 $\mathbb R\times[0,1]$ 上有限能量的 $J$-全纯映射而言，
+是自动成立的（证明见命题~\ref{prop:finite-energy-exponential-decay}）；但在\emph{离壳层次}，
+即对 $\mathcal F(x,y;B)$ 中的一般映射，则应将其作为条件施加。关于施加这种衰减
+条件的另一种方式，参见 (Schw93)。
+\end{remark}
+
+令 $k>2/p$ 且 $\Theta=\mathbb R\times[0,1]$，定义
+\[
+ \mathcal F_{\mathrm{loc}}^{k,p}
+ :=\left\{u\in L_{\mathrm{loc}}^{k,p}(\Theta,M)\ \middle|\
+ u(\mathbb R,0)\subset L_0,\quad u(\mathbb R,1)\subset L_1\right\},
+\]
+其中 $L_{\mathrm{loc}}^{k,p}(\Theta,M)$ 是从 $\Theta$ 到 $M\subset\mathbb R^N$
+的\personSobolev{}映射空间：
+\[
+ L_{\mathrm{loc}}^{k,p}(\Theta,M)
+ :=\{u\in L_{\mathrm{loc}}^{k,p}(\Theta,\mathbb R^N)\mid\operatorname{Im}u\subset M\}.
+\]
+（同前，我们固定 $M$ 到 $\mathbb R^N$ 的一个等距嵌入，并把到 $M$ 的映射视为
+$\mathbb R^N$-值函数。）由于\personSobolev{}嵌入 $L^{k,p}\hookrightarrow C^0$，
+对映射像所施加的约束是有意义的。
+
+取光滑函数 $\rho:\mathbb R\to[0,1]$，满足
+\begin{equation}
+ \rho(\tau)=
+ \begin{cases}
+ 0,&\tau\leq0,\\
+ 1,&\tau\geq1.
+ \end{cases}
+ \label{eq:ch15-weight-cutoff}
+\end{equation}
+对 $l>0$、$q>1$ 及 $\sigma=(\sigma_-,\sigma_+)\in\mathbb R^2$，定义\personBanach{}空间
+\[
+ L_\sigma^{l,q}(\mathbb R^{2n})
+ :=\{\xi\in L_{\mathrm{loc}}^{l,q}(\Theta,\mathbb R^{2n})\mid
+ \|\xi\|_{l,q;\sigma}<\infty\}.
+\]
+这里所用的范数为
+\[
+ \|\xi\|_{l,q;\sigma}=\|e_\sigma\xi\|_{l,q},
+ \qquad
+ e_\sigma(\tau,t)=e^{(\rho(\tau)\sigma_++\rho(-\tau)\sigma_-)\tau}.
+\]
+
+假设 $M$ 配备了一个度量，并将相应的指数映射记为
+$\exp_x:T_xM\to M$。需要指出，我们使用的指数映射来自允许在某个\emph{紧}\personRiemann{}度量族中变化的度量。
+
+给定 $u\in\mathcal F_{\mathrm{loc}}^{k,p}$，定义
+$\widetilde u\in\mathcal F_{\mathrm{loc}}^{k,p}(L_1,L_0)$ 为
+$\widetilde u(\tau,t)=u(-\tau,1-t)$。对 $x\in L_0\cap L_1$、$k\geq1$、
+$p\geq1$ 以及满足 $k>2/p$ 的 $a\in\mathbb R_+$，考虑
+\[
+ \mathcal F_a^{k,p}(\cdot,x)
+ :=\left\{u\in\mathcal F_{\mathrm{loc}}^{k,p}\ \middle|\
+ \begin{array}{l}
+ \text{存在 }R>0\text{ 及 }\xi\in L_{k;(0,a)}^p(T_xM),\\
+ u(\tau,t)=\exp_x\xi(\tau,t)\quad(\tau>R)
+ \end{array}\right\}.
+\]
+此外，对 $b\in\mathbb R_-$，令
+\[
+ \mathcal F_b^{k,p}(x,\cdot)
+ :=\{u\mid\widetilde u\in\mathcal F_{-b}^{k,p}(L_1,L_0)(\cdot,x)\}.
+\]
+于是对 $x,y\in L_0\cap L_1$ 定义
+\[
+ \mathcal F_{(b,a)}^{k,p}(x,y)
+ :=\mathcal F_b^{k,p}(x,\cdot)\cap\mathcal F_a^{k,p}(\cdot,y).
+\]
+显然，为使 $\mathcal F_{(b,a)}^{k,p}(x,y)$ 的定义有意义，必须有
+$a\geq0$ 且 $b\leq0$。我们将这样的数对记为 $\delta$，任意实数对则记为
+$\sigma$。对 $p>2$，还写
+\[
+ \mathcal F^{l,p}(x,y)=\mathcal F_{(0,0)}^{l,p}(x,y).
+\]
+
+若 $E$ 是 $M$ 上的光滑向量丛且 $u\in\mathcal F_{\mathrm{loc}}^{k,p}$，则拉回丛
+$u^*E$ 具有 $L^{k,p}$-丛的结构，即它是局部平凡丛，其转移映射属于
+$L^{k,p}(U,GL(\mathbb R,N))$，这里 $U\subset\Theta$ 开且 $N=\operatorname{rank}E$。
+因此可以定义 $u^*E$ 的局部 $L^{k,p}$ 型截面集。若
+$u\in\mathcal P_{k;\delta}^p(x,y)$，则只要
+\footnote{译者注：原书在此突然使用此前未定义的
+$\mathcal P_{k;\delta}^p(x,y)$，而本节一直定义的是
+$\mathcal F_{\delta}^{k,p}(x,y)$；译文保留原记号。}
+\[
+ l\leq k,\qquad q-\frac2l\leq p-\frac2k,
+\]
+\footnote{译者注：原书此处的第二个条件为
+$q-2/l\leq p-2/k$，其指标位置与定理~\ref{thm:weighted-off-shell-banach-framework}(3)
+中的 $l-2/q\leq k-2/p$ 不一致；译文保留原式。}
+也可以对截面考虑加权\personSobolev{}范数 $\|\xi\|_{l,q;\sigma}$。
+这里 $\sigma\in\mathbb R^2$ 任意。于是定义
+\begin{equation}
+ L_\sigma^{l,q}(u^*E)
+ :=\{\xi\in L_{\mathrm{loc}}^{l,q}(u^*E)\mid\|\xi\|_{l,q;\sigma}<\infty\}.
+ \label{eq:weighted-sections-pullback}
+\end{equation}
+特别地，我们关心\personBanach{}空间
+\[
+ L_\sigma^{l,q}(u):=L_\sigma^{l,q}(u^*TM).
+\]
+在这种情形下，当 $l>2/q$ 时，由迹定理（见 (Ev98)，第 257--261 页），
+每个 $\xi\in L_{\mathrm{loc}}^{l,q}(u^*E)$ 在
+$\partial\Theta=\mathbb R\times\{0,1\}$ 上限制为连续截面。因此可考虑子空间
+\[
+ W_\sigma^{l,q}(u):=\left\{\xi\in L_\sigma^{l,q}(u)\ \middle|\
+ \begin{array}{l}
+ \xi(\tau,0)\in T_{u(\tau,0)}L_0,\\
+ \xi(\tau,1)\in T_{u(\tau,1)}L_1\quad(\forall\tau\in\mathbb R)
+ \end{array}\right\}.
+\]
+
+再利用 $\Theta$ 上的整体坐标 $(\tau,t)$，把 $\overline\partial_Ju$ 与
+$L_\sigma^{l,q}(u)$ 的截面
+$\overline\partial_Ju(\partial/\partial\tau)$ 等同起来。于是
+\[
+ \overline\partial_Ju\left(\frac\partial{\partial\tau}\right)
+ =\frac12\left(\frac{\partial u}{\partial\tau}
+ +J(u)\frac{\partial u}{\partial t}\right),
+\]
+其中记
+\[
+ du\left(\frac\partial{\partial\tau}\right)=\frac{\partial u}{\partial\tau},
+ \qquad
+ du\left(\frac\partial{\partial t}\right)=\frac{\partial u}{\partial t}.
+\]
+在本节及下一节的讨论中，我们略去系数 $1/2$，把非线性算子
+\[
+ u\longmapsto\frac{\partial u}{\partial\tau}+J(u)\frac{\partial u}{\partial t}
+\]
+仍记为 $\overline\partial_J$。
+
+\begin{theorem}
+\label{thm:weighted-off-shell-banach-framework}
+设 $L_0$ 与 $L_1$ 横截相交。对任意 $p\geq1$、$k>2/p$ 以及任意
+$x,y\in L_0\cap L_1$，存在仅依赖于 $(x,y)$ 的稠密集
+\[
+ \delta=(a,b)\in[0,\infty)\times(-\infty,0],
+\]
+使得下列断言成立。
+\begin{enumerate}[label=(\arabic*)]
+\item 该稠密集包含 $[0,a_0)\times(b_0,0]$，其中
+$a_0,-b_0>0$ 分别只依赖于 $x,y$。
+\item $\mathcal F_\delta^{k,p}(x,y)$ 是光滑\termBanachManifold{}，其切空间为
+\[
+ T_u\mathcal F_\delta^{k,p}(x,y)=W_\delta^{k,p}(u).
+\]
+\item 对满足 $l\in[0,k]$、$q\geq1$ 以及
+$l-2/q\leq k-2/p$ 的 $l,q$，并对上述稠密集中的任意 $\delta$，\personBanach{}空间 $W_\delta^{l,q}(u)$ 和 $L_\delta^{l,q}(u)$ 分别是
+$\mathcal F_\delta^{k,p}(x,y)$ 上光滑\personBanach{}空间丛
+$\mathcal W_\delta^{l,q}$ 和 $\mathcal L_\delta^{l,q}$ 的纤维。
+\item 由赋值 $u\mapsto\overline\partial_Ju$ 定义的映射
+\[
+ \overline\partial_J:\mathcal F_\delta^{k,p}(x,y)
+ \longrightarrow\mathcal L_\delta^{k-1,p}
+\]
+是\personBanach{}丛 $\mathcal L_\delta^{k-1,p}\to\mathcal F_\delta^{k,p}$ 的光滑\personFredholm{}截面，公式为
+\[
+ (\overline\partial_Ju)(\tau,t)
+ =\frac{\partial u}{\partial\tau}(\tau,t)
+ +J(t,u(\tau,t))\frac{\partial u}{\partial t}(\tau,t).
+\]
+\end{enumerate}
+\end{theorem}
+
+除 (4) 中的\personFredholm{}性质外，这一定理的陈述及证明都是闭曲线情形的命题 10.2.3
+之变体。该\personFredholm{}性质可以用\personRobertLockhart{}与\personRobertMcOwen{}在 (LM85) 中的论证证明，
+下面说明其要点。
+
+只要 $a>0$、$b<0$，$\mathcal F_\delta^{k,p}$ 中的任意元素都可以像此前一样紧化，
+因而定义同伦类 $B\in\pi_2(x,y)$。
+\footnote{译者注：原书此处写 ``$a,b>0$''，但前文定义要求 $b\leq0$，
+且紧接着的公式要求 $b\in(b_y,0)$。译文据同页定义改为 $a>0,b<0$。}
+从现在起，对每个给定的 $(x,y)$，总假设
+\begin{equation}
+ (a,b)\in(0,a_x)\times(b_y,0).
+ \label{eq:admissible-weight-range}
+\end{equation}
+对给定横截对 $L_0,L_1$，选取 $a_0=a_0(L_0,L_1)>0$ 和
+$b_0=b_0(L_0,L_1)<0$，使
+\[
+ 0<a_0<\min_{x\in L_0\cap L_1}a_x,
+ \qquad
+ 0<-b_0<\max_{y\in L_0\cap L_1}(-b_y).
+\]
+然后令 $\delta=(b_0,a_0)$，并按显然的方式分解
+\[
+ \mathcal F_\delta^{k,p}(x,y)
+ =\bigcup_{B\in\pi_2(x,y)}\mathcal F_\delta^{k,p}(x,y;B).
+\]
+于是可以把上述\personBanach{}丛和截面限制到 $\mathcal F_\delta^{k,p}(x,y;B)$ 上。
+\footnote{译者注：本段先把稠密集参数写成 $\delta=(a,b)$，随后又令
+$\delta=(b_0,a_0)$；这与早先空间下标 $\mathcal F_{(b,a)}^{k,p}$ 的顺序一致，
+但与定理陈述的坐标顺序不一致。译文保留原书两处写法并明示冲突。}
+
+下面把这一\termWeightedSobolevSpace{}的离壳框架与命题~\ref{prop:finite-energy-exponential-decay}
+对壳上模空间 $\mathcal M(x,y;B)$ 所确立的指数衰减结论联系起来。显然有包含关系
+\[
+ \widetilde{\mathcal M}(x,y;B)\subset\overline\partial_J^{-1}(0),
+\]
+其中 $0$ 是丛
+$\mathcal L_\delta^{k-1,p}\to\mathcal F_\delta^{k,p}(x,y;B)$ 的零截面。
+另一方面，椭圆正则性定理蕴含 $\overline\partial_J^{-1}(0)$ 的任意元素均光滑，故确有
+\begin{equation}
+ \mathcal M(x,y;B)
+ =\overline\partial_J^{-1}(0)\cap\mathcal F_\delta^{k,p}(x,y;B)
+ \label{eq:on-shell-as-zero-set}
+\end{equation}
+\footnote{译者注：前文的参数化模空间记为
+$\widetilde{\mathcal M}(x,y;B)$，但原书公式~(15.1.4) 左端去掉了波浪号，
+而右端仍位于参数化映射空间中；译文保留原式。}
+对任意 $p,k$ 以及充分小的 $\delta=(a,b)$ 成立；这里小量条件只依赖于
+$(L_0,L_1)$ 和 $J_0$，更精确地说，依赖于 $x\in L_0\cap L_1$ 时\personHermitian{}内积空间 $(T_xM,\omega_x,J_{0,x})$ 中切空间 $T_xL_0,T_xL_1$
+的\emph{\personLagrange{}角}。
+\footnote{译者注：原书在公式~(15.1.4) 后再次写 ``$a,b>0$''；这与本节
+$b\leq0$ 的权重约定冲突。译文用“充分小的 $\delta=(a,b)$”保留所需小量条件，
+不替原书重定参数符号。}
+
+对每个 $u\in\widetilde{\mathcal M}(x,y;B)\subset\mathcal P_p^k(x,y;B)$，
+可以定义 $\overline\partial_J$ 的线性化
+\[
+ E_u=D\overline\partial_J(u):T_u\mathcal F_\delta^{k,p}(x,y)
+ \longrightarrow L^p_{k-1;\delta}(u),
+\]
+其中
+\[
+ (D\overline\partial(u)\xi)(\tau,t)
+ =(\nabla_\tau+J\nabla_t)\xi(\tau,t)+B(\tau,t)\xi(\tau,t).
+\]
+这里 $B$ 是依赖于联络 $\nabla$ 之选择的矩阵算子。
+
+由于渐近条件，算子 $E_u$ 趋近于如下平移不变算子：
+\[
+ E_\infty(\xi)=\frac\partial{\partial\tau}+A_\infty,
+\]
+其中 $A_\infty$ 与 $\tau$ 无关。此外，$E_u$ 是一致椭圆的。对这种“渐近常系数”
+椭圆算子，可以把 (LM85) 的方案用于 $D\overline\partial(u)$；只要 $x,y$ 是
+$L_0\cap L_1$ 的横截交点，当 $\delta=(a,b)$ 中 $a,-b\geq0$ 相对于上述\personLagrange{}角充分小时，便可证明它是\personFredholm{}算子。
+
+\begin{theorem}
+\label{thm:linearized-floer-fredholm-index}
+设 $L_0,L_1$ 横截。令 $x,y\in L_0\cap L_1$，并令 $\delta=(a,b)$ 如上。
+则对任意 $u\in\widetilde{\mathcal M}(x,y;B)$，线性化算子
+\[
+ E_u=D\overline\partial(u):T_u\mathcal F_\delta^{k,p}(x,y)
+ \longrightarrow L^p_{k-1;\delta}(u)
+\]
+是\personFredholm{}算子，其指标为
+\[
+ \operatorname{Index}E_u=\mu(x,y;B),
+\]
+且不依赖于 $u$。这里 $\mu(x,y;B)$ 是定义~\ref{def:maslov-viterbo-index}
+中的\termMaslovViterboIndex{}(Vi88)。
+\end{theorem}
+
+我们将在第~\ref{sec:ch15-index-calculation}节证明该指标公式。下面命题的证明是
+定理 10.4.1 之证明的一个变体；在当前情形，无需施加某处单射性假设，因为它会由
+下述结构定理自动推出。该定理的证明颇为技术性，故请读者参见原始论文。（哈密顿\personFloer{}流线的版本另见 (FHS95)。）
+
+\begin{lemma}[（(Oh97a) 的定理 5.1）]
+\label{lem:somewhere-injective-floer-strip}
+设 $u\in\widetilde{\mathcal M}(x,y)$。则集合
+\[
+ \Theta_u:=\left\{(\tau,t)\in\Theta\ \middle|\
+ \frac{\partial u}{\partial\tau}(\tau,t)\neq0,
+ \quad u(\tau,t)\notin u(\mathbb R\setminus\{\tau\},t)\right\}
+\]
+在 $\Theta$ 中开且稠密。
+\end{lemma}
+
+下面只简要指出下述命题与定理 10.4.1 证明的差别，把完整证明的细节留给读者。
+
+\begin{proposition}
+\label{prop:generic-floer-regularity-ch15}
+给定 $J_0,J_1\in\mathcal J_\omega$。假设 $p\neq q$，或者 $p=q$ 且 $B\neq0$。
+则存在稠密子集
+$\mathfrak j^{\mathrm{reg}}_{(J_0,J_1)}\subset\mathfrak j_{(J_0,J_1)}$，使得
+$\widetilde{\mathcal M}(p,q;B;J)$ 是\termFredholmRegularity{}的，因而是维数
+$\mu(B)$ 的光滑流形。
+\end{proposition}
+
+\begin{proof}
+考虑\personCauchy{}--\personRiemann{}截面
+\[
+ \overline\partial:(u,J)\longmapsto\overline\partial_Ju
+\]
+及其线性化 $D\overline\partial(u,J)$；后者具有形式
+\[
+ D_{(u,J)}\overline\partial(\xi,Y)
+ =D_u\overline\partial_J(\xi)+\frac12Y\,du\circ j,
+\]
+其中 $\xi\in W^{1,p}(u^*TM)$ 满足边界条件
+\[
+ \xi(\tau,0)\in T_{u(\tau,0)}L_0,
+ \qquad
+ \xi(\tau,1)\in T_{u(\tau,1)}L_1,
+\]
+而 $Y\in C^\infty(\operatorname{End}(TM))$ 满足
+\[
+ YJ+JY=0.
+\]
+为证明满射性，我们证明
+$\operatorname{Coker}D_{(u,J)}\overline\partial=\{0\}$。利用 $L^p$ 与
+$L^q$（$1/p+1/q=1$）之间的典范配对，余核元素
+$\eta\in L^q(u^*TM)$ 由方程
+\begin{equation}
+ \int_{\mathbb R\times[0,1]}
+ \left\langle D_{(u,J)}\overline\partial(\xi,Y),\eta\right\rangle=0
+ \label{eq:universal-linearization-cokernel}
+\end{equation}
+所刻画，其中该式对所有 $\xi\in W^{1,p}(u^*TM)$ 和
+$Y\in C^\infty(\operatorname{End}(TM))$ 成立。取 $Y\equiv0$，得到
+\begin{equation}
+ (D_u\overline\partial_J)^\dagger\eta=0,
+ \label{eq:adjoint-linearized-cr}
+\end{equation}
+这里
+$(D_u\overline\partial_J)^\dagger:L^q(u^*TM)\to(W^{1,p}(u^*TM))^*$
+是 $D_u\overline\partial_J$ 的伴随算子。
+
+特别地，方程~\eqref{eq:adjoint-linearized-cr}的解具有唯一延拓性，因而只需证明
+$\eta$ 在 $\mathbb R\times[0,1]$ 的某个开子集上消失。此时使用
+\eqref{eq:universal-linearization-cokernel}中 $\xi\equiv0$ 的部分，它变为
+\footnote{译者注：原书此处引用公式~(15.1.6)，但该式不含 $\xi$；
+实际使用的是公式~(15.1.5)。译文已按论证所需改正交叉引用。}
+\[
+ \int_{\mathbb R\times[0,1]}\langle Y\circ j,\eta\rangle=0
+\]
+对所有 $Y\in C^\infty(\operatorname{End}(TM))$ 成立。由
+引理~\ref{lem:somewhere-injective-floer-strip}的结构定理，在
+$\mathbb R\times[0,1]$ 中可找到 $u$ 的一个重数为一的浸入点。于是与定理 10.4.1
+证明相同的论证表明，存在该点的一个开邻域，使 $\eta$ 在其上消失。证明完成。
+\end{proof}

@@ -1,0 +1,21 @@
+\makeatletter
+\newif\ifBookIndexing
+\BookIndexingfalse
+\newcommand{\BookBoldPage}[1]{\textbf{\hyperpage{#1}}}
+\DeclareRobustCommand{\BookRecordIndex}[1]{%
+  \ifBookIndexing
+    \expandafter\index\expandafter{\csname BookIndex@#1\endcsname|hyperpage}%
+  \fi}
+\DeclareRobustCommand{\BookIndexDefinition}[1]{%
+  \ifBookIndexing
+    \expandafter\index\expandafter{\csname BookIndex@#1\endcsname|BookBoldPage}%
+  \fi}
+\DeclareRobustCommand{\BookTerm}[2]{%
+  \BookRecordIndex{#1}%
+  \begingroup\let\BookRecordIndex\@gobble #2\endgroup}
+\AddToHook{cmd/@outputpage/before}{\let\BookRecordIndex\@gobble}
+\pdfstringdefDisableCommands{%
+  \def\BookTerm#1#2{#2}%
+  \let\BookRecordIndex\@gobble
+  \let\BookIndexDefinition\@gobble}
+\makeatother

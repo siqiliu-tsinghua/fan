@@ -1,0 +1,694 @@
+
+\section{定理 11.1.16 的证明}
+\label{sec:proof-theorem-11116}
+
+为了证明\cref{thm:gluing-gamma}，我们取定 $\widehat{v}$ 的一个\trLift{} $v\in\scr{M}_{(H^{b},J^{b})}(y,z)$。对 $\rho\ge\rho_{0}$，我们想定义一个映射
+\[
+\psi_{\rho}\colon\RR\times S^{1}\longrightarrow W
+\]
+它是带参数的\trFloerEquation
+\[
+\frac{\partial\psi_{\rho}}{\partial s}+J_{s}\frac{\partial\psi_{\rho}}{\partial t}+\operatorname{grad}_{\psi_{\rho}}H_{s,t}=0
+\]
+对每个 $\rho$ 的一个解。一旦我们证明了对一切\trCompact{}集一致地有
+\[
+\lim_{\rho\to+\infty}\psi_{\rho}(s,t)=u(s,t)
+\qquad\text{与}\qquad
+\lim_{\rho\to+\infty}\psi_{\rho}(s+2\rho,t)=v(s,t)\text{，}
+\]
+那么当 $\rho\to+\infty$ 时朝 $(u,\widehat{v})$ 的\trConvergence{}就将随之而来。为了能够如同\cref{thm:gluing-psi}的证明中那样进行，我们需要用代换
+\[
+\varphi_{\rho}(s,t)=\psi_{\rho}(s+\rho,t)\text{。}
+\]
+
+于是 $\varphi_{\rho}\in\cC^{\infty}(x,z)$ 将是
+\[
+\frac{\partial\varphi_{\rho}}{\partial s}+J_{s+\rho}\frac{\partial\varphi_{\rho}}{\partial t}+\operatorname{grad}_{\varphi_{\rho}}H_{s+\rho,t}=0
+\]
+的一个解，并且将满足条件
+\[
+\lim_{\rho\to+\infty}\varphi_{\rho}(s-\rho,t)=u(s,t)
+\qquad\text{与}\qquad
+\lim_{\rho\to+\infty}\varphi_{\rho}(s+\rho,t)=v(s,t)
+\]
+（也就是说，$\psi_{\rho}$ 所要满足的那个\trConvergence{}性质）。
+
+如同在\cref{thm:gluing-psi}的证明中那样，我们将分三步进行：
+\begin{enumerate}[label=(\arabic*)]
+\item \trPregluing，见\cref{subsec:pregluing-gamma}；
+\item $\varphi$ 的构造（从而也是 $\psi$ 的构造），见\cref{subsec:construction-phi}；
+\item $\psi$ 的诸性质的验证，见\cref{subsec:properties-psi-rho}。
+\end{enumerate}
+
+\subsection{\trPregluing}
+\label{subsec:pregluing-gamma}
+
+设 $\rho_{0}\ge0$ 使得\trHomotopy{} $\varGamma(s,t)=(H_{s,t},J_{s})$ 是\trStationary{}的，并且在 $s\ge\rho_{0}$ 时等于 $(H^{b}_{t},J^{b})$。沿用\cref{sec:pregluing}中的记号，我们用（同一条）公式\footnote{让我们回顾一下我们曾对记号 $\rho\ge\rho_{0}$ 所作的约定（陈述于\cref{sec:pregluing}处），它的含义是“$\rho$ 充分大”。}来定义 $u$ 与 $v$ 在 $\rho\ge\rho_{0}$ 时的\trPregluing{} $w_{\rho}$：
+\[
+w_{\rho}(s,t)=
+\left\{
+\begin{array}{ll}
+u(s+\rho,t) & \text{若 } s\le -1\\[10pt]
+\begin{aligned}
+\exp_{y(t)}\Bigl(\beta^{-}(s)\exp_{y(t)}^{-1}&\bigl(u(s+\rho,t)\bigr)\\
+&+\ \beta^{+}(s)\exp_{y(t)}^{-1}\bigl(v(s-\rho,t)\bigr)\Bigr)
+\end{aligned}
+& \text{若 } s\in[-1,1]\\[10pt]
+v(s-\rho,t) & \text{若 } s\ge 1
+\end{array}
+\right.
+\]
+（我们已经假定 $\rho_{0}$ 充分大，使得 $w_{\rho}$ 是\trWellDefined{}的）。以同样的方式，我们随后可以对 $Y\in T_{u}\scr{P}(x,y)$ 与 $Z\in T_{v}\scr{P}(y,z)$，按\cref{sec:pregluing}中同样的公式定义\trPregluing
+\[
+Y\,\#_{\rho}\,Z\in T_{w_{\rho}}\scr{P}(x,z)\text{。}
+\]
+由于这些构造用的是同样的公式，它们所给出的对象便具有\cref{sec:pregluing}中所述的全部性质。还要注意，如果 $\scr{F}^{\varGamma}_{\rho}$ 是算子
+\[
+\scr{F}^{\varGamma}_{\rho}=\frac{\partial}{\partial s}+J_{s+\rho}\frac{\partial}{\partial t}+\operatorname{grad}H_{s+\rho,t}\text{，}
+\]
+那么我们有
+\[
+\scr{F}^{\varGamma}_{\rho}\bigl(w_{\rho}\bigr)(s,t)=0\qquad\text{对 } |s|\ge 1\text{：}
+\]
+\begin{itemize}
+\item 对 $s\le-1$，这是因为 $u$ 是带参数的\trFloerEquation{}的一个解。
+\item 对 $s\ge1$，我们注意到
+\[
+\scr{F}^{\varGamma}_{\rho}=\frac{\partial}{\partial s}+J^{b}\frac{\partial}{\partial t}+\operatorname{grad}H^{b}\qquad\text{对 } \rho\ge\rho_{0}
+\]
+而 $v(s-\rho,t)$ 是与偶对 $(H^{b},J^{b})$ 相关联的\trFloerEquation{}的一个解。
+\end{itemize}
+
+最后这个论证还告诉我们
+\[
+\lim_{\rho\to+\infty}\scr{F}^{\varGamma}_{\rho}\bigl(w_{\rho}(s,t)\bigr)=0\qquad\text{于 } \cC^{\infty}_{\mathrm{loc}}\text{ 中，}
+\]
+这是因为 $\lim_{\rho\to+\infty}w_{\rho}(s,t)=y(t)$。
+
+\subsection{$\varphi$ 的构造}
+\label{subsec:construction-phi}
+
+我们要从\trPregluing{} $w_{\rho}$ 出发，构造一个满足 $\scr{F}^{\varGamma}_{\rho}(\varphi(\rho))=0$ 的 $\varphi(\rho)$。为此，我们如同\cref{sec:construction-psi-rho}中那样使用\trNewton--\trPicard{}方法。
+
+\textbf{算子 $\scr{F}^{\varGamma}_{\rho}$。}
+
+如同\cref{sec:construction-psi-rho}中那样，我们一开始先取\trTangentBundle{} $TW$ 分别沿 $u$ 与沿 $v$ 的两个\trUnitary{}\trTrivialization{} $(Z_{i}^{u}(s,t))_{i=1,\dots,2n}$ 与 $(Z_{i}^{v}(s,t))_{i=1,\dots,2n}$。由此得到沿 $w_{\rho}$ 的一个\trUnitary{}\trTrivialization{} $(Z_{i}^{\rho}(s,t))_{i=1,\dots,2n}$，我们把它按\trParallelTransport{}延拓（参见\cref{sec:riemannian-metrics-exp}），并且得到 $TW$ 在 $w_{\rho}(s,t)$ 的一个邻域内的\trOrthonormal{}\trTrivialization{}（对每个 $(s,t)$）。后一个\trTrivialization{}记作 $(Z_{i}^{\rho,\xi}(s,t))_{i=1,\dots,2n}$，其中
+\[
+Z_{i}^{\rho,\xi}(s,t)\in T_{\exp_{w_{\rho}(s,t)}\xi}W\text{，}\qquad \text{其中 } \xi\in T_{w_{\rho}(s,t)}W
+\]
+（而 $\xi$ 的范数小于 $W$ 上\trMetric{}的\trInjectivityRadius）。利用这些\trTrivialization，我们定义一个（非线性）算子
+\[
+F^{\varGamma}_{\rho}\colon B(0,r)\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+其中 $r$ 选得适当（$r=r_{0}/K$，其中 $r_{0}$ 是\trMetric{}的\trInjectivityRadius，而 $K$ 是 $W^{1,p}$ 到 $L^{\infty}$ 中的\trEmbedding{}的范数，这就满足要求了）。
+
+按定义，如果把 $\xi$ 写成
+\[
+\xi=\sum y_{i}Z_{i}^{\rho}\qquad\text{在基 } (Z_{i}^{\rho})\text{ 中，}
+\]
+那么写在基 $(Z_{i}^{\rho,\xi})$ 中的 $F^{\varGamma}_{\rho}(y_{1},\dots,y_{2n})$ 就是 $\scr{F}^{\varGamma}_{\rho}\bigl(\exp_{w_{\rho}}(\xi)\bigr)$。
+
+\textbf{$F^{\varGamma}_{\rho}$ 的诸性质。}
+
+$F^{\varGamma}_{\rho}$ 的构造类似于\cref{sec:construction-psi-rho}中 $F_{\rho}$ 的构造。定义它的那个\trFloer{}算子依赖于 $\varGamma$，可是一旦把 $F^{\varGamma}_{\rho}$ 写在了坐标之下，这份依赖就不再可见了。换句话说，诸算子 $F^{\varGamma}_{\rho}$ 与 $F_{\rho}$ 具有同样的形式与同样的性质。为了简化记号并减轻书写负担，从现在起我们将省略对 $\varGamma$ 的依赖。让我们把 $F_{\rho}$ 的性质总结如下：
+
+（1）$F_{\rho}(0)=\bigl[\scr{F}^{\varGamma}_{\rho}(w_{\rho})\bigr]_{Z_{i}^{\rho}}$，特别地，
+\[
+F_{\rho}(0)=0\quad\text{对 } |s|\ge 1
+\qquad\text{以及}\qquad
+\lim_{\rho\to+\infty}F_{\rho}(0)=0\quad\text{于 } \cC^{\infty}_{\mathrm{loc}}\text{ 中。}
+\]
+
+（2）考虑算子
+\[
+F_{u},F_{v}\colon B(0,r)\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+它们以类似的方式由\trFloer{}算子 $\scr{F}^{\varGamma}$ 与 $\scr{F}$ 借助\trTrivialization{} $Z_{i}^{u}$ 与 $Z_{i}^{v}$ 定义。令
+\[
+L^{u}=(dF^{u})_{0}\text{，}\qquad L^{v}=(dF^{v})_{0}\qquad\text{以及}\qquad L_{\rho}=(dF_{\rho})_{0}\text{。}
+\]
+与\cref{sec:construction-psi-rho}中同样的计算给出
+\[
+\begin{aligned}
+L^{u}(Y)&=\frac{\partial Y}{\partial s}+J_{0}\frac{\partial Y}{\partial t}+S^{u}(Y)\\
+L^{v}(Y)&=\frac{\partial Y}{\partial s}+J_{0}\frac{\partial Y}{\partial t}+S^{v}(Y)\\
+L_{\rho}(Y)&=\frac{\partial Y}{\partial s}+J_{0}\frac{\partial Y}{\partial t}+S^{\varGamma}_{\rho}(Y)\text{，}
+\end{aligned}
+\]
+其中 $J_{0}$ 表示 $\RR^{2n}$ 上的标准\trComplexStructure，而算子
+\[
+S^{u},S^{v},S^{\varGamma}_{\rho}\colon\RR\times S^{1}\longrightarrow\operatorname{End}\bigl(\RR^{2n}\bigr)
+\]
+满足
+\[
+\begin{aligned}
+\lim_{s\to-\infty}S^{u}(s,t)&=S^{x}(t)\text{，}&
+\lim_{s\to+\infty}S^{u}(s,t)&=S^{y}(t)\\
+\lim_{s\to-\infty}S^{v}(s,t)&=S^{y}(t)\text{，}&
+\lim_{s\to+\infty}S^{v}(s,t)&=S^{z}(t)
+\end{aligned}
+\]
+（其中 $S^{x}$、$S^{y}$ 与 $S^{z}$ 是由\trCriticalPoint{} $x$、$y$ 与 $z$ 所定义的那些\trSymmetricMatrix\trLoop），以及
+\[
+\begin{aligned}
+S^{\varGamma}_{\rho}(s,t)&=S^{u}(s+\rho,t)&&\text{对 } s\le-1\\
+S^{\varGamma}_{\rho}(s,t)&=S^{v}(s-\rho,t)&&\text{对 } s\ge1\text{ 且 }\rho\ge R\\
+\lim_{\rho\to+\infty}S^{\varGamma}_{\rho}(s,t)&=S^{y}(t)\text{。}
+\end{aligned}
+\]
+
+最后这个关系需要一个小小的证明，我们现在就把它给出。我们取定一个\trCompact{}子集 $K\subset\RR\times S^{1}$。对 $\rho\ge\rho_{0}$，$\scr{F}^{\varGamma}_{\rho}$ 限制在 $W^{1,p}(K;TW)$ 上就是与 $(H^{b},J^{b})$ 相关联的那个\trFloer{}算子。写在\trTrivialization{} $(Z_{i}^{\rho})_{i}$ 之中，它的\trDifferential{} $(d\scr{F}^{\varGamma}_{\rho})_{w_{\rho}}$ 就是 $(dF_{\rho})_{0}$，也就是我们记作 $L_{\rho}$ 的那个算子。由于 $\lim_{\rho\to+\infty}w_{\rho}=y$ 于 $\cC^{\infty}_{\mathrm{loc}}$ 中，$L_{\rho}=(dF_{\rho})_{0}$ 的零阶部分（限制在 $W^{1,p}(K;\RR^{2n})$ 上）趋于写在基 $Z_{i}^{y}$ 之中的 $(d\scr{F}^{b})_{y}$ 的零阶部分，也就是说，趋于 $S^{y}$。
+
+（3）由\cref{thm:floer-map-fredholm}，我们知道 $L^{u}$、$L^{v}$ 与 $L^{\varGamma}_{\rho}$ 都是\trFredholmOperator，各自的\trIndex{}为
+\[
+\operatorname{Ind}\bigl(L^{u}\bigr)=\mu(x)-\mu(y)=0
+\]
+\[
+\operatorname{Ind}\bigl(L^{v}\bigr)=\mu(y)-\mu(z)=1
+\]
+\[
+\operatorname{Ind}\bigl(L_{\rho}\bigr)=\mu(x)-\mu(z)=1\text{。}
+\]
+
+此外，\trHomotopy{} $\varGamma$ 与偶对 $(H^{b},J^{b})$ 都是\trRegular{}的，于是由\cref{thm:regular-perturbations}与\cref{thm:transversality-gamma}，算子 $L^{u}$ 与 $L^{v}$ 都是\trSurjective{}的，特别地
+\[
+\operatorname{Ker}L^{u}=0
+\qquad\text{与}\qquad
+\operatorname{Ker}L^{v}=\bigl\{\alpha\,\partial v/\partial s\ \bigm|\ \alpha\in\RR\bigr\}\text{。}
+\]
+
+接着，我们考虑子空间
+\[
+W_{\rho}=\bigl\{0\,\#_{\rho}\,\beta\ \bigm|\ \beta\in\operatorname{Ker}L^{v}\bigr\}
+\]
+与
+\[
+W_{\rho}^{\perp}=\Bigl\{Y\in W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\ \Bigm|\ \int_{\RR\times S^{1}}\langle Y,Z\rangle\,ds\,dt=0\quad\forall Z\in W_{\rho}\Bigr\}\text{。}
+\]
+
+照抄\cref{thm:lrho-lower-bound}的证明就给出类似的结果。
+
+\begin{proposition}\label{thm:lrho-gamma-lower-bound}
+存在一个常数 $C>0$，使得对每个 $\rho\ge\rho_{0}$，我们有
+\[
+\forall Y\in W_{\rho}^{\perp}\text{，}\quad\bigl\|L_{\rho}(Y)\bigr\|_{L^{p}}\ge C\|Y\|_{W^{1,p}}\text{。}
+\]
+\end{proposition}
+
+如同\cref{sec:construction-psi-rho}中那样，由此推出 $L_{\rho}$ 是\trSurjective{}的，并且它有一个右逆
+\[
+G_{\rho}\colon L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow W_{\rho}^{\perp}\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{。}
+\]
+
+于是我们可以应用\trNewton--\trPicard{}方法，更准确地说是\cref{thm:abstract-newton-picard}。利用与\cref{sec:construction-psi-rho}中同样的论证，我们可以证明下述结果。
+
+\begin{theorem}\label{thm:gamma-newton-picard}
+存在一个 $\rho_{0}>0$，使得对每个 $\rho\ge\rho_{0}$，存在一个
+\[
+\gamma(\rho)\in W_{\rho}^{\perp}\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+满足 $F_{\rho}\bigl(\gamma(\rho)\bigr)=0$。这样的一个 $\gamma$ 在 $B(0,\varepsilon)\cap W_{\rho}^{\perp}$ 中是唯一的，其中 $\varepsilon>0$ 与 $\rho$ 无关。此外，它具有下列性质：
+\begin{enumerate}[label=(\arabic*)]
+\item $\lim_{\rho\to+\infty}\bigl\|\gamma(\rho)\bigr\|_{W^{1,p}}=0$。
+\item 映射 $\rho\mapsto\gamma(\rho)$ 是可微的。
+\item $\lim_{\rho\to+\infty}\bigl\|\partial\gamma/\partial\rho\bigr\|_{W^{1,p}}=0$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+为了证明这个定理，我们需要验证 $F_{\rho}=F^{\varGamma}_{\rho}$ 满足我们在第~13~章中收集的那些性质。这里所研究的情形与该章中所研究的情形之间的差别，来自\trFloer{}算子现在是 $\scr{F}^{\varGamma}_{\rho}$ 这一事实。我们在下面予以说明。
+
+由于 $\varGamma$ 在 $|s|\ge R$ 时是\trStationary{}的，我们以类似的方式（而且没有太多麻烦）得到同样的估计：只需把\cref{thm:a-b-estimates}对映射
+\[
+A\colon\RR\times W\times\RR^{m}\times\RR^{m}\longrightarrow\RR^{m}
+\qquad\text{与}\qquad
+B\colon\RR\times W\times\RR^{m}\times\RR^{m}\times\RR^{m}\longrightarrow\RR^{m}
+\]
+改写一遍即可，其中这些映射在 $|s|\ge R$ 时（关于第一个变量 $s\in\RR$）是常值的（证明完全类似）。
+
+至于与\cref{thm:df-drho-estimate}的陈述相类似的那条陈述，它的证明需要一个更认真的修改：我们现在必须把 $H$ 与 $J$ 对参数 $\rho$ 的依赖考虑进来。这个变体的证明在\cref{sec:variants-parameters}中给出。
+\end{proof}
+
+现在我们可以定义所想要的映射 $\varphi_{\rho}$ 与 $\psi_{\rho}$ 了：我们令
+\[
+\varphi_{\rho}=\exp_{w_{\rho}}\gamma(\rho)
+\qquad\text{与}\qquad
+\psi_{\rho}(s,t)=\varphi_{\rho}(s-\rho,t)\text{。}
+\]
+
+按定义，$\varphi_{\rho}$ 是
+\[
+\frac{\partial\varphi_{\rho}}{\partial s}+J_{s+\rho}\frac{\partial\varphi_{\rho}}{\partial t}+\operatorname{grad}H_{s+\rho,t}\bigl(\varphi_{\rho}\bigr)=0
+\]
+的一个解，并且满足
+\[
+\lim_{s\to-\infty}\varphi_{\rho}(s,t)=x(t)
+\qquad\text{与}\qquad
+\lim_{s\to+\infty}\varphi_{\rho}(s,t)=z(t)\text{，}
+\]
+从而对每个 $\rho\ge\rho_{0}$，$\psi_{\rho}\in\scr{M}^{\varGamma}(x,z)$。
+
+\subsection{$\psi_{\rho}$ 的性质}
+\label{subsec:properties-psi-rho}
+
+我们现在来验证 $\psi_{\rho}$ 具有所想要的那些性质：
+\begin{enumerate}[label=(\arabic*)]
+\item 它趋于 $(u,\widehat{v})$。我们利用\trPregluing{} $w_{\rho}$ 的那些性质与 $\gamma(\rho)$ 的那些性质（正如在\cref{thm:gamma-newton-picard}中所陈述的），如同\cref{sec:construction-psi-rho}中那样得到
+\[
+\lim_{\rho\to+\infty}\varphi_{\rho}(s-\rho,t)=u(s,t)
+\qquad\text{与}\qquad
+\lim_{\rho\to+\infty}\varphi_{\rho}(s+\rho,t)=v(s,t)\text{，}
+\]
+换句话说，即
+\[
+\lim_{\rho\to+\infty}\psi_{\rho}(s,t)=u(s,t)
+\qquad\text{与}\qquad
+\lim_{\rho\to+\infty}\psi_{\rho}(s+2\rho,t)=v(s,t)\text{，}
+\]
+从而我们有
+\[
+\lim_{\rho\to+\infty}\psi_{\rho}=(u,\widehat{v})\in\scr{M}^{\varGamma}(x,y)\times\scr{L}_{(H^{b},J^{b})}(y,z)\text{。}
+\]
+
+\item 它是一个\trImmersion。让我们来证明 $\psi'(\rho)\ne0$。否则，
+\[
+\frac{\partial\varphi}{\partial\rho}\bigl(\rho,s-\rho,t\bigr)-\frac{\partial\varphi}{\partial s}\bigl(\rho,s-\rho,t\bigr)=0\text{，}
+\]
+从而 $\partial\varphi/\partial\rho=\partial\varphi/\partial s$。与\cref{sec:psi-immersion}中相同的证明（把 $\alpha_{n}$ 换成 $1$）导致一个矛盾。
+
+\item 它是\trInjective{}的。事实上，它的像包含在 $\scr{M}^{\varGamma}(x,z)$ 的一个维数为 $1$ 的\trConnectedComponent{}之中。这个\trConnectedComponent{}不是\trCompact{}的，因为
+\[
+\lim_{\rho\to+\infty}\psi(\rho)\notin\scr{M}^{\varGamma}(x,z)\text{。}
+\]
+因此它是 $\RR$ 中的一个区间，而 $\psi$ 的\trInjective{}性便由它是\trImmersion{}的这一事实（以及由\trRolle{}定理……）推出。
+\end{enumerate}
+
+我们还须证明趋于极限的方式的唯一性（参见\cref{fig:two-arcs-same-endpoint}），也就是\cref{thm:gluing-gamma}的最后那个断言。如同在该陈述中那样，我们考虑一个趋于 $(u,\widehat{v})$ 的序列 $(\ell_{n})_{n}$，并证明对充分大的 $n$，$\ell_{n}\in\operatorname{Im}\psi$。如同\cref{thm:subsequence-suffices}中那样，只需对 $(\ell_{n})$ 的一个子序列证明这一点就够了（并且下面的诸陈述全都在“必要时抽取一个子序列之后”成立）。如同\cref{sec:uniqueness-gluing}中那样（并且一如既往），我们将分几步进行（但我们不需要\cref{sec:uniqueness-gluing}的第一步）：
+\begin{enumerate}[label=(\arabic*)]
+\item 我们证明一个命题，它是\cref{thm:lift-exp-decay}的一个简化的类似物。
+
+\begin{proposition}\label{thm:exists-rho-n-yn}
+存在一个趋于 $+\infty$ 的实数序列 $(\rho_{n})$，并且对每个 $n$，存在一个向量 $Y_{n}\in w_{\rho_{n}}^{\star}TW$，使得对每个 $(s,t)\in\RR\times S^{1}$，我们有
+\[
+\ell_{n}(s+\rho_{n},t)=\exp_{w_{\rho_{n}}(s,t)}Y_{n}(s,t)\text{。}
+\]
+此外，$\lim_{n\to+\infty}\bigl\|Y_{n}\bigr\|_{\infty}=0$。
+\end{proposition}
+
+\item 我们证明\cref{thm:yn-w1p}的一个类似物。
+
+\begin{proposition}\label{thm:yn-w1p-null}
+\trVectorField{} $Y_{n}$ 属于 $W^{1,p}\bigl(w_{\rho_{n}}^{\star}TW\bigr)$。此外，$\lim_{n\to+\infty}\bigl\|Y_{n}\bigr\|_{W^{1,p}}=0$。
+\end{proposition}
+
+\item 最后，我们来结束证明。
+\end{enumerate}
+
+\begin{proof}[\cref{thm:exists-rho-n-yn}的证明]
+让我们回忆一下：$R$ 表示一个正实数，使得对 $s\ge R$，\trHomotopy{} $\varGamma(s)$ 是\trStationary{}的，等于 $(H^{b},J^{b})$。为了简化记号，在这个证明中，我们将在定义于 $\RR\times S^{1}$ 上的诸映射的表达式里省去变量 $t\in S^{1}$。
+
+我们以\cref{thm:trajectories-action-ordering}的一个类似物来开始这个证明。
+
+\begin{lemma}\label{thm:action-order-limits}
+设 $(\lambda_{n})$ 是 $\scr{M}^{\varGamma}(x,z)$ 中的一个序列，并设 $(s_{n})$、$(\sigma_{n})$ 是两个趋于 $+\infty$ 的实数序列。假设
+\[
+\lim_{n\to+\infty}\lambda_{n}(s+s_{n})=a(s)
+\qquad\text{与}\qquad
+\lim_{n\to+\infty}\lambda_{n}(s+\sigma_{n})=b(s)
+\]
+其中
+\[
+a\in\scr{M}_{(H^{b},J^{b})}(\alpha,\beta)\text{，}\qquad
+b\in\scr{M}_{(H^{b},J^{b})}(\gamma,\delta)
+\]
+（$\alpha$、$\beta$、$\gamma$ 与 $\delta$ 是 $\scr{A}_{H^{b}}$ 的\trCriticalPoint）。那么我们有：
+\begin{itemize}
+\item 若 $\lim_{n\to+\infty}(s_{n}-\sigma_{n})=-\infty$，则
+\[
+\scr{A}_{H^{b}}(\alpha)\ge\scr{A}_{H^{b}}(\beta)\ge\scr{A}_{H^{b}}(\gamma)\ge\scr{A}_{H^{b}}(\delta)\text{。}
+\]
+\item 若 $\lim_{n\to+\infty}(s_{n}-\sigma_{n})=+\infty$，则
+\[
+\scr{A}_{H^{b}}(\gamma)\ge\scr{A}_{H^{b}}(\delta)\ge\scr{A}_{H^{b}}(\alpha)\ge\scr{A}_{H^{b}}(\beta)\text{。}
+\]
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+这两个断言可以用完全类似的方式来证明。因此，让我们只证明第二个。我们假设
+\[
+\lim(s_{n}-\sigma_{n})=+\infty\text{。}
+\]
+对 $s\ge R$，$\lambda_{n}(s)$ 是 $(H^{b},J^{b})$ 的\trFloerEquation{}的一个解，于是特别地，$s\mapsto\scr{A}_{H^{b}}\bigl(\lambda_{n}(s)\bigr)$ 是 $[R,+\infty[$ 上的一个递减函数。我们取定 $\sigma$ 与 $\tau\in\RR$，并选取 $n$ 充分大，使得
+\[
+s_{n}+\tau>\sigma_{n}+\sigma\ge R\text{。}
+\]
+于是我们有\footnote{译注：原书此式第二项印作 $\lambda_{n}(\sigma_{n}+\tau)$；按上一句取 $n$ 使 $s_{n}+\tau>\sigma_{n}+\sigma\ge R$（$\sigma$ 与 $\tau$ 是独立取定的），并且随后令 $n$ 趋于无穷时应得 $\scr{A}_{H^{b}}\bigl(a(\tau)\bigr)\le\scr{A}_{H^{b}}\bigl(b(\sigma)\bigr)$，第二项疑应为 $\lambda_{n}(\sigma_{n}+\sigma)$。此处径改。——译者注}
+\[
+\scr{A}_{H^{b}}\bigl(\lambda_{n}(s_{n}+\tau)\bigr)<\scr{A}_{H^{b}}\bigl(\lambda_{n}(\sigma_{n}+\sigma)\bigr)\text{。}
+\]
+让 $n$ 趋于无穷，我们便得到
+\[
+\scr{A}_{H^{b}}\bigl(a(\tau)\bigr)\le\scr{A}_{H^{b}}\bigl(b(\sigma)\bigr)\text{，}
+\]
+这个不等式对每个 $\tau$ 与每个 $\sigma$ 都成立。只需让 $\sigma$ 趋于 $+\infty$、$\tau$ 趋于 $-\infty$，即可结束这个引理的证明。
+\end{proof}
+
+我们可以利用这个引理来证明下面的结果。
+
+\begin{lemma}\label{thm:elln-sn-action-level}
+设 $(\ell_{n})$ 是 $\scr{M}^{\varGamma}(x,z)$ 中一个趋于 $(u,\widehat{v})\in\scr{M}^{\varGamma}(x,y)\times\scr{L}_{(H^{b},J^{b})}(y,z)$ 的序列。那么：
+\begin{enumerate}[label=(\arabic*)]
+\item 存在一个实数序列 $(s_{n})$，其中 $s_{n}\ge R$，趋于 $+\infty$，使得 $\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)=\scr{A}_{H^{b}}(y)$。
+\item 此外，$\lim_{n\to+\infty}\ell_{n}(s+s_{n})=y$。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+如同前一个引理的证明中那样，函数 $s\mapsto\scr{A}_{H^{b}}\bigl(\ell_{n}(s)\bigr)$ 对 $s\ge R$ 是递减的。由于 $u\in\scr{M}^{\varGamma}(x,y)$，对 $s\mapsto\scr{A}_{H^{b}}\bigl(u(s)\bigr)$ 也是如此。我们取定一个 $s\ge R$。由于 $\lim\ell_{n}(s)=u(s)$，我们有
+\[
+\lim_{n\to+\infty}\scr{A}_{H^{b}}\bigl(\ell_{n}(s)\bigr)=\scr{A}_{H^{b}}\bigl(u(s)\bigr)>\scr{A}_{H^{b}}(y)\text{。}
+\]
+特别地，对充分大的 $n$，$\scr{A}_{H^{b}}\bigl(\ell_{n}(s)\bigr)>\scr{A}_{H^{b}}(y)$。
+
+我们已经取定了 $\widehat{v}$ 的一个\trLift{} $v\in\scr{M}_{(H^{b},J^{b})}(y,z)$。$(\ell_{n})$ 的\trConvergence{}蕴含：存在一个趋于 $+\infty$ 的序列 $(\sigma_{n})$，满足
+\[
+\lim_{n\to+\infty}\ell_{n}(s+\sigma_{n})=v(s)\text{。}
+\]
+特别地，对上面取定的那个 $s$，我们有
+\[
+\lim_{n\to+\infty}\scr{A}_{H^{b}}\bigl(\ell_{n}(s+\sigma_{n})\bigr)=\scr{A}_{H^{b}}\bigl(v(s)\bigr)<\scr{A}_{H^{b}}(y)\text{，}
+\]
+这蕴含：对充分大的 $n$，
+\[
+\scr{A}_{H^{b}}\bigl(\ell_{n}(s+\sigma_{n})\bigr)<\scr{A}_{H^{b}}(y)\text{。}
+\]
+由此我们推出：对充分大的 $n$，存在一个 $s_{n}\in[s,s+\sigma_{n}[$，使得 $\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)=\scr{A}_{H^{b}}(y)$。
+
+假设序列 $(s_{n})$ 是\trBounded{}的。在必要时抽取一个子序列之后，我们可以——而且我们也确实如此——假定它趋于一个极限 $s^{\star}\ge R$。那么
+\[
+\lim_{n\to+\infty}\ell_{n}(s+s_{n})=u\bigl(s+s^{\star}\bigr)\qquad\text{于 } \cC^{\infty}_{\mathrm{loc}}\text{ 中。}
+\]
+特别地，$\lim\ell_{n}(s_{n})=u(s^{\star})$，从而
+\[
+\lim_{n\to+\infty}\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)=\scr{A}_{H^{b}}\bigl(u(s^{\star})\bigr)>\scr{A}_{H^{b}}(y)\text{，}
+\]
+这就给出了一个矛盾，因为左边的序列是常值的，且等于 $\scr{A}_{H^{b}}(y)$。因此（一如既往在必要时抽取一个子序列之后），$\lim s_{n}=+\infty$。
+
+我们现已证明了引理的第一个断言。第二个断言是它的一个推论。我们利用\cref{thm:translation-limit-stationary}来证明
+\[
+\lim_{n\to+\infty}\ell_{n}(s+s_{n})=a\in\scr{M}_{(H^{b},J^{b})}(\alpha,\beta)
+\qquad\text{对 }\alpha,\beta\in\operatorname{Crit}\bigl(\scr{A}_{H^{b}}\bigr)\text{。}
+\]
+注意到
+\[
+\scr{A}_{H^{b}}\bigl(a(0)\bigr)=\lim_{n\to+\infty}\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)=\scr{A}_{H^{b}}(y)
+\]
+（并且回忆一下 $\lim\ell_{n}(s+\sigma_{n})=v$）。假设 $\sigma_{n}-s_{n}$ 是\trBounded{}的，从而（在必要时抽取一个子序列之后）\trConvergence{}于某个 $s^{\bullet}$。那么 $v(s)=a(s+s^{\bullet})$，特别地，
+\[
+\scr{A}_{H^{b}}\bigl(v(-s^{\bullet})\bigr)=\scr{A}_{H^{b}}\bigl(a(0)\bigr)=\scr{A}_{H^{b}}(y)\text{，}
+\]
+而这是不可能的，因为 $v\in\scr{M}_{(H^{b},J^{b})}(y,z)$。这意味着 $\sigma_{n}-s_{n}$ 不是\trBounded{}的。于是前一个引理蕴含
+\[
+\scr{A}_{H^{b}}\bigl(a(s)\bigr)=\scr{A}_{H^{b}}(y)\qquad\text{对每个 } s\text{。}
+\]
+因此 $a$ 不依赖于 $s$，从而是 $\scr{A}_{H^{b}}$ 的一个\trCriticalPoint。由于 $\scr{A}_{H^{b}}$ 的诸\trCriticalValue{}两两不同（必要时参见\cref{thm:distinct-critical-values}），所以我们就有 $a=y$，引理的证明至此结束。\footnote{译注：本引理未曾排除破碎极限的尾端分量\trDegenerate{}为常值解的情形，而原书 p.444（注记~11.5.7）自认无法排除这种常值解——因为无法排除诸\trHomotopy{} $\varGamma'$、$\varGamma''$、$\varGamma_{\rho}$ 中某一条为平凡\trHomotopy。反例要点：取 $\varGamma=\mathrm{Id}$、$x=y$、$u$ 为 $x$ 处的常值轨迹，并取非常值的 $v\in\scr{M}_{(H^{b},J^{b})}(x,z)$（$\mu(x)-\mu(z)=1$），令 $\ell_{n}(s,t)=v(s-n,t)$；则 $(\ell_{n})$ 依本引理的意义\trConvergence{}于 $(u,\widehat{v})$，但对每个有限的 $s$ 恒有 $\scr{A}_{H^{b}}\bigl(\ell_{n}(s)\bigr)<\scr{A}_{H^{b}}(x)=\scr{A}_{H^{b}}(y)$，使 $\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)=\scr{A}_{H^{b}}(y)$ 的时刻 $s_{n}$ 并不存在——上面的证明在 $u$ 常值时得不出 $\scr{A}_{H^{b}}\bigl(u(s)\bigr)>\scr{A}_{H^{b}}(y)$，随后三球 $B(x,\delta)$、$B(y,\delta)$、$B(z,\delta)$ 的选取亦无从进行。此处本应对常值尾端另行处理（或改用邻域\trSection{}）。本译照原书排印，存疑备案。——译者注}
+\end{proof}
+
+我们再次沿用\cref{thm:lift-exp-decay}的记号。我们取定一个 $\varepsilon>0$，并选取一个满足\cref{thm:exp-convex-ball}的 $\delta>0$。考虑\trLoopSpace{} $\scr{L}W$ 中（按 $\cC^{0}$ 距离的）诸开球 $B(x,\delta)$、$B(y,\delta)$ 与 $B(z,\delta)$。在必要时缩小 $\delta$，我们可以——而且我们也确实如此——假定这些球两两不相交，并且 $u(0)\notin B(x,\delta)\cup B(y,\delta)$。由前一个引理，我们知道 $\ell_{n}(s+s_{n})$ 趋于 $y$，从而对充分大的 $n$，$\ell_{n}(s_{n})\in B(y,\delta)$。我们定义下列各数：
+\[
+\begin{aligned}
+\sigma'_{n}&=\sup\bigl\{s\ \bigm|\ \ell_{n}\bigl(]{-\infty},s]\bigr)\subset B(x,\delta)\bigr\}\\
+\sigma_{n}&=\inf\bigl\{s<s_{n}\ \bigm|\ \ell_{n}\bigl([s,s_{n}]\bigr)\subset B(y,\delta)\bigr\}\\
+\tau_{n}&=\sup\bigl\{s>s_{n}\ \bigm|\ \ell_{n}\bigl([s_{n},s]\bigr)\subset B(y,\delta)\bigr\}\\
+\tau'_{n}&=\inf\bigl\{s\ \bigm|\ \ell_{n}\bigl([s,+\infty[\bigr)\subset B(z,\delta)\bigr\}\text{。}
+\end{aligned}
+\]
+
+注意到
+\[
+\ell_{n}\bigl(\sigma'_{n}\bigr)\in\partial B(x,\delta)\text{，}\quad
+\ell_{n}(\sigma_{n})\text{ 与 }\ell_{n}(\tau_{n})\in\partial B(y,\delta)\quad\text{以及 }\ell_{n}\bigl(\tau'_{n}\bigr)\in\partial B(z,\delta)\text{。}
+\]
+由于这三个球两两不相交，我们有
+\[
+\sigma'_{n}\le\sigma_{n}\le\tau_{n}\le\tau'_{n}\text{。}
+\]
+此外，由于 $\lim_{n\to+\infty}\ell_{n}(s)=u(s)$，对充分大的 $n$，我们有
+\[
+\ell_{n}(0)\notin B(x,\delta)\cup B(y,\delta)\text{，}
+\]
+从而
+\[
+\sigma'_{n}\le0\le\sigma_{n}\text{。}
+\]
+
+现在让我们来证明下面这个结果。
+
+\begin{lemma}\label{thm:sigma-tau-bounded}
+诸序列 $(\sigma'_{n})$、$(\sigma_{n})$ 与 $(\tau'_{n}-\tau_{n})$ 都是\trBounded{}的。此外，存在一个 $\tau^{\star}\in\RR$，使得
+\[
+\lim_{n\to+\infty}\ell_{n}(s+\tau_{n})=v\bigl(s+\tau^{\star}\bigr)\text{。}
+\]
+\end{lemma}
+
+\begin{proof}
+假设 $(\sigma'_{n})$ 不是\trBounded{}的，于是在必要时抽取一个子序列之后，$\lim_{n\to+\infty}\sigma'_{n}=-\infty$。令
+\[
+\lambda_{n}(s)=\ell_{n}\bigl(s+\sigma'_{n}\bigr)\text{。}
+\]
+\cref{thm:translation-limit-stationary}保证了存在一个 $w\in\scr{M}_{(H^{a},J^{a})}$，使得
+\[
+\lim_{n\to+\infty}\lambda_{n}(s)=w(s)\text{。}
+\]
+由于对每个 $s<0$ 都有 $\lambda_{n}(s)\in B(x,\delta)$，故对某个 $x'$，有 $w\in\scr{M}_{(H^{a},J^{a})}(x,x')$，并且 $x\ne x'$，这是因为
+\[
+w(0)=\lim_{n\to+\infty}\lambda_{n}(0)=\lim_{n\to+\infty}\ell_{n}\bigl(\sigma'_{n}\bigr)\in\partial B(x,\delta)\text{。}
+\]
+让我们来证明这是荒谬的。我们知道，对 $s<-R$，$\ell_{n}$ 与 $u$ 都是与 $(H^{a},J^{a})$ 相关联的\trFloerEquation{}的解。特别地，函数
+\[
+s\longmapsto\scr{A}_{H^{a}}\bigl(\ell_{n}(s)\bigr)
+\qquad\text{与}\qquad
+s\longmapsto\scr{A}_{H^{a}}\bigl(u(s)\bigr)
+\]
+对 $s<-R$ 是递减的。函数 $s\mapsto\scr{A}_{H^{a}}\bigl(w(s)\bigr)$ 也是如此。于是我们选取 $s_{1}$ 与 $s_{2}<-R$，使得 $\scr{A}_{H^{a}}\bigl(u(s_{1})\bigr)>\scr{A}_{H^{a}}\bigl(w(s_{2})\bigr)$；也就是说，使得
+\[
+\lim_{n\to+\infty}\scr{A}_{H^{a}}\bigl(\ell_{n}(s_{1})\bigr)>\lim_{n\to+\infty}\scr{A}_{H^{a}}\bigl(\ell_{n}(s_{2}+\sigma'_{n})\bigr)\text{。}
+\]
+对充分大的 $n$，我们对 $\sigma'_{n}$ 所作的假设蕴含：必有 $s_{2}+\sigma'_{n}<s_{1}<-R$，从而
+\[
+\scr{A}_{H^{a}}\bigl(\ell_{n}(s_{1})\bigr)<\scr{A}_{H^{a}}\bigl(\ell_{n}(s_{2}+\sigma'_{n})\bigr)\text{，}
+\]
+这正是我们所要的矛盾。因此，$(\sigma'_{n})$ 是\trBounded{}的。
+
+现在我们转向 $(\sigma_{n})$，来证明这个序列也是\trBounded{}的。假设它不是，从而（一如既往在必要时抽取一个子序列之后）它趋于 $+\infty$。如同先前那样，我们发现
+\[
+\lim_{n\to+\infty}\ell_{n}(s+\sigma_{n})=w'\in\scr{M}_{(H^{b},J^{b})}
+\]
+其中
+\[
+w'(0)=\lim_{n\to+\infty}\ell_{n}(\sigma_{n})\in\partial B(y,\delta)\text{。}
+\]
+特别地，序列 $(s_{n}-\sigma_{n})$ 趋于 $+\infty$，这是因为如果我们假定它是\trBounded{}的，那么由于 $\lim_{n\to+\infty}\ell_{n}(s+s_{n})=y$，我们就会推出
+\[
+\lim_{n\to+\infty}\ell_{n}(s+\sigma_{n})=y
+\]
+从而 $w'=y$，而这是荒谬的。因此，每个 $s>0$ 都满足：对充分大的 $n$，$s+\sigma_{n}\in[\sigma_{n},s_{n}]$，从而 $\ell_{n}(s+\sigma_{n})\in B(y,\delta)$。于是
+\[
+w'(s)=\lim_{n\to+\infty}\ell_{n}(s+\sigma_{n})\in\overline{B}(y,\delta)\text{，}
+\]
+特别地，对 $\scr{A}_{H^{b}}$ 的某个\trCriticalPoint{} $y'\ne y$，有 $w'\in\scr{M}_{(H^{b},J^{b})}(y',y)$。如同先前那样，取 $s_{1},s_{2}>R$ 使得
+\[
+\scr{A}_{H^{b}}\bigl(u(s_{1})\bigr)<\scr{A}_{H^{b}}\bigl(w'(s_{2})\bigr)\text{，}
+\]
+便可揭示出一个矛盾。
+
+现在让我们转向序列 $(\tau'_{n}-\tau_{n})$。对充分大的 $n$，我们有 $s_{n}>R$（由\cref{thm:elln-sn-action-level}），从而 $\tau'_{n}\ge\tau_{n}\ge s_{n}>R$。特别地，
+\[
+\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)>\scr{A}_{H^{b}}\bigl(\ell_{n}(\tau_{n})\bigr)>\scr{A}_{H^{b}}\bigl(\ell_{n}(\tau'_{n})\bigr)>\scr{A}_{H^{b}}(z)\text{。}
+\]
+\cref{thm:elln-sn-action-level}告诉我们 $\scr{A}_{H^{b}}\bigl(\ell_{n}(s_{n})\bigr)=\scr{A}_{H^{b}}(y)$，从而
+\[
+\scr{A}_{H^{b}}\bigl(\ell_{n}(\tau_{n})\bigr)
+\quad\text{与}\quad
+\scr{A}_{H^{b}}\bigl(\ell_{n}(\tau'_{n})\bigr)\in\left]\scr{A}_{H^{b}}(z),\scr{A}_{H^{b}}(y)\right[
+\]
+并且 $\ell_{n}$ 限制在区间 $[\tau_{n},\tau'_{n}]$ 上是与 $(H^{b},J^{b})$ 相关联的\trFloerEquation{}的一个解。与\cref{thm:sigma-prime-difference-bounded}的证明中同样的论证随后便表明 $(\tau_{n}-\tau'_{n})$ 是\trBounded{}的。
+
+最后，让我们来证明这最后一个断言。我们再一次利用\cref{thm:translation-limit-stationary}，它断言
+\[
+\lim_{n\to+\infty}\ell_{n}(s+\tau_{n})=w''\in\scr{M}_{(H^{b},J^{b})}
+\]
+其中，如同上面那样，对某个 $y''\ne y$，有 $w''\in\scr{M}_{(H^{b},J^{b})}(y,y'')$（利用了 $(\tau_{n}-s_{n})$ 趋于 $+\infty$ 这一事实，它的证明也与 $(s_{n}-\sigma_{n})$ 的情形一样进行）。$\ell_{n}$ 上的假设还蕴含：存在一个趋于 $+\infty$ 的序列 $(\rho_{n})$，使得 $\lim_{n\to+\infty}\ell_{n}(s+\rho_{n})=v$。于是\cref{thm:action-order-limits}蕴含：序列 $(\tau_{n}-\rho_{n})$ 是\trBounded{}的，从而（在必要时抽取一个子序列之后）是\trConvergence{}的，其极限记作 $\tau^{\star}$。但是这样一来
+\[
+\lim_{n\to+\infty}\ell_{n}(s+\tau_{n})=v\bigl(s+\tau^{\star}\bigr)
+\]
+引理便得证了。
+\end{proof}
+
+现在让我们来结束\cref{thm:exists-rho-n-yn}的证明。令
+\[
+\rho_{n}=\frac{\tau_{n}-\tau^{\star}}{2}
+\]
+（正是 $\tau^{\star}$，其存在性我们刚刚证明过），并且让我们来证明 $(\rho_{n})$ 满足我们所宣布的那些性质。考虑\trPregluing{} $w_{\rho_{n}}$，回顾一下，它定义为
+\[
+w_{\rho_{n}}(s)=
+\left\{
+\begin{array}{ll}
+u(s+\rho_{n}) & \text{若 } s\le -1\\[10pt]
+\begin{aligned}
+\exp_{y}\Bigl(\beta^{-}(s)\exp_{y}^{-1}&\bigl(u(s+\rho_{n})\bigr)\\
+&+\ \beta^{+}(s)\exp_{y}^{-1}\bigl(v(s-\rho_{n})\bigr)\Bigr)
+\end{aligned}
+& \text{若 } s\in[-1,1]\\[10pt]
+v(s-\rho_{n}) & \text{若 } s\ge 1\text{。}
+\end{array}
+\right.
+\]
+我们将要证明
+\[
+\ell_{n}(s+\rho_{n})=\exp_{w_{\rho_{n}}(s)}X(s)\text{，}\qquad\text{其中 } \bigl\|X\bigr\|_{\infty}<\varepsilon\text{。}
+\]
+选取 $A$ 与 $B\in\RR$，使得：
+\begin{itemize}
+\item $A-\tau^{\star}<0$，$B-\tau^{\star}>\tau'_{n}-\tau_{n}$，并且 $[\sigma'_{n},\sigma_{n}]\subset[A,B]$。
+\item 对 $s\le A$，$u(s)\in B(x,\delta)$ 且 $v(s)\in B(y,\delta)$。
+\item 对 $s\ge B$，$u(s)\in B(y,\delta)$ 且 $v(s)\in B(z,\delta)$。
+\end{itemize}
+我们将来证明所要的关系对每个 $s\in\RR$ 都成立，办法是把 $\RR$ 切成若干个区间（其方式类似于我们证明\cref{thm:lift-exp-decay}时所做的那样）：
+\begin{enumerate}[label=(\arabic*)]
+\item 在 $]{-\infty},A-\rho_{n}]$ 上。由于 $s+\rho_{n}<A$，
+\[
+w_{\rho_{n}}(s)=u(s+\rho_{n})\in B(x,\delta)\text{，}
+\]
+并且由于 $s+\rho_{n}<A<\sigma'_{n}$，
+\[
+\ell_{n}(s+\rho_{n})\in B(x,\delta)\text{。}
+\]
+在这种情形，该关系由\cref{thm:exp-convex-ball}推出。
+\item 在 $[A-\rho_{n},B-\rho_{n}]$ 上。这一次，$s+\rho_{n}\in[A,B]$，并且我们有 $w_{\rho_{n}}(s)=u(s+\rho_{n})$。此外，$\ell_{n}(s)$ 在 $[A,B]$ 上一致地趋于 $u(s)$，从而对充分大的 $n$ 与 $s\in[A,B]$，
+\[
+\ell_{n}(s)=\exp_{u(s)}Y(s)\text{，}\qquad\text{其中 } \bigl\|Y\bigr\|_{\infty}<\varepsilon\text{。}
+\]
+于是我们令 $X(s)=Y(s+\rho_{n})$，这样显然有 $\bigl\|X\bigr\|_{\infty}<\varepsilon$，并且
+\[
+\ell_{n}(s+\rho_{n})=\exp_{u(s+\rho_{n})}Y(s+\rho_{n})=\exp_{w_{\rho_{n}}(s)}X(s)\text{。}
+\]
+\item 在 $[B-\rho_{n},A+\rho_{n}]$ 上。此时
+\[
+s+\rho_{n}\in[B,A+2\rho_{n}]=[B,A+\tau_{n}-\tau^{\star}]
+\qquad\text{与}\qquad
+s-\rho_{n}\in[B-2\rho_{n},A]\text{，}
+\]
+这蕴含
+\[
+u(s+\rho_{n})\in B(y,\delta)
+\qquad\text{与}\qquad
+v(s-\rho_{n})\in B(y,\delta)\text{。}
+\]
+并且，由于 $B>\sigma_{n}$ 与 $A+\tau_{n}-\tau^{\star}<\tau_{n}$，
+\[
+\ell_{n}(s+\rho_{n})\in B(y,\delta)\text{。}
+\]
+所要的关系随即由\cref{thm:exp-convex-ball}推出。
+\item 在 $[A+\rho_{n},B+\rho_{n}]$ 上。这一次，
+\[
+s+\rho_{n}\in[A+2\rho_{n},B+2\rho_{n}]=[A+\tau_{n}-\tau^{\star},B+\tau_{n}-\tau^{\star}]\text{，}\quad
+s-\rho_{n}\in[A,B]
+\]
+并且 $w_{\rho_{n}}(s)=v(s-\rho_{n})$。在\trCompact{}集 $[A-\tau^{\star},B-\tau^{\star}]$ 上，序列 $\ell_{n}(s+\tau_{n})$ 由\cref{thm:sigma-tau-bounded}\trUniformConvergence{}于 $v(s+\tau^{\star})$。特别地，若 $n$ 充分大且 $s\in[A-\tau^{\star},B-\tau^{\star}]$，则
+\[
+\ell_{n}(s+\tau_{n})=\exp_{v(s+\tau^{\star})}Y(s)\text{，}\qquad\text{其中 } \bigl\|Y\bigr\|_{\infty}<\varepsilon\text{。}
+\]
+我们在这个等式中把 $s$ 换成 $s-\tau^{\star}-\rho_{n}$，便发现：对 $s\in[A+\rho_{n},B+\rho_{n}]$，
+\[
+\ell_{n}(s+\tau_{n}-\tau^{\star}-\rho_{n})=\exp_{v(s-\rho_{n})}Y\bigl(s-\tau^{\star}-\rho_{n}\bigr)\text{，}
+\]
+这也可以写成：对所要区间中的 $s$，$\ell_{n}(s+\rho_{n})=\exp_{w_{\rho_{n}}(s)}X(s)$，其中 $X(s)=Y(s-\tau^{\star}-\rho_{n})$ 在这个区间上满足 $\bigl\|X\bigr\|_{\infty}<\varepsilon$。
+\item 在 $[B+\rho_{n},+\infty[$ 上。此时
+\[
+s+\rho_{n}\in[B+2\rho_{n},+\infty[=[B+\tau_{n}-\tau^{\star},+\infty[\text{，}\quad
+s-\rho_{n}\in[B,+\infty[
+\]
+并且 $w_{\rho_{n}}(s)=v(s-\rho_{n})$。于是，由于 $B+\tau_{n}-\tau^{\star}>\tau'_{n}$，
+\[
+w_{\rho_{n}}(s)\in B(z,\delta)
+\qquad\text{与}\qquad
+\ell_{n}(s+\rho_{n})\in B(z,\delta)\text{，}
+\]
+这样，再一次地，所要的关系由\cref{thm:exp-convex-ball}推出。
+\end{enumerate}
+
+\cref{thm:exists-rho-n-yn}至此得证。
+\end{proof}
+
+\begin{proof}[\cref{thm:yn-w1p-null}的证明]
+它与\cref{subsec:step3-proof-964}中\cref{thm:yn-w1p}的证明类似，要利用\cref{thm:yn-exp-decay}、\cref{thm:chi-n-w1p}与\cref{thm:taylor-remainder-estimate}。这三条引理在目前的语境下仍然成立：
+\begin{itemize}
+\item 至于\cref{thm:yn-exp-decay}，证明是完全一样的，它基于这样一个事实：作为某个\trFloerEquation{}的解的 $\ell_{n}$ 具有\trExponentialDecay{}性质。
+\item \cref{thm:chi-n-w1p}的证明由于 $W_{\rho}$ 现在的维数为 $1$ 这一事实而得到简化。
+\item 最后，\cref{thm:taylor-remainder-estimate}的类似物可以以完全相同的方式得证，因为\trFloer{}算子 $\scr{F}^{\varGamma}_{\rho}$ 与 $\scr{F}_{\rho}$ 具有同样的性质。
+\end{itemize}
+\end{proof}
+
+\textbf{唯一性证明的结尾。}
+
+这与上面完全类似，即\cref{thm:psi-lambda-family}（这一次是在\cref{subsec:step4}中）的相应性质的证明。把\cref{thm:general-newton-picard}与\cref{thm:gamma-n-continuous}应用于算子
+\[
+F^{\varGamma}_{\rho_{n}}\colon W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\longrightarrow L^{p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)\text{，}
+\]
+我们便得到：存在一个不依赖于 $n$ 的 $\varepsilon_{1}>0$，以及一个连续映射
+\[
+\gamma_{n}\colon\operatorname{Ker}\bigl(L^{\varGamma}_{\rho_{n}}\bigr)\cap B(0,\varepsilon_{1})\longrightarrow W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+使得对每个 $h$，$F^{\varGamma}_{\rho_{n}}\bigl(\gamma_{n}(h)\bigr)=0$，并且 $\gamma_{n}(h)$ 是\footnote{译注：原书此处印作 $h+W_{u}^{\perp}\cap B(0,\varepsilon_{1})$；按\cref{thm:lrho-gamma-lower-bound}之前定义的子空间 $W_{\rho}^{\perp}$（右逆 $G_{\rho}$ 的像即 $W_{\rho}^{\perp}$），此处 $u$ 无定义，疑应为 $W_{\rho_{n}}^{\perp}$。此处径改。——译者注} $h+W_{\rho_{n}}^{\perp}\cap B(0,\varepsilon_{1})$ 中具有这一性质的唯一元素。利用\cref{thm:exists-rho-n-yn}与\cref{thm:yn-w1p-null}，我们便得到：对充分大的 $n$，存在
+\[
+h_{n}\in B(0,\varepsilon_{1})\subset W^{1,p}\bigl(\RR\times S^{1};\RR^{2n}\bigr)
+\]
+使得
+\[
+\ell_{n}(s+\rho_{n})=\exp_{w_{\rho_{n}}(s)}\bigl(i_{\rho_{n}}\bigl(\gamma_{n}(h_{n}(s))\bigr)\bigr)
+\]
+（也就是说，$\ell_{n}(s+\rho_{n})$ 是一个由\trNewton--\trPicard{}方法得到的解）。另一方面，公式\footnote{译注：原书此式 $\gamma_{n}$ 的自变元印作 $h_{n}$；按本句“对每个 $h$”与下式 $I_{\varepsilon}$ 中的 $\gamma_{n}(h)$，此处的映射以 $h$ 为变量，疑为 $h$ 之误。此处径改。——译者注}
+\[
+h\longmapsto\Bigl(\exp_{w_{\rho_{n}}}\bigl(i_{\rho_{n}}\bigl(\gamma_{n}(h)\bigr)\bigr)\Bigr)(s-\rho_{n},t)
+\]
+定义了一个从 $B(0,\varepsilon_{1})\cap\operatorname{Ker}\bigl(L^{\varGamma}_{\rho_{n}}\bigr)$ 到解空间 $\scr{M}^{\varGamma}(x,z)$ 的连续映射，后者的维数为 $1$。
+
+设 $\overline{\rho}_{0}$ 是一个大于 $\rho_{0}$ 的实数，它由\cref{thm:gluing-gamma}的第一部分给出。对 $\varepsilon\in\,]0,\varepsilon_{1}]$，设 $I_{\varepsilon}$ 是包含于 $\scr{M}^{\varGamma}(x,z)$ 之中、并由\footnote{译注：原书此式并集中各项印作 $\exp_{\rho_{n}}\bigl(i_{\rho_{n}}\bigl(\gamma_{n}(h)\bigr)\bigr)$；下标 $\rho_{n}$ 为数字，单独作为 $\exp$ 的下标无意义，按上文同一公式应为 $\exp_{w_{\rho_{n}}}$。此外，各项亦未写出平移：$I_{\varepsilon}$ 的元素须是取值于 $W$ 的映射（$\scr{M}^{\varGamma}(x,z)$ 的成员，试比较上一公式 $h\mapsto\bigl(\exp_{w_{\rho_{n}}}\bigl(i_{\rho_{n}}\bigl(\gamma_{n}(h)\bigr)\bigr)\bigr)(s-\rho_{n},t)$），今一并补全为 $(s,t)\mapsto\exp_{w_{\rho_{n}}(s-\rho_{n},t)}\bigl(i_{\rho_{n}}\bigl(\gamma_{n}(h)\bigr)(s-\rho_{n},t)\bigr)$。两处径改。——译者注}
+\[
+I_{\varepsilon}=\psi\bigl(\bigl[\overline{\rho}_{0},+\infty\bigr[\bigr)\cup\bigcup_{\rho_{n}>\overline{\rho}_{0}}\Bigl\{(s,t)\longmapsto\exp_{w_{\rho_{n}}(s-\rho_{n},t)}\bigl(i_{\rho_{n}}\bigl(\gamma_{n}(h)\bigr)(s-\rho_{n},t)\bigr)\ \Bigm|\ \bigl\|h\bigr\|\le\varepsilon\Bigr\}
+\]
+所定义的区间。对每个 $\varepsilon>0$，由上面的结果知：对充分大的 $n$，$\ell_{n}\in I_{\varepsilon}$。\cref{thm:eps2-interval}的类似物（它可以用同样的方式证明）表明：存在一个 $\varepsilon_{2}>0$，使得
+\[
+I_{\varepsilon_{2}}\subset\psi\bigl([\rho_{0},+\infty[\bigr)\text{。}
+\]
+这就结束了\cref{thm:gluing-gamma}的证明。\noqed
+
+于是，\cref{thm:moduli-gamma-manifold-boundary}也被完全证明了。借着这个证明，我们完成了本章开头所建立的纲要的第一部分，也就是诸\trComplex{}之间的\trMorphism
+\[
+\Phi^{\varGamma}\colon CF_{\star}\bigl(H^{a},J^{a}\bigr)\longrightarrow CF_{\star}\bigl(H^{b},J^{b}\bigr)
+\]
+的定义。这个纲要的第二步、也是最后一步的目的，是证明这个\trMorphism{}在\trHomology{}层面上诱导出一个\trIsomorphism。这又分成对应于下列两条陈述的两个步骤。
+
+\begin{proposition}\label{thm:homology-independent-gamma}
+在\trHomology{}层面上，由 $\Phi^{\varGamma}$ 诱导出的\trMorphism{}不依赖于连接 $(H^{a},J^{a})$ 与 $(H^{b},J^{b})$ 的\trRegular\trHomotopy{} $\varGamma$ 的选取。
+\end{proposition}
+
+\begin{proposition}\label{thm:composition-regular-homotopy}
+设 $(H^{a},J^{a})$、$(H^{b},J^{b})$ 与 $(H^{c},J^{c})\in\bigl(\scr{H}\times\scr{J}\bigr)_{\mathrm{reg}}$，并设 $\varGamma'$ 与 $\varGamma''$ 分别是连接 $(H^{a},J^{a})$ 到 $(H^{b},J^{b})$ 与连接 $(H^{b},J^{b})$ 到 $(H^{c},J^{c})$ 的两条\trRegular\trHomotopy。那么存在一条连接 $(H^{a},J^{a})$ 到 $(H^{c},J^{c})$ 的\trRegular\trHomotopy{} $\varGamma$，使得
+\[
+\Phi^{\varGamma''}\circ\Phi^{\varGamma'}
+\qquad\text{与}\qquad
+\Phi^{\varGamma}\colon CF_{\star}\bigl(H^{a},J^{a}\bigr)\longrightarrow CF_{\star}\bigl(H^{c},J^{c}\bigr)
+\]
+在\trHomology{}层面上诱导出同一个\trHomomorphism。
+\end{proposition}
+
+这两条命题蕴含关系
+\[
+\Phi^{\varGamma''}\circ\Phi^{\varGamma'}=\Phi^{\varGamma}\qquad\text{在\trHomology{}层面上，}
+\]
+而不论\trRegular\trHomotopy{} $\varGamma''$、$\varGamma'$ 与 $\varGamma$ 如何选取（如上所述）。这正是本章纲要的第 2 步，正如本章开头所陈述的那样。由此，我们取 $(H^{a},J^{a})=(H^{c},J^{c})$、$\varGamma=\mathrm{Id}$，并利用 $\Phi^{\mathrm{Id}}=\mathrm{Id}$ 这一事实，便推出 $\Phi^{\varGamma}$ 在\trHomology{}层面上是一个\trIsomorphism。
+
+下面几节将给出这两条命题的证明。

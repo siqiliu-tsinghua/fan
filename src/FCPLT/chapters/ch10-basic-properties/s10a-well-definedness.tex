@@ -1,0 +1,119 @@
+\paragraph{\trWellDefinedness。}\label{sub:well-definedness}
+抽象地说，我们需要考虑由某个集合 $I$ 标引的、彼此相互\trEquivalence{}的%
+诸\trCategory{}构成的系统。这一概念有三种版本（其中只有中间一种并非显而易见）：
+\begin{itemize}
+\item \textbf{严格系统}（strict system）是诸\trCategory{} $A^i$（$i\in I$）
+连同诸\trFunctor{} $F^{i_1\cdot i_0}\colon A^{i_0}\to A^{i_1}$ 一起构成的%
+\trFamily，使得 $F^{ii}=\mathrm{Id}_{A^i}$ 并且
+$F^{i_2\cdot i_1}\circ F^{i_1\cdot i_0}=F^{i_2\cdot i_0}$。
+\item \textbf{\trCoherent{}系统}（coherent system）由诸\trCategory{} $A^i$、%
+诸\trFunctor{} $F^{i_1\cdot i_0}$ 以及诸\trFunctor\trIsomorphism{}
+$T^{i_2\cdot i_1\cdot i_0}\colon F^{i_2\cdot i_1}\circ F^{i_1\cdot i_0}\to F^{i_2\cdot i_0}$
+组成，并须满足下面两个条件：其一，$F^{ii}=\mathrm{Id}_{A^i}$，并且类似地，%
+只要 $i_2=i_1$ 或 $i_1=i_0$，$T^{i_2\cdot i_1\cdot i_0}$ 便是恒同；其二，对一切%
+$(i_3,i_2,i_1,i_0)$，下述交换图成立：
+\begin{equation}\label{eq:coherent-system-square}
+\begin{tikzcd}[column sep=5.5em]
+F^{i_3\cdot i_2}\circ F^{i_2\cdot i_1}\circ F^{i_1\cdot i_0}
+  \ar[r,"{R_{F^{i_1\cdot i_0}}(T^{i_3\cdot i_2\cdot i_1})}"]
+  \ar[d,"{L_{F^{i_3\cdot i_2}}(T^{i_2\cdot i_1\cdot i_0})}"']
+& F^{i_3\cdot i_1}\circ F^{i_1\cdot i_0}
+  \ar[d,"{T^{i_3\cdot i_1\cdot i_0}}"] \\
+F^{i_3\cdot i_2}\circ F^{i_2\cdot i_0}
+  \ar[r,"{T^{i_3\cdot i_2\cdot i_0}}"']
+& F^{i_3\cdot i_0}
+\end{tikzcd}
+\end{equation}
+（$L$ 与 $R$ 是左\trComposition{}与右\trComposition，作用在\trNaturalTransformation{}上；%
+它们是\cref{sub:composition-functors} 中所讨论的那些 \trAinfty-构造在经典方面的对应物。）
+\item \textbf{弱系统}（weak system）是诸\trCategory{} $A^i$ 的一个\trFamily，%
+其中任两个都相互\trEquivalence，但不指明\trEquivalence{}的选取。
+\end{itemize}
+设我们有一个\trCategory{} $A^{\mathrm{tot}}$ 和一个由\trFullSubcategory{}%
+$A^i$ 构成的\trFamily，使得每个\trEmbedding{} $H^i\colon A^i\to A^{\mathrm{tot}}$%
+都是\trEquivalence。暂时取定某个 $i$，并对每个 $X\in\Ob(A^{\mathrm{tot}})$ 选取一个%
+\trIsomorphic{}的\trObject{} $K^i(X)\in\Ob(A^i)$，连同一个取定的\trIsomorphism{}
+$S^i\in\Hom_{A^{\mathrm{tot}}}(K^i(X),X)$——若 $X$ 本已属于 $A^i$，则作显然的%
+选取。容易把 $K^i$ 变成一个\trFunctor{} $K^i\colon A^{\mathrm{tot}}\to A^i$，它满足%
+$K^i\circ H^i=\mathrm{Id}_{A^i}$。于是 $S^i$ 成为一条\trNaturalTransformation{}
+$H^i\circ K^i\to\mathrm{Id}_{A^{\mathrm{tot}}}$，具有如下性质：$R_{H^i}(S^i)$ 与%
+$L_{K^i}(S^i)$ 都是平凡（恒同）的\trNaturalTransformation。对每个 $i$ 都照此办理之后，令
+\begin{equation*}
+F^{i_1\cdot i_0}=K^{i_1}\circ H^{i_0},\qquad
+T^{i_2\cdot i_1\cdot i_0}=L_{K^{i_2}}(R_{H^{i_0}}(S^{i_1})).
+\end{equation*}
+便可把诸 $A^i$ 变成一个\trCategory{}的\trCoherent{}系统。
+严格系统的概念可以原封不动地搬到 \trAinfty-\trCategory{}上；弱系统亦然，%
+只需把\trEquivalence{}换成\trQuasiequivalence。至于\trCoherent{}系统，则要求有%
+诸 \trAFunctor{} $\scr{F}^{i_1\cdot i_0}\colon \scr{A}^{i_0}\to \scr{A}^{i_1}$，%
+满足 $\scr{F}^{ii}=\mathrm{Id}_{\scr{A}^i}$，并配上若干\trNaturalTransformation{}的%
+\trCohomology{}类
+\begin{equation*}
+[T^{i_2\cdot i_1\cdot i_0}]\in
+\Hom_{H^0(\mathit{fun}(\scr{A}^{i_0},\scr{A}^{i_2}))}
+(\scr{F}^{i_2\cdot i_1}\circ\scr{F}^{i_1\cdot i_0},\scr{F}^{i_2\cdot i_0})
+\end{equation*}
+（它们同样只要 $i_2=i_1$ 或 $i_1=i_0$ 就应是恒同 $[E_{\scr{F}^{i_2\cdot i_0}}]$），%
+而且要求\eqref{eq:coherent-system-square} 的类似物——其中左、右\trComposition\trFunctor{}取
+\cref{sub:composition-functors} 中定义者——在
+$H^0(\mathit{fun}(\scr{A}^{i_0},\scr{A}^{i_3}))$ 中交换。与前面一样，从一个取定的%
+\trAinfty-\trCategory{} $\scr{A}^{\mathrm{tot}}$ 和一个由相互\trQuasiequivalence{}的%
+\trAinfty-\trFullSubcategory{} $\scr{A}^i$ 构成的\trFamily{}出发，也能构造出一个%
+\trCoherent{}系统。具体地说，把\trEmbedding{}记作 $\scr{H}^i$，先构造一个\trQuasiequivalence{}
+$\scr{K}^i\colon \scr{A}^{\mathrm{tot}}\to \scr{A}^i$ 使得
+$\scr{K}^i\circ\scr{H}^i=\mathrm{Id}_{\scr{A}^i}$，一如\cref{thm:quasi-equivalence-homotopy-inverse}%
+之前的讨论那样。由\cref{thm:left-composition-cff}可知，映射
+\begin{equation}\label{eq:coherent-system-iso}
+H(\scr{L}_{\scr{K}^i})\colon
+\Hom_{H(\mathit{fun}(\scr{A}^{\mathrm{tot}},\scr{A}^{\mathrm{tot}}))}
+(\scr{H}^i\circ\scr{K}^i,\mathrm{Id}_{\scr{A}^{\mathrm{tot}}})
+\longrightarrow
+\Hom_{H(\mathit{fun}(\scr{A}^{\mathrm{tot}},\scr{A}^i))}(\scr{K}^i,\scr{K}^i)
+\end{equation}
+是一个\trIsomorphism。选取一个 $[S^i]$，使它在\eqref{eq:coherent-system-iso} 下被映到%
+恒同\trNaturalTransformation{} $[E_{\scr{K}^i}]$。先考察
+$\scr{L}_{\scr{K}^i}\circ\scr{R}_{\scr{H}^i}=\scr{R}_{\scr{H}^i}\circ\scr{L}_{\scr{K}^i}$，%
+再再一次运用\cref{thm:left-composition-cff}，便知 $H(\scr{R}_{\scr{H}^i})([S^i])$
+是 $[E_{\scr{H}^i}]$。构造的其余部分与普通\trCategory{}的情形相同。
+转到\trFloer{}理论：回忆一下，给定一个\trCorneredBoundary{}的\trExactSymplectic\trManifold{}$M$
+时，$\scr{F}(M)^{\mathrm{pr}}$ 的定义涉及一些附加的选取，其总结见
+\cref{sub:the-definition}。令 $I$ 为所有这类选取构成的集合，并把所得的%
+\trAinfty-\trCategory\trFamily{}记作 $\{\scr{F}(M)^{\mathrm{pr},i}\}$。若过渡到%
+\trCohomology{}层面，则诸 $H\scr{F}(M)^{\mathrm{pr},i}$ 便构成上文所定义意义下的一个%
+严格系统。这是\trFloerCohomology{}的\trWellDefinedness{}及其 TQFT 结构的一个推论；%
+关于后者，我们在\cref{sub:tqft-definition} 中已作简述。要处理
+$\scr{F}(M)^{\mathrm{pr}}$ 本身，我们发现方便的做法是运用上文所述的形式化技巧。%
+具体地说，定义一个全\trFukayaCategory{} $\scr{F}(M)^{\mathrm{pr,tot}}$，其\trObject{}%
+是对 $(L,i)$，由一个\trExact\trLagrange\trSubmanifold{} $L$ 和一个\trIndex{} $i\in I$
+组成。\trMorphism{}空间照常取\trFloer\trComplex，其中对每一对
+$((L_0,i_0),(L_1,i_1))$ 分别选取一个\trRegular\trFloerDatum，约束条件是：只要
+$i_0=i_1=i$，该数据就与把 $(L_0,L_1)$ 视作 $\scr{F}(M)^{\mathrm{pr},i}$ 之\trObject{}%
+时的那个相同。类似地，$d\ge 2$ 阶的\trComposition{}由\trStriplikeEnd{}与%
+\trPerturbationDatum{}的适当选取来定义，使得若所涉的全部\trObject{}都有同一个\trIndex{} $i$，%
+则该选取就与 $\scr{F}(M)^{\mathrm{pr},i}$ 中的那个相同。这需要对标准设置作一点小改动，%
+因为我们允许 $(d{+}1)$ \trPunctured\trDisk{}上的诸\trStriplikeEnd{}依赖于诸\trLabel{}
+$(L_k,i_k)$。不过，完全可以像\cref{sub:consistent-perturbation-data} 中那样利用%
+\trLabel\trCompatible\trFamily{}的\trGluing，把\cref{sub:consistent-striplike-ends}
+的\trConsistency{}条件适当地改造过来。其结果是，我们的全\trCategory{}带有\trCanonical{}的%
+\trFullyFaithful\trEmbedding
+\begin{equation}\label{eq:total-fukaya-embedding}
+\scr{F}(M)^{\mathrm{pr},i}\longrightarrow\scr{F}(M)^{\mathrm{pr,tot}}.
+\end{equation}
+对任意取定的\trExact\trLagrange\trSubmanifold{} $L$ 与\trIndex{}选取 $(i_0,i_1)$，%
+\trObject{} $(L,i_0)$ 与 $(L,i_1)$ 在 $H\scr{F}(M)^{\mathrm{pr,tot}}$ 中是%
+\trIsomorphic{}的。这是一个\trCohomology{}层面的陈述，其证明归结为标准的%
+\trContinuationMap{}论证。作为推论，\eqref{eq:total-fukaya-embedding} 的诸\trEmbedding{}都是%
+\trQuasiequivalence。于是便可利用这一点把 $\{\scr{F}(M)^{\mathrm{pr},i}\}$ 变成一个%
+\trAinfty-\trCategory{}的\trCoherent{}系统（严格说来，是\trUngraded{}的%
+\trAinfty-\trCategory；不过，\cref{thm:ungraded-category-remark} 适用于此处以及%
+本节稍后的类似情形）。此外，这个陈述可以搬到对\trFukayaCategory{}所能做的任何%
+代数构造上，只要该构造具有\trFunctoriality{}并保持\trQuasiequivalence{}（比如取%
+\trDerivedCategory）。剩下的问题是：构成这个\trCoherent{}系统的诸\trFunctor{}与诸%
+\trNaturalTransformation{}本身在何种程度上是\trCanonical{}的；我们把它留给有兴趣的读者。
+\begin{remark}\label{thm:converse-construction-remark}
+在普通\trCategory{}的框架里，有一个反向的构造：从诸\trCategory{} $A^i$ 的一个%
+\trCoherent{}系统出发，构造出一个公共的\trCategory{} $A^{\mathrm{tot}}$，并配有%
+\trEquivalence{} $A^i\to A^{\mathrm{tot}}$。这在 \trAinfty{}的情形似乎行不通，%
+原因在于我们的\trCoherent{}系统定义本身就太弱——它停留在\trCohomology\trFunctor\trCategory{}
+$H(\mathit{fun})$ 的层面上。
+\end{remark}

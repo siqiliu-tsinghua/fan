@@ -1,0 +1,145 @@
+
+\section{将上同调与基变换应用于模问题}
+
+模理论依赖于上同调与基变换的观念。我们将通过考察一个最原初的\trModuliSpace——\trHilbertScheme——的两个特殊情形来探究这一点：其一是\trGrassmannian，其二是「射影空间中次数 $d$ 的\trHypersurface{}由另一个射影空间『参数化』」这一事实（对应于次数 $d$ 的多项式；见\mbox{注记~4.5.3}）。
+
+正如 \S24.0.1 所提示的，$\mathbb{P}^n_Y$ 的\textbf{\trHilbert{}函子}（Hilbert functor）$\mathrm{Hilb}_Y\ \mathbb{P}^n$ 参数化了 $\mathbb{P}^n_Y$ 的那些平坦且\trFinitelyPresented{}的\trClosedSubscheme，其中 $Y$ 是任意\trScheme。更确切地说，它是一个\trContravariantFunctor，把 $Y$-概形 $X$ 送到 $X\times_Y\mathbb{P}^n_Y=\mathbb{P}^n_X$ 的、平坦于 $X$ 的\trFinitelyPresented\trClosedSubscheme{}所成的集合（并把态射 $X_1\to X_2$ 送到平坦\trFamily{}的\trPullback）。\trHilbertScheme{}的构造是\trGrothendieck{}的一项早期成就；此后它便能被巧妙地用来构造许多别的\trModuliSpace。
+
+\textbf{25.3.1. \trhTheorem（\trGrothendieck）。}\ ——\ \emph{$\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n$ 可由一个\trLocally\trFiniteType{}的\trScheme{}表示。}
+
+（\trGrothendieck{}的原始论证见 [Gr4]；[Mu2] 与 [FGIKNV, Ch.~5] 中给出了一个易读的构造。）
+
+我们不会用到下面这道练习，但它在概念上极为重要，并且解释了「\trModuliSpace{}在重言的意义下总是拥有泛族」的缘由（在「\trModuliSpace{}」的「正确」定义之下）。它的证明会让你想起\trYonedaLemma。（你早已用别的名字见过\trModuliSpace{}的泛族，比如\trUniversalHyperplane（\mbox{定义~13.4.1}），或者重言丛（\S16.4.1）。）
+
+\textbf{25.3.A.（练习：\trHilbertScheme{}上的泛\trFamily）}\quad 假设\mbox{定理~25.3.1}。证明：存在 $\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n\times\mathbb{P}^n_{\mathbb{Z}}$ 的一个\trClosedSubscheme{} $Z$
+\[
+\begin{tikzcd}
+Z \ar[r, hook, "\text{closed}"] & \mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n\times\mathbb{P}^n_{\mathbb{Z}} \\
+\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n \ar[u, "\text{flat}"']
+\end{tikzcd}
+\]
+（我们称之为\trHilbertScheme{}上的\textbf{泛\trFamily}（universal family）），使得每个平坦\trFamily
+\[
+\begin{tikzcd}
+Y \ar[r, hook, "\text{closed}"] & \mathbb{P}^n_{\mathrm{B}} \\
+B \ar[u, "\text{flat}"']
+\end{tikzcd}
+\]
+都对应于一个态射 $\pi\colon B\to\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n$，并且对应成立当且仅当 $Y$ 是 $Z$ 经由 $\pi$ 的\trPullback，也就是说，图
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=2.6em]
+Y \ar[r, hook, "\text{closed}"] \ar[d, "\text{flat}"'] \ar[drr] & \mathbb{P}^n_{\mathrm{B}} \ar[drr] \\
+B \ar[drr] & & Z \ar[r, hook, "\text{closed}"] \ar[d, "\text{flat}"'] & \mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n\times\mathbb{P}^n_{\mathbb{Z}} \\
+& & \mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n &
+\end{tikzcd}
+\]
+是一张\trCartesianDiagram。提示：把\trHilbert{}函子作用到\trHilbertScheme{}上，依定义对应于集合 $\mathrm{Maps}(\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n,\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n)$。泛\trFamily{}将对应于恒同映射。
+
+\textbf{25.3.B.（容易练习）}\quad 假设\mbox{定理~25.3.1}，证明 $\mathrm{Hilb}_Y\ \mathbb{P}^n$ 是\trRepresentable{}的：证明它由 $\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n\times_{\mathbb{Z}}Y$ 表示。于是，一般情形便归结为 $Y=\mathbb{Z}$ 这个「泛」情形。
+
+\textbf{25.3.C.（练习）}\quad 假设\mbox{定理~25.3.1}，证明 $\mathrm{Hilb}_{\mathbb{Z}}\ \mathbb{P}^n$ 是诸\trScheme{} $\mathrm{Hilb}^{p(m)}_{\mathbb{Z}}\ \mathbb{P}^n$ 的\trDisjointUnion，其中每一个都对应于 $\mathbb{P}^n_{\mathbb{Z}}$ 的那些\trFiber{}具有固定\trHilbertPolynomial{} $p(m)$ 的\trFinitelyPresented\trClosedSubscheme。提示：\mbox{推论~24.7.2}。
+
+受\mbox{练习~25.3.C}的启发，\trGrothendieck{}实际证明的是下面这条。
+
+\textbf{25.3.2. \trhTheorem（\trGrothendieck）。}\ ——\ \emph{每个 $\mathrm{Hilb}^{p(m)}_{\mathbb{Z}}\ \mathbb{P}^n$ 在 $\mathbb{Z}$ 上都是射影的。}
+
+\textbf{25.3.D.（练习）}\quad 证明\mbox{定理~25.3.2}蕴含\mbox{定理~25.3.1}。
+
+为了对\trHilbertScheme{}获得一些手感，我们在不依赖\mbox{定理~25.3.1}的前提下讨论两个重要的例子。
+
+\textbf{25.3.3. 格拉斯曼流形。}
+
+我们此前曾两次定义\trGrassmannian{} $\mathrm{G}(k,n)$：分别是在 \S7.7 与 \S16.4。第二次涉及的是证明一个（反变）\trFunctor{}（从层\trCategory{}到 $\catSets$）的\trRepresentable{}性，该\trFunctor{}参数化的是秩 $n$ \trFreeSheaf{}的秩 $k$ \trLocallyFreeSheaf{}商。
+
+我们现在为一个更几何的问题考虑一个参数空间。这个空间仍将是 $\mathrm{G}(k,n)$，但由于我们不会立即知道这一点，不妨先发明一些临时记号。令 $\mathrm{G}'(k,n)$ 为这样一个\trContravariantFunctor（从 $\mathit{Sch}$ 到 $\catSets$）：它给每个\trScheme{} $B$ 配上下述集合——$\mathbb{P}^{n-1}_{\mathrm{B}}$ 的那些平坦于 $B$ 且\emph{\trFinitelyPresented}的\trClosedSubscheme，其在任意点 $b\in B$ 处的\trFiber{}都是 $\mathbb{P}^{n-1}_{\kappa(b)}$ 中（线性嵌入的）$\mathbb{P}^{k-1}_{\kappa(b)}$：
+\begin{equation*}\tag{25.3.3.1}\label{eq:geometric-grassmannian-family}
+\begin{tikzcd}[row sep=3em, column sep=4.2em]
+X \ar[r, hook, "\text{cl.\ subscheme}"] \ar[d, "\text{flat, f.\ pr.}"] & \mathbb{P}^{n-1}_{\mathrm{B}} \ar[dl, "\pi"] \\
+\mathrm{B}. &
+\end{tikzcd}
+\end{equation*}
+
+（这描述的是到 $\catSets$ 的映射；\trPullback{}如何使之成为一个\trContravariantFunctor，你应当自己想清楚。）
+
+\textbf{25.3.4. \trhTheorem。}\ ——\ \emph{\trFunctor{} $\mathrm{G}'(k,n)$ 由 $\mathrm{G}(k,n)$ 表示。}
+
+释读：在形如 \eqref{eq:geometric-grassmannian-family} 的图（其\trFiber{}为 $\mathbb{P}^{k-1}$）与形如 \eqref{eq:grassmannian-rank-k-quotient} 的图（即 $\mathrm{G}(k,n)$ 所参数化亦即所表示的那些图）之间，存在一个\trNatural\trBijection（即\trFunctor{}性的\trBijection{}）。
+
+\emph{证明。}\quad 有一个方向格外容易。设给定了\trScheme{} $B$ 上形如 \eqref{eq:grassmannian-rank-k-quotient} 的一个图，
+\begin{equation*}\tag{25.3.4.1}\label{eq:quotient-over-base}
+\OO_{\mathrm{B}}^{\oplus n}\twoheadrightarrow\scr{Q},
+\end{equation*}
+其中 $\scr{Q}$ 是秩 $k$ 的\trLocallyFreeSheaf。把 $\mathscr{P}roj_{\mathrm{B}}$ 作用到 $\OO_{\mathrm{B}}^{\oplus n}$ 与 $\scr{Q}$ 二者上的 $\mathrm{Sym}^\bullet$ 构造，我们便得到一个\trClosedEmbedding
+\begin{equation*}\tag{25.3.4.2}\label{eq:proj-closed-embedding}
+\begin{tikzcd}
+\mathscr{P}roj_{\mathrm{B}}(\mathrm{Sym}^\bullet\,\scr{Q}) \ar[r, hook] \ar[dr] & \mathscr{P}roj_{\mathrm{B}}(\mathrm{Sym}^\bullet\,\OO_{\mathrm{B}}^{\oplus n}) \ar[d] & =\ \mathbb{P}^{n-1}\times B \\
+& B &
+\end{tikzcd}
+\end{equation*}
+（正如例如\mbox{练习~17.2.H} 中的那样）。
+
+这些\trFiber{}都是线性嵌入的 $\mathbb{P}^{k-1}$（因为基变换——在这里是\trPullback{}到 $B$ 的一点——与 $\mathscr{P}roj$ 构造交换，\mbox{练习~17.2.E}）。注意 $\mathscr{P}roj(\mathrm{Sym}^\bullet\,\scr{Q})$ 在 $B$ 上\trFlat{}且\trFinitelyPresented，因为它是射影丛。我们已经构造出了形如 \eqref{eq:geometric-grassmannian-family} 的一个图。
+
+现在我们需要把这个构造反过来。诀窍在于从我们的几何情势 \eqref{eq:geometric-grassmannian-family} 出发造出 \eqref{eq:quotient-over-base}，而这正是上同调与基变换将要派上用场的地方。
+
+给定形如 \eqref{eq:geometric-grassmannian-family} 的一个图（其\trFiber{}为 $\mathbb{P}^{k-1}$），考虑 $X$ 的\trClosedSubscheme{}正合列：
+\[
+0\longrightarrow\scr{I}_X\longrightarrow\OO_{\mathbb{P}^{n-1}_{\mathrm{B}}}\longrightarrow\OO_X\longrightarrow 0.
+\]
+把它与 $\OO_{\mathbb{P}^{n-1}_{\mathrm{B}}}(1)$ 作张量：
+\begin{equation*}\tag{25.3.4.3}\label{eq:twisted-ideal-sequence}
+0\longrightarrow\scr{I}_X(1)\longrightarrow\OO_{\mathbb{P}^{n-1}_{\mathrm{B}}}(1)\longrightarrow\OO_X(1)\longrightarrow 0.
+\end{equation*}
+
+注意，$\OO_X(1)$ 限制到 $\pi$ 的每根\trFiber{}上都是 $\mathbb{P}^{k-1}$（在\trResidueField{}上）上的 $\OO(1)$，而后者的一切高阶\trCohomology{}都消失（\S18.3）。
+
+\textbf{25.3.E.（练习）}\quad 证明：当 $i>0$ 时 $\mathrm{R}^i\pi_*\OO_X(1)=0$，且 $\pi_*\OO_X(1)$ 是秩 $k$ 的\trLocallyFreeSheaf。提示：用\mbox{上同调与基变换定理~25.1.6}。要么使用 \S25.2.10 的非诺特讨论（我们未曾证明它），要么干脆假设 $B$ 是\trLocally\trNoether{}的。
+
+\textbf{25.3.F.（练习）}\quad 证明：把 $\pi_*$ 作用到 \eqref{eq:twisted-ideal-sequence} 上所得的长正合列其实就是一个由\trLocallyFreeSheaf{}构成的\trShortExactSequence
+\[
+0\longrightarrow\pi_*\scr{I}_X(1)\longrightarrow\pi_*\OO_{\mathbb{P}^{n-1}_{\mathrm{B}}}(1)\longrightarrow\pi_*\OO_X(1)\longrightarrow 0
+\]
+其秩分别为 $n-k$、$n$、$k$，其中间项被典范地认同于 $\OO_{\mathrm{B}}^{\oplus n}$。
+
+\trSurjectiveMap{} $\OO_{\mathrm{B}}^{\oplus n}\twoheadrightarrow\pi_*\OO_X(1)$ 恰好就是我们想构造的那类图，即 \eqref{eq:grassmannian-rank-k-quotient}。
+
+\textbf{25.3.G.（练习）}\quad 完成闭环：用这两个互为「逆」的构造证明 $\mathrm{G}(k,n)$ 表示\trFunctor{} $\mathrm{G}'(k,n)$。\hfill$\square$
+
+\textbf{25.3.5. \trHypersurface。}
+
+很久以前（在\mbox{注记~4.5.3} 中），我们曾不严格地说过：$\mathbb{P}^n$ 中次数 $d$ 的\trHypersurface{}由一张 $\mathbb{P}^{(\binom{n+d}{d})-1}$ 参数化。现在我们把这件事说精确。为求适当的普遍性，我们在基 $\mathbb{Z}$ 上工作。欢迎你把 $\mathbb{Z}$ 换成你自己选的域；但按\mbox{容易练习~25.3.B}中同样的论证，其余情形都可由基变换从这个情形得到。
+
+如下定义\trContravariantFunctor{} $\mathrm{H}_{d,n}\colon\mathit{Sch}\to\catSets$（从\trScheme{}到\trSet{}）。对一个\trScheme{} $B$，我们给它配上由 $\mathbb{P}^n_{\mathrm{B}}$ 的全部\trClosedSubscheme{} $X\hookrightarrow\mathbb{P}^n_{\mathrm{B}}$ 所成的\trSet{}——这些\trClosedSubscheme{}平坦且\trFinitelyPresented{}于 $B$，其全部\trFiber{}都是 $\mathbb{P}^n$ 中（在相应的\trResidueField{}上）次数 $d$ 的\trHypersurface。对一个态射 $B_1\to B_2$，我们经由\trPullback{}得到一个映射 $\mathrm{H}_{d,n}(B_2)\to\mathrm{H}_{d,n}(B_1)$。
+
+\textbf{25.3.6. \trhProposition。}\ ——\ \emph{\trFunctor{} $\mathrm{H}_{d,n}$ 由 $\mathbb{P}^{(\binom{n+d}{d})-1}$ 表示。}
+
+与\trGrassmannian{}的情形一样：一个方向是容易的，另一个方向则需要上同调与基变换。
+
+\textbf{25.3.H.（容易练习）}\quad 在 $\mathbb{P}^{(\binom{n+d}{d})-1}$ 上，描述一个将成为\textbf{泛\trHypersurface}（universal hypersurface）（\trModuliSpace{}上的泛\trFamily）的\trClosedSubscheme{} $\scr{X}\hookrightarrow\mathbb{P}^n\times\mathbb{P}^{(\binom{n+d}{d})-1}$。证明 $\scr{X}$ 在 $\mathbb{P}^{(\binom{n+d}{d})-1}$ 上\trFlat{}且\trFinitelyPresented。（关于\trFlatness{}，你可以用源上\trFlatness{}的局部判别法（\mbox{定理~24.6.9}）；但其实动手直算也能轻松搞定。）
+
+于是，给定任意态射 $B\to\mathbb{P}^{(\binom{n+d}{d})-1}$，经由\trPullback{}，我们便得到 $B$ 上的一张次数 $d$ 的\trHypersurface{} $X$（$\mathrm{H}_{d,n}(B)$ 的一个元素）。
+
+我们的目标是把这个过程反过来：从 $B$ 上的一张次数 $d$ 的\trHypersurface{} $\pi\colon X\to B$（$\mathrm{H}_{d,n}(B)$ 的一个元素）出发，我们想要描述一个态射 $B\to\mathbb{P}^{(\binom{n+d}{d})-1}$。
+
+考虑 $X\hookrightarrow\mathbb{P}^n_{\mathrm{B}}$ 的\trClosedSubscheme{}正合列，并以 $\OO_{\mathbb{P}^n_{\mathrm{B}}}(d)$ 扭转之：
+\begin{equation*}\tag{25.3.6.1}\label{eq:hypersurface-ideal-sequence}
+0\longrightarrow\scr{I}_X(d)\longrightarrow\OO_{\mathbb{P}^n_{\mathrm{B}}}(d)\longrightarrow\OO_X(d)\longrightarrow 0.
+\end{equation*}
+
+\textbf{25.3.I.（练习；参看\mbox{练习~25.3.E}）}\quad 证明：(25.3.6.1) 中每一项的（沿 $\pi$ 的）\trHigherPushforward{}都是 $0$，并且 (25.3.6.1) 的诸前推的长正合列就是
+\[
+0\longrightarrow\pi_*\scr{I}_X(d)\longrightarrow\pi_*\OO_{\mathbb{P}^n_{\mathrm{B}}}(d)\longrightarrow\pi_*\OO_X(d)\longrightarrow 0,
+\]
+其中中间项是秩 $\binom{n+d}{d}$ 的\trFreeSheaf{}（其各直和项可与射影变量 $x_1,\dots,x_n$ 的次数 $d$ \trMonomial{}相认同；见 \S15.1.2），而左项 $\pi_*\scr{I}_X(d)$ 是秩 $1$ 的\trLocallyFreeSheaf（基本上就是一个\trLineBundle）。
+
+（把中间项 $\OO_{\mathrm{B}}^{\oplus(\binom{n+d}{d})}$ 解读为「参数化 $n+1$ 个变量的齐次次数 $d$ 多项式」，把 $\pi_*\scr{I}_X(d)$ 的那个秩 $1$ 子层解读为「$X$ 的方程」，是很有帮助的。这将为我们接下来要做的事提供动机。）
+
+取\trInjectiveMap{} $\pi_*\scr{I}_X(d)\hookrightarrow\OO_{\mathrm{B}}^{\oplus(\binom{n+d}{d})}$ 的\trDual，我们便有一个\trSurjectiveMap{}
+\[
+\OO_{\mathrm{B}}^{\oplus(\binom{n+d}{d})}\twoheadrightarrow\scr{L}
+\]
+即从一个\trFreeSheaf{}到一个\trInvertibleSheaf{} $\scr{L}=(\pi_*\scr{I}_X(d))^\vee$ 的\trSurjectiveMap{}；而它（由射影空间的\trFunctor{}式描述，\mbox{定理~15.2.2}）给出一个态射 $B\to\mathbb{P}^{(\binom{n+d}{d})-1}$。
+
+\textbf{25.3.J.（练习）}\quad 完成闭环：证明这两个构造互为逆构造，从而证明\mbox{命题~25.3.6}。
+
+\textbf{25.3.7.}\ \emph{\trhRemark。}\quad \trHilbertScheme{}的\trRepresentable{}性的证明，与我们关于\trGrassmannian{}以及超曲面参数空间的论证共享若干特征。

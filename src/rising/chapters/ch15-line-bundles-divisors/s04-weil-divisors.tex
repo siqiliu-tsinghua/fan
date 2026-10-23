@@ -1,0 +1,196 @@
+
+\section{难而重要：线丛与\trWeilDivisor}
+
+\trWeilDivisor{}这一概念，为理解与分类\trLineBundle{}提供了一条极好的途径。在动工之前，应当先警告你：这是\trAlgebraicGeometry{}中那种难以消化的话题之一——学会它，会改变你思考\trLineBundle{}的方式。可是一旦你用顺了手这本通往除子的不完善词典，它便成了你的第二天性。
+
+在本节中，我们只考虑\emph{\trNoetherian{}正规\trScheme}。这样做是因为：我们将要用到\trIrreducibleComponent{}的有限分解（\mbox{练习~5.3.B}）、\trDVR{}的性质（\S13.5），以及代数\trHartogs{}引理~13.5.19。我们所讨论的内容有些在更一般的情形下也成立；我们诚邀专家通过对各条陈述审慎地减弱假设，来考虑种种推广。
+
+\textbf{15.4.1.}\ \emph{\trhDefinition{}。}\quad 把 $X$ 上的一个\textbf{\trWeilDivisor}（Weil divisor）定义为 $X$ 的余维数 $1$ 不可约\trClosedSubset{}的形式 $\mathbb{Z}$-线性组合。换言之，$X$ 上的一个\trWeilDivisor{}被定义为如下形式的对象
+\[
+\sum_{Y\subset X\text{ 余维数 }1}n_Y[Y],
+\]
+其中诸 $n_Y$ 是整数，且除有限多个之外全为零。\trWeilDivisor{}显然构成一个\trAbelian\trGroup，记作 $\operatorname{Weil}\,X$。例如，若 $X$ 是一条\trCurve，则\trWeilDivisor{}就是闭点的线性组合。
+
+\textbf{15.4.2.}\quad 我们称 $[Y]$ 为一个\textbf{不可约除子}（irreducible (Weil) divisor）。若\trWeilDivisor{} $\mathrm{D}=\sum n_Y[Y]$ 满足对一切 $Y$ 都有 $n_Y\ge 0$，则称它是\textbf{有效的}（effective）。此时我们写 $\mathrm{D}\ge 0$，而 $\mathrm{D}_1\ge\mathrm{D}_2$ 意指 $\mathrm{D}_1-\mathrm{D}_2\ge 0$。\trWeilDivisor{} $\mathrm{D}$ 的\textbf{\trSupport}记作 $\operatorname{Supp}\,\mathrm{D}$，它是子集 $\cup_{n_Y\ne 0}Y$。若 $U\subset X$ 是一个\trOpenSet，我们定义\textbf{\trRestrictionMap} $\operatorname{Weil}\,X\to\operatorname{Weil}\,U$ 为 $\sum n_Y[Y]\mapsto\sum_{Y\cap U\ne\varnothing}n_Y[Y\cap U]$。
+
+\textbf{15.4.A.（容易的练习）}\quad 证明：$\mathbb{P}^n_k$ 上的不可约除子，恰与 $k[x_0,\dots,x_n]$ 中的不可约\trHomogeneous{}多项式相对应（在相差非零纯量 $k^{\times}$ 倍乘的意义下）。
+
+\textbf{15.4.3.}\quad 设 $\mathscr{L}$ 是一个\trInvertibleSheaf，而 $s$ 是 $\mathscr{L}$ 的一个\trRational\trSection，它不在 $X$ 的任何\trIrreducibleComponent{}上处处为零。（\trRational\trSection{}由 $X$ 的一个\trDense\trOpenSubset{}上的\trSection{}给出，并配有显而易见的等价关系，见 \S14.2.1。）
+
+我们不妨按下述方式理解 $s$ 沿一个不可约\trWeilDivisor{} $Y$ 的\textbf{\trValuation}——记作 $\operatorname{val}_Y(s)$。取任意一个包含 $Y$ 的\trGenericPoint{}、且其上 $\mathscr{L}$ 可平凡化的\trOpenSet{} $U$，连同 $U$ 上任取的一个\trTrivialization；在这个\trTrivialization{}之下，$s$ 成为 $U$ 上的一个非零\trRationalFunction，从而拥有一个\trValuation（\S13.5.14）。任何两个这样的\trTrivialization{}都相差一个可逆函数（\trTransitionFunction{}必是可逆的），故此\trValuation{}是\trWellDefined{}的。注意，由\mbox{练习~13.5.G}，对除有限多个之外的一切 $Y$，都有 $\operatorname{val}_Y(s)=0$。
+
+于是 $s$ 确定了一个\trWeilDivisor
+\[
+\operatorname{div}(s):=\sum_Y\operatorname{val}_Y(s)[Y].
+\]
+求和跑遍 $X$ 的全部不可约除子 $Y$。我们称 $\operatorname{div}(s)$ 为\trRational\trSection{} $s$ 的\textbf{零点与极点除子}（divisor of zeros and poles）（参看\mbox{定义~13.5.7}）。
+
+\textbf{15.4.4.\ 「带\trRational\trSection{}的\trLineBundle」这一重要群。}\quad 现在考虑集合 $\{(\mathscr{L},s)\}$，其元素是「\trLineBundle{} $\mathscr{L}$ 连同 $\mathscr{L}$ 的一个\trRational\trSection{} $s$，且 $s$ 在 $X$ 的任何\trIrreducibleComponent{}上都不是零\trSection」这样的对子，并在\emph{同构}的意义下视作相同。（同构 $(\mathscr{L},s)\cong(\mathscr{L}',s')$ 意指线丛的一个同构，它把 $s$ 送到 $s'$。）这个集合（对同构取商之后）在张量积 $\otimes$ 之下构成一个\trAbelian\trGroup，其单位元是 $(\OO_X,1)$。（刁钻的小问题：$(\mathscr{L},s)$ 在这个群中的逆是什么？）
+
+应当注意到：若 $t$ 是 $X$ 上的一个可逆函数，则用 $t$ 相乘便给出一个同构
+\[
+(\mathscr{L},s)\overset{\sim}{\longleftrightarrow}(\mathscr{L},st).
+\]
+类似地，$(\mathscr{L},s)/(\mathscr{L},u)=(\OO,s/u)$。此处 $s/u$ 是一个有理\emph{函数}。
+
+映射 $\operatorname{div}$ 给出一个群同态
+\begin{equation*}\tag{15.4.4.1}\label{eq:div-group-homomorphism}
+\operatorname{div}\colon\{(\mathscr{L},s)\}/\text{同构}\longrightarrow\operatorname{Weil}\,X.
+\end{equation*}
+
+\textbf{15.4.B.（更容易的练习）}\quad
+（a）\emph{（有理函数的除子）}\quad 验证：在 $\mathbb{A}^1_k$ 上，$\operatorname{div}\bigl(x^3/(x+1)\bigr)=3[(x)]-[(x+1)]$（「$=3[0]-[-1]$」）。
+（b）\emph{（一个非平凡\trInvertibleSheaf{}的\trRational\trSection{}的除子）}\quad 在 $\mathbb{P}^1_k$ 上，存在一个「对应于」$x^2/(x+y)$ 的 $\OO(1)$ 的\trRational\trSection。弄清楚这是什么意思，并算出 $\operatorname{div}\bigl(x^2/(x+y)\bigr)$。
+
+\eqref{eq:div-group-homomorphism} 这个同态，将是确定许多 $X$ 上全部\trLineBundle{}的关键。（注意：任何\trInvertibleSheaf{}都会有这样一个\trRational\trSection。对每个\trIrreducibleComponent{}，取一个不与任何其他\trIrreducibleComponent{}相遇的非空\trOpenSet；再把它缩小，使 $\mathscr{L}$ 成为平凡；选定一个\trTrivialization；然后取所有这些\trOpenSet{}的并，并在其上选定在\trTrivialization{}之下对应于 $1$ 的那个\trSection。）我们将会看到，在合理的情势下，这个映射 $\operatorname{div}$ 将是\trInjectiveMap{}的，并且常常是一个\trIsomorphism。于是，通过忘掉\trRational\trSection（亦即，取一个适当的商），我们便将刻画出全部\trLineBundle{}的\trPicardGroup。让我们把这一策略付诸行动。
+
+\textbf{15.4.5.\ \trhProposition{}。}\ ——\ \emph{若 $X$ 正规且\trNoetherian，则映射 $\operatorname{div}$ 是单射。}
+
+\emph{证明。}\quad 设 $\operatorname{div}(\mathscr{L},s)=0$。那么 $s$ 没有\trPole。由\mbox{练习~14.2.F}，$s$ 是一个\trRegular\trSection。现在我们来证明：态射 $\times s\colon\OO_X\to\mathscr{L}$ 事实上是一个\trIsomorphism；这便将证得本命题，因为它给出一个同构 $(\OO_X,1)\overset{\sim}{\longleftrightarrow}(\mathscr{L},s)$。
+
+只需证明：在 $X$ 的一个 $\mathscr{L}$ 为平凡的开子集 $U$ 上 $\times s$ 是同构即可，因为 $X$ 被 $\mathscr{L}$ 的平凡化邻域所覆盖（因 $\mathscr{L}$ 局部平凡）。选取一个同构 $i\colon\mathscr{L}\vert_U\overset{\sim}{\longrightarrow}\OO_U$。把 $\times s$ 与 $i$ 复合，便得到映射 $\times s'\colon\OO_U\to\OO_U$，它是乘以某个有理函数 $s'=i(s)$ 的乘法，而这个函数既无\trZeros{}也无\trPole。有理函数 $s'$ 是正则的，因为它没有\trPole（\mbox{练习~13.5.I}），同理 $1/s'$ 也是正则的。于是 $s'$ 是 $U$ 上的一个可逆函数，故 $\times s'$ 是同构。从而 $\times s$ 在 $U$ 上是同构。\hfill$\square$
+
+受此启发，我们试图找出 $\operatorname{div}$ 的一个逆，或至少确定 $\operatorname{div}$ 的像。
+
+\textbf{15.4.6.\ 重要定义：$\OO_X(\mathrm{D})$。}\quad \emph{现在设 $X$ 是正规的}——这将是本节其余部分的一条\trStandingHypothesis。
+
+再设 $X$ 是不可约的（这纯粹是为了免得 \eqref{eq:oxd-sections-definition} 看上去更丑——不过你尽可放松这条假设；见\mbox{练习~15.4.C}）。若有帮助的话：回想正规概形是若干个不可约正规概形的\trDisjointUnion（\mbox{练习~5.4.B}）——所以这条假设着实无害。
+
+设 $\mathrm{D}$ 是一个\trWeilDivisor。定义层 $\OO_X(\mathrm{D})$ 为
+\begin{equation*}\tag{15.4.6.1}\label{eq:oxd-sections-definition}
+\Gamma(U,\OO_X(\mathrm{D})):=\{t\in K(X)^{\times}\ :\ \operatorname{div}\vert_U t+\mathrm{D}\vert_U\ge 0\}\cup\{0\}.
+\end{equation*}
+此处 $\mathrm{D}\vert_U$ 是 $\mathrm{D}$ 到 $U$ 上的\trRestriction（定义见 \S15.4.2），而 $\operatorname{div}\vert_U t$ 意指把 $t$ 视为 $U$ 上的\trRationalFunction{}所取的除子（亦即，只考虑 $U$ 的那些不可约除子）。当上下文清楚时，$\OO_X(\mathrm{D})$ 中的下标 $X$ 将被省去。$\OO_X(\mathrm{D})$ 在 $U$ 上的诸\trSection，就是那些「\trPole{}与\trZeros{}被 $\mathrm{D}$ 约束」的 $U$ 上的\trRationalFunction：$\mathrm{D}$ 中的一个正系数允许一个该阶的\trPole；一个负系数则要求一个该阶的\trZeros。在 $\mathrm{D}$ 的\trSupport{}之外，它（同构地）就是\trStructureSheaf（由代数\trHartogs{}引理~13.5.19）。
+
+\textbf{15.4.7.}\ \emph{重要注记。}\quad 注意到下面这件事将是至关重要的：$\OO_X(\mathrm{D})$ 自带一个对应于 $1\in K(X)^{\times}$ 的、典范的非零「有理截面」。（说它是有理截面，是因为它是某个稠密开集——也就是 $\operatorname{Supp}\,\mathrm{D}$ 的补集——上的截面。）
+
+\textbf{15.4.C.（较不重要的练习）}\quad 把 $\OO_X(\mathrm{D})$ 的定义推广到 $X$ 未必不可约的情形。（这只是一个语言问题。做完之后，你尽可在本节其余部分抛弃这条假设。）
+
+\textbf{15.4.D.（容易的练习）}\quad 验证 $\OO_X(\mathrm{D})$ 是一个\trQCSheaf。（提示：\trQC{}性的「特异\trAffine」判别法，\mbox{练习~6.2.D}。）
+
+在良好的情形下，$\OO_X(\mathrm{D})$ 是一个\trInvertibleSheaf。例如，设 $X=\mathbb{A}^1_k$。考虑
+\[
+\OO_X\bigl(-2[(x)]+[(x-1)]+[(x-2)]\bigr),
+\]
+为方便起见，它常被写作 $\OO(-2[0]+[1]+[2])$。那么 $3x^3/(x-1)$ 是一个整体截面；它在 $x=0$ 处带有所需的两个零点（甚至还富余一个），占用了在 $x=1$ 处被允许的那个极点，而在 $x=2$ 处没有极点——尽管那里本也允许有极点。（不重要的题外话：这个论断在特征 $2$ 时依然成立，只是解释需要修订。）\footnote{译注：特征 $2$ 之下 $x-2=x$，「点 $2$」与「点 $0$」重合，原来的解释自然非改写不可。}
+
+\textbf{15.4.E.（容易的练习）}\quad （这也将是后文讨论的一个推论，但你应当能够徒手完成。）
+（a）证明：$\OO_{\mathbb{A}^1_k}\bigl(-2[(x)]+[(x-1)]+[(x-2)]\bigr)$ 的任何整体截面都是 $x^2/\bigl((x-1)(x-2)\bigr)$ 的 $k[x]$-倍数。
+（b）把（a）的论证延伸一步，给出一个同构
+\[
+\OO_{\mathbb{A}^1_k}\bigl(-2[(x)]+[(x-1)]+[(x-2)]\bigr)\overset{\sim}{\longleftrightarrow}\OO_{\mathbb{A}^1_k}.
+\]
+
+下一道练习看似渺小，但在接下来几页里复杂性层层累积之时，它对减少混淆而言却是绝对关键的。
+
+\textbf{15.4.F.（练习）}\quad 我们继续\mbox{容易的练习~15.4.E}的例子，为具体起见，取 $k=\mathbb{C}$。令 $X=\mathbb{A}^1_{\mathbb{C}}$，而 $\mathrm{D}=-2[(x)]+[(x-1)]+[(x-2)]$。
+（a）考虑 $\OO_X(\mathrm{D})$ 中对应于 $x^2(x-3)/\bigl((x-1)(x-2)\bigr)\in K(X)$ 的那个\trSection（经由 \eqref{eq:oxd-sections-definition} 的对应）。这个\trSection{}恰好在一点消失。是哪一点？
+（b）考虑 $\OO_X(\mathrm{D})$ 中对应于 $x^2(x-1)\in K(X)$ 的那个\trSection。这个\trSection{}恰好在两点消失。是哪两点？它在这些点处分别以怎样的阶消失？
+（c）考虑 $\OO_X(\mathrm{D})$ 中对应于 $1\in K(X)$ 的那个\emph{有理截面}（切莫忘记：经由 \eqref{eq:oxd-sections-definition} 的对应）。它的\trZeros{}与\trPole{}在哪里？阶数各是多少？对这道题而言，最常见的错误答案是什么？
+
+接下来我们证明：在良好的环境中，$\OO_X(\mathrm{D})$ 是一个\trInvertibleSheaf。（事实上，即便 $\OO_X(\mathrm{D})$ \emph{不}是\trInvertibleSheaf，$\OO_X(\mathrm{D})$ 这一构造偶尔也能派上用场，但这不在我们此处的关心之列。一个非\trInvertibleSheaf{}的 $\OO_X(\mathrm{D})$ 的例子见\mbox{练习~15.4.K}。）
+
+\textbf{15.4.G.（困难但重要的练习）}\quad 设 $\mathscr{L}$ 是一个\trInvertibleSheaf，而 $s$ 是 $\mathscr{L}$ 的一个非零\trRational\trSection。
+（a）描述一个同构 $\OO(\operatorname{div}s)\overset{\sim}{\longleftrightarrow}\mathscr{L}$。（你将会用到正规性假设！）提示：证明那些使 $\OO(\operatorname{div}s)\vert_U\cong\OO_U$ 的开子集 $U$ 构成\trZariskiTopology{}的一组\trBase。对每个这样的 $U$，定义 $\phi_U\colon\OO(\operatorname{div}s)(U)\to\mathscr{L}(U)$，它把一个有理函数 $t$（其\trZeros{}与\trPole{}「被 $\operatorname{div}s$ 约束」）送到 $st$。证明 $\phi_U$ 是同构（其逆映射显而易见：除以 $s$）。论证这个映射诱导了层的一个同构 $\phi\colon\OO(\operatorname{div}s)\overset{\sim}{\longrightarrow}\mathscr{L}$。
+（b）设 $\sigma$ 是从 $K(X)$ 到 $\mathscr{L}$ 的诸\trRational\trSection{}的映射，其中 $\sigma(t)$ 是 $\OO_X(\operatorname{div}s)\cong\mathscr{L}$ 的经由 \eqref{eq:oxd-sections-definition} 定义的那个\trRational\trSection（如\mbox{注记~15.4.7} 所描述）。证明：$\sigma$ 把 $\OO_X(\mathrm{D})$ 的典范截面「$1$」送到 $s$。更简洁地：$\sigma(1)=s$。（提示：（a）中的映射把 $1$ 送到 $s$。）
+
+总而言之，我们可以识别出哪些\trWeilDivisor{} $\mathrm{D}$ 落在 $\operatorname{div}$（\eqref{eq:div-group-homomorphism}）的像之中：它们就是使 $\OO_X(\mathrm{D})$ 成为一个\trLineBundle{}的那些 $\mathrm{D}$；随后我们便能构造出那个像——$(\OO(\mathrm{D}),\sigma(1))$，也即使得 $\operatorname{div}(\mathscr{L},s)=\mathrm{D}$ 的那个唯一的 $(\mathscr{L},s)$（在相差同构的意义下）。
+
+\textbf{15.4.H.（练习：\S15.1 之例）}\quad 设 $X=\mathbb{P}^n_k$、$\mathscr{L}=\OO(1)$，$s$ 是 $\OO(1)$ 中对应于 $x_0$ 的那个\trSection，而 $\mathrm{D}=\operatorname{div}s$。验证：$\OO(m\mathrm{D})\cong\OO(m)$，并且 $\OO(m\mathrm{D})$ 的典范\trRational\trSection{}恰好就是 $s^m$。（当心可能出现的混淆：$1$ 沿 $x_0=0$ 没有\trPole，但若 $m>0$，则 $\sigma(1)=s^m$ \emph{确}有一个\trZeros。）出于这个缘故，$\OO(1)$ 有时被称为 $\operatorname{Pic}\,X$ 中的\textbf{\trHyperplane\trClass}（hyperplane class）。（当然，$x_0$ 可以换成任何一个线性型。）
+
+\textbf{15.4.I.（练习：射影空间的\trPicardGroup）}\quad 你已在\mbox{练习~15.4.A}中确定出 $\operatorname{Weil}(\mathbb{P}^n_k)$。利用它推得：$\mathbb{P}^n_k$ 上的\trLineBundle{}都同构于某个 $\OO(m)$，从而 $\operatorname{Pic}\,\mathbb{P}^n_k\cong\mathbb{Z}$。
+
+\textbf{15.4.8.}\ \emph{\trhDefinition{}。}\quad 若（诺特正规不可约）$X$ 上的\trWeilDivisor{} $\mathrm{D}$ 满足 $\mathrm{D}=\operatorname{div}f$，其中 $f$ 是某个有理\emph{函数}，我们便称 $\mathrm{D}$ 是\textbf{\trPrincipal{}的}（principal）。\trPrincipal{}除子显然构成 $\operatorname{Weil}\,X$ 的一个\trSubgroup；把这个\trPrincipal{}除子群记作 $\operatorname{Prin}\,X$。注意，$\operatorname{div}$ 诱导一个群同态 $K(X)^{\times}\to\operatorname{Prin}\,X$。若 $X$ 可以被一些\trOpenSet{} $U_i$ 覆盖，使得在每个 $U_i$ 上 $\mathrm{D}$ 都是\trPrincipal{}的，我们就称 $\mathrm{D}$ 是\textbf{\trLocallyPrincipal{}的}（locally principal）。（警示：当指称闭子概形时，我们曾以一种略有不同的方式使用「局部主」这个说法。）\trLocallyPrincipal\trDivisor{}构成 $\operatorname{Weil}\,X$ 的一个\trSubgroup，我们把它记作 $\operatorname{LocPrin}\,X$。（这个记号并不标准，而且我们只在 \eqref{eq:class-group-diagram} 中使用它。）
+
+\textbf{15.4.9.}\ \emph{重要观察：「$\OO(\text{主除子})\cong\OO$、$\OO(\text{局部主除子})$＝\trLineBundle」。}\quad 作为\mbox{练习~15.4.G}(a) 的推论（取 $\mathscr{L}=\OO$），若 $\mathrm{D}$ 是\trPrincipal{}的（且 $X$ 正规——我们的\trStandingHypothesis），则（i）$\OO(\mathrm{D})\cong\OO$。（图表 \eqref{eq:class-group-diagram} 将蕴含其逆命题：若 $\OO(\mathrm{D})\cong\OO$，则 $\mathrm{D}$ 是\trPrincipal{}的。）于是（ii）若 $\mathrm{D}$ 是\emph{\trLocallyPrincipal{}}的，则 $\OO_X(\mathrm{D})$ \emph{局部}同构于 $\OO_X$——$\OO_X(\mathrm{D})$ 是一个\trInvertibleSheaf。
+
+\textbf{15.4.J.（重要练习）}\quad 设 $\OO_X(\mathrm{D})$ 是一个\trInvertibleSheaf。证明\mbox{重要观察~15.4.9} 的逆命题：证明 $\mathrm{D}$ 是\trLocallyPrincipal{}的。
+
+\textbf{15.4.10.}\ \emph{\trhRemark{}。}\quad 在定义 \eqref{eq:oxd-sections-definition} 中，考虑那些使 $\operatorname{div}s\ge\mathrm{D}\vert_U$ 的 $s$ 或许显得更干净。之所以采取这个约定，源于我们希望 $\operatorname{div}\sigma(1)=\mathrm{D}$。（在 $\mathrm{D}$ \trLocallyPrincipal{}的情形，采取「相反」的约定将会给出对偶丛。）
+
+\textbf{15.4.K.（较不重要的练习：非局部主的\trWeilDivisor）}\quad 设 $X=\Spec k[x,y,z]/(xy-z^2)$，一个\trCone，并设 $\mathrm{D}$ 是直线 $z=x=0$（见\cref{fig:cone-line-xyz}）。
+（a）证明：$\mathrm{D}$ 不是一个\trLocallyPrincipal\trDivisor。（提示：考察原点处的\trStalk。利用\trZariski\trTangentSpace；见\mbox{问题~13.1.3}。）特别地，$\OO_X(\mathrm{D})$ 不是\trInvertibleSheaf。（警示：先前在\mbox{问题~13.1.3}中我们曾看到，它作为一个闭子概形不是局部主的。「局部主」一词竟有两个互不相同却极为相近的含义，这实在令人遗憾。）
+（b）证明：$\operatorname{div}(x)=2\mathrm{D}$。这对应于「平面 $x=0$ 沿 $\mathrm{D}$ 与锥 $X$ 相切」这一事实。于是 $2\mathrm{D}$ \emph{是}一个\trLocallyPrincipal\trDivisor。
+
+\textbf{15.4.L.（重要练习）}\quad 若 $X$ 是\trNoetherian{}且唯一分解的，证明：对任何\trWeilDivisor{} $\mathrm{D}$，$\OO(\mathrm{D})$ 都是一个\trInvertibleSheaf。（提示：作为动机，考虑 $\mathrm{D}$ 不可约的情形——比如 $\mathrm{D}=[Y]$——并用一些开集覆盖 $X$，使得在每个开集 $U$ 上都存在一个函数，其除子为 $[Y\cap U]$。其中一个开集将是 $X-Y$。接下来，我们找一个包含任意点 $p\in Y$ 的开集 $U$，以及 $U$ 上的一个函数。由于 $\OO_{X,p}$ 是一个\trUFD，对应于 $Y$ 的那个素理想余维数为 $1$，从而由\mbox{引理~12.1.7} 是\trPrincipal{}的。设 $f$ 是这个素理想的一个\trGenerator，视之为 $K(X)$ 中的一个元素。它在 $p$ 处正则；它的\trZeros{}与\trPole{}只有有限多个；而对经过 $p$ 的部分而言，$[Y]$ 是「唯一的零点」（即零点除子的唯一分量）。令 $U$ 为 $X$ 去掉所有其余零点与极点之后的集合。）
+
+\textbf{15.4.11.\ \trClassGroup。}\quad 我们现在得以把握正规诺特概形的\trPicardGroup{}了。把 $X$ 的\textbf{\trClassGroup} $\operatorname{Cl}\,X$ 定义为 $\operatorname{Weil}\,X/\operatorname{Prin}\,X$。对包含关系 \eqref{eq:div-group-homomorphism} 关于 $\operatorname{Prin}\,X$ 取商，我们便得到包含关系 $\operatorname{Pic}\,X\hookrightarrow\operatorname{Cl}\,X$。这些内容总结在下面这张方便而富于启发性的图表里。
+\begin{equation*}\tag{15.4.11.1}\label{eq:class-group-diagram}
+\begin{tikzcd}[column sep=2.4em, row sep=4.6em]
+ & \{(\mathscr{L},s)\}/\text{同构}
+ \ar[r, "\sim", "\operatorname{div}"']
+ \ar[d]
+ & \operatorname{LocPrin}\,X
+ \ar[r, hook, "=\ \text{若 }X\text{ 唯一分解}"]
+ \ar[d, "/\operatorname{Prin}\,X"]
+ & \operatorname{Weil}\,X
+ \ar[d, "/\operatorname{Prin}\,X"] \\
+ \operatorname{Pic}\,X
+ \ar[r, equal]
+ & \{\mathscr{L}\}/\text{同构}
+ \ar[from=1-3, to=1-2, bend right=40, "\mathrm{D}\mapsto{(\OO(\mathrm{D}),\sigma(1))}"']
+ \ar[r, "\sim"]
+ & \operatorname{LocPrin}\,X/\operatorname{Prin}\,X
+ \ar[r, hook, "=\ \text{若 }X\text{ 唯一分解}"]
+ & \operatorname{Cl}\,X
+ \ar[from=2-3, to=2-2, bend left=40, "\mathrm{D}\mapsto\OO(\mathrm{D})"]
+\end{tikzcd}
+\end{equation*}
+这张图非常重要，而且意义稠密。消化它需要时间。
+
+\emph{特别地，若 $A$ 是一个\trUFD，则由\mbox{引理~12.1.7}，$\Spec A$ 上的一切\trWeilDivisor{}都是\trPrincipal{}的，于是 $\operatorname{Cl}(\Spec A)=0$，从而 $\operatorname{Pic}(\Spec A)=0$。}
+
+\textbf{15.4.12.}\quad 由于 $k[x_1,\dots,x_n]$ 具有唯一分解性，$\operatorname{Cl}(\mathbb{A}^n_k)=0$，于是 $\boxed{\operatorname{Pic}(\mathbb{A}^n_k)=0}$。几何学家或许会觉得这可信——「$\mathbb{C}^n$ 是一个\trContractible{}的\trComplex\trManifold，因此理应没有非平凡的\trLineBundle」——尽管谨慎仍是必要的，因为这里所考虑的\trLineBundle{}门类全然不同：一边是\trHolomorphic{}的，一边是拓扑的或 $C^{\infty}$ 的。（题外话：出于这个缘故，你或许会期待 $\mathbb{A}^n_k$ 也没有非平凡\trVectorBundle。这正是\trQuillen--\trSuslin{}定理，旧称\trSerre{}猜想，是\trQuillen{}通向其 1978 年菲尔兹奖之工作的一部分。$n=1$ 的情形曾是\mbox{练习~14.2.C}。\trVaserstein{}的一个短证明见 [Lan, p. 850]。）
+
+从 $X$ 中移去一个余维数大于 $1$ 的闭子集，不会改变\trClassGroup，因为它既不改变\trWeilDivisor{}群，也不改变\trPrincipal{}除子。（警告：它\emph{确实可能}影响\trPicardGroup；见\mbox{练习~15.5.M}。）
+
+移去一个纯余维数 $1$ 的不可约闭子集，则会以可控的方式改变\trWeilDivisor{}群。设 $Z$ 是 $X$ 的一个余维数 $1$ 的\emph{不可约}子集（一个不可约除子）。那么我们显然有一个正合列
+\[
+0\longrightarrow\mathbb{Z}\xrightarrow{\;1\mapsto[Z]\;}\operatorname{Weil}\,X\longrightarrow\operatorname{Weil}(X-Z)\longrightarrow 0.
+\]
+当我们对\trPrincipal{}除子构成的\trSubgroup{}取商时，顾及左边可能失去正合性这一事实，我们便得到\textbf{类群的\trExcision{}正合列}（excision exact sequence for class groups）
+\begin{equation*}\tag{15.4.12.1}\label{eq:excision-class-groups}
+\mathbb{Z}\xrightarrow{\;1\mapsto[Z]\;}\operatorname{Cl}\,X\longrightarrow\operatorname{Cl}(X-Z)\longrightarrow 0.
+\end{equation*}
+（你看出这是为什么了吗？）
+
+\textbf{15.4.13.}\quad 例如，若 $U$ 是 $X=\mathbb{A}^n$ 的一个\trOpenSubscheme，则 $\operatorname{Pic}\,U=\{0\}$。
+
+\textbf{15.4.14.}\quad 作为另一个应用，设 $X=\mathbb{P}^n_k$，而 $Z$ 是超平面 $x_0=0$。我们有
+\[
+\mathbb{Z}\longrightarrow\operatorname{Cl}(\mathbb{P}^n_k)\longrightarrow\operatorname{Cl}(\mathbb{A}^n_k)\longrightarrow 0
+\]
+由此可知 $\operatorname{Cl}(\mathbb{P}^n_k)$ 由类 $[Z]$ 生成，而 $\operatorname{Pic}(\mathbb{P}^n_k)$ 是它的一个\trSubgroup。
+
+\textbf{15.4.15.}\quad 由\mbox{练习~15.4.H}，$[Z]\mapsto\OO(1)$；而由于对 $m\ne 0$ 而言 $\OO(m)$ 都非平凡（\mbox{练习~15.1.B}），$[Z]$ 在 $\operatorname{Cl}\,\mathbb{P}^n_k$ 中不是\trTorsion{}元素。于是 $\operatorname{Pic}(\mathbb{P}^n_k)\hookrightarrow\operatorname{Cl}(\mathbb{P}^n_k)$ 是一个\trIsomorphism，并且 $\boxed{\operatorname{Pic}(\mathbb{P}^n_k)\cong\mathbb{Z}}$，以 $\OO(1)$ 为\trGenerator。$\mathbb{P}^n$ 上\trInvertibleSheaf{}的\textbf{\trDegree}便由此定义：定义 $\deg\OO(d)$ 为 $d$。（如果你做过\mbox{练习~15.4.I}，那你其实已经证明过 $\operatorname{Pic}(\mathbb{P}^n_k)\cong\mathbb{Z}$；但我们将在这里以极佳的效果用到这一策略，见 \S15.5.4。）
+
+我们已经靠着「\trUFD{}的谱，其\trPicardGroup{}平凡」这一事实占了不少便宜。更一般地，\mbox{练习~15.4.L} 给出：
+
+\textbf{15.4.16.\ \trhProposition{}。}\ ——\ \emph{若 $X$ 是\trNoetherian{}且唯一分解的，则对任何\trWeilDivisor{} $\mathrm{D}$，$\OO(\mathrm{D})$ 都是\trInvertible{}的，从而映射 $\operatorname{Pic}\,X\to\operatorname{Cl}\,X$ 是一个\trIsomorphism。}
+
+这可以用来把与数论中\trClassGroup{}的联系精确化；见\mbox{练习~14.1.K}；另见 \S15.5.5。
+
+\textbf{15.4.17.\ 温和但重要的推广：用除子扭转\trLineBundle。}\quad 上述构造可以延拓——把 $\OO_X$ 换成任意一个\trInvertibleSheaf——如下。设 $\mathscr{L}$ 是正规诺特概形 $X$ 上的一个\trInvertibleSheaf。那么用 $\OO_X(\mathrm{D})\otimes\mathscr{L}$ 定义 $\mathscr{L}(\mathrm{D})$。若 $\mathrm{D}$ 是\trLocallyPrincipal{}的，则 $\mathscr{L}(\mathrm{D})$ 是一个\trLineBundle。注意，此时有两种不同的方式来解读 $\mathscr{L}(\mathrm{D})$ 在开集上的诸\trSection，二者各有各的好处：一是作为新\trLineBundle{} $\mathscr{L}(\mathrm{D})$ 的\trSection，二是作为带有由除子 $\mathrm{D}$ 给定的极点与零点约束的 $\mathscr{L}$ 的\trRational\trSection。
+
+\textbf{15.4.M.（容易的练习）}\quad
+（a）为方便起见，设 $X$ 不可约。证明：$\mathscr{L}(\mathrm{D})$ 的诸\trSection{}可以被解读为 $\mathscr{L}$ 的、其零点与极点被 $\mathrm{D}$ 约束的\trRational\trSection，正如 \eqref{eq:oxd-sections-definition} 那样：
+\[
+\Gamma(U,\mathscr{L}(\mathrm{D})):=\{t\ \text{是 }\mathscr{L}\text{ 的非零有理截面}\ :\ \operatorname{div}\vert_U t+\mathrm{D}\vert_U\ge 0\}\cup\{0\}.
+\]
+（b）设 $\mathrm{D}_1$ 与 $\mathrm{D}_2$ 都是\trLocallyPrincipal{}的。证明：
+\[
+\bigl(\OO(\mathrm{D}_1)\bigr)(\mathrm{D}_2)\cong\OO(\mathrm{D}_1+\mathrm{D}_2).
+\]
+
+\textbf{15.4.18.\ Qcqs 引理的一个变体。}\quad \mbox{Qcqs 引理~6.2.9}（其证明在\mbox{练习~6.2.G}）有如下推广。
+
+\textbf{15.4.N.（重要练习：将被反复使用）}\quad 设 $X$ 是一个\trQuasicompact\trQuasiSeparated{}概形，$\mathscr{L}$ 是 $X$ 上带有一个\trSection{} $s$ 的\trInvertibleSheaf，而 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf。作为\mbox{定义~6.2.8} 的推广，令 $X_s$ 为 $X$ 中 $s$ 不消失的\trOpenSubset。我们把 $s$ 解读为分次环 $\mathrm{R}(\mathscr{L})_\bullet:=\oplus_{n\ge 0}\Gamma(X,\mathscr{L}^{\otimes n})$ 中的一个次数 $1$ 元素。注意 $\oplus_{n\ge 0}\Gamma(X,\mathscr{F}\otimes_{\OO_X}\mathscr{L}^{\otimes n})$ 是一个分次 $\mathrm{R}(\mathscr{L})_\bullet$-模。
+（a）描述一个自然映射
+\[
+\Bigl(\bigl(\oplus_{n\ge 0}\Gamma(X,\mathscr{F}\otimes_{\OO_X}\mathscr{L}^{\otimes n})\bigr)_s\Bigr)_0\longrightarrow\Gamma(X_s,\mathscr{F}).
+\]
+（可能的提示：对\trQCSheaf{}而言，「张量积限制到\trAffine\trSubscheme{}上时无须\trSheafification」，\mbox{练习~6.2.F}。）
+（b）证明这个映射是同构。（提示：先证明在仿射情形它是同构。）
+
+翻译：$\mathscr{F}$ 在 $X_s$ 上的任何\trSection，在乘以 $s$ 的某个适当的幂\footnote{原书此处作（some some appropriate power），第一个「some」当系衍词，径删。——译者注}之后，都可以延拓为 $X$ 上的\trSection。而若我们有两个这样的延拓，则在再乘以 $s$ 的另一个适当的幂之后，它们便相等。
+

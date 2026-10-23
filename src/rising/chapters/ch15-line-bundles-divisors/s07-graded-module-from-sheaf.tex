@@ -1,0 +1,77 @@
+
+\section{拟凝聚层对应的分次模}
+
+（本节回答一些根本性的问题，但它出奇地刁钻。初读时你或许愿意跳过本节，或至少跳过诸证明，除非你对它们有特定的需要。）
+
+纵贯本节，$\mathrm{S}_\bullet$ 是一个有限生成的分次\trAlgebra，\emph{在次数 $1$ 处生成}；因此特别地，由\mbox{练习~15.1.G}，对一切 $m$ 我们都有\trInvertibleSheaf{} $\OO(m)$。同样纵贯本节，$M_\bullet$ 是一个分次 $\mathrm{S}_\bullet$-\trModule，而 $\mathscr{F}$ 是 $\Proj \mathrm{S}_\bullet$ 上的一个\trQCSheaf。
+
+我们已经知道如何由分次 $\mathrm{S}_\bullet$-\trModule{}得到 $\Proj \mathrm{S}_\bullet$ 上的诸\trQCSheaf。现在我们将看到：用这一办法可以把它们尽数得到。我们将定义一个函子 $\Gamma_\bullet$，它从「$\Proj \mathrm{S}_\bullet$ 上的诸\trQCSheaf」这一\trCategory{}走到「分次 $\mathrm{S}_\bullet$-\trModule」这一\trCategory，并将尝试逆转 $\sim$ 构造。二者并不严格互逆，因为 $\sim$ 会把两个不同的分次模变成同一个\trQCSheaf（例如见\mbox{练习~14.6.C}）。但我们将看到一个自然同构 $\Gamma_\bullet(\widetilde{\mathscr{F}})\overset{\sim}{\longleftrightarrow}\mathscr{F}$。事实上，$\Gamma_\bullet(\widetilde{M_\bullet})$ 是 $M_\bullet$ 的一个更好（「\trSaturated」）的版本，而且有一个类似于\trGroupification{}与\trSheafification{}的\trSaturation{}函子 $M_\bullet\to\Gamma_\bullet(\widetilde{M_\bullet})$——它与「从\trSaturated{}分次模到分次模的\trForgetfulFunctor」伴随。就这样，我们来到了 $\sim$ 与 $\Gamma_\bullet$ 之间的基本关系：它们构成一个\trAdjointPair。
+
+\begin{center}
+\begin{tikzcd}[column sep=6.5em, row sep=4.2em]
+ & \text{分次 }\mathrm{S}_\bullet\text{-模} \ar[dl, "\sim"'] \ar[dd, bend right=40, "\text{\trSaturation}"'] \\
+ \mathit{QCoh}_{\Proj \mathrm{S}_\bullet} \ar[dr, "\text{等价}", "\Gamma_\bullet"'] & \\
+ & \text{\trSaturated{}分次 }\mathrm{S}_\bullet\text{-模} \ar[uu, bend right=40, "\text{\trForgetful}"']
+\end{tikzcd}
+\end{center}
+
+我们现在将其中的部分内容精密化，但只做到能继续前进的最少程度。特别地，我们将证明：射影 $A$-\trScheme{}上的每个\trQCSheaf{}都由一个分次模而来（\mbox{推论~15.7.4}）；我们还将看到，$\Proj \mathrm{S}_\bullet$ 的每个\trClosedSubscheme{}都由一个\trHomogeneous\trIdeal{} $\mathrm{I}_\bullet\subset\mathrm{S}_\bullet$ 而来（\mbox{练习~15.7.I}）。
+
+\textbf{15.7.1.\ $\Gamma_\bullet$ 的定义。}\quad 当你做\mbox{必要练习~15.1.C}（求 $\OO_{\mathbb{P}^n_k}(m)$ 的\trGlobalSections）时，你会猜测：在良好的情势下，
+\[
+M_m\cong\Gamma(\Proj \mathrm{S}_\bullet,\widetilde{M(m)}_\bullet).
+\]
+受此启发，我们定义
+\[
+\Gamma_m(\mathscr{F}):=\Gamma(\Proj \mathrm{S}_\bullet,\mathscr{F}(m)).
+\]
+
+\textbf{15.7.A.（练习）}\quad 描述一个 $\mathrm{S}_0$-\trModule{}的\trMorphism{} $M_m\to\Gamma(\Proj \mathrm{S}_\bullet,\widetilde{M(m)}_\bullet)$，它把\mbox{练习~14.6.D} 的 $m=0$ 情形延拓出来。
+
+\textbf{15.7.B.（练习）}\quad 证明：$\Gamma_\bullet(\mathscr{F})$ 是一个分次 $\mathrm{S}_\bullet$-\trModule。（提示：考虑 $\mathrm{S}_m\to\Gamma(\Proj \mathrm{S}_\bullet,\OO(m))$。）
+
+\textbf{15.7.C.（练习）}\quad 证明：由前两道练习产生的映射 $M_\bullet\to\Gamma_\bullet(\widetilde{M_\bullet})$ 是 $\mathrm{S}_\bullet$-\trModule{}的映射。我们称之为\textbf{\trSaturation{}映射}。
+
+\textbf{15.7.D.（练习）}\quad 证明：\trSaturation{}映射既不必单，也不必满。（提示：$\mathrm{S}_\bullet=k[x]$，$M_\bullet=k[x]/(x^2)$ 或 $M_\bullet=xk[x]$。）
+
+\textbf{15.7.E.（练习）}\quad 证明：$\Gamma_\bullet$ 是一个从 $\mathit{QCoh}_{\Proj \mathrm{S}_\bullet}$ 到分次 $\mathrm{S}_\bullet$-\trModule{}之\trCategory{}的\trFunctor。换言之，若 $\mathscr{F}\to\mathscr{G}$ 是 $\Proj \mathrm{S}_\bullet$ 上诸\trQCSheaf{}之间的一个\trMorphism，请描述自然映射 $\Gamma_\bullet\mathscr{F}\to\Gamma_\bullet\mathscr{G}$，并证明这类映射尊重恒等与\trComposition。因此，\trSaturation{}映射有个更恰当的名字：\textbf{\trSaturation{}函子}。
+
+\textbf{15.7.2.}\ \emph{特例 $M_\bullet=\mathrm{S}_\bullet$。}\quad 我们有一个\trSaturation{}映射 $\mathrm{S}_\bullet\to\Gamma_\bullet\widetilde{\mathrm{S}_\bullet}$，它是 $\mathrm{S}_\bullet$-\trModule{}的映射。但 $\Gamma_\bullet\widetilde{\mathrm{S}_\bullet}$ 带有\trGradedRing{}的结构（基本上是因为：我们可以把 $\OO(m_1)$ 的诸\trSection{}与 $\OO(m_2)$ 的诸\trSection{}相乘而得到 $\OO(m_1+m_2)$ 的诸\trSection；见\mbox{练习~15.1.I}）。
+
+\textbf{15.7.F.（练习）}\quad
+（a）证明：\trSaturation{}映射实际上是一个\trRingMorphism。
+（b）证明：当 $\mathrm{S}_\bullet$ 是（带通常\trGrading{}的）至少含一个变元的\trPolynomialRing{}时，\trSaturation{}映射是\trIsomorphism。
+（c）证明：对 $\mathrm{S}_\bullet=k[x,y]/(xy)$（其中两个变元的\trDegree{}都是 $1$），\trSaturation{}映射\emph{不}是\trIsomorphism。
+
+\textbf{15.7.3.}\ \hard\ \textbf{反向映射。}\quad 既然已经定义了\trSaturation{}映射 $M_\bullet\to\Gamma_\bullet\widetilde{M_\bullet}$，我们将描述一个映射 $\Gamma_\bullet\widetilde{\mathscr{F}}\to\mathscr{F}$。它定义起来虽然更微妙，却具有身为\trIsomorphism{}的优点。
+
+\textbf{15.7.G.（练习）}\quad 如下定义自然映射 $\Gamma_\bullet\widetilde{\mathscr{F}}\to\mathscr{F}$。先在 $\mathrm{D}_+(f)$ 上描述这个映射在诸\trSection{}上的作用。注意：左边的诸\trSection{}形如 $z/f^n$，其中 $z\in\Gamma_{n\deg f}(\mathscr{F})$；而若有某个 $N$ 使 $f^N(f^{n'}z-f^nz')=0$，则 $z/f^n=z'/f^{n'}$。右边的诸\trSection{}已在\mbox{练习~15.4.N} 中被隐式地描述。证明你的映射在重叠 $\mathrm{D}_+(f)\cap\mathrm{D}_+(g)=\mathrm{D}_+(fg)$ 上表现良好。
+
+\textbf{15.7.H.（刁钻的练习）}\quad 证明：自然映射 $\Gamma_\bullet\widetilde{\mathscr{F}}\to\mathscr{F}$ 是\trIsomorphism，方法是证明：对任何 $f$，它是 $\mathrm{D}_+(f)$ 上诸\trSection{}之间的\trIsomorphism。先证满性——利用\mbox{练习~15.4.N} 证明：$\mathscr{F}$ 在 $\mathrm{D}_+(f)$ 上的任何\trSection{}都形如 $z/f^n$，其中 $z\in\Gamma_{n\deg f}(\mathscr{F})$。然后验证它是单射。
+
+\textbf{15.7.4.\ \trhCorollary{}。}\ ——\ \emph{射影 $A$-\trScheme{}上的每个\trQCSheaf{}都由 $\sim$ 构造而来。}
+
+\textbf{15.7.I.（练习：\mbox{练习~9.3.B} 之逆）}\quad 证明：$\Proj \mathrm{S}_\bullet$ 的每个\trClosedSubscheme{}都由一个\trHomogeneous\trIdeal{} $\mathrm{I}_\bullet\subset\mathrm{S}_\bullet$ 而来。（提示：设 $Z$ 是 $\Proj \mathrm{S}_\bullet$ 的一个\trClosedSubscheme。考虑正合列 $0\to\mathscr{I}_Z\to\OO_{\Proj \mathrm{S}_\bullet}\to\OO_Z\to 0$。施加 $\Gamma_\bullet$，随后施加 $\sim$。当心：$\Gamma_\bullet$ 是\trLeftExact{}的，但未必\trExact。）这就兑现了\mbox{练习~9.3.B} 与\mbox{练习~14.6.E} 中许下的承诺。
+
+破天荒头一回，我们看到了：射影概形的每个闭子概形都由齐次方程切出。这与仿射概形的每个闭子概形由方程切出正相对偶。这一事实证明起来竟如此之难，实在令人不安。（作为比较，在扎里斯基拓扑的层面上这件事是容易的——见\mbox{练习~4.5.K(c)}。）
+
+\textbf{15.7.J.}\ \extrahard\ \textbf{（练习：$\Gamma_\bullet$ 与 $\sim$ 是伴随函子）}\quad 描述一个自然双射 $\Hom(M_\bullet,\Gamma_\bullet\mathscr{F})\cong\Hom(\widetilde{M_\bullet},\mathscr{F})$，如下。
+（a）证明：映射 $M_\bullet\to\Gamma_\bullet\mathscr{F}$ 与诸映射 $((M_\bullet)_f)_0\to((\Gamma_\bullet\mathscr{F})_f)_0$（$f$ 跑遍 $\mathrm{S}_+$）是「相同」的，后者作为 $f$ 的变化是「相容」的；也就是说，若 $\mathrm{D}_+(g)\subset\mathrm{D}_+(f)$，则有交换图
+\begin{center}
+\begin{tikzcd}[column sep=5.5em, row sep=3.6em]
+((M_\bullet)_f)_0 \ar[r] \ar[d] & ((\Gamma_\bullet\mathscr{F})_f)_0 \ar[d] \\
+((M_\bullet)_g)_0 \ar[r] & ((\Gamma_\bullet\mathscr{F})_g)_0
+\end{tikzcd}
+\end{center}
+更确切地说，请在 $\Hom(M_\bullet,\Gamma_\bullet\mathscr{F})$ 与下列相容映射之集之间给出一个双射：
+\[
+\Bigl(\Hom\bigl((M_\bullet)_f\bigr)_0\to\bigl((\Gamma_\bullet\mathscr{F})_f\bigr)_0\Bigr)_{f\in\mathrm{S}_+}.
+\]
+（b）描述一个双射，其一为 $\bigl(\Hom((M_\bullet)_f)_0\to((\Gamma_\bullet\mathscr{F})_f)_0\bigr)_{f\in\mathrm{S}_+}$，其二为诸映射 $\Gamma(\mathrm{D}_+(f),\widetilde{M_\bullet})\to\Gamma(\mathrm{D}_+(f),\mathscr{F})$ 所成之族。
+
+\textbf{15.7.5.}\ \extrahard\ \textbf{\trSaturated{}的 $\mathrm{S}_\bullet$-\trModule。}\quad 我们以一条注记收尾：不同的分次 $\mathrm{S}_\bullet$-\trModule{}会在 $\Proj \mathrm{S}_\bullet$ 上给出同一个\trQCSheaf，但本节的结果表明：对每个\trQCSheaf，都存在一个「最好的」（＝\trSaturated{}的）分次模；并且有一个从每个分次模到其「最好」版本的映射，$M_\bullet\to\Gamma_\bullet\widetilde{M_\bullet}$。使得这一映射为\trIsomorphism{}的模（一个「最好」的模）称为\textbf{饱和}的。这个术语我们在后文不会再用到。
+
+这个「\trSaturation{}」映射 $M_\bullet\to\Gamma_\bullet\widetilde{M_\bullet}$ 类似于\trSheafification{}映射——把\trPresheaf{}送到\trSheaf{}的那个映射。例如，饱和化之饱和化等于饱和化。
+
+关于饱和 $\mathrm{S}_\bullet$-\trModule{}之\trCategory{}的另一种描述，见 \S14.6.1。
+

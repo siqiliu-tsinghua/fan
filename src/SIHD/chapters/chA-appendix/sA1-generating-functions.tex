@@ -1,0 +1,316 @@
+
+
+\section{\texorpdfstring{$\R^{2n}$ 中辛映射的生成函数}{R2n 中辛映射的生成函数}}
+\label{sec:generating-functions}
+
+我们将从下述十分有用的观察出发：每个\trSymplectic{}映射都可以局部地借单独%
+一个\trScalarFunction{}来表示，即所谓的\trGeneratingFunction。在附录 A.2 中，它将用来%
+证明\trArnold-\trJost{}定理，该定理涉及\trIntegrableSystem{}中所谓的%
+\trActionAngle{}坐标的构造。这类\trHamiltonianSystem{}的特征在于拥有足够多%
+的\trFirstIntegral，以致——正如我们将要证明的——在经过一个整体\trSymplectic{}%
+\trTransformation{}之后，求解（或者说「\trIntegral」）\trDifferentialEquation{}的任务变得%
+平凡。
+
+A.1 节中的全部讨论本质上都是局部性的。我们考虑 $(\R^{2n},\omega_{0})$ 中一个%
+\trSymplectic\trMapping{} $u:(\xi,\eta)\mapsto(x,y)$，它由
+\begin{equation}\label{eq:a1-u-map}
+\begin{aligned}
+x\ &=\ a(\xi,\eta)\\
+y\ &=\ b(\xi,\eta)\,.
+\end{aligned}
+\end{equation}
+给出。若我们假设
+\begin{equation}\label{eq:a2-det}
+\det(a_{\xi})\neq0\,,
+\end{equation}
+则在局部可以把 \eqref{eq:a1-u-map} 中的第一个方程解出 $\xi=\alpha(x,\eta)$，%
+把这个解代入 \eqref{eq:a1-u-map} 中的第二个方程，我们便得到映射 $u$ 的下述%
+等价表示：
+\[
+\begin{aligned}
+\xi\ &=\ \alpha(x,\eta)\\
+y\ &=\ \beta(x,\eta)\,,
+\end{aligned}
+\]
+其中 $\beta(x,\eta)=b(\alpha(x,\eta),\eta)$，而
+\[
+\det(\alpha_{x})\cdot\det(a_{\xi})=1\,.
+\]
+以这种看似难看的方式把变量加以搅乱，其优点在于：$u$ 为辛的条件用 $\alpha$ 与%
+$\beta$ 来表述，远比用 $a$ 与 $b$ 来表述容易。我们将证明：在条件%
+ \eqref{eq:a2-det} 之下，映射 $u$ 是\trSymplectic{}的，当且仅当存在一个%
+\trScalarFunction{} $W=W(x,\eta)$ 使得
+\begin{equation}\label{eq:a3-generating}
+\begin{aligned}
+\xi\ &=\ \alpha(x,\eta)\ &&=\ \frac{\partial}{\partial\eta}W(x,\eta)\\
+y\ &=\ \beta(x,\eta)\ &&=\ \frac{\partial}{\partial x}W(x,\eta)\,.
+\end{aligned}
+\end{equation}
+
+于是 $(\beta,\alpha)$ 便是一个函数的\trGradient。为证明这一论断，我们在拥有%
+坐标 $(\xi,\eta,x,y)\in\R^{4n}$ 的 $\R^{4n}$ 上考虑下述\trOneForm：
+\[
+\sigma\ =\ \sum_{j=1}^{n}y_{j}\,dx_{j}\,+\,\xi_{j}\,d\eta_{j},
+\]
+其\trExteriorDerivative{}为\trTwoForm
+\[
+d\sigma\ =\ \sum_{j=1}^{n}dy_{j}\wedge dx_{j}\ -\ \sum_{j=1}^{n}d\eta_{j}\wedge d\xi_{j}\,.
+\]
+引入\trEmbedding{} $i$ 与 $j:\R^{2n}\to\R^{4n}$：
+\[
+\begin{aligned}
+i\ :\ (x,\eta)\ &\mapsto\ \bigl(\alpha(x,\eta),\ \eta,\ x,\ \beta(x,\eta)\bigr)\\
+j\ :\ (\xi,\eta)\ &\mapsto\ \bigl(\xi,\ \eta,\ a(\xi,\eta),\ b(\xi,\eta)\bigr)
+\end{aligned}
+\]
+并定义局部\trDiffeomorphism{} $\varphi:\R^{2n}\to\R^{2n}$，$(x,\eta)\mapsto%
+(\xi,\eta)=(\alpha(x,\eta),\eta)$，则有 $i=j\circ\varphi$。于是
+\[
+\begin{aligned}
+d(i^{*}\sigma)\ &=\ i^{*}d\sigma\ =\ \varphi^{*}(j^{*}d\sigma)\\
+&=\ \varphi^{*}(u^{*}\omega_{0}-\omega_{0})\,.
+\end{aligned}
+\]
+若 $u$ 是\trSymplectic{}的，即 $u^{*}\omega_{0}-\omega_{0}=0$，则 $i^{*}\sigma$ %
+是\trClosed{}的，从而局部\trExact，于是
+\[
+\begin{aligned}
+i^{*}\sigma(x,\eta)\ &=\ \sum_{j=1}^{n}\beta_{j}(x,\eta)\,dx_{j}\,+\,\alpha_{j}(x,\eta)\,d\eta_{j}\\
+&=\ dW(x,\eta)\ =\ \sum_{j=1}^{n}W_{x_{j}}(x,\eta)\,dx_{j}\,+\,W_{\eta_{j}}(x,\eta)\,d\eta_{j}
+\end{aligned}
+\]
+其中 $W=W(x,\eta)$ 是一个函数。从这个恒等式我们便可读出%
+ \eqref{eq:a3-generating}。我们可以把所有步骤反过来进行，因此便证明了：
+
+\begin{proposition}\label{prop:a1-generating-representation}
+每个形如 \eqref{eq:a1-u-map} 且满足 \eqref{eq:a2-det} 的\trSymplectic\trMapping{}%
+$u$ 都可以局部地表示成隐形式
+\begin{equation}\label{eq:a4-implicit-form}
+\begin{aligned}
+\xi\ &=\ W_{\eta}(x,\eta)\\
+y\ &=\ W_{x}(x,\eta)\,,
+\end{aligned}
+\end{equation}
+其中 $\det(W_{x\eta})\neq0$。反之，任何满足这个不等式的\trSmooth{}函数%
+$W=W(x,\eta)$ 都借助 \eqref{eq:a4-implicit-form} 隐式地在一点附近定义了一个%
+\trSymplectic\trMapping{} $u$。
+\end{proposition}
+
+函数 $W(x,\eta)$ 称为\trSymplectic{}映射 $u$ 的一个\trGeneratingFunction。%
+\cref{prop:a1-generating-representation} 表明：满足 \eqref{eq:a2-det} 的%
+\trSymplectic{}映射 $u$ 可以局部地借单独一个函数来描述。例如，\trIdentityMap{}%
+对应于 $W(x,\eta)=\langle x,\eta\rangle$。于是，每个形如
+\[
+W(x,\eta)\ =\ \langle x,\eta\rangle\ +\ w(x,\eta)\,,
+\]
+的函数 $W$，只要 $w$ 连同它的前两阶导数一起很小，就在恒同映射附近定义了一个%
+\trSymplectic\trMapping，而且所有这类映射在局部都可以由函数来%
+\trParametrization。当然，还可以构造别的\trGeneratingFunction。若我们改选%
+ $(x,\xi)$ 为独立变量，并在 \eqref{eq:a2-det} 之处代之以下述假设
+\begin{equation}\label{eq:a5-det-eta}
+\det(a_{\eta})\neq0\,,
+\end{equation}
+则可以把 \eqref{eq:a1-u-map} 中的映射 $u$ 局部地表示成隐形式
+\begin{equation}\label{eq:a6-implicit-v}
+\begin{aligned}
+\eta\ &=\ -\,V_{\xi}(\xi,x)\\
+y\ &=\ \phantom{-\,}V_{x}(\xi,x),\qquad\det(V_{x\xi})\neq0
+\end{aligned}
+\end{equation}
+其中 $V(\xi,x)$ 是一个\trGeneratingFunction。其证明与上面的证明一样进行，只是%
+改从 $\R^{4n}$ 上由 $\sigma=y\,dx-\eta\,d\xi$（简写记法）给出的\trOneForm{}%
+出发。例如，\trIdentityMap{}违反条件 \eqref{eq:a5-det-eta} 却满足%
+ \eqref{eq:a2-det}，而辛旋转
+\[
+x\ =\ \eta\,,\qquad y\ =\ -\xi
+\]
+则满足 \eqref{eq:a5-det-eta} 而违反 \eqref{eq:a2-det}。然而，正如我们下面将要%
+证明的，每个\trSymplectic\trMapping{}都有表示它的某个\trGeneratingFunction。%
+$(\R^{2n},\omega_{0})$ 的所谓\trElementary\trSymplectic{}\trTransformation{}群由旋转
+\[
+\begin{aligned}
+x_{1}\ &=\ \eta_{1}\,,\qquad &&x_{k}\ =\ \xi_{k}\,,\qquad &&k\geq2.\\
+y_{1}\ &=\ -\xi_{1}\,,\qquad &&y_{k}\ =\ \eta_{k}
+\end{aligned}
+\]
+以及诸映射
+\[
+x_{j}\ =\ \xi_{\pi(j)}\,,\ y_{j}\ =\ \eta_{\pi(j)}\,,\qquad j=1,2,\ldots,n,
+\]
+生成，其中 $\pi$ 是整数 $(1,2,\ldots,n)$ 的一个\trPermutation{}。所有这些映射都是%
+\trSymplectic{}的，并且可以由\trSymplecticMatrix{}表示，我们把这些矩阵缩记%
+为 $E$。
+
+\begin{proposition}\label{prop:a1-elementary-e}
+设 $U$ 是 $(\R^{2n},\omega_{0})$ 的一个\trLinear\trSymplectic\trMapping。则存在%
+一个\trElementary\trSymplectic{}\trTransformation{} $E$ 满足
+\[
+U\cdot E\ =\
+\begin{pmatrix} A & B\\ C & D \end{pmatrix}
+\quad\text{且}\quad\det A\neq0\,.
+\]
+\end{proposition}
+
+由于 $U$ 与 $U^{T}$ 都是\trSymplecticMatrix{}，\cref{prop:a1-elementary-e} 便可%
+立即由下面的\cref{lem:a1-deboor}得出。
+
+\begin{lemma}\label{lem:a1-deboor}
+设 $A$ 与 $B$ 分别是两个 $n\times n$ 矩阵，其列向量分别为 $a_{j}$ 与%
+ $b_{j}\in\R^{n}$（$1\leq j\leq n$）。设 $2n\times n$ 矩阵 $(A,B)$ 的\trRank{}%
+等于 $r$。若 $AB^{T}=BA^{T}$，则存在 $r$ 个互不相同的指标%
+ $j_{p}\in\{1,2,\ldots,n\}$，使得诸列向量 $v_{p}=a_{j_{p}}$ 或%
+ $v_{p}=b_{j_{p}}$ \trLinearlyIndependent。
+\end{lemma}
+
+\begin{proof}
+下述论证出于 C.~\trDeBoor{}。选取 $I\subset\{1,2,\ldots,n\}$，使得诸%
+ $\{a_{j}\}_{j\in I}$\trLinearlyIndependent{}且%
+ $\operatorname{Im}(A)=\operatorname{span}\{a_{j}\mid j\in I\}$。只须证明
+\begin{equation}\label{eq:a7-imb-inclusion}
+\operatorname{Im}(B)\ \subset\ \operatorname{Im}(A)\ +\ \operatorname{span}\{b_{s}\mid s\notin I\}\,.
+\end{equation}
+在 $\R^{n}$ 中取一组基 $c_{j}$，使得对 $j,k\in I$ 有%
+ $\langle a_{j},c_{k}\rangle=\delta_{jk}$。于是对 $j\in I$ 可以算得
+\[
+BA^{T}c_{j}\ =\ b_{j}\ +\ \sum_{s\notin I}d_{j}(s)\,b_{s}\,,
+\]
+其中 $d_{j}(s)$ 是向量 $A^{T}c_{j}$ 的第 $s$ 个分量。由假设 $BA^{T}=AB^{T}$ %
+可知 $\operatorname{Im}(BA^{T})\subset\operatorname{Im}(A)$，从而我们得出：%
+$b_{j}$（$j\in I$）属于 $\operatorname{Im}(A)+\operatorname{span}\{b_{s}\mid s\notin I\}$，故论断 \eqref{eq:a7-imb-inclusion} 成立，引理证毕。
+\end{proof}
+
+把\cref{prop:a1-elementary-e}应用于一个\trSymplectic{}映射 $u$，其在某点处的%
+\trJacobi{}矩阵为 $U$，我们便可使条件 \eqref{eq:a2-det} 对 $u\circ E$（带有某个%
+\trElementary\trSymplectic{}\trTransformation{} $E$）成立，从而在该点附近找到借\trGeneratingFunction{}%
+的局部表示。为演示\trGeneratingFunction{}的用法，我们将定出%
+ \eqref{eq:a1-u-map} 中最一般的\trSymplectic{}映射 $u$，使其中
+\begin{equation}\label{eq:a8-a-prescribed}
+x\ =\ a(\xi)
+\end{equation}
+是预先给定的、满足 $\det(a_{\xi})\neq0$ 并且与 $\eta$ 无关。把所要的映射 $u$ %
+用一个\trGeneratingFunction{} $V(\xi,y)$ 表示成
+\[
+\begin{aligned}
+x\ &=\ V_{y}(\xi,y)\\
+\eta\ &=\ V_{\xi}(\xi,y),
+\end{aligned}
+\]
+的形式，我们得到 $V_{y}(\xi,y)=a(\xi)$，从而%
+ $V(\xi,y)=\langle a(\xi),y\rangle-v(\xi)$，或者 $\eta=V_{\xi}=a_{\xi}^{T}y-v_{\xi}$，%
+而 $u$ 的显式表示便是
+\begin{equation}\label{eq:a9-explicit-u}
+u:\quad
+\begin{aligned}
+x\ &=\ a(\xi)\\
+y\ &=\ \bigl(a_{\xi}^{T}\bigr)^{-1}\bigl(\eta+v_{\xi}(\xi)\bigr)
+\end{aligned}
+\end{equation}
+其中 $v=v(\xi)$ 是一个任意的\trScalarFunction{}。这是与 \eqref{eq:a8-a-prescribed} 相容的%
+最一般\trSymplectic{}映射 $u$。对 $a=\id$ 这一特殊情形，我们得到
+\begin{equation}\label{eq:a10-id-case}
+u:\quad
+\begin{aligned}
+x\ &=\ \xi\\
+y\ &=\ \eta+v_{\xi}(\xi)\,.
+\end{aligned}
+\end{equation}
+
+为了推广这些考虑，我们先回顾一个定义。若 $(M,\omega)$ 是任意一个%
+\trSymplecticManifold，则两个函数 $F,G:M\to\R$ 的\trPoissonBracket{}定义为函数
+\begin{equation}\label{eq:a11-poisson-def}
+\{F,G\}\ =\ -\omega(X_{F},X_{G})
+\end{equation}
+其中 $X_{F}$ 是与函数 $F$ 相伴的\trHamiltonianVectorField。显然%
+ $\{F,G\}=-\{G,F\}$；又因 $\omega(X_{F},\cdot)=-dF$，我们有
+\begin{equation}\label{eq:a12-poisson-d}
+\{F,G\}\ =\ dF(X_{G})\ =\ -dG(X_{F})\,.
+\end{equation}
+$M$ 上的\trSymplectic{}映射 $u$（即 $u^{*}\omega=\omega$）使\trPoissonBracket{}%
+保持\trInvariant：
+\begin{equation}\label{eq:a13-invariance}
+\{F,G\}\circ u\ =\ \{F\circ u,\ G\circ u\}\,.
+\end{equation}
+为验证这一点，回顾\trHamiltonianVectorField{}的\trTransformation{}公式：若 $u^{*}\omega=\omega$，%
+则 $u^{*}X_{G}=(du)^{-1}X_{G}\circ u=X_{G\circ u}$。于是%
+ $\{F,G\}\circ u=dF\circ u(X_{G}\circ u)=d(F\circ u)(u^{*}X_{G})=d(F\circ u)(X_{G\circ u})=\{F\circ u,G\circ u\}$，%
+论断 \eqref{eq:a13-invariance} 得证。反之，容易验证：对一切函数 $F$ 与 $G$ %
+满足 \eqref{eq:a13-invariance} 的映射 $u$ 必定是\trSymplectic{}映射。此外还%
+容易验证，对 $M$ 上的一切函数 $F$、$G$ 与 $H$，有
+\begin{equation}\label{eq:a14-commutator}
+[X_{F},X_{G}]\ =\ X_{\{G,F\}}
+\end{equation}
+以及
+\begin{equation}\label{eq:a15-jacobi-identity}
+\{F,\{G,H\}\}\ +\ \{H,\{F,G\}\}\ +\ \{G,\{H,F\}\}\ =\ 0\,.
+\end{equation}
+事实上，对 $M$ 上一个\trNondegenerate{}的\trTwoForm{} $\omega$ 可以证明：条件%
+ $d\omega=0$ 等价于条件 \eqref{eq:a14-commutator} 与%
+ \eqref{eq:a15-jacobi-identity} 中的每一个，例如参见 [167]。
+
+在 $M$ 的一个\trDarboux{}坐标卡中局部地——亦即在 $(\R^{2n},\omega_{0})$ 中——%
+两个函数 $F=F(x,y)$ 与 $G=G(x,y)$ 的\trPoissonBracket{}表示为
+\begin{equation}\label{eq:a16-darboux-poisson}
+\{F,G\}\ =\ \langle F_{x},G_{y}\rangle-\langle F_{y},G_{x}\rangle\,.
+\end{equation}
+例如，特殊的坐标函数 $(x,y)\mapsto x_{j}$ 满足 $\{x_{i},x_{j}\}=0$。于是，若%
+ $u:(\xi,\eta)\mapsto(x,y)=(a(\xi,\eta),b(\xi,\eta))$ 是一个\trSymplectic{}映射\footnote{原书此句印作「$(a(\xi,y),\,b(\xi,y))$」与「Possion brackets」：前者之 $y$ 疑为「$\eta$」之误（下文 $x_{j}=a_{j}(\xi,\eta)$ 为证），后者疑为「Poisson」之误，两处均径改。——译者注}，%
+则由\trPoissonBracket{}的\trInvariance{}可得出 $\{a_{i},a_{j}\}=0$，其中%
+ $x_{j}=a_{j}(\xi,\eta)$，$1\leq j\leq n$。我们的目标正是证明其逆：
+
+\begin{theorem}[\trLiouville]\label{thm:a1-liouville}
+考虑 $n$ 个函数 $a_{j}=a_{j}(\xi,\eta)$（$1\leq j\leq n$），满足
+\begin{align*}
+\text{(i)}\qquad&\ \{a_{i},a_{j}\}\ =\ 0\\
+\text{(ii)}\qquad&\ \operatorname{rank}\,(a_{\xi},a_{\eta})\ =\ n.
+\end{align*}
+则存在局部\trSymplecticDiffeomorphism{} $u=(a,b)$，
+\[
+\begin{aligned}
+x\ &=\ a(\xi,\eta)\\
+y\ &=\ b(\xi,\eta)\,,
+\end{aligned}
+\]
+它\trContinuation{}了关系 $x=a(\xi,\eta)$。
+\end{theorem}
+
+\begin{proof}
+通过施加一个\trElementary\trSymplectic{}\trTransformation{}，我们可以假设 $\det(a_{\xi})\neq0$，并从%
+方程 $x=a(\xi,\eta)$ 解出 $\xi=\alpha(x,\eta)$。我们将证明：$\alpha_{\eta}$ 的%
+对称性是条件 (i) 的推论。的确，这个条件可以写成%
+ $a_{\xi}a_{\eta}^{T}-a_{\eta}a_{\xi}^{T}=0$。用 $a_{\xi}^{-1}$ 左乘这个方程、%
+用它的转置右乘，我们得到 $a_{\eta}^{T}\bigl(a_{\xi}^{T}\bigr)^{-1}-a_{\xi}^{-1}a_{\eta}=0$，%
+即 $a_{\xi}^{-1}a_{\eta}$ 是\trSymmetric{}的。另一方面，对恒等式%
+ $\xi=\alpha(a(\xi,\eta),\eta)$ 求导给出
+\[
+\mathbf{1}\ =\ \alpha_{x}a_{\xi}\qquad\text{以及}\qquad 0\ =\ \alpha_{x}a_{\eta}+\alpha_{\eta},
+\]
+从而 $\alpha_{\eta}=-a_{\xi}^{-1}a_{\eta}$，它如所断言是\trSymmetric{}的。于是，%
+局部地存在函数 $W=W(x,\eta)$，使得
+\[
+\alpha(x,\eta)\ =\ W_{\eta}(x,\eta)\,.
+\]
+此外，$\det(W_{x\eta})=\det(\alpha_{x})=\bigl(\det a_{\xi}\bigr)^{-1}\neq0$，%
+故 $W$ 便是所要的、\trContinuation{}了 $x=a(\xi,\eta)$ 的\trSymplectic{}映射%
+ $u$ 的一个\trGeneratingFunction。
+\end{proof}
+
+\noindent\textbf{\trhCorollary。}\quad 若 $a_{0},a_{1},\ldots,a_{n}$ 是 $n+1$ 个%
+函数\footnote{原书本推论中「$a_{1},\ldots a_{n}$」之类三见（假设、结论、证明各一），省略号后均缺逗号，此处均径补。——译者注}，使得
+\begin{align*}
+\text{(i)}\qquad&\ \{a_{j},a_{k}\}\ =\ 0\,,\qquad j,k\ =\ 0,1,\ldots,n\\
+\text{(ii)}\qquad&\ \operatorname{rank}\Bigl(a_{j\xi},\,a_{j\eta}\Bigr)_{j=1,2,\ldots,n}\ =\ n,
+\end{align*}
+则 $a_{0}$ 可以表示为 $a_{1},\ldots,a_{n}$ 的函数。特别地，满足 (i) 的无关%
+函数至多有 $n$ 个。
+
+\begin{proof}
+借助该定理\trContinuation{}关系 $x=a(\xi,\eta)$，我们便得到一个使%
+ $a\circ u(x,y)=x$ 的\trSymplectic{}映射 $u$。今令 $a_{0}\circ u=f(x,y)$。由于%
+\trPoissonBracket{}在 $u$ 之下保持不变，我们有%
+ $0=\{a_{j},a_{0}\}=\{x_{j},f\}=f_{y_{j}}$，故 $f$ 与 $y$ 无关。于是%
+ $a_{0}=f(a_{1},\ldots,a_{n})$，这就证明了推论。
+\end{proof}
+
+至于\trGeneratingFunction{}的进一步例子，我们推荐读者查阅 J.~\trMoser{}与%
+ E.~\trZehnder{}的 \emph{Notes on Dynamical Systems} [167]。下面我们转向%
+\trLiouville{}定理的一个整体版本。

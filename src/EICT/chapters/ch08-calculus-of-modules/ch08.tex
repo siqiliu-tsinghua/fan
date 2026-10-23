@@ -1,0 +1,110 @@
+\chapter{模的演算}\label{ch:calculus-of-modules}
+
+
+∞-范畴之间的\trModule{}的演算，与\trUnitalRing{}之间的（双）模的演算极为相似。这里，
+∞-范畴顶替了环的位置，∞-范畴之间的\trFunctor{}扮演环同态的角色；在下表中，我们
+把\trFunctor{}竖直展示。从 $A$ 到 $B$ 的\trModule{} $E$，一如第 7 章所考虑的那
+些\trTwoSidedFibration，是一个∞-范畴：$A$「作用于左侧」，$B$「作用于右侧」，而
+这两种作用相互交换；这与环论中 $A$–$B$ 双模的记法相类似，也解释了我们选用这一
+术语的缘由。今后每当无须为其构成\trSpan{}的两条腿显式命名时，%
+\trModule{} $A\xleftarrow{q}E\xrightarrow{p}B$ 就将被描绘为 $A\xrightarrow{E}B$。
+
+\begin{center}
+\begin{tabular}{c@{\hspace{5em}}c@{\hspace{5em}}c}
+\trUnitalRing & $A$ & \trInfinityCategories\\[14pt]
+环同态 &
+\begin{tikzpicture}[baseline={(current bounding box.center)},x=1.5em,y=1.2em]
+  \node (Ap) at (0,0.9)  {$A'$};
+  \node (A)  at (0,-0.9) {$A$};
+  \draw[->] (0,0.45) -- node[left]{$\scriptstyle f$} (0,-0.45);
+\end{tikzpicture} & \trInfinityFunctor\\[14pt]
+环之间的双模 & $A\xrightarrow{E}B$ & ∞-范畴之间的\trModule\\[14pt]
+模映射 &
+\begin{tikzpicture}[baseline={(current bounding box.center)},x=1.5em,y=1.5em]
+  \node (Ap) at (0,1.3)    {$A'$};
+  \node (Bp) at (4.6,1.3)  {$B'$};
+  \node (A)  at (0,-1.3)   {$A$};
+  \node (B)  at (4.6,-1.3) {$B$};
+  \draw[->] (0.65,1.3) -- node[above]{$\scriptstyle E'$} (3.95,1.3);
+  \draw[->] (0.65,-1.3) -- node[below]{$\scriptstyle E$} (3.95,-1.3);
+  \draw[->] (0,0.8) -- node[left]{$\scriptstyle f$} (0,-0.8);
+  \draw[->] (4.6,0.8) -- node[right]{$\scriptstyle g$} (4.6,-0.8);
+  \node at (2.3,0) {$\scriptstyle\Downarrow\alpha$};
+\end{tikzpicture} & 模映射
+\end{tabular}
+\end{center}
+
+最后，还有一种模映射的概念，其边界是如上所示的一个由两个\trModule{}与两个%
+\trFunctor{}组成的方块。在环论中，具有这种边界的模映射由一支 $A'$–$B'$ 模同态
+$E'\to E(g,f)$ 给出，余定义域则是一个 $A'$–$B'$ 双模，由把 $A$–$B$ 模 $E$ 中的
+标量乘法沿环同态 $f$ 与 $g$ 作限制而定义。一个类似的想法已由定义 8.1.4 编码。
+
+这一类比还要延伸得更深：\trUnitalRing、环同态、双模与模映射定义了一个 Wood $[132]$
+意义下的\emph{\trProarrowEquipment}（proarrow equipment）。\footnote{这可以视为下面这个
+原型装备的一个特例：对任何封闭对称幺半范畴 $\mathcal{V}$，由 $\mathcal{V}$-范畴、
+$\mathcal{V}$-函子、$\mathcal{V}$-模以及它们之间的 $\mathcal{V}$-%
+\trNaturalTransformation{}构成的装备。环的装备则由「取 $\mathcal{V}$ 为%
+\trAbelianGroup{}\trCategory」这一情形，再限制到具单一对象的%
+\trAbelianGroup{}\trEnrichedCategory{}之上而得到。}
+我们在本章中的主要结果是定理 8.2.6，它断言：任一\trInfinityCosmos{}中的
+∞-范畴、\trFunctor、\trModule{}与模映射定义一个 Cruttwell 与 Shulman $[32]$
+意义下的\emph{\trVirtualEquipment}（virtual equipment）。
+
+作为第一步，我们将在 8.1 节中引入双侧等价纤维化的\trDoubleCategory，它经限制
+而定义一个模的\emph{\trVirtualDoubleCategory}（virtual double category）。
+\emph{\trDoubleCategory}（double category）是一种 2 维的范畴：它拥有对象；拥有
+两种\trOneMorphism{}，即「水平的」与「竖直的」；还拥有装入「方块」之中的 2 维\trCell，
+这些方块的边界由定义域与余定义域相容的水平与竖直\trOneMorphism{}构成（见定义 B.1.9）。
+抽象代数中一个富有启发性的例子是模的\trDoubleCategory：对象为环，竖直态射为
+环同态，水平态射为双模，而方块为双模同态。竖直复合就是复合同态，这是一个严格
+结合且幺的运算；水平复合则由\trModule{}的\trTensorProduct{}给出，后者在相干自然同构
+的意义下结合且幺。在文献中，这类结构有时被称作\emph{\trPseudoDoubleCategory}（pseudo double category）——态射与方块在「竖直」方向上严格复合，而在「水平」方向上仅到同构为
+止——不过，由于它是正文中考虑的唯一类型，我们径称之为「\trDoubleCategory」。
+\footnote{严格\trDoubleCategory{}在定理 B.3.6 中短暂露面，用以表达对应
+（mates correspondence）的函子性。}
+
+我们在 8.1 节中的目标，是描述一个类似的结构：其对象与竖直态射是任一取定的%
+\trInfinityCosmos{}中的\trInfinityCategories{}与\trFunctor，其水平态射是%
+\trModule，其方块是模映射。若把水平态射换成更大的一类——\trTwoSidedFibration
+——或还要更大的一类——\trTwoSidedIsofibration——则这些态射便组装成一个%
+\trDoubleCategory，其水平复合运算由命题 7.2.6 定义（见命题 8.1.6）。
+然而，这一水平复合运算并不保持\trModule：\trArrowInfinityCategory{} $A^{2}$ 定义一个从 $A$ 到
+$A$ 的\trModule，它与自身的水平复合\trEquivalence{}于命题 7.1.6 的那条双侧纤维
+化 $(p_{2},p_{0})\colon A^{3}\twoheadrightarrow A\times A$，而后者在
+$A\times A$ 之上的\trSliceInfinityCosmos{}中不是\trDiscrete。要定义一个真正的
+「模的\trTensorProduct{}」运算，需要一个两阶段的构造：先如命题 7.2.6 那样作出定义复
+合双侧纤维化的那个\trPullback，再经某种「\trHomotopyCoinverter{}」（homotopy coinverter）
+构造，把所得者反射成一条\emph{\trDiscrete{}}双侧\trFibration。由于所涉的余极限
+不在\trInfinityCosmos{}诸公理的辖域之内，这就多少构成了一个障碍。\footnote{%
+实践中遭遇到的\trInfinityCosmos{}事实上容许一切柔性的加权\trHomotopy\trColimit
+——特别是包括\trHomotopyCoinverter{}——因为它们按 Bourke、Lack 与 Vokřínek $[22]$ 所定义
+的一种意义，往往是\emph{\trAccessible}（accessible）（见题外话 E.1.8）。}
+
+我们并不打算为了追求一个模的\trDoubleCategory{}而踏出公理框架的舒适区，转而描
+述在这一公理化体系之内自然出现的结构——事后证明，范畴论学家对它颇为熟悉，而
+它也足够稳健，足以胜任我们想要的应用。我们首先证明：∞-范畴、\trFunctor、%
+\trModule{}与模映射组装成一个\emph{\trVirtualDoubleCategory}——一种比%
+\trDoubleCategory{}更弱的结构，其中容许\trCell{}具有多元的水平源，以此作为模的
+水平复合的一种「虚拟」替代。\trVirtualDoubleCategory{}之于\trDoubleCategory，
+恰如多范畴之于\trMonoidalCategory{}；事实上，\trVirtualDoubleCategory{}正是相对于有向图上
+的\trFreeCategory{}单子而定义的那些「广义多范畴」$[32, 76]$。
+
+\emph{\trVirtualEquipment}是一个满足两条附加公理的\trVirtualDoubleCategory。
+其中一条提供一种「\trRestrictionOfScalars{}」运算，使得水平态射 $A\xrightarrow{E}B$ 得以沿一
+对竖直态射 $f\colon A'\to A$ 与 $g\colon B'\to B$ 被\trPullback；另一条要求每
+个对象都拥有一支水平的「单位」态射，它满足某个适当的\trUniversalProperty，在
+缺乏复合运算之时充当幺性复合规则的替代。一旦 8.2 节给出了%
+\trVirtualEquipment{}的定义，这两条公理便可由第 7 章的诸结果轻易推出。最后两
+节致力于探索这一结构的诸推论；在第 9 章发展∞-范畴的形式范畴论时，这些推论将
+得到充分的运用。在 8.3 节中，我们将说明如何在\trVirtualEquipment{}中识别模的
+某些水平复合，即使任意一对可复合的\trModule{}的\trTensorProduct{}的一般构造尚属未
+知。最后的 8.4 节汇集了由∞-范畴之间的\trFunctor{} $k\colon A\to B$ 所表示的
+诸\trModule{}
+$A\xrightarrow{\mathrm{Hom}_{B}(B,k)}B$ 与
+$B\xrightarrow{\mathrm{Hom}_{B}(k,B)}A$ 的许多特殊性质，并重温 3.5 节中首次建
+立的某些性质。
+
+\input{chapters/ch08-calculus-of-modules/s01-the-double-category-of-two-sided-isofibrations}   %
+\input{chapters/ch08-calculus-of-modules/s02-the-virtual-equipment-of-modules}   %
+\input{chapters/ch08-calculus-of-modules/s03-composition-of-modules}   %
+\input{chapters/ch08-calculus-of-modules/s04-representable-modules}   %

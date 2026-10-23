@@ -1,0 +1,108 @@
+
+\section{逆像层}
+
+接下来我们要描述的观念十分根本，却也相当繁复。我们暂时还用不到它，所以把它留到第二遍阅读时再来细究，或许是最好的安排。设 $\pi\colon X\to Y$ 是一个\trContinuousMap。若 $\scr{F}$ 是 $X$ 上的一个\trSheaf，我们已经定义过\trPushforward{}层（或称\trDirectImage{}层）$\pi_*\scr{F}$，它是 $Y$ 上的一个\trSheaf。此外还有\textbf{\trInverseImage{}层}（inverse image sheaf）的观念。（我们不把它称作\trPullback{}层：这个名字留给日后为\trQCSheaf{}所作的另一个构造，见 \S14.5。）这是一个从 $Y$ 上的\trSheaves{}到 $X$ 上的\trSheaves{}的\trCovariantFunctor{} $\pi^{-1}$。若 $Y$ 上的\trSheaves{}还带有某种附加结构（例如群或环的结构），那么这种结构也会被 $\pi^{-1}$ 所保持。
+
+\textbf{2.7.1.\ 用伴随来定义：优雅但抽象。}\quad 我们把\trInverseImage{} $\pi^{-1}$ 定义为 $\pi_*$ 的\trLeftAdjoint。
+
+这其实算不上一个定义；要证明这个伴随确实存在，我们还得给出一个构造。注意：一旦有了它，我们便自动得到\trCanonical{}映射 $\pi^{-1}\pi_*\scr{F}\to\scr{F}$（对应于 $\Mor_Y(\pi_*\scr{F},\pi_*\scr{F})$ 中的\trIdMorphism{}）与 $\scr{G}\to\pi_*\pi^{-1}\scr{G}$（对应于 $\Mor_X(\pi^{-1}\scr{G},\pi^{-1}\scr{G})$ 中的\trIdMorphism{}）。
+
+\textbf{2.7.2.\ 构造：具体但丑陋。}\quad 定义临时记号
+\[
+\pi^{-1}_{\mathrm{pre}}\scr{G}(\mathsf{U})=\colim_{V\supset\pi(\mathsf{U})}\scr{G}(V).
+\]
+（回忆\trColimit{}的显式描述：$\pi^{-1}_{\mathrm{pre}}$ 在 $\mathsf{U}$ 上的\trSection，就是含 $\pi(\mathsf{U})$ 的那些开集上的\trSection，再配上一个\trEquivalenceRelation。注意 $\pi(\mathsf{U})$ 一般未必是开集。）
+
+\begin{exercise}\label{ex:inverse-image-presheaf}
+证明：这确实定义出 $X$ 上的一个\trPresheaf。再证明：它未必构成一个\trSheaf。（提示：把两个点映成一个点。）
+\end{exercise}
+
+现在定义 $\mathscr{G}$ 的\textbf{\trInverseImage}为 $\pi^{-1}\scr{G}:=(\pi^{-1}_{\mathrm{pre}}\scr{G})^{\mathrm{sh}}$。注意 $\pi^{-1}$ 是一个从 $Y$ 上的\trSheaves{}到 $X$ 上的\trSheaves{}的\trFunctor。下一道练习将证明：$\pi^{-1}$ 的确是 $\pi_*$ 的\trLeftAdjoint。不过你也许愿意先做后面几道练习，改日再回来做\cref{ex:adjointness-pushforward-inverse-image}。（做后面那几道练习时，试着给出两个证明：一个用\trUniversalProperty，另一个用显式描述。）
+
+\begin{exercise}[重要棘手练习：$(\pi^{-1},\pi_*)$ 是一个\trAdjointPair]\label{ex:adjointness-pushforward-inverse-image}
+设 $\pi\colon X\to Y$ 是一个\trContinuousMap，$\scr{F}$ 是 $X$ 上的一个\trSheaf，$\scr{G}$ 是 $Y$ 上的一个\trSheaf，请描述一个\trBijection{}
+\[
+\Mor_X(\pi^{-1}\scr{G},\scr{F})\mathrel{\xleftarrow{\ \sim\ }}\Mor_Y(\scr{G},\pi_*\scr{F}).
+\]
+注意：你这个\trBijection{}在伴随的定义的意义下是「自然的」（也就是说，它对 $\scr{F}$ 与 $\scr{G}$ 都具有\trFunctoriality{}）。于是，\mbox{构造~2.7.2}满足\mbox{定义~2.7.1}的\trUniversalProperty。一个可能的提示：证明两边都与如下的第三种构造相一致，我们把它记作 $\Mor_{YX}(\scr{G},\scr{F})$。设有一族映射 $\phi_{V\mathsf{U}}\colon\scr{G}(V)\to\scr{F}(\mathsf{U})$（其中 $\mathsf{U}$ 跑遍 $X$ 的全部开集，$V$ 跑遍 $Y$ 的全部含 $\pi(\mathsf{U})$ 的开集）。若对一切开集 $\mathsf{U}'\subset\mathsf{U}\subset X$ 与一切开集 $V'\subset V\subset Y$（其中 $\pi(\mathsf{U})\subset V$，$\pi(\mathsf{U}')\subset V'$），下图
+\begin{equation*}\tag{2.7.2.1}\label{eq:compatible-collections-diagram}
+\begin{tikzcd}[row sep=2.8em, column sep=4.2em]
+\scr{G}(V) \ar[r, "\phi_{V\mathsf{U}}"] \ar[d, "\mathrm{res}_{V,V'}"'] & \scr{F}(\mathsf{U}) \ar[d, "\mathrm{res}_{\mathsf{U},\mathsf{U}'}"] \\
+\scr{G}(V') \ar[r, "\phi_{V'\mathsf{U}'}"'] & \scr{F}(\mathsf{U}')
+\end{tikzcd}
+\end{equation*}
+皆交换，则称这族映射是\trCompatible{}的。把 $\Mor_{YX}(\scr{G},\scr{F})$ 定义为全体\trCompatible{}族 $\phi=\{\phi_{V\mathsf{U}}\}$ 所成的集合。
+\end{exercise}
+
+\vkthmsync{3}
+\begin{remark}[「茎与摩天楼层是一个\trAdjointPair」]\label{thm:stalk-skyscraper-adjoint}
+作为一个特例：若 $X$ 是一点 $p\in Y$，则我们看到 $\pi^{-1}\scr{G}$ 就是 $\scr{G}$ 的\trStalk{} $\scr{G}_p$，而从茎 $\scr{G}_p$ 到集合 $S$ 的映射，与 $Y$ 上从 $\scr{G}$ 到「以集合 $S$ 为值、\trSupport{}在 $p$ 处的\trSkyscraperSheaf」的层之间的映射是同一回事。你或许愿意在动手解\cref{ex:adjointness-pushforward-inverse-image}之前，先直接亲手证明这个特例，因为它颇有启发。（它也可能派上用场——你能用它来解\cref{ex:sheafification-stalk-isomorphism}与\cref{ex:epi-quotient-criteria}吗？）
+\end{remark}
+
+\begin{exercise}\label{ex:stalks-of-inverse-image}
+证明：$\pi^{-1}\scr{G}$ 的诸\trStalk{}与 $\scr{G}$ 的诸\trStalk{}是相同的。更精确地说：若 $\pi(p)=q$，请描述一个自然\trIsomorphism{} $\scr{G}_q\mathrel{\xrightarrow{\ \sim\ }}(\pi^{-1}\scr{G})_p$。（可能的提示：利用茎作为\trColimit{}的显式描述。回忆：诸\trStalk{}在\trSheafification{}下保持，见\cref{ex:sheafification-stalk-isomorphism}。或者，改用\trAdjointness{}（adjointness）。）
+\end{exercise}
+
+\cref{ex:stalks-of-inverse-image}连同\trCompatibleGerm{}的观念，或许能给你提供一种思考（乃至直观想象）\trInverseImage{}层的简单方式。与之密切相关的是：你可以把\trInverseImage{}层的\trSection{}理解成——局部地取——\trTarget{}上一些\trSection{}的\trInverseImage。（偏爱「\trSection{}空间」即\trEspaceEtale{}视角的读者（\S2.2.11）不妨核验：「\trSection{}空间的\trInverseImage」恰是\trInverseImage{}的「\trSection{}空间」。）
+
+\begin{exercise}[容易但有用]\label{ex:inverse-image-restriction}
+若 $\mathsf{U}$ 是 $Y$ 的一个\trOpenSubset，$i\colon\mathsf{U}\to Y$ 是\trInclusionMap{}（inclusion），而 $\scr{G}$ 是 $Y$ 上的一个\trSheaf，证明：$i^{-1}\scr{G}$ 自然\trIsomorphic{}于 $\scr{G}|_\mathsf{U}$（即 $\scr{G}$ 在 $\mathsf{U}$ 上的\trRestriction，\S2.2.8）。
+\end{exercise}
+
+\begin{exercise}\label{ex:inverse-image-exact}
+证明：$\pi^{-1}$ 是一个从 $Y$ 上\trAbelianGroups{}的\trSheaves{}到 $X$ 上\trAbelianGroups{}的\trSheaves{}的\trExact{}函子（对照\cref{ex:stalk-exact-functor}）。（提示：\trExact{}性可以在\trStalk{}上检验，而由\cref{ex:stalks-of-inverse-image}，茎是相同的。）本质上同样的论证将证明：$\pi^{-1}$ 是一个从 $Y$ 上的 $\OO_Y$-\trModule（在 $Y$ 上）到 $X$ 上的 $(\pi^{-1}\OO_Y)$-\trModule（在 $X$ 上）的\trExact{}函子，不过不必费神把它写下来。（给行家的注记：$\pi^{-1}$ 是\trLeftAdjoint，因而如 \S1.5.14 所讨论的那样，按\trAbstractNonsense\footnote{译注：「抽象废话」（abstract nonsense）是范畴学家的行话兼自嘲，专指不诉诸具体计算、纯靠泛性质与伴随等形式手段的论证。}它是\trRightExact{}的。左正合性之所以成立，是因为\trAbelianGroups{}在\trFiltered{}\trIndexSet{}上取的\trColimit{}是正合的，见\mbox{练习~1.5.L}。）
+\end{exercise}
+
+\textbf{2.7.4.\ 定义：\trPushPullMap{}。}\quad 设
+\begin{equation*}\tag{2.7.4.1}\label{eq:push-pull-diagram}
+\begin{tikzcd}[row sep=2.8em, column sep=4em]
+W \ar[r, "\beta'"] \ar[d, "\alpha'"'] & X \ar[d, "\alpha"] \\
+Y \ar[r, "\beta"'] & Z
+\end{tikzcd}
+\end{equation*}
+是一张\trCommutativeDiagram{}（未必是\trCartesianDiagram{}！），而 $\scr{F}$ 是 $X$ 上的一个\trSheaf。如下定义 $Y$ 上诸\trSheaves{}之间的\textbf{\trPushPullMap{}}（push-pull map）。
+\begin{equation*}\tag{2.7.4.2}\label{eq:push-pull-map}
+\beta^{-1}\alpha_*\scr{F}\longrightarrow\alpha'_*(\beta')^{-1}\scr{F}
+\end{equation*}
+先取 $W$ 上的\trIdMorphism{} $(\beta')^{-1}\scr{F}\mathrel{\xrightarrow{\ \sim\ }}(\beta')^{-1}\scr{F}$：由 $((\beta')^{-1},\beta'_*)$ 的\trAdjointness{}，这与 $X$ 上一个\trMorphism{} $\scr{F}\to\beta'_*(\beta')^{-1}\scr{F}$ 的数据是同一回事。施以 $\alpha_*$，便得到 $Z$ 上的一个映射 $\alpha_*\scr{F}\to\alpha_*\beta'_*(\beta')^{-1}\scr{F}$。由 \eqref{eq:push-pull-diagram} 的交换性，这正是 $Z$ 上的映射 $\alpha_*\scr{F}\to\beta_*(\alpha'_*)(\beta')^{-1}\scr{F}$。再由 $(\beta^{-1},\beta_*)$ 的\trAdjointness{}，就得到映射 \eqref{eq:push-pull-map}。
+
+我们观察到：整个构造对 $\scr{F}$ 而言具有\trFunctoriality{}（也就是说，给定 $X$ 上诸\trSheaves{}之间的一个映射 $\scr{F}\to\scr{G}$，我们便得到 $Y$ 上诸\trSheaves{}的某张\trCommutativeDiagram{}——是哪张图？）。（日后我们将把它推广到 $\OO$-\trModule、\trQCSheaf{}与\trCohomology{}；见\mbox{练习~7.2.D}(f)、\mbox{练习~14.5.K} 与\mbox{练习~18.7.B}。）
+
+\begin{exercise}[\extrahard\ 出人意料地难的练习]\label{ex:push-pull-dual}
+我们本来也可以用一种「对偶的方式」来定义\trPushPullMap{}：从 $Z$ 上的\trIdMorphism{} $\alpha_*\scr{F}\to\alpha_*\scr{F}$ 出发，利用 $(\alpha^{-1},\alpha_*)$ 的\trAdjointness{}，再由此继续下去。为什么这样给出的\trPushPullMap{}的定义与前者\emph{相同}？
+\end{exercise}
+
+\textbf{2.7.5.\ 层的\trSupport{}与层的截面的\trSupport{}。}\quad 下面的\cref{ex:sheaf-supported-on-closed}给了我们一个顺水推舟的机会，来引入\emph{\trSupport{}}（support）的观念；日后我们将一再用到它。
+
+\vkthmsync{6}
+\begin{definition}\label{thm:support-of-section}
+设 $\scr{F}$ 是 $X$ 上\trAbelianGroups{}的一个\trSheaf（其实，是\trSeparated\trPresheaf{}也未尝不可），$s$ 是 $\scr{F}$ 的一个\trGlobalSections。把\textbf{截面 $s$ 的\trSupport{}}（support of the section）记作 $\Supp\,s$，定义为 $X$ 中使 $s$ 的\trGerm{}非零的那些点 $p$ 构成的集合：
+\[
+\Supp\,s:=\{p\in X\ :\ s_p\neq 0\ \text{于 }\scr{F}_p\}.
+\]
+我们不妨把它看作 $X$ 中「截面 $s$ 所居之处」的那个子集——其补集正是 $s$ 为零截面之处。（无关宏旨的说明：即使 $\scr{F}$ 只是\trPresheaf，这件事也定义得出来；但若没有\cref{ex:sections-determined-by-germs}给出的\trInclusionMap{} $\scr{F}(\mathsf{U})\hookrightarrow\prod_{p\in\mathsf{U}}\scr{F}_p$，便可能出现这样的怪事：一个非零截面却「无处存身」——因为它「在每个点附近」都是 $0$，也就是说，它在每个\trStalk{}中都是 $0$。）
+\end{definition}
+
+\begin{exercise}[截面的\trSupport{}是闭集]\label{ex:support-of-section-closed}
+证明：$\Supp\,s$ 是 $X$ 的一个\trClosedSubset。
+\end{exercise}
+
+\begin{caveat}[连续函数取非零值的\trLocus{}是开集；函数的芽非零的\trLocus{}是闭集]\label{thm:caution-value-vs-germ}
+基本上由连续性的定义即可知道：连续函数的\emph{值}非零的\trLocus{}（locus）是\emph{开}的。（更一般地，\trLocallyRingedSpace{}上的函数取非零值的\trLocus{}是开的；见\mbox{练习~4.3.F}(a)。）与之相对，\cref{ex:support-of-section-closed}表明：函数的\trGerm{}非零的\trLocus{}是\emph{闭}的。为免误解，我们将尽量用如下措辞加以区分：「$f$ 在 $p$ 处为 $0$」（指 $f$ 的\emph{值}为零，即 $f(p)=0$），以及「$f$ 在 $p$ 附近为 $0$」（指 $f$ 的\trGerm{}为零，即在 $\OO_{X,p}$ 中 $f=0$，或者等价地说，$f$ 在 $p$ 的某个\trNeighborhood{}内为零）。
+\end{caveat}
+
+\begin{definition}\label{thm:support-of-sheaf}
+把群的\trSheaf{} $\scr{G}$ 的\textbf{层的\trSupport{}}（support of a sheaf）记作 $\Supp\scr{G}$，定义为诸\trStalk{}非平凡之处所成的\trLocus{}：
+\[
+\Supp\scr{G}:=\{p\in X\ :\ |\scr{G}_p|\neq 1\}.
+\]
+等价地，$\Supp\scr{G}$ 是「诸\trSection{}在一切开集上的\trSupport{}」的并。显然，\trSupport{}是一个「\trStalkLocal{}的观念」，因而与「限制到开集」相交换。（与我们无关的推广：更一般地，若该\trSheaf{}取值于某个\trCategory{}——例如\trSet{}的\trCategory——则\trSupport{}可以定义为「\trStalk{}不是\trFinalObject{}的那些点」。）
+\end{definition}
+
+\begin{exercise}\label{ex:sheaf-supported-on-closed}
+(a)~设 $Z\subset Y$ 是一个\trClosedSubset，$i\colon Z\hookrightarrow Y$ 是\trInclusionMap{}。若 $\scr{F}$ 是 $Z$ 上群的一个\trSheaf，证明：\trStalk{} $(i_*\scr{F})_q$ 在 $q\notin Z$ 时是仅含一个元素的群，在 $q\in Z$ 时等于 $\scr{F}_q$。
+
+(b)~设 $\Supp\scr{G}\subset Z$，其中 $Z$ 是闭的。证明：自然映射 $\scr{G}\to i_*i^{-1}\scr{G}$ 是\trIsomorphism。于是，\trSupport{}在一个闭子集上的层，可以视为该闭子集上的层。
+\end{exercise}
+
+\textbf{2.7.9.\ \trExtensionByZero（extension by zero）：逆像函子偶发的\emph{左伴随}。}\quad $\pi^{-1}$ 除了总是一个\trLeftAdjoint{}之外，当 $\pi$ 是某个\trOpenSubset{}的\trInclusionMap{}时，还可以是一个\trRightAdjoint。等到需要时我们再来讨论这件事，见 \S23.4.7。

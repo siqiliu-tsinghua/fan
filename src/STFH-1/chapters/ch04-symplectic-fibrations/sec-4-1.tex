@@ -1,0 +1,241 @@
+辛纤维化的精确定义由维克托·吉耶曼（Victor Guillemin）、尤金·勒曼（Eugene Lerman）与什洛莫·斯特恩伯格（Shlomo Sternberg）(GLS96) 在研究矩映射几何和表示论时引入。特别地，他们明确给出了\emph{哈密顿纤维化}的精确定义；它是辛纤维化的一个子类，使我们能够为给定的逐纤维辛结构定义一个闭延拓。他们把后一种闭延拓称为\emph{耦合形式}。当弗洛尔借助映射柱表述著名的辛不动点弗洛尔同调时，哈密顿纤维化概念的一种简单形式已经隐含其中 (Fl87)。塞德尔 (Se97) 系统地把哈密顿纤维化与弗洛尔同调及其乘积结构的研究联系起来。此后，哈密顿纤维化与弗洛尔同调之间的相互作用，一直是链层弗洛尔理论近期发展及其在辛拓扑中的应用 (En00)、(Schw00)、(Oh05b)、(Oh05c)、(Oh05d)、(Oh06a)、(Oh07)、(Oh09a)，以及在镜像对称中的应用 (Se03a)、(Se03b) 的关键要素。本章将回顾哈密顿纤维化及其辛联络理论的基本内容，着重说明它们与哈密顿动力学和扰动柯西--黎曼方程的关系。
+
+\section{辛纤维化与辛联络}
+\stfhIndex{I275}{xin^xian^wei^hua}{辛纤维化（symplectic fibration）}
+\stfhSubIndex{I276}{xin^xian^wei^hua}{辛纤维化（symplectic fibration）}{xin^xian^wei^cong}{辛纤维丛（symplectic fiber bundle）}
+\label{sec:symplectic-fibrations-connections}
+
+粗略地说，以流形 $F$ 为模型纤维的\emph{辛纤维丛} $\pi:E\to B$，是一个结构群为 $\Symp(F,\omega_F)$ 的纤维丛，其中 $\omega_F$ 是 $F$ 上的辛形式。下面给出显然的初等定义。
+
+\begin{definition}\label{def:symplectic-fiber-bundle}
+设纤维丛 $\pi:E\to B$ 以辛流形 $(F,\omega_F)$ 为模型纤维。若 $B$ 存在开覆盖 $\{U_\alpha\}$ 以及微分同胚
+\begin{equation}
+\begin{array}{ccccc}
+&&\pi^{-1}(U_\alpha)&\xrightarrow{\ \Phi_\alpha\ }&U_\alpha\times F\\[-0.1em]
+&&\searrow\quad\swarrow&&\\[-0.4em]
+&&U_\alpha&&
+\end{array}
+\label{eq:symplectic-fibration-trivialization}
+\end{equation}
+使得转移映射
+\[
+ \Psi_{\alpha\beta}
+ =\left.\Phi_\alpha\circ\Phi_\beta^{-1}
+  \right|_{\pi^{-1}(U_\alpha\cap U_\beta)}
+\]
+具有形式
+\begin{equation}
+ \Psi_{\alpha\beta}(b,p)=(b,\varphi_{\alpha\beta}(b,p)),
+ \label{eq:symplectic-fibration-transition}
+\end{equation}
+并且对所有 $b\in U_\alpha\cap U_\beta$，
+$\varphi_{\alpha\beta}(b,\cdot):F_b=\pi^{-1}(b)\to F$
+都是辛微分同胚，则称 $\pi:E\to B$ 为\emph{辛纤维丛}。
+\end{definition}
+
+现在分析这个定义带来的一些推论。设 $b\in U_\alpha\subset B$，且
+$\Phi_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times F$。以
+$\pi_2:U_\alpha\times F\to F$ 表示投影。于是纤维
+$\pi^{-1}(b)=F_b$ 带有辛形式
+\[
+ \omega_b=\Phi_\alpha^*(\pi_2^*\omega_F).
+\]
+
+\begin{proposition}\label{prop:fiberwise-symplectic-form-independent}
+设 $b\in B$。上面定义的形式 $\omega_b$ 与
+$\Phi_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times F$ 的选取无关。换言之，
+\[
+ \Phi_\alpha^*(\pi_2^*\omega_F)
+ =\Phi_\beta^*(\pi_2^*\omega_F).
+\]
+\end{proposition}
+
+\begin{proof}
+由条件 $\varphi_{\alpha\beta}(b,\cdot)\in\Symp(F,\omega_F)$ 在
+\eqref{eq:symplectic-fibration-transition}中是辛微分同胚，命题立即成立。
+\end{proof}
+
+由这个命题，$B$ 上的每个辛纤维丛都可看作辛流形
+$(F_b,\omega_b)$（$b\in B$）的一个 $B$-参数族，并且这个族作为辛流形族局部平凡。
+
+\begin{exercise}\label{ex:locally-trivial-symplectic-family}
+证明上面的陈述：$B$ 上任意局部平凡的辛流形纤维化都是辛纤维丛。
+\end{exercise}
+
+设 $\pi:E\to B$ 是以 $(F,\omega_F)$ 为纤维的辛纤维化。记
+$F_b=\pi^{-1}(b)$，并以上述定义的辛形式为 $\omega_b$。在每一点
+$e\in E$ 处，记
+\[
+ VT_eE=\ker d\pi(e)\cong T_eF_{\pi(e)}
+\]
+为纤维的竖直切空间，并记 $VTE=\bigcup_{e\in E}VT_eE$。回顾，
+$\pi:E\to B$ 上的一个（埃雷斯曼）联络 $\Gamma$ 是水平子空间
+$HT_eE$ 的一个选取：
+\[
+ \Gamma:TE=VTE\oplus HTE,
+ \qquad HTE=\bigcup_{e\in E}HT_eE.
+\]
+
+给定这样的联络，每条道路 $\gamma:[0,1]\to B$ 都在 $\gamma^*E$ 上诱导一个水平向量场，记作 $\xi_\gamma$。更准确地说，对每个
+$e\in(\gamma^*E)_t=E_{\gamma(t)}$，$\xi_\gamma(e)$ 是切向量
+$\gamma'(t)$ 的唯一水平提升，并满足
+\[
+ d\pi(\xi_\gamma(e))=\gamma'(t).
+\]
+对每个给定的 $e\in F_{\gamma(0)}$ 求解常微分方程
+\begin{equation}
+ \dot e(t)=\xi_\gamma(e(t)),\qquad e(0)=e,
+ \label{eq:horizontal-lift-ode}
+\end{equation}
+并在 $t=1$ 处取解 $e(t)$ 的值，便得到微分同胚
+$\phi_\gamma:E_{\gamma(0)}\to E_{\gamma(1)}$，称为联络 $\Gamma$ 沿
+$\gamma$ 的\emph{和乐}。
+
+\begin{remark}\label{rem:holonomy-noncompact-fiber}
+若纤维 $F$ 紧，这样的微分同胚总是存在。然而，若 $F$ 非紧，则需要对联络 $\Gamma$ 在纤维 $F_b$ 的无穷远处施加某种驯服行为，使得对所有初值
+$e\in F_{\gamma(0)}$，常微分方程\eqref{eq:horizontal-lift-ode}都能在区间
+$0\leq t\leq1$ 上一致求解。
+\end{remark}
+
+\begin{definition}\label{def:symplectic-connection}
+若所有和乐 $\Pi_\gamma$ 都定义辛微分同胚，即
+\[
+ \Pi_\gamma^*\omega_{\gamma(1)}=\omega_{\gamma(0)},
+\]
+则称 $\pi:E\to B$ 的联络 $\Gamma$ 为\emph{辛联络}。
+\end{definition}
+
+现在描述 $\Gamma$ 为辛联络的一个几何条件。考虑 $E$ 上与辛纤维化
+$\pi:E\to B$ 相容的 $2$-形式 $\Omega$，即对每个 $b\in B$，
+\[
+ \iota_b^*\Omega=\omega_b,
+\]
+其中 $\iota_b:F_b\hookrightarrow E$。$\omega_b$ 的非退化性蕴含子空间场
+\[
+ (VT_eE)^\Omega
+ =\{\xi\in T_eE\mid
+      \Omega(\xi,\eta)=0\ \text{对所有 }\eta\in VT_eE\}
+\]
+定义了一个联络 $\Gamma_\Omega$。反过来，每个水平分布都以这种方式得到，但
+$2$-形式 $\Omega$ 的选取并不唯一。两个相容 $2$-形式 $\Omega_1$ 与
+$\Omega_2$ 定义相同的水平分布，当且仅当
+\[
+ VTE\subset\ker(\Omega_1-\Omega_2).
+\]
+
+下面这个来自 (GLSW83) 的结果，用定义联络的 $2$-形式 $\Omega$ 刻画辛联络
+$\Gamma$。
+
+\begin{proposition}\label{prop:symplectic-connection-vertical-closedness}
+设 $E$ 上的 $2$-形式 $\Omega$ 与辛纤维化 $\pi:E\to B$ \emph{相容}，即对所有
+$b\in B$，$\iota_b^*\Omega=\omega_b$。则联络 $\Gamma_\Omega$ 是辛联络，当且仅当 $\Omega$ 在如下意义下是竖直闭的：
+\stfhIndex{I300}{shu^zhi^bi^2^xing^shi}{竖直闭 2-形式（vertically closed 2-form）}
+\[
+ d\Omega_e(\xi_1,\xi_2,\mathord\cdot)=0
+\]
+对所有 $e\in E$ 和 $\xi_1,\xi_2\in VT_eE$ 都成立。
+\end{proposition}
+
+\begin{proof}
+先设 $\Gamma$ 是辛联络。对 $E$ 上任意向量场 $\xi$ 和竖直切向量场
+$\xi_1,\xi_2$，在一点 $e\in E$ 处计算 $d\Omega_e(\xi_1,\xi_2,\xi)$：
+\[
+\begin{aligned}
+ d\Omega(\xi_1,\xi_2,\xi)
+ ={}&\xi_1[\Omega(\xi_2,\xi)]
+   +\xi_2[\Omega(\xi,\xi_1)]
+   +\xi[\Omega(\xi_1,\xi_2)]\\
+  &-\Omega([\xi_1,\xi_2],\xi)
+   -\Omega([\xi_2,\xi],\xi_1)
+   -\Omega([\xi,\xi_1],\xi_2).
+\end{aligned}
+\]
+先考虑 $\xi$ 水平的情形，即 $\xi=\eta^\#$ 是 $B$ 上向量场 $\eta$ 的水平提升。由 $\Omega$ 与 $\Gamma$ 的相容性，上式化为
+\begin{equation}
+ d\Omega(\xi_1,\xi_2,\xi)
+ =\xi[\Omega(\xi_1,\xi_2)]
+  -\Omega([\xi_2,\xi],\xi_1)
+  -\Omega([\xi,\xi_1],\xi_2).
+ \label{eq:vertical-closedness-horizontal}
+\end{equation}
+另一方面，对 $(\mathcal L_{\eta^\#}\Omega)(e)$ 有公式
+\begin{equation}
+ (\mathcal L_{\eta^\#}\Omega)(e)(\xi_1,\xi_2)
+ =\eta^\#[\Omega(\xi_1,\xi_2)]
+  -\Omega([\xi_2,\eta^\#],\xi_1)
+  -\Omega([\eta^\#,\xi_1],\xi_2),
+ \label{eq:lie-derivative-compatible-form}
+\end{equation}
+其中 $\xi_1,\xi_2\in T_eE$。分别以 $\phi_{\eta^\#}^t$ 和
+$\phi_\eta^t$ 表示 $E$ 上 $\eta^\#$ 的流与 $B$ 上 $\eta$ 的流，则
+\[
+\begin{aligned}
+ \left.\mathcal L_{\eta^\#}\Omega(e)\right|_{VTE}
+ &=\left.\frac d{dt}\right|_{t=0}
+   \left.(\phi_{\eta^\#}^t)^*\Omega(e)\right|_{VTE}\\
+ &=\left(
+   \left.\frac d{dt}\right|_{t=0}
+   \bigl((\Pi_\gamma^t)^{-1}\bigr)^*\omega_{\gamma(t)}
+   \right)(e),
+\end{aligned}
+\]
+其中 $b=\pi(e)$，而 $\gamma$ 是曲线 $t\mapsto\phi_\eta^t(b)$。按协变导数的定义，后一式正是 $\nabla_\eta\omega_b(e)$，因而
+\begin{equation}
+ \left.\mathcal L_{\eta^\#}\Omega(e)\right|_{VTE}
+ =\nabla_\eta\omega_b(e).
+ \label{eq:covariant-derivative-fiber-form}
+\end{equation}
+由于 $\Gamma$ 是辛联络，$\nabla\omega_b=0$，所以
+$(\mathcal L_{\eta^\#}\Omega)(e)(\xi_1,\xi_2)=0$。合并以上各式，就证明了当 $\xi$ 为水平向量场时
+$d\Omega(\xi_1,\xi_2,\xi)=0$。
+
+现在设 $\xi$ 竖直，则
+\[
+ d\Omega(e)(\xi_1,\xi_2,\xi)
+ =d\omega_b(\xi_1(e),\xi_2(e),\xi(e)),
+\]
+其中 $b=\pi(e)$。由于 $\omega_b$ 在 $E_b$ 上是闭的，并且
+$\xi,\xi_1,\xi_2$ 均竖直，右端为零。这证明了对所有竖直
+$\xi_1,\xi_2$，均有 $d\Omega(\xi_1,\xi_2,\mathord\cdot)=0$。
+
+下面证明逆命题。需要证明沿任意曲线 $\gamma:[0,1]\to B$ 的平行移动映射都是辛的。换言之，要证明
+\[
+ \Pi_\gamma^*(\omega_{\gamma(1)})=\omega_{\gamma(0)}.
+\]
+事实上，我们将证明更强的陈述
+\[
+ (\Pi_{\gamma,t})^*(\omega_{\gamma(t)})=\omega_{\gamma(0)}
+\]
+对所有 $t$ 均成立；这等价于
+\[
+ 0=\frac d{dt}(\Pi_{\gamma,t})^*(\omega_{\gamma(t)})
+  =\nabla_{\gamma'(t)}\omega_{\gamma(t)}.
+\]
+但是，\eqref{eq:covariant-derivative-fiber-form}蕴含
+\[
+\begin{aligned}
+ &\nabla_{\gamma'(t)}\omega_{\gamma(t)}
+   \bigl(\xi_1(\gamma^\#(t)),\xi_2(\gamma^\#(t))\bigr)\\
+ &\qquad={}
+ (\mathcal L_{\eta^\#}\Omega)(\gamma^\#(t))
+   \bigl(\xi_1(\gamma^\#(t)),\xi_2(\gamma^\#(t))\bigr)
+\end{aligned}
+\]
+对任意满足
+$\eta^\#(\gamma^\#(t))=(\gamma^\#)'(t)$ 的水平向量场 $\eta^\#$ 都成立。利用\eqref{eq:vertical-closedness-horizontal}与
+\eqref{eq:lie-derivative-compatible-form}，可计算得
+\[
+\begin{aligned}
+ &(\mathcal L_{\eta^\#}\Omega)(\gamma^\#(t))
+   \bigl(\xi_1(\gamma^\#(t)),\xi_2(\gamma^\#(t))\bigr)\\
+ &\qquad={}
+ d\Omega(\gamma^\#(t))
+   \bigl(\xi_1,\xi_2,(\gamma^\#)'(t)\bigr),
+\end{aligned}
+\]
+而它由 $\Omega$ 竖直闭的假设为零。
+\end{proof}
+
+上述 $\Omega$ 的竖直闭性也可以重新表述为：对任意光滑环路
+$\gamma:S^1\to B$，形式 $\gamma^*\Omega$ 在 $\gamma^*E$ 上是闭的。下一节将研究辛纤维化 $\pi:E\to B$，其辛联络由一个闭的相容 $2$-形式
+$\Omega$ 生成；在文献的弗洛尔同调拓扑量子场论表述中，这种纤维化起重要作用 (Schw95, Se03a, L04)。

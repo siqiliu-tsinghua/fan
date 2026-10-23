@@ -1,0 +1,142 @@
+
+\section{它们存在}
+
+在谈论积之前，我们先来指出：\trCoproduct{}在\trScheme{}的\trCategory{}中是存在的：正如在集合的范畴中那样（\cref{ex:coproducts-disjoint-union}），余积就是不交并。
+我们现在就要在\trScheme{}的\trCategory{}中构造\trFiberProduct。
+
+\textbf{10.1.1.\ \trhTheorem{}：\trFiberProduct{}存在。}\ ——\ \emph{设 $\alpha\colon X\to Z$ 与 $\beta\colon Y\to Z$ 是\trScheme{}之间的\trMorphism。那么\trFiberProduct}
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=3.2em]
+X\times_Z Y \ar[r, "\alpha'"] \ar[d, "\beta'"'] & Y \ar[d, "\beta"] \\
+X \ar[r, "\alpha"'] & Z
+\end{tikzcd}
+\]
+\emph{在\trScheme{}的\trCategory{}中存在。}
+
+注：若 $A$ 是一个\trRing，人们常把 $\times_{\Spec A}$ 草率地写成 $\times_A$。若 $B$ 是一个 $A$-\trAlgebra，而 $X$ 是一个 $A$-\trScheme，人们常把 $X\times_{\Spec A}\Spec B$ 写成 $X_B$ 或 $X\times_A B$。
+
+\textbf{10.1.2.\ \trhWarning{}：概形的积不是集合的积。}\quad 在展示存在性之前，先给一句警示：概形的积不是集合的积（纤维积就更是如此）。我们曾经大做文章地说过：概形是一个\emph{集合}，配备了一个\emph{拓扑}，再在其上有一个\emph{结构层}。所以你或许会以为，我们会按这样的次序来构造积：先取积集合，再给它配上积拓扑，然后弄清结构层必须是什么。但我们偏不这么做，因为概形的积在集合的层面上举止古怪。你可能已经验证过（\mbox{练习~7.6.E}(a)）：两条仿射直线在你最喜欢的那个\trAlgClosedField{} $\overline{k}$ 上的积是仿射平面：$\mathbb{A}^1_{\overline{k}}\times_{\overline{k}}\mathbb{A}^1_{\overline{k}}\cong\mathbb{A}^2_{\overline{k}}$。但后者的\trUnderlyingSet{}并不是前者的\trUnderlyingSet{}——我们会多出一些点，对应于 $\mathbb{A}^2$ 中那些不是「平行于轴的直线」的曲线！
+
+\textbf{10.1.3.}\quad 另一方面，$W$-\trValuedPoint{}（其中 $W$ 是一个概形，见定义~7.3.10）在（纤维）积下的确循规蹈矩（如 \S7.3.11 所述）。这正是\trFiberProduct{}的\emph{\trUniversalProperty{}定义}：概形 $X$ 的 $W$-\trValuedPoint{}定义为 $\Hom(W,X)$ 中的一个元素，而纤维积（经\trYonedaLemma；见 \S1.2.1）便定义为
+\begin{equation*}\tag{10.1.3.1}\label{eq:valued-points-fiber-product}
+\Hom(W,\,X\times_Z Y)=\Hom(W,X)\times_{\Hom(W,Z)}\Hom(W,Y).
+\end{equation*}
+这正是为「概形值点」下定义的一条正当理由。因此，那些偏爱只考虑\trAlgClosedField{} $\overline{k}$ 上的\trVariety（或者更一般地，$\overline{k}$ 上的\trFiniteType{}概形）、并偏爱经由闭点来理解它们的经典派人士——等价地说，由\trNullstellensatz（\mbox{练习~5.3.F}），即经由 $\overline{k}$-\trValuedPoint{}来理解它们的人——无须担心：两个有限型 $\overline{k}$-概形在 $\overline{k}$ 上的积，其闭点（被自然地认同于）诸因子的闭点之积。这件事将由「积在 $\overline{k}$ 上也是有限型」推出，我们将在\mbox{练习~10.2.E}中验证它。这是「代数闭域上的簇用起来可以更顺手」的缘由之一。但在非代数闭的域上，事情还会变得更加有趣：例~10.2.3 便是惊鸿一瞥。
+
+\textbf{10.1.4.}\ \emph{花哨的题外话。}\quad 你或许觉得：「拓扑空间的积是底集合上的积」很自然，而「概形的积未必是底集合上的积」很古怪。但实际上，(i) 不过是一桩幸运的巧合——拓扑空间的底集合本可以被解释为 $p$-\trValuedPoint{}的集合（此处 $p$ 是一个点）——所以它最好被看作 \S10.1.3 的一个推论；后者才是那条「更正确」的、也就是更一般的事实。
+
+\textbf{10.1.5.}\ \emph{关于\trNoetherian{}性的\trhWarning{}。}\quad \trNoetherian{}概形的\trFiberProduct{}未必\trNoetherian。日后你将能够验证：\mbox{练习~10.2.F} 给出了一个例子，也就是说，$A:=\overline{\mathbb{Q}}\otimes_{\mathbb{Q}}\overline{\mathbb{Q}}$ 不是\trNoetherian{}的，论证如下。由\mbox{练习~12.1.H}(a)，$\dim A=0$。一个\trNoetherian{}的零维概形只有有限多个点（\mbox{练习~12.1.C}）。但由\mbox{练习~10.2.F}，$\Spec A$ 有无穷多个点。
+
+另一方面，有限型 $k$-概形在有限型 $k$-概形上的\trFiberProduct{}仍是有限型 $k$-概形（\mbox{练习~10.2.E}），故这种病态不会在\trVariety{}上出现。
+
+\textbf{10.1.6.\ \trhTheorem{}~10.1.1 的证明背后的哲学。}\quad \trhTheorem{}~10.1.1 的证明可能会让人晕头转向。下面几句话或许能帮上一点忙。
+
+在两种情形下，我们其实已经基本知道了\trFiberProduct{}的存在性：$X$、$Y$、$Z$ 都是仿射的情形（下文将明确陈述），以及 $\beta\colon Y\to Z$ 是\trOpenEmbedding{}的情形（\cref{ex:open-embeddings-base-change}）。
+
+\textbf{10.1.A.（练习，注记~7.3.5 所许诺）}\quad 用练习~7.3.G（$\Hom_{\mathit{Sch}}(W,\Spec A)=\Hom_{\catRings}(A,\Gamma(W,\OO_W))$）证明：给定\trRingMorphism{} $C\to A$ 与 $C\to B$，则 $\Spec(A\otimes_C B)\cong\Spec A\times_{\Spec C}\Spec B$。（把\trTensorProduct{}解读为\trRing{}的\trCategory{}中的「\trFiberedCoproduct」。）于是\trAffineScheme{}的\trFiberProduct{}存在（在\trScheme{}的\trCategory{}中）。（这推广了「仿射直线的积存在」这一事实，即\mbox{练习~7.6.E}(a)。）
+
+\trhTheorem{}~10.1.1 之证明的主旋律是：概形是把\trAffine\trScheme{}沿\trOpenSubset{}粘合起来的产物，所以上述两个特殊情形将会是我们需要的全部。这个论证会反复使用同样的一些想法——粗略地说，就是概形可粘（\cref{ex:glue-arbitrary-schemes}），以及概形的\trMorphism{}可粘（\mbox{练习~7.3.B}）。这是一个迹象，表明在更深处还有某种更结构性的东西在起作用；\S10.1.7 会为专家描述它。
+
+\emph{\trhTheorem{}~10.1.1 的证明。}\ 关键的想法是：我们把一切都切成仿射开集，在其上作\trFiberProduct，然后证明一切都粘得天衣无缝。证明中概念上困难的部分来自粘合，以及认识到我们几乎什么都不必检验。我们把证明切成一小口就能吃下的若干小块。
+
+\emph{第 1 步：仿射与「几乎仿射」在仿射上的纤维积。}\quad 我们先把仿射情形与\trOpenEmbedding{}情形结合起来，如下。设 $X$ 与 $Z$ 都是仿射的，而 $\beta\colon Y\to Z$ 可分解为 $Y\overset{\iota}{\lhook\joinrel\longrightarrow}Y'\to Z$，其中 $\iota$ 是一个\trOpenEmbedding，而 $Y'$ 是仿射的。那么 $X\times_Z Y$ 存在。这是因为，若图中的两个小方格
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=3.4em]
+W \ar[r] \ar[d, hook, "\text{\trOpen}"'] & Y \ar[d, hook, "\text{\trOpen}"] \\
+W' \ar[r] \ar[d] & Y' \ar[d] \\
+X \ar[r] & Z
+\end{tikzcd}
+\]
+都是\trCartesianDiagram，那么「外侧的大矩形」也是\trCartesianDiagram。（这就是\cref{ex:pasting-cartesian-squares}，尽管你应当能当场亲眼看出这一点。）还有一件要紧事值得记住（来自\cref{ex:open-embeddings-base-change}）：\trOpenEmbedding{}在\trFiberProduct{}下「被保持」——$Y\to Y'$ 是\trOpenEmbedding{}这一事实蕴含 $W\to W'$ 是\trOpenEmbedding。
+
+\emph{关键的第 2 步：仿射与任意概形在仿射上的纤维积存在。}\quad 我们现在来到论证的关键部分：设 $X$ 与 $Z$ 都是仿射的，而 $Y$ 是任意的。初见之下这会令人困惑，所以我们先处理一个特殊情形：$Y$ 是两个仿射开集之并 $Y_1\cup Y_2$。令 $Y_{12}=Y_1\cap Y_2$。
+
+现在，对 $i=1,2$，由仿射情形（\mbox{练习~10.1.A}）知 $X\times_Z Y_i$ 存在；把它称作 $W_i$。此外，由第 1 步知 $X\times_Z Y_{12}$ 存在（称之为 $W_{12}$），并且它带有进入 $W_1$ 与 $W_2$ 的\trCanonical\trOpenEmbedding（依据带\trOpenEmbedding{}的\trFiberProduct{}之构造；见第 1 步的末句）。于是我们可以沿着 $W_{12}$ 把 $W_1$ 与 $W_2$ 粘合起来；把这个得到的概形称作 $W$。
+
+我们通过验证它满足\trUniversalProperty{}来检验所得结果就是\trFiberProduct。设有映射 $\alpha''\colon V\to X$ 与 $\beta''\colon V\to Y$，它们（分别与 $\alpha$ 和 $\beta$）复合后给出同一个映射 $V\to Z$。我们需要构造一个唯一的映射 $\gamma\colon V\to W$，使得 $\alpha'\circ\gamma=\beta''$ 且 $\beta'\circ\gamma=\alpha''$。
+\begin{equation*}\tag{10.1.6.1}\label{eq:step-two-universal-map}
+\begin{tikzcd}[row sep=2.3em, column sep=2.8em]
+V \ar[drr, "\beta''"] \ar[dr, dashed, "\exists!\gamma?"] \ar[ddr, "\alpha''"] & & \\
+& W \ar[r, "\alpha'"] \ar[d, "\beta'"'] & Y \ar[d, "\beta"] \\
+& X \ar[r, "\alpha"'] & Z
+\end{tikzcd}
+\end{equation*}
+对 $i=1,2$，定义 $V_i:=(\beta'')^{-1}(Y_i)$。再定义 $V_{12}:=(\beta'')^{-1}(Y_{12})=V_1\cap V_2$。那么存在唯一的映射 $V_i\to W_i$，使得复合映射 $V_i\to X$ 与 $V_i\to Y_i$ 都如所愿望（依据\trFiberProduct{} $X\times_Z Y_i=W_i$ 的\trUniversalProperty），从而有唯一的映射 $\gamma_i\colon V_i\to W$。类似地，存在唯一的映射 $\gamma_{12}\colon V_{12}\to W$，使得复合映射 $V_{12}\to X$ 与 $V_{12}\to Y$ 都如所愿望。但 $\gamma_i$ 限制到 $V_{12}$ 上正是这样一个映射，所以它必是 $\gamma_{12}$。于是 $\gamma_1$ 与 $\gamma_2$ 在 $V_{12}$ 上一致，并粘合成一个唯一的映射 $\gamma\colon V\to W$。我们所要的 $\gamma$ 的存在性与唯一性均已得证。
+
+这样我们就证明了：若 $Y$ 是两个仿射开集之并，而 $X$ 与 $Z$ 都是仿射的，则 $X\times_Z Y$ 存在。
+
+现在来对付一般情形。（你或许愿意先把「二」换成「三」的情形想清楚。）我们现在用开集 $Y_i$（其中 $i$ 跑遍某个\trIndexSet，未必有限！）覆盖 $Y$。如前，我们定义 $W_i$ 与 $W_{ij}$。我们可以把这些粘合起来，得到一个概形 $W$，连同一些我们与之认同的开集 $W_i$（\cref{ex:glue-arbitrary-schemes}——你应当检验三重交的\trCocycleCondition）。
+
+与两块仿射的情形一样，我们通过证明 $W$ 满足\trUniversalProperty{}来证明它就是\trFiberProduct。设有映射 $\alpha''\colon V\to X$、$\beta''\colon V\to Y$，它们复合成同一个映射 $V\to Z$。我们构造一个唯一的映射 $\gamma\colon V\to W$，使得 $\alpha'\circ\gamma=\beta''$ 且 $\beta'\circ\gamma=\alpha''$。定义 $V_i:=(\beta'')^{-1}(Y_i)$ 与 $V_{ij}:=(\beta'')^{-1}(Y_{ij})=V_i\cap V_j$。那么存在唯一的映射 $V_i\to W_i$，使得复合映射 $V_i\to X$ 与 $V_i\to Y_i$ 都如所愿望，从而有唯一的映射 $\gamma_i\colon V_i\to W$。类似地，存在唯一的映射 $\gamma_{ij}\colon V_{ij}\to W$，使得复合映射 $V_{ij}\to X$ 与 $V_{ij}\to Y$ 都如所愿望。但 $\gamma_i$ 限制到 $V_{ij}$ 上正是这样一个映射，所以它必是 $\gamma_{ij}$。于是 $\gamma_i$ 与 $\gamma_j$ 在 $V_{ij}$ 上一致。于是诸 $\gamma_i$ 粘合成一个唯一的映射 $\gamma\colon V\to W$。我们所要的 $\gamma$ 的存在性与唯一性均已得证，本步随之完成。
+
+\emph{第 3 步：$Z$ 仿射，$X$ 与 $Y$ 任意。}\quad 接下来我们证明：若 $Z$ 是仿射的，而 $X$ 与 $Y$ 是任意概形，则 $X\times_Z Y$ 存在。我们只需照搬第 2 步，把 $X$ 与 $Y$ 的角色对调，并利用这样一个事实：由上一步，我们可以假定「一个仿射概形与一个任意概形在仿射概形上的\trFiberProduct」已经存在。
+
+\emph{第 4 步：$Z$ 「几乎仿射」，$X$ 与 $Y$ 任意。}\quad 这一步与第 1 步相仿。设 $Z\hookrightarrow Z'$ 是向一个仿射概形的\trOpenEmbedding。那么 $X\times_{Z'}Y$ 满足 $X\times_Z Y$ 的\trUniversalProperty。（若你不能直接看出这一点，一条论证路子是用\cref{ex:base-change-along-monomorphisms}以及「\trOpenEmbedding{}都是\trMonomorphism」这一事实（\cref{ex:open-embeddings-are-monomorphisms}）。）
+
+\emph{第 5 步：一般情形。}\quad 我们再次使出同一招。设 $\alpha\colon X\to Z$、$\beta\colon Y\to Z$ 是概形之间的两个\trMorphism。用\trAffine\trOpenSubscheme{} $Z_i$ 覆盖 $Z$，并令 $X_i=\alpha^{-1}(Z_i)$、$Y_i=\beta^{-1}(Z_i)$。定义 $Z_{ij}:=Z_i\cap Z_j$、$X_{ij}:=\alpha^{-1}(Z_{ij})$、$Y_{ij}:=\beta^{-1}(Z_{ij})$。那么 $W_i:=X_i\times_{Z_i}Y_i$ 对一切 $i$ 存在（第 3 步），$W_{ij}:=X_{ij}\times_{Z_{ij}}Y_{ij}$ 对一切 $i$、$j$ 存在（第 4 步），而且对每对 $i$、$j$，$W_{ij}$ 都带有进入 $W_i$ 与 $W_j$ 二者的\trCanonical\trOpenEmbedding（见第 1 步的末句）。由于 $W_i$ 满足 $X\times_Z Y_i$ 的\trUniversalProperty（你看得出为什么吗？），我们可以\trCanonically{}把 $W_i$（我们由第 3 步知道它存在）与 $X\times_Z Y_i$ 认同。类似地，我们把 $W_{ij}$ 与 $X\times_Z Y_{ij}$ 认同。
+
+接下来我们完全照第 2 步行事：诸 $W_i$ 可以沿着诸 $W_{ij}$ 粘合起来（\trCocycleCondition{}可以毫不费力地检验通过），而 $W$ 也可以检验出满足 $X\times_Z Y$ 的\trUniversalProperty（同样，完全照第 2 步办）。\hfill$\square$
+
+\textbf{10.1.7.}\ \extrahard\ \textbf{用\trRepresentableFunctor{}的花哨语言描述\trFiberProduct{}的存在性。}\quad 上面的那个证明，用\trRepresentableFunctor{}的语言（\S7.6）可以描述得更干净。但只有在你消化了上面的论证、并对它长久冥想之后，它才会有启发性。它最大的用处，也许在于照亮\trRepresentableFunctor{}本身，而非\trFiberProduct{}的存在性。
+
+\emph{仅在本节（\S10.1）结束之前，凡说「\trFunctor」，我们一律指从\trScheme{}的\trCategory{} $\mathit{Sch}$ 到集合的范畴 $\catSets$ 的\trContravariantFunctor。}对每个概形 $X$，我们有一个函子 $h_X$，它把概形 $Y$ 送到集合 $\Mor(Y,X)$（\S1.1.20）。回想（\S1.2.11、\S7.6）：一个函子称为\emph{\trRepresentable}的，若它与某个 $h_X$ 之间存在一个\trNaturalIsomorphism。若一个函子\trRepresentable，则表示它的那个概形在相差唯一\trIsomorphism{}的意义下唯一（\mbox{练习~7.6.C}）。这件事可以有用地推广如下：
+
+\vkexsync{B}
+\begin{exercise}[\trYonedaLemma]\label{ex:yoneda-lemma-schemes}
+\begin{enumerate}[label=(\alph*)]
+  \item 设 $X$ 与 $Y$ 是概形。请描述\trScheme{}之间的\trMorphism{} $X\to Y$ 与函子间的\trNaturalTransformation{} $h_X\to h_Y$ 之间的一个\trBijection。从而证明：\trScheme{}的\trCategory{}是「\trFunctorCategory」（即全体\trContravariantFunctor{} $\mathit{Sch}\to\catSets$）的一个\trFullSubcategory（定义见 \S1.1.15）。
+  \item 设 $X$ 是概形，$F$ 是一个\trContravariantFunctor{} $\mathit{Sch}\to\catSets$。请给出 $F(X)$ 与函子间的\trNaturalTransformation{} $h_X\to F$ 之间的一个\trBijection。（你不妨自行检验：你的\trBijection{}关于 $F$ 与 $X$ 都是「\trFunctoriality」的。）
+\end{enumerate}
+提示：这道题与概形毫无关系；你的论证在任何\trCategory{}中都行得通。它是\cref{ex:general-yoneda-representables}(c) 的反变版本。
+\end{exercise}
+
+\trGrothendieck{}的一条洞见是：我们应当试着把这些函子当作「\trGeometricSpace」来对待，而不去操心可表性。许多观念都能不加改变地搬到这个更一般的场景里，而且有些观念还变得更容易了。例如，函子的\trFiberProduct{}总是存在的：$h\times_{h''}h'$ 可以定义为
+\[
+\bigl(h\times_{h''}h'\bigr)(W)=h(W)\times_{h''(W)}h'(W),
+\]
+其中右边的\trFiberProduct{}是集合的\trFiberProduct，而后者总是存在的。（这还不足以定义一个函子；我们只描述了对象去往何处。你应当把态射去往何处也补出来。）我们没有用到概形的任何性质；把 $\mathit{Sch}$ 换成任何\trCategory，这一切照常成立。
+
+于是，「$X\times_Z Y$ 存在」就翻译成「$h_X\times_{h_Z}h_Y$ \trRepresentable」。
+
+\textbf{10.1.8.}\ \emph{\trRepresentableFunctor{}是扎里斯基层。}\quad 由于「到概形的\trMorphism{}可粘」（\mbox{练习~7.3.B}），我们有了函子\trRepresentable{}的一条必要条件。我们知道：若 $\{\mathsf{U}_i\}$ 是 $Y$ 的一个\trOpenCover，则\trMorphism{} $Y\to X$ 由其限制 $\mathsf{U}_i\to X$ 所决定；而给定诸\trMorphism{} $\mathsf{U}_i\to X$，只要它们在交叠 $\mathsf{U}_i\cap\mathsf{U}_j\to X$ 上一致，就能把它们粘合成一个\trMorphism{} $Y\to X$。用\trEqualizer{}正合列的语言（\S2.2.7）来说，列
+\[
+\cdot\longrightarrow h_X(Y)\longrightarrow\prod_i h_X(\mathsf{U}_i)\;\Longrightarrow\;\prod_i h_X(\mathsf{U}_i\cap\mathsf{U}_j)
+\]
+是正合的。于是，到 $X$ 的诸\trMorphism（即函子 $h_X$）在每个概形 $Y$ 上都构成一个\trSheaf。若这一点成立，我们就说这个函子是一个\textbf{扎里斯基层}（Zariski sheaf）。（你可以告诉你的朋友们：这是一个\emph{大\trZariski\trSite{}上的\trSheaf}，好叫他们对你刮目相看。）我们可以把这段讨论原样再来一遍，只需把 $\mathit{Sch}$ 换成某个给定的基概形 $S$ 上的概形所成之范畴 $\mathit{Sch}_S$。我们已经证明（或者说已经观察到）：\emph{一个函子要想\trRepresentable，它就必须是一个扎里斯基层。}
+
+\trFiberProduct{}能通过这项检验：
+
+\textbf{10.1.C.（练习）}\quad 设 $X$ 与 $Y$ 是概形，且均带有向 $Z$ 的\trMorphism。证明：$h_X\times_{h_Z}h_Y$ 是一个扎里斯基层。（切莫使用 $h_X\times_{h_Z}h_Y$ \trRepresentable{}这一事实！本节的主旨，正是要从一种更成熟的视角重新找回可表性。）
+
+我们还可以再下几个定义，把概形的种种观念推广到函子上。设函子之间的一个映射（即\trNaturalTransformation）$h'\to h$ 使得：对一切概形 $X$，它所诱导的集合映射 $h'(X)\to h(X)$ 都是包含映射——这时我们说 $h'$ 借此成为 $h$ 的一个\textbf{子函子}（subfunctor）。设 $h'\hookrightarrow h$ 是一个子函子。若对一切概形 $X$ 与一切映射 $h_X\to h$（即 $h(X)$ 的一切元素），\trFiberProduct{} $h_X\times_h h'$ 都\trRepresentable——比如说，由某个概形 $\mathsf{U}$ 所表示，且 $h_{\mathsf{U}}\to h_X$ 对应于概形的一个\trOpenEmbedding{} $\mathsf{U}\to X$——则称这个子函子 $h'\hookrightarrow h$ 是一个\textbf{开子函子}（open subfunctor）。下面的纤维方图或许有帮助。
+\[
+\begin{tikzcd}[row sep=2em, column sep=3.2em]
+h_{\mathsf{U}} \ar[r, "\text{\trOpen}"] \ar[d] & h_X \ar[d] \\
+h' \ar[r] & h
+\end{tikzcd}
+\]
+
+\textbf{10.1.D.（练习）}\quad 证明：可表函子之间的一个映射 $h_W\to h_Z$ 给出开子函子，当且仅当 $W\to Z$ 是一个\trOpenEmbedding；如此说来，这确实把开嵌入的观念推广到了（反变）函子（$\mathit{Sch}\to\catSets$）上。
+
+\vkexsync{E}
+\begin{exercise}[「开子函子」观念的几何本性]\label{ex:open-subfunctor-geometry}
+\begin{enumerate}[label=(\alph*)]
+  \item 证明：开子函子的开子函子仍是开子函子。
+  \item 设 $h'\to h$ 与 $h''\to h$ 是 $h$ 的两个开子函子。请定义这两个开子函子的交，它也应当是 $h$ 的一个开子函子。
+  \item 设 $\mathsf{U}$ 与 $\mathsf{V}$ 是概形 $X$ 的两个开子概形，于是 $h_{\mathsf{U}}\to h_X$ 与 $h_{\mathsf{V}}\to h_X$ 都是开子函子。证明：这两个开子函子的交正如你所预期的那样，是 $h_{\mathsf{U}\cap\mathsf{V}}$。
+\end{enumerate}
+\end{exercise}
+
+\textbf{10.1.F.（练习）}\quad 设 $\alpha\colon X\to Z$ 与 $\beta\colon Y\to Z$ 是概形之间的\trMorphism，而 $\mathsf{U}\subset X$、$\mathsf{V}\subset Y$、$\mathsf{W}\subset Z$ 都是\trOpenEmbedding，其中 $\mathsf{U}$ 与 $\mathsf{V}$ 都映入 $\mathsf{W}$。请把 $h_{\mathsf{U}}\times_{h_{\mathsf{W}}}h_{\mathsf{V}}$ 解释为 $h_X\times_{h_Z}h_Y$ 的一个开子函子。（提示：给定一个映射 $h_T\to h_{X\times_Z Y}$，$T$ 的哪个开子集应当对应于 $\mathsf{U}\times_{\mathsf{W}}\mathsf{V}$？）
+
+设 $h_i$ 是 $h$ 的一族开子函子。若对从可表子函子出发的每一个映射 $h_X\to h$，相应的开子集 $\mathsf{U}_i\hookrightarrow X$ 都\trCover{} $X$，则称这族 $h_i$ \textbf{\trCover} $h$。
+
+鉴于函子并没有一个显而易见的\trUnderlyingSet（更谈不上\trTopology），我们居然能谈论一个函子何时是另一个函子的「开子集」、某些函子何时「\trCover」另一个函子，这件事着实令人惊叹！
+
+\textbf{10.1.G.（练习）}\quad 设 $\{Z_i\}_i$ 是 $Z$ 的一个\trAffine\trCover，$\{X_{ij}\}_j$ 是 $Z_i$ 在 $X$ 中的\trInverseImage{}的一个\trAffine\trCover，$\{Y_{ik}\}_k$ 是 $Z_i$ 在 $Y$ 中的\trInverseImage{}的一个\trAffine\trCover。证明：$\{h_{X_{ij}}\times_{h_{Z_i}}h_{Y_{ik}}\}_{ij,k}$ 是函子 $h_X\times_{h_Z}h_Y$ 的一个开\trCover。（提示：考虑一个映射 $h_T\to h_{X\times_{h_Z}h_Y}$，并把你对\mbox{练习~10.1.F}的解答推广过来。）
+
+现在我们来到一个关键点：一个「局部可表」的扎里斯基层必定可表。
+
+\textbf{10.1.H.（关键练习）}\quad 若一个函子 $h$ 是扎里斯基层，并且被一组可表函子所开覆盖（即「被概形覆盖」），则 $h$ \trRepresentable。（提示：用\cref{ex:glue-arbitrary-schemes}把表示诸开子函子的那些概形粘合起来。）
+
+这样一来，\trFiberProduct{}的存在性立刻唾手可得，如下。\mbox{练习~10.1.C} 表明 $h_X\times_{h_Z}h_Y$ 是扎里斯基层。而 $h_{X_{ij}}\times_{h_{Z_i}}h_{Y_{ik}}$ 对每个 $i$、$j$、$k$ 都\trRepresentable（仿射概形在仿射概形上的\trFiberProduct{}存在，\mbox{练习~10.1.A}），并且由\mbox{练习~10.1.G}，这些函子构成 $h_X\times_{h_Z}h_Y$ 的一个开\trCover。于是由\mbox{关键练习~10.1.H}，便告完成。

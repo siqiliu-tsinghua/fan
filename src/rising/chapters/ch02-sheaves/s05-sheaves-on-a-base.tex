@@ -1,0 +1,109 @@
+
+\section{从「基上的层」复原层}
+
+\trSheaf{}是很自然、很值得思考的对象，却难以一把抓在手里。\trIdentityAxiom{}与\trGluingAxiom{}深得人心，但它们让「证明事情」比对\trPresheaf{}更伤脑筋。我们已经讲过如何借助\trStalk{}来理解\trSheaf（借助「\trCompatibleGerm」）。现在我们引入第二种拿住\trSheaf{}的办法：引入\emph{\trSheafOnBase}（sheaf on a base）这一概念。\emph{警示：}凭这样少量的信息去把握整个\trSheaf，是件令人晕头转向的事。你或许会发现，紧盯下面这条核心洞见会很有帮助：这部分不完全的信息足以确定各枚\trGerm，而且足以确定它们（与其邻近的\trGerm）是\trCompatible{}的。
+
+首先，我们定义\textbf{拓扑的\trBase}（base of a topology）。设我们有一个\trTopologicalSpace{} $X$，也就是说，我们知道 $X$ 的哪些子集 $U_i$ 是开的。于是，拓扑的一个\trBase{}就是开集的一个子族 $\{B_j\}\subset\{U_i\}$，使得每个 $U_i$ 都是其中某些 $B_j$ 的并。有一个例子，早在你的数学生涯之初你就已经见过。设 $X=\mathbb{R}^n$。人们初次定义\trClassicalTopology{}时，往往就是先定义\emph{\trOpenBall}（open ball）$B_r(x)=\{y\in\mathbb{R}^n:\ |y-x|<r\}$，再宣称\trOpenBall{}的任何并都是开集。于是，这些球构成了\trClassicalTopology{}的一个\trBase——我们说它们\emph{生成}了\trClassicalTopology{}。举个使用它们的例子：要检验某个映射 $\pi\colon X\to\mathbb{R}^n$ 是否\trContinuous，你只需想想 $\mathbb{R}^n$ 中诸\trOpenBall{}的\trPullback——这正是连续性的传统 $\delta$--$\varepsilon$ 定义的一部分。
+
+现在设在\trTopologicalSpace{} $X$ 上有一个\trSheaf{} $\scr{F}$，并设 $\{B_i\}$ 是 $X$ 上开集的一个\trBase。试考虑如下的信息
+\[
+\bigl(\{\scr{F}(B_i)\},\ \{\mathrm{res}_{B_i,B_j}\colon\scr{F}(B_i)\to\scr{F}(B_j)\}\bigr),
+\]
+它是该\trSheaf{}所含信息的一个子集——我们只留意涉及\trBase{}中元素的那部分信息，而不留意全部开集的信息。
+
+我们可以由这份信息复原整个\trSheaf。这是因为：凭借这份信息，我们既能确定各\trStalk，又能判定\trGerm{}何时\trCompatible。
+
+\begin{exercise}[重要练习]\label{ex:sheaf-recovered-from-base}
+把这件事说精确。你如何从这部分信息复原出一个\trSheaf{} $\scr{F}$？
+\end{exercise}
+
+这便催生了一个概念，称为\textbf{\trSheafOnBase}。\trBase{} $\{B_i\}$ 上的集合的\trSheaf（或\trAbelianGroups{}的\trSheaf、环的\trSheaf，如此等等），指如下数据。\trBase{}中的每个 $B_i$ 都给有一个集合 $F(B_i)$；当 $B_i\supset B_j$ 时，给有映射 $\mathrm{res}_{B_i,B_j}\colon F(B_i)\to F(B_j)$，且 $\mathrm{res}_{B_i,B_i}=\id_{F(B_i)}$（凡记作「$B$」的东西，一律默认属于该\trBase）；若 $B_i\subset B_j\subset B_k$，则 $\mathrm{res}_{B_k,B_i}=\mathrm{res}_{B_j,B_i}\circ\mathrm{res}_{B_k,B_j}$。至此，我们定义出的是\textbf{基上的\trPresheaf}（presheaf on a base）。
+
+我们还要求\textbf{\trBase\trIdentityAxiom}（base identity axiom）：若 $B=\bigcup B_i$，而 $f$, $g\in F(B)$ 满足对一切 $i$ 都有 $\mathrm{res}_{B,B_i}\,f=\mathrm{res}_{B,B_i}\,g$，则 $f=g$。
+
+我们也要求\textbf{\trBase\trGluability{}公理}（base gluability axiom）：若 $B=\bigcup B_i$，且有 $f_i\in F(B_i)$ 使得每个 $f_i$ 都与 $f_j$ 在含于 $B_i\cap B_j$ 的任何\trBasicOpenSet{}上一致（即：对一切 $B_k\subset B_i\cap B_j$ 都有 $\mathrm{res}_{B_i,B_k}\,f_i=\mathrm{res}_{B_j,B_k}\,f_j$），则存在 $f\in F(B)$ 使得对一切 $i$ 都有 $\mathrm{res}_{B,B_i}\,f=f_i$。
+
+\begin{theorem}\label{thm:sheaves-recovered-from-base}
+设 $\{B_i\}$ 是 $X$ 上的一个\trBase，$F$ 是这个\trBase{}上的集合的\trSheaf。则存在一个\trSheaf{} $\scr{F}$ 扩张 $F$（带有\trIsomorphism{} $\scr{F}(B_i)\longleftrightarrow F(B_i)$，且与诸\trRestrictionMap{}相合）。此\trSheaf{} $\scr{F}$ 在唯一的\trIsomorphism{}意义下唯一。
+\end{theorem}
+
+\emph{证明。}\ 我们将把 $\scr{F}$ 定义为由 $F$ 的（一族族）\trCompatibleGerm{}构成的\trSheaf。
+
+定义\trPresheafOnBase{} $F$ 在点 $p\in X$ 处的\textbf{\trStalk}如下：
+\[
+F_p=\colim\,F(B_i),
+\]
+其中该\trColimit{}取遍\trBase{}中所有含 $p$ 的 $B_i$。
+
+我们将称开集 $U$ 中的一族\trGerm{}在 $p$ 附近\trCompatible，若存在 $F$ 在某个含 $p$ 的 $B_i$ 上的\trSection{} $s$，使得该族\trGerm{}落在 $B_i$ 上的部分恰好就是 $s$ 的诸\trGerm。更正式地，定义
+\[
+\scr{F}(U):=\Bigl\{(f_p\in F_p)_{p\in U}:\ \begin{array}{l}
+\text{对一切 }p\in U\text{，都存在 }B\text{ 满足 }p\in B\subset U\\
+\text{与 }s\in F(B)\text{，使得对一切 }q\in B\text{ 都有 }s_q=f_q
+\end{array}\Bigr\},
+\]
+其中每个 $B$ 都取自我们的\trBase。
+
+这是一个\trSheaf（理由与\trCompatibleGerm{}之\trSheaf{}相同；对照 \cref{ex:sheafification-forms-sheaf}）。
+
+接下来我断言：若 $B$ 在我们的\trBase{}中，则自然映射 $F(B)\to\scr{F}(B)$ 是\trIsomorphism。
+
+\begin{exercise}\label{ex:base-natural-map-isomorphism}
+验证 $F(B)\to\scr{F}(B)$ 是\trIsomorphism，多半的做法是证明它既单又满（或者换个办法：描述出逆映射，并验证它确实是逆）。（可能的提示：$\scr{F}(B)$ 的元素由\trStalk{}确定，$F(B)$ 的元素亦然。）
+\end{exercise}
+
+从你对 \cref{ex:base-natural-map-isomorphism} 的解答即可看清：$F$ 的诸\trRestrictionMap{}与 $\scr{F}$ 的诸\trRestrictionMap{}相同（就\trBase{}中的元素而言）。
+
+最后，请自行把「$\scr{F}$ 确实在唯一的\trIsomorphism{}意义下唯一」验证到令你自己满意为止。（首先，你得确定自己明白这句话是什么意思！）\hfill$\square$
+
+\cref{thm:sheaves-recovered-from-base}表明：$X$ 上的\trSheaf{}可以从其「到\trBase{}上的限制」复原。由这一论证（尤其是 \cref{ex:base-natural-map-isomorphism} 的解答）显然可见：若 $\scr{F}$ 是\trSheaf，而 $F$ 是相应的\trBase{} $B$ 上的\trSheaf，则对任意 $p\in X$，$\scr{F}_p$ 自然\trIsomorphic{}于 $F_p$。
+
+\cref{thm:sheaves-recovered-from-base}是关于范畴中\emph{对象}的陈述，所以我们理当期待一个关于\emph{态射}的类似陈述。
+
+\begin{exercise}[重要练习：\trSheaf{}的态射对应\trSheafOnBase{}的态射]\label{ex:sheaf-morphisms-on-base}
+设 $\{B_i\}$ 是 $X$ 的拓扑的一个\trBase。基上\trSheaf{}之间的态射 $F\to G$ 是一族映射 $F(B_k)\to G(B_k)$，使得下图
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=3.6em]
+F(B_i) \ar[r] \ar[d, "\mathrm{res}_{B_i,B_j}"'] & G(B_i) \ar[d, "\mathrm{res}_{B_i,B_j}"] \\
+F(B_j) \ar[r] & G(B_j)
+\end{tikzcd}
+\]
+对一切 $B_j\hookrightarrow B_i$ 交换。
+
+(a)~验证：\trSheaf{}之间的态射由它诱导的\trSheafOnBase{}之间的态射确定。
+
+(b)~证明：\trSheafOnBase{}之间的态射给出诸诱导\trSheaf{}之间的态射。（可能的提示：\trCompatible{}的\trStalk。）
+\end{exercise}
+
+\begin{remark}\label{thm:base-equivalence-of-categories}
+上述构造与论证给出了 $X$ 上的\trSheaf{}与 $X$ 的一个给定\trBase{}上的\trSheaf{}之间的一个\trEquivalenceOfCategories（\S1.1.21）。这个陈述并无新内容，但你不妨把它的含义想通：每个方向上的\trFunctor{}各是什么？为什么二者的\trComposition{}不恰是\trIdFunctor？
+\end{remark}
+
+\begin{remark}\label{thm:ox-modules-on-base}
+把这些概念推广到 $\OO_X$-\trModule{}将会很有用（例如见\mbox{练习~6.2.C}）。你将能轻松验证：$\OO_X$-\trModule{}与「基上的 $\OO_X$-\trModule」之间存在一个对应（其实是\trEquivalenceOfCategories）。与其动手把细节做尽，不如只在要点上不拘形式地过一遍：「基上的 $\OO_X$-\trModule」是什么？给定基上的一个 $\OO_X$-\trModule，为什么相应的\trSheaf{}自然地就是一个 $\OO_X$-\trModule？日后，若你被迫在枪口之下补全细节，你将能够做到。\footnote{译注：原文作 forced at gunpoint（被枪抵着脑袋逼着）——作者惯用的夸张玩笑，大可一笑了之。}
+\end{remark}
+
+\begin{exercise}[不重要练习]\label{ex:surjectivity-on-base}
+设\trBase{} $\{B_i\}$ 上集合\trSheaf{}之间的态射 $F\to G$ 在每个 $B_i$ 上都是满射（即对一切 $i$，$F(B_i)\to G(B_i)$ 都是满射）。证明：相应的\trSheaf{}之间的态射（不再是\trSheafOnBase{}的）是满的（或者更精确地说：是\trEpimorphism）。与单射的情形不同，其逆不真。这给出了「满性」的一条有用的充分判据：只要\trSheaf{}之间的态射在\trBase{}的诸\trSection{}上是满射，它就是\trEpimorphism（「满射」）。你不妨拿 \cref{thm:exponential-sequence-example}（它处理 $X=\mathbb{C}$ 带\trClassicalTopology{}时的\trHolomorphic{}函数）来一试身手：取由\trContractible{}开集组成的\trBase，证明指数映射 $\exp\colon\OO_X\to\OO_X^*$ 是满的。
+\end{exercise}
+
+\textbf{2.5.4.\ 粘合层。}\quad 在许多不同的情境里，「通过粘合来构造某个对象」这一主题将反复出现。请留心它！每一种情形下，我们都会仔细考虑：为了完成粘合，我们需要哪些信息。
+
+\begin{exercise}[重要练习]\label{ex:gluing-sheaves-cocycle}
+设 $X=\bigcup U_i$ 是 $X$ 的一个\trOpenCover，且在诸 $U_i$ 上各有一个\trSheaf{} $\scr{F}_i$，并带有\trIsomorphism
+\[
+\phi_{ij}\colon\scr{F}_i|_{U_i\cap U_j}\tilde{\longrightarrow}\scr{F}_j|_{U_i\cap U_j}
+\]
+（其中 $\phi_{ii}$ 为恒等），它们在诸三重叠上相互一致，即
+\begin{equation*}\tag{2.5.4.1}\label{eq:cocycle-condition}
+\phi_{jk}\circ\phi_{ij}=\phi_{ik}
+\end{equation*}
+在 $U_i\cap U_j\cap U_k$ 上成立（这称为\textbf{\trCocycleCondition}（cocycle condition）；至于这个名字的由来，我们不去管它）。证明：这些\trSheaf{}可以粘合成 $X$ 上的一个\trSheaf{} $\scr{F}$（在唯一的\trIsomorphism{}意义下唯一），并带有\trIsomorphism{} $\scr{F}|_{U_i}\tilde{\longrightarrow}\scr{F}_i$，而在 $U_i\cap U_j$ 上的\trIsomorphism{}则是显而易见的那几个。\emph{警示：}我们并不假定这是有限\trCover，所以你无法使用归纳法。正因如此，本题可能令人挠头。（你可以借用本节的思路来解此题，但并非非用不可。提示：取\trBase{}为含在某个 $U_i$ 中的那些开集。）
+\end{exercise}
+
+如此一来，我们便能「把\trSheaf{}彼此粘合」，所用的不过是少量拼片信息。一个小观察：$\phi_{ii}$ 为恒等这条假设是多余的——它可以由\trCocycleCondition{}推出。
+
+\vkthmsync{5}
+\begin{remark}[给行家的注记]\label{thm:stack-remark-for-experts}
+\cref{ex:gluing-sheaves-cocycle}差一点就要说出：由\trSheaf{}组成的「集合」自身也构成一个\trSheaf——但还差那么一点。把这件事做精确，便会把人引向\trStack{}的概念。
+\end{remark}

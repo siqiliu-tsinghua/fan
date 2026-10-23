@@ -1,0 +1,110 @@
+\paragraph{\trHomology{}\trPerturbation{}理论。}\label{sub:homological-perturbation}
+设 $\scr{B}$ 是一个\trNonunital{}\trACategory。假设对每一对\trObject{} $(X_0,X_1)$，我们都有
+如下图
+\begin{tikzcd}
+\hom_{\scr{A}}(X_0,X_1)
+\ar[r,bend left=25,"\scr{F}^1"]
+& \hom_{\scr{B}}(X_0,X_1)
+\ar[l,bend left=25,"\scr{G}^1"']
+\ar[out=120,in=60,looseness=7,"T^1"]
+\end{tikzcd}
+其中 $(\hom_{\scr{A}}(X_0,X_1),\mu^1_{\scr{A}})$ 是某个由\trVectorSpace{}组成的%
+\trChainComplex；$\scr{F}^1$、$\scr{G}^1$ 是\trChainMap；而 $T^1$ 的\trDegree{}为 $-1$，
+满足 $\mu^1_{\scr{B}}T^1+T^1\mu^1_{\scr{B}}=\scr{F}^1\scr{G}^1-\id$。\trPerturbation{}引理
+即是如下陈述：
+
+\begin{proposition}\label{thm:perturbation-lemma}
+可以构造一个\trNonunital{}\trACategory{} $\scr{A}$，使 $\Ob\scr{A}=\Ob\scr{B}$、%
+\trMorphism{}空间为 $\hom_{\scr{A}}(X_0,X_1)$、一阶\trStructureMap{}为
+$\mu^1_{\scr{A}}$；
+随之配有\trNonunital{}\trAFunctor{} $\scr{F}\colon\scr{A}\to\scr{B}$ 与
+$\scr{G}\colon\scr{B}\to\scr{A}$，它们在\trObject{}上是恒等的，且其一阶部分就是给定的映射
+$\scr{F}^1$、$\scr{G}^1$；此外还配有 $\scr{F}\circ\scr{G}$ 与 $\mathrm{Id}_{\scr{B}}$ 之间的
+一个\trHomotopy{} $T$，它以给定的 $T^1$ 为起点。\noqed
+\end{proposition}
+
+这一切结构都由显式公式给出，这些公式通常以递归的形式写出。例如：
+\begin{equation}\label{eq:perturbation-recursive-formulae}
+\begin{aligned}
+\scr{F}^d(a_d,\ldots,a_1)&=\sum_r\sum_{s_1,\ldots,s_r}
+T^1\bigl(\mu^r_{\scr{B}}(\scr{F}^{s_r}(a_d,\ldots,a_{d-s_r+1}),\ldots,\\
+&\hspace{10.5em}\scr{F}^{s_1}(a_{s_1},\ldots,a_1)\bigr)\bigr),\\
+\mu^d_{\scr{A}}(a_d,\ldots,a_1)&=\sum_r\sum_{s_1,\ldots,s_r}
+\scr{G}^1\bigl(\mu^r_{\scr{B}}(\scr{F}^{s_r}(a_d,\ldots,a_{d-s_r+1}),\ldots,\\
+&\hspace{10.5em}\scr{F}^{s_1}(a_{s_1},\ldots,a_1)\bigr)\bigr),
+\end{aligned}
+\end{equation}
+其中两个和式都取遍满足 $r\ge 2$ 的\trPartition{} $s_1+\cdots+s_r=d$。易于验证
+$\mu^{\bullet}_{\scr{A}}$
+确实是一个 $A_\infty$-结构，而 $\scr{F}$ 是一个\trAFunctor。为了让这些计算更有几何味道，可以把
+递归的定义“解卷”\footnote{译注：原文作 “unroll”（把卷起之物摊开），指将递归定义逐层
+代入、化成树上的显式求和。——译者注}成涉及树上求和的直接表达式（更精确地说，(9d) 意义下的
+稳定树）。对 $\scr{G}$ 与 $T$ 的构造也有同样的做法，只是这两种情形里的公式要稍微复杂一点。
+
+\begin{remark}\label{thm:perturbation-typical-application}
+\begingroup\emergencystretch=8em\hbadness=10000
+一个典型的应用如下。给定\trNonunital{}\trACategory{} $\scr{B}$，把每个\trComplex{}%
+$(\hom_{\scr{B}}(X_0,X_1),\mu^1_{\scr{B}})$ 拆成一个\trDifferential{}为零的%
+\trDirectSummand，外加一个\trAcyclic{}的余项。取 $\hom_{\scr{A}}(X_0,X_1)$ 为第一个%
+\trDirectSummand，$\scr{F}^1$ 为\trInclusionMap，$\scr{G}^1$ 为\trProjection。为\trAcyclic{}余项选取一个%
+\trRetract{}\trHomotopy，便给出所需的 $T^1$。\cref{thm:perturbation-lemma} 随之构造出一个
+$\mu^1_{\scr{A}}=0$ 的 $\scr{A}$，它与 $\scr{B}$ \trQuasiisomorphism。在这个特殊情形里，
+$\scr{G}\circ\scr{F}$ 与 $\mathrm{Id}_{\scr{A}}$ \trHomotopic{}这一点也成立。为看出这一点，
+先注意：既然 $\scr{F}\circ\scr{G}$ 与 $\mathrm{Id}_{\scr{B}}$ \trHomotopic，那么
+$\scr{G}\circ\scr{F}\circ\scr{G}$ 就与 $\scr{G}$ \trHomotopic。\cref{thm:left-composition-cff}
+说，
+\begin{equation*}
+\scr{R}^1_{\scr{G}}\colon
+\hom_{\mathit{nu}\text{-}\mathit{fun}(\scr{A},\scr{A})}
+(\mathrm{Id}_{\scr{A}},\scr{G}\circ\scr{F})
+\longrightarrow
+\hom_{\mathit{nu}\text{-}\mathit{fun}(\scr{B},\scr{A})}
+(\scr{G},\scr{G}\circ\scr{F}\circ\scr{G})
+\end{equation*}
+是\trChainComplex{}之间的\trQuasiisomorphism。此外，如果代之以考虑那些零次项为零的预%
+\trNaturalTransformation{}所构成的子\trComplex，上述结论依然适用。由于
+$\scr{R}^1_{\scr{G}}$ 显然把 $\mathrm{Id}_{\scr{A}}-\scr{G}\circ\scr{F}$ 映为
+$\scr{G}-\scr{G}\circ\scr{F}\circ\scr{G}$，这就证明了所需的第二个\trHomotopy{}的存在性。
+\par\endgroup
+\end{remark}
+
+\begin{corollary}\label{thm:quasi-iso-inverse-homotopy}
+\trNonunital{}\trACategory{}之间的任何\trQuasiisomorphism{}都有在\trHomotopy{}意义下的逆。
+\end{corollary}
+
+\begin{proof}
+设我们的\trQuasiisomorphism{}是 $\scr{K}\colon\scr{B}\to\tilde{\scr{B}}$。我们应用%
+\trPerturbation{}引理来构造一个由\trNonunital{}\trACategory{}与\trQuasiisomorphism{}组成的图
+\begin{tikzcd}
+\scr{A} \ar[rr,"\scr{F}",bend left=10]
+\ar[dd,dashed,"\scr{H}"',bend left=12]
+&& \scr{B} \ar[dd,"\scr{K}"] \ar[ll,"\scr{G}",bend left=10] \\
+\\
+\tilde{\scr{A}} \ar[uu,dashed,"\scr{H}^{-1}"',bend left=12]
+\ar[rr,"\tilde{\scr{F}}",bend left=10]
+&& \tilde{\scr{B}} \ar[ll,"\tilde{\scr{G}}",bend left=10]
+\end{tikzcd}
+其中 $\mu^1_{\scr{A}}=\mu^1_{\tilde{\scr{A}}}=0$。\trComposition{}%
+$\scr{H}=\tilde{\scr{G}}\circ\scr{K}\circ\scr{F}$ 是两个一阶\trComposition{}为零的%
+\trACategory{}之间的\trQuasiisomorphism，因而必是一个\trFormalDiffeomorphism，从而关于%
+\trComposition{}具有严格逆 $\scr{H}^{-1}$。考虑
+$\scr{I}=\scr{F}\circ\scr{H}^{-1}\circ\tilde{\scr{G}}$。由构造，$\scr{K}$ 与
+$\tilde{\scr{F}}\circ\scr{H}\circ\scr{G}
+=\tilde{\scr{F}}\circ\tilde{\scr{G}}\circ\scr{K}\circ\scr{F}\circ\scr{G}$ \trHomotopic。
+于是 $\scr{K}\circ\scr{I}$ 与
+$\tilde{\scr{F}}\circ\scr{H}\circ\scr{G}\circ\scr{F}\circ\scr{H}^{-1}\circ\tilde{\scr{G}}$
+\trHomotopic，而后者又与恒等\trHomotopic。另一个\trHomotopy{}可用同样的方式构造。
+\end{proof}
+
+\begin{remark}\label{thm:perturbation-lemma-history}
+\cref{thm:perturbation-lemma} 有一段漫长的历史，即便不计\trTopology{}方面的先声
+[137]。早期的特殊情形可在 [80] 与 [69] 中找到，而经过后来的种种推广与简化，它们便引出
+了此处陈述的版本，该版本取自 [98]；证明、更多的文献，以及一幅鲤鱼的图画，均请参见
+该文。至少当 $\operatorname{char}(\mathbb{K})=0$ 时，人们可以从支配 $A_\infty$-结构的
+operad 的“cofibrant”性质\footnote{译注：cofibrant 与 operad 均无统一定译，姑存原文。
+——译者注}出发，导出抽象\trPerturbation{}引理的存在性，见 [99]。
+\cref{thm:quasi-iso-inverse-homotopy} 最早的文献出处似乎是 [81]、[111]。$L_\infty$-代数
+的类似结果以一种稍弱的形式出现在 [88, Section 4.5] 中，其证明与上文本质相同。至于按
+\cref{thm:functor-realization-obstruction} 之精神的\trObstruction{}理论式处理，见
+[60, Appendix A5]。
+\end{remark}

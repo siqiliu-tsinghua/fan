@@ -1,0 +1,177 @@
+
+\section{算子 \texorpdfstring{$\widetilde{\scr{F}}_{\rho}$}{Ftilde-rho}}
+\label{sec:operator-frho}
+
+我们想要构造下面这幅交换图
+\[
+\begin{tikzcd}[column sep=2.6cm,row sep=1.55cm]
+W^{1,p}(\RR\times S^{1};\RR^{2n}) \ar[r,"\tilde{F}_{\rho}"] \ar[d,"i_{\rho}"]
+  & L^{p}(\RR\times S^{1};\RR^{2n}) \\
+W^{1,p}(\RR\times S^{1};\RR^{m}) \ar[r,"{(\mathrm{Id},\widetilde{\scr{F}}_{\rho})}"']
+  & W^{1,p}(\RR\times S^{1};\RR^{m})\times L^{p}(\RR\times S^{1};\RR^{m}) \ar[u,"p_{\rho}"']
+\end{tikzcd}
+\]
+也就是说，要写出
+\[
+F_{\rho}(y)=p_{\rho}\bigl(i_{\rho}(y),\widetilde{\scr{F}}_{\rho}(i_{\rho}(y))\bigr)
+\]
+其中诸映射 $i_{\rho}$、$p_{\rho}$、$\widetilde{\scr{F}}_{\rho}$ 将在后文定义。我们的目标是简化某些计算。
+
+我们先来定义 $i_{\rho}$，令
+\[
+i_{\rho}(y)=\sum_{i=1}^{2n}y_{i}Z_{i}^{\rho}\text{。}
+\]
+这是一个\trLinearOperator{}，其范数我们可以轻易算出：
+\[
+\begin{aligned}
+\|i_{\rho}(y)\|_{W^{1,p}}=\Bigl\|\sum_{i=1}^{2n}y_{i}Z_{i}^{\rho}\Bigr\|_{W^{1,p}}&\le\sum_{i=1}^{2n}\|y_{i}Z_{i}^{\rho}\|_{W^{1,p}}\\
+&\le\sum_{i=1}^{2n}\|y_{i}\|_{W^{1,p}}\bigl\|Z_{i}^{\rho}\bigr\|_{\cC^{1}}\quad\text{（已应用\cref{thm:w1p-product-inequality}）}\\
+&\le\sup_{i}\bigl\|Z_{i}^{\rho}\bigr\|_{\cC^{1}}\sum_{i=1}^{2n}\|y_{i}\|_{W^{1,p}}\le 2n\sup_{i}\bigl\|Z_{i}^{\rho}\bigr\|_{\cC^{1}}\|y\|_{W^{1,p}}\\
+&=M\|y\|_{W^{1,p}}
+\end{aligned}
+\]
+这是因为，的确，$Z_{i}^{\rho}$ 的选取保证了 $\sup_{i}\|Z_{i}^{\rho}\|<\infty$：
+\begin{itemize}
+\item 在 $[-1,1]\times S^{1}$ 上，由\trCompact{}性；
+\item 在 $\{|s|\ge1\}\times S^{1}$ 上，$Z_{i}^{\rho}$ 的 $\cC^{1}$ 范数以 $\|Z_{i}^{u}\|_{\cC^{1}}$ 与 $\|Z_{i}^{v}\|_{\cC^{1}}$ 这两个范数中较大者为上界。
+\end{itemize}
+注意，这最后一个上界（对 $|s|\ge1$）不依赖于 $\rho$。对 $s\in[-1,1]$，我们同样可以取一个不依赖于 $\rho$ 的上界：由\cref{sec:construction-psi-rho}中的 $\cC^{\infty}_{\mathrm{loc}}$ \trConvergence{}性，当 $\rho$ 充分大时，诸 $Z_{i}^{\rho}$ 在 $[-1,1]\times S^{1}$ 上的 $\cC^{1}$ 范数一致\trBounded；至于 $\rho$ 的\trBounded{}区间 $[\rho_{0},R]$（$R\ge\rho_{0}$ 任意），则由 $[\rho_{0},R]\times[-1,1]\times S^{1}$ 的\trCompact{}性得到一致界。\footnote{译注：原书此处理由为“$Z_{i}^{\rho}$ 在\trCompact{}集 $[\rho_{0},+\infty[\times[-1,1]\times S^{1}$ 上有定义并且\trSmooth”；然而参数区间 $[\rho_{0},+\infty[$ 无界，该集合并不\trCompact。又，此处的 $\cC^{1}$ 范数只涉及对 $s$、$t$ 的（一阶）导数，不含对 $\rho$ 的导数。此处径改。——译者注}
+这样我们就定义了一个线性而又连续的算子 $i_{\rho}$，其算子范数被一个常数 $C_{1}$ 所界住，而 $C_{1}$ \emph{不依赖于 $\rho$}。
+
+接下来我们来定义 $\widetilde{\scr{F}}_{\rho}$。通过把 $TW$ 视为 $T_{W}\RR^{m}$ 的一个\trSubbundle，我们可以把 $T_{w_{\rho}}\scr{P}^{1,p}(x,z)$ 看成 $W^{1,p}(\RR\times S^{1};\RR^{m})$ 的一个子空间。我们将把算子 $\widetilde{\scr{F}}_{\rho}$ 定义为 $\scr{F}_{\rho}$ 到空间 $W^{1,p}(\RR\times S^{1};\RR^{m})$ 上的一个扩张。我们提醒一下，我们正在使用第~8~章开头所列出的那些记号。\trSymplectic{}\trManifold{} $W$ 一如往常被赋予一个\trAlmostComplex{}结构 $J$，它与\trSymplecticForm{} $\omega$ \trCompatible{}，也与由这两个结构所定义的\trMetric{} $g$ \trCompatible。一如既往，$W$ 被\trEmbedding{}于一个空间 $\RR^{m}$（$m$ 充分大）之中，而 $T_{W}\RR^{m}$ 是 $T\RR^{m}$ 在 $W$ 上的限制，并且\trIsomorphic{}于平凡\trVectorBundle{} $W\times\RR^{m}$。我们已经把由\trMetric{} $g$ 在 $TW$ 上定义的\trInnerProduct{}扩张成 $T_{W}\RR^{m}$ 上的一个\trInnerProduct{} $\bar{g}$。\trExponentialMap{}是一个 $\cC^{\infty}$ 映射
+\[
+\exp\colon TW\longrightarrow W
+\]
+它满足
+\[
+\begin{cases}
+\exp(p,0)=\exp_{p}(0)=p\\
+(d\exp_{p})_{0}\colon T_{0}(T_{p}W)\cong T_{p}W\longrightarrow W\ \text{是恒等映射}
+\end{cases}
+\]
+（如有必要，参见\cref{sec:riemannian-metrics-exp}）。设
+\[
+\pi_{p}\colon\RR^{m}=T_{p}\RR^{m}\longrightarrow T_{p}W
+\]
+为\trOrthogonal{}投影。我们定义映射
+\[
+\begin{aligned}
+\widetilde{\exp}\colon W\times\RR^{m}&\longrightarrow W\\
+(p,X)&\longmapsto\exp_{p}\bigl(\pi_{p}(X)\bigr)\text{。}
+\end{aligned}
+\]
+这是一个 $\cC^{\infty}$ 映射，它把（定义在 $TW$ 上的）\trExponentialMap{}扩张到\trFiberBundle{} $T_{W}\RR^{m}$ 上。我们也把\trAlmostComplex{}结构 $J\colon TW\to TW$ 扩张为 $\widetilde{J}\colon T_{W}\RR^{m}\to T_{W}\RR^{m}$，即令
+\[
+\widetilde{J}_{p}(X)=J_{p}\bigl(\pi_{p}(X)\bigr)\text{。}
+\]
+我们终于可以定义 $\widetilde{\scr{F}}_{\rho}$ 了：
+\[
+\widetilde{\scr{F}}_{\rho}(X)=\Bigl(\frac{\partial}{\partial s}+\widetilde{J}\frac{\partial}{\partial t}+\operatorname{grad}H_{t}\Bigr)\widetilde{\exp}(w_{\rho},X)=\widetilde{\scr{F}}\circ\widetilde{\exp}(w_{\rho},X)\text{。}
+\]
+
+很显然，$\widetilde{\scr{F}}_{\rho}$ 是 $\scr{F}_{\rho}$ 的一个扩张。还有一件虽然不算那么显然、但同样为真的事情：$\widetilde{\scr{F}}_{\rho}(X)\in L^{p}(\RR\times S^{1};\RR^{m})$，从而 $\scr{F}_{\rho}(X)\in L^{p}(\RR\times S^{1};TW)$。下面的引理所断言的正是这一点。
+
+\begin{lemma}\label{thm:frho-lp}
+若 $X\in W^{1,p}(\RR\times S^{1};\RR^{m})$，那么 $\widetilde{\scr{F}}_{\rho}(X)\in L^{p}(\RR\times S^{1};\RR^{m})$。
+\end{lemma}
+
+\begin{proof}
+我们有
+\[
+\widetilde{\scr{F}}_{\rho}(0)=\scr{F}_{\rho}(0)=\scr{F}(w_{\rho})\in L^{p}(\RR\times S^{1};\RR^{m})
+\]
+这是因为，对 $|s|\ge1$，$\scr{F}(w_{\rho})(s,t)$ 恒等于零（$w_{\rho}$ 是 $\cC^{\infty}$ 类的，并且在 $|s|\ge1$ 时与 $u$ 或 $v$ 相重合，而后者是\trFloerEquation{}的解）。于是只需证明
+\[
+\widetilde{\scr{F}}_{\rho}(X)-\widetilde{\scr{F}}_{\rho}(0)\in L^{p}(\RR\times S^{1};\RR^{m})\text{。}
+\]
+我们有
+\[
+\begin{aligned}
+\widetilde{\scr{F}}_{\rho}(X)&=\frac{\partial}{\partial s}\widetilde{\exp}(w_{\rho},X)+\widetilde{J}_{\widetilde{\exp}(w_{\rho},X)}\frac{\partial}{\partial t}\widetilde{\exp}(w_{\rho},X)+\operatorname{grad}H_{t}\bigl(\widetilde{\exp}(w_{\rho},X)\bigr)\\
+&=D_{1}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial w_{\rho}}{\partial s}\Bigr)+D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial X}{\partial s}\Bigr)\\
+&\quad+\widetilde{J}_{\widetilde{\exp}(w_{\rho},X)}\cdot\Bigl(D_{1}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial w_{\rho}}{\partial t}\Bigr)+D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial X}{\partial t}\Bigr)\Bigr)\\
+&\quad+\operatorname{grad}H_{t}\bigl(\widetilde{\exp}(w_{\rho},X)\bigr)\text{。}
+\end{aligned}
+\]
+由于 $X\in W^{1,p}(\RR\times S^{1};\RR^{m})$，我们还有
+\[
+X\in L^{\infty}(\RR\times S^{1};\RR^{m})\text{，}
+\]
+从而，既然 $X$ 已被取得连续，就存在一个 $r_{1}>0$，使得对每个 $(s,t)\in\RR\times S^{1}$ 都有 $\|X(s,t)\|\le r_{1}$。我们取定一对 $(s,t)$，并反复应用\cref{thm:a-b-estimates}（更确切地说，是它的点 (3)），其中取 $A(p,X)(\cdot)$ 为：
+\begin{itemize}
+\item 首先是 $D_{1}\widetilde{\exp}(p,X)(\cdot)$；
+\item 其次是 $D_{2}\widetilde{\exp}(p,X)(\cdot)$；
+\item 再其次是 $\widetilde{J}_{\widetilde{\exp}(p,X)}D_{1}\widetilde{\exp}(p,X)(\cdot)$；
+\item 最后是 $\widetilde{J}_{\widetilde{\exp}(p,X)}D_{2}\widetilde{\exp}(p,X)(\cdot)$（其中取 $p=w_{\rho}(s,t)$ 与 $X=X(s,t)$）。
+\end{itemize}
+仍然由\cref{thm:a-b-estimates}，我们还有
+\[
+\bigl\|\operatorname{grad}H_{t}\bigl(\widetilde{\exp}(p,X)\bigr)-\operatorname{grad}H_{t}\bigl(\widetilde{\exp}(p,0)\bigr)\bigr\|
+\le\sup_{r\in[0,1]}\bigl\|d_{rX}\operatorname{grad}H_{t}\circ\widetilde{\exp}\bigr\|\,\|X\|\le C\|X\|\text{。}
+\]
+最后，在一个取定的 $(s,t)$ 处作计算，我们便得到
+\[
+\begin{aligned}
+\bigl\|\widetilde{\scr{F}}_{\rho}(X)-\widetilde{\scr{F}}_{\rho}(0)\bigr\|
+&\le C\Bigl(\|X\|\Bigl\|\frac{\partial w_{\rho}}{\partial s}\Bigr\|+\Bigl\|\frac{\partial X}{\partial s}\Bigr\|\\
+&\qquad\qquad+\|X\|\Bigl\|\frac{\partial w_{\rho}}{\partial t}\Bigr\|+\Bigl\|\frac{\partial X}{\partial t}\Bigr\|+\|X\|\Bigr)\\
+&\le k\Bigl(\|X(s,t)\|+\Bigl\|\frac{\partial X}{\partial s}(s,t)\Bigr\|+\Bigl\|\frac{\partial X}{\partial t}(s,t)\Bigr\|\Bigr)
+\end{aligned}
+\]
+这是因为 $\partial w_{\rho}/\partial s$ 与 $\partial w_{\rho}/\partial t$ 的范数一致\trBounded{}（由于 $u$ 与 $v$ 的\trExponentialDecay）。于是我们得到
+\[
+\bigl\|\widetilde{\scr{F}}_{\rho}(X)-\widetilde{\scr{F}}_{\rho}(0)\bigr\|_{L^{p}}\le 3k\,\|X\|_{W^{1,p}}<+\infty\quad\text{且}\quad\widetilde{\scr{F}}_{\rho}(X)\in L^{p}(\RR\times S^{1};\RR^{m})\text{。}
+\]
+\end{proof}
+
+\begin{remark}\label{thm:frho-lp-remark}
+$\scr{F}(\exp_{w}X)$ 属于 $L^{p}$ 这一事实——正如我们在\cref{subsec:banach-manifold-structure}中预告的那样——至此得到了验证。请注意，在第~8~章的语境中，$w$ 并非来自两个解的\trGluing，因而上面所陈述的包含关系 $\scr{F}(\exp_{w}(0))\in L^{p}(\RR\times S^{1};\RR^{m})$ 之证明在那里并不有效。这个包含关系由 $w\in\cC^{\infty}_{\searrow}(x,y)$（参见\cref{subsec:trajectory-spaces}）这一事实得出；换句话说，它由 $\frac{\partial w}{\partial s}$ 与 $\frac{\partial w}{\partial t}-X_{H}(w)$ 的\trExponentialDecay{}得出，而这立即蕴含 $\scr{F}(\exp_{w}(0))=\scr{F}(w)\in L^{p}$。
+\end{remark}
+
+为了完成我们方才预告的那幅交换图的构造，还剩下映射 $p_{\rho}$ 有待定义。我们提醒一下，$F_{\rho}(y)$ 的第 $j$ 个分量是借助\trParallelTransport{}来定义的：
+\[
+\bigl(F_{\rho}(y)\bigr)_{j}=g\bigl(\scr{F}_{\rho}(Y),Z_{j}^{\rho,Y}\bigr)\text{，}
+\]
+其中 $Y=\sum_{i=1}^{2n}y_{i}Z_{i}^{\rho}$，而 $Z_{j}^{\rho,Y}$ 是 $Z_{j}^{\rho}$ 沿测地路径 $r\mapsto\exp_{w_{\rho}}(rY)$ 作\trParallelTransport{}的结果。我们可以把这个\trParallelTransport{}视为一个映射
+\[
+\scr{T}\colon TW\oplus TW\longrightarrow TW
+\]
+它把 $p\in W$ 与 $Y,Z\in T_{p}W$ 映到 $\scr{T}_{p}(Y,Z)$，即 $Z$ 沿 $r\mapsto\exp_{p}(rY)$ 的\trParallelTransport。一如我们先对\trMetric{} $g$ 所做的那样，我们把 $\scr{T}$ 扩张为
+\[
+\begin{aligned}
+\widetilde{\scr{T}}\colon W\times\RR^{m}\times\RR^{m}&\longrightarrow\RR^{m}\\
+(p,Y,Z)&\longmapsto\scr{T}_{p}\bigl(\pi_{p}(Y),\pi_{p}(Z)\bigr)\text{。}
+\end{aligned}
+\]
+由此我们导出一个映射：令 $q(p,X)=\exp_{p}\bigl(\pi_{p}(X)\bigr)$，并令\footnote{译注：原书把 $P$ 定义为 $P(p,X,Y,Z)=\bar{g}_{p}\bigl(\widetilde{\scr{T}}(X,Z),Y\bigr)$（$\widetilde{\scr{T}}$ 且脱基点 $p$）：其一，\trMetric{}取于\trGeodesic{}的起点 $p$，而被\trParallelTransport{}的\trFrame{}栖居于\trGeodesic{}的终点 $\exp_{p}\bigl(\pi_{p}(X)\bigr)$ 处，\trMetric{}不应在起点取；其二，此式把第三槽用作被配对的向量、第四槽用作被搬运的\trFrame，与紧随其后的分量展开 $\bigl(p_{\rho}(X,Y)\bigr)_{j}=P\bigl(w_{\rho},X,Z_{j}^{\rho},Y\bigr)$——第三槽为\trFrame、第四槽为残差——次序相反，两者不能同时成立。此处统一按“第三槽\trFrame、第四槽残差”改定：\trMetric{}取于终点 $q(p,X)$，并把诸投影显式写入。又，诸 $Z_{j}^{\rho}$ 切于 $W$，故下式中 $\pi_{w_{\rho}}\bigl(Z_{j}^{\rho}\bigr)=Z_{j}^{\rho}$，而 $X=0$ 时更得 $\bigl(p_{\rho}(0,Y)\bigr)_{j}=\bar{g}_{w_{\rho}}\bigl(Z_{j}^{\rho},Y\bigr)$。三式径改。——译者注}
+\[
+\begin{aligned}
+P\colon W\times\RR^{m}\times\RR^{m}\times\RR^{m}&\longrightarrow\RR\\
+(p,X,A,B)&\longmapsto\bar{g}_{q(p,X)}\bigl(\scr{T}_{p}\bigl(\pi_{p}(X),\pi_{p}(A)\bigr),B\bigr)\text{，}
+\end{aligned}
+\]
+它对 $A$ 与 $B$ 都是线性的，并且在 $X=0$ 时就简单地等于
+\[
+P(p,0,A,B)=\bar{g}_{p}\bigl(\pi_{p}(A),B\bigr)\text{。}
+\]
+我们终于可以定义
+\[
+p_{\rho}\colon W^{1,p}(\RR\times S^{1};\RR^{m})\times L^{p}(\RR\times S^{1};\RR^{m})\longrightarrow L^{p}(\RR\times S^{1};\RR^{2n})
+\]
+了，只需令（对 $j=1,\dots,2n$）
+\[
+\bigl(p_{\rho}(X,Y)\bigr)_{j}=P\bigl(w_{\rho},X,Z_{j}^{\rho},Y\bigr)=\bar{g}_{q(w_{\rho},X)}\bigl(\scr{T}_{w_{\rho}}\bigl(\pi_{w_{\rho}}(X),\pi_{w_{\rho}}\bigl(Z_{j}^{\rho}\bigr)\bigr),Y\bigr)\text{。}
+\]
+由诸 $Z_{j}^{\rho}$ 的构造，我们有
+\[
+\sup_{s,t}\bigl\|Z_{j}^{\rho}(s,t)\bigr\|<+\infty\text{。}
+\]
+由于 $X$ 属于 $W^{1,p}$，我们有 $\sup_{s,t}\|X(s,t)\|<+\infty$。最后，由于 $\widetilde{\scr{T}}$ 是 $\cC^{\infty}$ 类的，应用\cref{thm:w1p-product-inequality}与\cref{thm:a-b-estimates}便给出
+\[
+\|p_{\rho}(X,Y)\|\le C\|Z\|\cdot\|Y\|_{L^{p}}
+\]
+从而
+\[
+p_{\rho}(X,Y)\in L^{p}(\RR\times S^{1};\RR^{2n})\text{。}
+\]
+作为结论，我们显然有 $F_{\rho}(y)=p_{\rho}\bigl(i_{\rho}(y),\widetilde{\scr{F}}_{\rho}(i_{\rho}(y))\bigr)$，这正是我们所要的。

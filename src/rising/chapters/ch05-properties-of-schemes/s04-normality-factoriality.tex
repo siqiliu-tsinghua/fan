@@ -1,0 +1,109 @@
+
+\section{\trNormality{}与\trFactoriality{}}
+
+\textbf{5.4.1.}\ \emph{\trNormality{}。}\quad 我们现在可以定义概形的一条性质了，它说的是概形「离\trSmooth{}不太远」，称为\textbf{\trNormality}（normality），日后会非常顺手。我们日后会见到「\trLocally\trNoetherian{}\trNormal{}\trScheme{}满足\trHartogs{}引理」这句话（就\trNoetherian{}\trNormal{}\trScheme{}而言，即\trAlgebraic\trHartogs{}引理~13.5.19）：在一个\trCodimension{}为 $2$ 的集合之外定义的函数，可以延拓到该集合之上。（我们在 \S4.4.2 中已见过此事的端倪。）由此，无\trPole{}的\trRationalFunction（定义见练习~5.2.I）处处有定义（\trPole{}正是某些\trCodimension{}为 $1$ 的集合，函数在那里没有定义）。要把这件事说精确，我们还需要\trDimension{}与\trPole{}的定义。至于「\trSmoothness」（确切地说，是「\trRegularity{}」（regularity））蕴含\trNormality{}这一事实，见 \S13.8.7 与 \S26.3.5。
+
+回想：称一个\trIntegralDomain{} $A$ 是\textbf{\trIntegrallyClosed{}}（integrally closed）的，如果 $A[x]$ 中任何\trMonicPolynomial{}在 $\mathrm{K}(A)$ 中的零点都必定落在 $A$ 自身之内。基本的例子是 $\mathbb{Z}$（缘由见练习~5.4.F）。称一个\trScheme{} $X$ 是\textbf{\trNormal}（normal）的，如果它的所有\trStalk{} $\OO_{X,p}$ 都\trNormal，即都是\trIntegralDomain，并且在其\trFractionField{}中\trIntegrallyClosed{}。（于是按定义，\trNormality{}是一条\trStalkLocal{}性质。）由于\trReducedness{}是一条\trStalkLocal{}性质（定义~5.2.1），\trNormal{}\trScheme{}都是\trReduced{}的。（有人或许愿意说：若 $\Spec A$ \trNormal，就称环 $A$ 是一个\textbf{\trNormal{}环}（normal ring），这样便把「\trIntegralClosure{}」（integral closure）的观念扩充到了并非\trIntegralDomain{}的环上。）
+
+\textbf{5.4.A.（练习）}\quad 证明：\trIntegrallyClosed{}\trIntegralDomain{}在\trLocalization{}之下表现良好：设 $A$ 是\trIntegrallyClosed{}\trIntegralDomain，$S$ 是不含 $0$ 的\trMultiplicativeSubset，证明 $S^{-1}A$ 是\trIntegrallyClosed{}\trIntegralDomain。（提示：设 $x^n+a_{n-1}x^{n-1}+\cdots+a_0=0$（其中诸 $a_i\in S^{-1}A$）在\trFractionField{}中有一个根。把它变成 $A[x]$ 中另一个同样在该\trFractionField{}中有根的方程。）
+
+在概形的每一个点处逐一检验\trNormality{}可不是什么乐事。多亏了这条练习，我们知道：若 $A$ 是\trIntegrallyClosed{}\trIntegralDomain，则 $\Spec A$ \trNormal。此外，对\trQuasicompact{}的概形或域上\trLocally\trFiniteType{}的概形，\trNormality{}可以在\trClosedPoint{}处检验——这多亏了这条练习，再加上这样一个事实：对这类概形，任何点都是某个\trClosedPoint{}的\trGenerization（练习~5.1.E 与练习~5.3.F）。
+
+\trNormal{}\trScheme{}都是\trIntegral{}的，这并不真。例如，两个\trNormal{}\trScheme{}的\trDisjointUnion{}仍\trNormal。于是 $\Spec k\sqcup\Spec k\cong\Spec(k\times k)\cong\Spec k[x]/(x(x-1))$ \trNormal，但其\trGlobalSections{}环却不是\trIntegralDomain。
+
+\textbf{5.4.B.（练习）}\quad 证明：\trNoetherian{}\trScheme{} \trNormal，当且仅当它是有限多个\trIntegral{}\trNoetherian{}\trNormal{}\trScheme{}的\trDisjointUnion。（提示：练习~5.3.C。）
+
+我们已经逼近交换代数中的一条有用结果，索性一口气把它走到底。
+
+\textbf{5.4.2.\ \trhProposition{}。}\ ——\ \emph{若 $A$ 是一个\trIntegralDomain，则下列三条等价。}
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{$A$ 是\trIntegrallyClosed{}的。}
+  \item \emph{对一切\trPrimeIdeal{} $\mathfrak{p}\subset A$，$A_{\mathfrak{p}}$ 都\trIntegrallyClosed{}。}
+  \item \emph{对一切\trMaximalIdeal{} $\mathfrak{m}\subset A$，$A_{\mathfrak{m}}$ 都\trIntegrallyClosed{}。}
+\end{enumerate}
+
+\emph{证明。}\ 练习~5.4.A 表明\trIntegralClosedness{}在\trLocalization{}之下保持，故 (i) 蕴含 (ii)。显然 (ii) 蕴含 (iii)。
+
+尚须证明 (iii) 蕴含 (i)。这个论证要用到一个相当精巧的构造，我们日后还会再度用到它。设 $A$ 不\trIntegrallyClosed{}。我们来证明：存在某个 $\mathfrak{m}$ 使 $A_{\mathfrak{m}}$ 也不\trIntegrallyClosed{}。设
+\begin{equation*}\tag{5.4.2.1}\label{eq:monic-polynomial-root-s}
+x^n+a_{n-1}x^{n-1}+\cdots+a_0=0
+\end{equation*}
+（其中诸 $a_i\in A$）在 $\mathrm{K}(A)\setminus A$ 中有解 $s$。设 $I$ 为 $s$ 的\textbf{\trIdealOfDenominators{}}（ideal of denominators）：
+\begin{equation*}\tag{5.4.2.2}\label{eq:ideal-of-denominators}
+I:=\{r\in A\;:\;rs\in A\}.
+\end{equation*}
+（注意，$I$ 显然是 $A$ 的一个\trIdeal。）由于 $1\notin I$，故 $I\neq A$。于是存在包含 $I$ 的某个\trMaximalIdeal{} $\mathfrak{m}$。那么 $s\notin A_{\mathfrak{m}}$，于是把方程 \eqref{eq:monic-polynomial-root-s} 放到 $A_{\mathfrak{m}}[x]$ 中看，便知 $A_{\mathfrak{m}}$ 也不\trIntegrallyClosed{}，正如所望。\hfill$\square$
+
+\textbf{5.4.C.（不重要的练习）}\quad 若 $A$ 是一个\trIntegralDomain，证明：$A=\bigcap_{\mathfrak{m}}A_{\mathfrak{m}}$，其中交跑遍 $A$ 的所有\trMaximalIdeal。（我们不会用到这条练习，但它能让你好好操练一下\trIdealOfDenominators{}。）
+
+\textbf{5.4.D.（与\trIdealOfDenominators{}有关的不重要的练习）}\quad 出于使用\trUFD{}的经验，人们或许会天真地指望：\trIdealOfDenominators{}是\trPrincipalIdeal。事情并非如此。作为反例，考虑我们的新朋友 $A=k[w,x,y,z]/(wz-xy)$（我们与它初次相逢是在\cref{thm:quadric-cone-section-example}，日后我们会认出它就是\trQuadricSurface{}上的\trCone），并考虑元素 $w/y=x/z\in\mathrm{K}(A)$。证明：$\mathrm{K}(A)$ 的这个元素的\trIdealOfDenominators{}是 $(y,z)$。
+
+我们将会看到，上面这条练习中的 $I$ 不是\trPrincipalIdeal（练习~13.1.D——利用 $I$ 是某个\trGradedRing{}的\trHomogeneous\trIdeal{}这一事实，你或许能直接证明它）。但我们也会看到：在好的情形（\trNoetherian、\trNormal）下，\trIdealOfDenominators{}是「纯\trCodimension{} $1$」的——这正是\trAlgebraic\trHartogs{}引理~13.5.19 的内容。在该引理的证明（\S13.5.21）中，我们将给出\trIdealOfDenominators{}的一个几何解释。
+
+\textbf{5.4.3.}\ \emph{\trFactoriality{}。}\quad 若\trScheme{} $X$ 的所有\trStalk{}都是\trUFD，就称 $X$ 是\textbf{\trFactorial{}的}（factorial）。（不重要的注记：\trAlgClosedField{}上的\trAffine\trVariety{}中，\trFactorial{}的点所成的\trLocus{}是一个\trOpenSubset，[BGS, p.~1]。）
+
+\textbf{5.4.E.（练习）}\quad 证明：\trUFD{}的任何非零\trLocalization{}都是\trUFD。
+
+\textbf{5.4.4.}\quad 于是，若 $A$ 是\trUFD，则 $\Spec A$ 唯一分解。逆命题不必成立；见练习~5.4.N。事实上我们将会看到：\textbf{\trEllipticCurve{}}（elliptic curve）是\trFactorial{}的，却\emph{没有}一个仿射开集是某个\trUFD{}的 $\Spec$（\S19.11.1）。因此，人们可以通过找出一个恰当的仿射\trCover{}来证明\trFactoriality{}，但\trFactorial{}的概形却未必\emph{存在}这样的\trCover。（有人或许会合情合理地把使 $\Spec A$ \trFactorial{}的环 $A$ 称为\textbf{\trFactorial{}环}（factorial ring）；这是比\trUFD{}严格更弱的观念。我们用不到这个术语。）
+
+\textbf{5.4.5.}\ \emph{\trhRemark{}：如何检验一个环是否为\trUFD。}\quad 要检验一个\trNoetherian{}\trIntegralDomain{}是否为\trUFD，手段寥寥无几。一些有用的手段有：(0) 初等手段：带有\trEuclid{}算法的环，如 $\mathbb{Z}$、$k[t]$ 与 $\mathbb{Z}[i]$；\trUFD{}上的\trPolynomialRing{}——依据\trGauss{}引理（Gauss's Lemma，譬如见 [Lan, IV.2.3]）；(1) \trUFD{}的\trLocalization{}也是\trUFD（练习~5.4.E）；(2) \trHeight{}为 $1$ 的诸\trPrimeIdeal{}是\trPrincipalIdeal（命题~12.3.7）；(3) \trNormal{}且 $\mathrm{Cl}=0$（练习~15.5.P）；(4) \trNagata{}引理（Nagata's Lemma，练习~15.5.Q）。（警示：即便 $A$ 是\trUFD，$A[[t]]$ 也未必是；见 [Mat2, p.~165]。第一个例子由 P.~Salmon 给出：$A=k(u)[[x,y,z]]/(z^2+x^3+uz^6)$；见 [Sa, Dan]。）
+
+\textbf{5.4.6.}\ \emph{\trFactoriality{}蕴含\trNormality{}。}\quad 我们喜欢\trFactoriality{}的一个理由是：它蕴含\trNormality。
+
+\textbf{5.4.F.（重要练习）}\quad 证明：\trUFD{}都是\trIntegrallyClosed{}的。于是，\trFactorial{}的概形都\trNormal；而且若 $A$ 是\trUFD，则 $\Spec A$ \trNormal。（然而，环可以\trIntegrallyClosed{}而并非\trUFD——我们将在练习~5.4.L 中见到这一点。练习~5.4.N 不加证明地给出了另一个例子；在那个例子中，该环的 $\Spec$ 是\trFactorial{}的。把练习~5.4.L 稍加变通便会表明：概形可以\trNormal{}而不唯一分解；见练习~13.1.E。）
+
+\textbf{5.4.7.}\ \emph{例子。}
+
+\textbf{5.4.G.（容易的练习）}\quad 证明：下列概形都\trNormal：$\mathbb{A}^n_k$、$\mathbb{P}^n_k$、$\Spec\mathbb{Z}$。（照例，$k$ 是一个\trField。尽管「若 $A$ \trIntegrallyClosed{}，则 $A[x]$ 亦然」确实为真——见 [Bo, Ch.~5, \S1, no.~3, Cor.~2] 或 [E, Ex.~4.18]——但这并不是一个容易的事实，所以请不要在此使用它。）
+
+\textbf{5.4.H.（称手的练习：日后给出许多富有启发的例子）}\quad 设 $A$ 是一个\trUFD{}且 $2$\trInvertible，并设 $z^2-f$ 在 $A[z]$ 中\trIrreducible。
+\begin{enumerate}[label=(\alph*)]
+  \item 证明：若 $f\in A$ 没有重复的素因子，则 $\Spec A[z]/(z^2-f)$ \trNormal。提示：$B:=A[z]/(z^2-f)$ 是一个\trIntegralDomain，因为 $(z^2-f)$ 在 $A[z]$ 中是\trPrimeIdeal。设有首一的 $F(T)\in B[T]$，使 $F(T)=0$ 在 $\mathrm{K}(B)\setminus\mathrm{K}(A)$ 中有解 $\alpha$。于是以 $\overline{F}(T)F(T)$ 代替 $F(T)$ 之后，不妨设 $F(T)\in A[T]$。又，$\alpha=g+hz$，其中 $g$、$h\in\mathrm{K}(A)$。此时 $\alpha$ 是 $Q(T)=0$ 的解，其中 $Q(T)=T^2-2gT+(g^2-h^2f)$ 是 $\mathrm{K}(A)[T]$ 中的\trMonicPolynomial{}，故可在 $\mathrm{K}(A)[T]$ 中分解 $F(T)=P(T)Q(T)$。由\trGauss{}引理，$2g$、$g^2-h^2f\in A$。设 $g=r/2$，$h=s/t$（$s$ 与 $t$ 无公因子，$r$、$s$、$t\in A$）。则 $g^2-h^2f=(r^2t^2-4s^2f)/4t^2$。于是 $t$\trInvertible。
+  \item 证明：若 $f\in A$ 有重复的素因子，则 $\Spec A[z]/(z^2-f)$ 不\trNormal。
+\end{enumerate}
+
+\textbf{5.4.I.（练习）}\quad 证明：下列概形都\trNormal：
+\begin{enumerate}[label=(\alph*)]
+  \item $\Spec\mathbb{Z}[x]/(x^2-n)$，其中 $n$ 是模 $4$ 余 $3$ 的\trSquareFree{}（square-free）整数。警示：练习~5.4.H 的假设在此不适用，所以你只好直接来证。（你的论证或许也能顺带给出把 $3$ 换成 $2$ 时的结果。一个类似的论证表明：若 $n\equiv 1\pmod{4}$ 是\trSquareFree{}整数，则 $\mathbb{Z}[(1+\sqrt{n})/2]$ \trIntegrallyClosed{}。）
+  \item $\Spec k[x_1,\dots,x_n]/(x_1^2+x_2^2+\cdots+x_m^2)$，其中 $\operatorname{char}k\neq 2$，$n\ge m\ge 3$。
+  \item $\Spec k[w,x,y,z]/(wz-xy)$，其中 $\operatorname{char}k\neq 2$。这就是我们那个\trQuadricSurface{}上的\trCone{}的例子，来自\cref{thm:quadric-cone-section-example}与练习~5.4.D。提示：练习~5.4.J 也许用得上。（结论对 $\operatorname{char}k=2$ 同样成立，但不必为此费心。）
+\end{enumerate}
+
+\textbf{5.4.J.（练习：\trDiagonalize{}\trQuadraticForm{}）}\quad 设 $k$ 是一个\trCharacteristic{}不为 $2$ 的\trAlgClosedField。（$k$ \trAlgClosed{}这一假设并不必要，所以尽管去处理这个更一般的情形。此时 (a) 应稍作改写：「至多 $n$ 个平方数之和」应改为「至多 $n$ 个平方的 $k$-线性组合」。）
+\begin{enumerate}[label=(\alph*)]
+  \item 证明：$n$ 个变量的任何\textbf{\trQuadraticForm{}}（quadratic form）都能通过更换坐标「\trDiagonalize{}」为至多 $n$ 个平方数之和（例如 $uw-v^2=\bigl((u+w)/2\bigr)^2+\bigl(i(u-w)/2\bigr)^2+(iv)^2$），其中出现在诸平方之中的线性型线性无关。（提示：对变量的个数作归纳，每一步「配方」。）
+  \item 证明：出现的平方数的个数只依赖于该\trQuadraticForm{}。例如，$x^2+y^2+z^2$ 不能写成两个平方数之和。（可能的途径：给定诸线性型的一组基 $x_1,\dots,x_n$，把\trQuadraticForm{}写成
+\[
+(\,x_1\ \cdots\ x_n\,)\,M\begin{pmatrix}x_1\\ \vdots\\ x_n\end{pmatrix}
+\]
+其中 $M$ 是一个对称矩阵。弄清换基时 $M$ 如何变换，并证明 $M$ 的\trRank{}不依赖于基的选取。）
+\end{enumerate}
+\trQuadraticForm{}的\textbf{\trRank}就是所需的（「线性无关」的）平方数的个数。若平方数的个数等于变量的个数，就称该\trQuadraticForm{}为\textbf{\trFullRank{}}（full rank）或（具有）\textbf{\trMaximalRank{}}（maximal rank）。
+
+\textbf{5.4.K.（容易的练习·算术版本：环可\trIntegrallyClosed{}而非\trUFD）}\quad 证明：$\mathbb{Z}[\sqrt{-5}]$ \trIntegrallyClosed{}，但不是\trUFD。（提示：练习~5.4.I(a)，以及 $2\times 3=(1+\sqrt{-5})(1-\sqrt{-5})$。）
+
+\textbf{5.4.L.（容易的练习：环可以\trIntegrallyClosed{}而非\trUFD——几何版本）}\quad 设 $\operatorname{char}k\neq 2$。令 $A=k[w,x,y,z]/(wz-xy)$，于是 $\Spec A$ 是\trSmooth\trQuadricSurface{}上的\trCone（参看\cref{thm:quadric-cone-section-example}与 \S5.4.D）。
+\begin{enumerate}[label=(\alph*)]
+  \item 证明：$A$ \trIntegrallyClosed{}。（提示：练习~5.4.I(c) 与练习~5.4.J。）
+  \item 证明：$A$ 不是\trUFD。（显然 $wz=xy$。但为什么 $w$、$x$、$y$、$z$ 都\trIrreducible？提示：$A$ 是一个\trGrading\trIntegralDomain。证明：若一个\trHomogeneous{}元素能分解，则诸因子必\trHomogeneous。）
+\end{enumerate}
+
+上面两条练习看起来相似，但实则有别。\trQuadricSurface{}上的\trCone{}\trNormal（由练习~5.4.L）但不唯一分解；见练习~13.1.E。另一方面，$\Spec\mathbb{Z}[\sqrt{-5}]$ 是\trFactorial{}的——它的所有\trStalk{}都是\trUFD。（日后你将能够证明这一点：证明 $\mathbb{Z}[\sqrt{-5}]$ 是一个\trDedekind\trIntegralDomain（\S13.5.11），而由定理~13.5.8(f)，这种环的\trStalk{}必然是\trUFD。）
+
+\textbf{5.4.M.（练习）}\quad 设 $A$ 是一个 $k$-\trAlgebra，而 $l/k$ 是\trField{}的\trFiniteFieldExtension。（你的证明可能根本用不到有限性；列入这条假设，是为了免得你被无穷维\trVectorSpace{}分了心。）证明：若 $A\otimes_k l$ 是一个\trNormal{}\trIntegralDomain，则 $A$ 也是一个\trNormal{}\trIntegralDomain。（尽管我们用不到它，但当 $l/k$ \trSeparable{}（separable）时，其逆命题的一个版本为真：[Gr-EGA, IV$_2$, 6.14.2]。）提示：取 $l$ 的一组 $k$-基 $b_1=1,\dots,b_d$。解释为什么 $1\otimes b_1,\dots,1\otimes b_d$ 构成 $A\otimes_k l$ 的一组自由的 $A$-基。解释为什么我们有单射
+\begin{tikzcd}[row sep=1.9em, column sep=3.6em]
+A \ar[r,hook] \ar[d] & \mathrm{K}(A) \ar[d] \\
+A\otimes_k l \ar[r,hook] & \mathrm{K}(A)\otimes_k l.
+\end{tikzcd}
+证明：$\mathrm{K}(A)\otimes_k l=\mathrm{K}(A\otimes_k l)$。（想法：$A\otimes_k l\subset\mathrm{K}(A)\otimes_k l\subset\mathrm{K}(A\otimes_k l)$。为什么 $\mathrm{K}(A)\otimes_k l$ 是一个\trField？）证明：$(A\otimes_k l)\cap\mathrm{K}(A)=A$。现在假设 $P(T)\in A[T]$ 首一且有根 $\alpha\in\mathrm{K}(A)$，然后由此出发继续。
+
+\textbf{5.4.N.（练习：唯一分解整环性不是\trAffineLocal{}性质）}\quad 令 $A=(\mathbb{Q}[x,y]_{x^2+y^2})_0$ 表示环 $\mathbb{Q}[x,y]_{x^2+y^2}$ 中\trDegree{}为 $0$ 的齐次部分。换言之，它由诸商 $f(x,y)/(x^2+y^2)^n$ 构成，其中 $f$ 的\trDegree{}纯为 $2n$。证明：诸\trDistinguishedOpen{} $D\bigl(x^2/(x^2+y^2)\bigr)$ 与 $D\bigl(y^2/(x^2+y^2)\bigr)$ 覆盖 $\Spec A$。（提示：那两个分数之和为 $1$。）证明：$A_{x^2/(x^2+y^2)}$ 与 $A_{y^2/(x^2+y^2)}$ 都是\trUFD。（提示：证明这两个环都\trIsomorphic{}于 $\mathbb{Q}[t]_{t^2+1}$；它是\trUFD{} $\mathbb{Q}[t]$ 的一个\trLocalization。）最后，证明：$A$ 不是\trUFD。可能的提示：
+\begin{equation*}
+\left(\frac{xy}{x^2+y^2}\right)^{2}
+=\left(\frac{x^2}{x^2+y^2}\right)\left(\frac{y^2}{x^2+y^2}\right).
+\end{equation*}
+（这条练习在练习~15.5.H 中得到推广。它还与练习~15.5.M 有关。）
+
+数论学家或许更偏爱练习~5.4.K 的例子：$\mathbb{Z}[\sqrt{-5}]$ 不是\trUFD，但事实证明，你可以用两个仿射开子集 $D(2)$ 与 $D(3)$ 覆盖它，二者各自对应于\trUFD。（致数论学家：为证明 $\mathbb{Z}[\sqrt{-5}]_2$ 与 $\mathbb{Z}[\sqrt{-5}]_3$ 是\trUFD，先利用数的几何（geometry of numbers，如 [Ar3, Ch.~11, Thm.~7.9]）证明 $\mathbb{Z}[\sqrt{-5}]$ 的\textbf{\trClassGroup{}}（class group）是 $\mathbb{Z}/2$。然后利用 $\mathbb{C}$ 中通常的范数，证明理想 $(1+\sqrt{-5},2)$ 与 $(1+\sqrt{-5},3)$ 都不是\trPrincipalIdeal。）环 $\mathbb{Z}[\sqrt{-5}]$ 是\trDedekind\trIntegralDomain{}的一个例子，我们将在 \S13.5.11 中讨论它。
+
+\textbf{5.4.8.}\ \emph{\trhRemark{}。}\quad 若想要一个 $k$-\trAlgebra{} $A$ 的例子——它不是\trUFD，但在一个特定的\trFieldExtension{}之后变为\trUFD——可参看练习~15.5.J。

@@ -1,0 +1,110 @@
+
+\section{\trZariskiMainTheorem}
+
+\trZariskiMainTheorem{}这个名称在一切可能的方面都取错了（虽然还不算错得可怕）。它并不是单独某一条\emph{定理}，因为以这个名字流传的结果有很多，而且它们往往显得彼此毫不相干。它们的共同之处在于：它们都是 \trZariski{}某条特定结果在思想上的后裔。而这条结果并不是 \trZariski{}那多产生涯中的\emph{主}定理；这个名字的来由，不过是它作为某篇具体论文 [Z] 的「主定理」罢了。最后，它也谈不上在比这更强的意义上「属于 \trZariski」；现代的诸版本都出自 \trGrothendieck{}之手。
+我们已经见过\trZariskiMainTheorem{}的一个版本：\mbox{练习~28.4.B} 的「\trBirational」形式。本节的目标是证明一个更强的陈述，它已十分接近最优的版本。
+在开始之前，我们指出：一个\trProper\trMorphism{}在一点 $q\in Y$ 之上的\trFiber{}是\trResidueField{} $\kappa(q)$ 上的一个\trProper{}（从而\trFiniteType）的\trScheme；而若一个点构成该\trFiber{}的一个\trDimension{}为 $0$ 的分量，我们就说它\textbf{在其\trFiber{}中孤立}（isolated in its fiber）。（这里的「分量」兼指\trConnectedComponent{}与\trIrreducibleComponent。）
+
+\textbf{28.5.1. \trZariskiMainTheorem（\trGrothendieck{}形式）。}\ ——\ \emph{设 $\pi\colon X\to Y$ 是局部\trNoether{}\trScheme{}之间的一个\trProper\trMorphism。}
+
+\emph{(a) $X$ 中在其\trFiber{}中孤立的那些点构成一个\trOpenSubset{} $X_0\subset X$。}
+
+\emph{(b) \trMorphism{} $\pi|_{X_0}\colon X_0\to Y$ 可分解为一个\trOpenEmbedding{} $X_0\hookrightarrow Y'$，随后接一个\trFinite\trMorphism{} $Y'\to Y$。}
+
+\emph{(c) \trMorphism{} $\pi\colon X\to Y$ 经由 $Y'$ 分解。}
+
+\begin{equation*}
+\tag{28.5.1.1}\label{eq:zmt-factorization}
+\begin{tikzcd}[row sep=2.6em, column sep=3.2em]
+ & X \ar[dr, "\alpha"] \ar[dd, bend right=15, "\pi"'] & \\
+X_0 \ar[ur, hook, "\text{open}"] \ar[rr, hook, bend right=12, "\text{open}"] \ar[dr, "\pi|_{X_0}"'] && Y' \ar[dl, "\beta", "\text{finite}"] \\
+ & Y &
+\end{tikzcd}
+\end{equation*}
+
+与\trStein{}因子分解一样，定理的证明所给出的是一个\emph{特定的}因子分解。事实上，$X\to Y'=\Spec\pi_*\OO_X\to Y$ 正是 $\pi\colon X\to Y$ 的\trStein{}因子分解，由此 (c) 与 (b) 的一部分便基本上立即可得。
+若 $\pi$ 是\emph{\trVariety}之间的\trMorphism，那么由\trFiber\trDimension{}的\trUpperSemicontinuous{}性（\mbox{定理~12.4.3(a)}），我们其实已经知道 (a) 部分。因此，\trVariety{}情形的证明要更容易些，而且（即便你感兴趣的正是更一般的情形）我们也建议你在阅读证明时把它限制在这个较简单的情形上，以便专注于主要思想。但即便在\trVariety{}的情形，我们也会需要 (a) 的证明中产生的某些想法，所以你应当把它一直读到被告知可跳往 (b) 之处为止。
+\emph{证明。}\quad (a) 取 $\pi$ 的\trStein{}因子分解 \eqref{eq:stein-factorization-triangle}：
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4.5em]
+X \ar[rr, "\text{$\OO$-conn.}", "\alpha"'] \ar[dr, "\pi"'] && Y' \ar[dl, "\beta", "\text{finite}"'] \\
+& Y &
+\end{tikzcd}
+\]
+由于 $\beta$ 是\trFinite{}的，$X$ 的一个点是 $\pi$ 的\trFiber{}中的孤立点，当且仅当它是 $\alpha$ 的\trFiber{}中的孤立点。于是我们可以用 $\alpha$ 代替 $\pi$。（基本上，我们是在化归到「$\pi$ 为 $\OO$-连通」的情形，但我们宁愿谨慎地把当前考虑的\trMorphism{}称作 $\alpha$，以便 (b) 的证明中还能回到对 $\pi$ 的讨论。）
+由于局部\trNoether{}\trScheme{}之间的\trProper{}、$\OO$-连通\trMorphism{}的诸\trFiber{}都是\trConnected{}的（\mbox{\trZariski{}连通性引理~28.4.1}），一个点在 $\alpha$ 的\trFiber{}中孤立，当且仅当它\emph{就是}整条\trFiber。
+如果你只考虑\trVariety{}情形，那么此时你应当直接跳到 (b) 部分的证明。
+为证 $X_0$ 是\trOpen{}的，我们将把它等同于 $\Omega_\alpha=0$ 的\trLocus（即 $\alpha$ 的\trUnramified\trLocus——注意不是 $\pi$ 的！），由\mbox{练习~21.7.H}，它是\trOpen{}的。
+
+\textbf{28.5.A.（练习）}\quad 若 $\Omega_\alpha|_p=0$，证明：$p$ 在 $\alpha$ 的\trFiber{}中孤立（从而也在 $\pi$ 的\trFiber{}中孤立）。
+
+现在我们来证另一个方向。设 $p$ 在它的\trFiber{}中孤立，并设 $r\in Y'$ 为 $\alpha(p)$。我们将证明：$\alpha$ 诱导出一个\trIsomorphism{} $\alpha^{\sharp}\colon\OO_{Y',r}\xrightarrow{\ \sim\ }\OO_{X,p}$，从而 $\Omega_{\OO_{X,p}/\OO_{Y',r}}=0$。由于 $\Omega$ 的构造对源与靶的局部化都有良好的表现（\mbox{练习~21.2.L}），这就蕴含 $(\Omega_\alpha)_p=0$，于是 $\Omega_\alpha$ 在 $p$ 处为 $0$。
+\trStalk{} $\OO_{Y',r}$ 的取法是：对 $Y'$ 的所有包含 $r$ 的\trOpenSubset，取（$\OO_{Y'}$ 的\trSection{}的）\trColimit。对任何这样一个\trOpenSubset{} $V\subset Y'$，条件 $\alpha_*\OO_X=\OO_{Y'}$ 给出\trIsomorphism{} $\Gamma(V,\OO_{Y'})\xrightarrow{\ \sim\ }\Gamma(\alpha^{-1}(V),\OO_X)$（与包含关系相容）。我们将证明：由诸 $\alpha^{-1}(V)$（$V$ 遍历 $r$ 的诸\trOpen\trNeighborhood）构成的系统——其每一员都必然包含 $p$——与 $p$ 在 $X$ 中的\trOpen\trNeighborhood{}系统共尾。为此，我们必须证明：对 $p$ 在 $X$ 中的任何\trOpen\trNeighborhood{} $U$，都存在 $r$ 在 $Y'$ 中的\trOpen\trNeighborhood{} $V$，使得 $\alpha^{-1}(V)\subset U$。为此，注意 $X\setminus U$ 在 $X$ 中是\trClosed{}的，故 $\alpha(X\setminus U)$ 在 $Y'$ 中是\trClosed{}的（因为 $\alpha$ 是\trProper{}的），于是其\trComplement{} $V:=Y'\setminus\alpha(X\setminus U)$ 是\trOpen{}的。但 $\alpha^{-1}(V)\subset U$，如此便证得所需。
+
+(b)（\emph{\trSet}）在对 (a) 的证明中，我们已经确立：$\alpha$ 在 $X_0$ 与 $Y'$ 的一个\trOpenSubset{}之间给出一个\trBijection。
+
+（\emph{\trTopology}）我们基本上也已经证明：$\alpha$ 给出一个\trHomeomorphism。$Y'$ 的任何\trOpenSubset{}由 $\alpha$ 的\trContinuous{}性拉回为 $X_0$ 的一个\trOpenSubset；而若 $U$ 是 $X_0$ 的一个\trOpenSubset，则 $\alpha(X\setminus U)$ 是 $Y'$ 的一个\trClosedSubset，于是它的\trComplement（即 $\alpha(U)$，这里用到\trProper{}的 $\OO$-连通\trMorphism{}皆为\trSurjectiveMap{}的这一事实，\mbox{练习~25.1.H}）是\trOpen{}的。
+
+（\emph{\trSheaf}）利用这个\trTopologicalSpace{}之间的\trIsomorphism，$\alpha$（限制在 $\alpha(X_0)$ 上）的 $\OO$-连通性表明：$\alpha$ 给出\trLocallyRingedSpace（即\trScheme）之间的一个\trIsomorphism{} $X_0\to\alpha(X_0)$。
+
+这样，我们就找到了想要的因子分解。（(c) 部分由我们的构造立即可得。）\hfill$\square$
+
+\textbf{28.5.B.（练习）}\quad 在稍有不同的假设下证明\trZariskiMainTheorem：设 $Y$ 是\trAffine{}的，比如说 $\Spec A$，而 $X$ 是一个\trQuasiprojective{} $A$-\trScheme。（提示：由\trQuasiprojective{} $A$-\trScheme{}的\mbox{定义~4.5.10}，我们可以找到一个\trOpenEmbedding{} $X\hookrightarrow X'$，其中 $X'$ 是一个\trProjective{} $A$-\trScheme。将\mbox{定理~28.5.1} 施于 $X'\to\Spec A$。）
+作为\trZariskiMainTheorem{}的一个应用，我们终于可以证明那个我们已多次提及的、关于\trFinite\trMorphism{}的刻画。
+
+\textbf{28.5.2. \trhTheorem。}\ ——\ \emph{设 $\pi\colon X\to Y$ 是局部\trNoether{}\trScheme{}之间的一个\trMorphism。则下列诸条等价。}
+
+\emph{(a) $\pi$ 是\trFinite{}的。}
+
+\emph{(b) $\pi$ 是\trAffine{}且\trProper{}的。}
+
+\emph{(c) $\pi$ 是\trProper{}且\trQuasifinite{}的。}
+
+如常，\trNoether{}假设可以去掉：[Gr-EGA, IV$_3$.8.11.1] 表明，\trProper、\trQuasifinite、\trLocally\trFinitelyPresented{}的\trMorphism{}都是\trFinite{}的。
+
+\emph{证明。}\quad \trFinite\trMorphism{}依定义是\trAffine{}的，且由\mbox{命题~11.4.3} 是\trProper{}的，故 (a) 蕴涵 (b)。
+为证 (b) 蕴涵 (c)，我们只需证明\trAffine{}的\trProper\trMorphism{}具有\trFinite\trFiber（因为\trQuasifinite{}性定义中「\trFiniteType」的那一部分已由\trProper{}性替我们办妥）。这一点已在\mbox{练习~18.9.A} 中证得。
+最后，我们假设 (c)，即 $\pi$ \trProper{}且\trQuasifinite，并来证明 (a)，即 $\pi$ 是\trFinite{}的。由\mbox{\trZariskiMainTheorem~28.5.1}，我们有一个因子分解 \eqref{eq:zmt-factorization}：
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4.5em]
+X_0 \ar[rr, hook, "\text{open}", "\gamma"'] \ar[dr, "\pi"'] && Y' \ar[dl, "\text{finite}"] \\
+& Y &
+\end{tikzcd}
+\]
+现在 $X=X_0$。（你看出这是为什么吗？提示：先\mbox{练习~8.4.D}，后\mbox{练习~8.3.G}。）由针对\trProper\trMorphism{}的\mbox{\trCancellationTheorem~11.1.1}（用到 $Y'\to Y$ 是\trFinite{}的从而\trSeparated），$\gamma$ 是\trProper{}的。
+
+\textbf{28.5.C.（练习）}\quad 证明：\trProper{}且\trQuasicompact{}的\trOpenEmbedding{}都是\trClosedEmbedding。提示：利用\mbox{推论~9.4.5}（对\trQuasicompact{}\trMorphism，像的\trClosure{}就是\trClosure{}的像）来证明其像在靶中既\trOpen{}又\trClosed。
+
+把这条结论施于我们的情势，我们看到 $X\to Y$ 是两个\trFinite\trMorphism{} $\gamma\colon X\hookrightarrow Y'$ 与 $Y'\to Y$ 的复合，从而其自身是\trFinite{}的。\hfill$\square$
+
+\textbf{28.5.3.}\ \emph{\trNagata{}紧化定理。}\quad 对于最后两个应用（\mbox{练习~28.5.E} 与\mbox{练习~28.5.F}），我们需要一个恼人的假设，而上一道练习恰好为它作了预演。设 $\pi\colon X\to Y$ 是局部\trNoether{}\trScheme{}之间的一个\trMorphism。若对 $Y$ 的某个\trOpenCover{}中的一切\trAffine\trOpenSet{} $U_i$，限制 $\pi|_{\pi^{-1}(U_i)}\colon\pi^{-1}(U_i)\to U_i$ 都能分解为一个\trOpenEmbedding{}，嵌入到某个在 $U_i$ 上\trProper{}的\trScheme{}之中，我们就说 $\pi$ 满足 $(\dagger)$。满足 $(\dagger)$ 的\trMorphism{}必是\trSeparated{}且\trFiniteType{}的。事实证明这个条件已经足够：\textbf{\trNagata{}紧化定理}（Nagata's Compactification Theorem）断言，\trNoether{}\trScheme{}之间的\emph{每一个}\trSeparated{}且\trFiniteType{}的\trMorphism{} $\pi\colon X\to Y$ 都可以分解为一个\trDense\trOpenEmbedding{}，嵌入到某个在 $Y$ 上\trProper{}的\trScheme{}之中。（证明见 [Lüt]。\trNoether{}假设可以换成「$Y$ 为\trQuasicompact{}且\trQuasiSeparated{}」这一条件，见 [Con]。）
+
+\textbf{28.5.D.（练习）}\quad 证明：若 $\pi\colon X\to Y$ 是 $k$ 上的\trVariety{}之间的一个\trMorphism，而 $X$ 是某个\trProper\trVariety{} $Z$ 的一个\trOpenSubset，则 $\pi$ 满足 $(\dagger)$。（提示：$X$ 是它在 $Z\times_k Y$ 中的\trClosure{}的一个\trOpenSubscheme。）
+
+\textbf{28.5.E.（练习）}\quad 设 $\pi\colon X\to Y$ 是整的局部\trNoether{}\trScheme{}之间的一个\trQuasifinite{}、\trBirational{}\trMorphism，且 $Y$ 是\trNormal{}的。再设 $\pi$ 满足 $(\dagger)$。证明：$\pi$ 是一个\trOpenEmbedding。（于是，若进而 $\pi$ 还是\trBijection，则 $\pi$ 必是\trIsomorphism。）提示：「是\trOpenEmbedding」这一条件在靶上是局部的。
+
+\textbf{28.5.F.（练习）}\quad 设 $\pi\colon X\to Y$ 是\trNoether{}\trScheme{}之间的一个\trSeparated、\trQuasifinite\trMorphism。
+
+(a) 假设\trNagata{}紧化定理（\S28.5.3）成立，证明：$\pi$ 可分解为一个\trOpenEmbedding{}，嵌入到一个\trFinite\trMorphism{}之中。
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4.5em]
+X \ar[rr, hook, "\text{open}"] \ar[dr, "\pi"'] && Y' \ar[dl, "\text{finite}"] \\
+& Y &
+\end{tikzcd}
+\]
+
+(b) 改为假设 $\pi$ 满足 $(\dagger)$，证明：$\pi$ 「局部地」分解为一个\trOpenEmbedding{}，嵌入到一个\trFinite\trMorphism{}之中；也就是说，存在 $Y$ 的一个\trOpenCover{} $U_i$\footnote{原书此处作「a open cover」，当为「an open cover」之误，径改。——译者注}，使得在每个 $U_i$ 之上都有这样一个因子分解。
+
+这印证了把\trQuasifinite\trMorphism{}看作「\trFinite\trMorphism{}的\trOpenSubset」的想法，如 \S8.3.12 中所许诺的那样。
+
+\textbf{28.5.4.}\ \extrahard\ \textbf{其他版本的\trZariskiMainTheorem。}
+
+\mbox{定理~28.5.1} 中的\trNoether{}条件可以放宽（见 [Stacks, tag 02LQ]、[Gr-EGA, IV$_3$.8.12.13] 或 [GW, Thm. 12.73]）：若 $\pi\colon X\to Y$ 是一个\trSeparated{}且\trFiniteType{}的\trMorphism，而 $Y$ 是\trQuasicompact{}且\trQuasiSeparated{}的，则在其\trFiber{}中孤立的点集 $X_0$ 在 $X$ 中是\trOpen{}的，并且对 $X_0$ 的每个\trQuasicompact{}的\trOpenSubset{} $U$，都有一个因子分解
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4.5em]
+U \ar[rr, "\gamma"] \ar[dr, "\pi|_U"'] && Y' \ar[dl, "\beta"', "\text{finite}"] \\
+& Y &
+\end{tikzcd}
+\]
+使得 $\beta$ 是\trFinite{}的，$\gamma|_U$ 是一个\trQuasicompact{}的\trOpenEmbedding，并且满足 $\gamma^{-1}(\gamma(U))=U$。
+此外还有\trZariskiMainTheorem{}的拓扑形式与幂级数形式，见 [Mu7, \S III.9]。

@@ -1,0 +1,512 @@
+\section{具有指定单值性的哈密顿纤维化}
+\label{sec:hamiltonian-fibrations-prescribed-monodromy}
+
+\stfhIndex{I149}{Kuzichengji}{裤子乘积（pants product）}
+本节说明\personFloer{}同调中所谓的\emph{裤子乘积}。回忆第 4.3.1 节中\emph{带解析坐标}的紧\personRiemann{}曲面 $\Sigma$ 的正、负穿孔。依定义，每个穿孔 $p$ 带有解析坐标卡
+\[
+ \varphi^+:D\setminus\{p\}\to(-\infty,0]\times S^1
+ \quad\text{或}\quad
+ \varphi^-:D\setminus\{p\}\to[0,\infty)\times S^1,
+\]
+取决于穿孔的正负号。
+\footnote{译者注：原书在此处以及定义 20.2.2 中均写“取决于穿孔的 parity”，但
+本段只区分正、负穿孔，并未给穿孔定义奇偶分次；译文按两种坐标的上下文解释为
+穿孔的正负号。}
+以 $(\tau,t)$ 表示圆柱上的标准圆柱坐标。固定截断函数
+$\rho^+:(-\infty,0]\to[0,1]$：
+\[
+ \rho^+(\tau)=
+ \begin{cases}1,&\tau\leq-2,\\0,&\tau\geq-1,
+ \end{cases}
+\]
+并定义 $\rho^-:[0,\infty)\to[0,1]$ 为
+$\rho^-(\tau)=\rho^+(-\tau)$。不致混淆时，两者都简记为 $\rho$。设
+$\mathbf p=\{p_1,\ldots,p_k\}$ 和 $\mathbf q=\{q_1,\ldots,q_\ell\}$ 分别为
+$\Sigma$ 上给定的正、负穿孔集。
+
+\stfhIndex{I164}{Shibaopo}{实爆破（real blow-up）}
+在每个穿孔处作\emph{实爆破}，将 $\dot\Sigma=\Sigma\setminus(\mathbf p\cup\mathbf q)$
+完备化，得到有边界紧\personRiemann{}曲面 $\overline\Sigma$，其边界为
+\[
+ \partial\overline\Sigma=\coprod_{*\in\mathbf p\cup\mathbf q}S_*^1.
+\]
+如第 4.3.1 节所定义，每个边界分支 $S_*^1$ 都带有等同
+$\theta_*:S_*^1\to\mathbb R/\mathbb Z$，因而有一个对应于
+$\theta_*^{-1}(0)\in S_*^1$ 的特选标记点。
+
+\begin{definition}
+\label{def:20-holonomy-at-punctures}
+设 $\dot\Sigma$ 是有 $h\geq1$ 个穿孔的\personRiemann{}曲面，$\overline\Sigma$ 是它的
+实爆破。带标记哈密顿纤维化 $E\to\dot\Sigma$ \emph{在穿孔处的和乐}，定义为带联络的
+带标记哈密顿纤维化 $(E,\Omega,\mathcal C)$ 的和乐数据
+$\mathcal C=(\mathcal C_{H_1},\ldots,\mathcal C_{H_h})$。
+\end{definition}
+
+\stfhIndex{I070}{Zhuxingyixingshi}{柱形 1-形式（cylindrical one-form）}
+\begin{definition}
+\label{def:20-cylindrical-one-form}
+若单形式 $K\in\Omega^1(\dot\Sigma,C_0^\infty(M))$ 在带解析坐标卡 $(D,z)$ 的
+穿孔 $p$ 的某个穿孔邻域 $D'\setminus\{p\}\subset D\setminus\{p\}$ 中，依穿孔
+正负号在坐标 $z=e^{2\pi(\tau+it)}$ 或 $z=e^{-2\pi(\tau+it)}$ 下具有形式
+\[
+ K(\tau,t,x)=H(t,x)\,dt,
+\]
+则称 $K$ 在 $p$ 处为\emph{圆柱形}的。以 $\mathcal K_{\dot\Sigma}$ 表示所有此类 $K$ 的集合。
+\end{definition}
+
+每个这样的 $K$ 都在平凡丛 $E=\dot\Sigma\times(M,\omega)$ 上给出哈密顿纤维化，
+\stfhIndex{I068}{Ouhexingshi}{耦合形式（coupling form）}
+其耦合形式为
+\[
+ \Omega=\pi_2^*\omega+d(\pi_1^*K).
+\]
+相应哈密顿联络的水平分布显式为
+\begin{equation}
+ \Gamma_\Omega(z,x)=\{(\eta,X_{K(\eta)})\in T_z\dot\Sigma\oplus T_xM\}.
+ \label{eq:20-horizontal-distribution}
+\end{equation}
+与单形式 $K$ 相关的一个重要量是曲率二形式 $R_K$，定义为
+\begin{equation}
+ R_K(\xi_1,\xi_2)=\xi_1[K(\xi_2)]-\xi_2[K(\xi_1)]
+ -\{K(\xi_2),K(\xi_1)\}.
+ \label{eq:20-curvature-form}
+\end{equation}
+这里 $\xi_1,\xi_2$ 是两个向量场，$\xi_1[K(\xi_2)]$ 表示固定变量 $x\in M$ 后，
+把 $K(\xi_2)(z,x)$ 看作 $\Sigma$ 上函数并沿 $\xi_1$ 取方向导数。
+
+\stfhIndex{I170}{Tuopunengliang}{拓扑能量（topological energy）}
+下面在离壳层面定义拓扑能量；稍后它将控制\termOnShell{}层面的\termGeometricEnergy{}。
+
+\begin{definition}[拓扑能量]
+\label{def:20-topological-energy}
+令 $\Omega_K$ 为由 $K$ 所关联的 $\dot\Sigma$ 上哈密顿纤维化的耦合形式。若积分
+收敛，对映射 $u:\dot\Sigma\to M$ 定义
+\[
+ E_K(u)=\int_{\dot\Sigma}v^*\Omega_K,
+\]
+其中 $v:\dot\Sigma\to E$ 是由 $u$ 提升而得的截面。
+\end{definition}
+
+现把此拓扑能量与穿孔处（或沿 $\partial\overline\Sigma$）渐近轨道的作用量积分联系
+起来。给定渐近轨道集 $\vec z$，可以定义映射 $u:\dot\Sigma\to M$ 的空间；这些映射
+延拓到 $\overline\Sigma$，并满足
+$u\circ\theta_*=z_*(t)$（$*\in\mathbf p\cup\mathbf q$）。每个这样的映射都定义一个
+相对于边界的自然同伦类 $B$，相应同伦类集合记为 $\pi_2(\vec z)$。若还给定每个
+$z_*$ 的\termBoundingDisc{}~$w_*$，则用这些圆盘“封口”$B$ 的边界分支，得到自然同调类（实际
+上是同伦类）
+\[
+ B\#\left(\coprod_{*\in\mathbf p\cup\mathbf q}[w_*]\right)\in H_2(M).
+\]
+照例，以 $[z,w]$ 表示周期轨道 $z$ 的此类提升，其中 $w:D^2\to M$ 是以 $z$ 为边界
+的圆盘。
+
+\begin{definition}
+\label{def:20-admissible-class}
+给定 $\{[z_*,w_*]\}_{*\in\mathbf p\cup\mathbf q}$。若
+$B\in\pi_2(\vec z)$ 满足
+\begin{equation}
+ B\#\left(\coprod_{*\in\mathbf p\cup\mathbf q}[w_*]\right)=0
+ \quad\text{于 }H_2(M,\mathbb Z),
+ \label{eq:20-admissible-capping}
+\end{equation}
+则称 $B$ 对 $\{[z_*,w_*]\}$ \termAdmissible{}。这里
+\[
+ \#: \pi_2(\vec z)\times
+ \prod_{*\in\mathbf p\cup\mathbf q}\pi_2(z_*)\longrightarrow H_2(M,\mathbb Z)
+\]
+是来自 $\pi_2(\vec z)$ 的同伦类与各 $\pi_2(z_*)$ 中同伦类的自然粘合运算。
+\end{definition}
+
+下面的公式是 (Schw00) 中引理 4.1 的直接推广。
+
+\begin{lemma}
+\label{lem:20-topological-action-identity}
+设 $u:\dot\Sigma\to M$ 满足
+\begin{equation}
+ [u]\#\left(\coprod_{*\in\mathbf p\cup\mathbf q}[w_*]\right)=0.
+ \label{eq:20-zero-capping-class}
+\end{equation}
+则
+\begin{equation}
+ -\int_{\dot\Sigma}v^*\Omega_E
+ =\sum_{p\in\mathbf p}\mathcal A_{H_p}([z_p,w_p])
+ -\sum_{q\in\mathbf q}\mathcal A_{H_q}([z_q,w_q]),
+ \label{eq:20-topological-action}
+\end{equation}
+其中 $v(z)=(z,u(z))$，而 $H_p,H_q$ 是分别配给相应穿孔的哈密顿量。
+\end{lemma}
+
+\begin{proof}
+由引理 4.3.4，对任意 $*\in\mathbf p\cup\mathbf q$，
+\begin{equation}
+ \int_{D^2}v_*^*\Omega_*=-\mathcal A_{H_*}([z_*,w_*]).
+ \label{eq:20-cap-action}
+\end{equation}
+另一方面，由拓扑条件
+$[u]\#\coprod_{*\in\mathbf p\cup\mathbf q}[w_*]=0$，得到
+\begin{equation}
+ \int_{\dot\Sigma}v^*\Omega_E
+ +\sum_{p\in\mathbf p}\mathcal A_{H_p}([z_p,w_p])
+ -\sum_{q\in\mathbf q}\mathcal A_{H_q}([z_q,w_q])=0,
+ \label{eq:20-action-sum-zero}
+\end{equation}
+这等价于~\eqref{eq:20-topological-action}。
+\end{proof}
+
+\subsection{扰动\personCauchy{}--\personRiemann{}方程}
+
+现在用不依赖坐标的方式描述哈密顿扰动。以
+$\mathcal P^{\mathrm{cyl}}(\dot\Sigma,\mathcal J_\omega)$ 表示从 $\dot\Sigma$ 到
+$\mathcal J_\omega$、且在各穿孔附近相对于给定解析坐标
+$z=e^{\pm2\pi(\tau+it)}$ 为圆柱形的映射集合；换言之，对某个充分大的 $R$，要求
+\begin{equation}
+ J(z,x)=J(t,x),\qquad z=e^{\pm2\pi(\tau+it)},\qquad |\tau|\geq R,
+ \label{eq:20-cylindrical-j}
+\end{equation}
+即与 $\tau$ 无关。
+
+对每一这样的偶对 $(K,J)$（称为\personFloer{}数据），定义扰动\personCauchy{}--\personRiemann{}算子
+\[
+ \overline\partial_{(K,J)}u:=(du+P_K(u))_{(j,J)}^{(0,1)}
+ =\frac12\bigl(du+P_K(u)+J\circ(du+P_K(u))\circ j\bigr),
+\]
+其中向量值单形式 $P_K\in\Omega^1(\Sigma\times M,TM)$ 由
+\[
+ d^{\mathrm{vert}}K(z,x)=P_K(z,x)\mathbin{\lrcorner}
+ \Omega|_{T'_{(z,x)}E}
+\]
+唯一确定。特别地，$P_K(u)$ 是
+$\Omega^1(v^*T'E)=\Omega^1(u^*TM)$ 的截面。相应哈密顿扰动\personCauchy{}--\personRiemann{}方程在 $(\Sigma,j)$ 上一般写为
+\begin{equation}
+ (du+P_K(u))_{(j,J)}^{(0,1)}=0,
+ \qquad\text{等价地}\qquad
+ \overline\partial_{(j,J)}u+(P_K(u))_{(j,J)}^{(0,1)}=0.
+ \label{eq:20-perturbed-cr-equation}
+\end{equation}
+
+给定\personFloer{}数据 $(K,J)$ 及与穿孔 $*=p_i$ 或 $*=q_j$ 关联的渐近周期轨道集
+$\vec z=\{z_*\}_{*\in\mathbf p\cup\mathbf q}$，考虑
+\begin{equation}
+ \begin{cases}
+ \overline\partial_{(K,J)}(u)=0,\\
+ u(\infty_*,t)=z_*(t).
+ \end{cases}
+ \label{eq:20-asymptotic-perturbed-cr}
+\end{equation}
+为定义哈密顿扰动模空间，还需选择适当的映射能量。固定 $(\dot\Sigma,j)$ 上的\personKahler{}度量 $h_{\dot\Sigma}$，使其在穿孔附近相对于给定圆柱坐标具有圆柱端，即
+\begin{equation}
+ h_{\dot\Sigma}=d\tau^2+dt^2
+ \label{eq:20-cylindrical-metric}
+\end{equation}
+于 $D_*\setminus\{*\}$ 上。相应面积元记为 $dA_{\dot\Sigma}$。
+
+\stfhSubIndex{I033}{Daifujiegou}{殆复结构（almost complex structure）}{PiOmegaxiangrong}{$(\pi_\Omega)$-相容（$(\pi_\Omega)$-compatible）}
+\begin{definition}
+\label{def:20-compatible-total-j}
+若 $\pi:E\to\dot\Sigma$ 上的殆复结构 $\widetilde J$ 满足：
+\begin{enumerate}[label=(\arabic*)]
+\item $\widetilde J$ 保持竖直切空间，并在每条纤维上与 $\Omega$ 相容；
+\item 投影 $\pi:E\to\dot\Sigma$ 伪全纯，即 $d\pi\circ\widetilde J=j\circ d\pi$，
+\end{enumerate}
+\footnote{译者注：原书把伪全纯条件印作
+$d\pi\circ j=\widetilde J\circ d\pi$，其复结构分别作用在错误的切空间上，因而类型
+不合；译文按 $\pi:(E,\widetilde J)\to(\dot\Sigma,j)$ 的标准条件改写。}
+则称其为 $(\pi,\Omega)$-相容的。若给定含时周期哈密顿量
+\stfhSubIndex{I032}{Daifujiegou}{殆复结构（almost complex structure）}{HJxiangrong}{$(H,J)$-相容（$(H,J)$-compatible）}
+$H=(H_1,\ldots,H_h)$，且 $\widetilde J$ 还满足：
+\begin{enumerate}[label=(\arabic*),start=3]
+\item 对每个 $i$，$(\Phi_i)_*\widetilde J=j\oplus J_{H_i}$，其中
+\[
+ J_{H_i}(\tau,t,x)=(\phi_{H_i}^t)^*J
+\]
+在圆柱坐标下的某个圆盘 $D_i'\subset D_i$ 上由 $M$ 上的含时周期殆复结构族
+$J=\{J_t\}_{0\leq t\leq1}$ 给出，
+\end{enumerate}
+则称 $\widetilde J$ 为 $(H,J)$-相容的。
+\end{definition}
+
+条件 (3) 蕴含，$D_i'$ 上的 $\widetilde J$-全纯截面 $v$ 恰好对应方程
+\begin{equation}
+ \frac{\partial u}{\partial\tau}
+ +J_t\left(\frac{\partial u}{\partial t}-X_{H_i}(u)\right)=0
+ \label{eq:20-floer-equation-at-end}
+\end{equation}
+的解；这里在由 $\varphi_i^\pm$ 诱导的圆柱平凡化中写
+$v(\tau,t)=(\tau,t,u(\tau,t))$。
+
+下面的\termGeometricEnergy{}控制\personFloer{}模空间的分析，特别是其紧性。
+
+\begin{definition}[\termGeometricEnergy{}]
+\label{def:20-geometric-energy}
+对给定的渐近圆柱偶对 $(K,J)$，定义
+\[
+ E_{(K,J)}(u)=\frac12\int_{\dot\Sigma}|du+P_K(u)|_J^2\,dA_{\dot\Sigma},
+\]
+其中范数由度量 $h_{\dot\Sigma}$ 与 $g_J:=\omega(\,\cdot,J\cdot)$ 诱导。
+\end{definition}
+
+此能量只依赖 $h_{\dot\Sigma}$ 的共形类，亦即只依赖 $\Sigma$ 的复结构 $j$。在与
+穿孔 $*$ 对应的圆柱 $C_*$ 上，它限制为通常\personFloer{}流线模空间的标准能量
+\[
+ E_{(K,J)}(u)=\frac12\int_{C_*}
+ \left(\left|\frac{\partial u}{\partial\tau}\right|_J^2
+ +\left|\frac{\partial u}{\partial t}-X_{H_*}(u)\right|_J^2\right)dt\,d\tau.
+\]
+
+现可定义\personFloer{}模空间。令
+\[
+ \mathbf p=\{p_1,\ldots,p_{s_+}\},\quad
+ \mathbf q=\{q_1,\ldots,q_{s_-}\},\quad
+ \mathbf r=\{r_1,\ldots,r_{s_0}\}
+\]
+分别为正穿孔、负穿孔和标记点，并假设它们两两不同，每个穿孔都配备解析坐标卡。
+以 $\widetilde{\mathcal M}_{(s_0;s_+,s_-)}$ 表示所有此类三元组
+$(\mathbf r;\mathbf p,\mathbf q)$ 的集合，以
+$\mathcal M_{(s_0;s_+,s_-)}$ 表示按带标记点穿孔\personRiemann{}曲面的自同构作用取商所得的
+空间。若三元组的自同构群有限，则称其\emph{稳定}。当 $s_0+s_++s_-\geq3$ 时，该空间非空。
+
+\begin{definition}
+\label{def:20-general-floer-moduli}
+设 $(K,J)$ 是穿孔曲面 $\Sigma$ 上的\personFloer{}数据，
+$\{[z_*,w_*]\}_{*\in\mathbf p\cup\mathbf q}$ 是给定渐近轨道，
+$\vec z=\{z_*\}_{*\in\mathbf p\cup\mathbf q}$，且
+\stfhIndex{I029}{Kerongxu}{可容许（admissible）}
+$B\in\pi_2(\vec z)$ 对这些提升\emph{\termAdmissible{}}。定义模空间
+\stfhIndex{I016}{00-m-s0-splus-sminus}{$\mathcal M_{(s_0;s_+,s_-)}(K,J;B)$}
+\begin{equation}
+ \mathcal M_{(s_0;s_+,s_-)}(K,J;\vec z;B)
+ =\{(u;\mathbf r;\mathbf p,\mathbf q)\mid
+ u\text{ 满足~\eqref{eq:20-asymptotic-perturbed-cr}},\
+ E_{(K,J)}(u)<\infty,\ [u]=B\}.
+ \label{eq:20-general-moduli-space}
+\end{equation}
+\end{definition}
+
+为避免连续自同构，在考虑对应于 $(s_0;s_+,s_-)=(1;1,0)$ 或 $(1;0,1)$ 的模空间
+时，总假设穿孔处的渐近哈密顿量 $H$ \emph{不}与时间无关。此外还假设在每个穿孔附近的
+圆柱坐标 $(\tau,t)$ 中
+\begin{equation}
+ K\equiv H(t,x)dt,\qquad J\equiv J(t,x),
+ \label{eq:20-cylindrical-floer-data}
+\end{equation}
+均与 $\tau$ 无关。以
+$\widetilde{\mathcal M}_{(s_0;s_+,s_-)}(K,J;\{[z_*,w_*]\}_*)$ 表示满足
+$B\#\coprod_*[w_*]=0$ 的各模空间~\eqref{eq:20-general-moduli-space} 之有限并。
+
+下面的能量公式不仅是分析\personFloer{}模空间的重要成分，也在\personFloer{}理论应用于辛拓扑
+时起重要作用；相关恒等式在现代辛拓扑的许多近期文献中都十分关键，较早的例子见
+(Schw00), (Oh05d), (Se03a)。
+
+\begin{proposition}
+\label{prop:20-energy-curvature-identity}
+设 $(K,J)$ 满足~\eqref{eq:20-cylindrical-floer-data}，并给定渐近周期轨道集合
+$\{[z_*,w_*]\}_{*\in\mathbf p\cup\mathbf q}$。若 $u$ 能量有限，则
+\begin{align}
+ E_{(K,J)}(u)
+ &=\int_{\dot\Sigma}v^*\Omega_E+\int_\Sigma R_K(v)\notag\\
+ &=\sum_{i=1}^k\mathcal A_{H_{p_i}}([z_i^+,w_i^+])
+ -\sum_{j=1}^\ell\mathcal A_{H_{q_j}}([z_j^-,w_j^-])
+ +\int_\Sigma R_K(v).
+ \label{eq:20-energy-curvature}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+只需证明第一个恒等式；第二个随即由引理~\ref{lem:20-topological-action-identity}
+得到。以 $v:\Sigma\to E$ 表示与 $u$ 关联的截面，则
+\[
+ E_{(K,J)}(u)=\int_{\dot\Sigma}|du+P_K(u)|_J^2\,dA_\Sigma.
+\]
+\footnote{译者注：定义~\ref{def:20-geometric-energy} 在积分前含因子 $1/2$，原书证明
+此处却漏去该因子，而证明末又恢复 $\frac12|du+P_K(u)|^2$。译文照录该行并登记。}
+但我们有
+\[
+ |du+P_K(u)|_J^2
+ =|du(e_1)+P_K(u)(e_1)|_J^2
+ +|du(e_2)+P_K(u)(e_2)|_J^2
+\]
+其中 $\{e_1,e_2\}$ 是 $T\Sigma$ 的标准正交标架，$e_2=je_1$，故
+$e_1=-je_2$。
+\footnote{译者注：原书此处印作“$TM$ 的标准正交标架”，但 $e_1,e_2$ 随后被代入
+定义域上的一形式 $du+P_K(u)$，且使用 $e_2=je_1$；故应为 $T\Sigma$。}
+于是
+\begin{align*}
+ |(du+P_K(u))(e_1)|_J^2
+ &=\omega(du(e_1)+P_K(u)(e_1),J(du(e_1)+P_K(u)(e_1)))\\
+ &=-\omega(du(e_1)+P_K(u)(e_1),J(du+P_K(u))(je_2))\\
+ &=\omega(du(e_1)+P_K(u)(e_1),(du+P_K(u))(e_2))\\
+ &=\omega(du(e_1),du(e_2))+\omega(du(e_1),P_K(u)(e_2))\\
+ &\quad+\omega(P_K(u)(e_1),du(e_2))
+ +\omega(P_K(u)(e_1),P_K(u)(e_2))\\
+ &=\omega(du(e_1),du(e_2))+R_K(e_1,e_2).
+\end{align*}
+同理，
+\[
+ |(du+P_K(u))(e_2)|_J^2=|(du+P_K(u))(e_1)|_J^2
+ =\omega(du(e_1),du(e_2))+R_K(u)(e_1,e_2),
+\]
+所以
+\[
+ \frac12|du+P_K(u)|_J^2dA_\Sigma=v^*\omega+R_K(v).
+\]
+积分即得第一个恒等式。
+\end{proof}
+
+\begin{remark}
+\label{rem:20-curvature-integral-converges}
+最后一个曲率积分收敛，因为由 $K$ 在 $\dot\Sigma$ 各端附近为圆柱形的假设
+\eqref{eq:20-cylindrical-floer-data}，$R_K(u)$ 具有紧支集。
+\end{remark}
+
+以下特例稍后在谱不变量的同伦不变性证明中很重要。
+
+\begin{corollary}
+\label{cor:20-flat-two-parameter-family}
+设 $H=H(s,t,x)$ 是函数族，其中
+$H^s:=H(s,\cdot,\cdot):[0,1]\times M\to\mathbb R$ 是生成哈密顿向量场
+\[
+ \frac{\partial\phi}{\partial t}\circ\phi^{-1}
+\]
+的哈密顿量，而 $\phi=\phi(s,t)$ 是哈密顿微分同胚的二参数族。考虑
+$\mathbb R\times S^1\cong S^2\setminus\{N,S\}$ 上的一形式
+\[
+ K(\tau,t,x)=H(\rho(\tau),t,x)dt,
+\]
+\footnote{译者注：原书只把 $K$ 定义为 $H^\rho dt$，但证明计算的曲率公式还使用
+$F^\rho$ 及其 $\tau$ 导数；若 $F^\rho$ 是联络在 $d\tau$ 方向的分量，则该分量在
+此式中未写出。局部上下文不足以唯一修补，译文照录。}
+定义于平凡丛 $E=\mathbb R\times S^1\times(M,\omega)$。则
+$E_{(K,J)}(v)=\int v^*\Omega_E$，其中
+$v(\tau,t)=(\tau,t,u(\tau,t))$。
+\end{corollary}
+
+\begin{proof}
+由命题~\ref{prop:20-energy-curvature-identity}，只需证 $R_K\equiv0$。令
+$F=F(s,t,x)$ 为函数族，其中 $F^s:=F(\cdot,s,\cdot):[0,1]\times M\to\mathbb R$
+是生成向量场
+\[
+ \frac{\partial\phi}{\partial s}\circ\phi^{-1}
+\]
+的哈密顿量。于是
+\footnote{译者注：原书先以 $H^s=H(s,\cdot,\cdot)$ 表示固定第一参数 $s$ 的切片，
+随后却把固定第二参数、生成 $s$ 方向向量场的切片仍记成
+$F^s=F(\cdot,s,\cdot)$；上标与被固定参数发生冲突。局部上下文不足以唯一重命名，
+译文照录。}
+\[
+ R_K\left(\frac{\partial}{\partial\tau},\frac{\partial}{\partial t}\right)
+ =\frac{\partial F^\rho}{\partial\tau}
+ -\frac{\partial H^\rho}{\partial t}-\{H^\rho,F^\rho\},
+\]
+其中 $H^\rho(\tau,t,x)=H(\rho(\tau),t,x)$、
+$F^\rho(\tau,t,x)=F(\rho(\tau),t,x)$。但 $H^\rho$ 生成哈密顿微分同胚二参数族
+$\phi^\rho(\tau,t)=\phi(\rho(\tau),t)$，故恒等式 (18.3.17) 给出 $R_K\equiv0$。
+\end{proof}
+
+\subsection{裤子乘积}
+
+考虑带三个标记点的亏格 $0$ 紧\personRiemann{}曲面 $\Sigma$，以 $D_i$（$i=1,2,3$）
+表示三个点的邻域。假设 $i=1,2$ 所对应的穿孔为正，解析坐标为
+\[
+ \varphi_i^+:D_i\setminus\{z_i\}\to(-\infty,0]\times S^1,
+ \qquad i=1,2,
+\]
+而第三个穿孔为负，解析坐标为
+\[
+ \varphi_3^-:D_3\setminus\{z_3\}\to[0,\infty)\times S^1.
+\]
+\footnote{译者注：原书在引入负穿孔时印作“$i=0$”，但同式及全段始终使用
+$D_3,\varphi_3^-,z_3$；译文据此改为“第三个穿孔”。原式的定义域又漏去
+$\setminus\{z_3\}$，译文按正穿孔坐标和前文定义补出。}
+以 $(\tau,t)$ 表示 $[0,\infty)\times S^1=[0,\infty)\times\mathbb R/\mathbb Z$
+上的标准圆柱坐标，并如前固定 $\rho^+:(-\infty,0]\to[0,1]$ 与
+$\rho^-:[0,\infty)\to[0,1]$，满足 $\rho^-(\tau)=\rho^+(-\tau)$。
+
+令 $[z_i,w_i]$（$i=1,2$）为 $\mathcal A_{H_i}$ 的临界点。为简化记号，一般地记
+\[
+ \widehat z=[z,w],\qquad
+ \vec{\widehat z}=(\widehat z_1,\widehat z_2,\widehat z_3).
+\]
+裤子乘积 $\widehat z_1*\widehat z_2$ 的矩阵元由某个扰动伪全纯映射模空间给出；这些
+映射从带三个定向穿孔的球面出发，并满足适当的渐近条件。现在我们给出这个模空间的
+精确定义。
+
+取带三个定向穿孔的亏格 $0$ 紧连通曲面 $\Sigma$，前两个穿孔为正、第三个为负，
+并作其实爆破 $\overline\Sigma$，其中 $\vec z=\{z_1,z_2,z_3\}$。由定向穿孔的
+定义，$\dot\Sigma$ 在每个 $z_i$ 附近都带解析坐标 $(\tau,t)$。\emph{固定} $S$ 上的哈密顿
+纤维化，并在 $\partial\overline\Sigma$ 上指定由归一化哈密顿量 $H_i$（$i=1,2,3$）
+诱导的哈密顿联络。固定平凡哈密顿纤维化 $E_i=D^2\times(M,\omega)$，赋予由耦合
+二形式
+\[
+ \Omega_i:=\pi_2^*\omega+\pi_1^*d(H_i^\rho dt)
+\]
+表示的哈密顿联络。特别地，该联络沿 $\partial S$ 的和乐落在共轭类
+$\mathcal C=([\phi_{H_1}^1],[\phi_{H_2}^1],[\phi_{H_3}^1])$ 中。
+\footnote{译者注：原书这里突然写“$S$ 上”与“沿 $\partial S$”，而本小节只定义了
+$\Sigma$ 及其实爆破 $\overline\Sigma$；无法由局部上下文唯一判断 $S$ 是否是
+$\overline\Sigma$ 的另一个记号，故译文照录并登记。}
+
+给定 $\vec{\widehat z}=(\widehat z_1,\widehat z_2,\widehat z_3)$，其中
+$\widehat z_i=[z_i,w_i]\in\operatorname{Crit}\mathcal A_{H_i}$。取一个
+$(H,J)$-相容殆复结构 $\widetilde J$，以
+$\mathcal M(K,\widetilde J;\vec{\widehat z})$ 表示所有满足下列条件的
+$u:\Sigma\to M$：
+\begin{enumerate}[label=(\arabic*)]
+\item 对定义~\ref{def:20-cylindrical-one-form} 中的一形式 $K$，有
+$(du+P_K(u))_{\widetilde J}^{(0,1)}=0$；
+\item 映射 $u_i:=u\circ\varphi_i^{-1}:(-\infty,K_i]\times S^1\to M$ 是
+方程~\eqref{eq:20-floer-equation-at-end} 的解，并满足
+\[
+ \lim_{\tau\to-\infty}u_i(\tau,\cdot)=z_i,\qquad i=1,2;
+\]
+对 $i=3$ 类似，只把 $-\infty$ 改成 $+\infty$；
+\item 用 $w_i$ 封住 $u(\Sigma)$ 所得的闭曲面——$i=1,2$ 取相同定向，$i=3$
+取相反定向——在 $\pi_2(M)/\sim$ 中代表零。
+\end{enumerate}
+
+\begin{definition}
+\label{def:20-equivalent-lift-sets}
+考虑两组
+$\vec{\widehat z}=(\widehat z_1,\ldots,\widehat z_k)$ 与
+$\vec{\widehat z}'=(\widehat z_1',\ldots,\widehat z_k')$。若
+\[
+ z_i'=z_i,\qquad w_i'=w_i\#A_i,
+\]
+其中 $A_i\in\pi_2(M)$，且 $\sum_{i=1}^kA_i$ 在模 $\Gamma$ 意义下代表零，则称
+$\vec{\widehat z}'\sim\vec{\widehat z}$。
+\end{definition}
+
+模空间 $\mathcal M(K,\widetilde J;\vec{\widehat z})$ 只依赖这些
+$\widehat z$ 的等价类。下面指标公式的证明推迟到附录 C.2。
+
+\begin{proposition}
+\label{prop:20-pants-virtual-dimension}
+$\mathcal M(K,\widetilde J;\vec{\widehat z})$ 的（虚）维数为
+\[
+ \begin{aligned}
+ \dim\mathcal M(K,\widetilde J;\vec{\widehat z})
+ &=2n-(-\mu_{H_1}(\widehat z_1)+n)-(-\mu_{H_2}(\widehat z_2)+n)
+ -(\mu_{H_3}(\widehat z_3)+n)\\
+ &=-n+\bigl(\mu_{H_1}(\widehat z_1)+\mu_{H_2}(\widehat z_2)
+ -\mu_{H_3}(\widehat z_3)\bigr).
+ \end{aligned}
+\]
+\end{proposition}
+
+当此维数为零时，
+\[
+ n=-\mu_{H_3}(\widehat z_3)+\mu_{H_1}(\widehat z_1)+\mu_{H_2}(\widehat z_2),
+\]
+等价地，
+\[
+ \mu_{H_3}(\widehat z_3)=
+ \bigl(\mu_{H_1}(\widehat z_1)+\mu_{H_2}(\widehat z_2)\bigr)-n.
+\]
+这给出本书\personFloer{}复形分次约定下裤子乘积的次数。链上的裤子乘积定义为
+\begin{equation}
+ \widehat z_1*\widehat z_2
+ =\sum_{\widehat z_3}\#\bigl(\mathcal M(K,\widetilde J;
+ \vec{\widehat z})\bigr)\widehat z_3,
+ \label{eq:20-pants-product}
+\end{equation}
+先对生成元定义，再对 $CF_*(H_1)\otimes CF_*(H_2)$ 中的链线性延拓。在我们的分次
+约定下，该乘积次数为 $-n$。

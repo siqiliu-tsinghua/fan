@@ -1,0 +1,153 @@
+\paragraph{\trIdempotent{}元与 A∞-模。}\label{sub:idempotents-modules}
+把基域 $\KK$ 以显然的方式看成一个只有一个\trObject{} $*$ 的 \trACategory。当然，
+它的\trCohomology\trCategory{}又是 $\KK$，不过现在把它看成通常的\trCategory{}罢了。
+我们不会在记号上区分这两者；这应当只会造成极小的混淆。
+
+设 $\scr{A}$ 是一个 \trACategory，$A=H(\scr{A})$ 是它的\trCohomology\trCategory，
+而 $\scr{Q}=\mathit{mod}(\scr{A})$ 是 \trAinfty-模的\trCategory。一个\trObject{} $Y$
+的\textbf{\trHomotopy\trIdempotent}（idempotent up to homotopy）定义为一个%
+\trNonunital{} \trAFunctor{} $\wp\colon\KK\to\scr{A}$，满足 $\wp(*)=Y$。具体地，它由
+元素 $\wp^d\in\hom^{1-d}_{\scr{A}}(Y,Y)$（$d\ge 1$）给出，这些元素满足方程组
+\begin{equation}\label{eq:homotopy-idempotent-equations}
+\sum_r\sum_{s_1,\ldots,s_r}
+\mu^r_{\scr{A}}\bigl(\wp^{s_1},\ldots,\wp^{s_r}\bigr)
+=
+\begin{cases}
+\wp^{d-1} & \text{若 } d \text{ 为偶数，}\\
+0 & \text{若 } d \text{ 为奇数}
+\end{cases}
+\end{equation}
+其中求和取遍\trPartition{} $s_1+\cdots+s_r=d$。
+
+\begin{lemma}\label{thm:homotopy-idempotent-lift}
+设 $p\in\Hom_A(Y,Y)$ 是\trCohomology\trCategory{}中的一个\trIdempotent{}%
+\trEndomorphism。那么存在一个\trHomotopy\trIdempotent{} $\wp$，使得
+$[\wp^1]=p$。
+\end{lemma}
+\begin{proof}
+$p$ 定义了一个\trNonunital{} \trFunctor{} $\KK\to A$。据%
+\cref{thm:functor-realization-obstruction}，把它\trLift{}成一个 \trAFunctor{}的%
+\trObstruction{}落在 $HH^2(\KK,A)^{2-r}$ 中（$r>2$）。其底层的%
+\trHochschild{}\trComplex{}是
+\begin{equation*}
+CC^{r+s}(\KK,A)^s=\Hom^s_A(Y,Y),\qquad
+\partial^{r,s}(T)=(-1)^s
+\begin{cases}
+pT-Tp & \text{若 } r \text{ 为偶数，}\\
+pT-Tp^\perp & \text{若 } r \text{ 为奇数。}
+\end{cases}
+\end{equation*}
+把 $\Hom_A(Y,Y)$ 按与 $p$ 的左、右\trComposition{}的\trImage{}与\trKernel{}%
+拆分之后，立刻可以看出仅有的非零\trCohomology{}群是
+$HH^s(\KK,A)^s=p\,\Hom^s_A(Y,Y)\,p\oplus p^\perp\,\Hom^s_A(Y,Y)\,p^\perp$。
+\end{proof}
+
+\begin{remark}\label{thm:homotopy-idempotent-ext}
+与其用 \trHochschild{}\trComplex{}作直接计算，也可以用一些基本的%
+\trHomology{}代数。先给 $\KK$
+添加一个幺元，使得所讨论的\trFunctor{}变成\trUnital{}的；如此所得的、如%
+\cref{thm:morita-bimod-route} 中的\trBimodule{}\trCategory{}是\trSemisimple{}的，
+因此高阶 $\operatorname{Ext}$ 群全部消没。
+\end{remark}
+
+设 $\wp$ 是一个\trHomotopy\trIdempotent。我们给它配上一个 \trAinfty-模
+$\scr{Z}$，称为 $\wp$ 的\textbf{抽象像}（abstract image），其定义如下：
+\begin{equation*}
+\scr{Z}(X)=\hom_{\scr{A}}(X,Y)[q]
+\end{equation*}
+是由单个\trGraded{}变量 $q$（$|q|=-1$）的形式多项式组成的空间，其%
+\trCoefficients{}取自 $\hom_{\scr{A}}(X,Y)$。记 $\delta_q$ 为归一化的形式求导
+运算，它把 $q^0$ 送到 $0$，而把其余各次幂 $q^k$ 送到 $q^{k-1}$。采用这一记号，
+\trDifferential{}便是
+\begin{equation}\label{eq:abstract-image-differential}
+\begin{split}
+\mu^1_{\scr{Z}}(b(q))
+&=\sum_r\sum_{s_2,\ldots,s_r}\delta_q^{s_2+\cdots+s_r}\,
+\mu^r_{\scr{A}}\bigl(\wp^{s_r},\ldots,\wp^{s_2},b(q)\bigr)\\
+&\quad+(-1)^{|b|}\frac{b(q)-b(-q)}{2q},
+\end{split}
+\end{equation}
+其中最后一项是先把幂级数\trAntisymmetric{}化、再施以 $\delta_q$；这并不真正
+涉及乘以 $\frac{1}{2}$，因此当 $\KK$ 的特征为 $2$ 时也有意义。高阶%
+\trStructureMap{}（对 $d\ge 2$）为
+\begin{equation*}
+\begin{split}
+&\mu^d_{\scr{Z}}\bigl(b(q),a_{d-1},\ldots,a_1\bigr)\\
+&\qquad=\sum_r\sum_{s_{d+1},\ldots,s_r}\delta_q^{s_{d+1}+\cdots+s_r}\,
+\mu^r_{\scr{A}}\bigl(\wp^{s_r},\ldots,\wp^{s_{d+1}},b(q),a_{d-1},\ldots,a_1\bigr).
+\end{split}
+\end{equation*}
+
+\begin{lemma}\label{thm:abstract-image-homology}
+底层\trCohomology{}模 $H(\scr{Z})$ 可以描述如下：$H(\scr{Z})(X)\cong
+p\,\Hom_A(X,Y)$，其中 $p=[\wp^1]\in\Hom_A(Y,Y)$，而且\trModule{}结构
+$H(\scr{Z})(X_1)\otimes\Hom_A(X_0,X_1)\to H(\scr{Z})(X_0)$%
+\footnote{译注：原书此处印作 $\Hom(\scr{Z})(X_0)$；疑应为 $H(\scr{Z})(X_0)$
+（同句所述者为底层\trCohomology{}模 $H(\scr{Z})$ 的\trModule{}结构，且该映射
+左端即为 $H(\scr{Z})(X_1)$）；此处径改。——译者注}来自通常的\trComposition{}%
+$p\,\Hom_A(X_1,Y)\otimes\Hom_A(X_0,X_1)\to p\,\Hom_A(X_0,Y)$。
+\end{lemma}
+\begin{proof}
+\begingroup\emergencystretch=8em\hbadness=10000
+$\scr{Z}(X)$ 有一个自然的递增\trFiltration，即
+$F_r=\hom_{\scr{A}}(X,Y)q^0\oplus\cdots\oplus$
+$\hom_{\scr{A}}(X,Y)q^{r-1}$。我们
+\par\endgroup
+通常用的是递减\trFiltration，为统一口径起见，令 $r\leftrightarrow-r$ 把它变成
+一个递减的。于是所得的\trSpectralSequence{}具有
+\begin{equation*}
+E_1^{-r,s}=H^{s-r}(F_{r+1}/F_r)=
+\begin{cases}
+\Hom^s_A(X,Y), & r\ge 0,\\
+0, & \text{其余情形。}
+\end{cases}
+\end{equation*}
+其\trDifferential{}由\eqref{eq:abstract-image-differential} 中恰含一个 $\delta_q$
+或 $1/q$ 的那些项所诱导，故由下式给出：
+\begin{equation*}
+\partial^{-r,s}(b)=(-1)^{r+s}
+\begin{cases}
+p^\perp b, & r>0 \text{ 为奇数},\\
+pb, & r>0 \text{ 为偶数},\\
+0, & \text{其余情形。}
+\end{cases}
+\end{equation*}
+于是，该\trSpectralSequence{}在 $E_2$ 处即已\trDegenerate，而 $H(\scr{Z})(X)$
+\trIsomorphic{}于唯一非零的列
+$E_2^{0\bullet}=p\,\Hom_A(X,Y)$。事实上，此\trSpectralSequence{}的%
+边缘\trHomomorphism{}给出这两个群之间的一个\trCanonical{}\trIsomorphism；
+据此即可看出，与\trModule{}结构所需的\trCompatible{}性是显然的。
+\end{proof}
+
+\begin{lemma}\label{thm:hom-abstract-image}
+对任何 \trAinfty-模 $\scr{M}$，存在\trIsomorphism
+\begin{equation*}
+\Hom_{H(\scr{Q})}(\scr{Z},\scr{M})\cong H(\scr{M})(Y)\,p,
+\end{equation*}
+而且它关于用\trModule\trHomomorphism{}作左\trComposition{}是自然的。
+\end{lemma}
+\begin{proof}
+考虑\cref{thm:yoneda-ext-interpretation}中的阿贝尔\trCategory{}%
+$\mathit{Mod}^0(A)$。\cref{thm:abstract-image-homology}说，作为该\trCategory{}%
+的一个\trObject，$H(\scr{Z})$ 是 $\Hom_A(-,Y)$ 的一个\trDirectSummand；而既然
+后者是投射的，前者亦然。鉴于\eqref{eq:ext-e2-term}，这意味着：由
+$\hom_{\scr{Q}}(\scr{Z},\scr{M})$ 上的长度\trFiltration{}所诱导的%
+\trSpectralSequence{}在 $E_2$ 处\trDegenerate，而且映射
+$\Hom_{H(\scr{Q})}(\scr{Z},\scr{M})\to
+\Hom_{\mathit{Mod}^0(A)}\bigl(H(\scr{Z}),H(\scr{M})[\bullet]\bigr)$
+是一个\trIsomorphism。由经典的\trYoneda{}引理连同%
+\cref{thm:abstract-image-homology}，后一个\trGraded{}群自然地\trIsomorphic{}于
+$H(\scr{M})(Y)\,p$。
+\end{proof}
+
+考虑对 $p$ 施以\trYonedaEmbedding{}而得到的 $H^0(\scr{Q})$ 中的%
+\trIdempotent{}\trEndomorphism。\cref{thm:hom-abstract-image}直接蕴含：$\scr{Z}$
+就是这个\trEndomorphism{}在\eqref{eq:image-inclusion-retraction} 意义下的%
+\trImage。特别地，在相差 $H^0(\scr{Q})$ 中一个\trIsomorphism{}的意义下，抽象像
+只依赖于 $p$，而不依赖于 $\wp$ 的选取。
+
+\begin{remark}\label{thm:abstract-image-history}
+$\scr{Z}$ 的定义是受 [24] 中的一个观察启发而来的；该观察说，在合适的%
+\trComplex{}\trCategory{}中，\trDirectSummand{}可以凭一个无穷分解技巧而存在
+（感谢 Fran\c{c}ois Loeser 向我指出这一点）。
+\end{remark}

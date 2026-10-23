@@ -1,0 +1,123 @@
+
+\section{阿贝尔群层与结构层模构成阿贝尔范畴}
+
+如今我们已经能够看到：\trAbelianGroups{}的\trSheaf，连同它们的表亲——$\OO_X$-\trModule——构成\trAbelianCategory。换言之，我们可以像对待\trVectorSpace{}与环上的\trModule{}那样来对待它们。在这样做的过程中我们将会看到，这件事远不止是一场类比：\trKernel、\trCokernel、\trExactness{}等等都可以在\trStalk{}的层面上理解（\trStalk{}不过是\trAbelianGroups{}罢了），而诸\trGerm{}的\trCompatible{}性则自动白送。
+
+\trTopologicalSpace{} $X$ 上\trAbelianGroups{}的\trSheaves{}构成的\trCategory{}显然是一个\trAdditiveCategory（\mbox{定义~1.5.1}）。为了证明它是一个\trAbelianCategory，我们必须先来证明：任何\trMorphism{} $\varphi\colon\scr{F}\to\scr{G}$ 都既有\trKernel{}又有\trCokernel。我们已经见过，$\varphi$ 是有\trKernel{}的（\cref{ex:sheaf-kernel-is-sheaf}）：预层核是一个层，并且在层的范畴中是一个\trKernel。
+
+\begin{exercise}\label{ex:kernel-stalk-isomorphism}
+证明：\trKernel{}的\trStalk{}是诸\trStalk{}的\trKernel：对一切 $p\in X$，存在自然\trIsomorphism
+\[
+\bigl(\ker(\scr{F}\to\scr{G})\bigr)_p\mathrel{\xleftarrow{\ \sim\ }}\ker(\scr{F}_p\to\scr{G}_p).
+\]
+\end{exercise}
+
+接下来我们处理\trCokernel{}的问题。此时 $\varphi\colon\scr{F}\to\scr{G}$ 在\trPresheaf\trCategory{}中是有\trCokernel{}的；把它记作 $\scr{H}_{\mathrm{pre}}$（这个下标意在提醒我们：这是一个\trPresheaf）。令 $\mathrm{sh}\colon\scr{H}_{\mathrm{pre}}\to\scr{H}$ 为它的\trSheafification。回忆：\trCokernel{}是用\trUniversalProperty{}来定义的：它是图
+\begin{equation*}\tag{2.6.0.1}\label{eq:cokernel-diagram-presheaves}
+\begin{tikzcd}[row sep=2.4em, column sep=3.8em]
+\scr{F} \ar[r, "\varphi"] \ar[d] & \scr{G} \\
+0 &
+\end{tikzcd}
+\end{equation*}
+在\trPresheaf\trCategory{}中的\trColimit（对照 \eqref{eq:kernel-as-limit-square} 及其后的说明）。
+
+\begin{proposition}\label{thm:sheaf-cokernel-is-sheafification}
+复合 $\scr{G}\to\scr{H}$ 是 $\varphi$ 在层的范畴中的\trCokernel。
+\end{proposition}
+
+\emph{证明。}\ 我们来证明它满足\trUniversalProperty。任给一个\trSheaf{} $\scr{E}$ 与一张交换图
+\begin{tikzcd}[row sep=2.1em, column sep=3.8em]
+\scr{F} \ar[r, "\varphi"] \ar[d] & \scr{G} \ar[d] \\
+0 \ar[r] & \scr{E}
+\end{tikzcd}
+我们构造
+\begin{tikzcd}[row sep=2.1em, column sep=3.4em]
+\scr{F} \ar[r, "\varphi"] \ar[d] & \scr{G} \ar[d] \ar[ddr, bend left=40] \\
+0 \ar[r] \ar[drr] & \scr{H}_{\mathrm{pre}} \ar[r, "\mathrm{sh}"] & \scr{H} \\
+ & & \scr{E}.
+\end{tikzcd}
+我们来证明：存在唯一的\trMorphism{} $\scr{H}\to\scr{E}$ 使整张图交换。由于 $\scr{H}_{\mathrm{pre}}$ 是\trPresheaf\trCategory{}中的\trCokernel，故存在唯一的\trPresheaf\trMorphism{} $\scr{H}_{\mathrm{pre}}\to\scr{E}$ 使图交换；而再由\trSheafification{}的\trUniversalProperty（\cref{thm:definition-of-sheafification}），便存在唯一的\emph{层}的\trMorphism{} $\scr{H}\to\scr{E}$ 使图交换。\hfill$\square$
+
+\begin{exercise}\label{ex:stalk-of-cokernel}
+证明：\trCokernel{}的\trStalk{}自然\trIsomorphic{}于诸\trStalk{}的\trCokernel。
+\end{exercise}
+
+至此，我们已经定义了\trKernel{}与\trCokernel{}的观念，并验证了它们可以在\trStalk{}的层面上检验。我们也已验证：一个\trMorphism{}是\trMonomorphism{}或是\trEpimorphism{}这两条性质同样由\trStalk{}确定（\cref{ex:mono-subsheaf-criteria}、\cref{ex:epi-quotient-criteria}）。于是我们已经证明了：
+
+\begin{theorem}\label{thm:sheaves-abelian-category}
+\trTopologicalSpace{} $X$ 上\trAbelianGroups{}的\trSheaves{}构成一个\trAbelianCategory。
+\end{theorem}
+
+整件事就这么多——该证明的东西统统被转移到了\trStalk{}上，而在茎那里一切运转正常，因为\trStalk{}就是\trAbelianGroups{}！
+
+我们还看到更多：凡由这个\trCategory{}的阿贝尔本性而来的种种结构，都可以在\trStalk{}的层面上检验。例如：
+
+\begin{exercise}\label{ex:image-sheaf-sheafification}
+设 $\varphi\colon\scr{F}\to\scr{G}$ 是\trAbelianGroups{}的\trSheaves{}之间的一个\trMorphism。证明：\trImage{}层 $\im\varphi$ 是\trImage{}\trPresheaf{}的\trSheafification。（你必须用到\trAbelianCategory{}中\trImage{}的定义。事实上，这也正是「集合的\trSheaves{}之间的\trMorphism{}的\trImage{}层」的公认定义。）再证明：\trImage{}的\trStalk{}是诸\trStalk{}的\trImage。
+\end{exercise}
+
+由此得到一个推论：\textbf{层的序列的\trExactness{}可以在\trStalk{}的层面上检验}。若你对这件事没有把握，就应当去做一做下面的练习。
+
+\begin{exercise}\label{ex:exactness-checked-on-stalks}
+设 $\alpha\colon\scr{F}\to\scr{G}$ 与 $\beta\colon\scr{G}\to\scr{H}$ 是 $X$ 上\trAbelianGroups{}的\trSheaves{}之间的两个\trMorphism。证明：
+\[
+\scr{F}\mathrel{\xrightarrow{\ \alpha\ }}\scr{G}\mathrel{\xrightarrow{\ \beta\ }}\scr{H}
+\]
+是\trExact{}的（在 $\scr{G}$ 处），当且仅当对一切 $p\in X$，
+\[
+\scr{F}_p\mathrel{\xrightarrow{\ \alpha_p\ }}\scr{G}_p\mathrel{\xrightarrow{\ \beta_p\ }}\scr{H}_p
+\]
+是\trExact{}的。
+\end{exercise}
+
+特别是：
+
+\begin{exercise}[重要练习]\label{ex:stalk-exact-functor}
+（对照 \cref{ex:morphisms-induce-stalk-maps}。）证明：取\trAbelianGroups{}的\trSheaf{}的\trStalk，这一操作是一个\trExact{}函子。更精确地说：若 $X$ 是一个\trTopologicalSpace{}而 $p\in X$ 是一点，证明：在 $p$ 处取\trStalk{}定义了一个\trExact{}函子 $\catAbX{X}\to\catAb$。
+\end{exercise}
+
+\begin{exercise}\label{ex:exponential-sequence-check}
+核验：\trExponentialSequence{} \eqref{eq:exponential-sequence} 确实是\trAbelianGroups{}的\trSheaves{}的一个\trExactSequence。
+\end{exercise}
+
+\begin{exercise}[「在 $U$ 上取截面」函子的\trLeftExactness]\label{ex:sections-left-exact}
+设 $U\subset X$ 是一个\trOpenSet，且 $0\to\scr{F}\to\scr{G}\to\scr{H}$ 是\trAbelianGroups{}的\trSheaves{}的一个\trExactSequence。证明：
+\[
+0\longrightarrow\scr{F}(U)\longrightarrow\scr{G}(U)\longrightarrow\scr{H}(U)
+\]
+是\trExact{}的。（你应当「徒手」做这件事，哪怕你意识到有一个极快的证明——利用\trSheafification{}函子的那个「\trForgetful」\trRightAdjoint{}的\trLeftExactness。）再证明：截面函子未必\trExact：证明，若 $0\to\scr{F}\to\scr{G}\to\scr{H}\to 0$ 是\trAbelianGroups{}的\trSheaves{}的一个\trExactSequence，则
+\[
+0\longrightarrow\scr{F}(U)\longrightarrow\scr{G}(U)\longrightarrow\scr{H}(U)\longrightarrow 0
+\]
+未必\trExact。（提示：回忆\trExponentialSequence{} \eqref{eq:exponential-sequence}。不过也尽管去编一个别的例子。）
+\end{exercise}
+
+\begin{exercise}[前推的\trLeftExactness]\label{ex:pushforward-left-exact}
+设 $0\to\scr{F}\to\scr{G}\to\scr{H}$ 是 $X$ 上\trAbelianGroups{}的\trSheaves{}的一个\trExactSequence。若 $\pi\colon X\to Y$ 是一个\trContinuousMap，证明：
+\[
+0\longrightarrow\pi_*\scr{F}\longrightarrow\pi_*\scr{G}\longrightarrow\pi_*\scr{H}
+\]
+是\trExact{}的。（上一道练习处理的是\trGlobalSections{}函子的\trLeftExactness，它可以解读为本题的一个特例，即 $Y$ 是一个点的情形。）
+\end{exercise}
+
+\begin{exercise}[$\scr{H}om$ 的\trLeftExactness]\label{ex:sheaf-hom-left-exact}
+（对照\mbox{练习~1.5.G}(c) 与 (d)。）设 $\scr{F}$ 是\trTopologicalSpace{} $X$ 上\trAbelianGroups{}的一个\trSheaf。证明：$\scr{H}om(\scr{F},\cdot)$ 是\trLeftExact{}协变函子 $\catAbX{X}\to\catAbX{X}$。再证明：$\scr{H}om(\cdot,\scr{F})$ 是\trLeftExact{}反变函子 $\catAbX{X}\to\catAbX{X}$。
+\end{exercise}
+
+\textbf{2.6.3.\ $\OO_X$-\trModule。}
+
+\begin{exercise}\label{ex:ox-modules-abelian-category}
+证明：若 $(X,\OO_X)$ 是一个\trRingedSpace，则 $\OO_X$-\trModule{}构成一个\trAbelianCategory。（要核验的东西相当不少，但并没有多少新想法。）
+\end{exercise}
+
+\textbf{2.6.4.}\quad \trAbelianGroups{}的\trSheaves{}的许多事实可以原封不动地搬到 $\OO_X$-\trModule{}上，因为一个 $\OO_X$-\trModule{}的序列是\trExactSequence，当且仅当其底层的\trAbelianGroups{}的\trSheaves{}序列是\trExactSequence。§2.6 中此前各练习的诸结论，在经过恰当修改之后对 $\OO_X$-\trModule{}也都成立，你应当能够轻松核验这一点。例如（\cref{ex:sheaf-hom-left-exact}）：$\scr{H}om_{\OO_X}(\cdot,\cdot)$ 在第一个变元上是\trLeftExact{}反变函子，在第二个变元上是\trLeftExact{}协变函子。
+
+我们以一个有用的构造来收束本节，它将用到本节中的若干想法。
+
+\begin{exercise}[重要练习：$\OO_X$-\trModule{}的\trTensorProduct]\label{ex:ox-module-tensor-product}
+(a)~设 $\OO_X$ 是 $X$ 上环的一个\trSheaf。请（用范畴语言）定义「\textbf{两个 $\OO_X$-\trModule{}的\trTensorProduct}」应当作何理解。给出一个显式构造，并证明它满足你所给的范畴定义。提示：取「\trPresheaf\trTensorProduct」——这需要你先把它定义出来——然后\trSheafification。注意：当下标由上下文自明时，$\otimes_{\OO_X}$ 常径直写作 $\otimes$。（一个表明\trSheafification{}确属必要的例子将在\mbox{例~15.1.1}中出现。）
+
+(b)~证明：诸\trStalk{}的\trTensorProduct{}是\trTensorProduct{}的\trStalk。（若你能证明这一点，你或许就能理解「\trColimit{}与\trTensorProduct{}交换」这句话的含义了。）
+\end{exercise}
+
+\textbf{2.6.5.\ 结论。}\quad 正如\trTopologicalSpace{}上\trAbelianGroups{}的\trPresheaf{}构成一个\trAbelianCategory{}是因为一切\trAbelianCategory{}意义下的概念都逐开集地有意义，\trTopologicalSpace{}上\trAbelianGroups{}的\trSheaves{}构成一个\trAbelianCategory{}也是因为一切\trAbelianCategory{}意义下的概念都逐\trStalk{}地有意义。

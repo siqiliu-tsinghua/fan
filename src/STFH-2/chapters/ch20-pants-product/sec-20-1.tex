@@ -1,0 +1,391 @@
+\stfhIndex{I158}{Liangzishangtongdiaohuan}{量子上同调环（quantum cohomology ring）}
+\section{量子上同调环的结构}
+\label{sec:quantum-cohomology-ring-structure}
+
+本节描述量子上同调环的代数几何结构，而不深入讨论严格构造这一环结构的技术细节。
+物理学家\personWitten{} (Wi91) 和\personCumrunVafa{} (Va92) 最先系统说明了这种结构。下一节将解释严格
+构造这些结构实际涉及的内容；半正情形的构造见 (RT95a), (MSa04)，一般情形见
+(FOn99), (Ru99)。在代数几何的框架中，严格构造见 (Be97), (LiT98)。
+
+\emph{如上一章所述，本节以 $\Lambda_\omega$ 表示向上\personNovikov{}环}。作为模，量子上同调环
+定义为
+\[
+ QH^*(M)=H^*(M,\mathbb Q)\otimes_{\mathbb Q}\Lambda_{0,\omega},
+\]
+其中 $\Lambda_{0,\omega}=\Lambda^{\mathbb Q}_{0,\omega}$ 是\personNovikov{}环
+$\Lambda_\omega$ 的子环
+\[
+ \Lambda^{\mathbb Q}_{0,\omega}=
+ \left\{\sum_{A\in\Gamma_\omega}c_A T^{\omega(A)}e^{c_1(A)}
+ \ \middle|\ c_A\in\mathbb Q,\ \omega(A)\geq0\right\}.
+\]
+这是因为任何 $J$-全纯曲线的辛面积都非负。不过，在比较量子上同调与\personFloer{}同调，
+特别是在研究\personFloer{}同调的不变性和对偶配对时，需要把系数环扩张到完整\personNovikov{}环
+$\Lambda_\omega$。除非另有说明，以下均使用完整\personNovikov{}环。
+
+我们也考虑量子上同调的同调版本，即 $\Lambda_\omega^{\mathrm{op}}$-模
+\[
+ QH_*(M)=H_*(M)\otimes_{\mathbb Q}\Lambda_\omega^{\mathrm{op}},
+\]
+其中 $\Lambda_{0,\omega}^{\mathrm{op}}$ 是群环 $\mathbb Q[\Gamma_\omega]$ 关于
+（向下）\termValuation{}的“向下”完备化；该\termValuation{}定义为
+\begin{equation}
+ v\!\left(\sum_{B\in\Gamma}a_Bq^B\right)
+ =\max\{\omega(B)\mid a_B\neq0\},
+ \label{eq:20-downward-valuation}
+\end{equation}
+且对 $f,g\in QH_*(M)$ 满足
+\[
+ v(f+g)\leq\max\{v(f),v(g)\}.
+\]
+依定义，我们有典范同构
+\begin{equation}
+ \flat:QH^*(M)\longrightarrow QH_*(M),\qquad
+ \sum_i a_iT^{\omega(A_i)}e^{c_1(A_i)}\longmapsto
+ \sum_iPD(a_i)T^{\omega(-A_i)}e^{n+c_1(-A_i)},
+ \label{eq:20-flat-qh}
+\end{equation}
+其中 $\omega(A_i)\geq0$；其逆为
+\begin{equation}
+ \sharp:QH_*(M)\longrightarrow QH^*(M),\qquad
+ \sum_j b_jT^{\omega(B_j)}e^{n+c_1(B_j)}\longmapsto
+ \sum_jPD(b_j)T^{\omega(-B_j)}e^{c_1(-B_j)},
+ \label{eq:20-sharp-qh}
+\end{equation}
+其中 $\omega(B_j)\leq0$。我们分别以 $a^\flat$ 和 $b^\sharp$ 表示这些映射下的像。
+
+取相容殆复结构 $J_0$。考虑类 $\alpha$ 中带三个标记点
+$\{z_0,z_1,z_2\}\subset S^2$ 的 $J_0$-全纯球面模空间
+$\overline{\mathcal M}_3(J_0;\alpha)$，以及评价映射
+\[
+ \operatorname{ev}_i:\overline{\mathcal M}_3(J_0;\alpha)\longrightarrow M,
+ \qquad i=0,1,2.
+\]
+
+\subsection{量子交乘积}
+
+先从量子乘积的同调版本开始。\personNovikov{}环
+$\Lambda_{0,\omega}^{\mathrm{op}}$ 定义中的有限性假设，使我们可以对
+$f=\sum_{B\in\Gamma}a_Bq^B$ 的支集元素 $B_j$ 编号，使得
+\[
+ \lambda_1>\lambda_2>\cdots>\lambda_j>\cdots\longrightarrow-\infty,
+ \qquad \lambda_j=-\omega(B_j).
+\]
+给定 $f_0,g_0\in H_*(M;\mathbb Q)$，取 $M$ 中的奇异闭链 $C_1,C_2$，使
+\[
+ [C_1]=f_0,\qquad [C_2]=g_0.
+\]
+
+这里我们回顾 $M$ 的奇异链 $C$ 的定义。
+
+\begin{definition}
+\label{def:20-singular-chain}
+$M$ 中的奇异 $k$-链是以 $\mathbb Z$ 为系数的有限线性组合，其中各
+$k$-单形 $c_\ell:\Delta^k\to M$ 是标准 $k$-单形
+$\Delta^k\subset\mathbb R^k$ 上的连续映射。若它作为奇异链的边界满足
+\[
+ \partial C=\sum_{\ell=1}^{m}\partial c_\ell=0,
+\]
+则称其为闭链。若每个单形 $c_\ell$ 都是 $C^k$ 的，则称 $C$ 是 $C^k$ 的。
+\end{definition}
+
+分别以 $Q_1,Q_2$ 表示 $C_1,C_2$ 的定义域单形之并，把它们看作分片光滑流形的
+不交并。稍微滥用记号，我们把光滑奇异链 $C$ 看作分片光滑映射 $C:Q\to M$；组成
+$Q$ 的各单形上的映射满足由奇异链结构产生的显然相容条件。
+
+取\termFiberProduct{}
+\begin{equation}
+ \overline{\mathcal M}_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{C_1\times C_2}(Q_1\times Q_2).
+ \label{eq:20-quantum-fiber-product}
+\end{equation}
+依定义，当 $Q_1,Q_2$ 紧时它也是紧的。其虚维数为
+\[
+ (2n+2c_1(\alpha))+6-6+\dim Q_1+\dim Q_2-4n
+ =2c_1(\alpha)+\dim Q_1+\dim Q_2-2n.
+\]
+
+下面是关键命题，我们将在下一小节证明。
+
+\begin{proposition}
+\label{prop:20-integral-cycle}
+设 $(M,\omega)$ 半正。对通有的 $J_0$ 及任意两个给定的整闭链 $Q_1$、$Q_2$，\termFiberProduct{}~\eqref{eq:20-quantum-fiber-product} 定义一个整闭链。此外，只要 $Q_1$、$Q_2$
+分别代表同调类 $f_0,g_0\in H_*(M,\mathbb Z)$，所得同调类便与代表闭链的选取无关。
+\end{proposition}
+
+\begin{remark}
+\label{rem:20-multiple-covers}
+此时人们或许希望 $\mathcal M_3(J_0;\alpha)$ 是
+$\overline{\mathcal M}_3(J_0;\alpha)$ 的开稠密子集，且补集是有限多个余维至少为 $2$
+的层之并；特别地，$\partial\mathcal M_3(J_0;\alpha)=0$。这样便可由通有的横截--
+相交论证立即证明命题。然而，取\termFiberProduct{}时需要处理的微妙之处是模空间中存在多重覆叠，
+它妨碍上述结论。半正假设的作用是：在取此\termFiberProduct{}时可以避开这些多重覆叠，从而由它
+产生同调类，正如下述证明所示。
+\end{remark}
+
+现在对 $\alpha\in H_2(M;\mathbb Z)/\mathcal T$ 求和：
+\[
+ \sum_\alpha\bigl[
+ \overline{\mathcal M}_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2),\operatorname{ev}_0\bigr]
+ T^{-\omega(\alpha)}e^{n-c_1(\alpha)}.
+\]
+它以 $\Lambda_{0,\omega}^{\mathrm{op}}$ 为系数，并定义维数为
+\begin{equation}
+ \dim Q_1+\dim Q_2-2n
+ \label{eq:20-quantum-product-dimension}
+\end{equation}
+的闭链。
+
+\stfhIndex{I160}{Liangzijiaochengji}{量子交乘积（quantum intersection product）}
+\begin{definition}[量子交乘积]
+\label{def:20-quantum-intersection-product}
+对 $f,g\in H_*(M)$，定义其量子交乘积（仍记如上）为同调类
+\begin{equation}
+ f*g=\sum_\alpha\bigl[
+ \overline{\mathcal M}_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2),\operatorname{ev}_0\bigr]
+ T^{-\omega(\alpha)}e^{n-c_1(\alpha)}.
+ \label{eq:20-quantum-intersection-product}
+\end{equation}
+\end{definition}
+
+把此乘积对 $\Lambda_{0,\omega}^{\mathrm{op}}$ 线性延拓到
+$H_*(M)\otimes\Lambda_{0,\omega}^{\mathrm{op}}$ 的任意元素。我们以 $QH_*(M)$ 表示
+配备此乘积的模 $H_*(M)\otimes\Lambda_{0,\omega}^{\mathrm{op}}$，称之为\emph{量子同调环}。
+该乘积在 $QH_*(M)$ 上次数为 $-2n$，即对所有 $k,\ell$ 定义映射
+\begin{equation}
+ QH_k(M)\times QH_\ell(M)\longrightarrow QH_{k+\ell-2n}(M).
+ \label{eq:20-quantum-homology-degree}
+\end{equation}
+\stfhIndex{I071}{Yici}{移次（degree shift）}
+等价地，它在移次 $QH_*(M)[n]$ 上次数为 $0$；这里
+$QH_k(M)[n]:=QH_{k+n}(M)$。
+
+\subsection{量子杯积与量子上同调}
+
+以下讨论假设命题~\ref{prop:20-integral-cycle}。对两个奇异上同调类
+$a,b\in H^*(M)$，分别选取代表 $PD(a),PD(b)$ 的闭链 $Q_1,Q_2$。
+
+\stfhIndex{I159}{Liangzibeiji}{量子杯积（quantum cup product）}
+\begin{definition}[量子杯积]
+\label{def:20-quantum-cup-product}
+定义
+\begin{align}
+ a\cup_Qb
+ &=\left[\sum_\alpha\bigl[
+ \overline{\mathcal M}_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2),\operatorname{ev}_0\bigr]
+ T^{-\omega(\beta)}e^{n-c_1(\alpha)}\right]^\sharp \notag\\
+ &=\sum_\alpha PD\bigl[
+ \overline{\mathcal M}_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2),\operatorname{ev}_0\bigr]
+ T^{\omega(\alpha)}e^{c_1(\alpha)}.
+ \label{eq:20-quantum-cup-product}
+\end{align}
+\footnote{译者注：原书第一行的\personNovikov{}权重印作 $T^{-\omega(\beta)}$，但该求和只
+引入了指标 $\alpha$，且下一行写作 $T^{\omega(\alpha)}$；译文保留原式的 $\beta$
+并登记此未定义指标。}
+并将定义对 $\Lambda_{0,\omega}$ 线性延拓到
+$H^*(M)\otimes\Lambda_{0,\omega}$。以 $QH^*(M)$ 表示配备此乘积的
+$\Lambda_{0,\omega}$-模 $H^*(M)\otimes\Lambda_{0,\omega}$。
+\end{definition}
+
+容易由~\eqref{eq:20-quantum-product-dimension} 验证
+\[
+ \deg(a\cup_Qb)=\deg a+\deg b,
+\]
+所以 $\cup_Q$ 在 $QH^*(M)$ 上次数为 $0$：
+\[
+ *:QH^k(M)\times QH^\ell(M)\longrightarrow QH^{k+\ell}(M).
+\]
+
+量子杯积也有德拉姆版本。对理论阐述而言，这个版本更有用，因为它能更直接、
+直观地表述有关的\personGromov{}--\personWitten{}不变量，尤其是在代数几何背景下。这里简述构造，
+不深入证明细节。
+
+令 $a,b\in H^*(M;\mathbb Z)$，以闭微分形式 $\eta_1,\eta_2$ 代表它们。考虑微分形式
+\[
+ (\operatorname{ev}_0^\alpha)_!
+ (\operatorname{ev}_1^\alpha,\operatorname{ev}_2^\alpha)^*(a\times b),
+\]
+其中 $\operatorname{ev}_i^\alpha:\overline{\mathcal M}_3(J_0;\alpha)\to M$ 是评价
+映射，$(\operatorname{ev}_0^\alpha)_!$ 表示沿纤维积分。
+
+下面的命题是在德拉姆框架下需要证明的关键命题。其证明超出本书范围，故从略；
+关于这种方法的应用，参见 (Ru99), (Fu06)。
+
+\begin{proposition}
+\label{prop:20-derham-quantum-product}
+设 $(M,\omega)$ 半正，$\eta_1,\eta_2$ 是分别代表
+$a,b\in H^*(M;\mathbb Z)$ 的闭微分形式。对通有的 $J_0$，形式
+$(\operatorname{ev}_0^\alpha)_!
+(\operatorname{ev}_1^\alpha,\operatorname{ev}_2^\alpha)^*(\eta_1\times\eta_2)$
+定义 $M$ 上的光滑闭微分形式。其德拉姆上同调类同样只依赖于
+$\eta_1,\eta_2$ 的德拉姆上同调类。
+\footnote{译者注：原书末句印作“$\omega,\eta$ 的德拉姆上同调类”，但本命题
+此前只以 $\eta_1,\eta_2$ 表示两个代表形式，$\omega$ 已用于辛形式；译文据上下文
+写为 $\eta_1,\eta_2$。}
+\end{proposition}
+
+在德拉姆表述中，量子杯积由
+\begin{equation}
+ a\cup_Qb=\sum_{\alpha\in H_2(M)}
+ \bigl[(\operatorname{ev}_0^\alpha)_!
+ (\operatorname{ev}_1^\alpha,\operatorname{ev}_2^\alpha)^*(\eta_1\times\eta_2)\bigr]
+ T^{\omega(\alpha)}e^{c_1(\alpha)}
+ \label{eq:20-derham-quantum-cup}
+\end{equation}
+表示。正如\personRuan{} [Ru96] 所指出的，这种上同调方法存在相当大的技术困难。
+
+\subsection{量子乘积的构造}
+
+本小节证明命题~\ref{prop:20-integral-cycle}；完整讨论见 [Ru96], [MSa04]。令
+$C_i:Q_i\to M$（$i=1,2$）为给定闭链，考虑映射
+\begin{align}
+ \Upsilon:\mathcal F_3^{k,p}(S^2,M;\alpha)\times\mathcal J_\omega\times(Q_1\times Q_2)
+ &\longrightarrow \mathcal H''(\alpha)\times(M\times M)\times(M\times M),\notag\\
+ \Upsilon(v,(z_0,z_1,z_2),J,q_1,q_2)
+ &=\bigl(\overline\partial_Jv,(v(z_1),v(z_2)),(C_1(q_1),C_2(q_2))\bigr),
+ \label{eq:20-upsilon}
+\end{align}
+\footnote{译者注：原书式~(20.1.10) 左端只写
+$\Upsilon(v,(z_0,z_1,z_2),J)$，但映射的定义域另含 $Q_1\times Q_2$，右端也使用
+$q_1,q_2$；译文在左端补出这两个变量。}
+其中 $\mathcal F_3^{k,p}(S^2,M;\alpha)$ 是类 $\alpha$ 中从 $S^2$ 到 $M$ 的
+$L^{k,p}$ 映射集合，而
+\[
+ \mathcal H''(\alpha)=\bigcup_{(v,J)}\mathcal H''_{v,J}(\alpha)
+ \longrightarrow\mathcal F^{k,p}(S^2,M;\alpha),\qquad
+ \mathcal H''_{v,J}(\alpha)=L^{k-1,p}(\Lambda_J^{(0,1)}(v^*TM)).
+\]
+映射 $v\mapsto\overline\partial_J(v)$ 是光滑的，但评价映射
+$\operatorname{ev}_i(v)=v(z_i)$ 只有 $C^{k-2}$ 正则性。选取 $k=k(\alpha)$ 足够大，
+使评价映射处于\personSard{}--\personSmale{}定理（定理 10.1.7）的适用范围，即
+\[
+ k-2>2c_1(\alpha)+2n+6-6+4n,
+ \qquad\text{亦即}\qquad k>2c_1(\alpha)+6n+2.
+\]
+由映射横截性与评价横截性（定理 10.4.1、10.5.2），当 $\Upsilon$ 限制于
+\[
+ \mathcal F_3^{\mathrm{inj}}(\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2)
+\]
+时，它在每一点
+\[
+ (v,(z_0,z_1,z_2),J,q_1,q_2)\in
+ \mathcal M_3^{\mathrm{inj}}(\alpha)\times Q_1\times Q_2
+\]
+\footnote{译者注：原书此处点的三标记元组印作 $(z_0,z_1,z_3)$，但本节只定义了
+$z_0,z_1,z_2$，且紧接着的关联条件使用 $z_2$；译文据此改为 $z_2$。}
+逐层横截于 $o_{\mathcal H''(\alpha)}\times\Delta_{13}\times\Delta_{24}$；换言之，
+这些点满足
+\begin{equation}
+ \overline\partial_Jv=0,\qquad v(z_1)=C_1(q_1),\qquad v(z_2)=C_2(q_2),
+ \label{eq:20-incidence-equations}
+\end{equation}
+且 $(v,J)\in\mathcal M^{\mathrm{inj}}(\alpha)$。这里 $\Delta_{ij}$ 是 $M^4$ 中
+第 $i,j$ 个因子相等的对角线。更确切地说，对每一对单形
+$\Delta_1\subset Q_1,\Delta_2\subset Q_2$，上述横截性成立于
+\[
+ \mathcal F_3^{\mathrm{inj}}(\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(\Delta_1\times\Delta_2).
+\]
+
+尚需处理满足~\eqref{eq:20-incidence-equations}、但
+$v\in\mathcal M_3(J;\alpha)\setminus\mathcal M_3^{\mathrm{inj}}(J;\alpha)$ 的点。
+由结构定理 8.7.3，任意这样的 $v$ 可分解为
+\[
+ v=\widetilde v\circ\phi,
+\]
+其中 $\widetilde v$ \termSomewhereInjective{}，而 $\phi:S^2\to S^2$ 是次数
+$\ell\geq2$ 的（分歧）覆盖。显然，若
+$\widetilde\alpha=[\widetilde v]$，则
+$\alpha=\ell\widetilde\alpha$，故
+$c_1(\alpha)=\ell c_1(\widetilde\alpha)$。由半正假设可设
+$c_1(\widetilde\alpha)>0$，从而
+\begin{equation}
+ \operatorname{vir.dim}\mathcal M_3(J;\alpha)=2n+2c_1(\alpha)
+ \geq2n+2c_1(\widetilde\alpha)+2
+ \geq\operatorname{vir.dim}\mathcal M_3(J;\widetilde\alpha)+2.
+ \label{eq:20-multiple-cover-codimension}
+\end{equation}
+特别地，
+\[
+ (\mathcal M_3(\alpha)\setminus\mathcal M_3^{\mathrm{inj}}(\alpha))
+ _{(\operatorname{ev}_1,\operatorname{ev}_2)}\times_{(C_1,C_2)}(Q_1\times Q_2)
+\]
+的像包含在
+\[
+ \mathcal M_3(\widetilde\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2)
+\]
+的像中，而后者的维数至少比相应的单射部分小 $2$。
+
+现在我们准备证明下述可三角剖分性，它将完成命题的证明。
+
+\begin{lemma}
+\label{lem:20-triangulability}
+令 $\Pi_\alpha:\mathcal M_3(\alpha)\to\mathcal J_\omega$ 为命题 10.4.7 中的投影。
+存在 $\mathcal J_\omega$ 的稠密子集，使其中每个 $J_0$ 对应的交
+\[
+ \Upsilon^{-1}(o_{\mathcal H''(\alpha)}\times\Delta_{13}\times\Delta_{24})
+ \cap\Pi_\alpha^{-1}(J_0)
+ \cong\mathcal M_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1,Q_2)
+\]
+均可三角剖分。记此交为 $Q_0$，并定义
+\[
+ C_0=\operatorname{ev}_0\circ\pi_{\mathcal M_3}|_{Q_0}:Q_0\to M,
+\]
+其中
+\[
+ \pi_{\mathcal M_3}:\mathcal M_3(J_0;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1,Q_2)\to\mathcal M_3(J_0;\alpha)
+\]
+是自然投影。则 $C_0$ 在 $M$ 中定义一个分片光滑闭链。
+\end{lemma}
+
+\begin{proof}
+考虑映射
+\[
+ \overline C_0:\overline{\mathcal M}_3(J;\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2)\to M,
+ \qquad \overline C_0:=\operatorname{ev}_0\circ\pi_{\mathcal M_3}|_{Q_0}.
+\]
+由以上讨论，模去余维至少为 $2$ 的链之后，
+\begin{equation}
+ \operatorname{Image}\overline C_0
+ =\operatorname{Image}C_0|_{\mathcal M_3^{\mathrm{inj}}(J;\alpha)\times Q_1\times Q_2}.
+ \label{eq:20-image-c0}
+\end{equation}
+一旦证明此等式，\termFiberProduct{}的分片光滑性便蕴含其可三角剖分性。
+
+最后计算链 $(Q_0,C_0)$ 的边界。由上述讨论，
+\[
+ \partial C_0=\partial\bigl[
+ \mathcal M_3^{\mathrm{inj}}(\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2),\operatorname{ev}_0\bigr].
+\]
+由于这个\termFiberProduct{}的所有因子都是分片光滑的，其一般边界公式给出
+\begin{align*}
+ \partial C_0
+ &=(\partial\mathcal M_3^{\mathrm{inj}}(\alpha))_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times Q_2)\\
+ &\quad\pm\mathcal M_3^{\mathrm{inj}}(\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(\partial Q_1\times Q_2)\\
+ &\quad\pm\mathcal M_3^{\mathrm{inj}}(\alpha)_{(\operatorname{ev}_1,\operatorname{ev}_2)}
+ \times_{(C_1,C_2)}(Q_1\times\partial Q_2)=0,
+\end{align*}
+因为 $\partial Q_i=0$ 且 $\partial\mathcal M_3^{\mathrm{inj}}(\alpha)=0$。
+这证明了 $C_0$ 的闭链性质。
+\end{proof}
+
+这也完成了命题~\ref{prop:20-integral-cycle} 的证明。\hfill$\square$
+
+\begin{remark}
+\label{rem:20-general-quantum-product}
+如命题~\ref{prop:20-integral-cycle} 的证明所示，在非半正的一般辛流形上构造量子乘积
+时，必须处理负多重覆叠问题，因为一般而言关键不等式
+\eqref{eq:20-multiple-cover-codimension} 不再成立。为克服这一困难，需要再次使用\termKuranishiStructure{}和虚基本闭链技术；构造细节见 (FOn99), (LT99)。
+\end{remark}

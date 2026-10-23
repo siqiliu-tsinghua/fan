@@ -1,0 +1,69 @@
+
+\section{「合理」的态射类（如开嵌入）}
+
+\textbf{8.1.1.}\ 你会注意到，几乎所有有用的态射类都享有许多共同的性质，而这些性质都可以由下面三条基本性质推出。我们把满足这些性质的任何一个态射类，称为概形之间态射的一个\textbf{「合理」类}（"reasonable" class of morphisms）。（为免任何愚蠢的情形，我们假定该类包含全部同构；不过这条要求还不配拥有一个属于自己的号码。）
+\begin{enumerate}[label=(\roman*)]
+  \item 该类\textbf{对\trComposition{}保持}：若 $\pi\colon X\to Y$ 与 $\rho\colon Y\to Z$ 都属于此类，则 $\rho\circ\pi$ 亦然。
+  \item 该类\textbf{对「\trBaseChange」保持}（或「\trPullback」或「\trFiberProduct」）。确切地说：若 $\pi\colon X\to Y$ 属于此类，则对任意的 $Y'\to Y$，所诱导的映射 $X\times_Y Y'\to Y'$ 也属于此类。（这句话隐含了\trFiberProduct{} $X\times_Y Y'$ 存在的意思；但我们很快就会看到，概形的一切\trFiberProduct{}都存在，\S10.1。）
+  \item 该类是\textbf{对目标局部的}（local on the target）。换言之：(a) 若 $\pi\colon X\to Y$ 属于此类，则对 $Y$ 的任意\trOpenSubset{} $V$，限制后的态射 $\pi^{-1}(V)\to V$ 属于此类；(b) 对态射 $\pi\colon X\to Y$，若存在 $Y$ 的一个\trOpenCover{} $\{V_i\}$，使得每个限制后的态射 $\pi^{-1}(V_i)\to V_i$ 都属于此类，则 $\pi$ 属于此类。特别地，由于概形是由仿射概形搭建而成的，这类性质往往在任何一个仿射覆盖上都容易验证（诸性质对目标是「\trAffineLocal」的），如 \S8.0.1 所描述。（\trStalkLocal{}的性质自动是对目标局部的。）
+\end{enumerate}
+
+性质 (i) 与 (ii) 蕴含一条有用的附加性质——(iv) 「合理」的态射类\textbf{对\trProduct{}保持}：
+
+\begin{exercise}\label{ex:property-product-preserved}
+设 $P$ 是一条对\trComposition{}与\trBaseChange{}保持的态射性质（即上面的 (i) 与 (ii)），而 $X\to Y$ 与 $X'\to Y'$ 是两个具有性质 $P$ 的 $S$-\trScheme{}之间的态射。设 $X\times_S X'$ 与 $Y\times_S Y'$ 存在（这确实是事实，\S10.1）。证明：$X\times_S X'\to Y\times_S Y'$ 也具有性质 $P$。提示：
+\begin{tikzcd}[row sep=2.8em, column sep=1.7em]
+& X\times_S X' \ar[dl] \ar[rr] & & X\times_S Y' \ar[dl] \ar[dr] \ar[rr] & & Y\times_S Y' \ar[dr] \\
+X' \ar[rr] & & Y' & & X \ar[rr] & & Y
+\end{tikzcd}
+\end{exercise}
+
+(v) 由 (i) 与 (ii) 还可得到另一个极端重要的推论：这类态射的\emph{\trCancellationTheorem}（Cancellation Theorem），即定理~11.1.1。
+
+当你每学到一个新的态射类时，都应当立即追问：性质 (i)--(iii)（从而 (iv) 与 (v)）是否成立？答案几乎总是「成立」；而若答案是「不成立」，你便应当心存警惕，并且或许还该琢磨怎样把定义改进得更好（例如参看 \S10.5）。
+
+为帮助你在概形上思考这些性质，你不妨先验证一下：在\trTopologicalSpace{}的\trCategory{}中，与 (i)--(iii) 相仿的性质对下列几个态射类成立：「\trInjectiveMap」「\trSurjectiveMap」「\trOpenEmbedding」（拓扑空间的\trOpenEmbedding{}即与一个\trOpenSubset{}的同构），以及「\trClosedEmbedding」（拓扑空间的\trClosedEmbedding{}即与一个\trClosedSubset{}的同构）。
+
+作为概形\trCategory{}中的第一个例子：
+
+\begin{exercise}[容易的练习]\label{ex:isomorphisms-are-reasonable}
+证明：概形之间的「同构」在这个意义下是「合理」的，也就是说，它们满足上面的三条性质 (i)--(iii)。
+\end{exercise}
+
+现在我们已经准备好引入概形态射的一个基本类了。
+
+\textbf{8.1.2.}\ \emph{\trhDefinition{}。}\quad 概形之间的态射 $\pi\colon X\to Y$ 称为\textbf{\trOpenEmbedding}（open embedding；或\textbf{\trOpenImmersion}，open immersion），如果它作为\trRingedSpace{}的映射是一个\trOpenEmbedding（\S7.2.1）。换言之，概形之间的态射 $\pi\colon(X,\OO_X)\to(Y,\OO_Y)$ 是一个\trOpenEmbedding，如果 $\pi$ 可分解为
+\[
+(X,\OO_X)\xrightarrow[\ \sim\ ]{\ \rho\ }(\mathsf{U},\OO_{Y|\mathsf{U}})\xhookrightarrow{\ \tau\ }(Y,\OO_Y),
+\]
+其中 $\rho$ 是一个\trIsomorphism，而 $\tau\colon\mathsf{U}\hookrightarrow Y$ 是向一个\trOpenSubset{}的包含映射。同构都是\trOpenEmbedding，这是显然的。符号 $\hookrightarrow$ 常被用来表示一个态射是\trOpenEmbedding{}（或更一般地，是\trLocally\trClosedEmbedding，见 \S9.2）。
+
+若 $X$ 实际上是 $Y$ 的一个子集（且 $\pi$ 就是包含映射，即 $\rho$ 为恒等映射），我们就说 $(X,\OO_X)$ 是 $(Y,\OO_Y)$ 的一个\textbf{\trOpenSubscheme}（open subscheme）。\trOpenEmbedding{}与\trOpenSubscheme{}之间的差别有点令人迷惑，却也并不太要紧：在集合的层面上，\trOpenSubscheme{}就\emph{是}子集，而\trOpenEmbedding{}则是\emph{到}子集上的\trBijection。
+
+「\trOpenSubscheme」是\trOpenSubset{}在概形论下的类似物。（「\trClosedSubscheme」则是\trClosedSubset{}在概形论下的类似物，但正如 \S9.1 将会展示的，它的风味出人意料地不同。）
+
+接下来的两道练习将验证：\trOpenEmbedding{}这个类在上述意义下是「合理」的。
+
+\begin{exercise}\label{ex:open-embeddings-composition-local}
+验证：\trOpenEmbedding{}这个类满足 \S8.1 的性质~(i) 与~(iii)。
+\end{exercise}
+
+性质~(ii) 则是下一道练习的内容。
+
+\begin{exercise}[重要但容易的练习：与\trOpenEmbedding{}的\trFiberProduct{}存在]\label{ex:open-embeddings-base-change}
+验证：\trOpenEmbedding{}这个类满足 \S8.1 的性质~(ii)。更具体地：设 $i\colon\mathsf{U}\to Z$ 是一个\trOpenEmbedding，而 $\rho\colon Y\to Z$ 是任意一个\trMorphism。证明：$\mathsf{U}\times_Z Y$ 存在，且 $\mathsf{U}\times_Z Y\to Y$ 是一个\trOpenEmbedding。（提示：我甚至连 $\mathsf{U}\times_Z Y$ 是什么都愿意直接告诉你：$\bigl(\rho^{-1}(\mathsf{U}),\OO_{Y|\rho^{-1}(\mathsf{U})}\bigr)$。）特别地，若 $\mathsf{U}\hookrightarrow Z$ 与 $V\hookrightarrow Z$ 都是\trOpenEmbedding，则 $\mathsf{U}\times_Z V\cong\mathsf{U}\cap V$：「\trOpenEmbedding{}之交是一个\trFiberProduct」。
+\end{exercise}
+
+\begin{exercise}[容易的练习]\label{ex:open-embeddings-are-monomorphisms}
+证明：概形之间的\trOpenEmbedding{}是\trMonomorphism{}（在概形的\trCategory{}中）。提示：\cref{ex:open-embeddings-monomorphisms}。
+\end{exercise}
+
+\begin{exercise}[容易的练习]\label{ex:open-embeddings-noetherian-quasicompact}
+设 $\pi\colon X\to Y$ 是一个\trOpenEmbedding。证明：若 $Y$ 是\trLocally\trNoetherian{}的，则 $X$ 亦然。证明：若 $Y$ 是\trNoetherian{}的，则 $X$ 亦然。然而，请证明：若 $Y$ 是\trQuasicompact{}的，$X$ 却未必如此。（提示：取 $Y$ 为仿射但非\trNoetherian{}的情形；见\cref{ex:spec-quasicompact}(b)。）
+\end{exercise}
+
+\textbf{8.1.3.}\ \emph{\trhDefinition{}。}\quad 与「对目标局部」（\S8.1.1）相类比，我们定义态射的一条性质 $P$ 何时\textbf{对源局部}（local on the source）：若 $\pi\colon X\to Y$ 具有 $P$，且 $i\colon\mathsf{U}\hookrightarrow X$ 是向一个\trOpenSubset{}的包含，则 $\pi\circ i\colon\mathsf{U}\to Y$ 具有 $P$；并且要检验态射 $\pi\colon X\to Y$ 是否具有 $P$，只需在 $X$ 的任何一个\trOpenCover{} $\{U_i\}$ 上检验即可。随后我们以显而易见的方式定义\textbf{对源仿射局部}（affine-local on the source）（与\textbf{对目标仿射局部}，affine-local on the target）。例如，要检验 $\pi\colon X\to Y$ 是否具有 $P$，只需在源（相应地，目标）的任何一个仿射开覆盖上检验就够了。用「\trAffineLocal」一词而不单说「局部」，是为了强调：在仿射概形上，这条判别法描述起来很简单。（显然，\trAffineCommunicationLemma{}~5.3.2 在此会大显身手。）
+
+\begin{exercise}[概念演练]\label{ex:open-embedding-not-source-local}
+证明：「\trOpenEmbedding」这个概念并不对源局部。
+\end{exercise}

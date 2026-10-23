@@ -1,0 +1,103 @@
+
+\section{一般导出函子}
+
+\textbf{23.2.1. \trProjectiveObj{}分解。}\quad 在上述 $\mathrm{Tor}$ 的构造中，我们关于自由模所用到的东西其实很少——事实上，我们只用到「自由模是\textbf{\trProjectiveObj}的」这一点，也就是说：它们是那样的\trModule{} $P$，对任何\trSurjectiveMap{} $M\twoheadrightarrow N$，都可以把任意态射 $P\to N$ 提升为 $P\to M$：
+\begin{equation*}\tag{23.2.1.1}\label{eq:proj-lifting}
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+ & P \ar[dl, "\text{exists}"', dashed] \ar[dr] & \\
+M \ar[rr, two heads] & & N
+\end{tikzcd}
+\end{equation*}
+（正如 \S23.1 中所指出的，这用到了选择公理。）等价地，$\mathrm{Hom}(P,\cdot)$ 是一个\trExact{}函子（回想 $\mathrm{Hom}(Q,\cdot)$ 对任何 $Q$ 总是\trLeftExact{}的）。更一般地，同一个想法给出了「\textbf{任何\trAbelianCategory{}中的\trProjectiveObj{}对象}」的定义。于是，把我们的整个论证中的自由模统统换成\trProjectiveObj{}模，便可：(i) 取 $N$ 的任意一个\trProjectiveObj{}分解来计算 $\mathrm{Tor}^A_i(M,N)$；(ii) 对任何\trProjectiveObj{} $A$-\trModule{} $N$，有 $\mathrm{Tor}^A_i(M,N)=0$。
+
+\textbf{23.2.A.（练习）}\quad 证明：一个对象 $P$ 是\trProjectiveObj{}的，当且仅当每个\trShortExactSequence{} $0\to Q\to R\to P\to 0$ 都分裂。从而证明：$A$-\trModule{} $P$ 是\trProjectiveObj{}的，当且仅当 $P$ 是某个自由\trModule{}的直和项。
+
+\textbf{23.2.B.（练习）}\quad 证明：\trProjectiveObj{}模都是\trFlat{}的。提示：\mbox{练习~23.2.A}。若你想动用\mbox{练习~23.1.C}，请务必当心；见\mbox{警示~23.1.3}。（事实上，局部环上有限生成的\trProjectiveObj{}模甚至是自由的；见\mbox{注记~24.3.6}。）
+
+\textbf{23.2.2. \trhDefinition{}：导出函子。}\quad 上述描述本是土法，却立刻可以剧烈地推广。我们所用到的无非是：$M\otimes_A\cdot$ 是一个\trRightExact{}函子，并且对任何 $A$-\trModule{} $N$，我们都能找到一个从\trProjectiveObj{}\trModule{}出发的\trSurjectiveMap{} $P\twoheadrightarrow N$。一般地，若 $F$ 是从 $A$-\trModule{}的范畴到任意\trAbelianCategory{}的\emph{任何}一个\trRightExact{}\trCovariantFunctor，这个构造都会定义出一列函子 $\mathrm{L}_iF$，使得 $\mathrm{L}_0F=F$，而诸 $\mathrm{L}_iF$ 给出一条\trLongExactSequence。我们还可以让它更一般。我们说一个\trAbelianCategory{}\textbf{有足够多\trProjectiveObj{}对象}（has enough projectives），如果对其中任何对象 $N$，都存在一个从\trProjectiveObj{}对象出发而满射到 $N$ 的态射。那么，若 $F$ 是从任何带足够多\trProjectiveObj{}对象的\trAbelianCategory{}到任何\trAbelianCategory{}的\trRightExact{}\trCovariantFunctor，我们就可以定义 $F$ 的\textbf{左导出函子}，记作 $\mathrm{L}_iF$（$i\ge 0$）。你应当重读 \S23.1，看到我们通篇只用到「我们有\trProjectiveObj{}分解（按 \eqref{eq:proj-lifting} 反复提升映射）」这一事实，以及「$F$ 把乘积送到乘积」（这是函子加性的推论，见\mbox{注记~1.5.2}），便可证明 $F$ 作用到 \eqref{eq:tor-horseshoe} 上保持各列的正合性。
+
+\textbf{23.2.C.（练习）}\quad \textbf{内射对象}（injective object）这一概念，正是\trAbelianCategory{}中\trProjectiveObj{}对象概念的对偶。
+（a）请把内射对象的定义精确地陈述出来。
+（b）为以下各类函子定义导出函子：(i) 协变\trLeftExact{}函子（这些称作\textbf{右导出函子}）；(ii) 反变\trLeftExact{}函子（也称作\textbf{右导出函子}）；(iii) 反变\trRightExact{}函子（这些称作\textbf{左导出函子}），并把「该范畴有足够多内射对象或\trProjectiveObj{}对象」的必要假设显式写明。
+
+\textbf{23.2.3.}\ \emph{\trhNotation。}\quad 回想\mbox{定义~23.2.2}：若 $F$ 是一个\trRightExact{}函子，则其（左）导出函子记作 $\mathrm{L}_iF$（$i\ge 0$，其中 $\mathrm{L}_0F=F$）。类似地，若 $F$ 是一个\trLeftExact{}函子，则其（右）导出函子记作 $\mathrm{R}^iF$。这个 $i$ 是上标，用以表明该\trLongExactSequence{}「随 $i$ 递升」。
+
+\textbf{23.2.4. $\mathrm{Ext}$ 函子。}\quad
+
+\textbf{23.2.D.（容易练习（及定义）：$A$-\trModule{}的 $\mathrm{Ext}$ 函子，第一版）}\quad $\mathrm{Hom}(\cdot,N)$ 是 $\mathit{Mod}_A$ 上一个反变\trLeftExact{}函子，而 $\mathit{Mod}_A$ 有足够多\trProjectiveObj{}对象。定义 $\mathrm{Ext}^i_A(M,N)$ 为 $\mathrm{Hom}(\cdot,N)$ 的第 $i$ 个右导出函子作用在 $M$ 上。请陈述诸 $\mathrm{Ext}$ 模的相应\trLongExactSequence。
+
+\textbf{23.2.E.（容易练习（及定义）：$A$-\trModule{}的 $\mathrm{Ext}$ 函子，第二版）}\quad 范畴 $\mathit{Mod}_A$ 有足够多内射对象（见 \S23.2.5）。由于 $\mathrm{Hom}(M,\cdot)$ 是 $\mathit{Mod}_A$ 上一个协变\trLeftExact{}函子，定义 $\mathrm{Ext}^i_A(M,N)$ 为 $\mathrm{Hom}(M,\cdot)$ 的右导出函子作用在 $N$ 上。请陈述诸 $\mathrm{Ext}$ 模的相应\trLongExactSequence。
+
+看起来前两道练习出了问题：我们把 $\mathrm{Ext}^i(M,N)$ 定义了两遍，还得到了两条不同的\trLongExactSequence！所幸，$\mathrm{Ext}$ 的这两个定义是一致的（见\mbox{练习~23.3.B}），而对 $\mathrm{Ext}$ 来说，两条长正合列总比一条好。
+
+\textbf{23.2.F.（容易练习）}\quad 用\mbox{练习~23.2.D} 中 $\mathrm{Ext}$ 的定义证明：若 $A$ 是\trNoether 环，而 $M$ 与 $N$ 是\trFinitelyGenerated{}的 $A$-\trModule，则 $\mathrm{Ext}^i_A(M,N)$ 是一个\trFinitelyGenerated{}的 $A$-\trModule。
+
+（$\mathrm{Ext}$-函子（就\trSheaf{}而言）将在\trSerreDuality{}的证明中扮演关键角色；见 \S29.2。）
+
+\textbf{23.2.5.}\ \hard\ \textbf{$A$-\trModule{}的范畴有足够多内射对象。}\quad 我们将需要「$\mathit{Mod}_A$ 有足够多内射对象」这一事实，但其证明细节日后不会再露面，所以你尽管跳过这段讨论。
+
+\textbf{23.2.G.（练习）}\quad 设 $Q$ 是一个 $A$-\trModule，它使得对每个\trIdeal{} $I\subset A$，每个\trHomomorphism{} $I\to Q$ 都能延拓为 $A\to Q$。证明 $Q$ 是一个内射 $A$-\trModule。提示：设 $N\subset M$ 是 $A$-\trModule{}的一个包含，而我们给定 $\beta\colon N\to Q$。我们希望证明 $\beta$ 能延拓为 $M\to Q$。用\trZornsLemma 证明：在那些满足 $N\subset N'\subset M$ 且 $\beta$ 能延拓为 $N'\to Q$ 的 $A$-\trModule{} $N'$ 之中，存在一个极大的。若这个 $N'$ 不是 $M$，请给出 $\beta$ 到 $N'+Am$ 上的一个延拓，其中 $m\in M\setminus N'$，从而导出矛盾。
+
+\textbf{23.2.H.（容易练习（用到\trZornsLemma））}\quad 证明：一个 $\mathbb{Z}$-\trModule（即\trAbelianGroups）$Q$ 是内射的，当且仅当它是\trDivisibleGroup（即：对每个 $q\in Q$ 与每个 $n\in\mathbb{Z}^{\neq 0}$，存在 $q'\in Q$ 使得 $nq'=q$）。从而证明：内射 $\mathbb{Z}$-\trModule{}的任何\trQuotient{}也是内射的。
+
+\textbf{23.2.I.（练习）}\quad 证明：$\mathbb{Z}$-\trModule{}的范畴 $\mathit{Mod}_{\mathbb{Z}}=\mathit{Ab}$ 有足够多内射对象。（提示：若 $M$ 是一个 $\mathbb{Z}$-\trModule，把它写成自由 $\mathbb{Z}$-\trModule{} $F$ 对某个 $K$ 取商的结果。证明 $M$ 含于可除群 $(F\otimes_{\mathbb{Z}}\mathbb{Q})/K$ 之中。）
+
+\textbf{23.2.J.（练习）}\quad 设 $Q$ 是一个内射 $\mathbb{Z}$-\trModule，而 $A$ 是一个\trRing。证明 $\mathrm{Hom}_{\mathbb{Z}}(A,Q)$ 是一个内射 $A$-\trModule。提示：先描述 $\mathrm{Hom}_{\mathbb{Z}}(A,Q)$ 上的 $A$-\trModule{}结构。你只会用到「$\mathbb{Z}$ 是一个环」以及「$A$ 是该环上的一个\trAlgebra」这两件事。
+
+\textbf{23.2.K.（练习）}\quad 证明 $\mathit{Mod}_A$ 有足够多内射对象。提示：设 $M$ 是一个 $A$-\trModule。由\mbox{练习~23.2.I}，我们可以找到一个\emph{$\mathbb{Z}$-模}的包含 $M\hookrightarrow Q$，其中 $Q$ 是一个内射 \emph{$\mathbb{Z}$-模}。请描述 $A$-\trModule{}包含的一个序列
+\[
+M \hookrightarrow \mathrm{Hom}_{\mathbb{Z}}(A,M) \hookrightarrow \mathrm{Hom}_{\mathbb{Z}}(A,Q).
+\]
+（$\mathrm{Hom}_{\mathbb{Z}}(A,M)$ 上的 $A$-\trModule{}结构经由左变元 $A$ 上的 $A$-作用给出，而非经由右变元 $M$ 上的 $A$-作用给出。）右端那一项由前一道的\mbox{练习~23.2.J} 是内射的。
+
+\textbf{23.2.6.}\ \hard\ \textbf{泛\trDeltaFunctor。}\quad （这段讨论在头一遍阅读时最好跳过；你应当直接前往 \S23.3。在 \S29.2.2 之前我们不会用到 $\delta$-函子这个概念。）现在我们来描述\trDerivedFunctor{}的一个更一般的变体，在第 29 章讨论\trSerreDuality{}时你可能就会用到它。泛\trDeltaFunctor{}这个概念的优点在于：即便在 $\mathscr{A}$ 没有足够多内射对象的情形，我们也能应用它。
+
+把\trDerivedFunctor{}的关键性质抽象出来，我们定义如下资料：一个（上同调性的）\trDeltaFunctor，它从一个\trAbelianCategory{} $\mathscr{A}$ 出发，落到另一个\trAbelianCategory{} $\mathscr{B}$。一个\textbf{\trDeltaFunctor}是一族加性函子 $\mathrm{T}^i\colon\mathscr{A}\to\mathscr{B}$（其中 $i<0$ 时取 $\mathrm{T}^i$ 为 $0$），连同对每个\trShortExactSequence
+\[
+\tag{23.2.6.1}\label{eq:delta-ses}
+0 \longrightarrow A' \longrightarrow A \longrightarrow A'' \longrightarrow 0
+\]
+所给出的态射 $\delta^i\colon\mathrm{T}^i(A'')\to\mathrm{T}^{i+1}(A')$，满足两条性质：
+
+（i）（\emph{短正合列给出长正合列}）对每个\trShortExactSequence{} \eqref{eq:delta-ses}，序列
+\[
+\begin{tikzcd}[column sep=1.7em]
+\cdots \ar[r] & \mathrm{T}^{i-1}(A'') \ar[r, "\delta^{i-1}"] & \mathrm{T}^i(A') \ar[r] & \mathrm{T}^i(A) \ar[r] & \mathrm{T}^i(A'') \ar[r, "\delta^i"] & \mathrm{T}^{i+1}(A') \ar[r] & \cdots
+\end{tikzcd}
+\]
+（其中未标出的映射来自诸 $\mathrm{T}^i$ 的协变性）是正合的。特别地，$\mathrm{T}^0$ 是\trLeftExact{}的。
+
+（ii）（(i) 的函子性）对于 $\mathscr{A}$ 中\trShortExactSequence{}之间的每个态射
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=2.2em]
+0 \ar[r] & \mathfrak{a}' \ar[r] \ar[d] & \mathfrak{a} \ar[r] \ar[d] & \mathfrak{a}'' \ar[r] \ar[d] & 0 \\
+0 \ar[r] & A' \ar[r] & A \ar[r] & A'' \ar[r] & 0
+\end{tikzcd}
+\]
+（其中诸方块交换），诸 $\delta^i$ 给出交换图
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=3.4em]
+\mathrm{T}^i(\mathfrak{a}'') \ar[r, "\delta^i"] \ar[d] & \mathrm{T}^{i+1}(\mathfrak{a}') \ar[d] \\
+\mathrm{T}^i(A'') \ar[r, "\delta^i"] & \mathrm{T}^{i+1}(A')
+\end{tikzcd}
+\]
+（其中诸竖直箭头来自 $\mathrm{T}^i$ 与 $\mathrm{T}^{i+1}$ 的协变性）。
+
+导出函子上同调显然是一个\trDeltaFunctor{}的例子；拟紧分离概形上\trSheaf{}的\trCechCohomology{}是另一个。（你愿意的话，可以把这两句话说精确。）
+
+\textbf{23.2.7.}\ \emph{\trhRemark／\trhDefinition。}\quad 更精确地说，我们应当把上者称作\textbf{协变\trDeltaFunctor}。类似地还有\textbf{反变\trDeltaFunctor}的概念，其定义你当能自行猜出。
+
+\textbf{23.2.L.（练习）}\quad 想清楚 $\mathscr{A}\to\mathscr{B}$ 的\textbf{$\delta$-函子态射}（morphism of $\delta$-functors）的恰当定义。（随后应当清楚：从 $\mathscr{A}$ 到 $\mathscr{B}$ 的诸 $\delta$-函子构成一个范畴。）
+
+\textbf{23.2.8.}\ \emph{\trhDefinition。}\quad 一个（上同调性的）\trDeltaFunctor{} $(\mathrm{T}^i,\delta^i)$ 是\textbf{泛}的，如果对任何其他\trDeltaFunctor{} $(\mathrm{T}'^i,\delta'^i)$，以及函子的任何\trNaturalTransformation{} $\alpha\colon\mathrm{T}^0\to\mathrm{T}'^0$，都存在唯一的\trDeltaFunctor{}态射 $(\mathrm{T}^i,\delta^i)\to(\mathrm{T}'^i,\delta'^i)$ 延拓 $\alpha$。由泛性质的废话（以及\mbox{练习~23.2.L}），给定任何协变\trLeftExact{}函子 $F\colon\mathscr{A}\to\mathscr{B}$，至多存在一个延拓 $F$ 的泛\trDeltaFunctor{} $(\mathrm{T}^i,\delta^i)$（即带有自然同构 $\mathrm{T}^0\overset{\sim}{\longleftarrow}F$ 的那一个）。关于泛\trDeltaFunctor{}的关键事实是下述结果。
+
+\textbf{23.2.9. \trhTheorem。}\ ——\ \emph{设 $(\mathrm{T}^i,\delta^i)$ 是从 $\mathscr{A}$ 到 $\mathscr{B}$ 的一个协变\trDeltaFunctor，且对一切 $A\in\mathscr{A}$，都存在一个单态射 $A\to J$ 使得对一切 $i>0$ 有 $\mathrm{T}^i(J)=0$。则 $(\mathrm{T}^i,\delta^i)$ 是泛的。}
+
+\textbf{23.2.M.}\ \extrahard\ \textbf{（练习）}\quad 证明\mbox{定理~23.2.9}。部分提示：受下方\mbox{推论~23.2.11} 的启发，沿循我们对\trDerivedFunctor{}的讨论。更好的提示（因为这道练习很难）：沿循 [Weib, Exercise 2.4.5] 中的提示，或沿循 [Lan, Ch.~XX, Thm.~7.1] 的证明。
+
+\textbf{23.2.10.}\ \emph{\trhRemark。}\quad 一个加性函子 $F\colon\mathscr{A}\to\mathscr{B}$ 称作\textbf{\trEffaceable{}的}（effaceable），如果对每个 $A\in\mathscr{A}$，都存在一个单态射 $A\to J$ 使得 $\mathrm{F}(J)=0$。\mbox{定理~23.2.9} 的假设可以削弱为只要求每个 $\mathrm{T}^i$（$i>0$）都\trEffaceable{}的，而改证这较弱的一版，你也定会欣然从命。（确实，[Weib, Exercise 2.4.5]、[Lan, Ch.~XX, Thm.~7.1] 以及原始文献 [Gr1, II.2.2.1] 处理的就是这种情形。）我们陈述 \mbox{定理~23.2.9} 时取其简形式，因为我们只会用到这个版本。
+
+\textbf{23.2.11. \trhCorollary。}\ ——\ \emph{若 $\mathscr{A}$ 有足够多内射对象，而 $F$ 是一个协变\trLeftExact{}函子 $\mathscr{A}\to\mathscr{B}$，则诸 $\mathrm{R}^iF$（连同伴随它们的诸 $\delta^i$）构成一个泛\trDeltaFunctor。}
+
+\emph{证明。}\quad $\mathscr{A}$ 的每个元素都容纳入一个到内射对象的单态射；这不过是「有足够多内射对象」的定义（\mbox{练习~23.2.C}）。内射对象 $I$ 的高阶导出函子总是 $0$：只须取 $I$ 「自己的」内射分解来计算其高阶导出函子。\hfill$\square$
+

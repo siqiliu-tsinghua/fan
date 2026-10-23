@@ -1,0 +1,200 @@
+\begin{filecontents*}[overwrite]{\jobname.ist}
+headings_flag 1
+numhead_positive "数字"
+symhead_positive "符号"
+heading_prefix "{\\bfseries\\hfil "
+heading_suffix "\\hfil}\\nopagebreak\\par\\vskip 5pt "
+\end{filecontents*}
+
+
+\usepackage[a4paper,margin=28mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm,bm}
+\usepackage{aliascnt}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{caption}
+\captionsetup{labelsep=space}
+\usepackage{booktabs,longtable,array}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{imakeidx}
+\makeindex[title={索引},noautomatic]
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\definecolor{stfhblue}{HTML}{1F4E79}
+\hypersetup{
+  unicode=true,
+  colorlinks=true,
+  linkcolor=stfhblue,
+  citecolor=stfhblue,
+  urlcolor=stfhblue,
+  pdftitle={辛拓扑与弗洛尔同调：第二卷（中文私译本）},
+  pdfauthor={吴龙根}
+}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{目录}
+\renewcommand{\bibname}{参考文献}
+\makeatletter
+\renewcommand{\@pnumwidth}{2.2em}
+\renewcommand{\@tocrmarg}{3.0em}
+\@ifundefined{tf@toc}{\newwrite\tf@toc}{}
+\newcommand{\stfhOpenTocStream}{%
+  \immediate\openout\tf@toc=\jobname.toc\relax
+}
+\makeatother
+\renewcommand{\figurename}{图}
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \arabic{chapter}
+  },
+  part = {
+    name = {第,部分},
+    number = \Roman{part}
+  }
+}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\emergencystretch=2em
+\newcommand{\stfhPropertyLabel}[1]{\textnormal{\textbf{#1}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\thepage\quad\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\nouppercase{\rightmark}\quad\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtheorem{theorem}{定理}[section]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{命题}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{引理}
+\aliascntresetthe{lemma}
+\newaliascnt{sublemma}{theorem}
+\newtheorem{sublemma}[sublemma]{子引理}
+\aliascntresetthe{sublemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{推论}
+\aliascntresetthe{corollary}
+\newaliascnt{conjecture}{theorem}
+\newtheorem{conjecture}[conjecture]{猜想}
+\aliascntresetthe{conjecture}
+\newaliascnt{question}{theorem}
+\newtheorem{question}[question]{问题}
+\aliascntresetthe{question}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{定义}
+\aliascntresetthe{definition}
+\newaliascnt{condition}{theorem}
+\newtheorem{condition}[condition]{条件}
+\aliascntresetthe{condition}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{例}
+\aliascntresetthe{example}
+\newaliascnt{exercise}{theorem}
+\newtheorem{exercise}[exercise]{习题}
+\aliascntresetthe{exercise}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{注}
+\aliascntresetthe{remark}
+\renewcommand{\proofname}{证明}
+
+\makeatletter
+\@removefromreset{equation}{section}
+\makeatother
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\newcommand{\appendixsectionlessstatements}{%
+  \renewcommand{\thetheorem}{\Alph{chapter}.\arabic{theorem}}%
+  \renewcommand{\theproposition}{\thetheorem}%
+  \renewcommand{\thelemma}{\thetheorem}%
+  \renewcommand{\thesublemma}{\thetheorem}%
+  \renewcommand{\thecorollary}{\thetheorem}%
+  \renewcommand{\theconjecture}{\thetheorem}%
+  \renewcommand{\thequestion}{\thetheorem}%
+  \renewcommand{\thedefinition}{\thetheorem}%
+  \renewcommand{\thecondition}{\thetheorem}%
+  \renewcommand{\theexample}{\thetheorem}%
+  \renewcommand{\theexercise}{\thetheorem}%
+  \renewcommand{\theremark}{\thetheorem}%
+  \setcounter{theorem}{0}%
+}
+\newcommand{\appendixsectionstatements}{%
+  \renewcommand{\thetheorem}{\thesection.\arabic{theorem}}%
+}
+
+\crefname{chapter}{章}{章}
+\crefname{section}{节}{节}
+\crefname{theorem}{定理}{定理}
+\crefname{proposition}{命题}{命题}
+\crefname{lemma}{引理}{引理}
+\crefname{sublemma}{子引理}{子引理}
+\crefname{corollary}{推论}{推论}
+\crefname{conjecture}{猜想}{猜想}
+\crefname{question}{问题}{问题}
+\crefname{definition}{定义}{定义}
+\crefname{condition}{条件}{条件}
+\crefname{example}{例}{例}
+\crefname{exercise}{习题}{习题}
+\crefname{remark}{注}{注}
+\crefname{equation}{式}{式}
+\crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+
+\DeclareMathOperator{\Ham}{Ham}
+\DeclareMathOperator{\Symp}{Symp}
+\DeclareMathOperator{\Hameo}{Hameo}
+\DeclareMathOperator{\Diff}{Diff}
+
+\newcommand{\stfhIndex}[3]{\index{#2@#3}}
+\newcommand{\stfhSubIndex}[5]{\index{#2@#3!#4@#5}}
+\newcommand{\stfhIndexRangeStart}[3]{\index{#2@#3|(}}
+\newcommand{\stfhIndexRangeEnd}[3]{\index{#2@#3|)}}
+\newcommand{\stfhSubIndexRangeStart}[5]{\index{#2@#3!#4@#5|(}}
+\newcommand{\stfhSubIndexRangeEnd}[5]{\index{#2@#3!#4@#5|)}}
+\DeclareRobustCommand{\stfhIndexPiTwoLMarkedP}{$\pi_2(L;\widetilde p)$}
+
+\makeatletter
+\renewenvironment{theindex}{%
+  \chapter*{\indexname}%
+  \addcontentsline{toc}{chapter}{\indexname}%
+  \markboth{\indexname}{\indexname}%
+  \begingroup
+  \footnotesize
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0pt}%
+  \rightskip=0pt plus 1fil\relax
+  \setlength{\columnsep}{1.5em}%
+  \noindent\textbf{凡例}\quad 页码均为本译本实际页码；标目按“中文（英文源词）”双语列出，纯公式符号除外。中文主标目按无声调汉语拼音排序，子标目保留所属层级。%
+  \par\vspace{0.55\baselineskip}%
+  \begin{multicols}{2}%
+  \raggedcolumns
+  \let\item\@idxitem
+}{%
+  \end{multicols}%
+  \endgroup
+}
+\renewcommand{\@idxitem}{\par\hangindent=1em\hangafter=1}
+\renewcommand{\subitem}{\par\hangindent=2.8em\hangafter=1\hspace*{1.4em}}
+\makeatother
+
+\input{terms}
+
+\usepackage{booktabs,longtable,multicol}
+\newcommand{\BookGlossEntry}[2]{%
+  \par\noindent\hangindent=1em\hangafter=1 #1\quad #2\par}
+\newcommand{\BookSourceIndexEntry}[2]{%
+  \par\begingroup\leftskip=#1em\relax\hangindent=1em\relax
+  \noindent #2\par\endgroup}
+\input{backmatter/index-hooks}
+\let\BookOriginalIndex\index
+\renewcommand{\index}[1]{\ifBookIndexing\BookOriginalIndex{#1}\fi}

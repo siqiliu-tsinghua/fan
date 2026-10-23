@@ -1,0 +1,426 @@
+\section{巴尼亚加定理与通量同态}
+\stfhIndex{I130}{tong^liang^tong^tai}{通量同态（flux homomorphism）}
+\label{sec:banyaga-flux}
+
+本节的主题始于构造这样一个不变量的尝试：它要把哈密顿微分同胚与一般的辛微分同胚区分开来；后者位于 $\Symp_0(M,\omega)$，即 $\Symp(M,\omega)$ 的恒等连通分支中。这个问题的一项困难在于：即使辛微分同胚 $\psi$ 是由一个非正合的闭 1-形式生成的，一般也不能因此断定 $\psi$ 不是哈密顿的。
+
+\begin{example}
+\label{ex:torus-nonexact-loop}
+考虑带有辛形式 $\omega=d\theta\wedge d\phi$ 的环面
+$T^2=\mathbb R^2/\mathbb Z^2$，其中 $(\theta,\phi)$ 是显然的坐标系，$\theta,\phi\in\mathbb R/\mathbb Z$。考虑由
+\[
+  (\theta,\phi)\longmapsto(\theta,\phi+t),
+  \qquad 0\le t<1
+\]
+定义的同痕 $\phi^s:T^2\to T^2$。这个流由与闭 1-形式 $d\theta$ 相伴的辛向量场生成，而 $d\theta$ 并不正合：注意，$\theta$ 不是 $S^1$ 上的实值函数，而是圆值函数。然而，它的时间一映射 $\phi^1=\operatorname{id}$ 显然是由零函数生成的哈密顿微分同胚。
+\end{example}
+
+先给出 (Ba78) 中的如下基本引理。这里提供一个比 (Ba78) 稍简单也更直接的证明。
+
+\begin{lemma}[巴尼亚加]
+\label{lem:banyaga-two-parameter}
+设 $\{\phi_t^s\}$ 是 $M$ 上微分同胚的光滑双参数族。记
+\[
+ X=X_{s,t}=\frac{\partial\phi_t^s}{\partial t}\circ(\phi_t^s)^{-1},
+ \qquad
+ Y=Y_{s,t}=\frac{\partial\phi_t^s}{\partial s}\circ(\phi_t^s)^{-1}.
+\]
+则
+\begin{equation}
+  \frac{\partial Y}{\partial t}
+  =\frac{\partial X}{\partial s}+[Y,X].
+  \label{eq:2.4.26}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+由该族的光滑性假设，按定义，映射
+\[
+  (s,t,x)\longmapsto\phi_t^s(x);
+  \qquad\mathbb R\times\mathbb R\times M\longrightarrow M
+\]
+是光滑的。固定 $x\in M$，考虑映射 $\phi:\mathbb R^2\to\mathbb R^2\times M$：
+\[
+  \phi(s,t)=(s,t,\phi_t^s(x)).
+\]
+显然，$\mathbb R^2$ 的坐标向量场 $\{\partial/\partial s,\partial/\partial t\}$ 分别与
+\[
+  \left\{\frac\partial{\partial s}\oplus Y_{s,t},
+  \frac\partial{\partial t}\oplus X_{s,t}\right\}
+\]
+在 $\phi$ 下相关。因此
+\begin{equation}
+ \left[
+   \frac\partial{\partial s}\oplus Y_{s,t},
+   \frac\partial{\partial t}\oplus X_{s,t}
+ \right]=0,
+ \label{eq:2.4.27}
+\end{equation}
+因为 $[\partial/\partial s,\partial/\partial t]=0$。展开这个括号，并注意
+\[
+ \left[\frac\partial{\partial s},\frac\partial{\partial t}\right]=0,
+ \qquad
+ \left[\frac\partial{\partial s},X_{s,t}\right]
+   =\frac{\partial X_{s,t}}{\partial s},
+ \qquad
+ \left[\frac\partial{\partial t},Y_{x,t}\right]
+   =\frac{\partial Y_{s,t}}{\partial t},
+\]
+再令 $x\in M$ 变化，就由 \eqref{eq:2.4.27} 得到 \eqref{eq:2.4.26}。
+\end{proof}
+
+设 $\psi\in\Symp_0(M,\omega)$，并设
+$\Psi=\{\psi_t\}_{0\le t\le1}$ 是一条光滑路径，满足
+$\psi_0=\operatorname{id}$、$\psi_1=\psi$。考虑其生成向量场 $X_t$、相应的 1-形式
+$\lambda(t)=X_t\mathbin{\lrcorner}\omega$，以及积分
+\[
+  \Sigma(\psi,\Psi)=\int_0^1\lambda(t)\,dt.
+\]
+由于对所有 $t\in[0,1]$，$\lambda(t)$ 都是闭的，这就在 $M$ 上定义了一个闭 1-形式。
+
+\begin{lemma}
+\label{lem:flux-homotopy-invariance}
+设 $\Psi,\Psi'$ 是 $\Symp(M,\omega)$ 中的两条光滑路径，满足
+$\psi_0=\operatorname{id}=\psi'_0$ 且 $\psi_1=\psi=\psi'_1$。若 $\Psi'$ 相对于端点
+$\partial[0,1]=\{0,1\}$ 与 $\Psi$ 路径同伦，则 1-形式
+$\Sigma(\psi,\Psi)-\Sigma(\psi,\Psi')$ 是正合 1-形式。
+\end{lemma}
+
+\begin{proof}
+设 $\overline\Psi=\{\Psi^s\}_{0\le s\le1}$ 是 $\Psi$ 与 $\Psi'$ 之间相对于 $\{0,1\}$ 的同伦，即
+\[
+  \Psi^s(0)=\operatorname{id},
+  \qquad \Psi^s(1)=\psi,
+  \qquad 0\le s\le1.
+\]
+要证明本引理，只需证明 1-形式
+\[
+  \frac d{ds}\Sigma(\psi,\Psi^s)
+\]
+是正合的。对 $0\le s\le1$，记
+$\Psi^s=\{\psi_t^s\}_{0\le t\le1}$，并如引理 \ref{lem:banyaga-two-parameter} 定义 $X_t^s,Y_t^s$。由于所有 $\psi_t^s$ 都是辛的，$X_t^s,Y_t^s$ 均为辛向量场。现在计算
+\[
+\begin{aligned}
+ \frac d{ds}\Sigma(\psi,\Psi^s)
+ &=\int_0^1\frac\partial{\partial s}\lambda^s(t)\,dt
+  =\int_0^1\frac\partial{\partial s}
+    (X_t^s\mathbin{\lrcorner}\omega)\,dt\\
+ &=\int_0^1\frac{\partial X_t^s}{\partial s}
+    \mathbin{\lrcorner}\omega\,dt.
+\end{aligned}
+\]
+应用引理 \ref{lem:banyaga-two-parameter}，可改写为
+\[
+  \frac d{ds}\Sigma(\psi,\Psi^s)
+  =\int_0^1\left(\frac{\partial Y_t^s}{\partial t}
+    -[Y_t^s,X_t^s]\right)\mathbin{\lrcorner}\omega\,dt.
+\]
+第一项成为
+$Y_1^s\mathbin{\lrcorner}\omega-Y_0^s\mathbin{\lrcorner}\omega$；由于
+$\psi_1^s\equiv\psi$ 且 $\psi_0^s\equiv\operatorname{id}$，它对所有 $s$ 都为零。第二项也是正合的，因为由命题 \ref{prop:symp-ham-lie-algebras}(2)，李括号 $[Y_t^s,X_t^s]$ 是哈密顿向量场。证明完毕。
+\end{proof}
+
+这个引理使映射 $\Sigma$ 可以下降到万有覆盖空间
+$\widetilde{\Symp}_0(M,\omega)$ 上，并作如下定义。
+
+\begin{definition}
+\label{def:flux-map}
+\stfhIndex{I128}{tong^liang}{通量（flux）}
+定义映射
+\[
+  F_\omega:\widetilde{\Symp}_0(M,\omega)
+  \longrightarrow H^1(M,\mathbb R)
+\]
+为
+\[
+  F_\omega([\psi,\Psi])
+  =\left[\int_0^1(X_t\mathbin{\lrcorner}\omega)\,dt\right],
+\]
+并称这个值为辛路径 $\Psi$ 的\emph{通量}。
+\end{definition}
+
+下面的证明留作习题。
+
+\begin{exercise}
+\label{ex:flux-surjective-homomorphism}
+设 $M$ 紧且无边界。证明，相对于
+$\widetilde{\Symp}_0(M,\omega)$ 与 $H^1(M,\mathbb R)$ 上的群结构，$F_\omega$ 是满群同态。
+\end{exercise}
+
+回忆短正合序列
+\[
+ 0\longrightarrow\pi_1(\Symp_0(M,\omega),\operatorname{id})
+ \longrightarrow\widetilde{\Symp}_0(M,\omega)
+ \longrightarrow\Symp_0(M,\omega)\longrightarrow0,
+\]
+以及 $\pi_1(\Symp_0(M,\omega),\operatorname{id})$ 是可数集这一事实。
+
+\begin{exercise}
+\label{ex:pi1-symp-countable}
+证明 $\pi_1(\Symp_0(M,\omega),\operatorname{id})$ 是可数集。
+\end{exercise}
+
+\begin{definition}[通量群]
+\label{def:flux-group}
+\stfhIndex{I129}{tong^liang^qun}{通量群（flux group）}
+\emph{通量群}定义为 $\pi_1(\Symp_0(M,\omega),\operatorname{id})$ 在映射 $F_\omega$ 下于 $H^1(M,\mathbb R)$ 中的像，记作 $\operatorname{Flux}(M,\omega)$。
+\end{definition}
+
+显然，$\operatorname{Flux}(M,\omega)\subset H^1(M,\mathbb R)$ 是
+$H^1(M,\mathbb R)$ 的可数子群。下面的命题说明了这个群的重要性；其证明由波尔捷罗维奇 (Po01) 给出。
+
+\begin{proposition}
+\label{prop:flux-equivalences}
+下列陈述等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item $\operatorname{Flux}(M,\omega)$ 是 $H^1(M,\omega)$ 的离散子群；
+  \item 子群 $\Ham(M,\omega)\subset\Symp_0(M,\omega)$ 是 $C^\infty$-闭的；
+  \item $\Ham(M,\omega)$ 局部可缩。
+\end{enumerate}
+\end{proposition}
+
+下面的猜想最初由巴尼亚加 (Ba78) 作为问题提出，后来由小野薫 (On06) 证明，通常称为通量猜想。
+
+\begin{theorem}[小野薫 (On06)]
+\label{thm:flux-conjecture}
+设 $(M,\omega)$ 是闭辛流形，则群 $\operatorname{Flux}(M,\omega)$ 是离散的。
+\end{theorem}
+
+该定理的证明高度非平凡，涉及辛不动点弗洛尔同调理论的一个精细版本。有兴趣的读者可参阅原始论文 (On06)。此前已有若干特殊情形得到证明（例如参见 (Ba78) 与 (LMP98)）。
+
+$\operatorname{Flux}(M,\omega)$ 有一个优美的几何描述，在研究通量群时很有用。设
+$\gamma:S^1\to\Symp_0(M,\omega)$ 是环路。我们希望用它在配对
+\[
+  H^1(M,\mathbb R)\times H_1(M,\mathbb Z)\longrightarrow\mathbb R
+\]
+下的值来描述 $F_\omega(\gamma)\in H^1(M,\mathbb R)$。
+
+取 $a\in H_1(M,\mathbb Z)$，并取满足 $[\alpha]=a$ 的任意一维闭链 $\alpha$。给定环路 $\gamma=\{\psi_t\}_{0\le t\le1}$ 后，如下定义一个记作 $\gamma\cdot\alpha$ 的二维闭链。写
+$\alpha=\sum_jk_jc_j$，其中 $c_j:[0,1]\to M$ 是一维链。定义二维链
+\[
+  \gamma\cdot\alpha=\sum_jk_jC_j,
+\]
+其中 $C_j:S^1\times[0,1]\to M$ 定义为
+$C_j(t,s)=\psi_t(c_j(s))$。容易验证：若 $\alpha$ 是一维闭链，则 $\gamma\cdot\alpha$ 是二维闭链；若 $\alpha$ 与 $\alpha'$ 同调，则 $\gamma\cdot\alpha$ 与 $\gamma\cdot\alpha'$ 也同调。把这两个二维闭链的公共同调类记为 $\gamma\cdot a$。于是有下述命题，其证明只是直接计算。
+
+\begin{proposition}
+\label{prop:geometric-flux-pairing}
+设 $a\in H_1(M,\mathbb Z)$，并如上令 $\gamma\cdot a\in H_2(M,\mathbb Z)$。则
+\begin{equation}
+  \langle F_\omega(\gamma),a\rangle
+  =\langle\omega,\gamma\cdot a\rangle.
+  \label{eq:2.4.28}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+证明留给读者作为习题。
+\end{proof}
+
+由定义，映射 $F_\omega$ 诱导典范同态
+\[
+  f_\omega:\Symp_0(M,\omega)
+  \longrightarrow\frac{H^1(M,\mathbb R)}{\operatorname{Flux}(M,\omega)}.
+\]
+现在有如下正合序列交换图：
+\[
+\begin{array}{ccccccccc}
+ &&0&&0&&0&&\\
+ &&\downarrow&&\downarrow&&\downarrow&&\\
+0&\longrightarrow&\pi_1(\ker F_\omega)&\longrightarrow&
+ \pi_1(\Symp_0(M,\omega),\operatorname{id})&\longrightarrow&
+ \operatorname{Flux}(M,\omega)&\longrightarrow&0\\
+ &&\downarrow&&\downarrow&&\downarrow&&\\
+0&\longrightarrow&\ker F_\omega&\longrightarrow&
+ \widetilde{\Symp}_0(M,\omega)&\xrightarrow{F_\omega}&
+ H^1(M,\mathbb R)&\longrightarrow&0\\
+ &&\downarrow&&\downarrow&&\downarrow&&\\
+0&\longrightarrow&\ker f_\omega&\longrightarrow&
+ \Symp_0(M,\omega)&\xrightarrow{f_\omega}&
+ \dfrac{H^1(M,\mathbb R)}{\operatorname{Flux}(M,\omega)}&\longrightarrow&0\\
+ &&\downarrow&&\downarrow&&\downarrow&&\\
+ &&0&&0&&0&&
+\end{array}
+\]
+
+下面是巴尼亚加 (Ba78) 所证明的关于 $\Ham(M,\omega)$ 结构的基本定理。
+
+\begin{theorem}[巴尼亚加]
+\stfhIndex{I060}{ba^ni^ya^jia^ding^li}{巴尼亚加定理（Banyaga’s theorem）}
+\label{thm:banyaga-structure-ham}
+\begin{enumerate}[label=(\arabic*)]
+  \item $\ker f_\omega=\Ham(M,\omega)$；
+  \item $\Ham(M,\omega)$ 是单群，并且
+  \[
+    [\Symp_0(M,\omega),\Symp_0(M,\omega)]=\Ham(M,\omega).
+  \]
+\end{enumerate}
+\end{theorem}
+
+(2) 的证明高度非平凡，而且看来无法在 (Ba78) 的基础上作太多简化，因此其完整证明请参阅 (Ba78)。这里只集中证明 (1)。
+
+\begin{proof}[命题 (1) 的证明]
+包含关系 $\Ham(M,\omega)\subset\ker f_\omega$ 立即来自定义；事实上，
+\[
+  \Ham(M,\omega)\subset\ker F_\omega\subset\ker f_\omega.
+\]
+反过来，取 $\psi\in\ker f_\omega\subset\Symp_0(M,\omega)$。由定义，可选取同痕
+$\Psi=\{\psi_t\}_{0\le t\le1}\subset\Symp_0(M,\omega)$，使闭 1-形式
+$\operatorname{Flux}_\omega(\{\psi_t\}_{0\le t\le1})$ 的上同调类属于
+$\operatorname{Flux}(M,\omega)\subset H^1(M,\mathbb R)$。换言之，存在以恒等元为基点的环路
+$h:S^1\to\Symp_0(M,\omega)$，使
+\[
+  \operatorname{Flux}_\omega(\{\Psi\})
+  =\operatorname{Flux}_\omega(h),
+\]
+等价地，
+\begin{equation}
+  \operatorname{Flux}_\omega(\Psi\circ h^{-1})=0.
+  \label{eq:2.4.29}
+\end{equation}
+注意仍有
+$(\Psi\circ h^{-1})(0)=\operatorname{id}$、$(\Psi\circ h^{-1})(1)=\psi$。下一个引理将证明 $\psi\in\Ham(M,\omega)$，从而证明
+$\ker f_\omega\subset\Ham(M,\omega)$，并完成 (1) 的证明。
+
+\begin{lemma}[\textup{(Ba78)} 的命题 II.3.3]
+\label{lem:zero-flux-endpoint-ham}
+设光滑路径 $\Psi':[0,1]\to\Symp_0(M,\omega)$ 满足
+$\Psi'(0)=\operatorname{id}$，且通量为零，即
+$\operatorname{Flux}_\omega(\Psi')=0$。则
+$\Psi'(1)=\psi'$ 属于 $\Ham(M,\omega)$。
+\end{lemma}
+
+\begin{proof}
+我们将在不改变端点的条件下，把路径 $\Psi'$ 形变为一条路径 $\Psi^1$，使 $\Psi^1$ 成为哈密顿路径；也就是说，对所有 $0\le t\le1$，形式
+$X_t^1\mathbin{\lrcorner}\omega$ 是正合的，其中
+\[
+  X_t^1:=\frac{\partial\psi_t^1}{\partial t}\circ(\psi_t^1)^{-1}.
+\]
+首先注意，通过对 $\Psi'$ 重新参数化而不改变其通量，可以假设在 $t=0,1$ 附近有
+$\partial\psi'_t/\partial t=0$。记
+\[
+  X'_t=\frac{\partial\psi'_t}{\partial t}\circ(\psi'_t)^{-1},
+  \qquad \alpha'_t=X'_t\mathbin{\lrcorner}\omega.
+\]
+由这个选取，在 $0,1$ 附近有 $\alpha'_t=0$。这些形式全都是闭的，并且由通量为零的假设，
+\begin{equation}
+  \int_0^1\alpha'_t\,dt=0.
+  \label{eq:2.4.30}
+\end{equation}
+对每个 $s\in[0,1]$，考虑由下式定义的 1-形式 $\{\alpha_t^s\}_{0\le t\le1}$：
+\[
+  \alpha_t^s=(1-s)\alpha'_{(1-s)t}
+  -\int_0^{1-s}\alpha'_u\,du.
+\]
+显然这些形式都是闭的。由 \eqref{eq:2.4.30} 及 $\alpha'_t$ 的边界平坦性，得到
+\begin{equation}
+  \alpha_t^0=\alpha'_t,
+  \qquad \alpha_t^1\equiv0.
+  \label{eq:2.4.31}
+\end{equation}
+此外，对所有 $s\in[0,1]$ 还有
+\begin{equation}
+  \int_0^1\alpha_t^s\,dt=0.
+  \label{eq:2.4.32}
+\end{equation}
+记 $X_t^s$ 为与 $\alpha_t^s$ 相伴的辛向量场，记
+$\Psi^s=\{\psi_t^s\}_{0\le t\le1}$ 为由 $X^s=\{X_t^s\}$ 生成的辛同痕。由 \eqref{eq:2.4.32}，对所有 $s\in[0,1]$，都有
+$F_\omega(\Psi^s)=0$。特别地，由
+\[
+ f_\omega:\Symp_0(M,\omega)
+ \longrightarrow H^1(M,\mathbb R)/\operatorname{Flux}(M,\omega)
+\]
+的定义，对所有 $s\in[0,1]$ 都有 $f_\omega(\psi_1^s)=0$。
+
+现在考虑同痕 $\Phi=\{\phi_t\}_{0\le t\le1}$，其中
+\[
+  \phi_t:=\psi^{1-t}(1),
+  \qquad0\le t\le1.
+\]
+\eqref{eq:2.4.31} 的第二个等式蕴含 $\psi_t^1\equiv\operatorname{id}$，特别地
+$\phi_0=\psi_1^1=\operatorname{id}$。由 \eqref{eq:2.4.31} 的第一个等式，
+$\psi_t^0=\psi'_t$，因而 $\phi_1=\psi_1^0=\psi'_1$。所以 $\Phi$ 是一条从恒等元到 $\psi'_1$ 的辛路径，并对所有 $0\le t\le1$ 满足
+\[
+  f_\omega(\phi_t)\equiv0.
+\]
+又注意到
+\[
+  \psi_0^s=\psi_t^1=\operatorname{id},
+  \qquad s,t\in[0,1],
+\]
+便容易看出路径 $\Phi$ 与 $\Psi'$ 同伦。现在只需下述一般引理即可完成证明。
+\end{proof}
+
+\begin{lemma}
+\label{lem:path-in-kernel-hamiltonian}
+设 $\Phi=\{\phi_t\}$ 是满足 $\phi_0=\operatorname{id}$ 的辛路径，并且
+\[
+  f_\omega(\phi_t)=0,
+  \qquad t\in[0,1].
+\]
+则 $\Phi$ 是哈密顿路径。
+\end{lemma}
+
+\begin{proof}
+选取双参数族 $\{\phi_t^s\}_{0\le s,t\le1}$，使
+\[
+  \phi_t^0\equiv\operatorname{id},
+  \qquad \phi_t^1\equiv\phi_t.
+\]
+例如可取 $\phi_t^s:=\phi_{st}$。如前记
+\[
+  X_t^s=\frac{\partial\phi_t^s}{\partial t},
+  \qquad Y_t^s=\frac{\partial\phi_t^s}{\partial s}.
+\]
+对每个 $t\in[0,1]$，利用引理 \ref{lem:banyaga-two-parameter} 计算：
+\begin{equation}
+\begin{aligned}
+ X_t\mathbin{\lrcorner}\omega
+ &=X_t^1\mathbin{\lrcorner}\omega
+  =\int_0^1\frac{\partial X_t^s}{\partial s}\,ds\\
+ &=\int_0^1\left(\frac{\partial Y_t^s}{\partial t}
+   +[X_t^s,Y_t^s]\right)\mathbin{\lrcorner}\omega\,ds.
+\end{aligned}
+\label{eq:2.4.33}
+\end{equation}
+这里第二项是正合的，因为
+$[\operatorname{symp},\operatorname{symp}]\subset\operatorname{ham}$。对第一项，有
+\[
+  \int_0^1\frac{\partial Y_t^s}{\partial t}
+  \mathbin{\lrcorner}\omega\,ds
+  =\frac\partial{\partial t}\int_0^1
+  (Y_t^s\mathbin{\lrcorner}\omega)\,ds.
+\]
+另一方面，对每个固定的 $t$，$Y_t^s$ 是生成路径
+$s\mapsto\phi_t^s$（$s\in[0,1]$）的向量场。因此
+\[
+ \int_0^1Y_t^s\mathbin{\lrcorner}\omega\,ds
+ =F_\omega(\phi_t^1,\{\phi_t^s\}_{0\le s\le1})
+ =F_\omega(\phi_t,\{\phi_t^s\}_{0\le s\le1}).
+\]
+由假设 $\phi_t\in\ker f_\omega$，即
+\[
+  F_\omega(\phi_t,\{\phi_t^s\}_{0\le s\le1})
+  \in\operatorname{Flux}(M,\omega).
+\]
+显然，赋值
+\[
+ t\longmapsto F_\omega(\phi_t,\{\phi_t^s\}_{0\le s\le1});
+ \qquad[0,1]\longrightarrow\operatorname{Flux}(M,\omega)
+ \subset H^1(M,\mathbb R)
+\]
+是连续的。另一方面，$\operatorname{Flux}(M,\omega)\subset H^1(M,\mathbb R)$ 是可数子集，所以该赋值必为常值。因此
+\[
+ \frac\partial{\partial t}\left[\int_0^1
+  (Y_t^s\mathbin{\lrcorner}\omega)\,ds\right]\equiv0;
+\]
+也就是说，对所有 $t\in[0,1]$，1-形式
+$\frac\partial{\partial t}\int_0^1(Y_t^s\mathbin{\lrcorner}\omega)\,ds$
+都是正合的。这证明 \eqref{eq:2.4.33} 的第一项也是正合的。
+
+把这两项代入 \eqref{eq:2.4.33}，可知对所有 $t\in[0,1]$，
+$X_t\mathbin{\lrcorner}\omega$ 都是正合的，完成引理的证明。
+\end{proof}
+
+这也完成了定理 \ref{thm:banyaga-structure-ham} 中 (1) 的证明。
+\end{proof}

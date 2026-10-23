@@ -1,0 +1,88 @@
+\paragraph{\trAutoequivalence。}\label{sub:autoequivalences}
+这个话题与前一个密切相关（事实上，人们可以用\trGroupoid{}的语言给出一个统一的%
+处理）。我们需要讨论：一个群 $G$ 作用在一个\trCategory{} $A$ 上是什么意思。
+\begin{itemize}
+\item 一个\textbf{严格 $G$-作用}（strict $G$-action）是一个由诸\trFunctor{}
+$F^g\colon A\to A$（$g\in G$）构成的\trFamily，满足 $F^e=\mathrm{Id}_A$、
+$F^{g_2g_1}=F^{g_2}\circ F^{g_1}$。
+\item 一个\textbf{\trCoherent{} $G$-作用}（coherent $G$-action）由诸\trFunctor{} $F^g$
+连同诸\trIsomorphism{}
+$T^{g_2\cdot g_1}\colon F^{g_2}\circ F^{g_1}\to F^{g_2g_1}$ 组成，使得
+$F^e=\mathrm{Id}_A$，并且只要 $g_2=e$ 或 $g_1=e$，$T^{g_2\cdot g_1}$ 便是恒同，
+同时配有下列交换图：
+\begin{equation}\label{eq:coherent-group-action-square}
+\begin{tikzcd}[column sep=5em]
+F^{g_3}\circ F^{g_2}\circ F^{g_1}
+  \ar[r,"{R_{F^{g_1}}(T^{g_3\cdot g_2})}"]
+  \ar[d,"{L_{F^{g_3}}(T^{g_2\cdot g_1})}"']
+& F^{g_3g_2}\circ F^{g_1}
+  \ar[d,"{T^{g_3g_2\cdot g_1}}"] \\
+F^{g_3}\circ F^{g_2g_1}
+  \ar[r,"{T^{g_3\cdot g_2g_1}}"']
+& F^{g_3g_2g_1}.
+\end{tikzcd}
+\end{equation}
+\item 一个\textbf{弱 $G$-作用}（weak $G$-action）是一个由诸\trFunctor{} $F^g$
+构成的\trFamily，使得 $F^e$ 与 $\mathrm{Id}_A$ \trIsomorphic、$F^{g_2g_1}$ 与
+$F^{g_2}\circ F^{g_1}$ \trIsomorphic，但不指明任何\trIsomorphism{}的选取。
+\end{itemize}
+设我们有一个\trCategory{} $A^{\mathrm{free}}$，带有严格 $G$-作用 $\{\Phi^g\}$，%
+还有一个\trFullSubcategory{} $A$，使得\trEmbedding{} $H\colon A\to A^{\mathrm{free}}$
+是一个\trEquivalence。照\cref{sub:well-definedness} 那样，选取
+$K\colon A^{\mathrm{free}}\to A$ 以及一个\trFunctor\trIsomorphism{}
+$S\colon H\circ K\to\mathrm{Id}_{A^{\mathrm{free}}}$。于是便得到 $A$ 上一个被诱导的%
+\trCoherent{} $G$-作用：
+\begin{equation}\label{eq:induced-coherent-action}
+F^g=K\circ\Phi^g\circ H,\qquad
+T^{g_2\cdot g_1}=L_{K\circ\Phi^{g_2}}(R_{\Phi^{g_1}\circ H}(S)).
+\end{equation}
+如何把这些定义\trAdapted{}到 \trAinfty{}框架，现在应当是显而易见的（注意：在这种情形，%
+还有一种比严格作用更基本的可能，即 §6 中那样的朴素群作用；不过，它们在眼下的%
+讨论中不会扮演任何角色）。要证明\eqref{eq:induced-coherent-action} 在%
+\trAinfty{}语境中的类似物满足\trCoherent{}关系，可以如下论证。\eqref{eq:coherent-group-action-square}
+对应之图的两侧都具有形状
+$\scr{L}^1_{\scr{K}\circ\Phi^{g_3}}(\scr{R}^1_{\Phi^{g_2}\circ\Phi^{g_1}\circ\scr{K}}(\text{某物}))$，%
+括号中的表达式分别是
+\begin{equation}\label{eq:mu-two-terms}
+\begin{aligned}
+&\mu^2_{\scr{Q}}\bigl(S,\scr{L}^1_{\scr{H}\circ\scr{K}}
+(\scr{L}^1_{\Phi^{g_2}}(\scr{R}^1_{\Phi^{g_2^{-1}}}(S))))\bigr)
+\quad\text{以及}\\
+&\mu^2_{\scr{Q}}\bigl(\scr{L}^1_{\Phi^{g_2}}(\scr{R}^1_{\Phi^{g_2^{-1}}}(S)),
+\scr{R}^1_{\Phi^{g_2}\circ\scr{H}\circ\scr{K}\circ\Phi^{g_2^{-1}}}(S)\bigr)
+\end{aligned}
+\end{equation}
+其中 $\scr{Q}=\mathit{fun}(\scr{A}^{\mathrm{free}},\scr{A}^{\mathrm{free}})$。把%
+\cref{thm:left-right-composition}应用于
+\begin{equation*}
+\scr{G}_1=\scr{H}\circ\scr{K},\qquad
+\scr{G}_2=\Phi^{g_2}\circ\scr{H}\circ\scr{K}\circ\Phi^{g_2^{-1}},\qquad
+T_1=S,\qquad
+T_2=\scr{L}^1_{\Phi^{g_2}}(\scr{R}^1_{\Phi^{g_2^{-1}}}(S))
+\end{equation*}
+便知：在 $H(\scr{Q})$ 的层面上，\eqref{eq:mu-two-terms} 中的两项相同。
+\begin{remark}\label{thm:converse-group-action-remark}
+与\cref{thm:converse-construction-remark}中所说的相对应，在普通\trCategory{}的框架里%
+也有一个反向构造：它把 $A$ 上的一个\trCoherent{}群作用变成与之\trEquivalence{}的%
+\trCategory{} $A^{\mathrm{strict}}$ 上的一个严格作用（$G=\ZZ/2$ 的特殊情形见 \cref{sub:equivariant-donaldson-fukaya}）；而同样地，%
+这在 \trAinfty{}的情形似乎行不通——至少按上面对\trCoherent{}性所给的定义是如此。
+\end{remark}
+取定一个\trCorneredBoundary{}的\trExactSymplectic\trManifold{} $M$，并令
+$G=\mathrm{Aut}(M,\partial M)$ 为它相对边界的\trAutomorphism{}群。任意
+$\phi\in G$ 都诱导整个\trFloer{} TQFT 的一个\trCanonical\trAutomorphism，%
+特别是 $H\scr{F}(M)^{\mathrm{pr}}$ 的一个\trAutomorphism，而这些\trAutomorphism{}%
+构成一个严格 $G$-作用。在链的层面上，我们如下进行。定义一个\trFukaya{}型的%
+（\trUngraded{}的）\trAinfty-\trCategory{} $\scr{F}(M)^{\mathrm{pr,free}}$，其%
+\trObject{}是对 $(L,\gamma)$，由一个\trExact\trLagrange\trSubmanifold{}
+$L\subset M$ 连同一个 $\gamma\in G$ 组成。\trMorphism{}空间
+$CF^{\mathrm{pr}}((L_0,\gamma_0),(L_1,\gamma_1))$ 及其间的\trComposition{}映射，%
+由对\trObject{}的每个有限集合选取\trFloerDatum{}与\trPerturbationDatum{}来定义，%
+而我们要求这些选取关于 $G$-作用
+$\phi\cdot(L,\gamma)=(\phi(L),\phi\circ\gamma)$ 是\trEquivariant{}的。这不造成任何%
+困难，因为该作用在\trObject{}上是自由的，而其结果是：$\scr{F}(M)^{\mathrm{pr,free}}$
+带有一个严格 $G$-作用，它由一些\trAFunctor{} $\phi_\star$ 构成，这些\trAFunctor{}%
+的高阶（$d>1$）项为零。显然可以把 $\scr{F}(M)^{\mathrm{pr}}$ 作为\trFullSubcategory{}%
+\trEmbedding{}进 $\scr{F}(M)^{\mathrm{pr,free}}$，并且由于任意两个 $(L,\gamma_0)$、$(L,\gamma_1)$
+在\trCohomology{}层面上都是\trIsomorphic{}的，这个\trEmbedding{}是一个%
+\trQuasiequivalence。于是我们便得到 $\scr{F}(M)^{\mathrm{pr}}$ 上一个被诱导的%
+\trCoherent{} $G$-作用。

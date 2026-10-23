@@ -1,0 +1,480 @@
+
+\section{分析框架}
+\label{sec:analytical-setting}
+\hzsync{proposition}{3}%
+\hzsync{lemma}{4}%
+\hzsync{equation}{4}%
+
+设 $H\in C^{\infty}(\R^{2n},\R)$ 表示 3.1 节中引入的那个特殊%
+\trHamiltonianFunction。它在原点的一个开\trNeighborhood{}内为零，并且满足
+\begin{equation}\label{eq:hz-quadratic-growth}
+H(z)=Q(z),\qquad |z|\geq R\ ,
+\end{equation}
+其中\trQuadraticForm{} $Q(z)=(\pi+\varepsilon)q(z)$，$z\in\R^{2n}$。我们要把这个%
+\trHamiltonianFunction{}的这些性质转换为相应的\trFunctional{} $\Phi$ 在一个%
+合适的\trHilbert{}空间上的性质。回顾一下：在\trSmooth{}\trLoop{}所成的空间%
+$\Omega=C^{\infty}(S^{1},\R^{2n})$ 上，$\Phi$ 由下式定义：
+\begin{equation}\label{eq:phi-loop-space}
+\Phi(x)=\int_{0}^{1}\tfrac{1}{2}\langle-J\dot{x},x\rangle\,dt-%
+\int_{0}^{1}H\bigl(x(t)\bigr)\,dt,\qquad x\in\Omega.
+\end{equation}
+
+为了找到那个合用的\trHilbert{}空间，我们用\trFourier{}级数表示诸\trPeriodic{}%
+\trLoop{} $x\in C^{\infty}(S^{1},\R^{2n})$：
+\begin{equation}\label{eq:fourier-series-loop}
+x(t)=\sum_{k\in\Z}e^{k2\pi Jt}\,x_{k}\ ,\qquad x_{k}\in\R^{2n}
+\end{equation}
+级数连同其一切\trDerivative{}都按上确界\trNorm{}\trConverge。我们先考察 $\Phi$%
+中反映\trSymplectic{}结构的主导部分，并将其简记为
+\begin{equation}\label{eq:a-omega}
+a(x,y)=\int_{0}^{1}\tfrac{1}{2}\langle-J\dot{x},y\rangle\,dt,\qquad x,y\in\Omega.
+\end{equation}
+
+然后，把 $x\in\Omega$ 与 $y\in\Omega$ 的\trFourier{}展开代入 $a(x,y)$，并注意到
+\[
+\int_{0}^{1}\bigl\langle e^{j2\pi Jt}x_{j},e^{k2\pi Jt}y_{k}\bigr\rangle%
+\,dt=\delta_{jk}\langle x_{j},y_{k}\rangle,
+\]
+便得到
+\begin{equation}\label{eq:a-fourier-decomposition}
+\begin{aligned}
+2a(x,y)\ &=\ 2\pi\sum_{j\in\Z}j\,\langle x_{j},y_{j}\rangle\\
+&=\ 2\pi\sum_{j>0}|j|\,\langle x_{j},y_{j}\rangle-%
+2\pi\sum_{j<0}|j|\,\langle x_{j},y_{j}\rangle.
+\end{aligned}
+\end{equation}
+
+从而，$a(x,y)$ 可以定义为更大空间 $\Hh{1}{2}=\Hh{1}{2}(S^{1})$ 上的一个连续的%
+\textbf{\trBilinear{}形式}（bilinear form），这个空间是一个特殊的\trSobolev{}%
+空间。回顾一下：对 $s\geq0$，诸空间 $H^{s}=H^{s}(S^{1})$ 定义为
+\[
+H^{s}=\Biggl\{\,x\in L^{2}(S^{1})\ \Biggm|\ \sum_{j\in\Z}|j|^{2s}|x_{j}|^{2}%
+<\infty\ \Biggr\},
+\]
+其中
+\[
+x=\sum_{j\in\Z}e^{j2\pi Jt}\,x_{j}\ ,\qquad x_{j}\in\R^{2n}
+\]
+是 $x$ 的\trFourier{}级数，它在 $L^{2}(S^{1})$ 中\trConverge。空间 $H^{s}$ 是一个%
+\trHilbert{}空间，其\trInnerProduct{}及相应的\trNorm{}定义为
+\begin{align*}
+\langle x,y\rangle_{s}\ &=\ \langle x_{0},y_{0}\rangle+2\pi\sum_{k\in\Z}%
+|k|^{2s}\langle x_{k},y_{k}\rangle\\
+\|x\|_{s}^{2}\ &=\ \langle x,x\rangle_{s},
+\end{align*}
+对 $H^{s}$ 中的 $x$ 与 $y$ 成立。注意，\trNorm{} $\|x\|_{0}$ 与%
+$L^{2}$\trNorm{}等价。我们将把那个特殊的、将充当我们\trFunctional{}之基础%
+空间的\trHilbert{}空间 $\Hh{1}{2}$ 记为
+\begin{align*}
+E\ &\equiv\ \Hh{1}{2}\\
+\langle\ ,\ \rangle\ &\equiv\ \langle\ ,\ \rangle_{\frac{1}{2}}\quad%
+\text{以及}\quad\|\cdot\|=\|\cdot\|_{\frac{1}{2}}.
+\end{align*}
+
+$E$ 有一个\trOrthogonal{}分解
+\[
+E=E^{-}\oplus E^{0}\oplus E^{+},
+\]
+分解成的空间由只在 $j<0$、$j=0$ 或 $j>0$ 时才具有\trFourier{}系数的那些%
+$x\in E$ 组成。相应的\textbf{\trOrthogonal\trProjection}（orthogonal projections）%
+记作 $P^{-}$、$P^{0}$、$P^{+}$。因此，每个 $x\in E$ 都有唯一的分解
+\[
+x=x^{-}+x^{0}+x^{+}.
+\]
+
+鉴于 \eqref{eq:a-fourier-decomposition}，我们在 $E$ 上对任意的 $x$ 与 $y$ 定义
+\begin{equation}\label{eq:a-bilinear-E}
+\begin{aligned}
+a(x,y)\ &=\ \tfrac{1}{2}\langle x^{+},y^{+}\rangle-%
+\tfrac{1}{2}\langle x^{-},y^{-}\rangle\\
+&=\ \tfrac{1}{2}\bigl\langle\bigl(P^{+}-P^{-}\bigr)x,y\bigr\rangle,
+\end{aligned}
+\end{equation}
+它是 $E$ 上的一个连续的\trBilinear{}形式，并且当 $x$ 与 $y$ 属于%
+$C^{\infty}(S^{1},\R^{2n})$ 时与 \eqref{eq:a-omega} 相一致。由
+\begin{equation}\label{eq:a-function}
+a(x)=a(x,x)=\tfrac{1}{2}\|x^{+}\|^{2}-\tfrac{1}{2}\|x^{-}\|^{2}
+\end{equation}
+定义的函数 $a:E\to\R$ 是可微的，其\trDerivative{}为
+\[
+da(x)(y)=\bigl\langle\bigl(P^{+}-P^{-}\bigr)x,y\bigr\rangle,
+\]
+从而 $a$ 的\trGradient{}为
+\begin{equation}\label{eq:gradient-a}
+\nabla a(x)=\bigl(P^{+}-P^{-}\bigr)x=x^{+}-x^{-}\ \in E,
+\end{equation}
+其中 $x$ 为 $E$ 中的任一点。
+
+其次，我们指出往后要用的 $H^{s}$ 空间的几条有用的性质。显然，这些空间是%
+递减的：
+\[
+H^{t}\subset H^{s}\subset H^{0}\qquad\text{对}\ t\geq s\geq0,
+\]
+而诸\trNorm{}则递增：
+\[
+\|x\|_{t}\geq\|x\|_{s}\geq\|x\|_{0}\qquad\text{对}\ x\in H^{t}.
+\]
+特别地，$t\geq s$ 时的\trInclusionMapping{} $I:H^{t}\to H^{s}$ 都是连续的。
+
+\begin{proposition}\label{prop:inclusion-map-compact}
+设 $t>s\geq0$，则\trInclusionMapping{} $I:H^{t}\to H^{s}$ 是%
+\textbf{\trCompactOperator}（compact operator），也就是说，它把 $H^{t}$ 中的%
+有界集映为 $H^{s}$ 中的相对\trCompact{}子集。
+\end{proposition}
+
+\begin{proof}
+由
+\[
+P_{N}x=\sum_{|k|\leq N}e^{k2\pi Jt}\,x_{k}
+\]
+定义的连续\trLinear\trOperator{} $P_{N}:H^{t}\to H^{s}$ 的\trRange{}是有限维的，%
+因而是\trCompactOperator。估计式
+\begin{align*}
+\|(P_{N}-I)x\|_{s}^{2}\ &=\ \Bigl\|\sum_{|k|>N}e^{k2\pi Jt}\,x_{k}\Bigr\|_{s}^{2}\\
+&=\ 2\pi\sum_{|k|>N}|k|^{2s}|x_{k}|^{2}=%
+2\pi\sum_{|k|>N}|k|^{2(s-t)}|k|^{2t}|x_{k}|^{2}\\
+&\leq\ N^{2(s-t)}\,2\pi\sum_{|k|>N}|k|^{2t}|x_{k}|^{2}\leq%
+N^{2(s-t)}\|x\|_{t}^{2}
+\end{align*}
+表明 $P_{N}$ 按\textbf{\trOperator\trNorm}（operator norm）——即%
+$\mathcal{L}(H^{t},H^{s})$ 的\trNorm\footnote{原书印作「$\mathcal{L}(H^{s},H^{t})$」，实应为「$\mathcal{L}(H^{t},H^{s})$」——本节诸算子 $P_{N}-I:H^{t}\to H^{s}$ 皆自 $H^{t}$ 映入 $H^{s}$，此处径改。——译者注}——\trConverge{}于 $I$。从而 $I$ 也是紧的；%
+这是众所周知的，并可如下轻易看出。设 $\varepsilon>0$，并选取 $N$ 充分大，%
+使得按算子\trNorm{}有 $\|P_{N}-I\|<\varepsilon/2$。若 $B$ 是 $H^{t}$ 中的%
+\trUnitBall，则 $P_{N}(B)\subset H^{s}$ 被有限多个半径为 $\varepsilon/2$、%
+以点 $y_{1}$、$y_{2}$、$\dots$、$y_{m}\in H^{s}$ 为中心的球所覆盖。于是，%
+若 $x\in B$，则可找到某个 $y_{j}$ 使得 $\|P_{N}(x)-y_{j}\|_{s}<\varepsilon/2$，%
+结合 $\|P_{N}(x)-I(x)\|_{s}<\varepsilon/2$ 便蕴含%
+$\|I(x)-y_{j}\|_{s}<\varepsilon$。这样，$I(B)$ 便被有限多个半径 $\varepsilon>0$%
+的球所覆盖。这对每个 $\varepsilon>0$ 都成立，于是我们得出结论：$I(B)$ 在%
+$H^{s}$ 中相对\trCompact。
+\end{proof}
+
+集合 $C^{\infty}(S^{1},\R^{2n})$ 在每个 $s\geq0$ 的 $H^{s}$ 中都是\trDense{}的。%
+然而，并非 $H^{1/2}$ 的所有元素都能由连续函数来表示。为了找到连续函数，%
+下述命题将有所助益。
+
+\begin{proposition}\label{prop:sobolev-sup-norm-estimate}
+设 $s>\frac{1}{2}$。若 $x\in H^{s}$，则 $x\in C(S^{1})$。此外，存在常数%
+$c=c_{s}$，使得
+\[
+\sup_{0\leq t\leq1}\bigl|x(t)\bigr|\leq c\,\|x\|_{s}\ ,\qquad%
+x\in H^{s}(S^{1}).
+\]
+\end{proposition}
+
+\begin{proof}
+我们证明：在 $L^{2}$ 中\trConverge{}的\trFourier{}级数
+\[
+x=\sum_{k}e^{k2\pi Jt}\,x_{k},
+\]
+也按上确界\trNorm{}\trConverge。这由诸估计式
+\begin{align*}
+\sum_{k\neq0}\bigl|e^{k2\pi Jt}\,x_{k}\bigr|\ &=\ \sum_{k\neq0}|x_{k}|\ =\ %
+\sum_{k\neq0}|k|^{-s}|k|^{s}|x_{k}|\\
+&\leq\ \Biggl(\sum_{k\neq0}\frac{1}{|k|^{2s}}\Biggr)^{\frac{1}{2}}\cdot%
+\Biggl(\sum_{k\neq0}|k|^{2s}|x_{k}|^{2}\Biggr)^{\frac{1}{2}}\\
+&\leq\ c\,\|x\|_{s}
+\end{align*}
+得出，这里用到了 $2s>1$。
+\end{proof}
+
+同样的论证表明，更一般地，若对某个整数 $r$ 有 $s>\frac{1}{2}+r$，则%
+$x\in H^{s}$ 属于 $C^{r}(S^{1})$，并且
+\[
+\sup_{\substack{0\leq j\leq r\\ 0\leq t\leq1}}\bigl|D^{j}x(t)\bigr|\leq%
+c\,\|x\|_{s}\ ,\qquad x\in H^{s}(S^{1}).
+\]
+这又是\trSobolev\trEmbedding{}定理的一个特殊情形。鉴于%
+\cref{prop:inclusion-map-compact}，\trInclusionMapping
+\begin{equation}\label{eq:inclusion-j}
+j:\Hh{1}{2}\longrightarrow L^{2}
+\end{equation}
+是紧的。它的\textbf{\trAdjoint{}算子}（adjoint operator）
+\begin{equation}\label{eq:adjoint-j-star}
+j^{*}:L^{2}\longrightarrow\Hh{1}{2}
+\end{equation}
+按惯常的方式定义为
+\begin{equation}\label{eq:adjoint-definition}
+\bigl(j(x),y\bigr)_{L^{2}}=\bigl\langle x,j^{*}(y)\bigr\rangle_{\frac{1}{2}}
+\end{equation}
+对一切 $x\in\Hh{1}{2}$ 与 $y\in L^{2}$ 成立。$j^{*}$ 的下述性质往后将会用到。
+
+\begin{proposition}\label{prop:adjoint-map-h1}
+$j^{*}(L^{2})\subset H^{1}$，并且 $\bigl\|j^{*}(y)\bigr\|_{1}\leq\|y\|_{L^{2}}$。
+\end{proposition}
+
+\trMapping{} $j^{*}$ 可分解为 $L^{2}\to H^{1}\to\Hh{1}{2}$；这样，借助%
+\cref{prop:inclusion-map-compact}，我们便已验证 $j^{*}$ 是一个%
+\trCompactOperator。这一点也可以由 $j$ 的\trCompactness{}得出，这是众所周知的。
+
+\begin{proof}
+按\trAdjoint{}的定义，
+\[
+\sum_{k}\langle x_{k},y_{k}\rangle=\bigl\langle x_{0},j^{*}(y)_{0}\bigr\rangle+%
+2\pi\sum_{k}|k|\,\bigl\langle x_{k},j^{*}(y)_{k}\bigr\rangle
+\]
+对 $x\in\Hh{1}{2}\subset L^{2}$ 与 $y\in L^{2}$ 成立。由此可直接读出 $j^{*}$ 的%
+如下公式：
+\[
+j^{*}(y)=y_{0}+\sum_{k\neq0}\frac{1}{2\pi|k|}\,e^{k2\pi Jt}\,y_{k},
+\]
+其中 $y\in L^{2}$。于是，\trEstimate
+\[
+\bigl\|j^{*}(y)\bigr\|_{1}\leq\|y\|_{L^{2}}
+\]
+便是显然的了。
+\end{proof}
+
+回到\trFunctional{} $\Phi$，我们接下来研究函数
+\[
+b(x)=\int_{0}^{1}H\bigl(x(t)\bigr)\,dt,
+\]
+这里回顾一下：$H$ 在原点的一个\trNeighborhood{}内为零。鉴于对一切%
+$z\in\R^{2n}$ 有 $|H(z)|\leq M|z|^{2}$，这个\trMapping{} $b$ 对 $x\in L^{2}$%
+有定义，从而对 $x\in E\subset L^{2}$ 也有定义。若把 $b$ 视为 $L^{2}$ 上的函数，%
+则把它记作 $\hat{b}$；于是，借助\trInclusionMapping{} $j:E\to L^{2}$，%
+我们可以写成
+\begin{equation}\label{eq:b-composition}
+b(x)=\hat{b}\bigl(j(x)\bigr)\ ,\qquad x\in E.
+\end{equation}
+为了证明 $\hat{b}:L^{2}\to\R$ 是可微的，我们从恒等式
+\begin{equation}\label{eq:h-taylor-identity}
+H(z+\xi)=H(z)+\bigl\langle\nabla H(z),\xi\bigr\rangle+\int_{0}^{1}%
+\bigl\langle\nabla H(z+t\xi)-\nabla H(z),\xi\bigr\rangle\,dt
+\end{equation}
+出发，其中 $z$、$\xi\in\R^{2n}$。由于 $|H_{zz}(z)|\leq M$，最后一项不超过%
+$M|\xi|^{2}$。现在设 $x\in L^{2}$；鉴于对一切 $z\in\R^{2n}$ 有%
+$|\nabla H(z)|\leq M|z|$，可知 $\nabla H(x)=\nabla H(x(t))\in L^{2}$。于是，%
+给定 $x$ 与 $h\in L^{2}$，通过积分我们得到
+\[
+\hat{b}(x+h)=\hat{b}(x)+\int_{0}^{1}\bigl\langle\nabla H(x),h\bigr\rangle%
+\,dt+R(x,h).
+\]
+此外，$|R(x,h)|\leq M\|h\|_{L^{2}}^{2}$。这个\trEstimate{}表明，$\hat{b}$ 是可微的，%
+其在 $x$ 处的\trDerivative{}为
+\begin{align*}
+d\hat{b}(x)(h)\ &=\ \int_{0}^{1}\bigl\langle\nabla H(x),h\bigr\rangle\,dt=%
+\bigl(\nabla H(x),h\bigr)_{L^{2}}\\
+&=\ \bigl(\nabla\hat{b}(x),h\bigr)_{L^{2}}.
+\end{align*}
+对于（相对于 $L^{2}$ 的）\trGradient，我们读出 $\nabla\hat{b}(x)=\nabla H(x)%
+\in L^{2}$。鉴于 \eqref{eq:adjoint-definition}，$b:E\to\R$ 的\trDerivative{}为
+\begin{align*}
+\langle\nabla b(x),y\rangle\ =\ db(x)(y)\ &=\ d\hat{b}\bigl(j(x)\bigr)%
+\bigl(j(y)\bigr)\\
+&=\ \Bigl(\nabla\hat{b}\bigl(j(x)\bigr),j(y)\Bigr)_{L^{2}}\ =\ %
+\bigl\langle j^{*}\nabla\hat{b}\bigl(j(x)\bigr),y\bigr\rangle.
+\end{align*}
+因此
+\begin{equation}\label{eq:gradient-b}
+\nabla b(x)=j^{*}\Bigl(\nabla\hat{b}\bigl(j(x)\bigr)\Bigr)=j^{*}\,\nabla H(x)\ .
+\end{equation}
+
+\begin{lemma}\label{lem:gradient-b-compact}
+\trMapping{} $b:E\to\R$ 是可微的。它的\trGradient{} $\nabla b:E\to E$ 连续，%
+并把有界集映入相对\trCompact{}的集合。此外，
+\[
+\bigl\|\nabla b(x)-\nabla b(y)\bigr\|\leq M\|x-y\|\ ,
+\]
+且对一切 $x\in E$ 与 $y\in E$ 有 $|b(x)|\leq M\|x\|_{L^{2}}^{2}$。
+\end{lemma}
+
+\begin{proof}
+显然，\trMapping{} $x\mapsto\nabla H(x)$ 在 $L^{2}$ 上是整体\trLipschitz{}连续的，%
+从而把\trBounded{}集映为\trBounded{}集。第一条论断由 \eqref{eq:gradient-b} 得出，因为%
+$j^{*}:L^{2}\to E$ 是紧的。此外，
+\begin{align*}
+\bigl\|\nabla b(x)-\nabla b(y)\bigr\|_{\frac{1}{2}}\ &=\ %
+\Bigl\|j^{*}\Bigl(\nabla H(x)-\nabla H(y)\Bigr)\Bigr\|_{\frac{1}{2}}\\
+&\leq\ \bigl\|\nabla H(x)-\nabla H(y)\bigr\|_{L^{2}}\leq\ %
+M\|x-y\|_{L^{2}}\\
+&\leq\ M\|x-y\|_{\frac{1}{2}}.
+\end{align*}
+最后一个\trEstimate{}由对一切 $z\in\R^{2n}$ 成立的 $|H(z)|\leq M|z|^{2}$ 得出。
+\end{proof}
+
+应当指出，只要 $H\in C^{\infty}(\R^{2n},\R)$，便有 $b\in C^{\infty}(E,\R)$。%
+利用\trTaylor{}公式，再结合「$E$ 连续地\trEmbedding{}于每个 $L^{p}$%
+（$p\geq1$）」这一并不平凡的事实——该事实在附录中证明——便可轻易看出%
+这一点。然而，为使我们的论述保持初等，我们将不在这里使用这一观察。总括%
+目前为止的讨论：我们已把 $\Phi$ 从\trSmooth{}\trLoop{}的空间 $\Omega$ 延拓到%
+\trHilbert{}空间 $E\supset\Omega$ 上：
+\[
+\Phi(x)=a(x)-b(x)\ ,\qquad x\in E.
+\]
+
+这个函数 $\Phi:E\to\R$ 是可微的，其\trGradient{}由
+\[
+\nabla\Phi(x)=x^{+}-x^{-}-\nabla b(x)
+\]
+给出。我们感兴趣的是\trDifferentialEquation{}的\textbf{\trClassicalSolution}（classical solution）。因此，重要的是现在便%
+注意到：$\Phi$ 的一个\trCriticalPoint{}并非仅仅是 $E$ 中的一个元素——它甚至%
+可能不是连续函数——而实际上它是\trHamiltonianEquation{} $X_H$ 的一个%
+\trPeriodic{}为 $1$ 的\trSmooth\trPeriodicSolution。的确，下述%
+「\trRegularity」论断成立。
+
+\begin{lemma}\label{lem:critical-point-regularity}
+设 $x\in E$ 是一个\trCriticalPoint，即 $\nabla\Phi(x)=0$，则%
+$x\in C^{\infty}(S^{1})$。此外，它求解\trHamiltonianEquation
+\[
+\dot{x}(t)=J\nabla H\bigl(x(t)\bigr)\ ,\qquad 0\leq t\leq1,
+\]
+从而 $x\in\Omega$ 是一个 $1$\trPeriodicSolution。
+\end{lemma}
+
+\begin{proof}
+把 $x$ 与 $\nabla H(x)\in L^{2}$ 按 $L^{2}$ 中的\trFourier{}展开写作
+\begin{align*}
+x\ &=\ \sum e^{k2\pi Jt}\,x_{k}\\
+\nabla H(x)\ &=\ \sum e^{k2\pi Jt}\,a_{k}.
+\end{align*}
+由假设，$d\Phi(x)(v)=0$。于是，利用 $\langle\nabla b(x),v\rangle=%
+\bigl\langle j^{*}\nabla H(x),v\bigr\rangle=\bigl(\nabla H(x),v\bigr)_{L^{2}}$，%
+便得到
+\[
+\bigl\langle\bigl(P^{+}-P^{-}\bigr)x,v\bigr\rangle=\int_{0}^{1}%
+\bigl\langle\nabla H(x),v\bigr\rangle\,dt
+\]
+对一切 $v\in E$ 成立。取\trTestFunction{} $v(t)=e^{k2\pi Jt}\,v$，我们得到
+\begin{equation}\label{eq:fourier-coefficients}
+2\pi k\,x_{k}=a_{k}\ ,\qquad k\in\Z
+\end{equation}
+以及 $a_{0}=0$。我们推得
+\[
+\sum|k|^{2}|x_{k}|^{2}\leq\sum|a_{k}|^{2}<\infty,
+\]
+从而 $x\in H^{1}$，并且由\cref{prop:sobolev-sup-norm-estimate}，元素%
+$x\in E$ 属于 $C(S^{1})$。因此 $\nabla H(x(t))\in C(S^{1})$，从而
+\[
+\xi(t)=\int_{0}^{t}J\nabla H\bigl(x(s)\bigr)\,ds\ \in C^{1}(\R).
+\]
+比较诸\trFourier{}系数\footnote{原书印作「$\xi(t)=\int_{0}^{t}J\nabla H\bigl(x(t)\bigr)\,dt$」，积分号内外共用字母 $t$，被积函数遂与积分变量无关，推不出下文，此处径改哑变量为 $s$。——译者注}，由 \eqref{eq:fourier-coefficients} 我们发现%
+$\xi(t)=x(t)-x(0)$，故 $x$ 属于 $C^{1}(S^{1})$，并且还求解方程%
+$\dot{x}(t)=J\nabla H(x(t))$。方程的右端属于 $C^{1}$，故 $x\in C^{2}$；%
+迭代这一论证，我们便得出结论：如所断言的，$x\in C^{\infty}(S^{1})$。
+\end{proof}
+
+对\trHamiltonianFunction{} $H$ 的\trAsymptotic{}行为的精心选取蕴含：在%
+$\R^{2n}$ 中 $|z|$ 大的区域里，$X_H$ 没有\trPeriodic{}为 $1$ 的%
+\trPeriodicSolution。我们将由这一动力学行为得出结论：$\Phi$ 满足%
+\trPalaisSmale{}条件。\footnote{译注：即 3.2 节中定义的「P.S.」条件。}
+
+\begin{lemma}\label{lem:palais-smale-condition}
+每个满足 $\nabla\Phi(x_{j})\to0$ 的序列 $x_{j}\in E$ 都含有一个%
+\trConverge{}的子序列。特别地，$\Phi$ 满足\trPalaisSmale{}条件。
+\end{lemma}
+
+\begin{proof}
+设 $\nabla\Phi(x_{j})\to0$，于是
+\begin{equation}\label{eq:gradient-vanishing}
+x_{j}^{+}-x_{j}^{-}-\nabla b(x_{j})\to0.
+\end{equation}
+回顾分解 $x_{j}=x_{j}^{-}+x_{j}^{0}+x_{j}^{+}$。若 $x_{j}$ 在 $E$ 中%
+\trBounded，则 $x_{j}^{0}\in\R^{2n}$ \trBounded，并且鉴于 $\nabla b$ 的%
+\trCompactness，我们得出：存在\trConverge{}的子序列。为证明 $x_{j}$%
+\trBounded，我们用反证法，设 $\|x_{j}\|\to\infty$。定义
+\[
+y_{k}=\frac{x_{k}}{\|x_{k}\|}
+\]
+则 $\|y_{k}\|=1$。由假设，利用 \eqref{eq:gradient-b}，
+\[
+\bigl(P^{+}-P^{-}\bigr)y_{k}-j^{*}\left(\frac{1}{\|x_{k}\|}\,\nabla H(x_{k})\right)%
+\to0.
+\]
+由于 $|\nabla H(z)|\leq M|z|$，序列
+\[
+\frac{\nabla H(x_{k})}{\|x_{k}\|}\in L^{2}
+\]
+在 $L^{2}$ 中\trBounded。由于 $j^{*}:L^{2}\to E$ 是紧的，%
+$\bigl(P^{+}-P^{-}\bigr)y_{k}$ 相对\trCompact；又由于 $y_{k}^{0}$ 在 $\R^{2n}$%
+中\trBounded，序列 $y_{k}$ 在 $E$ 中相对\trCompact。抽取一个子序列之后，%
+不妨设在 $E$ 中 $y_{k}\to y$，从而在 $L^{2}$ 中亦有 $y_{k}\to y$。
+\[
+\Bigl\|\frac{\nabla H(x_{k})}{\|x_{k}\|}-\nabla Q(y)\Bigr\|_{L^{2}}\leq%
+\frac{1}{\|x_{k}\|}\bigl\|\nabla H(x_{k})-\nabla Q(x_{k})\bigr\|_{L^{2}}+%
+\bigl\|\nabla Q(y_{k}-y)\bigr\|_{L^{2}}.
+\]
+由于对一切 $z\in\R^{2n}$ 有 $|\nabla H(z)-\nabla Q(z)|\leq M$\footnote{原书此页两处印作 $L_{2}$（下标），与全书 $L^{2}$（上标）记法不一，此处径归一。——译者注}，且 $\nabla Q$%
+定义了 $L^{2}$ 上的一个连续\trLinear\trOperator，我们得出结论：
+\[
+\frac{\nabla H(x_{k})}{\|x_{k}\|}\to\nabla Q(y)\qquad\text{在}\ L^{2}\ %
+\text{中}.
+\]
+从而
+\[
+\frac{\nabla b(x_{k})}{\|x_{k}\|}=j^{*}\left(\frac{\nabla H(x_{k})}{\|x_{k}\|}\right)%
+\to j^{*}\bigl(\nabla Q(y)\bigr)\qquad\text{在}\ E\ \text{中}.
+\]
+这蕴含 $y\in E$ 求解 $E$ 中的\trLinear{}方程
+\begin{align*}
+y^{+}-y^{-}-j^{*}\nabla Q(y)\ &=\ 0\\
+\|y\|\ &=\ 1.
+\end{align*}
+仿照\cref{lem:critical-point-regularity}可以验证：$y$ 属于%
+$C^{\infty}(S^{1},\R^{2n})$，并且还求解\trLinear\trHamiltonianEquation
+\begin{align*}
+\dot{y}(t)\ &=\ X_{Q}\bigl(y(t)\bigr)\\
+y(0)\ &=\ y(1).
+\end{align*}
+现在回顾 $Q=(\pi+\varepsilon)q$，以及 $q(z)=\bigl(x_{1}^{2}+y_{1}^{2}\bigr)+%
+\frac{1}{N^{2}}\sum_{j=2}^{n}\bigl(x_{j}^{2}+y_{j}^{2}\bigr)$。我们看到，%
+诸\trSymplectic{}二维平面 $\{x_{j},y_{j}\}$ 充满了 $X_Q$ 的\trPeriodic{}%
+$T\neq1$ 的\trPeriodicSolution。由于该线性方程没有任何\trPeriodic{}为 $1$ 的%
+非平凡\trPeriodicSolution，我们得出 $y(t)=0$。这与 $\|y\|=1$ 矛盾，%
+故序列 $x_{k}$ 必定\trBounded。
+\end{proof}
+
+\trGradient{}方程
+\[
+\dot{x}=-\nabla\Phi(x)\ ,\qquad x\in E
+\]
+鉴于\cref{lem:gradient-b-compact}是整体\trLipschitz{}连续的，从而定义了唯一的整体%
+\trFlow
+\[
+\R\times E\to E\ :\qquad(t,x)\mapsto\varphi^{t}(x)\equiv x\cdot t,
+\]
+它把有界集映为有界集。这一切都是常\trDifferentialEquation{}理论中众所周知%
+的内容。此外，我们的\trFlow{}还具有某种\trCompactness，它对下一节中的%
+拓扑论证将是至关重要的。
+
+\begin{lemma}\label{lem:gradient-flow-representation}
+$\dot{x}=-\nabla\Phi(x)$ 的\trFlow{}具有表示
+\begin{equation}\label{eq:flow-decomposition}
+x\cdot t=e^{t}x^{-}+x^{0}+e^{-t}x^{+}+K(t,x),
+\end{equation}
+其中 $K:\R\times E\to E$ 连续，并把有界集映成预\trCompact{}的集合。
+\end{lemma}
+
+\begin{proof}
+受\textbf{\trVariationOfConstantsFormula}（variation of constants formula）的启示，我们如下定义 $K$：
+\[
+K(t,x)=-\int_{0}^{t}\Bigl(e^{t-s}P^{-}+P^{0}+e^{-t+s}P^{+}\Bigr)\nabla b\,%
+(x\cdot s)\,ds.
+\]
+我们必须验证 $K$ 具有所要的性质。把 \eqref{eq:flow-decomposition} 的右端简记为%
+$y(t)$，则容易验证
+\[
+\dot{y}(t)=\bigl(P^{-}-P^{+}\bigr)y(t)-\nabla b(x\cdot t).
+\]
+由于 $y(0)=x$，函数 $\xi(t)=y(t)-x\cdot t$ 求解\trLinear{}方程
+\[
+\dot{\xi}(t)=\bigl(P^{-}-P^{+}\bigr)\xi(t)\ ,\qquad\xi(0)=0.
+\]
+由\trInitialValueProblem{}的唯一性，$\xi(t)=0$，从而如所要求的，$y(t)=x\cdot t$。%
+鉴于 \eqref{eq:h-taylor-identity} 与 \eqref{eq:gradient-b}，我们可以把 $K$ 写成
+\[
+K(t,x)=j^{*}\left\{-\int_{0}^{t}\Bigl(e^{t-s}P^{-}+P^{0}+e^{-t+s}P^{+}\Bigr)%
+\nabla H\Bigl(j(x\cdot s)\Bigr)\,ds\right\}.
+\]
+把括号内的\trMapping{}简记为 $k(t,x)$，则 $k:\R\times E\to L^{2}$ 连续，%
+并把\trBounded{}集映为\trBounded{}集。由\cref{prop:adjoint-map-h1}，\trMapping{} $j^{*}:L^{2}\to E$%
+把有界集映为预\trCompact{}的集合，因此 $K$ 具有所要的性质。
+\end{proof}
+
+总结这个颇为技术性的节：我们把原本定义在\trSmooth{}\trLoop{}的\trLoopSpace{}%
+上的经典哈密顿\trFunctional{}作了延拓，并在\trHilbert{}空间 $E$ 上构造了%
+一个\trFunctional{} $\Phi\in C^{1}(E,\R)$。它的诸\trCriticalPoint——若存在的%
+话——是\trHamiltonianEquation{}的\trPeriodic{}为 $1$ 的%
+\trSmooth\trPeriodicSolution。此外，\trFunctional{} $\Phi$ 还具有若干关键的%
+\trCompactness。尚待完成的是：找出 $\Phi$ 的一个满足 $\Phi(x^{*})>0$ 的%
+特殊\trCriticalPoint{} $x^{*}\in E$。这将在下一节中进行。

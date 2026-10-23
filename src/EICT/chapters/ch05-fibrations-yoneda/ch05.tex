@@ -1,0 +1,169 @@
+\chapter{纤维化与 Yoneda 引理}\label{ch:fibrations-yoneda}
+
+
+在本章中，我们的目标是描述由一个\trInfinityCategory{} $B$ 的\trElement{}
+$b\colon 1\to B$ 所表示的反变\trFunctor{}的∞-范畴式编码；非形式地说，这一%
+\trFunctor{}把 $B$ 的\trElement{} $x$ 送到定义 3.4.9 的\trMappingSpace{}
+$\mathrm{Hom}_{B}(x,b)$。
+由命题 3.4.10，这类\trRepresentable{}函子取值于\trDiscrete{}\trInfinityCategory，
+后者在 $(\infty,1)$-\trCategory{}的诸\trInfinityCosmos{}中对应于「空间」或%
+「\trInfinityGroupoid{}」。
+
+与通常 1-\trCategory{}论的情形相比，在∞-范畴理论中，要把诸\trRepresentable{}%
+函子显式地描述为诸∞-范畴之间的\trFunctor{}，是件颇有挑战性的事情。困难出现在
+确立这一映射的∞-函子性上：它必须逐维地、以\trHomotopy{}相干的方式编码 $B$ 中
+诸箭头的函子性作用，而这些数据即便在这个基本特例中也已繁复到难以轻易列举。
+事实证明，较容易描述的是「\trElement{}范畴」的∞-范畴式类比——该范畴与映射
+$x\mapsto\mathrm{Hom}_{B}(x,b)$ 相关联，并带有与之相关联的、到 $B$ 的一个投影。
+事实上，我们对这个∞-范畴已然相当熟悉：它就是「右表示的」%
+\trCommaInfinityCategory{} $\mathrm{Hom}_{B}(B,b)$，配上其定义域投影%
+\trFunctor{} $p_{0}\colon\mathrm{Hom}_{B}(B,b)\twoheadrightarrow B$；后者在
+$x\colon 1\to B$ 之上的\trFiber{}恰好复原出\trMappingSpace{}
+$\mathrm{Hom}_{B}(x,b)$。
+
+尚待说明的，是 $p_{0}\colon\mathrm{Hom}_{B}(B,b)\twoheadrightarrow B$ 在何种
+意义上表达了 $B$ 中诸箭头在其诸\trFiber{}上的反变函子性作用。这一\trFunctor{}%
+享有一条特殊性质：它使我们得以把取值于 $B$ 的\trNaturalTransformation{}以一种
+本质唯一的方式提升为取值于 $\mathrm{Hom}_{B}(B,b)$、且余定义域已指定的%
+\trNaturalTransformation。这种\trLifting{}的一个特例，定义出与%
+\trHomotopyCategory{} $\mathrm{h}B$ 中一支箭头 $f\colon x\to y$ 相关联的%
+\trPreComposition\trFunctor{} $f^{*}$：
+\begin{center}
+\begin{tikzpicture}[x=1.5em,y=1.5em]
+  \node (Ey) at (0,3.3) {$\mathrm{Hom}_{B}(y,b)$};
+  \node (E)  at (7.2,2.9) {$\mathrm{Hom}_{B}(B,b)$};
+  \node (Ex) at (3.2,1.9) {$\mathrm{Hom}_{B}(x,b)$};
+  \node (o1) at (-1.7,1.0) {$1$};
+  \node (Bt) at (7.5,0.8) {$B$};
+  \node (o2) at (3.0,-1.2) {$1$};
+  \draw[->] (2.2,3.6) to[bend left=10] (5.6,3.3);
+  \draw[->] (5.2,2.05) -- (5.55,2.5);
+  \draw[->,dotted] (0.9,2.85) -- (2.1,2.35);
+  \node at (1.1,2.75) {$\scriptstyle f^{*}$};
+  \node at (1.55,3.0) {$\scriptstyle\llcorner$};
+  \draw[double,->,dotted] (3.35,2.4) -- (3.25,3.15);
+  \node at (4.0,2.8) {$\scriptstyle\chi_{f}$};
+  \draw[->] (-0.85,2.85) -- (-1.45,1.35);
+  \draw[->] (7.25,2.45) -- (7.45,1.15);
+  \node at (7.95,1.8) {$\scriptstyle p_{0}$};
+  \draw[->] (-1.15,1.05) to[bend left=6] (7.05,0.9);
+  \node at (4.6,1.4) {$\scriptstyle y$};
+  \node at (5.1,1.25) {$\scriptstyle\llcorner$};
+  \draw[->] (3.55,-1.1) -- (7.1,0.55);
+  \node at (5.5,-0.6) {$\scriptstyle x$};
+  \draw[double] (-1.2,0.7) -- (2.55,-0.95);
+  \draw[double,->] (2.9,-0.6) -- (3.05,1.45);
+  \node at (2.4,0.35) {$\scriptstyle f$};
+\end{tikzpicture}
+\end{center}
+
+粗略地说，一条\trIsofibration{} $p\colon E\to B$ 定义一个%
+\emph{\trCartesianFibration}，恰在 $B$ 中的诸箭头以反变的函子性方式作用于其诸%
+\trFiber{}之时；而定义一个\emph{\trCocartesianFibration}，则恰在这些箭头以协变的函子性
+方式作用于诸\trFiber{}之时。\trFunctor{}
+$p_{0}\colon\mathrm{Hom}_{B}(B,b)\twoheadrightarrow B$
+便是一个\emph{\trDiscreteCartesianFibration}的例子，其诸\trFiber{}皆为%
+\trDiscrete{}\trInfinityCategory。当 $b\colon X\to B$
+是一个\trGeneralizedElement{}时，定义域投影\trFunctor{}
+$p_{0}\colon\mathrm{Hom}_{B}(B,b)\to B$ 仍是一个\trCartesianFibration，但
+失去了这一离散性。
+
+刻画\trCartesianFibration{} $p\colon E\to B$ 的诸性质之中，有如下一条公理：
+对任何以 $B$ 为余定义域的 2-\trCell{}，若其靶 1-\trCell{}的提升已指定，则存在
+一个提升后的 2-\trCell{}，以 $E$ 为余定义域、以该 1-\trCell{}为靶。特别地，
+在如下情形中这条提升性质便可施用：所论的 2-\trCell{}是\trHomotopyCategory{}
+$\mathrm{h}B$ 中一支箭头的\trWhiskering（如下左所示），而源 1-\trCell{}的提升是其余
+定义域之上\trFiber{}的典范包含：
+\begin{rveq}\label{eq:cartesian-action}
+\begin{tikzpicture}[x=1.4em,y=1.4em]
+  \node (Eb) at (0,2.1) {$E_{b}$};
+  \node (El) at (3.6,2.0) {$E$};
+  \node (oa) at (0.1,-0.7) {$1$};
+  \node (Ba) at (3.7,-0.8) {$B$};
+  \draw[->] (0.5,2.25) -- (3.15,2.1);
+  \node at (1.85,2.5) {$\scriptstyle\ell_{b}$};
+  \node at (0.8,1.95) {$\scriptstyle\llcorner$};
+  \draw[->] (0.0,1.75) -- (0.07,-0.35);
+  \draw[->] (3.65,1.7) -- (3.7,-0.45);
+  \node at (4.1,0.6) {$\scriptstyle p$};
+  \draw[->] (0.55,-0.55) to[bend left=18] (3.2,-0.6);
+  \node at (1.9,0.0) {$\scriptstyle b$};
+  \draw[double,->] (2.4,-0.94) -- (2.45,-0.66);
+  \node at (2.85,-0.82) {$\scriptstyle\beta$};
+  \draw[->] (0.5,-0.9) to[bend right=18] (3.2,-0.95);
+  \node at (1.9,-1.35) {$\scriptstyle a$};
+  \node at (5.4,0.7) {$=$};
+  \node (Ebr) at (7.6,2.1) {$E_{b}$};
+  \node (Ear) at (10.0,1.4) {$E_{a}$};
+  \node (Er) at (12.0,2.2) {$E$};
+  \node (ob) at (7.7,-0.7) {$1$};
+  \node (Bb) at (11.9,-0.8) {$B$};
+  \draw[->] (8.15,2.35) to[bend left=12] (11.5,2.45);
+  \node at (9.9,3.0) {$\scriptstyle\ell_{b}$};
+  \draw[double,->,dotted] (10.1,1.8) -- (10.15,2.3);
+  \node at (10.7,2.1) {$\scriptstyle\chi_{\beta}$};
+  \draw[->,dotted] (8.1,1.95) -- (9.5,1.55);
+  \node at (8.5,1.95) {$\scriptstyle\beta^{*}$};
+  \draw[->,dotted] (10.5,1.5) -- (11.7,2.1);
+  \node at (11.55,1.45) {$\scriptstyle\ell_{a}$};
+  \draw[->,dotted] (10.35,1.62) to[bend left=10] (11.8,2.28);
+  \node at (10.5,2.02) {$\scriptstyle\beta^{*}(\ell_{b})$};
+  \node at (10.3,1.15) {$\scriptstyle\llcorner$};
+  \draw[->] (9.75,1.2) -- (8.05,-0.4);
+  \draw[->] (7.6,1.75) -- (7.7,-0.35);
+  \draw[->] (12.05,1.9) -- (11.95,-0.45);
+  \node at (12.4,0.7) {$\scriptstyle p$};
+  \draw[->] (8.15,-0.8) to[bend right=10] (11.45,-0.95);
+  \node at (9.8,-1.3) {$\scriptstyle a$};
+\end{tikzpicture}
+\end{rveq}
+此时，右方所示提升后的胞腔 $\chi_{\beta}$ 的定义域 $\beta^{*}(\ell_{b})$\footnote{原书
+正文印作 $\beta^{*}(\ell_{a})$，其 (5.0.1) 图内标签及 5.2 节注 5.2.7 同类句均作
+$\beta^{*}(\ell_{b})$，据图与后文径改。——译者注}严格
+位于原 2-\trCell{}之余定义域的上方，因而穿过定义其\trFiber{}的那个\trPullback{}%
+而分解。这就定义了一个\trFunctor{} $\beta^{*}\colon E_{b}\to E_{a}$，即箭头
+$\beta$ 在 $p$ 的诸\trFiber{}上的「作用」。这一作用并非严格的，而是在同构意义
+下函子性的，练习 5.2.ii 探讨了这一意义。\footnote{实情远不止此：还存在一个
+反变的\trHomotopy{}相干\trDiagram{}，其标号为 $B$ 的\trUnderlyingQuasiCategory{}、
+取值于诸\trDiscrete{}\trInfinityCategory{}的\trKanComplex{}富集范畴
+[111, 6.1.16]。}这些作用映射在同构意义下的函子性，源自对指定的提升
+2-\trCell{}所要求的一条\trUniversalProperty——它们正是我们将在 5.1 节中定义
+的\emph{\trCartesianArrow}。
+
+\trCartesianFibration{}将在 5.2 节中引入，最初的一批例子也在该节中确立。该节的
+主定理借助某些典范定义的\trFunctor{}之\trAdjunction{}的存在来刻画%
+\trCartesianFibration。\trCartesianFibration{}之间的保结构映射，是称为%
+\emph{\trCartesianFunctor}的交换方块，它们保持诸笛卡尔自然变换。在 5.3 节中我们将看到，
+相对于 5.2 节中构造的那些\trAdjunction{}，这些\trCartesianFunctor{}也能得到类似的刻画。
+
+在 5.4 节中，我们研究对偶的\trCocartesianFibration，对此类纤维化而言，存在对%
+\trNaturalTransformation{}的提升，且定义域\trFunctor{}已指定。由
+\eqref{eq:cartesian-action} 所展示构造的一个对偶：当
+$p\colon E\twoheadrightarrow B$ 是一条\trCocartesianFibration{}时，$\mathrm{h}B$ 中一支
+箭头 $\beta\colon a\to b$ 定义出一个\trFunctor{} $\beta_{*}\colon E_{a}\to E_{b}$。
+同时是\trCartesianFibration{}与\trCocartesianFibration{}的那条\trIsofibration{} $p$ 称为
+一个\emph{\trBifibration}。\footnote{在 [78, \S2.4.7] 中，Lurie 用「bifibration」
+一词指称另外一类函子：即第 7 章中的诸\trModule{}。}在此情形，命题 5.4.7 证明：
+诱导出的诸\trFunctor{} $\beta_{*}\dashv\beta^{*}$ 构成\trAdjunction。
+
+在 5.6 节中，我们将证明：当 $p\colon E\twoheadrightarrow B$
+是一个\trInfinityCosmos{}中的\trCartesianFibration{}时，诱导\trFunctor{}
+$p_{*}\colon\mathrm{Fun}(X,E)\twoheadrightarrow\mathrm{Fun}(X,B)$
+定义出诸\trQuasiCategory{}的一个\trCartesianFibration；并且在附加条件——沿
+任何 $f\colon Y\to X$ 的限制定义一个\trCartesianFunctor——之下，其逆亦真。
+
+\emph{\trDiscreteCartesianFibration}与\emph{\trDiscreteCocartesianFibration}这两个特殊的类，将在 5.5 节
+中得到研究。本章将在 5.7 节以\trYonedaLemma{}的一个版本作结，该版本针对的正是
+由\trElement{} $b\colon 1\to B$ 所表示的那个\trDiscreteCartesianFibration
+$p_{0}\colon\mathrm{Hom}_{B}(B,b)\twoheadrightarrow B$。其表述受到 Street 的
+论文 \emph{Fibrations and Yoneda's lemma in a 2-category}
+[118]\footnote{与 Street 的\trYonedaLemma{} [118, 16] 最接近的类比，出现于
+定理 7.4.8。}的启发；这份承惠，我们在本节的标题中予以致谢。
+
+\input{chapters/ch05-fibrations-yoneda/s01-cartesian-arrows}   %
+\input{chapters/ch05-fibrations-yoneda/s02-cartesian-fibrations}   %
+\input{chapters/ch05-fibrations-yoneda/s03-cartesian-functors}   %
+\input{chapters/ch05-fibrations-yoneda/s04-cocartesian-fibrations-and-bifibrations}   %
+\input{chapters/ch05-fibrations-yoneda/s05-discrete-cartesian-fibrations}   %
+\input{chapters/ch05-fibrations-yoneda/s06-the-representability-of-cartesian-fibrations}   %
+\input{chapters/ch05-fibrations-yoneda/s07-the-yoneda-lemma}   %

@@ -1,0 +1,78 @@
+
+在本章中，我们将给出\trMorseHomology{}的一些计算和一些应用：乘积的\trKunneth{}公式、%
+\trPoincareDuality、\trEulerCharacteristic（以及\trMorse{}不等式），以及它与所论%
+\trManifold{}的\trConnected{}性和\trSimplyConnected{}性的联系。我们还将证明%
+\trMorseHomology{}的\trFunctoriality，并给出偶 $(W,V)$（其中 $V$ 是\trManifold{} $W$
+的一个\trSubmanifold）的一个\trLongExactSequence。
+
+\section{\trHomology}
+\label{sec:homology}
+
+由于\trManifold{} $V$ 上\trMorseComplex{}的\trHomology{} $H_\star(f,X)$ 只依赖于
+$V$，我们把它记作 $HM_\star(V;\ZZ/2)$（即 $V$ 的“模 2 \trMorseHomology”）。同样地，
+如在\cref{sec:orientation-complex-over-z}中那样顾及\trOrientation{}的那个\trComplex，
+其\trHomology{}则记作 $HM_\star(V;\ZZ)$。事实上（对于知道这是什么的人来说），它就是%
+\trManifold{} $V$ 的模 2 \trHomology（相应地，整系数\trHomology）（参见\cref{sec:cellular-homology}）。本章的结果在 $\ZZ/2$ 上与在 $\ZZ$ 上都成立（除非另有明确说明）。我们将主要使用
+整系数的\trComplex，并把它（的\trHomology）记作 $HM_\star(V)$。
+
+在带边\trManifold{} $V$ 的情形——其边界分解为 $\partial V=\partial_-V\cup\partial_+V$
+——我们类似地定义\textbf{\trRelative\trMorseHomology}（relative Morse homology）
+$HM_\star(V,\partial_+V;\ZZ/2)$，它就是\trComplex{} $(C_\star(f),\partial_X)$
+的\trHomology。
+
+\begin{example}\label{thm:disk-relative-homology}
+以\trDisk{}为例（\cref{fig:hemisphere-fields}），左图给出
+\[
+HM_\star\bigl(D^n,S^{n-1}\bigr)=
+\begin{cases}
+0 & \text{若 } \star\neq n\\
+\ZZ & \text{若 } \star=n\text{，}
+\end{cases}
+\]
+而右图则给出
+\[
+HM_\star\bigl(D^n\bigr)=
+\begin{cases}
+0 & \text{若 } \star\neq 0\\
+\ZZ & \text{若 } \star=0\text{。}
+\end{cases}
+\]
+\end{example}
+
+我们期望这个“\trHomology”满足一定数量的性质，例如\trFunctoriality，以及对于笛卡尔积的
+良好行为。
+
+\begin{remark}\label{thm:diffeomorphism-homology}
+让我们记录下通往某一类\trFunctoriality{}的微小一步（更一般的讨论，参见\cref{sec:functoriality}）。若
+$\varphi\colon M\to N$ 是一个\trDiffeomorphism，则 $\varphi$ 诱导一个\trIsomorphism
+\[
+\varphi_\star\colon HM_\star(M)\longrightarrow HM_\star(N)\text{。}
+\]
+事实上，若 $g$ 是 $N$ 上的一个\trMorseFunction，那么 $g\circ\varphi$ 就是 $M$ 上的一个%
+\trMorseFunction。若 $X$ 是 $M$ 上\trAdapted{}于 $g\circ\varphi$ 且满足\trSmale{}性质的
+一个\trPseudogradient{}场，则 $\varphi_\star(X)$ 就是 $g$ 在 $N$ 上的这样一个%
+\trVectorField。于是，我们有\trComplex{}之间的一个\trIsomorphism
+\[
+\bigl(C_\star(g\circ\varphi),\partial_X\bigr)
+  \longrightarrow\bigl(C_\star(g),\partial_{\varphi_\star X}\bigr)\text{。}
+\]
+\end{remark}
+
+\emph{\trDisjointUnion{}的\trHomology。}
+
+在着手更严肃的事情之前，让我们也注意到：一个\trDisjointUnion{}的\trMorseHomology{}是其
+诸\trConnectedComponent{}的\trHomology{}的\textbf{\trDirectSum}（direct sum）。事实上，
+若 $f$ 与 $g$ 分别是 $V$ 与 $W$ 上的\trMorseFunction，而 $X$ 与 $Y$ 是两个\emph{合适}的%
+\trVectorField，则显然有
+\[
+C_k(f\amalg g)=C_k(f)\oplus C_k(g)
+\qquad\text{且}\qquad
+\partial_{X\amalg Y}=\partial_X\oplus\partial_Y\text{。}
+\]
+
+\emph{记号。}
+
+为了同时简化本书的书写与阅读，我们有时会把与一个函数及一个\trVectorField{}相联系的%
+\trComplex{}写作 $C_\bullet(f,X)$。当其中一个是一个\trMorseFunction、另一个是一个%
+\trAdapted{}且满足\trSmaleCondition{}的\trPseudogradient{}场时，我们将自行地把这样的
+一对 $(f,X)$ 称作“\trMorse--\trSmale”。

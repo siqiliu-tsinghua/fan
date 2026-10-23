@@ -1,0 +1,256 @@
+
+\section{\trSymplecticGroup}
+\label{sec:symplectic-group}
+
+我们现在来考察 $\RR^{2n}$，它被赋予了通常的\trSymplecticForm{} $\omega$ 和一个把它等同于 $\CC^n$ 的（线性）\trComplexStructure。我们把这个\trComplexStructure{}记作 $J_0$。
+
+\textbf{\trSymplecticGroup}（symplectic group），记作 $\mathrm{Sp}(2n)$，是 $\omega$ 的诸\trIsometry，或者说诸\trSymplectic{}变换，所构成的群。$\CC^n$ 的一个变换 $g$ 称为\trSymplectic{}的，如果它满足
+\[
+\omega(gZ,gZ')=\omega(Z,Z')\qquad\text{对所有的 }Z,Z'\in\CC^n\text{。}
+\]
+
+\begin{example}[群 $\mathrm{Sp}(2)$]\label{thm:sp-group-sp2}
+$\CC$ 的\trSymplecticGroup\trIsomorphic{}于 $\mathrm{SL}(2;\RR)$。
+\end{example}
+
+\subsection{$\mathrm{GL}(2n;\RR)$ 的子群之间的关系}
+
+我们把群 $\mathrm{O}(2n)$、$\mathrm{GL}(n;\CC)$、$\mathrm{U}(n)$ 与 $\mathrm{Sp}(2n)$ 都视作 $\mathrm{GL}(2n;\RR)$ 的子群。
+
+\begin{proposition}\label{thm:sp-subgroup-relations}
+我们有诸等式
+\[
+\mathrm{Sp}(2n)\cap\mathrm{O}(2n)=\mathrm{Sp}(2n)\cap\mathrm{GL}(n;\CC)=\mathrm{O}(2n)\cap\mathrm{GL}(n;\CC)=\mathrm{U}(n)\text{。}
+\]
+\end{proposition}
+
+\begin{proof}
+让我们把 $\mathrm{GL}(2n;\RR)$ 的几类元素逐一辨明：
+\begin{enumerate}[label=(\arabic*)]
+\item $g\in\mathrm{GL}(n;\CC)$，当且仅当 $g$ 是 $\CC$-线性的；也就是说，当且仅当
+\[
+g(iZ)=ig(Z)\qquad\text{对每个 }Z
+\]
+（对一个矩阵 $A$ 而言，这意味着 $AJ_0=J_0A$）。
+\item $g\in\mathrm{Sp}(2n)$，当且仅当 $g$ 保持 $\omega$；也就是说，当且仅当
+\[
+\omega(gZ,gZ')=\omega(Z,Z')\qquad\text{对所有的 }Z\text{ 与 }Z'\text{。}
+\]
+对一个矩阵 $A$ 而言，这意味着
+\[
+{}^tAJ_0A=J_0\text{。}
+\]
+\item $g\in\mathrm{O}(2n)$，当且仅当 $(gZ,gZ')=(Z,Z')$。对一个矩阵 $A$ 而言，这意味着 ${}^tAA=\mathrm{Id}$。
+\end{enumerate}
+这些条件中的任意两个总蕴含第三个：
+\begin{itemize}
+\item $(2)$ 与 $(3)$ 蕴含
+\[
+\langle gZ,gZ'\rangle=\langle Z,Z'\rangle
+\]
+从而蕴含 $g\in\mathrm{U}(n)\subset\mathrm{GL}(n;\CC)$。
+\item $(3)$ 与 $(1)$ 蕴含
+\[
+\omega(gZ,gZ')=\omega(gZ,-ig(iZ'))=-(gZ,g(iZ'))=-(Z,iZ')=\omega(Z,Z')
+\]
+从而蕴含 $g\in\mathrm{Sp}(2n)$。\footnote{译注：原书此式链中间的两处等号处均未排负号；按\cref{sec:complex-structures}所建立的关系 $\omega(X,Y)=(X,-iY)$，这两处各应有一个负号（两个负号恰好相消，故整条链首尾两端仍然相等）；此处径补。——译者注}
+\item 同样地，$(1)$ 与 $(2)$ 蕴含 $(3)$。
+\end{itemize}
+就矩阵而言，交 $\mathrm{Sp}(2n)\cap\mathrm{O}(2n)$ 由形如
+\[
+\begin{pmatrix}
+U & -V\\
+V & U
+\end{pmatrix}\in\mathrm{GL}(2n;\RR)
+\]
+的矩阵组成，其中
+\[
+\begin{cases}
+{}^tUV={}^tVU\\
+{}^tUU+{}^tVV=\mathrm{Id}\text{。}
+\end{cases}
+\]
+这恰好就是 $U+iV$ 为一个\textbf{\trUnitary}（unitary）矩阵的条件。
+\end{proof}
+
+\subsection{$\mathrm{Sp}(2n)$ 中元素的\trEigenvalue}
+
+设 $A\in\mathrm{Sp}(2n)$。这意味着 ${}^tAJ_0A=J_0$，或者等价地，
+\[
+{}^tA=J_0A^{-1}J_0^{-1}=-J_0A^{-1}J_0\text{。}
+\]
+特别地，${}^tA$ 与 $A^{-1}$ \textbf{相似}（similar）（既然 ${}^tA$ 与 $A$ 相似），从而 $A$ 与 $A^{-1}$ 相似。
+
+\begin{proposition}\label{thm:sp-similar-matrices}
+若 $A\in\mathrm{Sp}(2n)$，那么 $A$、$A^{-1}$ 与 ${}^tA$ 相似。\noqed
+\end{proposition}
+
+请注意，$\lambda$ 是 $A$ 的一个\trEigenvalue，当且仅当 $\lambda^{-1}$ 也是一个。\cref{fig:symplectic-eigenvalues}展示了一个\trSymplectic{}矩阵在 $\CC$ 中的诸\trEigenvalue{}的位置。作为下面这个结果的推论，$\lambda$ 与 $\lambda^{-1}$ 的\trMultiplicity{}甚至也相等。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[line width=0.6pt,scale=1.1]
+  \draw (0,0) circle (1.5);
+  \fill (0.55,0.59) circle (1.4pt);
+  \node at (0.28,0.59) {$\lambda$};
+  \fill (0.55,-0.59) circle (1.4pt);
+  \node at (0.28,-0.59) {$\overline{\lambda}$};
+  \draw[dashed] (0.63,0.66) -- (1.67,1.79);
+  \draw[dashed] (0.63,-0.66) -- (1.67,-1.79);
+  \fill (1.67,1.79) circle (1.4pt);
+  \node at (2.28,2.02) {$\dfrac{1}{\overline{\lambda}}$};
+  \fill (1.67,-1.79) circle (1.4pt);
+  \node at (2.20,-2.02) {$\dfrac{1}{\lambda}$};
+  \fill (0.40,0) circle (1.4pt);
+  \draw (0.40,0) -- (2.62,0);
+  \fill (2.62,0) circle (1.4pt);
+  \node at (3.55,0) {$\lambda=\overline{\lambda}$};
+  \fill (-1.41,0.51) circle (1.4pt);
+  \fill (-1.41,-0.51) circle (1.4pt);
+  \draw[dashed] (-1.41,0.51) -- (-1.41,-0.51);
+  \node at (-2.62,0.72) {$\lambda=\dfrac{1}{\overline{\lambda}}$};
+\end{tikzpicture}
+\caption{}
+\label{fig:symplectic-eigenvalues}
+\end{figure}
+
+\begin{proposition}\label{thm:sp-characteristic-polynomial}
+$A\in\mathrm{Sp}(2n)$ 的\trCharacteristicPolynomial{}是对称的（就其系数为对称的而言）；也就是说，
+\[
+\text{对 }A\in\mathrm{Sp}(2n)\text{，}\qquad \det(A-\lambda\mathrm{Id})=\lambda^{2n}\det\Bigl(A-\frac{1}{\lambda}\Bigr)\text{。}
+\]
+\end{proposition}
+
+\begin{proof}
+事实上，我们有 $A=-J_0\,{}^tA^{-1}J_0$，于是
+\[
+\begin{aligned}
+\det(A-\lambda\mathrm{Id})
+&=\det\bigl(-J_0\,{}^tA^{-1}J_0-\lambda\mathrm{Id}\bigr)\\
+&=\det\bigl(-{}^tA^{-1}+\lambda\mathrm{Id}\bigr)
+&&\text{因为 }J_0^2=-\mathrm{Id}\\
+&=\det({}^tA^{-1})\,\det(\mathrm{Id}-\lambda\,{}^tA)\\
+&=\det(\lambda\,{}^tA-\mathrm{Id})
+&&\text{因为 }\det A=1\text{（\cref{thm:sp-determinant-one}）}\\
+&=\lambda^{2n}\det\Bigl(A-\frac{1}{\lambda}\mathrm{Id}\Bigr)\text{。}
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remark}\label{thm:sp-multiplicity-equality}
+$\lambda$、$\lambda^{-1}$、$\overline{\lambda}$ 与 $\overline{\lambda}^{-1}$ 作为 $A$ 的\trEigenvalue{}的\trMultiplicity{}全都相等。
+\end{remark}
+
+\subsection{$\mathrm{Sp}(2n)$ 中元素的\trEigenspace}
+
+为了研究 $\mathrm{Sp}(2n;\RR)$ 中元素的\trEigenspace{}，我们需要把空间 $\RR^{2n}$ \textbf{\trComplexification}（complexify）（成为 $\CC^{2n}$！）。于是我们考虑 $A\in\mathrm{GL}(2n;\CC)$，并把\trSymplecticForm{} $\omega$ “扩张”成一个 $\CC$-\trBilinearForm：
+\[
+\omega\colon\CC^{2n}\times\CC^{2n}\longrightarrow\CC\text{。}
+\]
+
+\begin{proposition}\label{thm:sp-orthogonal-eigenspaces}
+设 $\lambda$ 与 $\mu$ 是 $A$ 的两个满足 $\lambda\mu\neq1$ 的\trEigenvalue，并设 $r$ 与 $s$ 为两个正整数。若 $X\in\operatorname{Ker}(A-\lambda\mathrm{Id})^{r}$ 且 $Y\in\operatorname{Ker}(A-\mu\mathrm{Id})^{s}$，那么 $\omega(X,Y)=0$。\footnote{译注：原书此处印作“two (nonzero) integers”（两个（非零）整数）；负幂 $(A-\lambda\mathrm{Id})^{r}$ 以 $A-\lambda\mathrm{Id}$ 的\trInvertible{}性为前提，故 $r$、$s$ 应为正整数；此处径改。——译者注}
+\end{proposition}
+
+\begin{proof}
+令 $P_{r,s}$ 表示所要证的性质。我们先对 $s$ 作归纳来证明 $P_{1,s}$：
+\begin{itemize}
+\item 我们有 $P_{1,1}$，这是因为
+\[
+\omega(X,Y)=\omega(AX,AY)=\lambda\mu\,\omega(X,Y)\text{。}
+\]
+\item 接着，我们假定 $P_{1,s}$ 成立。设 $X$ 是 $A$ 的一个特征向量，并设 $Y\in\operatorname{Ker}(A-\mu\mathrm{Id})^{s+1}$。我们有
+\[
+\begin{aligned}
+\omega(X,Y)&=\omega(AX,AY)\\
+&=\lambda\,\omega\bigl(X,(A-\mu\mathrm{Id})Y\bigr)+\lambda\mu\,\omega(X,Y)\\
+&=\lambda\mu\,\omega(X,Y)\text{，}
+\end{aligned}
+\]
+这是因为 $(A-\mu\mathrm{Id})Y\in\operatorname{Ker}(A-\mu\mathrm{Id})^{s}$。
+\end{itemize}
+以同样的方式，我们有性质 $P_{r,1}$。为了经由归纳证明 $P_{r,s}$，我们来验证
+\[
+P_{r,s+1}\ \text{与}\ P_{r+1,s}\Longrightarrow P_{r+1,s+1}\text{。}
+\]
+于是，设 $X\in\operatorname{Ker}(A-\lambda\mathrm{Id})^{r+1}$ 且 $Y\in\operatorname{Ker}(A-\mu\mathrm{Id})^{s+1}$。我们有
+\[
+\begin{aligned}
+\omega(X,Y)&=\omega(AX,AY)\\
+&=\omega\bigl((A-\lambda\mathrm{Id})X,AY\bigr)+\lambda\,\omega(X,AY)\\
+&=\lambda\,\omega(X,AY)
+\end{aligned}
+\]
+这是因为 $P_{r,s+1}$ 已被假定为真。接着，
+\[
+\begin{aligned}
+\lambda\,\omega(X,AY)
+&=\lambda\,\omega\bigl(X,(A-\mu\mathrm{Id})Y\bigr)+\lambda\mu\,\omega(X,Y)\\
+&=\lambda\mu\,\omega(X,Y)
+\end{aligned}
+\]
+这里应用了 $P_{r+1,s}$。最后，
+\[
+\omega(X,Y)=\lambda\mu\,\omega(X,Y)\text{，}
+\]
+从而 $\omega(X,Y)=0$，即 $P_{r+1,s+1}$ 成立。
+\end{proof}
+
+我们令 $E_\lambda$ 表示由
+\[
+E_\lambda=\bigcup_{r}\operatorname{Ker}(A-\lambda\mathrm{Id})^{r}
+\]
+所定义的 $\CC^{2n}$ 的子空间。我们把它称为 $\lambda$ 的\textbf{\trGeneralizedEigenspace}（generalized eigenspace）。众所周知，$E_\lambda$ 是一个维数等于\trEigenvalue{} $\lambda$ 的\trMultiplicity{} $m(\lambda)$ 的复\trVectorSpace，而 $\CC^{2n}$ 是诸子空间 $E_\lambda$ 的\trDirectSum。下面的结果是该命题的一个直接推论。
+
+\begin{corollary}\label{thm:sp-eigenspace-corollary}
+\begin{enumerate}[label=(\arabic*)]
+\item 若 $\lambda\mu\neq1$，那么 $\omega(E_\lambda,E_\mu)=0$。
+\item $\omega$ 在 $E_1$ 与 $E_{-1}$ 上的限制都是\trNondegenerate{}的。特别地，$\omega$ 在 $E_{\pm1}\cap\RR^{2n}$ 上的限制都是\trSymplecticForm，而\trMultiplicity{} $m(1)$ 与 $m(-1)$ 都是偶数。
+\item 对每个 $\lambda\in\operatorname{Spec}(A)-\{-1,+1\}$，$\omega$ 在 $E_\lambda\oplus E_{1/\lambda}$ 上的限制是\trNondegenerate{}的。\noqed
+\end{enumerate}
+\end{corollary}
+
+\begin{remark}\label{thm:sp-conjugate-isomorphism}
+映射 $X\mapsto\overline{X}$ 是从 $E_\lambda$ 到 $E_{\overline{\lambda}}$ 上的一个\trIsomorphism（就实\trVectorSpace{}而言）。
+\end{remark}
+
+\subsection{\trPolarDecomposition}
+\label{subsec:polar-decomposition}
+
+我们已经看到，群 $\mathrm{U}(n)$ 是 $\mathrm{Sp}(2n)$ 的一个子群。众所周知，前者正是后者的\trMaximalCompactSubgroup。事实上，$\mathrm{GL}(2n;\RR)$ 的\trPolarDecomposition{}给出了一个\trHomeomorphism：\footnote{译注：原书此处印作 $\mathrm{GL}(n;\RR)$；因 $\mathrm{Sp}(2n)\subset\mathrm{GL}(2n;\RR)$ 且此处的\trPolarDecomposition{}用实转置，应为 $\mathrm{GL}(2n;\RR)$；此处径改。——译者注}
+\[
+\begin{aligned}
+\mathrm{Sp}(2n)\;&\longrightarrow\;\mathrm{U}(n)\times C_n\\
+A\;&\longmapsto\;US\text{，}
+\end{aligned}
+\]
+其中 $C_n$ 表示由对称\trPositiveDefinite{}的\trSymplectic{}矩阵所组成的\trOpen{}子集。\footnote{译注：原书此处照此排印。其一，靶既是乘积集 $\mathrm{U}(n)\times C_n$，该映射相应地应作 $A\mapsto(U,S)$（$US$ 只是两分量的乘积阵）；其二，$C_n$ 之“开”仅系相对意义——它并非\trSymmetricMatrix{}全空间中的\trOpen{}集。——译者注}回想一下 $S=\sqrt{{}^tAA}$ 而 $U=AS^{-1}$。
+
+\begin{proposition}\label{thm:sp-polar-retraction}
+群 $\mathrm{Sp}(2n)$ 可收缩到 $\mathrm{U}(n)$ 上。特别地，它是道路\trConnected{}的，而它的\trFundamentalGroup{}与 $\ZZ$ \trIsomorphic。
+\end{proposition}
+
+\begin{proof}
+我们来证明\trOpen{}集 $C_n$ 是\trContractible{}的。设 $A\in C_n$；那么 $A$ 与一切\trSymmetricMatrix{}一样，具有实的\trEigenvalue（它们是正的），并且容许一组由特征向量构成的基。取一个\trEigenvalue{} $\lambda$、它的逆 $\lambda^{-1}$，以及与二者相伴的\trEigenspace{}之和 $E_\lambda\oplus E_{\lambda^{-1}}$（对这类\trDiagonalizable{}矩阵，\trEigenspace{}与\trGeneralizedEigenspace{}相同）。
+
+我们已经看到，若 $\lambda\mu\neq1$，则与这两个\trEigenvalue{}相伴的特征向量关于 $\omega$ 是\trOrthogonal{}的。设 $\lambda$ 不等于 1。我们已经说过，$\omega$ 在 $E_\lambda\oplus E_{\lambda^{-1}}$ 上的限制是\trNondegenerate{}的。$E_\lambda$ 中的向量全都两两\trOrthogonal（因为 $\lambda^2\neq1$），所以 $E_\lambda$ 的一个向量不可能与 $E_{\lambda^{-1}}$ 的一切向量都\trOrthogonal。因而我们可以在 $E_\lambda\oplus E_{\lambda^{-1}}$ 中找到一组\trSymplectic{}基，其前几个向量是 $\lambda$ 的特征向量，随后是 $\lambda^{-1}$ 的特征向量。通过考虑\trEigenvalue{}的所有两两配对，我们便得到 $\RR^{2n}$ 的一组\trSymplectic{}基，在这组基下矩阵 $A$ 是一个\trBlockDiagonalMatrix，其块形如
+\[
+(\lambda,\dotsc,\lambda,\lambda^{-1},\dotsc,\lambda^{-1})\text{。}
+\]
+记 $\ell=\log\lambda$，我们便得到一个（在同一组\trSymplectic{}基下的）对角矩阵，其指数为 $A$。\footnote{译注：原书此处作“$\lambda=\log\ell$”；按上下文，所得对角矩阵的指数须为 $A$，故应为“$\ell=\log\lambda$”，系原书笔误；此处径改。——译者注}由此可见，$A$ 是一个\trDiagonalizable\trSymmetricMatrix{}的指数。而且，还存在一个连续映射 $A\mapsto\log A$，于是我们可以利用收缩
+\[
+(A,t)\longmapsto\exp(t\log A)
+\]
+把 $C_n$ 收缩到恒同映射上。
+\end{proof}
+
+\begin{corollary}\label{thm:sp-determinant-one}
+\trSymplectic{}矩阵的行列式等于 1。
+\end{corollary}
+
+事实上，它显然等于 $\pm1$，而这个群又是道路\trConnected{}的。\noqed
+
+另可参见第 14 章的练习~16 与练习~35。$\mathrm{Sp}(2n)$ 的\trFundamentalGroup{}与 $\ZZ$ 之间的\trIsomorphism{}可以如下得到：把上一命题所给出的到 $\mathrm{U}(n)$ 上的投影与（复）行列式复合起来，便得到一个映射
+\[
+\mathrm{Sp}(2n)\longrightarrow S^1\text{。}
+\]

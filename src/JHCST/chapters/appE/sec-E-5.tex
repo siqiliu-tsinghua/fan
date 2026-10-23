@@ -1,0 +1,255 @@
+
+\section{局部行为}\label{sec:E-5}
+
+证明定理~\ref{thm:E-1-1} 的第一步，是在靶流形 $M$ 与源曲面 $\Sigma$ 上找出坐标，使 \BookRecordIndex{T0003}$J$-全纯曲线写成
+\[
+  u(z)=(z^k,F(z)),\qquad F(z)=O(|z|^{k+1}),
+\]
+其中式~\eqref{eq:E-1-1} 所预示的误差项 $F=O(|z|^{k+1})$ 取值于 $\{0\}\times\mathbb C^{n-1}$。为此须研究在穿孔邻域内光滑、但未必全纯的函数。设 $U\subset\mathbb C$ 为原点的开邻域，$f:U\setminus\{0\}\to\mathbb C$ 光滑。若整数 $\ell$ 满足：对任意 $j,k\ge0$，存在 $c_{jk}>0$，使得
+\begin{equation}\label{eq:E-5-1}
+  |\partial_s^j\partial_t^k f(z)|\le c_{jk}|z|^{\ell-j-k}
+  \qquad(z\in U\setminus\{0\}),
+\end{equation}
+则称 $f$ 在零点附近为\emph{$\ell$ 阶}。记此类函数为 $\mathcal O_\ell(U)$，并记 $\mathcal O_\ell:=\bigcup_U\mathcal O_\ell(U)$。对取值于复向量空间的函数，也采用同样记号。
+
+\begin{remark}\label{rem:E-5-1}
+若 $f:U\to\mathbb C$ 光滑且 $\ell\ge0$，则 $f\in\mathcal O_\ell$ 当且仅当 $f$ 在零点的所有低于 $\ell$ 阶的导数均为零；等价地，$f(z)=O(|z|^\ell)$。
+\end{remark}
+
+\begin{exercise}\label{ex:E-5-2}
+设 $\ell\ge0$ 且 $1\le p<2$。证明 $\mathcal O_\ell(U)\subset W^{\ell,\infty}(U)\cap W^{\ell+1,p}(U)$。
+\end{exercise}
+
+\begin{lemma}\label{lem:E-5-3}
+函数类 $\mathcal O_\ell$ 具有下列性质。
+\begin{enumerate}[align=left,labelwidth=7em,leftmargin=7.6em,labelsep=0.6em,itemsep=0.15em]
+\item[(单调性)] $\mathcal O_\ell\subset\mathcal O_{\ell-1}$。
+\item[(求导)] 若 $f\in\mathcal O_\ell$，则 $\partial_s f,\partial_t f\in\mathcal O_{\ell-1}$。
+\item[(极点--零点)] 对每个 $m\in\mathbb Z$，函数 $z\mapsto z^m$ 属于 $\mathcal O_m$。
+\item[(Lipschitz 性)] 若 $f\in\mathcal O_1$，则 $f$ 在零点附近是 Lipschitz 连续的。
+\item[(求和)] 若 $f,g\in\mathcal O_\ell$，则 $f+g\in\mathcal O_\ell$。
+\item[(乘积)] 若 $f\in\mathcal O_k$、$g\in\mathcal O_\ell$，则 $fg\in\mathcal O_{k+\ell}$。
+\item[(复合)] 设 $\ell,m$ 为正整数，$U$ 是原点的开邻域，$h:U\to\mathbb C$ 为属于 $\mathcal O_m$ 的光滑函数。若 $f\in\mathcal O_\ell$，则 $h\circ f\in\mathcal O_{m\ell}$。
+\item[(逆映射)] 若 $\phi:(\mathbb C,0)\to(\mathbb C,0)$ 是局部 $C^1$ 微分同胚且 $\phi\in\mathcal O_1$，则 $\phi^{-1}\in\mathcal O_1$。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+除复合与逆映射外，各项均直接由定义得到。先证复合。用 $\mathbb N$ 表示非负整数集；对 $\alpha=(j,k)\in\mathbb N^2$，记 $\partial^\alpha:=\partial_s^j\partial_t^k$、$|\alpha|:=j+k$。$h\circ f$ 的导数可写为
+\[
+  \partial^\alpha(h\circ f)(z)
+  =\sum_{N=1}^{|\alpha|}\sum_\beta m_\beta
+    d^Nh(f(z))\bigl(\partial^{\beta_1}f(z),\ldots,
+                       \partial^{\beta_N}f(z)\bigr),
+\]
+其中第二个和遍历 $\beta=(\beta_1,\ldots,\beta_N)\in(\mathbb N^2)^N$，满足 $|\beta_1|+\cdots+|\beta_N|=|\alpha|$，且 $m_\beta\ge0$ 为整数。由于
+\[
+  |d^Nh(f(z))|\le c_N|z|^{\ell(m-N)},
+\]
+和式中每一项均为 $m\ell-|\alpha|$ 阶。
+
+再证逆映射。设 $\psi:=\phi^{-1}$。归纳可证\sourcefootnote{原书实体页 689 的逆映射导数公式以 $\det(\phi)$ 为分母，但 $\phi$ 是 $\mathbb R^2\to\mathbb R^2$ 的映射，不能取行列式；这里改为 $\det(d\phi)$。同一式中的第二个乘积下标 $\ell+j$ 改为与 $2|\alpha|$ 个指标一致的 $|\alpha|+j$。}
+\[
+  \partial^\alpha\psi(\phi)
+  =\frac{1}{\det(d\phi)^{2|\alpha|-1}}
+    \sum_{\beta,n}m_{\beta,n}
+    \prod_{i=1}^{|\alpha|}(\partial^{\beta_i}\phi^1)^{n_i}
+    \prod_{j=1}^{|\alpha|}
+       (\partial^{\beta_{|\alpha|+j}}\phi^2)^{n_{|\alpha|+j}},
+\]
+其中 $\phi^1,\phi^2$ 为 $\phi$ 的两个实分量，$m_{\beta,n}\in\mathbb Z^2$，求和遍历 $\beta=(\beta_1,\ldots,\beta_{2|\alpha|})\in(\mathbb N^2)^{2|\alpha|}$ 及 $n=(n_1,\ldots,n_{2|\alpha|})\in\mathbb N^{2|\alpha|}$，满足
+\[
+  \sum_{j=1}^{2|\alpha|}|\beta_j|n_j=4|\alpha|-3,
+  \qquad \sum_{j=1}^{2|\alpha|}n_j=3|\alpha|-2.
+\]
+由于 $\phi\in\mathcal O_1$，对充分小的 $|z|$，有 $|\partial^\alpha\psi(z)|\le c_\alpha|z|^{1-|\alpha|}$。
+\end{proof}
+
+\begin{remark}\label{rem:E-5-4}
+上述证明说明复合性质还适用于以下情形。设 $\ell$ 为正整数、$m$ 为整数，$f\in\mathcal O_\ell$ 且在零点附近满足 $z\ne0\Rightarrow f(z)\ne0$，又设 $h\in\mathcal O_m$。则 $h\circ f\in\mathcal O_{m\ell}$。条件 $\ell>0$ 保证 $f$ 的值落在任意小的零点邻域内；$f(z)\ne0$ 保证复合在穿孔邻域上光滑。因此前述复合性质的证明仍然适用。
+\end{remark}
+
+\begin{remark}\label{rem:E-5-5}
+复合性质的两个版本也适用于取值于复向量空间的函数。特别地，若 $E,F$ 为复向量空间，$h:E\to F$ 光滑且 $h(0)=0$，$f:U\to E$ 属于 $\mathcal O_\ell$，其中 $\ell\ge1$，则 $h\circ f:U\to F$ 属于 $\mathcal O_\ell$。
+\end{remark}
+
+下面研究\BookRecordIndex{T0210}柯西--黎曼算子相对于函数类 $\mathcal O_\ell$ 的\BookRecordIndex{T0408}正则性；下一个引理与习题~B.1.10 处理同一个问题。
+
+\begin{lemma}\label{lem:E-5-6}
+设 $p>1$。若 $h:\mathbb D\to\mathbb C$ 属于 $W^{1,p}(\mathbb D)$，在原点外光滑，并在 $\mathbb D\setminus\{0\}$ 上满足 $\bar\partial h=0$，则 $h$ 可延拓为 $\mathbb D$ 上的全纯函数。
+\end{lemma}
+
+\begin{proof}
+须证明 $\bar\partial h$ 在\BookRecordIndex{T0123}分布意义下为零。取实值检验函数 $\varphi\in C_c^\infty(\mathbb D)$，记 $D_\varepsilon:=\{|z|\le\varepsilon\}$、$C_\varepsilon:=\{|z|=\varepsilon\}$。由 Stokes 公式，
+\[
+  \int_{\mathbb D\setminus D_\varepsilon}
+     \bar\partial h\,\varphi\,d\bar z\wedge dz
+  +\int_{\mathbb D\setminus D_\varepsilon}
+     h\,\bar\partial\varphi\,d\bar z\wedge dz
+  =-\int_{C_\varepsilon}h\varphi\,dz.
+\]
+因而
+\[
+  \int_{\mathbb D}h\bar\partial\varphi
+  =-\lim_{\varepsilon\to0}\frac1{2i}
+       \int_{C_\varepsilon}h\varphi\,dz.
+\]
+以 $1/p+1/q=1$，Hölder 不等式给出
+\[
+  \|h\varphi\|_{L^1(C_\varepsilon)}
+  \le\|h\|_{L^p(C_\varepsilon)}
+      \|\varphi\|_{L^q(C_\varepsilon)}.
+\]
+再利用\BookRecordIndex{T0174}迹定理（命题~\ref{prop:B-1-21}），原书写出估计\sourcefootnote{原书实体页 690 在此写 $\|h\|_{L^p(C_\varepsilon)}\le C\|h\|_{W^{1,p}(D_\varepsilon)}$，并把 $C$ 用作与 $\varepsilon$ 无关的常数。按通常未归一化的圆周测度，取常数函数 $h=1$ 即见此统一估计不成立；这里保留原书推导并提示该缩放疑点，结论可另由\BookRecordIndex{T0214}可去奇点定理核验。}
+\[
+  \|h\|_{L^p(C_\varepsilon)}
+  \le C\|h\|_{W^{1,p}(D_\varepsilon)},
+\]
+于是
+\[
+  \|h\varphi\|_{L^1(C_\varepsilon)}
+  \le C(2\pi\varepsilon)^{1/q}
+      \|h\|_{W^{1,p}(\mathbb D)}\max_{\mathbb D}|\varphi|
+  \longrightarrow0.
+\]
+这说明 $\bar\partial h=0$ 在\BookRecordIndex{T0123}分布意义下成立；引理~\ref{lem:B-4-6}(i) 因而给出 $h$ 全纯。
+\end{proof}
+
+\begin{lemma}\label{lem:E-5-7}
+对每个整数 $\ell$，算子 $\bar\partial:\mathcal O_{\ell+1}\to\mathcal O_\ell$ 的像包含 $\mathcal O_{\ell+1}$。
+\end{lemma}
+
+\begin{proof}
+算子 $\bar\partial:=\tfrac12(\partial_s+i\partial_t)$ 将 $\mathcal O_{\ell+1}$ 映入 $\mathcal O_\ell$，这直接由求导性质得到。为证其像包含 $\mathcal O_{\ell+1}$，通过乘以 $z^{-(\ell+1)}$，可化归到 $\ell=-1$ 的情形。设 $U$ 是圆盘，$f\in\mathcal O_0(U)$，取 $1<q<2$。由习题~\ref{ex:E-5-2}，$f\in W^{1,q}(U)$；由定理~\ref{thm:C-1-10}，存在 $g\in W^{2,q}(U)$，满足 $g(0)=0$ 且 $\bar\partial g=f$。\BookRecordIndex{T0329}椭圆正则性（命题~\ref{prop:B-4-9}）表明 $g$ 在原点外光滑。令 $\partial:=\tfrac12(\partial_s-i\partial_t)$。任意 $n\ge0$ 都满足
+\[
+  \bar\partial(z^n\partial^n g)=z^n\partial^n f
+  \in\mathcal O_0(U)\subset W^{1,q}(U).
+\]
+故由\BookRecordIndex{T0329}椭圆正则性（命题~\ref{prop:B-4-9}），$z^n\partial^n g\in W^{2,q}_{\mathrm{loc}}(U)$。由 $W^{2,q}\subset W^{1,p}\subset C^{1-2/p}$（$p=2q/(2-q)>2$），这些函数均在原点连续。由此 $g\in\mathcal O_0$。
+\end{proof}
+
+\begin{remark}\label{rem:E-5-8}
+引理~\ref{lem:E-5-7} 中不能用 $\mathcal O_\ell$ 取代像所包含的 $\mathcal O_{\ell+1}$。例如 $g(z)=z\sqrt{-\log|z|}$ 与 $\bar\partial g$ 都属于 $\mathcal O_0$，但不存在 $h\in\mathcal O_1$ 使 $\bar\partial h=\bar\partial g$。否则 $g-h\in W^{1,q}$，引理~\ref{lem:E-5-6} 表明 $h-g$ 在原点附近光滑，进而 $g\in\mathcal O_1$，矛盾。因此这些算子 $\bar\partial:\mathcal O_{\ell+1}\to\mathcal O_\ell$ 均非满射。
+\end{remark}
+
+\begin{lemma}\label{lem:E-5-9}
+设 $k$ 为正整数，$f\in\mathcal O_k$，光滑函数 $u:\mathbb D\setminus\{0\}\to\mathbb C$ 满足 $\bar\partial u=f$。
+\begin{enumerate}
+\item[(i)] 若 $u$ 光滑延拓至 $\mathbb D$，则存在复多项式 $p(z)=a_0+a_1z+\cdots+a_kz^k$，使 $u-p\in\mathcal O_{k+1}$。
+\item[(ii)] 若 $u$ 在原点附近有界，则存在次数至多 $k-1$ 的复多项式 $p$，使 $u-p\in\mathcal O_k$。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) 取 $u$ 关于 $(s,t)$（或 $(z,\bar z)$）到 $k$ 阶的 Taylor 多项式 $p$，则 $u=p+R$ 且 $R\in\mathcal O_{k+1}$。因 $\bar\partial p=f-\bar\partial R\in\mathcal O_k$，其至 $k-1$ 阶的所有导数在零点为零；而 $\bar\partial p$ 的次数至多为 $k-1$，故 $\bar\partial p=0$。
+
+(ii) 由引理~\ref{lem:E-5-7}，可写 $f=\bar\partial v$，其中 $v\in\mathcal O_k$。$u-v$ 在穿孔圆盘上全纯且有界。Cauchy 导数估计给出 $|du(z)-dv(z)|\le c|z|^{-1}$，故 $u-v\in W^{1,p}$（$1<p<2$）。由引理~\ref{lem:E-5-6}，$u-v$ 在原点全纯延拓。因此
+\[
+  u(z)=a_0+\cdots+a_{k-1}z^{k-1}+z^kw(z)+v(z),
+\]
+其中 $w$ 全纯，结论成立。
+\end{proof}
+
+现在可证明所需的局部结构定理。由于函数类 $\mathcal O_\ell$ 可精确控制换坐标映射 $\varphi$ 的性质，其结论比第 2 章（参看引理~2.4.1 的证明）更细。
+
+\begin{proposition}\label{prop:E-5-10}
+设 $J$ 是 $\mathbb C^n$ 上的光滑\BookRecordIndex{T0088}殆复结构，在原点等于标准复结构；设非常值映射 $u:\mathbb D\to\mathbb C^n$ 满足\BookRecordIndex{T0209}柯西--黎曼方程
+\begin{equation}\label{eq:E-5-2}
+  \partial_su+J(u)\partial_tu=0,\qquad u(0)=0.
+\end{equation}
+则存在正整数 $k$ 和非零向量 $a_0\in\mathbb C^n$，使得：
+\begin{enumerate}
+\item[(i)] 存在 $a_1,\ldots,a_{k-1}\in\mathbb C^n$，满足
+\[
+  u(z)=z^ka_0+z^{k+1}a_1+\cdots+z^{2k-1}a_{k-1}+R(z),
+  \qquad R\in\mathcal O_{2k}.
+\]
+\item[(ii)] 对任意与复直线 $\mathbb Ca_0$ 横截的复超平面 $\Pi\subset\mathbb C^n$，存在局部 $C^{k,1}$ 微分同胚 $\varphi:(\mathbb D,0)\to(\mathbb D,0)$，满足
+\[
+  u\circ\varphi(z)=z^ka_0+F(z),\qquad
+  \varphi(z)=z+\varphi_1(z),
+\]
+其中 $F:\mathbb D\to\Pi$ 属于 $\mathcal O_{k+1}$，$\varphi_1\in\mathcal O_2$。若 $k=1$，则可使 $\varphi$ 光滑。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+由于 $u$ 光滑而非常值，它在原点的导数不可能全部消失（见注~\ref{rem:E-4-4} 或定理~2.3.2）。因此存在最小整数 $k\ge1$，使 $d^ku(0)\ne0$，而 $j<k$ 时 $d^ju(0)=0$。这意味着 $u\in\mathcal O_k$。由式~\eqref{eq:E-5-2}，
+\[
+  \bar\partial u(z):=\tfrac12\bigl(\partial_su(z)+J_0\partial_tu(z)\bigr)
+  =\tfrac12\bigl(J_0-J(u(z))\bigr)\partial_tu(z).
+\]
+复合性质给出 $(J_0-J)\circ u\in\mathcal O_k$，乘积及求导性质继而给出 $\bar\partial u\in\mathcal O_{2k-1}$。由引理~\ref{lem:E-5-9}(i)，存在次数至多 $2k-1$ 的复多项式 $P$，使 $u-P\in\mathcal O_{2k}$。由 $k$ 的定义及 Taylor 展开的唯一性，
+\[
+  P(z)=z^kp(z),\qquad
+  p(z)=a_0+za_1+\cdots+z^{k-1}a_{k-1},\quad a_0\ne0.
+\]
+这证明了 (i)。
+
+为证 (ii)，取 $\mathbb C^n$ 上的复线性坐标，使
+\[
+  a_0=(1,0,\ldots,0),\qquad
+  \Pi=\{0\}\times\mathbb C^{n-1}.
+\]
+在 $z\ne0$ 时定义 $E(z):=z^{-k}R(z)$，并令 $E(0):=0$。极点--零点与乘积性质给出 $E\in\mathcal O_k$；注意 $E$ 在原点未必光滑。记 $\pi:\mathbb C^n\to\mathbb C$ 为首坐标投影，则 $\pi\circ p(0)=1$、$\pi\circ E(0)=0$。取原点附近小圆盘 $U$，使 $\pi p(z)$ 与 $\pi(p(z)+E(z))$ 的实部均为正。定义
+\[
+  \psi(z):=z\bigl(\pi p(z)+\pi E(z)\bigr)^{1/k},
+  \qquad \psi_0(z):=z\bigl(\pi p(z)\bigr)^{1/k}.
+\]
+$\psi_0$ 是局部光滑微分同胚，$\psi$ 在 $U\setminus\{0\}$ 上光滑，并且
+\[
+  \psi(z)=\psi_0(z)(1+f(z))^{1/k},\qquad
+  f:=(\pi\circ p)^{-1}\pi\circ E.
+\]
+由乘积性质，$f\in\mathcal O_k$；复合性质用于 $h(w)=(1+w)^{1/k}-1$，得 $(1+f)^{1/k}-1\in\mathcal O_k$，再由 $\psi_0\in\mathcal O_1$，得\sourcefootnote{原书实体页 692 在 $E=z^{-k}R\in\mathcal O_k$ 后，把 $f=(\pi p)^{-1}\pi E$ 及 $(1+f)^{1/k}-1$ 均写作 $\mathcal O_{k+1}$；按本节乘积与复合规则，二者只能保证为 $\mathcal O_k$。乘上 $\psi_0\in\mathcal O_1$ 后，原书所需的 $\psi-\psi_0\in\mathcal O_{k+1}$ 仍成立。}
+\[
+  \psi-\psi_0\in\mathcal O_{k+1}.
+\]
+特别地，$\psi$ 是局部 $C^{k,1}$ 微分同胚（习题~\ref{ex:E-5-2}）。令 $\varphi:=\psi^{-1}$，则 $\varphi$ 也是局部 $C^{k,1}$ 微分同胚，且由逆映射性质 $\varphi\in\mathcal O_1$。按 $\psi$ 的定义，
+\[
+  \psi(z)^k=\pi\bigl(z^kp(z)+z^kE(z)\bigr)=\pi u(z),
+  \qquad \pi u(\varphi(z))=z^k.
+\]
+于是，记 $a_0\pi$ 为映射 $v\mapsto a_0\pi(v)$，并令\sourcefootnote{原书实体页 692 把 $F$ 写作 $u\circ\varphi-z^k=(\mathrm{id}-\pi)\circ u\circ\varphi$。这里 $u\circ\varphi$ 取值于 $\mathbb C^n$，而 $z^k$ 及 $\pi$ 取值于 $\mathbb C$；按已选 $a_0=(1,0,\ldots,0)$ 和 $\Pi=\ker\pi$，补全首坐标嵌入，使等式两侧均取值于 $\Pi$。}
+\[
+  F(z):=u\circ\varphi(z)-z^ka_0
+       =(\mathrm{id}_{\mathbb C^n}-a_0\pi)\circ u\circ\varphi(z)
+\]
+取值于 $\Pi$。由于 $(\mathrm{id}_{\mathbb C^n}-a_0\pi)u=(\mathrm{id}_{\mathbb C^n}-a_0\pi)(u-z^ka_0)$ 是属于 $\mathcal O_{k+1}$ 的光滑函数，再由复合性质，$F\in\mathcal O_{k+1}$。
+
+最后验证 $\varphi_1(z):=\varphi(z)-z\in\mathcal O_2$。$z\ne0$ 时 $\varphi(z)\ne0$，且 $\varphi\in\mathcal O_1$，故由注~\ref{rem:E-5-4}，$f\in\mathcal O_m$ 蕴涵 $f\circ\varphi\in\mathcal O_m$。设 $\psi_1:=\psi-z\in\mathcal O_2$，则
+\[
+  (\mathbb 1+d\psi_1(\varphi(z)))\,d\varphi(z)=\mathbb 1,
+  \qquad
+  d\varphi_1(z)=-d\psi_1(\varphi(z))\,d\varphi(z).
+\]
+因 $d\psi_1\in\mathcal O_1$，复合与乘积性质给出 $d\varphi_1\in\mathcal O_1$。又 $\varphi_1$ 在零点连续且 $\varphi_1(0)=0$，故 $\varphi_1\in\mathcal O_2$。$k=1$ 时 $\varphi$ 光滑，由构造即知。
+\end{proof}
+
+\begin{remark}\label{rem:E-5-11}
+设连续映射 $u:\mathbb D\to\mathbb R^N$ 满足 $u(0)=0$。其在原点的\emph{\BookRecordIndex{T0282}切锥}定义为
+\[
+  \mathcal C_0(u):=\left\{\lambda\xi\ \middle|\ \lambda\ge0,
+  \ \exists z_\nu\to0\text{ 使 }
+  \frac{u(z_\nu)}{|u(z_\nu)|}\to\xi\right\}.
+\]
+若 $\psi:\mathbb R^N\to\mathbb R^N$ 是满足 $\psi(0)=0$ 的局部微分同胚，则
+\[
+  \mathcal C_0(\psi\circ u)=d\psi(0)\bigl(\mathcal C_0(u)\bigr).
+\]
+因此，任意连续映射 $u:\mathbb D\to M$ 在每一点 $z\in\mathbb D$ 都有内蕴\BookRecordIndex{T0282}切锥 $\mathcal C_z(u)\subset T_{u(z)}M$。当 $u$ 为非常值 \BookRecordIndex{T0003}$J$-全纯曲线时，命题~\ref{prop:E-5-10} 表明该锥是 $TM$ 的一维复子空间，称为 $u$ 在 $z$ 处的\emph{切空间}，记为 $T_z(u)$。
+
+非常值 \BookRecordIndex{T0003}$J$-全纯曲线 $u:\Sigma\to M$ 在 $z_0\in\Sigma$ 处的\emph{阶数}，是使
+\[
+  \psi\circ u\circ\phi^{-1}\in
+  \mathcal O_k\setminus\mathcal O_{k+1}
+\]
+成立的唯一整数 $k$，其中 $\phi:(\Sigma,z_0)\to(\mathbb C,0)$ 是 $\Sigma$ 的坐标图，$\psi:(M,u(z_0))\to(\mathbb C^n,0)$ 是 $M$ 的坐标图。由命题~\ref{prop:E-5-10} 及注~\ref{rem:E-5-4}、\ref{rem:E-5-5} 的复合性质，$k$ 存在且与所选坐标图无关。$z_0$ 是 $u$ 的\BookRecordIndex{T0405}正则点（即 $du(z_0)\ne0$）当且仅当 $k=1$；是奇点当且仅当 $k\ge2$。
+
+现设 $u:\mathbb D\to M$ 是在 $z=0$ 有 $k\ge2$ 阶奇点的 \BookRecordIndex{T0003}$J$-全纯曲线。局部将 $M$ 识别为 $T_0(u)\times\mathbb C^{n-1}$，并把 $T_0(u)$ 识别为 $\mathbb C$。命题~\ref{prop:E-5-10} 给出局部 $C^2$ 重参数化 $\varphi:\mathbb D\to\mathbb D$，使
+\[
+  \varphi(0)=0,\qquad u\circ\varphi(z)=(z^k,F(z)),
+  \qquad F(z)=o(z^k).
+\]
+因而，$u$ 的像在局部可看作其原点切空间上的多值图：它把 $\zeta$ 送至集合 $\{F(z)\mid z^k=\zeta\}$。代价是 $F$ 不全纯，而仅为 $C^2$；但我们只研究到 $C^1$ 共轭为止的 $J$-全纯奇点，这已足够。
+\end{remark}

@@ -1,0 +1,87 @@
+
+\section{\trQCSheaf}
+
+给定一个 $A$-\trModule{} $M$，我们在 \S4.1.5 中定义了 $\Spec A$ 上的一个 $\OO$-\trModule{} $\widetilde{M}$——它在 $D(f)$ 上的\trSection{}就是 $M_f$。（如果你还没有做过 \S4.1.5 的那些练习，眼下正是补完的好时机。）这些便是我们关于\trQCSheaf{}的「局部模型」。正如\trScheme{}是靠「把环粘合起来」来定义的，一个\trScheme{}之上的\trQCSheaf{}也是靠「把那些环上的模粘合起来」得到的。
+
+\textbf{6.1.1.}\ \emph{\trhDefinition{}：\trQCSheaf{}的\trCategory。}\quad 设 $X$ 是一个\trScheme。一个 $\OO_X$-\trModule{} $\scr{F}$ 称为一个\textbf{\trQCSheaf}（quasicoherent sheaf），若对每个\trAffine\trOpenSubset{} $\Spec A\subset X$，都有某个 $A$-\trModule{} $M$，使得 $\scr{F}|_{\Spec A}\cong\widetilde{M}$。我们取\trMorphism{}为「作为 $\OO_X$-\trModule{}的\trMorphism」，从而把概形 $X$ 上的诸\trQCSheaf{}做成一个\trCategory{} $\catQCo_X$。
+
+\textbf{6.1.2.\ \trhTheorem。}\ ——\ \emph{设 $X$ 是一个\trScheme，$\scr{F}$ 是一个 $\OO_X$-\trModule。设 $P$ 是诸\trAffine\trOpenSubscheme{} $\Spec A\subset X$ 所享有的如下性质：存在某个 $A$-\trModule{} $M$，使得 $\scr{F}|_{\Spec A}\cong\widetilde{M}$。则 $P$ 满足\trAffineCommunicationLemma{}~5.3.2 的两条假设。}
+
+于是，要检验一个 $\OO$-\trModule{}的\trQC{}性，只需在覆盖 $X$ 的一族仿射开集上加以检验即可。例如，$\widetilde{M}$ 就是 $\Spec A$ 上的一个\trQCSheaf。\cref{ex:module-maps-sheaf-maps}表明，$\catMod{A}$ 与 $\catQCo_{\Spec A}$ 这两个\trCategory{}本质上相同（我们已经描述了一个等价 $\catMod{A}\;\tilde{\longleftrightarrow}\;\catQCo_{\Spec A}$）。
+
+\emph{证明。}\ 照例，\trAffineCommunicationLemma{}~5.3.2 的第一条假设更容易：若 $\Spec A$ 具有性质 $P$，则\trDistinguishedOpen{} $\Spec A_f$ 亦然：若 $M$ 是一个 $A$-\trModule，则作为 $\OO_{\Spec A_f}$-\trModule{}的层，有 $\widetilde{M}|_{\Spec A_f}\cong\widetilde{M_f}$（两边在诸\trDistinguishedOpen{}及其\trRestrictionMap{}的层面上一致）。
+
+接下来我们证明\trAffineCommunicationLemma{}~5.3.2 的第二条假设。设已给定：
+\begin{itemize}
+\item 一个 $\OO_{\Spec A}$-\trModule{} $\scr{F}$；
+\item 生成 $A$ 的诸元素 $f_1,\dots,f_n$；
+\item 一些 $A_{f_i}$-\trModule{} $M_i$；以及
+\item 一些\trIsomorphism{} $\phi_i\colon\scr{F}|_{D(f_i)}\tilde{\longrightarrow}\widetilde{M}_i$。
+\end{itemize}
+这些\trIsomorphism
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+ & \scr{F}|_{D(f_i)\cap D(f_j)} \ar[dl,"\sim"] \ar[dr,"\sim"] \\
+\widetilde{M}_i|_{D(f_i)\cap D(f_j)} & & \widetilde{M}_j|_{D(f_i)\cap D(f_j)}
+\end{tikzcd}
+\]
+（通过在 $D(f_i)\cap D(f_j)$ 上取\trSection）给出 $A_{f_if_j}$-\trModule{}的一些\trIsomorphism{} $\phi_{ij}\colon(M_i)_{f_j}\tilde{\longrightarrow}(M_j)_{f_i}$，它们满足\trCocycleCondition{} \eqref{eq:cocycle-condition}。作为一种富有暗示性的记号，令 $M_{ij}:=(M_i)_{f_j}$（借助 $\phi_{ij}$ 把它与 $(M_j)_{f_i}$ 等同）。
+
+我们寻找一个 $A$-\trModule{} $M$，使之带有\trIsomorphism{} $\widetilde{M}\;\tilde{\longleftrightarrow}\;\scr{F}$；而 \eqref{eq:module-equalizer-sequence} 提示我们应当如下定义 $M$：
+\begin{equation*}\tag{6.1.2.1}\label{eq:m-equalizer-definition}
+0\longrightarrow M\longrightarrow M_1\times\cdots\times M_n\overset{\gamma}{\longrightarrow}M_{12}\times M_{13}\times\cdots\times M_{(n-1)n}.
+\end{equation*}
+（\eqref{eq:module-equalizer-sequence} 处的讨论提示了映射 $\gamma$ 该怎样定义，需配上恰当的正负号。）翻译过来就是：$M=\ker(\gamma)$。若我们能在每个 $D(f_i)$ 上描述一个\trIsomorphism{} $\widetilde{M}|_{D(f_i)}\tilde{\longrightarrow}\widetilde{M}_i$（等价地，$A_{f_i}$-\trModule{}的一个\trIsomorphism{} $M_{f_i}\tilde{\longrightarrow}M_i$），使得 $\Spec A_{f_if_j}$ 上诸\trSheaf{}的三角形
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+ & \widetilde{M}|_{D(f_i)\cap D(f_j)} \ar[dl,"\sim"] \ar[dr,"\sim"] \\
+\widetilde{M}_i|_{D(f_i)\cap D(f_j)} \ar[rr,"\widetilde{\phi}_{ij}"',"\sim"] & & \widetilde{M}_j|_{D(f_i)\cap D(f_j)}
+\end{tikzcd}
+\]
+交换（对一切 $i$, $j$），那么\cref{ex:gluing-sheaves-cocycle}（关于粘合\trSheaf{}的那条练习）便给出我们想要的\trIsomorphism{} $\widetilde{M}\;\tilde{\longleftrightarrow}\;\scr{F}$。
+
+由\cref{ex:module-maps-sheaf-maps}，我们只需描述一个\trIsomorphism{} $M_{f_i}\tilde{\longrightarrow}M_i$，使得诸三角形
+\begin{equation*}\tag{6.1.2.2}\label{eq:triangle-modules-fi-fj}
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+ & M_{f_if_j} \ar[dl,"\sim"] \ar[dr,"\sim"] \\
+(M_i)_{f_j} \ar[rr,"\phi_{ij}"] & & (M_j)_{f_i}
+\end{tikzcd}
+\end{equation*}
+交换。
+
+为记号方便起见，不妨设 $i=1$。由于\trLocalization{}是\trExact{}的，从 \eqref{eq:m-equalizer-definition} 可得正合列
+\[
+0\longrightarrow M_{f_1}\longrightarrow(M_1)_{f_1}\times\cdots\times(M_n)_{f_1}\overset{\gamma_{f_1}}{\longrightarrow}(M_{12})_{f_1}\times(M_{13})_{f_1}\times\cdots\times(M_{(n-1)n})_{f_1}.
+\]
+我们将证明
+\begin{equation*}\tag{6.1.2.3}\label{eq:m1-exact-beta-gamma}
+0\longrightarrow M_1\overset{\beta}{\longrightarrow}(M_1)_{f_1}\times\cdots\times(M_n)_{f_1}\overset{\gamma_{f_1}}{\longrightarrow}(M_{12})_{f_1}\times(M_{13})_{f_1}\times\cdots\times(M_{(n-1)n})_{f_1}
+\end{equation*}
+是正合的（你看出 $\beta$ 该怎样定义了吗？），由此便给出我们想要的\trIsomorphism{} $M_{f_1}\tilde{\longrightarrow}M_1$。我们把 \eqref{eq:m1-exact-beta-gamma} 改写为
+\begin{equation*}\tag{6.1.2.4}\label{eq:m1-rewritten-alpha}
+\begin{aligned}
+0\longrightarrow M_1\longrightarrow{} &(M_1)_{f_1}\times(M_1)_{f_2}\times\cdots\times(M_1)_{f_n}\\
+\overset{\alpha}{\longrightarrow}{} &(M_1)_{f_1f_2}\times\cdots\times(M_1)_{f_1f_n}\times(M_1)_{f_2f_3}\times\cdots\times(M_1)_{f_{n-1}f_n}.
+\end{aligned}
+\end{equation*}
+但这恰恰就是正合列 \eqref{eq:module-equalizer-sequence}，只不过把环 $A$ 换成了 $A_{f_1}$，把\trModule{} $M$ 换成了 $M_1$。
+
+\textbf{6.1.A.（练习）}\quad 把最后一根松线拴紧：为什么三角形 \eqref{eq:triangle-modules-fi-fj} 交换？\hfill$\square$
+
+\extrahard\ \emph{行家注记：}\ 定理~6.1.2 的证明若表述得稍稍更谨慎一些，便表明\trQCSheaf{}满足\trFaithfullyFlat{}下降（faithfully flat descent）。
+
+\textbf{6.1.3.\ 零星收尾话题。}
+
+\textbf{6.1.B.\ 不重要的练习（并非每个 $\OO_X$-\trModule{}都是\trQCSheaf）。}\quad
+
+(a)~设 $X=\Spec k[t]$。设 $\scr{F}$ 是支撑在原点 $[(t)]$ 处的\trSkyscraperSheaf，其群为 $k(t)$，并带有通常的 $k[t]$-\trModule{}结构。证明：这是一个 $\OO_X$-\trModule，但不是\trQCSheaf。（更一般地，若 $X$ 是一个\trIntegral\trScheme，而 $p\in X$ 不是\trGenericPoint，我们可以取在 $p$ 处支撑的\trSkyscraperSheaf，其群取为 $X$ 的\trFunctionField。除非在犯傻的情形下，这个\trSheaf{}不会是\trQC{}的。）更多的「是 $\OO_X$-\trModule{}却不是\trQCSheaf」的（病态）例子，参看练习~9.1.G 与 6.2.H。
+
+(b)~设 $X=\Spec k[t]$。设 $\scr{F}$ 是支撑在\trGenericPoint{} $[(0)]$ 处的\trSkyscraperSheaf，其群为 $k(t)$。请赋予它一个 $\OO_X$-\trModule{}的结构。证明：它\emph{确实}是\trQCSheaf。描述 $X$ 的\trDistinguishedTopology{}（distinguished topology）中全部的\trRestrictionMap。（评注：你的论证在更一般的情形也适用，例如：当 $X$ 是一个带\trGenericPoint{} $\eta$ 的\trIntegral\trScheme，而 $\scr{F}$ 是摩天楼层 $i_{\eta,*}K(X)$ 时。）
+
+\textbf{6.1.4.\ 无挠层（一条\trStalkLocal{}条件）与挠层。}\quad 称一个 $A$-\trModule{} $M$ 为\textbf{\trTorsionFree}（torsion-free）的，若 $a\mathrm{m}=0$ 蕴涵：要么 $a$ 是 $A$ 中的\trZerodivisor，要么 $\mathrm{m}=0$。
+
+在 $A$ 是\trIntegralDomain{}的情形——这基本上是我们将要使用这一概念的唯一场合——\trTorsionFree{}性的定义可以改述为：$a\mathrm{m}=0$ 仅当 $a=0$ 或 $\mathrm{m}=0$ 时成立。此时，$M$ 的\textbf{\trTorsionSubmodule{}}（torsion submodule）记作 $M_{\mathrm{tors}}$，由 $M$ 中被 $A$ 的某个非零元素零化的那些元素组成。（若 $A$ 不是\trIntegralDomain，这一构造未必给出一个 $A$-\trModule。）显然，$M$ 是\trTorsionFree{}的当且仅当 $M_{\mathrm{tors}}=0$。我们称\trIntegralDomain{} $A$ 上的一个\trModule{} $M$ 为\textbf{挠}（torsion）的，若 $M=M_{\mathrm{tors}}$；这等价于 $M\otimes_A K(A)=0$。
+
+若 $X$ 是一个\trScheme，则一个 $\OO_X$-\trModule{} $\scr{F}$ 称为\textbf{\trTorsionFree}的，若对一切 $\mathfrak{p}$，$\scr{F}_\mathfrak{p}$ 都是\trTorsionFree{}的 $\OO_{X,\mathfrak{p}}$-\trModule。
+
+\textbf{6.1.5.}\ \emph{\trhDefinition{}：既约概形上的挠拟凝聚层。}\quad 受上面对 $M_{\mathrm{tors}}$ 的定义的启发，我们称\emph{既约}概形上的一个\trQCSheaf{}是\textbf{挠}的，若它在每个\trIrreducibleComponent{}的\trGenericPoint{}处的\trStalk{}为 $0$。我们主要将把它用于\trRegular\trCurve{}上的诸\trCoherentSheaf——在那里这个概念的确十分简单（见练习~14.3.F(b)）——但在文献中，它也会在更一般的情形下出现。

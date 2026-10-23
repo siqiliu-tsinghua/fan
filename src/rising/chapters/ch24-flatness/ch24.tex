@@ -1,0 +1,61 @@
+
+\chapter{平坦性}
+\label{ch:flatness}
+
+\epigraph{平坦性的概念是自代数中诞生的一个谜，然而在技术上，它却是对许多祈祷的回应。}{——D.~\trMumford，[Mu7, III.~10]}
+
+我们回到\trFlatness{}这个重要概念。其实早在讨论\trQCSheaf{}与\trMorphism{}之时，我们就可以大谈平坦性了。但这是一个出人意料的想法，其代数与几何两面又看不出明显的联系，所以我们把它留到了相对靠后的地方。\trSerre{}曾说，他在其里程碑式的「GAGA」论文 [Se3] 中引入平坦性纯粹是出于代数上的理由，而认识到其几何意义的人则是\trGrothendieck。「正合」看起来似乎比「平坦」更富描述性（那样我们就会有「正合模」与「正合态射」），但这个叫法并未流行开来。
+
+\textbf{24.0.1.}\quad \trFlat{}\trMorphism{}正是「好的」或「变化良好」的 $Y$ 上\trFamily{}这一概念的不二之选。例如，若 $\pi$ 是连通\trNoether{}基上的射影平坦族（释读：$\pi\colon X\to Y$ 是射影平坦\trMorphism，其中 $Y$ 连通且\trNoether），我们将看到纤维的各种数值不变量都是常数，包括维数（\S24.5.5），以及可以用\trEulerCharacteristic{}来解读的诸数（见 \S24.7）：
+（a）\trHilbertPolynomial（\mbox{推论~24.7.2}）；
+（b）（射影空间中的）次数（\mbox{练习~24.7.A}(a)）；
+（\(b'\)）（作为 (b) 的特例）若 $\pi$ 有限，$\pi$ 的次数（恢复并推广「正则曲线之间射影映射的次数是常数」这一事实，\S16.3.4；见\mbox{练习~24.3.G} 与 \S24.3.12）；
+（c）\trArithmeticGenus\footnote{原书此处作「\mbox{练习~24.7.A}(b)」，惟 \mbox{练习~24.7.A} 实列 (a) 纤维次数、(b) 纤维维数、(c) \trArithmeticGenus，当为「(c)」之误，径改。——译者注}（\mbox{练习~24.7.A}(c)）；
+（d）纤维为\trCurve{}时\trLineBundle{}的次数（\mbox{推论~24.7.3}）；
+（e）\trDivisor{}与\trLineBundle{}的相交（\mbox{练习~24.7.D}）。
+
+你可能以为合适的假设该是\trSmoothness，或者更一般地，某种等奇异性，但我们只需要更弱的条件。而这是件好事：\trBranchedCover{}在任何传统意义下都不是纤维化，却依然表现良好——由 $y\mapsto x^2$ 给出的二重覆盖 $\mathbb{A}^1\to\mathbb{A}^1$ 有常次数 $2$（\S10.3.4，\S16.3.10 再访）。另一个关键例子，是一族光滑曲线退化成结点曲线的\trFamily（图~\ref{fig:flat-nodal-degeneration}）——（底层解析）曲线的拓扑变了，但\trArithmeticGenus{}保持恒常。关于正则曲线的命题可以这样证明：先对结点退化证明之，再证明该结果在平坦\trFamily{}中表现良好。这类退化技术在代数几何中无处不在。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9,line width=0.8pt]
+  \draw (1.15,0.2) .. controls (0.35,0.9) and (0.35,2.1) .. (1.15,2.8);
+  \draw (2.75,0.0) .. controls (2.15,0.8) and (2.5,2.0) .. (3.45,2.75)
+        .. controls (3.85,3.0) and (4.05,2.6) .. (3.85,2.25)
+        .. controls (3.6,1.8) and (2.85,1.5) .. (2.95,1.0)
+        .. controls (3.05,0.55) and (3.6,0.45) .. (3.9,0.0);
+  \draw (5.05,1.5) circle (0.22);
+  \draw (6.35,0.2) .. controls (5.55,0.9) and (5.55,2.1) .. (6.35,2.8);
+  \draw[gray!75,->] (3.25,-0.45) -- (3.25,-1.5);
+  \draw (0.9,-1.85) -- (6.6,-1.85);
+  \fill (3.25,-1.85) circle (2pt);
+  \node at (3.25,-2.45) {$t=0$};
+  \node at (8.15,-1.85) {$\mathbb{A}^1_k=\Spec k[t]$};
+\end{tikzpicture}
+\caption{一个平坦\trFamily：光滑曲线退化成结点曲线：$y^2=x^3+x^2+tx$。（依原书手绘图重绘。）}\label{fig:flat-nodal-degeneration}
+\end{figure}
+
+鉴于「欧拉示性数恒常」这一定理的上同调本性，你不必惊讶所需的假设（平坦性）也是上同调本性的——它可以用 $\mathrm{Tor}$ 的消失来刻画（\mbox{练习~23.1.C}），我们将在 \S24.2 中把它用得淋漓尽致。
+
+但平坦性还有其他方面的重要性。首先：既然它是「好\trFamily」的正确概念，它使我们能够正确地定义\trModuliSpace{}的概念。例如，$\mathbb{P}^n$ 的\emph{\trHilbertScheme}（Hilbert scheme）「参数化了 $\mathbb{P}^n$ 的诸闭子概形」。从概形 $B$ 到\trHilbertScheme{}的态射，相应于 $\mathbb{P}^n_B$ 上平坦于 $B$ 的（有限表现的）闭子概形。由泛性质的废话，这就在相差唯一\trIsomorphism{}的意义下定义了\trHilbertScheme（当然我们还必须证明它存在，这颇费一番功夫——更多内容见\mbox{定理~25.3.1}）。光滑射影曲线的\trModuliSpace{}则由这样一条\trUniversalProperty{}定义：到该\trModuliSpace{}的态射，相应于几何纤维皆为光滑曲线的射影平坦（有限表现）\trFamily。（遗憾的是，这个\trModuliSpace{}并不存在。）与此相关，平坦性在\trDeformationTheory{}中处于核心地位：它是理解概形（以及其他几何对象，比如向量丛）如何\trDeformation{}的关键（参看 \S21.5.12）。最后，\trGalois{}下降的概念推广为（忠实）「\trFlat{}下降」，使我们能够像在\trZariskiTopology{}（或更经典的拓扑）中那样，在更为新奇的\trGrothendieck{}拓扑中「粘合」；但这超出了我们当前讨论的范围。
+
+平坦性有许多风味各异的面向，很容易只见树木、不见森林。由于平坦性的代数看起来与几何如此不相关，它可能并不直观。我们将不可避免地从代数基础开始，但你应该聚焦于以下几点：证明事物平坦的方法（既有一般判别法也有显式例子），以及特定类型的环上平坦模的分类。凡是涉及这类显式例子的练习，你都应当亲手做一做。
+
+以下是本章的概要，以帮助你聚焦注意力。
+\begin{itemize}
+\item 在 \S24.1 中，我们讨论一些较为容易的事实，它们本质上是代数性的。
+\item \S24.2、\S24.3 与 \S24.6 给出平坦性的理想论判别法。\S24.2 与 \S24.3 应当连在一起读。前者用 $\mathrm{Tor}$ 来理解平坦性，后者则利用这些洞见发展出平坦性的理想论判别法。\S24.6 讲平坦性的局部判别法，较难。
+\item \S24.5 相对独立，可以在 \S24.1 之后立即阅读。它讨论平坦性的拓扑面向，比如「在好的情形中，平坦态射是开映射」这一事实。（回想：拓扑空间之间的映射称作\trOpenMap，如果每个开集的像都是开集。）
+\item 在 \S24.7 中，我们解释「拟凝聚层的\trEulerCharacteristic{}在平坦\trFamily{}中是常数」（在适当假设下）这一事实，以及它带来的许多可喜推论。鉴于其用处，这一节出奇地容易。
+\end{itemize}
+
+你应当聚焦于平坦性蕴含什么、如何把它「画出来」，但也要聚焦于不同情形下平坦性的显式判别法，比如：\trIntegralDomain（\mbox{观察~24.1.2}）、\trPID（\mbox{练习~24.3.B}）、\trDVR（\mbox{练习~24.3.C}）、\trDualNumbers（\mbox{练习~24.3.D}）、局部环（\mbox{定理~24.3.5}）。
+
+\input{chapters/ch24-flatness/s01-easier-facts}
+\input{chapters/ch24-flatness/s02-flatness-through-tor}
+\input{chapters/ch24-flatness/s03-ideal-theoretic-criteria}
+\input{chapters/ch24-flatness/s04-koszul-syzygy}
+\input{chapters/ch24-flatness/s05-topological-implications}
+\input{chapters/ch24-flatness/s06-local-criteria}
+\input{chapters/ch24-flatness/s07-constant-euler-characteristic}
+\input{chapters/ch24-flatness/s08-smooth-etale-flat}

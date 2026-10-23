@@ -1,0 +1,160 @@
+
+\section{\hard\ 可表函子与群概形}
+
+\textbf{7.6.1.\ 到 $\mathbb{A}^1$ 的映射对应于函数。}\quad 若 $X$ 是一个\trScheme，那么到 $\mathbb{A}^1$ 的映射与\trStructureSheaf{}的\trGlobalSections{}之间存在一个双射：由必作练习~7.3.G，映射 $\pi\colon X\to\mathbb{A}^1_{\mathbb{Z}}$ 对应于\trRingMorphism{} $\pi^{\sharp}\colon\mathbb{Z}[t]\to\Gamma(X,\OO_X)$，而 $\pi^{\sharp}(t)$ 就是 $X$ 上的一个函数；这件事是可逆的。
+
+在一种不严格的意味上，这个映射是非常自然的：你甚至可以在脑海里把这个到 $\mathbb{A}^1$ 的映射想象成\emph{由}那个函数所\emph{给出}。（作个类比：\trManifold{}上的函数就是一个到 $\mathbb{R}$ 的映射。）但它还有一种更精确的意味下的自然：这个双射关于 $X$ 是\trFunctoriality{}的。我们将细细地把这个例子琢磨个够，并且将会看到：它把我们引向两个重要而不简单的观念——\trRepresentableFunctor{}与\trGroupScheme。
+
+\textbf{7.6.A.（容易的练习）}\quad 设 $X$ 是一个 $\mathbb{C}$-\trScheme。请验证：$\mathbb{C}$-\trScheme{}的\trCategory{}中到 $\mathbb{A}^1_{\mathbb{C}}$ 的映射，与 $X$ 上的函数之间，存在一个自然的双射。（这里的\trBaseRing{} $\mathbb{C}$ 可以换成任何\trRing{} $A$。）
+
+这一解读还可以推广到\trRationalMap，如下。
+
+\textbf{7.6.B.（无关紧要的练习）}\quad 请把整\trScheme{}上的\trRationalFunction（\mbox{练习~5.2.I}）解读为到 $\mathbb{A}^1_{\mathbb{Z}}$ 的\trRationalMap。
+
+（如果你愿意，还可以把你的论证推广到局部\trNoetherian{}\trScheme{}上的\trRationalMap；见定义~6.6.36。）
+
+\textbf{7.6.2.\ \trRepresentableFunctor。}\quad 我们把 \S7.6.1 的那个双射换一种说法重述如下。我们有从 $\mathit{Sch}$ 到 $\catSets$ 的两个不同的\trContravariantFunctor：到 $\mathbb{A}^1$ 的映射（即 $\mathrm{H}\colon X\mapsto\Mor(X,\mathbb{A}^1_{\mathbb{Z}})$），以及 $X$ 上的函数（$\mathrm{F}\colon X\mapsto\Gamma(X,\OO_X)$）。这个双射的「自然性」——也就是它关于 $X$ 的\trFunctoriality——恰好就是这样一个陈述：该双射给出诸函子间的一个\trNaturalIsomorphism（\S1.1.21）。也就是说，给定任何 $\pi\colon X\to X'$，图
+\[
+\begin{tikzcd}[row sep=3.2em]
+\mathrm{H}(X') \ar[r, "\mathrm{H}(\pi)"] \ar[d] & \mathrm{H}(X) \ar[d] \\
+\mathrm{F}(X') \ar[r, "\mathrm{F}(\pi)"'] & \mathrm{F}(X)
+\end{tikzcd}
+\]
+（其中竖直的映射就是 \S7.6.1 中给出的那两个双射）交换。
+
+更一般地，若 $Y$ 是\trCategory{} $\scr{C}$ 的一个元素（我们在意的特例是 $\scr{C}=\mathit{Sch}$），回想由 $\mathrm{h}_Y(X)=\Mor(X,Y)$ 定义的\trContravariantFunctor{} $\mathrm{h}_Y\colon\scr{C}\to\catSets$（例~1.1.20）。我们说：一个从 $\scr{C}$ 到 $\catSets$ 的\trContravariantFunctor{}是\textbf{被 $Y$ 所\trRepresentation{}的}（represented by $Y$），若它与函子 $\mathrm{h}_Y$ \trNaturalIsomorphism；又说它是\textbf{\trRepresentable{}的}（representable），若它被\emph{某个} $Y$ 所\trRepresentation。
+
+\S7.6.1 的那个双射，如今可以重述为：\emph{整体截面函子被 $\mathbb{A}^1$ 所\trRepresentation。}
+
+\textbf{7.6.C.（重要而容易的练习：表示对象在相差唯一\trIsomorphism{}的意义下唯一）}\quad 证明：若一个\trContravariantFunctor{} $F$ 既被 $Y$ 所\trRepresentation{}又被 $Z$ 所\trRepresentation，那么便有一个唯一的\trIsomorphism{} $Y\mathrel{\xrightarrow{\ \sim\ }}Z$，它由函子的\trNaturalIsomorphism{} $\mathrm{h}_Y\mathrel{\xrightarrow{\ \sim\ }}\mathrm{h}_Z$ 所诱导。提示：这是 \S1.2 的泛性质论证的一个版本：我们再一次凭着映入某对象的那些映射认出该对象（在相差唯一\trIsomorphism{}的意义下）。这道练习本质上就是\cref{ex:general-yoneda-representables}(b)。
+
+（在此框架下，这件事可以顺理成章地推广到\trYonedaLemma，即\cref{ex:yoneda-lemma-schemes}。你现在就去试上一试，亦无不可。）
+
+其实你早已暗中见过这个观念：你可以把\trCategory{}中\trProduct{}与\trFiberProduct{}的存在性，解读为\trRepresentableFunctor{}的例子。（你或许愿意琢磨一下：$\mathrm{h}_{Y\times Z}\mathrel{\xrightarrow{\ \sim\ }}\mathrm{h}_Y\times\mathrm{h}_Z$ 的一个\trNaturalIsomorphism{}如何诱导出投影映射 $Y\times Z\to Y$ 与 $Y\times Z\to Z$。）
+
+\textbf{7.6.D.（热身练习）}\quad 设 $F$ 是\trContravariantFunctor{} $\mathit{Sch}\to\catSets$，定义为：对一切概形 $X$，$F(X)=\{\text{Grothendieck}\}$。证明：$F$ 是\trRepresentable{}的。（它被谁所\trRepresentation？）\footnote{译注：笑点在于——「对一切 $X$ 恒取同一个单点集 $\{\text{Grothendieck}\}$」的函子，恰被 $\Spec\mathbb{Z}$ 表示：单点集的「万有元素」正是那位什么都研究的人。}
+
+\textbf{7.6.E.（练习）}\quad 本练习中，$\mathbb{Z}$ 可以换成任何\trRing。
+\begin{enumerate}[label=(\alph*)]
+  \item \emph{（仿射 $n$-空间\trRepresentation{}「$n$ 个函数」的函子。）}证明：从（$\mathbb{Z}$-）概形到 $\catSets$ 的\trContravariantFunctor
+  \[
+  X\longmapsto\{(f_1,\dots,f_n)\ :\ f_i\in\Gamma(X,\OO_X)\}
+  \]
+  被 $\mathbb{A}^n_{\mathbb{Z}}$ 所\trRepresentation。证明：$\mathbb{A}^1_{\mathbb{Z}}\times_{\mathbb{Z}}\mathbb{A}^1_{\mathbb{Z}}\cong\mathbb{A}^2_{\mathbb{Z}}$；也就是说，$\mathbb{A}^2$ 满足 $\mathbb{A}^1\times\mathbb{A}^1$ 的函子式刻画。（你无疑立刻就能顺手证明：$\prod\mathbb{A}^{m_i}_{\mathbb{Z}}\mathrel{\overset{\sim}{\longleftrightarrow}}\mathbb{A}^{\sum m_i}_{\mathbb{Z}}$。）
+  \item \emph{（可逆函数的函子是可表的。）}证明：从（$\mathbb{Z}$-）概形到 $\catSets$、把 $X$ 送到 $X$ 上的\trInvertible{}函数的那个\trContravariantFunctor，被 $\Spec\mathbb{Z}[t,t^{-1}]$ 所\trRepresentation。
+\end{enumerate}
+
+\textbf{7.6.3.}\ \emph{\trhDefinition{}。}\quad \mbox{练习~7.6.E}(b) 中定义的那个概形，称为\textbf{\trMultiplicativeGroup{}}（multiplicative group）（或\textbf{\trMultiplicativeGroup{}概形}（multiplicative group scheme））$\mathbb{G}_m$。「域 $k$ 上的 $\mathbb{G}_m$」（「$k$ 上的\trMultiplicativeGroup{}」）指 $\Spec k[t,t^{-1}]$，并带着同样的群运算。更好的说法是：它在 $k$-\trScheme{}的\trCategory{}中\trRepresentation{}由可逆函数组成的群。我们同样可以在任意\trRing{}上、乃至任意\trScheme{}上定义 $\mathbb{G}_m$。
+
+\textbf{7.6.F.（较不重要的练习）}\quad 固定一个\trRing{} $A$。考虑从\trLocallyRingedSpace{}的\trCategory{}到 $\catSets$ 的函子 $\mathrm{H}$，由 $\mathrm{H}(X)=\{A\to\Gamma(X,\OO_X)\}$ 给出。证明：这个函子是\trRepresentable{}的（被 $\Spec A$ 所\trRepresentation）。这就为 $\Spec A$ 的定义给出了另一条（得承认是有点怪的）动机，与 \S7.3.6 的那条密切相关。
+
+\textbf{7.6.4.}\ \extrahard\ \textbf{群概形（或更一般地，\trCategory{}中的\trGroupObject{}）。}\quad（\S7.6 的其余部分，只该当作消遣来读。）我们又一次回到例~7.6.1。$X$ 上的函数可比一个集合要强：它们构成一个群。（的确，它们甚至构成一个\trRing，不过这件事我们日后再操心。）给定一个\trMorphism{} $X\to Y$，函数的\trPullback{} $\Gamma(Y,\OO_Y)\to\Gamma(X,\OO_X)$ 是一个\trGroupHom。于是我们应当指望 $\mathbb{A}^1$ 带有某种群式的结构。这就把我们引向\textbf{\trGroupScheme}（group scheme）的观念，或者更一般地，\trCategory{}中\textbf{\trGroupObject{}}（group object）的观念。我们现在就来定义它。
+
+设 $\scr{C}$ 是一个带有\trFinalObject{} $Z$ 且带有\trProduct{}的\trCategory。（我们知道，$\mathit{Sch}$ 有\trFinalObject{} $Z=\Spec\mathbb{Z}$，见练习~7.3.J。至于它也有\trProduct，此事见 \S10.1，日后再说。不过在\mbox{练习~7.6.K} 中，我们将给出\trGroupObject{}的另一种刻画，它适用于任何\trCategory，所以此事不劳我们操心。）
+
+$\scr{C}$ 中的一个\trGroupObject{}，是一个\trObject{} $X$ 连同三个\trMorphism：
+\begin{itemize}[leftmargin=2.6em,itemsep=2pt,topsep=3pt]
+  \item \emph{乘法}（multiplication）：$\mathrm{m}\colon X\times X\to X$；
+  \item \emph{\trInverseElement}（inverse）：$\mathrm{i}\colon X\to X$；以及
+  \item \emph{\trUnit}（identity element）：$\mathrm{e}\colon Z\to X$（\emph{不是恒等映射}）。
+\end{itemize}
+这些\trMorphism{}须满足以下几个条件。
+
+（i）结合公理：
+\[
+\begin{tikzcd}[row sep=3.2em]
+X\times X\times X \ar[r, "\mathrm{m}\times\mathrm{id}"] \ar[d, "\mathrm{id}\times\mathrm{m}"'] & X\times X \ar[d, "\mathrm{m}"] \\
+X\times X \ar[r, "\mathrm{m}"'] & X
+\end{tikzcd}
+\]
+交换。（这里的 $\mathrm{id}$ 指的是那个等同映射 $X\to X$。）
+
+（ii）单位元公理：
+\[
+\begin{tikzcd}
+X \ar[r, "\sim"] & Z\times X \ar[r, "\mathrm{e}\times\mathrm{id}"] & X\times X \ar[r, "\mathrm{m}"] & X
+\end{tikzcd}
+\]
+与
+\[
+\begin{tikzcd}
+X \ar[r, "\sim"] & X\times Z \ar[r, "\mathrm{id}\times\mathrm{e}"] & X\times X \ar[r, "\mathrm{m}"] & X
+\end{tikzcd}
+\]
+都是恒等映射 $X\to X$。（这对应于群的那条公理：「乘以单位元便是恒等映射。」）
+
+（iii）逆元公理：
+\[
+\begin{tikzcd}
+X \ar[r, "\mathrm{i}\times\mathrm{id}"] & X\times X \ar[r, "\mathrm{m}"] & X
+\end{tikzcd}
+\]
+与
+\[
+\begin{tikzcd}
+X \ar[r, "\mathrm{id}\times\mathrm{i}"] & X\times X \ar[r, "\mathrm{m}"] & X
+\end{tikzcd}
+\]
+都是经合成
+\[
+\begin{tikzcd}
+X \ar[r] & Z \ar[r, "\mathrm{e}"] & X
+\end{tikzcd}
+\]
+而得的那个映射。
+
+作为一个动机，你可以验证：$\catSets$ 这个\trCategory{}中的\trGroupObject{}，其实与群是一回事。（这很能说明你是如何把某个观念「范畴化」的：你把它的诸公理按范畴论的路数写下来；倘若一切顺利，取 $\catSets$ 为特例时，你便回到了原来的观念。下面的练习会让你把这套功夫施之于「\trRing」的观念。）
+
+\textbf{\trGroupScheme}（group scheme）定义为概形的\trCategory{}中的\trGroupObject{}。环 $A$ 上的群概形（或概形 $S$ 上的群概形）定义为 $A$-\trScheme（或 $S$-\trScheme）的\trCategory{}中的\trGroupObject{}。
+
+\textbf{7.6.G.（练习）}\quad 请为 $\mathbb{A}^1_{\mathbb{Z}}$ 赋予群概形的结构：把三个\trStructureMorphism{}描述出来，并证明它们满足诸公理。（提示：这些态射不应令人意外。例如，\trInverseElement{}由 $t\mapsto-t$ 给出。注意：由\mbox{练习~7.6.E}(a) 我们已经知道积 $\mathbb{A}^1_{\mathbb{Z}}\times_{\mathbb{Z}}\mathbb{A}^1_{\mathbb{Z}}$ 存在。）
+
+\textbf{7.6.H.（练习）}\quad 证明：若 $G$ 是\trCategory{} $\scr{C}$ 中的一个\trGroupObject{}，则对任何 $X\in\scr{C}$，$\Mor(X,G)$ 都带有群的结构，而且这个群结构在\trPullback{}下保持不变（也就是说，$\Mor(-,G)$ 是到群的\trCategory{} $\catGroups$ 的一个\trContravariantFunctor）。
+
+\textbf{7.6.I.（练习）}\quad 证明：上一练习所描述的群结构，经由 \S7.6.1 的双射，把 $\mathbb{A}^1_{\mathbb{Z}}$ 上的群概形结构翻译为 $\Gamma(X,\OO_X)$ 上的群结构。
+
+\textbf{7.6.J.（练习）}\quad 请定义\textbf{\trAbelian{}群概形}（abelian group scheme）与\textbf{\trRingScheme{}}（ring scheme）的观念。（毫无疑问，你会同时想明白如何在任何\trCategory{} $\scr{C}$ 中定义\trAbelian{}\trGroupObject{}与环对象的观念。读过 \S7.6.5 之后，你或许会发现一条处理这类问题的更省力的门径。）
+
+\textbf{7.6.5.}\ \emph{群概形，更函子式地。}\quad 我们关于 \S7.6.1 中那个双射的「尊重群结构」性质的讨论，有一点令人不满意：我们先观察到右边（$X$ 上的函数）构成一个群，接着发展出群概形的公理，然后灵机一动琢磨出让 $\mathbb{A}^1_{\mathbb{Z}}$ 成为群概形的那些映射，最后才证明：这在双射的左边（$\Mor(X,\mathbb{A}^1)$）诱导出一个群结构，而这个群结构恰与右边（$X$ 上的函数）的群结构相对应。
+
+这幅图景可以更干净地讲清楚，如下。概形\trValuedPoint{}的语言（定义~7.3.10）有这样一个好处：请注意，群概形的诸点本身未必构成一个群（想想 $\mathbb{A}^1_{\mathbb{Z}}$）。但\mbox{练习~7.6.H} 表明：群概形的诸 $Z$-\trValuedPoint（其中 $Z$ 是任何取定的\trScheme）确实构成一个群。
+
+\textbf{7.6.K.（练习）}\quad 设我们有一个从 $\mathit{Sch}$（说实在的，任何\trCategory{}都行）到 $\catGroups$ 的\trContravariantFunctor{} $F$。再设 $F$ 与遗忘函子 $\catGroups\to\catSets$ 的复合被某个\trObject{} $Y$ 所\trRepresentation。证明：诸 $F(X)$ 上的群运算（当 $X$ 跑遍 $\mathit{Sch}$ 时）唯一地确定出满足群概形定义诸公理的 $\mathrm{m}\colon Y\times Y\to Y$、$\mathrm{i}\colon Y\to Y$、$\mathrm{e}\colon Z\to Y$，使得 $\Mor(X,Y)$ 上的群运算与 $F(X)$ 上的相同。
+
+特别地，「群」的定义把「\trCategory{}中\trGroupObject{}」的定义逼到了我们手上。更一般地，你应当有这样的预期：任何一类可以被解读为「带有附加结构的集合」的对象，都该能装进这幅图景。
+
+你应当把这个练习用到 $\mathbb{A}^1_{\mathbb{Z}}$ 上，看看你在\mbox{练习~7.6.G} 中找到的那些显式公式是怎样被逼出来的。
+
+\textbf{7.6.L.（练习）}\quad 请把\mbox{练习~7.6.E} 的群概形中的诸映射 $\mathrm{m}$、$\mathrm{i}$ 与 $\mathrm{e}$ 具体算出来。
+
+\textbf{7.6.M.（练习）}\quad 请解释：为什么一个\trCategory{}中诸\trGroupObject{}的\trProduct{}可以自然地解读为该\trCategory{}中的一个\trGroupObject{}。
+
+\vkexsync{N}
+\begin{exercise}\label{ex:morphism-of-group-schemes}
+(a)~请定义\textbf{群概形的\trMorphism}（morphism of group schemes）。
+
+(b)~回想：若 $A$ 是一个\trRing，则 $\mathrm{GL}_n(A)$（\textbf{$A$ 上的\trGeneralLinearGroup{}}（general linear group over $A$））是元素取自\trRing{} $A$ 的可逆 $n\times n$ 矩阵所成的群。请琢磨出\textbf{群概形 $\mathrm{GL}_n$（环 $A$ 上的）}的正确定义，并描述\textbf{\trDeterminant{}映射}（determinant map）$\det\colon\mathrm{GL}_n\to\mathbb{G}_m$。
+
+(c)~请把下面这句话琢磨出道理来：「由 $t\mapsto t^n$ 给出的 $(\cdot^{n})\colon\mathbb{G}_m\to\mathbb{G}_m$ 是群概形的一个\trMorphism。」
+\end{exercise}
+
+\cref{ex:morphism-of-group-schemes}(a) 的语言暗示：群概形也构成一个\trCategory；你若乐意，大可去证明这件事。事实上，群概形的\trCategory{}还有一个\trZeroObject。它是什么？
+
+\textbf{7.6.O.（练习：群概形态射的核）}\quad 设 $F\colon G_1\to G_2$ 是群概形的一个\trMorphism。考虑由 $X\mapsto\ker(\Mor(X,G_1)\to\Mor(X,G_2))$ 给出的\trContravariantFunctor{} $\mathit{Sch}\to\catGroups$。若这个函子是可表的——比如说被某个群概形 $G_0$ 所\trRepresentation——证明：$G_0\to G_1$ 是 $F$ 在群概形的\trCategory{}中的\trKernel。
+
+\textbf{7.6.P.（练习）}\quad 证明：$(\cdot^{n})$ 的\trKernel{}（见\cref{ex:morphism-of-group-schemes}）是可表的。若 $n>0$，证明：在特征 $p$ 整除 $n$ 的域 $k$ 上，这个群概形是非\trReduced{}的。（这个群概形记作 $\mu_n$，很重要，尽管我们不会用到它。）
+
+\textbf{7.6.Q.（练习）}\quad 证明：$\det\colon\mathrm{GL}_n\to\mathbb{G}_m$ 的\trKernel{}是可表的。这就是群概形 $\mathrm{SL}_n$。（你可以在 $\mathbb{Z}$ 上做这件事，也可以在域 $k$ 上做，甚至在任意\trRing{} $A$ 上做；其中的代数是一样的。）
+
+\textbf{7.6.R.（练习）}\quad 请（用尽可能省事的办法）证明：$\mathbb{A}^1_k$ 是一个环 $k$-\trScheme。（这里的 $k$ 可以换成任何\trRing。）
+
+\vkexsync{S}
+\begin{exercise}\label{ex:group-scheme-action}
+(a)~请定义（左）\textbf{群概形作用}（group scheme action）的观念，即一个群概形作用在一个概形上。
+
+(b)~设 $A$ 是一个\trRing。证明：在 $A$ 上指定一个整值的\trGrading，等价于指定 $\mathbb{G}_m$ 在 $\Spec A$ 上的一个作用。（分次的这种解读出人意料地富有启发。警示：整值分次有两种可能的选取，二者各有各的道理；文献中两种都在使用。）
+\end{exercise}
+
+\textbf{7.6.6.}\ \emph{题外话：\trHopfAlgebra。}\quad 这里有一个我们不会用到的观念，不过现在把它定义出来毫不费事。设 $G=\Spec A$ 是一个\trAffine{}群概形，即一个作为\trAffineScheme{}的群概形。群概形的范畴论式定义，可以改用\trRing{} $A$ 的语言重新陈述。（这需要把注记~7.3.5 想透；见\mbox{练习~10.1.A}。）此时这些公理便定义出一个\textbf{\trHopfAlgebra{}}（Hopf algebra）。例如，我们有一条「\trComultiplication{}映射」（comultiplication map）$A\to A\otimes A$。
+
+\textbf{7.6.T.（练习）}\quad 由于 $\mathbb{A}^1_{\mathbb{Z}}$ 是群概形，$\mathbb{Z}[t]$ 便带有一个\trHopfAlgebra{}结构。请描述\trComultiplication{}映射 $\mathbb{Z}[t]\to\mathbb{Z}[t]\otimes_{\mathbb{Z}}\mathbb{Z}[t]$。

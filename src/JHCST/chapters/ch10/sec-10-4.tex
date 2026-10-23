@@ -1,0 +1,190 @@
+
+\section{\BookRecordIndex{T0188}截断函数}\label{sec:10-4}
+
+迄今为止，我们用任意光滑\BookRecordIndex{T0188}截断函数 $\rho$ 定义\BookRecordIndex{T0394}预粘合 $u^R$。其余构造也都将通过拼合
+分别定义在区域 $\{|z|\ge1/R\}$ 和 $\{|z|\le1/R\}$ 上的对象来完成。然而，为使所需
+估计成立，必须使用一个经过精细调节的\BookRecordIndex{T0188}截断函数，记为 $\beta$。本节中所有积分都理解为
+关于 Lebesgue 测度的积分。读者初读时完全可以跳过本节，待读到命题~\ref{prop:10-5-1} 的证明中
+$\beta$ 的各种性质如何被使用后再返回。
+
+\begin{lemma}\label{lem:10-4-1}
+对任意两个实数 $0<\delta<\varepsilon$，存在 Lipschitz 连续\BookRecordIndex{T0188}截断函数
+$\beta=\beta_{\delta,\varepsilon}:\mathbb R^2\to[0,1]$，使得
+\[
+  \beta(z)=
+  \begin{cases}
+    1,& |z|\le\delta,\\
+    0,& |z|\ge\varepsilon,
+  \end{cases}
+  \qquad
+  \int_{\mathbb R^2}|\nabla\beta|^2
+  =\frac{2\pi}{\log(\varepsilon/\delta)}.
+\]
+\end{lemma}
+
+\begin{proof}
+定义 $\beta:\mathbb R^2\to[0,1]$：当 $|z|\le\delta$ 时令 $\beta(z):=1$，当
+$|z|\ge\varepsilon$ 时令 $\beta(z):=0$，而在中间区域令
+\begin{equation}\label{eq:10-4-1}
+  \beta(z):=
+  \frac{\log\varepsilon-\log|z|}{\log\varepsilon-\log\delta},
+  \qquad \delta\le|z|\le\varepsilon.
+\end{equation}
+于是 $|\nabla\beta(z)|=1/(|z|\log(\varepsilon/\delta))$，从而
+\[
+  \begin{aligned}
+  \int_{\mathbb R^2}|\nabla\beta(z)|^2
+  &=\int_{\delta\le|z|\le\varepsilon}
+    \frac{1}{|z|^2\log(\varepsilon/\delta)^2}\\
+  &=\int_\delta^\varepsilon
+    \frac{2\pi}{s\log(\varepsilon/\delta)^2}\,ds
+   =\frac{2\pi}{\log(\varepsilon/\delta)}.
+  \end{aligned}
+\]
+引理得证。
+\end{proof}
+
+要强调的是，引理~\ref{lem:10-4-1} 中 $\nabla\beta$ 的 $L^2$ 范数只依赖于比值
+$\varepsilon/\delta$。这说明在二维中，导数的 $L^2$ 范数具有共形不变性。此外，若将常数
+$2\pi/\log(\varepsilon/\delta)$ 换成任意更大的常数，显然可以把\BookRecordIndex{T0188}截断函数 $\beta$ 选成
+光滑的。因此，$\mathbb R^2$ 上存在一列紧支函数，它们在 $W^{1,2}$ 范数下收敛到零，
+但不在 $L^\infty$ 范数下收敛到零（固定常数 $\varepsilon>0$，让 $\delta$ 趋于零即可）。
+这是索伯列夫估计的临界情形。当 $p>2$ 时存在嵌入
+$W^{1,p}(\mathbb R^2)\hookrightarrow C(\mathbb R^2)$，所以若把前一引理中
+$\nabla\beta$ 的 $L^2$ 范数换成 $p>2$ 时的 $L^p$ 范数，其断言便不再成立。下面将看到，
+在二维\BookRecordIndex{T0254}粘合构造中证明一阶算子满射时，所需的恰好是 $L^2$ 范数。$n$ 维中的类似论证要求
+$\nabla\beta$ 的 $L^n$ 范数很小，这同样是索伯列夫临界情形。$n=4$ 的情形与反自对偶
+瞬子的\BookRecordIndex{T0254}粘合有关；Donaldson--Kronheimer \srcite{88, pp.~287--295} 对此作了解释。
+
+现在令 $\beta$ 由~\eqref{eq:10-4-1} 给出，并取
+$\xi\in W^{1,q}(\mathbb R^2)$，其中 $1\le q<2$。于是，对某个合适的常数 $r\ge2$，有
+如下估计\sourcefootnote{原书在式~\eqref{eq:10-4-2} 最后一项中误印为
+$2\pi c/\log(\varepsilon/\delta)$。由引理~\ref{lem:10-4-1}，
+$\|\nabla\beta\|_{L^2}=\sqrt{2\pi/\log(\varepsilon/\delta)}$，故该项唯一应为这里的
+平方根形式。}：
+\begin{equation}\label{eq:10-4-2}
+  \begin{aligned}
+  \|\nabla\beta\cdot\xi\|_{L^q}
+  &\le\|\nabla\beta\|_{L^2}\|\xi\|_{L^r}
+   \le c\|\nabla\beta\|_{L^2}\|\xi\|_{W^{1,q}}\\
+  &\le c\sqrt{\frac{2\pi}{\log(\varepsilon/\delta)}}
+  \|\xi\|_{W^{1,q}}.
+  \end{aligned}
+\end{equation}
+这里，第一个不等式使用 Hölder 不等式
+\[
+  \left(\int|uv|^q\right)^{1/q}
+  \le
+  \left(\int|u|^s\right)^{1/s}
+  \left(\int|v|^r\right)^{1/r},
+  \qquad
+  \frac1s+\frac1r=\frac1q,
+\]
+其中 $s=2$。因此必须取 $r:=2q/(2-q)$；由定理 B.1.12，有索伯列夫嵌入
+$W^{1,q}\hookrightarrow L^r$，这给出上面的第二个不等式。第三个不等式由
+引理~\ref{lem:10-4-1} 得出。
+
+由~\eqref{eq:10-4-2} 可知，只要 $q<2$，乘法算子
+\[
+  W^{1,q}(\mathbb R^2)\longrightarrow L^q(\mathbb R^2),
+  \qquad \xi\longmapsto\nabla\beta_{\delta,\varepsilon}\cdot\xi
+\]
+就在 $\delta\to0$ 时于算子范数下收敛到零。这个原样的断言对 $q>2$ 不再成立。不过，
+在 $q>2$ 的情形，可以把这些算子限制到所有在原点消失的函数所成子空间。下一个引理说明，
+当 $q>2$ 时，这些受限算子在 $\delta\to0$ 时仍于算子范数下收敛到零。记
+\[
+  B_r:=\{z\in\mathbb R^2\mid |z|\le r\},
+  \qquad
+  A(r,R):=\{z\in\mathbb R^2\mid r\le|z|\le R\}.
+\]
+
+\begin{lemma}\label{lem:10-4-2}
+对每个 $p>2$，存在具有如下性质的常数 $c>0$。给定 $0<\delta<\varepsilon$，用
+\eqref{eq:10-4-1} 定义 $\beta:\mathbb R^2\to[0,1]$。则对每个满足
+$\xi(0)=0$ 的 $\xi\in W^{1,p}(B_\varepsilon)$，都有
+\[
+  \|\nabla\beta\cdot\xi\|_{L^p(A(\delta,\varepsilon))}
+  \le
+  \frac{c}{\log(\varepsilon/\delta)^{1-1/p}}
+  \|\xi\|_{W^{1,p}(B_\varepsilon)}.
+\]
+\end{lemma}
+
+\begin{proof}
+由引理~\ref{lem:10-4-1} 的证明，$\nabla\beta$ 的支集包含在\BookRecordIndex{T0170}环域
+$A(\delta,\varepsilon)$ 中，并且当 $\delta\le|z|\le\varepsilon$ 时，
+\[
+  |\nabla\beta(z)|=\frac{1}{|z|\log(\varepsilon/\delta)}.
+\]
+此外，由定理 B.1.11，每个 $\xi\in W^{1,p}(\mathbb R^2)$ 都以指数
+$\mu=1-2/p$ Hölder 连续。更准确地说，存在只依赖于 $p>2$ 的常数 $c>0$，使得
+\begin{equation}\label{eq:10-4-3}
+  z_0,z_1\in B
+  \quad\Longrightarrow\quad
+  |\xi(z_1)-\xi(z_0)|
+  \le c\|\xi\|_{W^{1,p}(B)}|z_1-z_0|^{1-2/p}
+\end{equation}
+对每个球 $B\subset\mathbb R^2$ 和每个 $\xi\in W^{1,p}(B)$ 都成立（见
+引理 B.1.16 的证明）。因此，每个在 $z=0$ 处消失的
+$\xi\in W^{1,p}(B_\varepsilon)$ 都满足估计
+\[
+  \begin{aligned}
+  \int_{\delta\le|z|\le\varepsilon}
+  |\nabla\beta(z)|^p|\xi(z)|^p
+  &\le
+  \frac{c^p}{\log(\varepsilon/\delta)^p}
+  \int_{\delta\le|z|\le\varepsilon}\frac{1}{|z|^2}
+  \|\xi\|_{W^{1,p}(B_\varepsilon)}^p\\
+  &=\frac{2\pi c^p}{\log(\varepsilon/\delta)^p}
+  \int_\delta^\varepsilon\frac1s\,ds\,
+  \|\xi\|_{W^{1,p}(B_\varepsilon)}^p\\
+  &=\frac{2\pi c^p}{\log(\varepsilon/\delta)^{p-1}}
+  \|\xi\|_{W^{1,p}(B_\varepsilon)}^p.
+  \end{aligned}
+\]
+引理得证。
+\end{proof}
+
+我们还需要任意光滑\BookRecordIndex{T0188}截断函数 $\rho:\mathbb C\to[0,1]$ 的如下结论；这里 $\rho$ 在
+$|z|\le1$ 时等于零，在 $|z|\ge2$ 时等于一。
+
+\begin{lemma}\label{lem:10-4-3}
+设 $p>2$，且 $\xi\in W^{1,p}(B_1)$ 满足 $\xi(0)=0$。记
+$\rho_R(z):=\rho(Rz)$。则
+\[
+  \lim_{R\to\infty}\|\xi-\rho_R\xi\|_{W^{1,p}(B_1)}=0.
+\]
+\end{lemma}
+
+\begin{proof}
+我们证明存在常数 $c>0$，使得
+\begin{equation}\label{eq:10-4-4}
+  \|\xi-\rho_R\xi\|_{W^{1,p}(B_1)}
+  \le c\|\xi\|_{W^{1,p}(B_{2/R})}.
+\end{equation}
+首先注意，若把 $W^{1,p}$ 范数换成 $L^p$ 范数，则这个估计取 $c=1$ 即成立。其次，
+\[
+  \nabla(\xi-\rho_R\xi)
+  =(1-\rho_R)\nabla\xi-(\nabla\rho_R)\xi.
+\]
+第一项的 $L^p$ 范数以 $c=1$ 满足所需不等式。为估计第二项，注意
+$\|\nabla\rho_R\|_{L^\infty}=Rc_0$，其中
+$c_0:=\|\nabla\rho\|_{L^\infty}$。此外，由~\eqref{eq:10-4-3}，存在常数 $c_1>0$，使得
+\[
+  |\xi(z)|
+  \le c_1|z|^{1-2/p}\|\xi\|_{W^{1,p}(B_{2/R})},
+  \qquad |z|\le2/R.
+\]
+因此
+\[
+  \begin{aligned}
+  \|(\nabla\rho_R)\xi\|_{L^p}
+  &\le c_0c_1R
+  \left(\int_{|z|\le2/R}|z|^{p-2}\right)^{1/p}
+  \|\xi\|_{W^{1,p}(B_{2/R})}\\
+  &=c_0c_1\left(\frac{2^{p+1}\pi}{p}\right)^{1/p}
+  \|\xi\|_{W^{1,p}(B_{2/R})}.
+  \end{aligned}
+\]
+这证明了~\eqref{eq:10-4-4}，也证明了引理。
+\end{proof}

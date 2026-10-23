@@ -1,0 +1,275 @@
+\section{正合拉格朗日同痕 \texorpdfstring{$=$}{=} 哈密顿同痕}
+\label{sec:exact-isotopy-hamiltonian-isotopy}
+
+本节依照格罗莫夫 (Gr85)，在任意 $(M,\omega)$ 上引入正合拉格朗日同痕的概念，把它看作 $\operatorname{Lag}(M,\omega)$ 中一种特殊的光滑路径；并证明，这个概念等价于由周围流形 $(M,\omega)$ 上的整体哈密顿流诱导的（嵌入）拉格朗日子流形同痕。我们把后一种同痕称为\emph{整体哈密顿同痕}。对一般拉格朗日同痕而言，这种延拓性质不成立；这是两类同痕之间的一个本质区别。作为推论，本节末尾将证明\cref{thm:hamiltonian-leaves}。
+
+设 $\psi:[0,1]\times L\to M$ 是一族嵌入 $\psi_t:L\to M$ 的同痕。拉回 $\psi^*\omega$ 分解成
+\begin{equation}
+ \psi^*\omega=dt\wedge\alpha+\beta,
+ \label{eq:isotopy-form-decomposition}
+\end{equation}
+其中 $\alpha,\beta$ 是 $L$ 上的形式，满足
+\[
+ \frac\partial{\partial t}\mathbin{\lrcorner}\alpha=0
+ =\frac\partial{\partial t}\mathbin{\lrcorner}\beta.
+\]
+事实上，完全用 $\psi^*\omega$ 可写成
+\[
+ \alpha=\frac\partial{\partial t}\mathbin{\lrcorner}\psi^*\omega,
+ \qquad
+ \beta=\psi^*\omega-dt\wedge\alpha.
+\]
+可以把 $\alpha,\beta$ 看作 $L$ 上随 $t$ 变化的形式族。
+
+\begin{definition}\label{def:lagrangian-isotopy}
+若在上述分解中 $d\beta=0$，则称同痕
+$\psi:[0,1]\times L\to M$ 为\emph{拉格朗日同痕}。
+\end{definition}
+
+\begin{proposition}\label{prop:lagrangian-isotopy-closed-form}
+以 $i_t:L\to[0,1]\times L$ 表示由 $i_t(x)=(t,x)$ 定义的显然包含。则同痕 $\psi$ 是拉格朗日的，当且仅当对所有 $t\in[0,1]$，$i_t^*\alpha$ 是 $L$ 上的闭 $1$-形式。
+\end{proposition}
+
+\begin{proof}
+假设 $d\beta=0$。因 $\omega$ 闭，对\eqref{eq:isotopy-form-decomposition}取外微分得到 $0=dt\wedge d\alpha$。再与 $\partial/\partial t$ 作内乘，得到
+\[
+ d\alpha-dt\wedge\left(\frac\partial{\partial t}
+     \mathbin{\lrcorner}d\alpha\right)=0.
+\]
+用 $i_t$ 拉回该式，得到 $d(i_t^*\alpha)=0$。
+
+反过来，假设 $d(i_t^*\alpha)=0$，则 $i_t^*(d\alpha)=0$。换言之，只要
+$X,Y$ 切于纤维 $[0,1]\times L\to[0,1]$，就有 $d\alpha(X,Y)=0$。因此 $3$-形式 $dt\wedge d\alpha$ 在 $[0,1]\times L$ 上必为零。再次对\eqref{eq:isotopy-form-decomposition}取外微分，并使用 $\psi^*\omega$ 的闭性，便得到 $d\beta=0$。这就完成了证明。
+\end{proof}
+
+这引出如下定义。
+
+\begin{definition}\label{def:exact-lagrangian-isotopy}
+若拉格朗日同痕 $\psi$ 的 $i_t^*\alpha$ 对所有 $t\in[0,1]$ 都正合，则称 $\psi$ \emph{正合}。称这样的同痕为\emph{正合拉格朗日同痕}。
+\end{definition}
+
+\begin{lemma}\label{lem:exact-isotopy-primitive}
+若 $\psi$ 是正合拉格朗日同痕，则存在函数
+$h:[0,1]\times L\to\mathbb R$ 使
+\[
+ \psi^*\omega=dh\wedge dt.
+\]
+此外，若 $h'$ 是另一个这样的函数，则 $h'-h$ 只依赖于 $t$，而不依赖于 $L$。
+\end{lemma}
+
+\begin{proof}
+由定义，对每个 $t\in[0,1]$ 都存在 $h_t:L\to\mathbb R$ 使
+$i_t^*\alpha=dh_t$。这个选取在相差常数 $c(t)$ 的意义下唯一。回顾
+\cref{def:lagrangian-isotopy}之前的说明，形式 $\alpha,\beta$ 由 $\psi$ 唯一确定。这证明了引理的最后一项。
+
+唯一还须保证的是 $h$ 光滑依赖于 $t$。在 $L$ 的每个连通分支中固定一点
+$x_0$，要求对所有 $t\in[0,1]$ 都有 $h_t(x_0)=0$，即可做到这一点。然后定义
+$h:[0,1]\times L\to\mathbb R$ 为 $h(t,x)=h_t(x)$。
+\end{proof}
+
+\begin{exercise}\label{ex:smooth-primitive-exact-isotopy}
+补全上面的证明。更确切地说，证明上述函数 $h$ 确实光滑，并且满足
+$\psi^*\omega=dh\wedge dt$。
+\end{exercise}
+
+\begin{remark}\label{rem:exact-isotopy-immersions}
+需要指出，上述拉格朗日同痕和正合拉格朗日同痕的定义也可用于浸入，而不只用于嵌入。
+\end{remark}
+
+下面的延拓定理把\emph{嵌入的正合拉格朗日同痕}同一般拉格朗日同痕以及浸入的正合拉格朗日同痕区别开来。由于这个定理，对嵌入而言，我们经常不区分“哈密顿同痕”和“正合拉格朗日同痕”这两个术语。
+
+\begin{theorem}\label{thm:exact-lagrangian-isotopy-extension}
+对任意由拉格朗日嵌入组成的正合拉格朗日同痕
+$\psi:[0,1]\times L\to M$，存在 $H:[0,1]\times M\to\mathbb R$ 使
+\begin{equation}
+ \psi(t,x)=\phi_H^t(\psi(0,x))=\phi_H^t(\psi_0(x)).
+ \label{eq:exact-isotopy-ambient-hamiltonian}
+\end{equation}
+\end{theorem}
+
+分两步证明。第一步，找函数 $H':[0,1]\times M\to\mathbb R$ 使
+\begin{equation}
+ \frac{\partial\psi}{\partial t}
+ \equiv X_{H'}(\psi(t,x))|_{L_t}\pmod{TL_t},
+ \label{eq:exact-isotopy-normal-extension}
+\end{equation}
+其中 $L_t=\psi_t(L)$ 是 $\psi_t$ 的像。第二步，修改 $H'$ 得到 $H$，使
+\begin{equation}
+ \frac{\partial\psi}{\partial t}=X_H(\psi(t,x))
+ \label{eq:exact-isotopy-full-extension}
+\end{equation}
+对 $(t,x)\in[0,1]\times L$ 成立。先从一个一般引理开始。
+
+\begin{lemma}\label{lem:tangent-hamiltonian-extension}
+设 $L$ 是 $n$ 维流形。
+\begin{enumerate}[label=(\arabic*)]
+\item 若 $g:L\to(M,\omega)$ 是拉格朗日嵌入，$\xi\in\Gamma(TL)$ 是 $L$ 上的向量场，则存在函数 $f:M\to\mathbb R$ 使
+\begin{equation}
+ X_f(g(x))=dg(\xi(x)),\qquad x\in L.
+ \label{eq:tangent-vector-field-hamiltonian-extension}
+\end{equation}
+\item 对给定的、由嵌入组成的拉格朗日同痕
+$\psi:[0,1]\times L\to M$，以及 $L$ 上一族光滑向量场
+$\xi=\{\xi_t\}_{0\le t\le1}$，存在光滑函数
+$F:[0,1]\times M\to\mathbb R$，使对所有 $t\in[0,1]$，
+\begin{equation}
+ X_{F_t}(\psi_t(x))=d\psi_t(\xi_t(x)).
+ \label{eq:parametrized-tangent-hamiltonian-extension}
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+乘上一个截断函数后，达布--温斯坦定理把 (1) 的证明约化到
+$L=o_L$、$M=T^*L$ 带典范辛形式 $\omega_0$ 的情形。但若 $\xi$ 是 $o_L$ 上的向量场，可以显式选取函数 $f_\xi:T^*L\to\mathbb R$：
+\begin{equation}
+ f_\xi(\alpha)=\langle\alpha,\xi(\pi(\alpha))\rangle.
+ \label{eq:fiber-linear-hamiltonian}
+\end{equation}
+下面的练习将完成这一断言的证明。
+
+对 (2)，使用带参数的达布--温斯坦定理
+（\cref{ex:parametrized-darboux-weinstein}），并定义
+$F_\xi:[0,1]\times T^*L\to\mathbb R$ 为
+\[
+ F(t,\alpha)=\langle\alpha,\xi_t(\pi(\alpha))\rangle.
+\]
+这就完成证明。
+\end{proof}
+
+\begin{exercise}\label{ex:fiber-linear-hamiltonian}
+证明在 $L$ 上 $X_{f_\xi}\circ g=\xi$。
+\end{exercise}
+
+另一个重要引理是下面的一般延拓引理。
+
+\begin{lemma}[延拓引理]\label{lem:function-extension}
+设 $\pi:E\to N$ 是向量丛，$h:N\to\mathbb R$ 是 $C^1$ 函数。则存在
+$C^1$ 函数 $H':E\to\mathbb R$，使
+\[
+ H'|_N=h,\qquad dH'|_{TN}=d(h\circ\pi)|_{TN},
+\]
+并且 $H'$ 的支集可以放进 $N$ 的一个邻域 $U$ 中，而该邻域可以取得任意小。
+\end{lemma}
+
+\begin{proof}
+设 $r_t:E\to E$ 是 $E$ 到零截面 $o_E\cong N$ 的收缩：对 $e\in E$，
+\[
+ r_t(e)=
+ \begin{cases}
+  te,&0\le t\le1,\\
+  \pi(e),&t=0.
+ \end{cases}
+\]
+固定映射 $\chi:[0,1]\to[0,1]$，使得 $\chi(t)$ 在 $t=0$ 附近恒为 $0$、
+$\chi(1)=1$ 且 $\chi'(t)\ge0$。
+
+若定义含时向量场
+\[
+ X_t=
+ \begin{cases}
+  \dfrac{dr_{\chi(t)}}{dt}\circ r_{\chi(t)}^{-1},&0<t\le1,\\[4pt]
+  0,&t=0,
+ \end{cases}
+\]
+则对 $0\le t\le1$，
+\[
+ \frac d{dt}r_{\chi(t)}^*\alpha
+ =r_{\chi(t)}^*\bigl(d(X_t\mathbin{\lrcorner}\alpha)
+       +X_t\mathbin{\lrcorner}d\alpha\bigr).
+\]
+当形式 $\alpha$ 闭时，有
+\[
+ \frac d{dt}r_{\chi(t)}^*\alpha
+ =r_{\chi(t)}^*\bigl(d(X_t\mathbin{\lrcorner}\alpha)\bigr).
+\]
+于是
+\[
+\begin{aligned}
+ \alpha-r_0^*\alpha
+ &=\int_0^1r_{\chi(t)}^*\bigl(d(X_t\mathbin{\lrcorner}\alpha)\bigr)\,dt\\
+ &=d\int_0^1r_{\chi(t)}^*(X_t\mathbin{\lrcorner}\alpha)\,dt,
+\end{aligned}
+\]
+从而对闭 $1$-形式 $\alpha$，
+\[
+ \alpha=\pi^*\alpha+d\int_0^1
+ r_{\chi(t)}^*(X_t\mathbin{\lrcorner}\alpha)\,dt.
+\]
+把它用于形式 $\alpha=d(\rho h\circ\pi)$，其中 $h\circ\pi:E\to\mathbb R$，而
+$\rho:E\to\mathbb R$ 满足
+\[
+ \rho=
+ \begin{cases}
+  1,&\text{在 $N$ 的一个邻域 $U$ 上},\\
+  0,&\text{远离 $N$ 时}.
+ \end{cases}
+\]
+现在考虑函数 $H':E\to\mathbb R$：
+\[
+ H'=\rho\left(h\circ\pi+
+ \int_0^1r_{\chi(t)}^*
+   \bigl(X_t\mathbin{\lrcorner}d(\rho\circ\pi)\bigr)\,dt\right).
+\]
+因为对所有 $t\in[0,1]$ 都有
+$r_{\chi(t)}|_N=\operatorname{id}|_N$ 且 $X_t\equiv0$ 于 $N$ 上，所以
+$H'|_N=h$，并且 $dH'|_{TN}=d(h\circ\pi)|_{TN}$。这就完成了证明。
+\end{proof}
+
+\begin{exercise}\label{ex:parametrized-extension-lemma}
+陈述并证明延拓引理的带参数版本。
+\end{exercise}
+
+利用这些引理，证明\cref{thm:exact-lagrangian-isotopy-extension}。
+
+\begin{proof}[\cref{thm:exact-lagrangian-isotopy-extension}的证明]
+注意 $\partial\psi/\partial t$ 是沿 $\psi$ 的向量场，即
+$(\partial\psi/\partial t)(x)\in T_{\psi(x)}M$。由
+\cref{lem:normal-cotangent-identification}，\eqref{eq:exact-isotopy-normal-extension}等价于
+\begin{equation}
+ \frac{\partial\psi}{\partial t}\mathbin{\lrcorner}\omega
+ =dH'(\psi(t,x))|_{L_t}\in\Gamma(T^*L_t)
+ \label{eq:exact-isotopy-one-form-extension}
+\end{equation}
+对 $t\in[0,1]$ 成立。另一方面，因为 $\psi$ 是正合拉格朗日同痕，对某个
+$h':[0,1]\times L\to\mathbb R$ 有
+\[
+ \psi^*\omega=dh'\wedge dt,
+\]
+亦即
+\[
+ dh_t'=\frac\partial{\partial t}\mathbin{\lrcorner}\psi^*\omega
+ =\omega\left(d\psi_t\!\left(\frac\partial{\partial t}\right),
+ d\psi_t(\,\cdot\,)\right).
+\]
+因此\eqref{eq:exact-isotopy-one-form-extension}化为
+\[
+ d(h_t'\circ\psi_t^{-1})|_{TL_t}
+ =\frac{\partial\psi}{\partial t}\mathbin{\lrcorner}\omega.
+\]
+（\emph{这里本质地使用了映射 $\psi_t$ 的嵌入性。}）对 $y\in\psi_t(L)$ 令
+$h(t,y)=h_t'\circ\psi_t^{-1}(y)$，则\eqref{eq:exact-isotopy-one-form-extension}化为上面练习中的带参数延拓引理。这完成了证明的第一步：找到了 $M$ 上满足\eqref{eq:exact-isotopy-normal-extension}的 $H'$。
+
+于是向量场
+\[
+ \frac{\partial\psi}{\partial t}(x)-X_{H'}(t,\psi(t,x))
+\]
+切于 $\psi_t(L)$。因此由\cref{lem:tangent-hamiltonian-extension}，可找到
+$F:[0,1]\times M\to\mathbb R$，使
+\[
+ \frac{\partial\psi}{\partial t}(x)-X_{H'}(t,\psi(t,x))
+ =X_F(t,\psi(t,x))
+\]
+对 $(t,x)\in[0,1]\times L$ 成立。取 $H=H'+F$，定理得证。
+\end{proof}
+
+现在可以证明温斯坦的\cref{thm:hamiltonian-leaves}。由
+\cref{thm:exact-lagrangian-isotopy-extension}，只须证明对任意
+$L\in\operatorname{Lag}(M,\omega)$，
+\[
+ B^1(L)=\operatorname{span}\{X_f\mathbin{\lrcorner}\omega|_{TL}
+       \mid f:M\to\mathbb R\}
+ =T_L(\operatorname{Ham}(M,\omega)\cdot L).
+\]
+但这正是\cref{thm:exact-lagrangian-isotopy-extension}的直接推论，故得证。
+\stfhSubIndexRangeEnd{I186}{la^ge^lang^ri^zi^liu^xing}{拉格朗日子流形（Lagrangian submanifold）}{jing^dian^xing^bian}{经典形变（classical deformations）}

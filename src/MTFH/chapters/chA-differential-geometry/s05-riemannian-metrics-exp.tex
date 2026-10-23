@@ -1,0 +1,54 @@
+
+\section{\trRiemann\trMetric、\trExponentialMap}
+\label{sec:riemannian-metrics-exp}
+
+一个\trManifold{}上的\textbf{\trRiemann\trMetric}（Riemannian metric），是切于这个\trManifold{}的\trTangentSpace{}上的诸\trBilinearForm{}所成的那个\trVectorBundle{}的一个\trSection，它在每一点处都是该点的\trTangentSpace{}上的一个\trInnerProduct。
+例如，如果 $V$ 是 $\RR^{n}$ 的一个\trSubmanifold，那么 $\RR^{n}$ 上的\trEuclidean{}\trMetric{}便在诸\trVectorSpace{} $T_{x}V$ 上诱导出一个\trInnerProduct，并在 $V$ 上诱导出一个\trRiemann\trMetric。
+当一个\trManifold{}具有一个\trPartitionOfUnity{}时，我们就可以利用它来给这个\trManifold{}赋予一个\trRiemann\trMetric；特别地，这适用于每一个\trCompact\trManifold。
+一个\trRiemann\trMetric{} $g$ 定义了\trVectorField{}沿一个\trVectorField{}的一种导数，即称为\trLeviCivita{}\trConnection{}的\trCovariantDerivative——它是唯一的映射 $(X,Y)\mapsto D_{X}Y$，满足
+\[
+\begin{gathered}
+D_{fX}Y=fD_{X}Y\qquad\text{与}\qquad D_{X}(fY)=(X\cdot f)Y+fD_{X}Y\\
+D_{X}Y-D_{Y}X=[X,Y]\\
+X\cdot g(Y,Z)=g(D_{X}Y,Z)+g\bigl(Y,D_{X}Z\bigr)\text{。}
+\end{gathered}
+\]
+\footnote{译注：原书第一个条件的右端印作 $(x\cdot f)Y$（小写 $x$）；按 A.1.f 的记号 $X\cdot f$（即 $T_{x}f(X_{x})$），与同式左端 $D_{X}(fY)$ 中的场 $X$ 对照，此处疑应为 $(X\cdot f)Y$。此处径改。——译者注}
+参见 [37,~§~II~B]。
+于是在一个\trRiemann\trManifold{}上，我们便有了\trGeodesic{}的概念。一条\trGeodesic{}是\trDifferential{}方程
+\[
+D_{\dot{\gamma}}\dot{\gamma}=0\text{。}
+\]
+的一条解 $t\mapsto\gamma(t)$。\footnote{译注：原书此处方程印作 $D_{\dot{\gamma}}\gamma=0$，被求导的对象 $\gamma$ 上无点；由下文“诸\trGeodesic{}是一个二阶\trDifferential{}方程的解”及\trGeodesic（速度场的\trCovariantDerivative{}为零的曲线）之定义，疑应为 $D_{\dot{\gamma}}\dot{\gamma}=0$。此处径改。——译者注}
+给定一个点 $x\in V$ 与一个向量 $Y\in T_{x}V$，存在唯一的经过 $x$、在 $x$ 处以 $Y$ 为切向量的\trGeodesic；也就是说，
+\[
+\gamma_{Y}(t)\quad\text{满足}\quad\gamma_{Y}(0)=x\quad\text{与}\quad\dot{\gamma}_{Y}(0)=Y\text{。}
+\]
+诸\trGeodesic{}是一个二阶\trDifferential{}方程的解。我们设 $V$ 是（测地）完备的，也就是说，$\gamma_{Y}(t)$ 对每个 $t\in\RR$ 都\trWellDefined。于是我们定义
+\[
+\begin{aligned}
+\exp_{x}:T_{x}V&\longrightarrow V\\
+Y&\longmapsto\gamma_{Y}(1)\text{。}
+\end{aligned}
+\]
+我们可以证明：$\exp_{x}$ 是一个局部\trDiffeomorphism，而
+\[
+T_{0}\exp_{x}:T_{x}V\longrightarrow T_{x}V
+\]
+不是别的，正是恒等映射。参见 [37,~§~II~C]。
+
+既然 $V$ 被赋予了一个\trRiemann\trMetric，我们就可以对每个 $R$ 考虑子空间
+\[
+\bigl\{(x,Y)\in TV\mid\|Y\|<R\bigr\}\subset TV\text{。}
+\]
+我们把这类空间称为“\trDisk{}丛”：它在 $x\in V$ 处的\trFiber{}就是\trEuclidean{}空间 $T_{x}V$ 中半径为 $R$ 的那个\trDisk。
+当\trManifold{} $V$ 是\trCompact{}的时，存在一个非负实数 $r$，使得\trExponentialMap{}定义了一个\trDiffeomorphism
+\[
+(x,Y)\longmapsto(x,\exp_{x}Y)
+\]
+它把半径 $r$ 的\trDisk{}丛
+\[
+\bigl\{(x,Y)\in TV\mid\|Y\|<r\bigr\}
+\]
+映成它在 $V\times V$ 中的像。这样的 $r$ 所成之集的上确界，称为一个\trInjectivityRadius。
+与一个\trRiemann\trMetric{}及其\trLeviCivita{}\trConnection{}相伴的，是“\trParallelTransport”的概念。给定一个在 $x$ 处切于 $V$ 的向量 $X$，我们如下定义它沿一条以 $x=\gamma(0)$ 为起点的曲线 $t\mapsto\gamma(t)$ 的\trParallelTransport：$X(t)\in T_{\gamma(t)}V$ 是 $\gamma^{\star}TV$ 的满足初始条件 $X(0)=X$ 的唯一“平行”\trSection{}——即\trCovariantDerivative{}为零的\trSection。

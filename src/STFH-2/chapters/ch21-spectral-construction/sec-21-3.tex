@@ -1,0 +1,369 @@
+\section{谱不变量的定义及其公理}
+\label{sec:spectral-invariants-definition-axioms}
+
+本节\emph{不}假设 $H$ 已归一化，但对任意给定哈密顿量，以 $\underline H$ 表示其归一化：
+\begin{equation}
+ \underline H(t,x)=H(t,x)-\frac1{\operatorname{vol}_\omega(M)}
+ \int_MH(t,x)\,\mu_\omega.
+ \label{eq:21-hamiltonian-normalization}
+\end{equation}
+
+\subsection{谱不变量的定义}
+
+对每个给定的齐次量子上同调类 $a\in QH^*(M)$，记
+$a^\flat=a_H^\flat\in HF_*(H,J)$ 为其在同构 $\Phi_H$ 下的像。记
+\[
+ i^\lambda:HF_*^\lambda(H,J)\longrightarrow HF_*(H,J)
+\]
+为由典范包含诱导的同态。
+
+\begin{definition}
+\label{def:21-spectral-invariant}
+设 $H$ 是非退化的一周期哈密顿量，$J$ 是 $H$-正则的。对任意给定的
+$0\neq a\in QH^*(M)$，考虑对子 $(H,J)$ 的弗洛尔闭链
+$\alpha\in\ker\partial_{(H,J)}\subset CF_*(H)$，使其代表 $a^\flat$。定义
+\[
+ \rho((H,J);a):=\inf_{\alpha;\,[\alpha]=a^\flat}\lambda_H(\alpha),
+\]
+等价地，
+\[
+ \rho((H,J);a):=
+ \inf\{\lambda\in\mathbb R\mid a^\flat\in\operatorname{Im}i^\lambda
+ \subset HF_*(H,J)\}.
+\]
+\end{definition}
+
+下面是关于谱数非平凡性的基本定理。厄舍 (Ush08) 在弗洛尔同调的抽象表述中给出
+了 $\rho((H,J);a)$ 有限性的纯代数证明。这里的证明改编自 (Oh05c)、(Oh06a) 与
+(Ush08) 中相应结论的证明。
+
+\begin{theorem}
+\label{thm:21-spectral-invariant-finite-independent}
+设 $H$ 非退化，$0\neq a\in QH^*(M)$。
+\begin{enumerate}[label=(\arabic*)]
+ \item 对任意 $H$-正则的 $J$，$\rho((H,J);a)>-\infty$。
+ \item $\rho((H,J);a)$ 的定义与 $H$-正则的 $J$ 的选取无关；公共值记为
+ $\rho(H;a)$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+由定理~\ref{thm:21-boundary-depth-properties}(2) 及边界深度的定义，
+\begin{equation}
+ \partial(CF_*(H,J))\cap CF_*^\lambda(H,J)
+ \subset\partial(CF_*^{\lambda+\lVert H\rVert}(H,J)).
+ \label{eq:21-boundary-depth-control}
+\end{equation}
+以下命题是弗洛尔理论极小极大法中的重要成分，对应于经典临界点理论中“极小极大
+集合”的关键\emph{\termLinkingProperty{}}（这种观点例如见 (Bn82)）。
+
+\begin{proposition}
+\label{prop:21-floer-minimax-lower-bound}
+设 $\alpha$ 是 $CF_*(H,J)$ 中的 $\partial$-闭链，且其同调类
+$[\alpha]\neq0$，其中 $\partial=\partial_{(H,J)}$。则
+\begin{equation}
+ \inf_{\beta\in CF_*(H,J)}\{\lambda_H(\alpha-\partial\beta)\}>-\infty.
+ \label{eq:21-minimax-finite}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+反设存在 $\beta_j\in CF_*(H,J)$ 使
+$\lambda_H(\alpha-\partial\beta_j)\to-\infty$。记
+\begin{equation}
+ \lambda_j=\lambda_H(\alpha-\partial\beta_j).
+ \label{eq:21-lambda-sequence}
+\end{equation}
+取子列后可设 $\lambda_j>\lambda_{j+1}$。归纳构造序列 $\beta'_k$，使
+\begin{align}
+ \lambda_H(\alpha-\partial\beta'_k)&\leq\lambda_k,
+ \label{eq:21-beta-prime-cycle-bound}\\
+ \lambda_H(\beta'_{k+1}-\beta'_k)&\leq\lambda_k+\lVert H\rVert.
+ \label{eq:21-beta-prime-cauchy-bound}
+\end{align}
+一旦构成，令 $\alpha_N=\alpha-\partial\beta'_N$。由
+\eqref{eq:21-beta-prime-cycle-bound} 与 $\lambda_j\to-\infty$，有
+$[\alpha_N]=[\alpha]$ 且 $\alpha_N$ 在 $\lambda_H$ 非阿基米德拓扑中趋于 $0$。
+另一方面，\eqref{eq:21-beta-prime-cauchy-bound} 表明 $\beta'_j$ 在
+$CF_*(H,J)$ 的 $\lambda_H$ 非阿基米德拓扑中收敛。记极限为 $\beta'_\infty$。
+因 $\partial$ 关于该拓扑连续，$\partial\beta'_N\to\partial\beta'_\infty$，故
+$\alpha=\partial\beta'_\infty$，与 $[\alpha]\neq0$ 矛盾。
+
+余下只须构造 $\beta'_j$。令 $\beta'_1=\beta_1$。我们将证明：在 $\beta'_k$ 已满足
+\eqref{eq:21-beta-prime-cycle-bound} 的假设下，下述构造给出的 $\beta'_{k+1}$
+满足把 $k$ 换成 $k+1$ 后的 \eqref{eq:21-beta-prime-cycle-bound}。由于
+\[
+ \lambda_H(\alpha-\partial\beta'_k)\leq\lambda_k,
+ \quad \lambda_H(\alpha-\partial\beta_{k+1})=\lambda_{k+1}<\lambda_k,
+\]
+故 $\lambda_H(\partial(\beta_{k+1}-\beta'_k))\leq\lambda_k$。由
+\eqref{eq:21-boundary-depth-control}，存在
+$\gamma'_k\in CF_*^{\lambda_k+\lVert H\rVert}(H,J)$ 使
+\[
+ \partial(\beta_{k+1}-\beta'_k)=\partial\gamma'_k.
+\]
+定义 $\beta'_{k+1}=\beta'_k+\gamma'_k$，便有
+$\lambda_H(\beta'_{k+1}-\beta'_k)=\lambda_H(\gamma'_k)\leq\lambda_k+\lVert H\rVert$。
+
+\begin{lemma}
+\label{lem:21-inductive-beta-prime}
+链 $\beta'_{k+1}=\beta'_k+\gamma'_k$ 满足将 $k$ 换为 $k+1$ 后的
+\eqref{eq:21-beta-prime-cycle-bound}，并满足
+\eqref{eq:21-beta-prime-cauchy-bound}。
+\end{lemma}
+
+\begin{proof}
+按 $\gamma'_k$ 的定义，
+\begin{equation}
+ \alpha-\partial\beta'_{k+1}
+ =\alpha-\partial(\beta'_k+\gamma'_k)
+ =\alpha-\partial\beta_{k+1}.
+ \label{eq:21-beta-prime-induction}
+\end{equation}
+故 $\lambda_H(\alpha-\partial\beta'_{k+1})\leq\lambda_{k+1}$，即所需结论。
+\end{proof}
+命题得证。
+\end{proof}
+
+命题~\ref{prop:21-floer-minimax-lower-bound} 按定义立即推出任意
+$0\neq a\in QH^*(M)$ 的 $\rho((H,J);a)$ 有限。下面证明它与 $J$ 无关。令 $J'$ 是
+另一个 $H$-正则殆复结构，$j=\{J^s\}_{0\leq s\leq1}$ 满足 $J^0=J,J^1=J'$。
+证明
+\begin{equation}
+ \rho((H,J');a)\leq\rho((H,J);a).
+ \label{eq:21-spectral-j-inequality}
+\end{equation}
+交换 $J,J'$ 即得反向不等式。给定 $\epsilon>0$，选取 $(H,J)$ 的弗洛尔闭链
+$\alpha$，使
+\[
+ \lambda_H(\alpha)<\rho((H,J);a)+\epsilon.
+\]
+考虑推论~\ref{cor:21-change-almost-complex-structure} 中的传递映射
+$h_{(H,j)}:CF(H,J)\to CF(H,J')$。传递后的闭链
+$\alpha'=h_{(H,j)}(\alpha)$ 满足
+$\lambda_H(\alpha')\leq\lambda_H(\alpha)$。由定义又有
+$\rho((H,J');a)\leq\lambda_H(\alpha')$，故
+\[
+ \rho((H,J');a)\leq\rho((H,J);a)+\epsilon.
+\]
+令 $\epsilon\to0$ 即得~\eqref{eq:21-spectral-j-inequality}，定理得证。
+\end{proof}
+
+\begin{remark}
+\label{rem:21-abstract-finiteness-proof}
+检查命题~\ref{prop:21-floer-minimax-lower-bound} 的证明可见，其中唯一使用具体弗洛尔
+链复形 $CF_*(H,J)$ 的地方，是定理~\ref{thm:21-boundary-depth-properties}(2) 给出的
+\stfhIndex{I042}{Bianjieshendu}{边界深度（boundary depth）}
+边界深度有限性。事实上，一旦一般微分 $\partial$ 的边界深度有限，逐字照搬上述
+证明即可在弗洛尔理论的抽象框架中证明定理 13.8.4 所述谱不变量的有限性。
+\end{remark}
+
+考虑任意接近线性同伦 $s\mapsto(1-s)H+sK$ 的连接 $H,K$ 的同伦，可证明：
+
+\begin{proposition}
+\label{prop:21-spectral-continuity}
+对任意非退化 $H,K$，
+\begin{equation}
+ -E^+(H-K)\leq\rho(H;a)-\rho(K;a)\leq E^-(H-K).
+ \label{eq:21-spectral-continuity-bound}
+\end{equation}
+特别地，$\rho_a:H\mapsto\rho(H;a)$ 在 $C^0$ 拓扑（或
+$L^{(1,\infty)}$ 拓扑）中连续，因而可连续延拓到
+$C^0([0,1]\times M;\mathbb R)$。
+\end{proposition}
+
+\begin{proof}
+任取 $\delta>0$，选取 $H$ 的闭链 $\alpha$，使 $[\alpha]=a^\flat$ 且
+\begin{equation}
+ \lambda_H(\alpha)\leq\rho(H;a)+\delta.
+ \label{eq:21-near-minimizing-cycle}
+\end{equation}
+这里使用了\emph{已经证明}的 $\rho(H;a)>-\infty$。取从 $H$ 到 $K$ 的线性同伦
+$h_{HK}^{\mathrm{lin}}$ 的通有逼近，并用推论~\ref{cor:21-filtered-continuation-map}，
+可找到连接 $H,K$ 的 $\mathcal H$，使
+\[
+ \lambda_K(h_\mathcal H(\alpha))
+ \leq\lambda_H(\alpha)+\int_0^1-\min_x(K_t-H_t)\,dt+\delta.
+\]
+结合~\eqref{eq:21-near-minimizing-cycle}，右端不超过
+\[
+ \rho(H;a)+2\delta+\int_0^1-\min_x(K_t-H_t)\,dt.
+\]
+因 $[h_{HK}^{\mathrm{lin}}(\alpha)]=a^\flat$，定义给出
+$\lambda_K(h_{HK}^{\mathrm{lin}}(\alpha))\geq\rho(K;a)$，所以
+\[
+ \rho(K;a)-\rho(H;a)
+ \leq2\delta+\int_0^1-\min_x(K_t-H_t)\,dt.
+\]
+令 $\delta\to0$，再交换 $H,K$，得到
+\[
+ \rho(H;a)-\rho(K;a)
+ \leq\int_0^1-\min_x(H_t-K_t)\,dt
+ =\int_0^1\max_x(K_t-H_t)\,dt.
+\]
+于是
+\[
+ \int_0^1-\max_x(K_t-H_t)\,dt
+ \leq\rho(K;a)-\rho(H;a)
+ \leq\int_0^1-\min_x(K_t-H_t)\,dt,
+\]
+即~\eqref{eq:21-spectral-continuity-bound}。它显然使 $\rho$ 可由连续性延拓到任意
+$L^{1,\infty}$ 哈密顿量。
+\end{proof}
+
+\subsection{谱不变量的公理}
+
+以下以公理列表给出函数 $\rho$ 的基本性质。
+
+\begin{theorem}
+\label{thm:21-spectral-axioms}
+设 $(M,\omega)$ 是任意闭辛流形。对任意 $0\neq a\in QH^*(M)$，存在连续函数
+\footnote{译者注：定理先把 $\rho$ 的定义域写成整个 $QH^*(M)$，但前句及本节定义
+只对 $0\neq a$ 定义 $\rho(H;a)$；第 (7) 项在 $a+b=0$ 时也会落入同一问题。
+此外，第 (5) 项使用了未在定理量词中声明的 $b$。译文照录。}
+\[
+ \rho:C^\infty(S^1\times M;\mathbb R)\times QH^*(M)\longrightarrow\mathbb R,
+\]
+满足下列公理。设 $H,F\in\mathcal H_m$ 是光滑含时哈密顿函数，且
+$a\neq0\in QH^*(M)$。
+\begin{enumerate}[label=(\arabic*)]
+ \item 若 $r:[0,1]\to\mathbb R$ 光滑，则
+ $\rho(H+r;a)=\rho(H;a)-\int_0^1r(t)\,dt$。
+ \item （射影不变性）对任意 $0\neq\lambda\in\mathbb Q$，
+ $\rho(H;\lambda a)=\rho(H;a)$。
+ \item （归一化）若 $a=\sum_{A\in\Gamma}a_Aq^{-A}$，则
+ $\rho(0;a)=v(a)$，其中 $0$ 是零函数，且
+ \[
+  v(a):=\min\{\omega(-A)\mid a_A\neq0\}
+  =-\max\{\omega(A)\mid a_A\neq0\}
+ \]
+ 是 $a$ 的向上赋值。
+ \item （辛不变性）对任意辛微分同胚 $\eta$，
+ $\rho(\eta_*H;\eta_*a)=\rho(H;a)$。特别地，若
+ $\eta\in\operatorname{Symp}_0(M,\omega)$，则 $\rho(\eta_*H;a)=\rho(H;a)$。
+ \item （三角不等式）$\rho(H\#F;a\cdot b)\leq\rho(H;a)+\rho(F;b)$。
+ \item （哈密顿连续性）
+ $|\rho(H;a)-\rho(F;a)|\leq\lVert H\#\overline F\rVert
+ =\lVert H-F\rVert$，其中 $\lVert\cdot\rVert$ 是
+ $C^\infty(S^1\times M;\mathbb R)$ 上的 $L^{(1,\infty)}$-范数。特别地，
+ $\rho_a:H\mapsto\rho(H;a)$ 是 $C^0$-连续的。
+ \item （加法三角不等式）
+ $\rho(H;a+b)\leq\max\{\rho(H;a),\rho(H;b)\}$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+对第 (1) 项，$H+r$ 与 $H$ 有完全相同的哈密顿流、弗洛尔方程和相应离壳设定；
+唯一差别是作用量泛函平移了 $-\int_0^1r(t)dt$，故结论来自谱不变量的构造。
+射影不变性也由构造显然成立。$C^0$-连续性立即来自命题
+\ref{prop:21-spectral-continuity}。三角不等式的证明推迟至 21.4 节。
+
+证明辛不变性时，对任意辛微分同胚 $\eta:(M,\omega)\to(M,\omega)$ 考察辛共轭
+\[
+ \phi\longmapsto\eta\phi\eta^{-1};\qquad
+ \operatorname{Ham}(M,\omega)\longrightarrow\operatorname{Ham}(M,\omega).
+\]
+回忆推前函数 $\eta_*H(t,x)=H(t,\eta^{-1}(x))$；若 $H\mapsto\phi$，它生成共轭
+$\eta\phi\eta^{-1}$。与滤弗尔同调相关的这一共轭的基本事实如下：
+\begin{enumerate}[label=(\arabic*)]
+ \item 若 $H\mapsto\phi$，则 $\eta_*H\mapsto\eta\phi\eta^{-1}$；
+ \item $H$ 非退化蕴含 $\eta_*H$ 非退化；
+ \item $(H,J)$ 弗洛尔正则蕴含 $(\eta_*H,\eta_*J)$ 弗洛尔正则；
+ \footnote{译者注：原文把推前后的\personFloer{}对子排成 $(\eta_*J,\eta_*H)$，与全文
+“哈密顿量在前、殆复结构在后”的顺序相反；译文按类型次序改正。}
+ \item 存在自然双射
+ $\eta_*:\widetilde{\mathcal L}_0(M)\to\widetilde{\mathcal L}_0(M)$，
+ $\eta_*([z,w])=[\eta\circ z,\eta\circ w]$，且
+ $\mathcal A_H([z,w])=\mathcal A_{\eta_*H}(\eta_*[z,w])$；
+ \item $\operatorname{Symp}(M,\omega)$ 自然作用于 $QH^*(M)$；若
+ $\alpha=\sum_{[z,w]}a_{[z,w]}[z,w]$ 代表 $a^\flat$，则
+ $\eta_*(\alpha)=\sum_{[z,w]}a_{[z,w]}\eta_*([z,w])$ 代表 $(\eta_*a)^\flat$；
+ \item 相应作用量泛函的 $L^2$-梯度满足
+ $\eta_*(\operatorname{grad}_J\mathcal A_H)([z,w])
+ =\operatorname{grad}_{\eta_*J}(\mathcal A_{\eta_*H})(\eta_*[z,w])$；
+ \item 若 $u:\mathbb R\times S^1\to M$ 是 $(H,J)$ 的扰动柯西--黎曼方程之解，
+ 则 $\eta_*u=\eta\circ u$ 是 $(\eta_*J,\eta_*H)$ 的解；两组数据及其解具有相同的
+ 一切弗雷德霍姆性质；
+ \item $\eta\in\operatorname{Symp}(M,\omega)$ 以拉回 $a\mapsto\eta^*a$ 作用于
+ $QH^*(M)$。\footnote{译者注：公理与第 (5) 项以 $\eta_*a$ 记量子上同调上的作用，第 (8) 项却
+称其为拉回 $\eta^*a$；原文记号不一致，译文逐处保留。}
+\end{enumerate}
+这些事实说明，共轭诱导典范的保滤过链同构
+\[
+ \eta_*:(CF_*^\lambda(H),\partial_{(H,J)})\longrightarrow
+ (CF_*^\lambda(\eta_*H),\partial_{(\eta_*H,\eta_*J)}),
+\]
+其中 $\lambda\in\mathbb R\setminus\operatorname{Spec}(H)
+=\mathbb R\setminus\operatorname{Spec}(\eta_*H)$。因此它在同调上诱导保滤过同构
+\[
+ \eta_*:HF_*^\lambda(H,J)\longrightarrow HF_*^\lambda(\eta_*H,\eta_*J).
+\]
+辛不变性随即来自构造 $\rho(H;a)$ 所用的弗洛尔极小极大过程。
+\end{proof}
+
+以上构造 $\rho(H;a)$ 一直假设 $H$ 一周期；这是哈密顿弗洛尔同调构造的附带要求。
+通过重参数化哈密顿道路这一简单的柔性技巧可以去除此要求。这样的延拓使谱不变量
+在应用中非常灵活，并在连续哈密顿动力系统的各类应用中十分重要（例如见 (Oh10)）。
+下面说明如何去掉周期性，并把 $\rho(H;a)$ 延拓到任意含时哈密顿量
+$H:[0,1]\times M\to\mathbb R$。显然霍费尔范数 $\lVert H\rVert$ 的定义不要求周期性。
+
+由\emph{未必周期}的 $H$ 构造 $H^\zeta$ 型含时周期哈密顿量，其中 $\zeta$ 是 $[0,1]$ 的
+重参数化，满足
+\begin{equation}
+ \zeta(t)=
+ \begin{cases}
+ 0,&0\leq t\leq\epsilon_0/2,\\
+ 1,&1-\epsilon_0/2\leq t\leq1,
+ \end{cases}
+ \label{eq:21-reparameterization-cutoff}
+\end{equation}
+以及 $\zeta'(t)\geq0$。定义
+\[
+ H^\zeta(t,x)=\zeta'(t)H(\zeta(t),x),
+\]
+它生成哈密顿同痕 $t\mapsto\phi_H^{\zeta(t)}$。任意两个这样的重参数化函数
+$\zeta_0,\zeta_1$ 所给道路 $\phi_{H^{\zeta_0}}$、$\phi_{H^{\zeta_1}}$ 彼此同伦，故
+$\rho(H^{\zeta_0};a)=\rho(H^{\zeta_1};a)$。这使我们能给出如下定义。
+
+\begin{definition}
+\label{def:21-nonperiodic-spectral-invariant}
+设 $H$ 是任意含时、未必一周期的哈密顿量。定义
+\begin{equation}
+ \rho(H;a):=\rho(H^\zeta;a),
+ \label{eq:21-nonperiodic-spectral-definition}
+\end{equation}
+其中 $\zeta$ 是任一这样的重参数化。
+\end{definition}
+
+利用归一化 $H$ 与相应哈密顿道路 $\phi_H:t\mapsto\phi_H^t$ 的一一对应，在道路空间
+\[
+ P^{\mathrm{ham}}(\operatorname{Symp}(M,\omega),\mathrm{id})
+\]
+上定义谱函数
+\[
+ \rho_a:P^{\mathrm{ham}}(\operatorname{Symp}(M,\omega),\mathrm{id})
+ \longrightarrow\mathbb R.
+\]
+
+\begin{definition}[哈密顿道路的谱不变量]
+\label{def:21-hamiltonian-path-spectral-invariant}
+设 $\lambda$ 是哈密顿道路。定义
+\[
+ \rho(\lambda;a):=\rho(\operatorname{Dev}(\lambda);a),
+\]
+即若 $\lambda=\phi_H$，则 $\rho(\lambda;a)=\rho(\underline H;a)$。
+\end{definition}
+
+以 $\widetilde{\operatorname{Ham}}(M,\omega)$ 表示下述道路空间中道路相对于端点的
+同伦类之集：
+\[
+ P^{\mathrm{ham}}(\operatorname{Symp}(M,\omega),\mathrm{id}).
+\]
+它就是 $\operatorname{Ham}(M,\omega)$ 的万有覆盖空间，并赋予商拓扑。一个重要
+问题是：当 $\lambda,\mu$ 相对于端点道路同伦时，是否
+\[
+ \rho(\lambda;a)=\rho(\mu;a),
+\]
+从而 $\rho$ 能下降到 $\widetilde{\operatorname{Ham}}(M,\omega)$？稍后将在 21.5 节讨论。
+\footnote{译者注：原文指向 21.5 节，但同伦不变性的正式陈述与证明实际位于
+21.6 节；21.5 节提供证明所需的谱性。译文保留原交叉引用并登记。}

@@ -1,0 +1,113 @@
+\vkthmsync{15}
+\paragraph{\trExactTriangle{}的性质。}\label{sub:properties-of-triangles}
+\cref{thm:h0-triangulated-category}表明，\trTriangulated{}的\trACategory{}中的%
+\trExactTriangle{}类满足\trTriangulated{}结构的公理性性质。事实上，把这些性质
+适当地表述出来，它们对一般的\trACategory{}也成立。为照顾先前未多涉猎%
+\trHomology{}代数的读者，下面是一份不完全的清单：
+
+\begin{corollary}\label{thm:long-exact-sequence-hom}
+设\eqref{eq:exact-triangle-diagram} 是\trACategory{} $\scr{A}$ 中的一个%
+\trExactTriangle。那么，该三角形中任何两个相继\trMorphism{}的\trComposition{}%
+都为零；而且，对一个固定的\trObject{} $X$ 从左或从右取 $\Hom$，便得到%
+\trVectorSpace{}的下述\trLongExactSequence
+\begin{equation*}
+\begin{tikzcd}
+\Hom_{H(\scr{A})}(X,Y_0) \ar[r] & \Hom_{H(\scr{A})}(X,Y_1) \ar[r] &
+\Hom_{H(\scr{A})}(X,Y_2) \ar[ll,bend left=20,"{[1]}"]
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}
+\Hom_{H(\scr{A})}(Y_0,X) \ar[rr,bend right=20,"{[1]}"'] &
+\Hom_{H(\scr{A})}(Y_1,X) \ar[l] & \Hom_{H(\scr{A})}(Y_2,X) \ar[l]
+\end{tikzcd}
+\end{equation*}
+\end{corollary}
+
+逆命题不成立，也就是说，该推论中的这些性质不足以刻画\trExactTriangle（利用%
+\cref{thm:massey-product-exactness}很容易构造出反例）。
+
+\begin{corollary}\label{thm:triangle-completion}
+设有两个\trExactTriangle
+\begin{equation}\label{eq:triangle-completion-diagram}
+\begin{tikzcd}
+& Y_0 \ar[rr,"{[b_0]}"] \ar[dd,"{[c_1]}"{pos=0.2}] && \widetilde{Y}_0
+\ar[dd,"{[\widetilde{c}_1]}"{pos=0.2}] \\
+Y_2 \ar[ur,"{[c_3]}"] \ar[rr,"{[b_2]}"{pos=0.3},dashed] && \widetilde{Y}_2
+\ar[ur,"{[\widetilde{c}_3]}"] \\
+& Y_1 \ar[rr,"{[b_1]}"] \ar[ul,"{[c_2]}"] && \widetilde{Y}_1
+\ar[ul,"{[\widetilde{c}_2]}"]
+\end{tikzcd}
+\end{equation}
+连同\trMorphism{} $[b_0]\in\Hom^0_{H(\scr{A})}(Y_0,\widetilde{Y}_0)$、
+$[b_1]\in\Hom^0_{H(\scr{A})}(Y_1,\widetilde{Y}_1)$，它们满足
+$[\mu^2_{\scr{A}}(\widetilde{c}_1,b_0)]=[\mu^2_{\scr{A}}(b_1,c_1)]$。那么存在
+一个（未必唯一的）\trMorphism{} $[b_2]$，把交换图补全成
+\eqref{eq:triangle-completion-diagram} 所示的样子。进而，若 $[b_0]$、$[b_1]$
+是\trIsomorphism，则 $[b_2]$ 也是。
+\end{corollary}
+
+\begin{corollary}\label{thm:rotated-exact-triangle}
+设我们有一个\trExactTriangle{} \eqref{eq:exact-triangle-diagram}，并且 $Y_0$
+容许\trSuspension{} $SY_0$。那么，旋转后的三角形
+\begin{equation*}
+\begin{tikzcd}
+Y_1 \ar[rr,"{[c_2]}"] && Y_2 \ar[dl,"{[c_3]}"] \\
+& SY_0 \ar[ul,"{-[S(c_1)]}","{[1]}"{swap,pos=0.55}] &
+\end{tikzcd}
+\end{equation*}
+仍是\trExact{}的。
+\end{corollary}
+
+在上一条推论的陈述中，我们已经隐含地用\eqref{eq:shift-hom-isomorphism} 把
+$[c_3]$ 看成到 $SY_0$ 的一个\trMorphism。对 $[c_1]$，我们类似地使用
+\eqref{eq:shift-inverse-isomorphism}，其非平凡的部分是\trShiftFunctor{} $S$ 的
+作用，故有记号 $[S(c_1)]$。
+
+\begin{remark}\label{thm:vanishing-maps-splitting}
+上一条推论蕴含一个简单但有用的结论。假设在\trExactTriangle{}
+\eqref{eq:exact-triangle-diagram} 中，\trMorphism{} $[c_1]$ 为零。由于抽象%
+\trMappingCone{}的\trIsomorphism{}类不依赖于\trCocycle{}的选取，与%
+\cref{thm:cone-shift-sum-relation}中相同的结论成立，即在 $H^0(\scr{A})$ 中
+$Y_2\cong SY_0\oplus Y_1$。把该\trExactTriangle{}旋转，当其余\trMorphism{}中
+任何一个为零时也会得到类似的陈述。完整的清单是
+\begin{equation*}
+\begin{gathered}
+[c_1]=0 \implies Y_2\cong SY_0\oplus Y_1,\\
+[c_2]=0 \implies Y_0\cong Y_1\oplus S^{-1}Y_2,\\
+[c_3]=0 \implies Y_1\cong Y_2\oplus Y_0.
+\end{gathered}
+\end{equation*}
+\end{remark}
+
+\begin{corollary}\label{thm:composite-exact-triangle}
+给定\trExactTriangle
+\begin{equation*}
+\begin{tikzcd}
+Y_0 \ar[r,"{[a_1]}"] & Y_1 \ar[d] \\
+& Z_0 \ar[ul,bend left=15,"{[1]}"']
+\end{tikzcd}
+\qquad
+\begin{tikzcd}
+Y_1 \ar[r,"{[a_2]}"] & Y_2 \ar[d] \\
+& Z_2 \ar[ul,bend left=15,"{[1]}"']
+\end{tikzcd}
+\qquad
+\begin{tikzcd}
+Y_0 \ar[r,"{[a_2]\cdot[a_1]}"] & Y_2 \ar[d] \\
+& Z_1; \ar[ul,bend left=15,"{[1]}"']
+\end{tikzcd}
+\end{equation*}
+则还存在一个\trExactTriangle
+\begin{equation*}
+\begin{tikzcd}
+Z_0 \ar[r] & Z_1 \ar[d] \\
+& Z_2. \ar[ul,bend left=15,"{[1]}"']
+\end{tikzcd}
+\end{equation*}
+\end{corollary}
+
+惯例上，人们把\trTriangulated\trCategory{}的公理列为 (TR1)--(TR4) [61, Chapter 5]。
+\cref{thm:rotated-exact-triangle}对应于 (TR2)；\cref{thm:long-exact-sequence-hom}
+与\cref{thm:triangle-completion}是 (TR1)--(TR3) 的推论；而
+\cref{thm:composite-exact-triangle}则是八面体公理 (TR4) 的一个不完整的版本。

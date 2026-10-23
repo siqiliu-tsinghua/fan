@@ -1,0 +1,190 @@
+
+\section{作为\trDifferential{}方程的\trVectorField}
+\label{sec:vector-fields-odes}
+
+\subsection{流}
+\label{subsec:flows}
+
+一个\trVectorField{}可以被看成一个\trDifferential{}方程
+\[
+c'(t)=X_{c(t)}
+\]
+其在 $t=0$ 时经过 $x$ 的解记作 $\varphi^{t}_{X}$。一般说来，它只对靠近 $0$ 的 $t$ 才有定义。然而在这种情形下，我们有
+\[
+\varphi^{t}_{X}\bigl(\varphi^{t'}_{X}(x)\bigr)=\varphi^{t+t'}_{X}(x)
+\]
+由此我们容易推出：$\varphi^{t}_{X}$ 是一个\trDiffeomorphism，并且在 $t=0$ 时等于恒等映射。
+一个我们将会不断使用的重要结果是：在一个\trCompact\trManifold{}上，\trFlow{}对一切 $t$ 都有定义。
+
+\begin{theorem}\label{thm:flow-compact-manifold}
+\trCompact\trManifold{} $V$ 上一个\trVectorField{}的\trFlow{}在 $\RR\times V$ 上是\trWellDefined{}的。
+\end{theorem}
+
+当然，同样的结论对任意\trManifold{}上一个具有紧\trSupport{}的\trVectorField{}也成立。关于证明可参见例如 [54,~p.~10]。
+
+\emph{边界的\trCollar{}邻域。}
+\trManifold{} $V$ 的边界 $\partial V$ 具有一个“\trCollar”\footnote{我们在\cref{sec:long-exact-sequence} 中用过它。}邻域，也就是说，一个形如 $\partial V\times[0,\varepsilon[$ 的邻域，我们可以通过积分一个\trVectorField{}来得到它。就是说，我们选取一个定义在边界的邻域内、且不切于边界的\trVectorField（利用一个\trPartitionOfUnity{}很容易得到它），并积分之。
+
+\subsection{\trLieDerivative、\trCartan{}公式}
+\label{subsec:lie-derivative-cartan}
+
+\trLieDerivative $\scr{L}_{X}$ 扩张了函数（$0$-形式）的\trDerivation。它定义为
+\[
+\scr{L}_{X}\alpha=\Bigl(\frac{d}{dt}\,(\varphi^{t})^{\star}\alpha\Bigr)_{t=0}
+\]
+（因而它把一个 $p$-形式变成另一个 $p$-形式）。
+\trCartan{}公式\footnote{译注：原书本小节标题印作 “Cartans' Formula”（大写 F）、正文印作 “Cartans' formula”（小写 f），均系复数所有格；这条恒等式通常归之于 Élie Cartan 一人（单数所有格 Cartan's），通行名称即“\trCartan{}公式”。此处按通行名称径改。——译者注}把\trLieDerivative{}与外\trDifferential{}联系起来。它还涉及一个形式被一个\trVectorField{}作\trInteriorProduct{}的运算：
+\[
+(i_{X}\alpha)_{x}(Y_{1},\dotsc,Y_{p})=\alpha_{x}(X,Y_{1},\dotsc,Y_{p})
+\]
+（一个把 $p$-形式送到 $(p-1)$-形式的运算）。这个恒等式说的是
+\[
+\scr{L}_{X}=d\,i_{X}+i_{X}d\text{。}
+\]
+
+再一次，参见 [45,~Chapter~V]。
+
+\subsection{沿一个解的\trLinearization}
+\label{subsec:linearization-along-solution}
+
+让我们考察\trManifold{} $V$ 上的一个\trVectorField{} $X$，也就是\trDifferential{}方程
+\[
+\dot{x}=X(x)\text{，}
+\]
+这里我们采用记号 $\dot{x}=dx/dt$。
+按照传统，我们把\trLinearization{}方程理解为描述与一个给定解“无穷小接近”的那些解的方程。如果 $x(t)$ 与 $y(t)$ 是相近的解，那么在一张\trChart{}中我们写
+\[
+y(t)=x(t)+Y(t)\text{，}
+\]
+由此得到
+\[
+\frac{dY}{dt}=\frac{dy}{dt}-\frac{dx}{dt}=X\bigl(y(t)\bigr)-X\bigl(x(t)\bigr)=(dX)_{x(t)}\bigl(Y(t)\bigr)
+\]
+在一阶上。这个 $Y$ 的线性\trDifferential{}方程就是\trLinearization{}方程。让我们用一种更内在的方式来描述它。
+让我们考察\trDifferential{}方程的一个解 $x(t)$，以及一个沿 $x$ 切于 $V$ 的\trVectorField。例如，$X=d/dt$ 就是这样的一个解。
+
+\begin{lemma}\label{thm:lie-derivative-operator-D}
+\trLieDerivative $\scr{L}_{X}$ 在 $x^{\star}TV$ 的局部\trSection{}上定义了一个算子 $D$，使得对每个沿 $x$ 定义的函数 $f$，我们有
+\[
+D(fY)=\dot{f}\,Y+f\,DY\text{。}
+\]
+\end{lemma}
+
+\begin{proof}
+我们如下定义 $DY$：
+\begin{itemize}
+\item 把 $Y$ 延拓成 $x$ 的一个邻域内的 $\widetilde{Y}$（或者 $x$ 的一点的邻域内的——一切都是局部的）；
+\item 计算 $\scr{L}_{X}\widetilde{Y}\ \bigl(=[X,\widetilde{Y}]\bigr)$\footnote{译注：原书此处印作 $(=[\widetilde{Y},X])$；按本书的括号约定 $[X,Y]f=X(Yf)-Y(Xf)$（\cref{subsec:vector-fields}），\trLieDerivative $\scr{L}_{X}Y$ 应等于 $[X,Y]$，而 $[\widetilde{Y},X]$ 给出反号——$[fY,X]=f[Y,X]-(Xf)Y$ 与本引理的 $D(fY)=\dot{f}\,Y+f\,DY$、即 $\scr{L}_{X}(fY)=(X\cdot f)Y+f\,\scr{L}_{X}Y$ 恰好相抵；本节下文 $[X,\partial/\partial x_{i}]=-\partial X/\partial x_{i}$ 从而 $A(t)=-(dX)_{x(t)}$ 亦与此处径改后的次序一致，疑为括号次序倒置。此处径改。——译者注}；
+\item 把这个\trVectorField{}限制到 $x$ 上。
+\end{itemize}
+让我们验证结果不依赖于 $Y$ 的延拓 $\widetilde{Y}$ 的选取，办法是注意：如果 $Z$ 是一个限制在解 $x$ 上恒为零的场，那么 $\scr{L}_{X}Z$ 限制在 $x$ 上也为零。这正是下面\cref{thm:lie-derivative-zero-on-solution} 所陈述的。
+相对于函数的“线性”性是恒等式
+\[
+\scr{L}_{X}(fY)=(X\cdot f)Y+f\,\scr{L}_{X}Y\text{。}
+\]
+的一个直接推论。
+\end{proof}
+
+\begin{lemma}\label{thm:lie-derivative-zero-on-solution}
+如果 $Z$ 是 $V$ 上定义在 $x$ 的邻域内、且在 $x$ 上恒为零的一个\trVectorField，那么 $\scr{L}_{X}Z$ 在 $x$ 的每一点处都为零。
+\end{lemma}
+
+\begin{proof}
+$\scr{L}_{X}Z$ 的定义用到了 $X$ 的\trFlow{} $\varphi^{t}$：
+\[
+\scr{L}_{X}Z=\frac{d}{dt}\Bigl(\bigl(\varphi^{-t}\bigr)_{\star}Z\Bigr)\big|_{t=0}\text{。}
+\]
+在 $x$ 的每一点处，向量 $Z(x(t))$ 为零；于是 $\bigl(\varphi^{t}\bigr)_{\star}Z(x)$ 也恒为零。从而 $\scr{L}_{X}Z$ 在\trTrajectory{} $x$ 的每一点处都为零。
+\end{proof}
+
+我们称线性方程 $DY=0$ 为\trLinearization{}方程。注意 $X$ 本身显然是变分方程的一个解。我们有下述结果。
+
+\begin{lemma}\label{thm:linearized-solutions-flow}
+沿 $x$ 的\trLinearization{}方程的诸解 $Y$，是沿 $x$ 定义的、满足
+\[
+Y(t)=\bigl(T_{x(0)}\varphi^{t}\bigr)\bigl(Y(0)\bigr)\text{。}
+\]
+的诸\trVectorField{} $Y(t)$。
+\end{lemma}
+
+的确，如果 $Y(t)$ 由这个公式定义，那么
+\[
+Y(0)=\bigl(T_{x(0)}\varphi^{t}\bigr)^{-1}Y(t)=\bigl(T_{x(t)}\varphi^{-t}\bigr)Y(t)
+\]
+不依赖于 $t$，于是这个公式确实定义了线性方程的一个解。它在 $t=0$ 时取值为 $Y(0)$，而且是唯一这样做的解。
+\noqed
+
+\emph{在坐标下。}
+
+为了使用坐标，让我们把这个方程的矩阵形式写下来。如果 $(e_{1}(t),\dotsc,e_{m}(t))$ 是\trVectorBundle{} $TV$ 沿 $x$ 的局部\trSection{}的一个基，那么沿 $x$ 的一个\trVectorField{} $Y$ 可以写成 $Y(t)=\sum y_{i}(t)e_{i}(t)$，而
+\[
+\begin{aligned}
+DY&=\sum_{i=1}^{m}\bigl(\dot{y}_{i}e_{i}+y_{i}De_{i}\bigr)\\
+&=\sum_{i=1}^{m}\Bigl(\dot{y}_{i}e_{i}+y_{i}\sum_{j=1}^{m}a_{ij}e_{j}\Bigr)=\sum_{i=1}^{m}\Bigl(\dot{y}_{i}+\sum_{k=1}^{m}a_{k,i}y_{k}\Bigr)e_{i}\text{。}
+\end{aligned}
+\]
+把 $y$ 记作以诸 $y_{i}$ 为元素的列向量，并设 $A(t)$ 表示以 $A(t)_{ij}=a_{ji}(t)$ 为元素的矩阵，这就给出
+\[
+\dot{y}+A(t)y=0\text{。}
+\]
+还要更加局部地，让我们设 $V$ 是 $\RR^{m}$ 的一个\trOpen{}子集，于是\trVectorField{} $X$ 可以被看成一个映射
+\[
+\begin{aligned}
+V&\longrightarrow\RR^{m}\\
+x&\longmapsto X(x)\text{。}
+\end{aligned}
+\]
+对于基 $(e_{1}(t),\dotsc,e_{m}(t))$，我们用在\trTrajectory{}上作限制的 $\RR^{m}$\trCanonical{}基 $(\partial/\partial x_{1},\dotsc,\partial/\partial x_{m})$；\footnote{译注：原书此处印作“the canonical base … of $\mathbf{C}^{m}$”；按上下文 $V$ 是 $\RR^{m}$ 的开子集、$X$ 是 $\RR^{m}$ 值的映射，这里的 $\mathbf{C}^{m}$ 疑为 $\mathbf{R}^{m}$ 之误。此处径改。——译者注}于是
+\[
+\Bigl[X,\frac{\partial}{\partial x_{i}}\Bigr]=-\frac{\partial X}{\partial x_{i}}\quad\text{从而}\quad A(t)=-\,(dX)_{x(t)}\text{。}
+\]
+变分方程就是原\trDifferential{}方程的\trLinearization{} $\dot{y}=(dX)_{x(t)}y$。我们重新找到了上面提到的“\trPoincare{}”\trLinearization。
+
+\subsection{时间依赖\trVectorField{}的情形}
+\label{subsec:time-dependent-vector-field}
+
+在本书中，我们将需要考虑“时间依赖的”\trVectorField，也就是\trDifferential{}方程组
+\[
+\dot{x}=X_{t}\bigl(x(t)\bigr)\text{，}
+\]
+其中 $(t,x)\mapsto X_{t}(x)$ 是一个依赖于附加参数 $t$（时间）的\trVectorField。局面看起来与我们至今所考虑的有些不同，但是可以通过考虑 $\RR\times V$ 上的\trVectorField
+\[
+\widetilde{X}(u,x)=\frac{d}{du}+X_{u}(x)\in T_{(u,x)}(\RR\times V)
+\]
+而把它约化成那种情形。$\widetilde{X}$ 的诸\trTrajectory{}就是方程组
+\[
+\dot{u}(t)=1\text{，}\qquad\dot{x}(t)=X_{u(t)}\bigl(x(t)\bigr)\text{。}
+\]
+的诸解 $\widetilde{x}(t)=(u(t),x(t))\in\RR\times V$。其中包括那些 $t\mapsto(t,x(t))$，其中 $x$ 是 $\dot{x}=X_{t}(x)$——我们的原方程——的一个解。$\widetilde{X}$ 的\trFlow{}是
+\[
+\widetilde{\varphi}^{t}(u,x)=\bigl(u+t,\varphi^{t}(x)\bigr)\text{，}
+\]
+其中 $\varphi^{t}$ 表示 $X_{t}$ 的\trFlow，它是
+\[
+\varphi^{0}=\mathrm{Id}\qquad\text{与}\qquad\frac{d}{dt}\varphi^{t}=X_{t}\circ\varphi^{t}
+\]
+的一个解。\footnote{译注：原书上面的流公式与下文两处切流等式均分别印作 $\widetilde{\varphi}^{t}(u,x)=\bigl(u+t,\varphi^{t}(x)\bigr)$ 与 $\bigl(y(t),Y(t)\bigr)=\bigl(y(0),T_{x(t)}\varphi^{t}(Y(0))\bigr)$。按 $\widetilde{X}=\frac{d}{du}+X_{u}$ 的流应解 $\dot{u}=1$、$\dot{x}=X_{u+t}(x)$，第一式应为 $\widetilde{\varphi}^{t}(u,x)=\bigl(u+t,\ \varphi^{u+t}\circ(\varphi^{u})^{-1}(x)\bigr)$，须带上初始时间经 $\varphi^{u}$ 的贡献——反例：取 $X_{t}=t\,\partial/\partial x$，真流为 $(u,x)\mapsto\bigl(u+t,\ x+ut+\tfrac{1}{2}t^{2}\bigr)$，而原书式给出 $\bigl(u+t,\ x+\tfrac{1}{2}t^{2}\bigr)$。后两式的基点亦应作 $x(0)$ 而非 $x(t)$——对起点 $u=0$ 即回归\cref{thm:linearized-solutions-flow} 的 $Y(t)=T_{x(0)}\varphi^{t}(Y(0))$。三处照原书排印，存疑备案。——译者注}
+\trDifferential{}方程沿这样一个解的\trLinearization，可以作用于 $\widetilde{x}^{\star}T(\RR\times V)$ 的诸\trSection{}，也就是作用于诸向量
+\[
+t\longmapsto\bigl(y(t),Y(t)\bigr)\]
+其满足
+\[
+\frac{d}{dt}\begin{pmatrix}y\\ Y\end{pmatrix}=\begin{pmatrix}0&0\\ \partial X_{t}/\partial t&(dX_{t})_{x(t)}\end{pmatrix}\begin{pmatrix}y\\ Y\end{pmatrix}\text{。}
+\]
+因此诸解形如 $(y,Y)$，其中 $y$ 为常数，而 $Y$ 满足
+\[
+\frac{dY}{dt}=y\,\frac{\partial X_{t}}{\partial t}+(dX_{t})_{x(t)}Y\text{。}
+\]
+特别地，对 $y=0$，这就是
+\[
+\frac{dY}{dt}=(dX_{t})_{x(t)}Y\text{，}
+\]
+其中我们认出了上面的形式。因此诸结果都成立，特别地\cref{thm:linearized-solutions-flow} 给出
+\[
+\bigl(y(t),Y(t)\bigr)=T_{\widetilde{x}(0)}\widetilde{\varphi}^{t}\bigl(y(0),Y(0)\bigr)=\bigl(y(0),T_{x(t)}\varphi^{t}(Y(0))\bigr)\text{。}
+\]
+对 $y(0)=0$，我们看到：$Y$ 是
+\[
+\frac{dY}{dt}=(dX_{t})_{x(t)}Y
+\]
+的一个解，当且仅当 $Y(t)=T_{x(t)}\varphi^{t}(Y(0))$。

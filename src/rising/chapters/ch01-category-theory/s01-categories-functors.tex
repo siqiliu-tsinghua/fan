@@ -1,0 +1,166 @@
+\section{范畴与函子}
+
+\epigraph
+  {数字 $0$ 与群概念的引入，在当时也无非是些“抽象废话”；千百年间数学之所以
+   多少陷于停滞，只因无人肯迈出这般孩子气的步子。}
+  {——A.~\trGrothendieck，[GroP, pp.~4--5]}
+\epigraph
+  {在有了\trFunctoriality{}之前，人类住在洞穴里。}
+  {——B.~\trConrad}
+
+我们从范畴与函子的一个非正式定义入手。
+
+\textbf{1.1.1. 范畴。}\quad 一个\textbf{\trCategory}（category）由一个\textbf{\trObject}（object）的汇集，
+以及每两个对象之间的一个由\textbf{\trMorphism}（morphism，亦称
+\textbf{\trArrow}（arrow））组成的集合给出。（行家按语：严格地说，这是%
+\trLocallySmallCategory{}（locally small category）的定义；在正确的定义里，
+态射只须构成一个\trClass{}（class）而不必是一个集合，参看警示~0.3.1。）
+态射在非正式场合常被称为\textbf{\trMap}（map）。范畴 $\scr{C}$ 的对象汇集
+常记作 $\obj(\scr{C})$，但本书通常也径直以 $\scr{C}$ 记这个汇集。若
+$A,B\in\scr{C}$，则从 $A$ 到 $B$ 的态射集合记作 $\Mor(A,B)$。态射常写作
+$f\colon A\to B$，此时称 $A$ 为 $f$ 的\textbf{\trSource}（source），$B$ 为
+$f$ 的\textbf{\trTarget}（target）。（当然，约定 $\Mor(A,B)$ 与
+$\Mor(A',B')$ 互不相交，除非 $A=A'$ 且 $B=B'$。）
+
+态射按你所预期的方式\textbf{\trComposition}（composition）：存在复合
+$\Mor(B,C)\times\Mor(A,B)\to\Mor(A,C)$；若 $f\in\Mor(A,B)$，
+$g\in\Mor(B,C)$，则二者的复合记作 $g\circ f$。复合满足结合律：若
+$f\in\Mor(A,B)$，$g\in\Mor(B,C)$，$h\in\Mor(C,D)$，则
+$h\circ(g\circ f)=(h\circ g)\circ f$。对每个对象 $A\in\scr{C}$，总存在一个
+\textbf{\trIdMorphism}（identity morphism）$\id_A\colon A\to A$，使得任何
+态射与恒等态射（无论从左侧还是右侧）复合后仍是该态射。更精确地说：对任意
+态射 $f\colon A\to B$ 与 $g\colon B\to C$，有
+$\id_B\circ f=f$ 且 $g\circ\id_B=g$。（如果你愿意，不妨验证“恒等态射是唯一
+的”：够格叫 $\id_A$ 的态射有且仅有一个。）\textbf{至此，范畴的定义完毕。}
+
+范畴中两个对象之间还有\textbf{\trIsomorphism}（isomorphism）的概念：态射
+$f\colon A\to B$ 称为同构，若存在某个——从而必是唯一的——态射
+$g\colon B\to A$，使得 $f\circ g$ 与 $g\circ f$ 分别是 $B$ 与 $A$ 的恒等
+态射。
+
+\textbf{1.1.2. 例。}\quad 最值得放在心里当作原型的例子是集合范畴 $\catSets$：其对象是集合，态射是集合
+之间的映射。（由于\trRussell\trParadox{}表明“由所有集合组成的集合”并不
+存在，前文的定义中才没有断言对象构成一个集合；但如 \S0.3 所述，我们刻意
+回避了全部\trSetTheoretic{}问题。）
+
+\textbf{1.1.3. 例。}\quad 另一个好例子是给定\trField{} $k$ 上的向量空间范畴 $\catVec_k$：其对象是
+$k$-向量空间，态射是\trLinearTransformation{}。（同构是什么？）
+
+\begin{exercise}[无足轻重]\label{ex:perverse-definition-of-groupoid}
+每个态射都是\trIsomorphism{}的\trCategory{}称为%
+\textbf{\trGroupoid}（groupoid）。（这个概念在我们即将讨论的内容里并不
+重要；本练习的意义，是借一个你早已熟识的对象来练练手，帮你熟悉范畴。）
+\begin{enumerate}[label=(\alph*)]
+\item “\trGroup{}”的一个故作高深的（perverse）定义是：恰有一个对象的%
+      \trGroupoid。请把这话说通。（类似地，若你感兴趣，“\trMonoid”的一个
+      故作高深的定义是：恰有一个对象的\trCategory。）
+\item 描述一个不是群的\trGroupoid。
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:automorphism-groups-of-objects}
+设 $A$ 是\trCategory{} $\scr{C}$ 中的一个对象，证明 $\Mor(A,A)$ 中的%
+\trInvertible{}元素构成一个群（称为 $A$ 的\textbf{\trAutomorphismGroup}
+（automorphism group of $A$），记作 $\Aut(A)$）。例~1.1.2与例~1.1.3中各
+对象的\trAutomorphismGroup{}分别是什么？证明：两个彼此\trIsomorphism{}的
+对象，其\trAutomorphismGroup{}也彼此\trIsomorphism。（对有拓扑背景的读者：
+设 $X$ 是一个\trTopologicalSpace，则基本\trGroupoid{}是这样一个范畴：对象
+为 $X$ 的点，态射 $x\to y$ 是从 $x$ 到 $y$ 的\trPath，视为在\trHomotopy{}下
+等同。此时 $x_0$ 的\trAutomorphismGroup{}即（带基点的）\trFundamentalGroup
+$\pi_1(X,x_0)$。当 $X$\trConnected{}而 $\pi_1(X)$ 非交换时，这个例子恰好
+说明了如下事实：对一个连通的\trGroupoid{}——其定义你可以自行猜出——诸对象
+的\trAutomorphismGroup{}彼此\trIsomorphism{}，但并不\trCanonically\trIsomorphism。）
+\end{exercise}
+
+\textbf{1.1.4. 例：\trAbelianGroups。}\quad \trAbelianGroups{}连同其间的\trGroupHom{}构成一个范畴 $\catAb$。
+
+
+\textbf{1.1.5. 重要例子：环上的模。}\quad 若 $A$ 是环，则诸 $A$-\trModule{}构成一个范畴 $\catMod{A}$。（这个范畴带有进一步的结构；它将是\trAbelianCategory{}的原型例子，见 \S1.5。）取 $A=k$，即得例~1.1.3；取 $A=\mathbb{Z}$，即得例~1.1.4。
+
+\textbf{1.1.6. 例：环。}\quad 存在范畴 $\catRings$：其对象是环，态射是通常意义的环映射（作为集合的映射，保持加法与乘法，且按 \S0.3 的约定把 $1$ 映到 $1$）。
+
+\textbf{1.1.7. 例：拓扑空间。}\quad 诸\trTopologicalSpace{}连同其间的\trContinuousMap{}构成范畴 $\catTop$。其\trIsomorphism{}即\trHomeomorphism。
+
+以上诸例中，范畴的对象都以显然的方式是带有附加结构的集合（一个\textbf{\trConcreteCategory}（concrete category）；不过我们不会使用这个术语）。但事情并非必然如此，下例即为明证。
+
+\textbf{1.1.8. 例：偏序集。}\quad 一个\textbf{\trPoset}（partially ordered set，简称 poset）是一个集合 $S$，连同 $S$ 上满足如下条件的二元关系 $\ge$：（i）$x\ge x$（自反性）；（ii）$x\ge y$ 且 $y\ge z$ 蕴涵 $x\ge z$（传递性）；（iii）若 $x\ge y$ 且 $y\ge x$，则 $x=y$（反对称性）。偏序集 $(S,\ge)$ 可以解释为一个范畴：其对象是 $S$ 的元素，并且当且仅当 $x\ge y$ 时存在唯一的从 $x$ 到 $y$ 的态射（否则没有态射）。一个平凡的例子是 $(S,\ge)$，其中 $x\ge y$ 当且仅当 $x=y$。另一个例子是
+\begin{equation*}\tag{1.1.8.1}\label{eq:two-object-poset-diagram}
+\begin{tikzcd}[row sep=1.7em, column sep=2.6em]
+ & \bullet \ar[d] \\
+\bullet \ar[r] & \bullet
+\end{tikzcd}
+\end{equation*}
+这里共有三个对象。为简便起见，恒等态射略去不画，画出的正是那两个非恒等态射。第三个例子是
+\begin{equation*}\tag{1.1.8.2}\label{eq:commutative-square-poset-diagram}
+\begin{tikzcd}[row sep=1.7em, column sep=2.6em]
+\bullet \ar[r] \ar[d] & \bullet \ar[d] \\
+\bullet \ar[r] & \bullet
+\end{tikzcd}
+\end{equation*}
+这里「显然的」态射同样略去未画：即诸恒等态射，以及从左上到右下的那个态射。类似地，
+\[
+\begin{tikzcd}[column sep=1.6em]
+\cdots \ar[r] & \bullet \ar[r] & \bullet \ar[r] & \bullet
+\end{tikzcd}
+\]
+刻画的是一个偏序集，这里同样只画出「生成态射」。
+
+\textbf{1.1.9. 例：集合的子集所成范畴，与拓扑空间的开子集所成范畴。}\quad 若 $X$ 是集合，则其子集构成一个偏序集，其中的箭头由包含关系给出。（当心：受例 1.1.8 影响，你会预期箭头朝另一方向走。）非正式地说：若 $U\subset V$，则该范畴中恰有一个态射 $U\to V$（否则没有）。类似地，若 $X$ 是\trTopologicalSpace，则其\emph{开}集构成一个偏序集，其中的映射由包含关系给出。
+
+\textbf{1.1.10. 定义。}\quad 范畴 $\mathscr{B}$ 的一个\textbf{\trSubcategory}（subcategory）$\mathscr{A}$：其对象取 $\mathscr{B}$ 的对象中的一部分，其态射取 $\mathscr{B}$ 的态射中的一部分，使得 $\mathscr{A}$ 的对象包含 $\mathscr{A}$ 诸态射的\trSource{}与\trTarget，$\mathscr{A}$ 的态射包含 $\mathscr{A}$ 诸对象的\trIdMorphism，且态射在复合下封闭。（例如，\eqref{eq:two-object-poset-diagram}以显然的方式是\eqref{eq:commutative-square-poset-diagram}的子范畴。此外，还有一个显然的「包含」$\mathrm{i}\colon\mathscr{A}\to\mathscr{B}$，它马上就会成为\trFunctor{}的一个例子。）
+
+\textbf{1.1.11. 函子。}\quad 从范畴 $\mathscr{A}$ 到范畴 $\mathscr{B}$ 的一个\textbf{\trCovariantFunctor}（covariant functor）$F$，记作 $F\colon\mathscr{A}\to\mathscr{B}$，由如下数据构成。它是一个对象层面的映射 $F\colon\obj(\mathscr{A})\to\obj(\mathscr{B})$，并且对每两个 $A_1,A_2\in\mathscr{A}$ 及每个态射 $\mathrm{m}\colon A_1\to A_2$，指定 $\mathscr{B}$ 中的一个态射 $F(\mathrm{m})\colon F(A_1)\to F(A_2)$。我们要求 $F$ 保持恒等态射（对 $A\in\mathscr{A}$，$F(\id_A)=\id_{F(A)}$），并保持复合（$F(\mathrm{m}_2\circ\mathrm{m}_1)=F(\mathrm{m}_2)\circ F(\mathrm{m}_1)$）。（你或许愿意验证：协变函子把\trIsomorphism{}映为\trIsomorphism。）一个平凡的例子是\textbf{\trIdFunctor}（identity functor）$\id\colon\mathscr{A}\to\mathscr{A}$，其定义你可以自行猜出。下面是一些不那么平凡的例子。
+
+\textbf{1.1.12. 例：一个遗忘函子。}\quad 考虑从（域 $k$ 上的）向量空间范畴 $\catVec_k$ 到 $\catSets$ 的函子：把每个向量空间映到其\trUnderlyingSet，并把线性变换映到其底层的集合映射。这是\textbf{\trForgetfulFunctor}（forgetful functor）的一个例子——其中一部分附加结构被忘掉了。遗忘函子的另一个例子是 $\catMod{A}\to\catAb$：从 $A$-模到\trAbelianGroups，只记住 $A$-模的阿贝尔群结构。
+
+\textbf{1.1.13. 拓扑的例子。}\quad 协变函子的例子包括\trFundamentalGroup{}函子 $\pi_1$：把带定点的拓扑空间（$X$ 连同取定的一点 $x_0\in X$）映到群 $\pi_1(X,x_0)$（源范畴的对象与态射是什么？）；以及第 $i$ 个\trHomology{}函子 $\catTop\to\catAb$：把拓扑空间 $X$ 映到其第 $i$ 个同调群 $\mathrm{H}_i(X,\mathbb{Z})$。协变性对应于如下事实：带定点拓扑空间的（连续）态射 $\phi\colon X\to Y$（$\phi(x_0)=y_0$）诱导基本群之间的映射 $\pi_1(X,x_0)\to\pi_1(Y,y_0)$；同调群亦然。
+
+\textbf{1.1.14. 例。}\quad 设 $A$ 是范畴 $\scr{C}$ 中的一个对象。则有函子 $\mathrm{h}^A\colon\scr{C}\to\catSets$：把 $B\in\scr{C}$ 映到 $\Mor(A,B)$，并把态射 $\mathrm{f}\colon B_1\to B_2$ 映到 $\Mor(A,B_1)\to\Mor(A,B_2)$，即
+\[
+[\mathrm{g}\colon A\to B_1] \longmapsto [\mathrm{f}\circ\mathrm{g}\colon A\to B_1\to B_2].
+\]
+这个看似无聊的函子，出人意料地竟是一个重要概念。
+
+\textbf{1.1.15. 定义。}\quad 若 $F\colon\mathscr{A}\to\mathscr{B}$ 与 $G\colon\mathscr{B}\to\mathscr{C}$ 都是协变函子，则以显然的方式可定义函子 $G\circ F\colon\mathscr{A}\to\mathscr{C}$（$G$ 与 $F$ 的\textbf{\trComposition}（composition））。函子的复合在显然的意义下满足结合律。
+
+协变函子 $F\colon\mathscr{A}\to\mathscr{B}$ 称为\textbf{\trFaithful}（faithful）的，若对一切 $A,A'\in\mathscr{A}$，映射 $\Mor_{\mathscr{A}}(A,A')\to\Mor_{\mathscr{B}}(F(A),F(A'))$ 是\trInjectiveMap；称为\textbf{\trFull}（full）的，若它是\trSurjectiveMap。既满又忠实的函子称为\textbf{\trFullyFaithful}（fully faithful）的。（出于种种哲学上的理由，「满」函子这个孤立的概念并不重要；「完全忠实」才是有用的概念。）子范畴 $\mathrm{i}\colon\mathscr{A}\to\mathscr{B}$ 称为\textbf{\trFullSubcategory}（full subcategory），若 $\mathrm{i}$ 是满的。（包含函子总是忠实的，因此无须「忠实子范畴」这个说法。）于是，子范畴 $\mathscr{A}'\subset\mathscr{A}$ 是满子范畴，当且仅当对一切 $A,B\in\obj(\mathscr{A}')$，$\Mor_{\mathscr{A}'}(A,B)=\Mor_{\mathscr{A}}(A,B)$。例如，遗忘函子 $\catVec_k\to\catSets$ 忠实而不满；又若 $A$ 是环，则有限生成 $A$-模构成的范畴是 $A$-模范畴 $\catMod{A}$ 的一个满子范畴。
+
+\textbf{1.1.16. 定义。}\quad \textbf{\trContravariantFunctor}（contravariant functor）的定义方式与协变函子相同，只是箭头方向反转：在上面的语言里，$F(A_1\to A_2)$ 现在是从 $F(A_2)$ 到 $F(A_1)$ 的箭头。（于是 $F(\mathrm{m}_2\circ\mathrm{m}_1)=F(\mathrm{m}_1)\circ F(\mathrm{m}_2)$，而非 $F(\mathrm{m}_2)\circ F(\mathrm{m}_1)$。）除非语境已使事情一清二楚，否则以指明函子是协变还是反变为明智。若未指明（且语境也不明朗），函子往往被默认为协变的。人们有时把反变函子 $\scr{C}\to\scr{D}$ 描述成协变函子 $\scr{C}^{\opp}\to\scr{D}$，其中 $\scr{C}^{\opp}$ 作为范畴与 $\scr{C}$ 相同，只是箭头都朝相反方向走。此时称 $\scr{C}^{\opp}$ 为 $\scr{C}$ 的\textbf{\trOppositeCategory}（opposite category）。满性等概念对反变函子同样可以定义，此事就留给你了。
+
+\textbf{1.1.17. 线性代数的例子。}\quad 设 $\catVec_k$ 是 $k$-向量空间范畴（例~1.1.3已引入），则取对偶给出一个反变函子 $(\cdot)^{\vee}\colon\catVec_k\to\catVec_k$。的确，对每个线性变换 $f\colon V\to W$，有对偶变换 $f^{\vee}\colon W^{\vee}\to V^{\vee}$，且 $(f\circ g)^{\vee}=g^{\vee}\circ f^{\vee}$。
+
+\textbf{1.1.18. 拓扑的例子（对见过\trCohomology{}的读者；参看例 1.1.13）。}\quad 第 $i$ 个\trCohomology{}函子 $\mathrm{H}^i(\,\cdot\,,\mathbb{Z})\colon\catTop\to\catAb$ 是一个反变函子。
+
+\textbf{1.1.19. 例。}\quad 存在反变函子 $\catTop\to\catRings$：把拓扑空间 $X$ 映到 $X$ 上实值\trContinuousMap{}构成的环。拓扑空间之间的态射 $X\to Y$（一个\trContinuousMap）诱导从 $Y$ 上函数到 $X$ 上函数的\trPullback{}映射。
+
+\textbf{1.1.20. 例（\trFunctorOfPoints{}；参看例 1.1.14）。}\quad 设 $A$ 是范畴 $\scr{C}$ 的一个对象。则存在反变函子 $\mathrm{h}_A\colon\scr{C}\to\catSets$：把 $B\in\scr{C}$ 映到 $\Mor(B,A)$，并把态射 $\mathrm{f}\colon B_1\to B_2$ 映为 $\Mor(B_2,A)\to\Mor(B_1,A)$：
+\[
+[\mathrm{g}\colon B_2\to A] \longmapsto [\mathrm{g}\circ\mathrm{f}\colon B_1\to B_2\to A].
+\]
+这个例子初看古怪而另类，但例 1.1.17 与例 1.1.19 都可以解释成它的特例；你看得出怎么做吗？两种情形里的 $A$ 分别是什么？这个函子本可以合理地命名为「到 $A$ 的映射函子」，但它实际的名称是\textbf{\trFunctorOfPoints}（functor of points）。我们将在 \S1.2.11 与这个函子重逢（在概形范畴中则见定义~7.3.10）。
+
+\textbf{1.1.21. \hard\ 协变函子的自然变换（与自然同构），及范畴的等价。}\quad （这个概念至少要到第 7 章才会本质地登场，在那之前你不必读本段。）设 $F$ 与 $G$ 是从 $\mathscr{A}$ 到 $\mathscr{B}$ 的两个协变函子。协变函子的\textbf{\trNaturalTransformation}（natural transformation）$F\to G$ 是如下数据：对每个 $A\in\mathscr{A}$ 给定一个态射 $\mathrm{m}_A\colon F(A)\to G(A)$，使得对 $\mathscr{A}$ 中每个态射 $\mathrm{f}\colon A\to A'$，下图交换：
+\[
+\begin{tikzcd}[row sep=2em, column sep=3.2em]
+F(A) \ar[r,"F(\mathrm{f})"] \ar[d,"\mathrm{m}_A"'] & F(A') \ar[d,"\mathrm{m}_{A'}"] \\
+G(A) \ar[r,"G(\mathrm{f})"'] & G(A')
+\end{tikzcd}
+\]
+函子的\textbf{\trNaturalIsomorphism}（natural isomorphism）是指这样一个自然变换：其中每个 $\mathrm{m}_A$ 都是\trIsomorphism。（当 $F$ 与 $G$ 都是反变函子时，类似地定义。）
+
+设有函子 $F\colon\mathscr{A}\to\mathscr{B}$ 与 $F'\colon\mathscr{B}\to\mathscr{A}$，使得 $F\circ F'$ 自然同构于 $\mathscr{B}$ 上的恒等函子 $\id_{\mathscr{B}}$，且 $F'\circ F$ 自然同构于 $\id_{\mathscr{A}}$；这组数据便称为一个\textbf{\trEquivalenceOfCategories}（equivalence of categories）。两个范畴「本质上相同」的正确概念，不是\emph{同构}（即一个给出对象与态射双射的函子），而是\emph{等价}。\cref{ex:double-dual-natural-isomorphism}与\cref{ex:based-vector-space-equivalence}也许能给你一点模糊的体会。后面的练习同样有所帮助（例如，证明「环」与「\trAffineScheme」在箭头反转后本质相同，即练习~7.3.E）。
+
+两个例子也许能让这个古怪的概念变得好懂一些。有限维向量空间 $V$ 的双重对偶并不是 $V$ 本身，但我们早早学会说：它典范同构于 $V$。可以按如下方式把这话弄精确。记 $\fdVec{k}$ 为 $k$ 上有限维向量空间构成的范畴。注意：这个范畴里每个维数的向量空间都多得不得了。
+
+\begin{exercise}\label{ex:double-dual-natural-isomorphism}
+设 $(\cdot)^{\vee\vee}\colon\fdVec{k}\to\fdVec{k}$ 是从 $k$ 上有限维向量空间范畴到其自身的双重对偶函子。证明 $(\cdot)^{\vee\vee}$ 自然同构于 $\fdVec{k}$ 上的恒等函子。（若去掉有限维的假设，我们只能得到从 $\id$ 到 $(\cdot)^{\vee\vee}$ 的一个自然变换。）
+
+设 $\mathscr{V}$ 是这样一个范畴：其对象是对每个 $n\ge 0$ 取的 $k$-向量空间 $k^n$（每个 $n$ 恰有一个向量空间），其态射是\trLinearTransformation。$\mathscr{V}$ 的对象可以想成「带基的向量空间」，态射则是矩阵。存在一个显然的函子 $\mathscr{V}\to\fdVec{k}$，因为每个 $k^n$ 都是有限维向量空间。
+\end{exercise}
+
+\begin{exercise}\label{ex:based-vector-space-equivalence}
+证明 $\mathscr{V}\to\fdVec{k}$ 给出范畴的等价，办法是描述一个「逆」函子。（回忆：我们正对集合论假设掉以轻心——见警示~0.3.1——所以尽管放心地同时为 $\fdVec{k}$ 中每个向量空间选一组基。要把这件事弄严格，你需要使用\trGodel--\trBernays{}集合论，或者用一个与此非常相似的\trSmallCategory{}来替换 $\fdVec{k}$；但我们将不去为此操心。）
+\end{exercise}
+
+\textbf{1.1.22. \extrahard\ 给行家的旁注。}\quad 你在\cref{ex:based-vector-space-equivalence}中的论证将表明：（撇开集合论问题不谈）范畴等价的这个定义，与另一个常见定义相同：协变函子 $F\colon\mathscr{A}\to\mathscr{B}$ 称为范畴的等价，若它完全忠实，且 $\mathscr{B}$ 的每个对象都同构于某个 $F(A)$（$A\in\mathscr{A}$）——此时称 $F$ 为\textbf{本质满}（essentially surjective），这个词我们将用不到。
+

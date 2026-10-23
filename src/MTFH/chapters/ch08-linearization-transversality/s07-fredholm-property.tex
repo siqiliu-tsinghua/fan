@@ -1,0 +1,681 @@
+
+\section{\trFredholm{}性质}
+\label{sec:fredholm-property}
+
+我们如今就要着手定理~8.1.5 的证明。设
+\[
+S^{\pm}(t)=\lim_{s\to\pm\infty}S(s,t)
+\]
+并设 $R^{\pm}_t$ 是
+\[
+\dot{R}=J_0S^{\pm}R\qquad\text{其中 }R^{\pm}_0=\mathrm{Id}\text{。}
+\]
+的解。本节的目标是证明下列结果。
+
+\begin{proposition}\label{thm:fredholm-operator-L}
+若 $\det(\mathrm{Id}-R^{\pm}_1)\ne 0$，则
+\[
+L=\bar{\partial}+S(s,t)\ \colon W^{1,p}(\RR\times S^{1};\RR^{2n})\longrightarrow L^{p}(\RR\times S^{1};\RR^{2n})
+\]
+是一个\trFredholmOperator（对每个 $p>1$）。
+\end{proposition}
+
+我们从 [66]所给的证明中汲取灵感（另见 [16]）。主要的配料是下面的\trEllipticRegularity{}定理，连同\trCalderonZygmund{}不等式（\cref{thm:calderon-zygmund-inequality}）的一个推论——它陈述于下一条引理之中（其证明可在 §12.2 中找到）。
+
+\emph{定理（定理~12.1.3）。}设 $p>1$。若 $Y\in L^{p}(\RR\times S^{1};\RR^{2n})$ 是\trLinearization{}后的\trFloerEquation{} $LY=0$ 的一个\trWeakSolution，则 $Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})$（且 $Y$ 是 $\cC^\infty$ 类的）。
+
+\begin{lemma}\label{thm:cz-inequality-L}
+设 $p>1$。若 $Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})$，则存在一个正常数 $C$，使得
+\[
+\|Y\|_{W^{1,p}}\le C\left(\|LY\|_{L^{p}}+\|Y\|_{L^{p}}\right)\text{。}
+\]
+\end{lemma}
+
+证明的安排如下：我们先考虑 $S(s,t)$ 不依赖于 $s$ 的情形，并在其中证明下列更强的结果。
+
+\begin{proposition}\label{thm:d-bijective-independent-s}
+若对称算子 $S(s,t)=S(t)$ 不依赖于 $s$，且 $\det(\mathrm{Id}-R^{\pm}_1)\ne 0$，则
+\[
+D=\bar{\partial}+S(t)\ \colon W^{1,p}(\RR\times S^{1};\RR^{2n})\longrightarrow L^{p}(\RR\times S^{1};\RR^{2n})
+\]
+是\trBijective{}的（对每个 $p>1$）。
+\end{proposition}
+
+我们将先在\cref{subsec:proof-p2-case}中就 $p=2$ 的情形证明这条命题，然后再在\cref{subsec:proof-general-case}中证明一般的情形。这个“渐近”算子 $D$ 的\trInvertible{}性使我们得以把\cref{thm:cz-inequality-L}的不等式改进为
+\[
+\|Y\|_{W^{1,p}(\RR\times S^{1};\RR^{2n})}\le C\left(\|Y\|_{L^{p}(\RR\times S^{1})}+\|Y\|_{L^{p}([-M,M]\times S^{1})}\right)
+\]
+（对一个充分大的 $M>0$）。\footnote{译注：原书右端首项印作 $\|Y\|_{L^{p}(\RR\times S^{1})}$——照印文则 $W^{1,p}$ 范数竟由两个 $L^{p}$ 范数控制，这不可能成立（取 $Y_N=\eta(s)e^{2\pi iNt}$，$\eta$ 为 $\cC^\infty_0$ 截断函数，则两个 $L^{p}$ 范数一致\trBounded{}而 $\|Y_N\|_{W^{1,p}}\to\infty$）。按文脉首项应作 $\|LY\|_{L^{p}(\RR\times S^{1})}$：下文正是以“$\|L(Y)\|_{L^{p}}$＋紧限制项”的形状套用半\trFredholm{}估计（\cref{thm:semi-fredholm-kernel}，无 $L$ 项则无从套用），且\cref{subsec:proof-prop-871}中（原书 p.~284）已导出同型正确式 $\|Y\|_{W^{1,p}}\le C_2\bigl(\|Y\|_{L^{p}[-M,M]}+\|L(Y)\|_{L^{p}}\bigr)$。此处照原书排印，存疑备案。——译者注}
+
+由于限制
+\[
+W^{1,p}(\RR\times S^{1})\longrightarrow L^{p}([-M,M]\times S^{1})
+\]
+是一个\trCompact{}算子（由\trRellich{}定理（\cref{thm:rellich-kondrachov}）），我们随后便可使用关于所谓的“半\trFredholm{}”算子的一个一般结果（其证明在\cref{subsec:appC-another-useful-result}中给出）。
+
+\begin{proposition}\label{thm:semi-fredholm-kernel}
+设 $E$、$F$ 与 $G$ 是三个\trBanachSpace。设 $L\colon E\to F$ 是一个算子，又设 $K\colon E\to G$ 是一个\trCompact{}算子。我们假设存在一个常数 $C>0$，使得
+\[
+\forall x\in E\text{，}\quad\|x\|_{E}\le C\left(\|L(x)\|_{F}+\|K(x)\|_{G}\right)\text{。}
+\]
+那么，$L$ 的\trKernel{}是有限维的，并且它的\trImage{}是闭的。
+\end{proposition}
+
+我们还需证明 $L$ 的\trCokernel{}是有限维的。我们将通过把它等同于\trAdjointOperator
+\[
+L^{\star}\colon W^{1,q}(\RR\times S^{1};\RR^{2n})\longrightarrow L^{q}(\RR\times S^{1};\RR^{2n})
+\]
+的\trKernel{}来做到这一点，其中 $q$ 由 $1/p+1/q=1$ 定义。这个算子——我们已经在\cref{thm:z-pairing-vanish}的证明中遇见过它——同样满足\cref{thm:semi-fredholm-kernel}的条件，于是它的\trKernel{}便因此具有有限的维数。
+
+\subsection{命题~8.7.3~的证明，第一步：$p=2$ 的情形}
+\label{subsec:proof-p2-case}
+
+我们考虑算子
+\[
+A=J_0\frac{\partial}{\partial t}+S\ \colon W^{1,2}(S^{1};\RR^{2n})\longrightarrow L^{2}(S^{1};\RR^{2n})
+\]
+它作用在 $t$ 的函数上。
+
+\begin{lemma}\label{thm:a-invertible-p2}
+在\trNondegenerate{}假设之下，算子 $A$ 是\trInvertible{}的。
+\end{lemma}
+
+\begin{remark}\label{thm:a-linearized-operator}
+首先注意，$A$ 就是\cref{thm:hamiltonian-linearization}的证明中所考虑的那个\trLinearOperator，也就是我们通过对\trDifferential{}方程 $\dot{x}=X_t(x)$ 做\trLinearization{}而得到的那个（参见\cref{subsec:linearization-along-solution}与\cref{subsec:time-dependent-vector-field}）。
+\end{remark}
+
+\begin{proof}[\cref{thm:a-invertible-p2}的证明]
+这正是常数变易法的一个应用。把这个算子求逆，就相当于对 $Z\in L^{2}(S^{1};\RR^{2n})$ 求解（非齐次的）线性\trDifferential{}方程
+\[
+\dot{Y}=J_0SY-J_0Z\text{，}\qquad\text{其中 }Y\in W^{1,2}(S^{1};\RR^{2n})\text{。}
+\]
+当 $Z=0$ 时，诸解为
+\[
+Y(t)=R(t)Y_0\text{，}\qquad t\in\RR\text{，}
+\]
+其中 $R$ 是\trFundamentalSolution，即满足
+\[
+\dot{R}=J_0SR\qquad\text{以及}\qquad R(0)=\mathrm{Id}
+\]
+的那个矩阵（这正是我们假设其在 $t=1$ 处不具有\trEigenvalue{} $1$ 的那个矩阵）。为了求解一般的方程，我们寻找形如
+\[
+Y(t)=R(t)Y_0(t)\text{，}\qquad t\in[0,1]
+\]
+的解。这样一个 $Y$ 满足该\trDifferential{}方程，当且仅当
+\[
+\dot{Y}_0(t)=-R^{-1}(t)J_0Z(t)\text{。}
+\]
+因此必须有
+\[
+Y_0(t)=Y_0(0)-\int_0^t R^{-1}(\tau)J_0Z(\tau)\,d\tau
+\]
+从而
+\[
+Y(t)=R(t)\left(Y_0(0)-\int_0^t R^{-1}(\tau)J_0Z(\tau)\,d\tau\right)\text{。}
+\]
+我们想要能够把 $Y$ 延拓成一个\trPeriodic{}的函数，也就是说，要有 $Y(0)=Y(1)$，这等价于
+\[
+R(1)\left(-\int_0^1 R^{-1}(\tau)J_0Z(\tau)\,d\tau+Y_0(0)\right)=Y_0(0)\text{，}
+\]
+也就是说
+\[
+(R(1)-\mathrm{Id})Y_0(0)=R(1)\int_0^1 R^{-1}(\tau)J_0Z(\tau)\,d\tau\text{。}
+\]
+这个方程容易求解，因为算子 $\mathrm{Id}-R(1)$ 已被假设为\trInvertible{}的，这就给出了 $Y_0(0)$ 的唯一取值。我们就这样证明了 $A$ 是\trBijective{}的。
+\end{proof}
+
+\begin{remark}\label{thm:w12-continuity}
+在这个证明中，我们得以使用 $W^{1,2}$ 的元素在 $0$ 与 $1$ 处的值，这是因为
+\[
+W^{1,2}([0,1];\RR^{2n})\subset\cC^{0}([0,1];\RR^{2n})\text{。}
+\]
+正如我们已经指出过的，当源空间的维数 $\ge 2$ 时，类似的包含关系并不成立。参见附录中所回顾的那些分析方面的结果，特别是\cref{thm:remark-w12-continuous}。
+\end{remark}
+
+\emph{$p=2$ 情形下命题~8.7.3~证明的其余部分。}
+
+对 $Z\in L^{2}(\RR\times S^{1};\RR^{2n})$，我们要找一个 $Y\in W^{1,2}(\RR\times S^{1};\RR^{2n})$ 使得
+\[
+\frac{\partial Y}{\partial s}+J_0\frac{\partial Y}{\partial t}+S(t)Y=Z\text{。}
+\]
+换句话说，我们想要求解“非齐次线性\trDifferential{}方程”
+\[
+\frac{\partial Y}{\partial s}=-A\cdot Y(s)+Z(s)
+\]
+于 $W^{1,2}(\RR\times S^{1};\RR^{2n})$ 之中。遗憾的是，在无穷维的框架下，我们无法像在证明 $A$ \trInvertible{}时那样应用常数变易法。我们现在知道，齐次方程
+\[
+\left\{\begin{array}{l}
+\dfrac{\partial Y}{\partial s}=-AY\\[8pt]
+Y(0)=Y_0
+\end{array}\right.
+\]
+只在 $[0,+\infty[$ 上有解，并且只有当算子 $A$ \trMonotone、也就是说它满足
+\[
+\forall x\text{，}\quad\langle Ax,x\rangle\ge 0
+\]
+（就 $L^{2}$ \trInnerProduct{}而言；参见 [17, Chapter~7]与\cref{thm:hille-yosida}）时才有解。\footnote{译注：“只有当 $A$ \trMonotone{}时才有解”把\trMonotone{}性说成了必要条件；实则它只是\cref{thm:hille-yosida}的充分条件——例如 $A=-\mathrm{Id}$ 并不\trMonotone，而方程 $\frac{\partial Y}{\partial s}=-AY$ 在整个 $[0,+\infty[$ 上仍有解 $Y(s)=e^{s}Y_0$。原书照排，特此按文意改述备案。——译者注}由于我们的 $A$ 不是\trMonotone{}的，在能够应用这个结果之前，我们需要把 $L^{2}(S^{1};\RR^{2n})$ 分解成一些使这条\trMonotone{}性性质确实成立的子空间之\trDirectSum。
+
+为简化起见，让我们把这个\trHilbertSpace{}记作 $\scr{H}$：
+\[
+\scr{H}=L^{2}(S^{1};\RR^{2n})\text{。}
+\]
+映射 $A$ 并不定义在 $\scr{H}$ 上，而是定义在它的子空间 $W^{1,2}(S^{1})$ 上；它正是我们所谓的\textbf{\trUnboundedOperator}（unbounded operator），理由很简单：对于 $W^{1,2}$ 范数它是连续的，但在这个子空间上对于 $L^{2}$ 范数却未必。还要注意，$A$ 的定义域在 $\scr{H}=L^{2}(S^{1})$ 中是\trDense{}的（因为 $\cC^{\infty}(S^{1})\subset W^{1,2}(S^{1})$ 是\trDense{}的），并且 $A$ 是一个闭算子（也就是说，它的图
+\[
+\{(Y,AY)\mid Y\in W^{1,2}(S^{1})\}
+\]
+在 $L^{2}(S^{1})\times L^{2}(S^{1})$ 中是闭的——这对我们的读者来说是一道容易的习题）。
+
+在\cref{thm:lstar-z-distribution}的证明中对 $L$ 所做的那个计算告诉我们，$A$ 是\trSelfAdjoint{}的，或者更确切地说，就 $L^{2}$ \trInnerProduct{}而言，我们有
+\[
+\langle AX,Y\rangle=\langle X,AY\rangle\qquad\text{对 }W^{1,2}(S^{1})\text{ 中的 }X\text{ 与 }Y\text{。}
+\]
+
+现在让我们考虑算子 $T\colon\scr{H}\to\scr{H}$，把它定义为复合
+\[
+L^{2}(S^{1})\xrightarrow{\ A^{-1}\ }W^{1,2}(S^{1})\stackrel{i}{\hookrightarrow}L^{2}(S^{1})\text{。}
+\]
+这个算子是连续的（因为由\trBanach{}定理 [17,~Theorem~2.6]，$A^{-1}$ 连续），它甚至是\trCompact{}的，因为包含映射是\trCompact{}的。此外，它是\trSelfAdjoint{}的，这容易由 $A$ 的类似性质得到。因此，我们可以对它应用下面的结果（它就是 [17,~Section~6.4]）。
+
+\begin{theorem}\label{thm:compact-selfadjoint-basis}
+设 $\scr{H}$ 是一个\trSeparable{}\trHilbertSpace，并设 $T\colon\scr{H}\to\scr{H}$ 是一个\trCompact{}\trSelfAdjoint{}算子。那么，$\scr{H}$ 具有一个由 $T$ 的特征向量构成的\textbf{\trHilbertianBasis}（Hilbertian basis）。
+\end{theorem}
+
+回想算子 $A$ 的\trEigenvalue{}所成之集
+\[
+\{\lambda\in\CC\mid A-\lambda\,\mathrm{Id}\ \text{不是\trInjective{}的}\}\text{，}
+\]
+它含于 $A$ 的\trSpectrum{}之中，而后者又由那些使 $A-\lambda\,\mathrm{Id}$ 不是\trBijective{}的 $\lambda$ 组成。对一个\trCompact{}算子而言，\trEigenvalue{}之集要么有限，要么由一个趋于 $0$ 的序列构成（参见 [17,~Section~6.3]）。注意，在我们的情形，$0$ 不是\trEigenvalue，因为 $A^{-1}$ 是\trInjective{}的。还要注意，$T$ 的特征向量都在 $W^{1,2}(S^{1};\RR^{2n})$ 之中，因为 $Tv=\lambda v$ 蕴含
+\[
+\lambda v=A^{-1}v\in W^{1,2}(S^{1};\RR^{2n})\text{。}
+\]
+
+我们有一个分解
+\[
+\scr{H}=\scr{H}^{+}\oplus\scr{H}^{-}
+\]
+（分别是 $T$ 的正\trEigenspace{}与负\trEigenspace{}之和），以及两个\trOrthogonal{}投影 $p^{\pm}\colon\scr{H}\to\scr{H}^{\pm}$。设 $A^{\pm}$ 是 $A$ 在 $\scr{H}^{\pm}$ 上的限制。它们各自又都是\trUnboundedOperator。若 $Y\in W^{1,2}(S^{1})$ 属于 $T$ 的\trEigenvalue{} $\lambda$ 的\trEigenspace，则
+\[
+AY=\frac{1}{\lambda}Y\text{。}
+\]
+于是，算子 $A^{+}$ 与 $-A^{-}$ 的确是\trMonotone{}算子（它们各自都满足 $\langle Bx,x\rangle\ge 0$）
+\[
+A^{\pm}\colon\scr{H}^{\pm}\longrightarrow\scr{H}^{\pm}\text{。}
+\]
+下面这个令人惊奇的解的存在性结果（\trHilleYosida{}理论）适用于这些算子。
+
+\begin{theorem}\label{thm:hille-yosida}\BookIndexDefinition{T015}
+设 $A\colon D(A)\subset H\to H$ 是一个定义在\trDense{}子集 $D(A)$ 上的\trSelfAdjoint\trMonotone\trClosed{}算子\footnote{译注：原书此处印作“defined on a dense open subset $D(A)$”（义即\trDense{}的\trOpen{}子集）；\trUnboundedOperator{}的定义域通常仅要求\trDense{}而不必\trOpen{}——本节所用的 $D(A)=W^{1,2}(S^{1})$ 在 $\scr{H}=L^{2}(S^{1})$ 中\trDense{}但并非\trOpen{}集——“open”疑为衍文或沿袭不确表述，此处径改（删去“open”）。——译者注}。那么，对 $H$ 中的每个 $Y_0$，都存在一个映射 $Y\colon[0,+\infty[\ \to H$，它连续、在 $]0,+\infty[$ 上可微、像满足 $Y(\,]0,+\infty[)\subset D(A)$，并且
+\[
+\left\{\begin{array}{l}
+\dfrac{\partial Y}{\partial s}=-AY\\[8pt]
+Y(0)=Y_0\text{。}
+\end{array}\right.
+\]
+此外，具有这些性质的 $Y$ 是唯一的，而且我们有
+\[
+\|Y(s)\|\le\|Y_0\|\qquad\text{以及}\qquad\forall s>0\text{，}\ \left\|\frac{\partial Y}{\partial s}(s)\right\|=\|AY(s)\|\le\frac{1}{s}\|Y_0\|\text{。}
+\]
+\end{theorem}
+
+\begin{remark}\label{thm:hille-yosida-remarks}
+我们把这个结果称作令人惊奇的，理由如下：
+\begin{enumerate}[label=(\arabic*)]
+\item 它不是一个\trDifferential{}方程之解的局部存在性结果：对 $0$ 的\emph{邻域}内的情形没有任何断言。
+\item 初始条件并不被假设属于 $A$ 的定义空间（诚然，由前面的讨论，后者在 $H$ 中是\trDense{}的）。
+\item 然而，它是一个整体性的结果，如同线性常\trDifferential{}方程的情形那样，其含义是它给出了在整个 $[0,+\infty[$ 上的解。
+\item 类似地，一旦固定 $s>0$，映射 $Y_0\to Y(s)$ 就是线性的（由解的唯一性），这就定义了一个从 $H$ 到 $D(A)$ 的连续线性映射。让我们把它称作 $\Gamma(s)$。仍由唯一性，我们有
+\[
+\Gamma(s_1+s_2)=\Gamma(s_1)\cdot\Gamma(s_2)
+\]
+而且，由于 $Y(0)=Y_0$，$\Gamma(0)=\mathrm{Id}$。我们说 $\Gamma$ 是一个\textbf{\trSemiflow}（semiflow）（或\textbf{\trSemigroup}（semigroup））……并采用记号 $\Gamma(s)=e^{-As}$。
+\end{enumerate}
+\end{remark}
+
+我们的算子 $A^{+}$ 与 $-A^{-}$ 因而在 $\scr{H}^{+}$ 与 $\scr{H}^{-}$ 上生成算子的“\trSemigroup”，它们是\trDifferential{}方程
+\[
+\frac{dY}{ds}=-A^{+}Y\text{，}\qquad\frac{dY}{ds}=A^{-}Y
+\]
+的解，对 $s\ge 0$ \trWellDefined，我们把它们记作
+\[
+s\longmapsto e^{-A^{+}s}\text{，}\qquad s\longmapsto e^{A^{-}s}\text{。}
+\]
+
+接着我们定义一个“核”
+\[
+K(s)=\left\{\begin{array}{ll}
+e^{-A^{+}s}p^{+} & \text{对 }s\ge 0\\
+-e^{A^{-}(-s)}p^{-} & \text{对 }s<0\text{，}
+\end{array}\right.
+\]
+其中诸 $p^{\pm}\colon\scr{H}\to\scr{H}^{\pm}$ 表示\trOrthogonal{}投影。
+
+这是一个映射 $\RR\to\scr{L}(\scr{H})$（取值于 $\scr{H}$ 上连续算子所成的空间 $\scr{L}(\scr{H})$）。注意，它在 $s\ne 0$ 时连续，但在 $0$ 处不连续。我们还有，对 $s\ge 0$，
+\[
+\|K(s)\cdot Y\|_{\scr{H}}=\|e^{-A^{+}s}p^{+}Y\|_{\scr{H}}\le e^{-\mu s}\,\|Y\|_{\scr{H}}\text{，}
+\]
+其中 $\mu=\lambda^{-1}>0$，$\lambda>0$ 是 $T$ 的最大的正\trEigenvalue。对 $s<0$ 的类似不等式给出
+\[
+\|K(s)\|_{\scr{L}(\scr{H})}\le e^{-\delta|s|}
+\]
+对某个常数 $\delta>0$。
+
+因此我们可以定义
+\[
+Q\colon L^{2}(\RR,\scr{H})\longrightarrow W^{1,2}(\RR\times S^{1};\RR^{2n})
+\]
+如下：
+\[
+(Q\cdot Z)(s,t)=\int_{-\infty}^{+\infty}K(-\sigma)Z(s+\sigma,t)\,d\sigma\text{。}
+\]
+这个积分在 $L^{2}(\RR\times S^{1};\RR^{2n})$ 中是\trConvergence{}的。事实上，绝对\trConvergence{}性来自\footnote{译注：原书此式末行印作 $\int_{\RR}e^{-2\delta|\sigma|}\,\|Z\|_{L^{2}(\RR\times S^{1})}\,d\sigma$——第二行括号内的 $e^{-2\delta|\sigma|}$ 系算子范数界 $\|K(-\sigma)\|\le e^{-\delta|\sigma|}$ 经平方后的正当结果；而末行开出平方根后指数应回到 $\delta$，即应为 $\int_{\RR}e^{-\delta|\sigma|}\,\|Z\|_{L^{2}(\RR\times S^{1})}\,d\sigma=(2/\delta)\,\|Z\|$，原书末行疑系漏开平方，此处照原书排印，存疑备案；无论指数取 $\delta$ 抑或 $2\delta$，积分皆有限，绝对\trConvergence{}的结论不受影响。——译者注}
+\[
+\begin{aligned}
+\int_{\RR}\|K(-\sigma)Z(s+\sigma,t)\|_{L^{2}(\RR\times S^{1})}\,d\sigma
+&=\int_{\RR}\left(\int_{\RR}\|K(-\sigma)Z(s+\sigma)\|^{2}_{L^{2}(S^{1})}\,ds\right)^{1/2}\,d\sigma\\
+&\le\int_{\RR}\left(\int_{\RR}e^{-2\delta|\sigma|}\,\|Z(s+\sigma)\|^{2}_{L^{2}(S^{1})}\,ds\right)^{1/2}\,d\sigma\\
+&=\int_{\RR}e^{-2\delta|\sigma|}\,\|Z\|_{L^{2}(\RR\times S^{1})}\,d\sigma<+\infty\text{。}
+\end{aligned}
+\]
+因此，$Q\cdot Z$ 属于 $L^{2}(\RR\times S^{1};\RR^{2n})$。为了证明它在 $W^{1,2}(\RR\times S^{1};\RR^{2n})$ 之中，只需对 $Y=Q\cdot Z$ 建立等式
+\[
+Z=\frac{dY}{ds}+A\cdot Y\text{。}
+\]
+为此，注意（在记号中省去变量 $t$）
+\[
+\begin{aligned}
+(Q\cdot Z)(s)&=\int_{\RR}K(s-\sigma)Z(\sigma)\,d\sigma\\
+&=\int_{-\infty}^{s}e^{-A^{+}(s-\sigma)}Z^{+}(\sigma)\,d\sigma-\int_{s}^{+\infty}e^{A^{-}(\sigma-s)}Z^{-}(\sigma)\,d\sigma
+\end{aligned}
+\]
+（其中诸 $Z^{\pm}$ 表示到 $\scr{H}^{\pm}$ 上的投影）。令
+\[
+Y=Q\cdot Z=Y^{+}+Y^{-}\text{，}
+\]
+于是
+\[
+\begin{aligned}
+\frac{dY^{+}}{ds}&=\frac{d}{ds}\int_{-\infty}^{s}e^{-A^{+}(s-\sigma)}Z^{+}(\sigma)\,d\sigma\\
+&=e^{-A^{+}\cdot 0}\cdot Z^{+}(s)+\int_{-\infty}^{s}\frac{d}{ds}e^{-A^{+}(s-\sigma)}Z^{+}(\sigma)\,d\sigma\\
+&=Z^{+}(s)+\int_{-\infty}^{s}-A^{+}e^{-A^{+}(s-\sigma)}Z^{+}(\sigma)\,d\sigma\\
+&=Z^{+}(s)-A^{+}Y^{+}(s)\text{。}
+\end{aligned}
+\]
+对 $Y^{-}$ 的类似计算给出
+\[
+\frac{dY^{\pm}}{ds}+A^{\pm}Y^{\pm}=Z^{\pm}\text{，}
+\]
+从而
+\[
+Z=\frac{dY}{ds}+AY\text{。}
+\]
+
+这个关系式表明 $D\circ Q=\mathrm{Id}$。让我们再证 $Q\circ D=\mathrm{Id}$。设 $Y\in W^{1,2}(\RR\times S^{1};\RR^{2n})$。我们把它分解成 $Y=Y^{+}+Y^{-}$，于是
+\[
+AY=A^{+}Y^{+}+A^{-}Y^{-}\text{。}
+\]
+注意，对 $B=A^{\pm}$，两个表达式
+\[
+B\cdot e^{Bs}Y_0\qquad\text{与}\qquad e^{Bs}\cdot BY_0
+\]
+都是
+\[
+\left\{\begin{array}{l}
+\dfrac{\partial Y}{\partial s}=BY\\[8pt]
+Y(0)=B\cdot Y_0\text{。}
+\end{array}\right.
+\]
+的解。因此它们相等（由\cref{thm:hille-yosida}所述的唯一性）。我们在下面的计算中使用这条交换性。
+
+让我们来确定 $Q\cdot(AY)$。我们有
+\[
+Q\cdot(AY)=\int_{-\infty}^{s}e^{-A^{+}(s-\sigma)}A^{+}Y^{+}(\sigma)\,d\sigma-\int_{s}^{+\infty}e^{A^{-}(\sigma-s)}A^{-}Y^{-}(\sigma)\,d\sigma\text{。}
+\]
+和的第一项等于
+\[
+\begin{aligned}
+\int_{-\infty}^{s}A^{+}e^{-A^{+}(s-\sigma)}Y^{+}(\sigma)\,d\sigma
+&=\int_{-\infty}^{s}-\frac{\partial}{\partial s}\left(e^{-A^{+}(s-\sigma)}Y^{+}(\sigma)\right)d\sigma\\
+&=-\frac{\partial}{\partial s}\int_{-\infty}^{s}e^{-A^{+}(s-\sigma)}Y^{+}(\sigma)\,d\sigma+Y^{+}(s)\\
+&=-\frac{\partial}{\partial s}\int_{-\infty}^{0}e^{-A^{+}(-\sigma)}Y^{+}(s+\sigma)\,d\sigma+Y^{+}(s)\\
+&=-\int_{-\infty}^{0}e^{-A^{+}(-\sigma)}\frac{\partial Y^{+}}{\partial s}(s+\sigma)\,d\sigma+Y^{+}(s)\text{。}
+\end{aligned}
+\]
+类似地，第二项等于
+\[
+-\int_{s}^{+\infty}A^{-}e^{A^{-}(\sigma-s)}Y^{-}(\sigma)\,d\sigma
+=\int_{0}^{+\infty}e^{A^{-}\sigma}\frac{\partial Y^{-}}{\partial s}(s+\sigma)\,d\sigma+Y^{-}(s)\text{。}
+\]
+\footnote{译注：原书右端指数印作 $e^{A^{-}(-\sigma)}$——换元后左端 $e^{A^{-}(\sigma-s)}$ 中的 $\sigma-s$ 即为新积分变量下的 $\sigma$，应作 $e^{A^{-}\sigma}$，此处径改。照印文则 $\sigma>0$ 处指数增长（$A^{-}$ 的谱为负、$-A^{-}$ 方才\trMonotone，$e^{A^{-}\sigma}$ 正是衰减的一支），并非\trBounded{}\trSemigroup，亦与上文 $\|K(s)\|\le e^{-\delta|s|}$ 的估计相抵。本案系换元多出一枚负号，与 p.~275 绝对\trConvergence{}估计末行的漏开平方案（本节头注第 3 条）无涉。——译者注}把两项相加，我们便得到
+\[
+Q(AY)=-Q\left(\frac{\partial Y}{\partial s}\right)+Y\text{，}
+\]
+也就是说 $Q\circ D(Y)=Y$，于是 $Q$ 的确是 $D$ 的一个逆。这就完成了 $p=2$ 情形的\cref{thm:d-bijective-independent-s}的证明。
+
+\subsection{$p>1$ 的一般情形下命题~8.7.3~的证明}
+\label{subsec:proof-general-case}
+
+我们对算子 $D=\bar{\partial}+S(t)$ 使用\trCalderonZygmund{}不等式（即我们的\cref{thm:cz-inequality-L}）的下列更强版本。
+
+\begin{lemma}\label{thm:cz-local-inequality}
+设 $p>1$。存在一个常数 $C>0$，使得对每个 $k\in\RR$ 与每个 $Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})$，我们有
+\[
+\|Y\|_{W^{1,p}([k,k+1]\times S^{1})}\le C\left(\|DY\|_{L^{p}([k-\frac{1}{2},k+\frac{3}{2}]\times S^{1})}+\|Y\|_{L^{p}([k-\frac{1}{2},k+\frac{3}{2}]\times S^{1})}\right)\text{。}
+\]
+\end{lemma}
+
+注意，把这条引理所给出的诸不等式对 $k\in\ZZ$ 求和，便得到\cref{thm:cz-inequality-L}：这条陈述确实更强。
+
+\begin{proof}
+先令 $k=0$。此时，该不等式是定理~12.1.2 的一个直接推论。接着，把这个结果应用于
+\[
+Z(s,t)=Y(s-k,t)\text{。}
+\]
+算子 $D$ 在 $s$ 的平移下不变，于是
+\[
+DZ(s,t)=(DY)(s-k,t)\text{。}
+\]
+这就对每个 $k$ 给出了结果（取同一个常数 $C>0$）。
+\end{proof}
+
+从现在起我们假设 $p>2$。下一条引理是前一条引理的一个推论。
+
+\begin{lemma}\label{thm:w1p-local-bound}
+设 $p>2$。存在一个常数 $C_1>0$，使得对每个 $k\in\RR$ 与每个 $Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})$，我们有
+\[
+\|Y\|_{W^{1,p}([k,k+1]\times S^{1})}\le C_1\left(\|DY\|_{L^{p}([k-1,k+2]\times S^{1})}+\|Y\|_{L^{2}([k-1,k+2]\times S^{1})}\right)\text{。}
+\]
+\end{lemma}
+
+\begin{proof}
+由于 $D$ 的不变性，如上所述，只需对 $k=0$ 证明这个结果。既然现在有 $p>2$，由 \trHoelder{}不等式，我们有
+\[
+L^{p}([-1,2]\times S^{1})\subset L^{2}([-1,2]\times S^{1})\text{，}
+\]
+其中，对由 $2/p+1/q=1$ 定义的 $q$，
+\[
+\|Y\|_{L^{2}}\le 3^{1/2q}\,\|Y\|_{L^{p}}\text{。}
+\]
+同样地，
+\[
+W^{1,p}([-1,2]\times S^{1})\subset W^{1,2}([-1,2]\times S^{1})\text{，}\qquad\text{其中 }\ \|Y\|_{W^{1,2}}\le 3^{1/2q}\,\|Y\|_{W^{1,p}}\text{。}
+\]
+同样的事情在区间 $[-\frac{1}{2},\frac{3}{2}]$ 上也成立，只需把 $3^{1/2q}$ 换成 $2^{1/2q}$。最后，\trRellich{}定理（\cref{thm:rellich-kondrachov}）给出
+\[
+W^{1,2}([-1/2,3/2]\times S^{1})\subset L^{p}([-1/2,3/2]\times S^{1})\text{，}\qquad\text{其中 }\ \|Y\|_{L^{p}}\le C\|Y\|_{W^{1,2}}\text{。}
+\]
+于是我们有（为简化记号而省去因子 $S^{1}$）
+\[
+\begin{aligned}
+\|Y\|_{W^{1,p}([0,1])}
+&\le C_1\left(\|DY\|_{L^{p}([-1/2,3/2])}+\|Y\|_{L^{p}([-1/2,3/2])}\right)\\
+&\le C_2\left(\|DY\|_{L^{p}([-1/2,3/2])}+\|Y\|_{W^{1,2}([-1/2,3/2])}\right)\\
+&\le C_3\left(\|DY\|_{L^{p}([-1/2,3/2])}+\|DY\|_{L^{2}([-1,2])}+\|Y\|_{L^{2}([-1,2])}\right)\\
+&\qquad\text{由前一条引理，取 }p=2\text{，}\ k=-\frac{1}{2}\text{，随后取 }k=\frac{1}{2}\\
+&\le C_4\left(\|DY\|_{L^{p}([-1,2])}+\|Y\|_{L^{2}([-1,2])}\right)\text{。}
+\end{aligned}
+\]
+这就完成了（本引理的）证明……
+\end{proof}
+
+……并引我们走向另一条引理。
+
+\begin{lemma}\label{thm:w1p-global-bound}
+设 $p>2$。存在一个常数 $C>0$，使得若 $Y\in W^{1,2}(\RR\times S^{1})$ 且 $DY\in L^{p}(\RR\times S^{1})$，则
+\[
+Y\in W^{1,p}(\RR\times S^{1})\qquad\text{且}\qquad\|Y\|_{W^{1,p}}\le C\|DY\|_{L^{p}}\text{。}
+\]
+\end{lemma}
+
+\begin{proof}
+让我们先来证明 $Y\in W^{1,p}(\RR\times S^{1})$。由\cref{thm:w1p-local-bound}，只需证明对每个\trCompact{}的 $K$ 都有 $Y\in W^{1,p}(K)$，而这是定理~12.1.2 的一个推论。
+
+在接下来的证明中，我们需要把 $Y$ 看成一个映射
+\[
+Y\colon\RR\longrightarrow L^{2}(S^{1};\RR^{2n})=\scr{H}
+\]
+并使用相应的 $L^{p}(\RR;\scr{H})$ 范数
+\[
+\|Y\|_{L^{p}(\RR;\scr{H})}=\left(\int_{\RR}\|Y(s,\cdot)\|^{p}_{L^{2}}\,ds\right)^{1/p}\text{。}
+\]
+
+利用前一条引理与不等式 $(a+b)^{p}\le 2^{p}(a^{p}+b^{p})$（留给我们的读者当作习题），我们发现
+\[
+\begin{aligned}
+\|Y\|^{p}_{W^{1,p}([k,k+1])}
+&\le C_1\left(\|DY\|_{L^{p}([k-1,k+2])}+\|Y\|_{L^{2}([k-1,k+2])}\right)^{p}\\
+&\le 2^{p}C_1\left(\|DY\|^{p}_{L^{p}([k-1,k+2])}+\|Y\|^{p}_{L^{2}([k-1,k+2])}\right)\text{。}
+\end{aligned}
+\]
+应用 \trHoelder{}不等式（并利用由 $2/p+1/q=1$ 定义的数 $q$），我们得到
+\[
+\begin{aligned}
+\|Y\|^{p}_{L^{2}([k-1,k+2])}
+&=\left(\int_{k-1}^{k+2}\int_{S^{1}}\|Y(s,t)\|^{2}\,dt\,ds\right)^{p/2}\\
+&=\left(\int_{k-1}^{k+2}\|Y(s,\cdot)\|^{2}_{L^{2}}\,ds\right)^{p/2}\\
+&\le\left(3^{1/q}\left(\int_{k-1}^{k+2}\|Y(s,\cdot)\|^{p}_{L^{2}}\,ds\right)^{2/p}\right)^{p/2}\\
+&=3^{p/2q}\int_{k-1}^{k+2}\|Y(s,\cdot)\|^{p}_{L^{2}}\,ds\text{。}
+\end{aligned}
+\]
+因此，
+\[
+\|Y\|^{p}_{W^{1,p}([k,k+1])}\le C_2\left(\|DY\|^{p}_{L^{p}([k-1,k+2])}+\int_{k-1}^{k+2}\|Y(s,\cdot)\|^{p}_{L^{2}}\,ds\right)
+\]
+而对 $k\in\ZZ$ 取和便有
+\[
+\|Y\|^{p}_{W^{1,p}(\RR\times S^{1})}\le C_3\left(\|DY\|^{p}_{L^{p}(\RR\times S^{1})}+\|Y\|^{p}_{L^{p}(\RR;\scr{H})}\right)\text{。}
+\]
+我们现在要对这个和式的最后一项给出一个上界。我们使用 $D$ 的逆
+\[
+Q\colon L^{2}(\RR\times S^{1})\longrightarrow W^{1,2}(\RR\times S^{1})
+\]
+——即我们在\cref{subsec:proof-p2-case}中所定义的那个。由于已假设 $Y\in W^{1,2}(\RR\times S^{1})$，我们有
+\[
+\|Y\|_{L^{p}(\RR;\scr{H})}=\|QDY\|_{L^{p}(\RR;\scr{H})}\text{。}
+\]
+再一次为了简化记号，令 $Z=DY$，并让 $\|\ \|$ 表示 $\scr{H}$ 上的范数。于是
+\[
+\begin{aligned}
+\|QZ\|_{L^{p}(\RR;\scr{H})}
+&=\left(\int_{\RR}\|(QZ)(s)\|^{p}\,ds\right)^{1/p}\\
+&=\left(\int_{\RR}\left\|\int_{\RR}K(s-\sigma)\cdot Z(\sigma)\,d\sigma\right\|^{p}\,ds\right)^{1/p}\\
+&\le\left(\int_{\RR}\left(\int_{\RR}\|K(s-\sigma)\cdot Z(\sigma)\|\,d\sigma\right)^{p}\,ds\right)^{1/p}\\
+&\le\left(\int_{\RR}\left(\int_{\RR}e^{-\delta|s-\sigma|}\,\|Z(\sigma)\|\,d\sigma\right)^{p}\,ds\right)^{1/p}\text{。}
+\end{aligned}
+\]
+这是 $f(s)=e^{-\delta|s|}$ 与 $g(s)=\|Z(s)\|$ 的一个\trConvolution。我们可以应用\trYoung{}不等式\footnote{必要时，关于这个不等式参见 [17, Chapter~4]：$\|f\star g\|_{L^{p}}\le\|f\|_{L^{1}}\cdot\|g\|_{L^{p}}$。}来得到
+\[
+\|QZ\|_{L^{p}(\RR;\scr{H})}\le C\|Z\|_{L^{p}(\RR;\scr{H})}\text{。}
+\]
+由 $L^{p}(S^{1})$ 与 $L^{2}(S^{1})$ 的 \trHoelder{}不等式，我们有
+\[
+\begin{aligned}
+\|Z\|_{L^{p}(\RR;\scr{H})}
+&=\left(\int_{\RR}\|DY(s,\cdot)\|^{p}_{L^{2}}\,ds\right)^{1/p}\\
+&\le\left(\int_{\RR}\|DY(s,\cdot)\|^{p}_{L^{p}}\,ds\right)^{1/p}\\
+&=\|Z\|_{L^{p}(\RR\times S^{1})}\text{。}
+\end{aligned}
+\]
+我们得出结论：
+\[
+\|Y\|_{L^{p}(\RR;\scr{H})}=\|QZ\|_{L^{p}(\RR;\scr{H})}\le C\|Z\|_{L^{p}(\RR\times S^{1})}=C\,\|DY\|_{L^{p}(\RR\times S^{1})}
+\]
+并且最后得到
+\[
+\|Y\|_{W^{1,p}(\RR\times S^{1})}\le C_4\,\|DY\|_{L^{p}(\RR\times S^{1})}\text{，}
+\]
+引理得证。
+\end{proof}
+
+下面的结果是它的一个推论。
+
+\begin{proposition}\label{thm:d-bijective-p-large}
+算子 $D$ 对 $p>2$ 是\trBijective{}的。
+\end{proposition}
+
+\begin{proof}
+前一条引理的不等式
+\[
+\|Y\|_{W^{1,p}(\RR\times S^{1})}\le C\,\|DY\|_{L^{p}(\RR\times S^{1})}
+\]
+对每个 $Y\in W^{1,p}(\RR\times S^{1})\cap W^{1,2}(\RR\times S^{1})$ 都成立，特别地，对每个 $Y\in\cC^{\infty}_{0}(\RR\times S^{1})$ 都成立。由于具有\trCompact\trSupport{}的 $\cC^{\infty}$ 函数在 $W^{1,p}$ 中\trDense\footnote{必要时参见 [17,~Chapter~9]。}，这个不等式对 $Y\in W^{1,p}(\RR\times S^{1})$（整个空间）依然为真。于是 $D$ 是\trInjective{}的。此外，由于 $W^{1,p}$ 完备，它的\trImage{}是闭的。
+
+为了证明 $D$ 还是\trSurjective{}的，只需证明它的\trImage{}在 $L^{p}(\RR\times S^{1})$ 中\trDense。设 $Z\in L^{p}(\RR\times S^{1})\cap L^{2}(\RR\times S^{1})$。注意，由于这个空间包含特征函数，它在 $L^{p}(\RR\times S^{1})$ 中是\trDense{}的。前面建立的 $p=2$ 时 $D$ 的\trSurjective{}性给出一个 $Y\in W^{1,2}(\RR\times S^{1})$ 使得 $DY=Z$。由上，这个 $Y$ 属于 $W^{1,p}(\RR\times S^{1})$，这就证明了我们的命题。
+\end{proof}
+
+为了结束\cref{thm:d-bijective-independent-s}的证明，我们还需证明下面的结果。
+
+\begin{proposition}\label{thm:d-bijective-p-small}
+算子
+\[
+D\colon W^{1,p}(\RR\times S^{1})\longrightarrow L^{p}(\RR\times S^{1})
+\]
+对 $1<p<2$ 是\trBijective{}的。
+\end{proposition}
+
+\begin{proof}
+让我们像在前一条命题中那样证明：存在一个常数 $C>0$ 使得
+\[
+\|Y\|_{W^{1,p}(\RR\times S^{1})}\le C\,\|DY\|_{L^{p}(\RR\times S^{1})}\text{。}
+\]
+如上，由于\trDense{}性，只需对 $Y\in\cC^{\infty}_{0}(\RR\times S^{1})$ 建立这个不等式。我们使用\trAdjointOperator
+\[
+\begin{aligned}
+D^{\star}\colon W^{1,q}(\RR\times S^{1})&\longrightarrow L^{q}(\RR\times S^{1})\\
+x&\longmapsto-\frac{\partial X}{\partial s}+J_0\frac{\partial X}{\partial t}+S\cdot X\text{，}
+\end{aligned}
+\]
+其中——理应如此（但与上面不同）——$q$ 由 $1/p+1/q=1$ 定义，从而 $q>2$（并且，提醒一下，$S$ 是对称的）。我们已经见过（在\cref{thm:lstar-z-distribution}的证明中），对每个 $X\in W^{1,q}(\RR\times S^{1})$ 与每个 $Y\in\cC^{\infty}_{0}(\RR\times S^{1})$，
+\[
+\langle D^{\star}X,Y\rangle=\langle X,DY\rangle\text{。}
+\]
+我们对 $D$ 与 $p>2$ 证明过的那些结果也适用于 $D^{\star}$——它与 $D$ 形式相同——以及大于 $2$ 的 $q$。特别地，$D^{\star}$ 是\trBijective{}的。现在让我们写
+\[
+\|Y\|_{W^{1,p}}=\|Y\|_{L^{p}}+\left\|\frac{\partial Y}{\partial s}\right\|_{L^{p}}+\left\|\frac{\partial Y}{\partial t}\right\|_{L^{p}}
+\]
+并对右边的三项分别给出一个上界。由\trRiesz\footnote{必要时参见 [17,~Chapter~4]。}定理，我们有
+\[
+\|Y\|_{L^{p}}=\sup_{\substack{Z\in L^{q}\\ \|Z\|_{L^{q}}=1}}\left|\langle Z,Y\rangle\right|\text{。}
+\]
+由于 $D^{\star}$ 是\trBijective{}的，这就给出
+\[
+\begin{aligned}
+\|Y\|_{L^{p}}
+&=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\langle D^{\star}X,Y\rangle\right|
+=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\langle X,DY\rangle\right|\\
+&\le\|DY\|_{L^{p}}\ \sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\|X\|_{L^{q}}\text{。}
+\end{aligned}
+\]
+如同前一条命题的证明，我们有
+\[
+\|X\|_{L^{q}}\le\|X\|_{W^{1,q}}\le C\,\|D^{\star}X\|_{L^{q}}\text{，}
+\]
+从而
+\[
+\|Y\|_{L^{p}}\le C\,\|DY\|_{L^{p}}\text{。}
+\]
+对比于 $s$ 的导数我们如法炮制，利用这样一个事实：
+\[
+D^{\star}\frac{\partial}{\partial s}=\frac{\partial}{\partial s}D^{\star}
+\]
+（把这个算子作用到 $W^{1,q}$ 的元素上时，应当按\trDistribution{}的意义来理解）。我们有
+\[
+\begin{aligned}
+\left\|\frac{\partial Y}{\partial s}\right\|_{L^{p}}
+&=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle D^{\star}X,\frac{\partial Y}{\partial s}\right\rangle\right|
+=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle\frac{\partial}{\partial s}D^{\star}X,Y\right\rangle\right|\\
+&=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle D^{\star}\frac{\partial}{\partial s}X,Y\right\rangle\right|
+=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle\frac{\partial}{\partial s}X,DY\right\rangle\right|\\
+&\le\|DY\|_{L^{p}}\ \sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left\|\frac{\partial X}{\partial s}\right\|_{L^{q}}\le C\,\|DY\|_{L^{p}}\text{，}
+\end{aligned}
+\]
+这是因为
+\[
+\|X\|_{W^{1,q}}\le C\,\|D^{\star}X\|_{L^{q}}
+\]
+如前。对比于 $t$ 的导数，注意对 $X\in W^{1,q}$，我们有
+\[
+\frac{\partial}{\partial t}D^{\star}X=D^{\star}\frac{\partial}{\partial t}X+\frac{\partial S}{\partial t}\cdot X
+\]
+（其中的导数仍按\trDistribution{}的意义来取）。由此得出
+\[
+\begin{aligned}
+\left\|\frac{\partial Y}{\partial t}\right\|_{L^{p}}
+&=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle D^{\star}X,\frac{\partial Y}{\partial t}\right\rangle\right|
+=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle\frac{\partial}{\partial t}D^{\star}X,Y\right\rangle\right|\\
+&=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle D^{\star}\frac{\partial}{\partial t}X+\frac{\partial S}{\partial t}X,Y\right\rangle\right|\\
+&=\sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\left|\left\langle\frac{\partial}{\partial t}X,DY\right\rangle+\left\langle\frac{\partial S}{\partial t}X,Y\right\rangle\right|\\
+&\le\|DY\|_{L^{p}}\ \sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\|X\|_{W^{1,q}}+C\,\|Y\|_{L^{p}}\ \sup_{\substack{X\in W^{1,q}\\ \|D^{\star}X\|_{L^{q}}=1}}\|X\|_{L^{q}}\text{，}
+\end{aligned}
+\]
+其中 $C=\sup_{t\in S^{1}}\|\partial S/\partial t\|$。与前面一样，和式的第一项以 $C\,\|DY\|_{L^{p}}$ 为上界。此外，由于我们已经证明了 $\|Y\|_{L^{p}}\le\|DY\|_{L^{p}}$，第二项也有同一形式的上界。因此我们建立了：
+\[
+\text{对每个 }Y\in W^{1,p}(\RR\times S^{1})\text{，}\quad\|Y\|_{W^{1,p}}\le C\,\|DY\|_{L^{p}}\text{。}
+\]
+由此可见，在这种情形下，算子 $D$ 同样是\trInjective{}的并且具有闭的\trImage。否则，\trRiesz{}定理将会给出一个非零的 $Z\in L^{q}(\RR\times S^{1})$ 使得
+\[
+\text{对每个 }Y\in W^{1,p}(\RR\times S^{1})\text{，}\quad\langle Z,DY\rangle=0\text{。}
+\]
+如同\cref{thm:lstar-z-distribution}的证明中那样，由此得出 $D^{\star}Z=0$（仍按\trDistribution{}的意义），从而由\trEllipticRegularity{}（即定理~12.1.3），$Z\in W^{1,q}(\RR\times S^{1})$。于是 $Z\in\mathrm{Ker}\,D^{\star}$，而 $Z$ 必须为零，这与我们的假设矛盾。\cref{thm:d-bijective-p-small}（即我们的命题）的证明至此结束。
+\end{proof}
+
+\subsection{命题~8.7.1~的证明}
+\label{subsec:proof-prop-871}
+
+由于 $D$ 是\trBijective{}的，它的逆是一个连续映射（由\trBanach{}开映射定理）。于是存在一个常数 $B>0$ 使得
+\[
+\|Y\|_{W^{1,p}}\le B\,\|DY\|_{L^{p}}\text{。}
+\]
+于是，由于当 $s\to\infty$ 时 $S(s,t)\to S^{\pm}(t)$，\footnote{译注：原书此处印作“for $s\to\infty$”；按 $S^{\pm}(t)$ 的定义（$s\to\pm\infty$ 时分别取极限）疑应为 $s\to\pm\infty$，此处照原书排印，存疑备案。——译者注}存在正常数 $M$ 与 $C$，使得对每个 $Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})$，\footnote{译注：原书此处印作“$W^{1,p}(\mathbf{R}\times S^{1},W)$”；疑应为 $W^{1,p}(\mathbf{R}\times S^{1};\mathbf{R}^{2n})$（本节各处的 $Y$ 皆取值于 $\mathbf{R}^{2n}$，目标 $W$ 在此无从取义），系目标空间误印，此处径改。——译者注}
+\[
+\text{若 }Y(s,t)=0\ \text{对 }|s|\le M-1\text{，则 }\ \|Y\|_{W^{1,p}}\le C\,\|LY\|_{L^{p}}\text{。}
+\]
+事实上，
+\[
+\|LY-DY\|_{L^{p}}\le\sup_{\substack{|s|\ge M\\ t\in S^{1}}}\left|S(s,t)-S^{\pm}(t)\right|\,\|Y\|_{L^{p}}\le\varepsilon\,\|Y\|_{L^{p}}\le\varepsilon\,\|Y\|_{W^{1,p}}\text{。}
+\]
+我们对 $|s|$ 大与 $|s|$ 小两种情形分别研究 $Y$。为此，我们选取一个正的 $\cC^{\infty}$ 函数 $\beta\colon\RR\to[0,1]$，它在 $|s|\ge M$ 时为零、在 $|s|\le M-1$ 时等于 $1$，并写
+\[
+Y(s,t)=\beta(s)Y(s,t)+(1-\beta(s))Y(s,t)
+\]
+当然
+\[
+\|Y\|_{W^{1,p}}\le\|\beta Y\|_{W^{1,p}}+\|(1-\beta)Y\|_{W^{1,p}}\text{。}
+\]
+把\cref{thm:cz-inequality-L}的不等式用于 $\beta Y$、把上面的不等式用于 $(1-\beta)Y$，便给出
+\[
+\|Y\|_{W^{1,p}}\le C_1\left(\|L(\beta Y)\|_{L^{p}}+\|\beta Y\|_{L^{p}}+\|L((1-\beta)Y)\|_{L^{p}}\right)\text{。}
+\]
+由于 $\beta$ 只依赖于 $s$，我们有
+\[
+L(\beta Y)=\left(\frac{\partial}{\partial s}+J_0\frac{\partial}{\partial t}+S\right)(\beta Y)=\beta L(Y)+\beta'(s)Y\text{。}
+\]
+导数 $\beta'(s)$ 是\trBounded{}的；
+\[
+|\beta'(s)|\le K\ \text{对 }s\in[-M,M]\text{，}\qquad\text{且 }\ \beta'(s)=0\ \text{对 }|s|\ge M\text{。}
+\]
+于是我们有
+\[
+\|L(\beta Y)\|_{L^{p}}\le\|L(Y)\|_{L^{p}}+K\,\|Y\|_{L^{p}[-M,M]}
+\]
+对 $L((1-\beta)Y)$ 也同样，于是上面的不等式给出
+\[
+\|Y\|_{W^{1,p}}\le C_2\left(\|Y\|_{L^{p}[-M,M]}+\|L(Y)\|_{L^{p}}\right)\text{。}
+\]
+由\trRellich{}定理（\cref{thm:rellich-kondrachov}），到 $[-M,M]$ 上的限制定义了一个\trCompact{}算子
+\[
+W^{1,p}(\RR\times S^{1};\RR^{2n})\longrightarrow L^{p}([-M,M]\times S^{1};\RR^{2n})\text{。}
+\]
+我们随后便用\cref{thm:semi-fredholm-kernel}推出：$L$ 具有有限维的\trKernel{}与闭的\trImage。
+
+我们仍使用由 $1/p+1/q=1$ 定义的实数 $q$。让我们考虑 $L^{q}(\RR\times S^{1})$ 中由满足 $\langle\mathrm{Im}\,L,Z\rangle=0$ 的那些 $Z$ 所组成的子空间 $F$，以及\trAdjointOperator
+\[
+L^{\star}=-\frac{\partial}{\partial s}+J_0\frac{\partial}{\partial t}+{}^{t}S\ \colon W^{1,q}(\RR\times S^{1})\longrightarrow L^{q}(\RR\times S^{1})\text{。}
+\]
+再一次，如同\cref{thm:lstar-z-distribution}的证明中那样，$L^{\star}Z=0$ 按\trDistribution{}的意义成立，于是由\trEllipticRegularity{}（定理~12.1.3），$Z\in W^{1,q}(\RR\times S^{1})$。因此 $F\subset\mathrm{Ker}\,L^{\star}$。此外，由于 $L^{\star}$ 与 $L$ 具有相同的形式，它也满足\cref{thm:semi-fredholm-kernel}的假设，从而也满足其结论，即它的\trKernel{}是有限维的。
+
+现在让我们来证明 $\operatorname{Coker}L$ 是有限维的。\trHahnBanach{}定理使我们能够找到在 $\mathrm{Im}\,L$ 上为零的线性形式 $\varphi\colon L^{p}\to\RR$；我们要证明这些形式所成的空间是有限维的。\trRiesz{}表示定理使我们能把一个线性形式写成
+\[
+\varphi=\varphi_U\qquad\text{对一个 }U\in L^{q}\text{，}\ \varphi_U(V)=\langle U,V\rangle\text{。}
+\]
+由于这些形式在 $\mathrm{Im}\,L$ 上为零，表示它们的那些 $U$ 必然属于 $F$。但后者是有限维的。因此，$\operatorname{Coker}L$ 也是有限维的。\cref{thm:fredholm-operator-L}的证明至此完成。
+\noqed

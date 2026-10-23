@@ -1,0 +1,71 @@
+
+\section{赋环空间的态射}
+
+\textbf{7.2.1.\ \trhDefinition{}。}\quad \textbf{\trRingedSpace{}的\trMorphism}（morphism of ringed spaces）$\pi\colon X\to Y$ 是指：一个\trTopologicalSpace{}之间的\trContinuousMap{}（很遗憾，我们仍把它记作 $\pi$），连同一份映射 $\OO_Y\to\pi_*\OO_X$——我们把它当作「\trPullback{}映射」来想。依\trAdjointness（\S2.7.1），这与给出一个映射 $\pi^{-1}\OO_Y\to\OO_X$ 是同一回事。（把这批信息打包成 \eqref{eq:compatible-collections-diagram} 中那张图的样子，有时颇为便利。）\trMorphism{}的\trComposition{}有其显而易见的定义，故\trRingedSpace{}构成一个\trCategory。于是我们便有\trAutomorphism{}与\trIsomorphism{}的观念。你可以轻松验证：\trRingedSpace{}的\trIsomorphism{}所指与先前（定义~4.3.1）完全相同。
+
+若 $\mathsf{U}\subset Y$ 是一个\trOpenSubset，则存在一个自然的\trRingedSpace{}态射 $(\mathsf{U},\OO_{Y|\mathsf{U}})\to(Y,\OO_Y)$（它早在 \S2.2.13 中就隐式登场过）。更精确地说：若 $\mathsf{U}\to Y$ 是 $\mathsf{U}$ 与 $Y$ 的一个\trOpenSubset{} $V$ 之间的\trIsomorphism，并且我们又给定一个\trIsomorphism{} $(\mathsf{U},\OO_{\mathsf{U}})\mathrel{\xrightarrow{\ \sim\ }}(V,\OO_{Y|V})$（经由\trIsomorphism{} $\mathsf{U}\mathrel{\xrightarrow{\ \sim\ }}V$ 而来），那么由此得到的\trRingedSpace{}映射就称为\trRingedSpace{}的一个\textbf{\trOpenEmbedding}（open embedding；或\textbf{\trOpenImmersion}，open immersion），而态射 $\mathsf{U}\to Y$ 常被写作 $\mathsf{U}\hookrightarrow Y$。
+
+\begin{exercise}[\trRingedSpace{}的\trMorphism{}可粘]\label{ex:ringed-space-morphisms-glue}
+设 $(X,\OO_X)$ 与 $(Y,\OO_Y)$ 是\trRingedSpace，$X=\cup_i U_i$ 是 $X$ 的一个\trOpenCover，而且我们有\trRingedSpace{}的\trMorphisms{} $\pi_i\colon U_i\to Y$，它们「在交叠处相合」，即 $\pi_i|_{U_i\cap U_j}=\pi_j|_{U_i\cap U_j}$。证明：存在唯一的\trRingedSpace{}态射 $\pi\colon X\to Y$ 使得 $\pi|_{U_i}=\pi_i$。（\cref{ex:morphisms-glue} 已就\trTopologicalSpace{}把这件事基本证过了。）
+\end{exercise}
+
+\begin{exercise}\label{ex:open-embeddings-monomorphisms}
+证明：\trRingedSpace{}的\trOpenEmbedding{}是\trMonomorphism{}（在\trRingedSpace{}的\trCategory{}中）。
+\end{exercise}
+
+\begin{exercise}[容易的重要练习：前推 $\OO$-\trModule]\label{ex:pushforward-ox-modules}
+给定\trRingedSpace{}态射 $\pi\colon X\to Y$，证明：\trSheaf{}的\trPushforward{}诱导一个\trFunctor{} $\pi_*\colon\catModOX\to\textsc{Mod}_{\OO_Y}$。
+\end{exercise}
+
+\begin{exercise}[日后要用的重要练习：拉回 $\OO$-\trModule]\label{ex:pullback-ox-modules}
+（这个练习你尽可先撂在一旁，等到需要它时再去理会——因为在那之前，你未必能体会它的好处。）设 $\pi\colon(X,\OO_X)\to(Y,\OO_Y)$ 是一个\trRingedSpace{}态射。对\trInverseImage{}稍加变通，我们便能\textbf{拉回一个 $\OO_Y$-\trModule{} $\scr{G}$}，从而得到一个 $\OO_X$-\trModule{} $\pi^*\scr{G}$。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $(X,\pi^{-1}\OO_Y)$ 是一个\trRingedSpace，并且\trRingedSpace{}态射 $\pi$ 可分解为 $(X,\OO_X)\to(X,\pi^{-1}\OO_Y)\to(Y,\OO_Y)$。
+\item 证明 $\pi^{-1}\scr{G}$ 是一个 $\pi^{-1}\OO_Y$-\trModule，并描述 $\pi^{-1}\scr{G}\otimes_{\pi^{-1}\OO_Y}\OO_X$ 如何成为一个 $\OO_X$-\trModule{}；我们称 $\pi^*\scr{G}$ 为 $\scr{G}$ 的\textbf{\trPullback}（pullback）。
+\item 证明 $\pi^*$ 是一个\trCovariantFunctor{} $\textsc{Mod}_{\OO_Y}\to\catModOX$。
+\item 此外，若 $\rho\colon(W,\OO_W)\to(X,\OO_X)$ 是另一个\trRingedSpace{}态射，证明「$\rho^*\pi^*=(\pi\circ\rho)^*$」（或者更精确地说：描述函子间的一个\trNaturalIsomorphism{} $\rho^*\pi^*\overset{\sim}{\longleftrightarrow}(\pi\circ\rho)^*$）。
+\item（参看\cref{ex:adjointness-pushforward-inverse-image}。）证明 $\pi^*$ 是 $\pi_*$ 的\trLeftAdjoint。更精确地说：对任一 $\scr{F}\in\catModOX$，描述一个\trNatural\trBijection
+\[
+\Hom_{(X,\OO_X)}(\pi^*\scr{G},\scr{F})
+\overset{\sim}{\longleftrightarrow}
+\Hom_{(Y,\OO_Y)}(\scr{G},\pi_*\scr{F}),
+\]
+它在 $\scr{F}\in\catModOX$ 与 $\scr{G}\in\textsc{Mod}_{\OO_Y}$ 这两个变元上都具有\trFunctoriality。
+\item（$\OO$-\trModule{}的\trPushPullMap。）设
+\begin{tikzcd}[row sep=2.6em, column sep=3.6em]
+W \ar[r, "\beta'"] \ar[d, "\alpha'"'] & X \ar[d, "\alpha"] \\
+Y \ar[r, "\beta"] & Z
+\end{tikzcd}
+是\emph{\trRingedSpace}的一张\trCommutativeDiagram{}（不必为\trCartesianDiagram），而 $\scr{F}$ 是一个 $\OO_X$-\trModule。请循 \S2.7.4 对\trSheaf{}的\trPushPullMap{}的讨论，说明如何定义 $\OO_Y$-\trModule{}的\textbf{\trPushPullMap}
+\[
+\beta^*\alpha_*\scr{F}\longrightarrow\alpha'_*(\beta')^*\scr{F}
+\]
+（对照 \eqref{eq:push-pull-map}）。
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[容易的重要练习]\label{ex:stalk-map-ringed-space}
+给定\trRingedSpace{}态射 $\pi\colon X\to Y$，设 $\pi(p)=q$。证明：存在\trStalk{}之间的一个映射 $(\OO_Y)_q\to(\OO_X)_p$。
+\end{exercise}
+
+\begin{exercise}[关键练习]\label{ex:ring-map-induced-morphism}
+设 $\pi^{\ddagger}\colon B\to A$ 是一个\trRingMorphism。如下定义\trRingedSpace{}态射 $\pi\colon\Spec A\to\Spec B$。\trTopologicalSpace{}之间的映射已由\cref{ex:ring-maps-continuous-maps}给出。要在 $\Spec B$ 上描述\trSheaf{}态射 $\OO_{\Spec B}\to\pi_*\OO_{\Spec A}$，只需在 $\Spec B$ 的\trDistinguishedBase{}上描述一个\trSheaf{}态射。对 $D(g)\subset\Spec B$，我们定义
+\[
+\OO_{\Spec B}(D(g))\longrightarrow\OO_{\Spec A}(\pi^{-1}D(g))=\OO_{\Spec A}(D(\pi^{\ddagger}g))
+\]
+为 $B_g\to A_{\pi^{\ddagger}g}$。请验证这个定义确有意义（例如：它与 $g$ 的选取无关），并且这确实描述了\trDistinguishedBase{}上的一个\trSheaf{}态射。（这是系列练习中的第三个：\trRingMorphism{}诱导集合的映射，见 \S3.2.10；诱导\trTopologicalSpace{}的映射，见\cref{ex:ring-maps-continuous-maps}；而此刻在这里，则是\trRingedSpace{}的映射。）
+\end{exercise}
+
+关键\cref{ex:ring-map-induced-morphism}所给的\trRingedSpace{}映射其实一点也不复杂。这里就是一个例子。考虑由 $y\mapsto x^2$ 给出的\trRingMorphism{} $\mathbb{C}[y]\to\mathbb{C}[x]$（见图~\ref{fig:parabola-map}）。我们是在把带\trCoordinate{} $x$ 的\trAffineLine{}映到带\trCoordinate{} $y$ 的\trAffineLine。该映射（在\trClosedPoint{}上）是 $a\mapsto a^2$。举例来说：$[(x-3)]$ 被送到哪里？答：$[(y-9)]$，即 $3\mapsto 9$。$[(y-4)]$ 的\trInverseImage{}是什么？答：$\mathbb{C}[x]$ 中那些包含 $[(x^2-4)]$ 的\trPrimeIdeal，即 $[(x-2)]$ 与 $[(x+2)]$；所以 $4$ 的\trInverseImage{}的确是 $\pm2$。至此讲的还只是集合的映射，那已是旧闻（\S3.2.10）；现在来想想函数的拉回。$D(y-4)=\mathbb{A}^1-\{4\}$ 上的函数 $3/(y-4)$，其\trPullback{}是什么？当然是 $\mathbb{A}^1\setminus\{-2,2\}$ 上的 $3/(x^2-4)$。
+
+关键\cref{ex:ring-map-induced-morphism}的构造很快就会化为一个\trScheme{}态射的例子。其实，我们此刻就可以把那个定义立起来。但在那之前，让我们（借下一个练习）指出：仿射\trScheme{}之间的\trRingedSpace{}态射并非个个都呈关键\cref{ex:ring-map-induced-morphism}之形态。（用 \S7.3 的语言来说：这个\trRingedSpace{}态射不是\trLocallyRingedSpace{}的态射。）%
+这个练习我们并不会用到，但它回答了每个人都会有的一个疑问。
+
+\begin{exercise}\label{ex:exotic-ringed-space-map}
+回忆\cref{ex:topological-space-kx-p}：$\Spec k[y]_{(y)}$ 有两个点 $[(0)]$ 与 $[(y)]$，其中第二个是\trClosedPoint{}，第一个则不是。描述一个\emph{\trRingedSpace}的映射 $\Spec k(x)\to\Spec k[y]_{(y)}$：它把 $\Spec k(x)$ 的唯一点送到\trClosedPoint{} $[(y)]$，其在\trGlobalSections{}上的\trPullback{}映射把 $k$ 依恒等映射送到 $k$、把 $y$ 送到 $x$。证明：这个\trRingedSpace{}的映射并不呈关键\cref{ex:ring-map-induced-morphism}所述之形态。
+\end{exercise}
+
+\textbf{7.2.2.\ 暂不采用的试行定义（对照\mbox{动机~7.1.1}）。}%
+\quad \trScheme{}的\trMorphism{} $\pi\colon(X,\OO_X)\to(Y,\OO_Y)$ 是这样一个\trRingedSpace{}态射：它「在局部看似」关键\cref{ex:ring-map-induced-morphism}所描述的那种仿射\trScheme{}映射。确切地说：对每一组\trAffine\trOpenSet{} $\Spec A\subset X$、$\Spec B\subset Y$，只要 $\pi(\Spec A)\subset\Spec B$，其所诱导的\trRingedSpace{}映射就应当呈关键\cref{ex:ring-map-induced-morphism}所示之形态。
+
+我们希望这个定义在任一\trAffine\trCover{}上都可检验，而且我们本可指望借\trAffineCommunicationLemma{}按这条路子把理论发展起来。这也行得通，不过更便利的是来一记更巧的妙招：在下一节中，我们会用一用\trLocallyRingedSpace{}这个观念；而一旦用过，就会把它像昨天的垃圾一样扔掉。%

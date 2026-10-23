@@ -1,0 +1,862 @@
+\makeatletter
+\newif\ifBookIndexing
+\BookIndexingfalse
+\newcommand{\BookBoldPage}[1]{\textbf{\hyperpage{#1}}}
+\newcommand{\BookIndexDefinitionPage}[2]{%
+  \expandafter\gdef\csname BookDefinition@#1@#2\endcsname{}}
+\newcommand{\BookIndexPageFormatter}[2]{%
+  \ifcsname BookDefinition@#1@#2\endcsname
+    BookBoldPage%
+  \else
+    hyperpage%
+  \fi}
+\DeclareRobustCommand{\BookRecordIndex}[1]{%
+  \ifBookIndexing
+    \expandafter\index\expandafter{\csname BookIndex@#1\endcsname|%
+      \noexpand\BookIndexPageFormatter{#1}{\thepage}}%
+  \fi}
+\DeclareRobustCommand{\BookIndexDefinition}[1]{%
+  \ifBookIndexing
+    \protected@write\@auxout{}{\string\BookIndexDefinitionPage{#1}{\thepage}}%
+    \expandafter\index\expandafter{\csname BookIndex@#1\endcsname|BookBoldPage}%
+  \fi}
+\DeclareRobustCommand{\BookTerm}[2]{%
+  \BookRecordIndex{#1}%
+  \begingroup\let\BookRecordIndex\@gobble #2\endgroup}
+\AddToHook{cmd/@outputpage/before}{\let\BookRecordIndex\@gobble}
+\pdfstringdefDisableCommands{%
+  \def\BookTerm#1#2{#2}%
+  \let\BookRecordIndex\@gobble
+  \let\BookIndexDefinition\@gobble}
+\expandafter\def\csname BookIndex@trCalderonZygmund\endcsname{kaerdelongqigemengde@卡尔德龙--齐格蒙德（Calderón–Zygmund）}
+\expandafter\def\csname BookIndex@trHilleYosida\endcsname{xileijitian@希勒--吉田（Hille–Yosida）}
+\expandafter\def\csname BookIndex@trHahnBanach\endcsname{haenbanahe@哈恩--巴拿赫（Hahn–Banach）}
+\expandafter\def\csname BookIndex@trManifold\endcsname{liuxing@流形（manifold）}
+\expandafter\def\csname BookIndex@trManifoldWithBoundary\endcsname{daibianliuxing@带边流形（manifold with boundary）}
+\expandafter\def\csname BookIndex@trCorneredBoundary\endcsname{daijiaobian@带角边（cornered boundary）}
+\expandafter\def\csname BookIndex@trSubmanifold\endcsname{ziliuxing@子流形（submanifold）}
+\expandafter\def\csname BookIndex@trHypersurface\endcsname{chaoqumian@超曲面（hypersurface）}
+\expandafter\def\csname BookIndex@trTopology\endcsname{tuopu@拓扑（topology）}
+\expandafter\def\csname BookIndex@trSphere\endcsname{qiumian@球面（sphere）}
+\expandafter\def\csname BookIndex@trBouquetOfSpheres\endcsname{qiumianshu@球面束（bouquet of spheres）}
+\expandafter\def\csname BookIndex@trMulticonnectionSpace\endcsname{duozhonglianjiekongjian@多重连接空间（multiconnection space）}
+\expandafter\def\csname BookIndex@trCircle\endcsname{yuanzhou@圆周（circle）}
+\expandafter\def\csname BookIndex@trTorus\endcsname{huanmian@环面（torus）}
+\expandafter\def\csname BookIndex@trDisk\endcsname{yuanpan@圆盘（disk）}
+\expandafter\def\csname BookIndex@trChart\endcsname{zuobiaoka@坐标卡（chart）}
+\expandafter\def\csname BookIndex@trAtlas\endcsname{tuce@图册（atlas）}
+\expandafter\def\csname BookIndex@trCriticalPoint\endcsname{linjiedian@临界点（critical point）}
+\expandafter\def\csname BookIndex@trCriticalValue\endcsname{linjiezhi@临界值（critical value）}
+\expandafter\def\csname BookIndex@trRegularValue\endcsname{zhengzezhi@正则值（regular value）}
+\expandafter\def\csname BookIndex@trCriticalLevel\endcsname{linjieshuiping@临界水平（critical level）}
+\expandafter\def\csname BookIndex@trLevelSet\endcsname{shuipingji@水平集（level set）}
+\expandafter\def\csname BookIndex@trSublevelSet\endcsname{cishuipingji@次水平集（sublevel set）}
+\expandafter\def\csname BookIndex@trSaddlePoint\endcsname{andian@鞍点（saddle point）}
+\expandafter\def\csname BookIndex@trRectangularHyperbola\endcsname{dengzhoushuangquxian@等轴双曲线（rectangular hyperbola）}
+\expandafter\def\csname BookIndex@trBubble\endcsname{qipao@气泡（bubble）}
+\expandafter\def\csname BookIndex@trAsphericity\endcsname{feiqiumianxing@非球面性（asphericity）}
+\expandafter\def\csname BookIndex@trConic\endcsname{erciquxian@二次曲线（conic）}
+\expandafter\def\csname BookIndex@trExtremum\endcsname{jizhi@极值（extremum）}
+\expandafter\def\csname BookIndex@trHeightFunction\endcsname{gaoduhanshu@高度函数（height function）}
+\expandafter\def\csname BookIndex@trFocalPoint\endcsname{jiaodian@焦点（focal point）}
+\expandafter\def\csname BookIndex@trSingularPoint\endcsname{qidian@奇点（singular point）}
+\expandafter\def\csname BookIndex@trPlateauFunction\endcsname{pingtaihanshu@平台函数（plateau function）}
+\expandafter\def\csname BookIndex@trQuadric\endcsname{erciqumian@二次曲面（quadric）}
+\expandafter\def\csname BookIndex@trProjectiveSpace\endcsname{sheyingkongjian@射影空间（projective space）}
+\expandafter\def\csname BookIndex@trProjectivePlane\endcsname{sheyingpingmian@射影平面（projective plane）}
+\expandafter\def\csname BookIndex@trHomogeneousCoordinates\endcsname{qicizuobiao@齐次坐标（homogeneous coordinates）}
+\expandafter\def\csname BookIndex@trHessian\endcsname{haisai@海塞（Hessian）}
+\expandafter\def\csname BookIndex@trQuadraticForm\endcsname{ercixing@二次型（quadratic form）}
+\expandafter\def\csname BookIndex@trSignature\endcsname{fuhaocha@符号差（signature）}
+\expandafter\def\csname BookIndex@trSymmetricBilinearForm\endcsname{duichenshuangxianxingxingshi@对称双线性形式（symmetric bilinear form）}
+\expandafter\def\csname BookIndex@trBilinearForm\endcsname{shuangxianxingxingshi@双线性形式（bilinear form）}
+\expandafter\def\csname BookIndex@trMorseFunction\endcsname{moersihanshu@莫尔斯函数（Morse function）}
+\expandafter\def\csname BookIndex@trMorseLemma\endcsname{moersiyinli@莫尔斯引理（Morse lemma）}
+\expandafter\def\csname BookIndex@trMorseChart\endcsname{moersizuobiaoka@莫尔斯坐标卡（Morse chart）}
+\expandafter\def\csname BookIndex@trGradient\endcsname{tidu@梯度（gradient）}
+\expandafter\def\csname BookIndex@trVectorField\endcsname{xiangliangchang@向量场（vector field）}
+\expandafter\def\csname BookIndex@trVectorSpace\endcsname{xiangliangkongjian@向量空间（vector space）}
+\expandafter\def\csname BookIndex@trPseudogradient\endcsname{weitidu@伪梯度（pseudo-gradient）}
+\expandafter\def\csname BookIndex@trCollar\endcsname{lingquan@领圈（collar）}
+\expandafter\def\csname BookIndex@trExcision\endcsname{qiechu@切除（excision）}
+\expandafter\def\csname BookIndex@trTrajectory\endcsname{guidao@轨道（trajectory / orbit）}
+\expandafter\def\csname BookIndex@trFlowLine\endcsname{liuxian@流线（flow line）}
+\expandafter\def\csname BookIndex@trIntegralCurve\endcsname{jifenquxian@积分曲线（integral curve）}
+\expandafter\def\csname BookIndex@trFlow\endcsname{liu@流（flow）}
+\expandafter\def\csname BookIndex@trStableManifold\endcsname{wendingliuxing@稳定流形（stable manifold）}
+\expandafter\def\csname BookIndex@trUnstableManifold\endcsname{buwendingliuxing@不稳定流形（unstable manifold）}
+\expandafter\def\csname BookIndex@trSmaleCondition\endcsname{simeiertiaojian@斯梅尔条件（Smale condition）}
+\expandafter\def\csname BookIndex@trIndex\endcsname{zhibiao@指标（index）}
+\expandafter\def\csname BookIndex@trCompact\endcsname{jinzhi@紧致（compact）}
+\expandafter\def\csname BookIndex@trCompactification\endcsname{jinhua@紧化（compactification）}
+\expandafter\def\csname BookIndex@trConnectedness\endcsname{liantongxing@连通性（connectedness）}
+\expandafter\def\csname BookIndex@trConnectedComponent\endcsname{liantongfenzhi@连通分支（connected component）}
+\expandafter\def\csname BookIndex@trGenericity\endcsname{tongyouxing@通有性（genericity）}
+\expandafter\def\csname BookIndex@trTransversality\endcsname{hengjiexing@横截性（transversality）}
+\expandafter\def\csname BookIndex@trSardTheorem\endcsname{sadedingli@萨德定理（Sard's theorem）}
+\expandafter\def\csname BookIndex@trSubmersion\endcsname{jinmei@浸没（submersion）}
+\expandafter\def\csname BookIndex@trImmersion\endcsname{jinru@浸入（immersion）}
+\expandafter\def\csname BookIndex@trEmbedding\endcsname{qianru@嵌入（embedding）}
+\expandafter\def\csname BookIndex@trParametrization\endcsname{canshuhua@参数化（parametrization）}
+\expandafter\def\csname BookIndex@trDiffeomorphism\endcsname{weifentongpei@微分同胚（diffeomorphism）}
+\expandafter\def\csname BookIndex@trHomeomorphism\endcsname{tongpei@同胚（homeomorphism）}
+\expandafter\def\csname BookIndex@trTangentSpace\endcsname{qiekongjian@切空间（tangent space）}
+\expandafter\def\csname BookIndex@trTangentPlane\endcsname{qiepingmian@切平面（tangent plane）}
+\expandafter\def\csname BookIndex@trTangentMap\endcsname{qieyingshe@切映射（tangent map）}
+\expandafter\def\csname BookIndex@trTangentBundle\endcsname{qiecong@切丛（tangent bundle）}
+\expandafter\def\csname BookIndex@trCotangent\endcsname{yuqie@余切（cotangent）}
+\expandafter\def\csname BookIndex@trVectorBundle\endcsname{xiangliangcong@向量丛（vector bundle）}
+\expandafter\def\csname BookIndex@trFiberBundle\endcsname{xianweicong@纤维丛（fiber bundle）}
+\expandafter\def\csname BookIndex@trNormalBundle\endcsname{facong@法丛（normal bundle）}
+\expandafter\def\csname BookIndex@trNormalVector\endcsname{faxiangliang@法向量（normal vector）}
+\expandafter\def\csname BookIndex@trTubularNeighborhood\endcsname{guanzhuanglinyu@管状邻域（tubular neighborhood）}
+\expandafter\def\csname BookIndex@trFiber\endcsname{xianwei@纤维（fiber）}
+\expandafter\def\csname BookIndex@trSection\endcsname{jiemian@截面（section）}
+\expandafter\def\csname BookIndex@trZeroSection\endcsname{lingjiemian@零截面（zero section）}
+\expandafter\def\csname BookIndex@trTrivialization\endcsname{pingfanhua@平凡化（trivialization）}
+\expandafter\def\csname BookIndex@trMetric\endcsname{duliang@度量（metric）}
+\expandafter\def\csname BookIndex@trExponentialMap\endcsname{zhishuyingshe@指数映射（exponential map）}
+\expandafter\def\csname BookIndex@trExponentialDecay\endcsname{zhishushuaijian@指数衰减（exponential decay）}
+\expandafter\def\csname BookIndex@trPartitionOfUnity\endcsname{danweifenjie@单位分解（partition of unity）}
+\expandafter\def\csname BookIndex@trSupport\endcsname{zhiji@支集（support）}
+\expandafter\def\csname BookIndex@trHandle\endcsname{shoubing@手柄（handle）}
+\expandafter\def\csname BookIndex@trCWComplex\endcsname{cwfuxing@CW~复形（CW-complex）}
+\expandafter\def\csname BookIndex@trComplex\endcsname{fuxing@复形（complex）}
+\expandafter\def\csname BookIndex@trGenerator\endcsname{shengchengyuan@生成元（generator）}
+\expandafter\def\csname BookIndex@trCardinality\endcsname{jishu@基数（cardinality）}
+\expandafter\def\csname BookIndex@trDisjointUnion\endcsname{bujiaobing@不交并（disjoint union）}
+\expandafter\def\csname BookIndex@trCommutativeRing\endcsname{jiaohuanhuan@交换环（commutative ring）}
+\expandafter\def\csname BookIndex@trAbelianGroup\endcsname{abeierqun@阿贝尔群（abelian group）}
+\expandafter\def\csname BookIndex@trDegree\endcsname{cishu@次数（degree）}
+\expandafter\def\csname BookIndex@trCellularDecomposition\endcsname{baoqiangfenjie@胞腔分解（cellular decomposition）}
+\expandafter\def\csname BookIndex@trSkeleton\endcsname{gujia@骨架（skeleton）}
+\expandafter\def\csname BookIndex@trAttachingMap\endcsname{tiefuyingshe@贴附映射（attaching map）}
+\expandafter\def\csname BookIndex@trMorseComplex\endcsname{moersifuxing@莫尔斯复形（Morse complex）}
+\expandafter\def\csname BookIndex@trMorseHomology\endcsname{moersitongdiao@莫尔斯同调（Morse homology）}
+\expandafter\def\csname BookIndex@trModuliSpace\endcsname{mokongjian@模空间（moduli space）}
+\expandafter\def\csname BookIndex@trBrokenTrajectory\endcsname{posuiguiji@破碎轨迹（broken trajectory）}
+\expandafter\def\csname BookIndex@trGluing\endcsname{zhanhe@粘合（gluing）}
+\expandafter\def\csname BookIndex@trPregluing\endcsname{yuzhanhe@预粘合（pre-gluing）}
+\expandafter\def\csname BookIndex@trQuotientTopology\endcsname{shangtuopu@商拓扑（quotient topology）}
+\expandafter\def\csname BookIndex@trApproximateSolution\endcsname{jinsijie@近似解（approximate solution）}
+\expandafter\def\csname BookIndex@trExitPoint\endcsname{chuanchudian@穿出点（exit point）}
+\expandafter\def\csname BookIndex@trEntryPoint\endcsname{chuanrudian@穿入点（entry point）}
+\expandafter\def\csname BookIndex@trParallelTransport\endcsname{pingxingyidong@平行移动（parallel transport）}
+\expandafter\def\csname BookIndex@trSubbundle\endcsname{zicong@子丛（subbundle）}
+\expandafter\def\csname BookIndex@trLift\endcsname{tisheng@提升（lift）}
+\expandafter\def\csname BookIndex@trContractingMap\endcsname{yasuoyingshe@压缩映射（contracting map）}
+\expandafter\def\csname BookIndex@trResolvent\endcsname{yujie@预解（resolvent）}
+\expandafter\def\csname BookIndex@trHomology\endcsname{tongdiao@同调（homology）}
+\expandafter\def\csname BookIndex@trCohomology\endcsname{shangtongdiao@上同调（cohomology）}
+\expandafter\def\csname BookIndex@trHomologyGroup\endcsname{tongdiaoqun@同调群（homology group）}
+\expandafter\def\csname BookIndex@trInvariant\endcsname{bubianliang@不变量（invariant）}
+\expandafter\def\csname BookIndex@trInvariance\endcsname{bubianxing@不变性（invariance）}
+\expandafter\def\csname BookIndex@trSymplecticFrame\endcsname{xinbiaojia@辛标架（symplectic frame）}
+\expandafter\def\csname BookIndex@trSymplecticDual\endcsname{xinduiou@辛对偶（symplectic dual）}
+\expandafter\def\csname BookIndex@trSymplecticTransvection\endcsname{xinpingyan@辛平延（symplectic transvection）}
+\expandafter\def\csname BookIndex@trOctonion\endcsname{bayuanshu@八元数（octaves／octonions）}
+\expandafter\def\csname BookIndex@trDerivation\endcsname{daozi@导子（derivation）}
+\expandafter\def\csname BookIndex@trLieBracket\endcsname{likuohao@李括号（Lie bracket）}
+\expandafter\def\csname BookIndex@trLieDerivative\endcsname{lidaoshu@李导数（Lie derivative）}
+\expandafter\def\csname BookIndex@trInteriorProduct\endcsname{neicheng@内乘（interior product）}
+\expandafter\def\csname BookIndex@trCovariantDerivative\endcsname{xiebiandaoshu@协变导数（covariant derivative）}
+\expandafter\def\csname BookIndex@trConnection\endcsname{lianluo@联络（connection）}
+\expandafter\def\csname BookIndex@trGeodesic\endcsname{cedexian@测地线（geodesic）}
+\expandafter\def\csname BookIndex@trEulerClass\endcsname{oulalei@欧拉类（Euler class）}
+\expandafter\def\csname BookIndex@trAnnihilator\endcsname{linghuazi@零化子（annihilator）}
+\expandafter\def\csname BookIndex@trConvolution\endcsname{juanji@卷积（convolution）}
+\expandafter\def\csname BookIndex@trFundamentalSolution\endcsname{jibenjie@基本解（fundamental solution）}
+\expandafter\def\csname BookIndex@trWeakDerivative\endcsname{ruodaoshu@弱导数（weak derivative）}
+\expandafter\def\csname BookIndex@trLaplacian\endcsname{lapulasisuanzi@拉普拉斯算子（Laplacian）}
+\expandafter\def\csname BookIndex@trPoissonKernel\endcsname{posonghe@泊松核（Poisson kernel）}
+\expandafter\def\csname BookIndex@trIsotopy\endcsname{tonghen@同痕（isotopy）}
+\expandafter\def\csname BookIndex@trContact\endcsname{jiechu@接触（contact）}
+\expandafter\def\csname BookIndex@trSymplectization\endcsname{xinhua@辛化（symplectization）}
+\expandafter\def\csname BookIndex@trClosedCharacteristic\endcsname{bitezheng@闭特征（closed characteristic）}
+\expandafter\def\csname BookIndex@trFrame\endcsname{biaojia@标架（frame）}
+\expandafter\def\csname BookIndex@trTrace\endcsname{ji@迹（trace）}
+\expandafter\def\csname BookIndex@trChainComplex\endcsname{lianfuxing@链复形（chain complex）}
+\expandafter\def\csname BookIndex@trBoundaryOperator\endcsname{bianyuansuanzi@边缘算子（boundary operator）}
+\expandafter\def\csname BookIndex@trDifferential\endcsname{weifen@微分（differential）}
+\expandafter\def\csname BookIndex@trCellularHomology\endcsname{baoqiangtongdiao@胞腔同调（cellular homology）}
+\expandafter\def\csname BookIndex@trBettiNumber\endcsname{beidishu@贝蒂数（Betti number）}
+\expandafter\def\csname BookIndex@trEulerCharacteristic\endcsname{oulashixingshu@欧拉示性数（Euler characteristic）}
+\expandafter\def\csname BookIndex@trPoincarePolynomial\endcsname{pangjialaiduoxiangshi@庞加莱多项式（Poincaré polynomial）}
+\expandafter\def\csname BookIndex@trPoincareDuality\endcsname{pangjialaiduiou@庞加莱对偶（Poincaré duality）}
+\expandafter\def\csname BookIndex@trKunnethFormula\endcsname{kunnethgongshi@屈内特公式（Künneth formula）}
+\expandafter\def\csname BookIndex@trLongExactSequence\endcsname{changzhenghelie@长正合列（long exact sequence）}
+\expandafter\def\csname BookIndex@trShortExactSequence\endcsname{duanzhenghelie@短正合列（short exact sequence）}
+\expandafter\def\csname BookIndex@trMorphism\endcsname{taishe@态射（morphism）}
+\expandafter\def\csname BookIndex@trHomomorphism\endcsname{tongtai@同态（homomorphism）}
+\expandafter\def\csname BookIndex@trConnectingHomomorphism\endcsname{lianjietongtai@连接同态（connecting homomorphism）}
+\expandafter\def\csname BookIndex@trFunctor\endcsname{hanzi@函子（functor）}
+\expandafter\def\csname BookIndex@trFunctoriality\endcsname{hanzixing@函子性（functoriality）}
+\expandafter\def\csname BookIndex@trCategory\endcsname{fanchou@范畴（category）}
+\expandafter\def\csname BookIndex@trCobordism\endcsname{peibian@配边（cobordism）}
+\expandafter\def\csname BookIndex@trOrientation\endcsname{dingxiang@定向（orientation）}
+\expandafter\def\csname BookIndex@trCoorientation\endcsname{yudingxiang@余定向（co-orientation / co-oriented）}
+\expandafter\def\csname BookIndex@trComplement\endcsname{bukongjian@补空间（complement）}
+\expandafter\def\csname BookIndex@trModule\endcsname{mo@模（module）}
+\expandafter\def\csname BookIndex@trFundamentalGroup\endcsname{jibenqun@基本群（fundamental group）}
+\expandafter\def\csname BookIndex@trCovering\endcsname{fugai@覆盖（covering）}
+\expandafter\def\csname BookIndex@trUniversalCover\endcsname{wanyoufugai@万有覆盖（universal cover）}
+\expandafter\def\csname BookIndex@trHomotopy\endcsname{tonglun@同伦（homotopy）}
+\expandafter\def\csname BookIndex@trDeformationRetract\endcsname{xingbianshousuo@形变收缩（deformation retract）}
+\expandafter\def\csname BookIndex@trInterpolation\endcsname{chazhi@插值（interpolation）}
+\expandafter\def\csname BookIndex@trDeformation\endcsname{xingbian@形变（deformation）}
+\expandafter\def\csname BookIndex@trMappingDegree\endcsname{yingshedu@映射度（mapping degree）}
+\expandafter\def\csname BookIndex@trIsomorphism\endcsname{tonggou@同构（isomorphism）}
+\expandafter\def\csname BookIndex@trEndomorphism\endcsname{zitongtai@自同态（endomorphism）}
+\expandafter\def\csname BookIndex@trAutomorphism\endcsname{zitonggou@自同构（automorphism）}
+\expandafter\def\csname BookIndex@trGeneralLinearGroup\endcsname{yibanxianxingqun@一般线性群（general linear group）}
+\expandafter\def\csname BookIndex@trStabilizer\endcsname{wendingziqun@稳定子群（stabilizer）}
+\expandafter\def\csname BookIndex@trHomogeneousSpace\endcsname{qixingkongjian@齐性空间（homogeneous space）}
+\expandafter\def\csname BookIndex@trKernel\endcsname{he@核（kernel）}
+\expandafter\def\csname BookIndex@trRank\endcsname{zhi@秩（rank）}
+\expandafter\def\csname BookIndex@trCokernel\endcsname{yuhe@余核（cokernel）}
+\expandafter\def\csname BookIndex@trImage\endcsname{xiang@像（image）}
+\expandafter\def\csname BookIndex@trPreimage\endcsname{yuanxiang@原像（preimage）}
+\expandafter\def\csname BookIndex@trTensorProduct\endcsname{zhangliangji@张量积（tensor product）}
+\expandafter\def\csname BookIndex@trTorsion\endcsname{nao@挠（torsion）}
+\expandafter\def\csname BookIndex@trDirectSum\endcsname{zhihe@直和（direct sum）}
+\expandafter\def\csname BookIndex@trLocalCoefficient\endcsname{jubuxishu@局部系数（local coefficients）}
+\expandafter\def\csname BookIndex@trCoherentOrientation\endcsname{xiangrongdingxiang@相容定向（coherent orientation）}
+\expandafter\def\csname BookIndex@trSymplecticGroup\endcsname{xinqun@辛群（symplectic group）}
+\expandafter\def\csname BookIndex@trSymplecticForm\endcsname{xinxingshi@辛形式（symplectic form）}
+\expandafter\def\csname BookIndex@trSymplectomorphism\endcsname{xintongpei@辛同胚（symplectomorphism）}
+\expandafter\def\csname BookIndex@trIsometry\endcsname{dengju@等距（isometry）}
+\expandafter\def\csname BookIndex@trEigenvalue\endcsname{tezhengzhi@特征值（eigenvalue）}
+\expandafter\def\csname BookIndex@trCharacteristicPolynomial\endcsname{tezhengduoxiangshi@特征多项式（characteristic polynomial）}
+\expandafter\def\csname BookIndex@trMultiplicity\endcsname{chongshu@重数（multiplicity）}
+\expandafter\def\csname BookIndex@trEigenspace\endcsname{tezhengzikongjian@特征子空间（eigenspace）}
+\expandafter\def\csname BookIndex@trGeneralizedEigenspace\endcsname{guangyitezhengzikongjian@广义特征子空间（generalized eigenspace）}
+\expandafter\def\csname BookIndex@trComplexification\endcsname{fuhua@复化（complexification）}
+\expandafter\def\csname BookIndex@trSymmetricMatrix\endcsname{duichenjuzhen@对称矩阵（symmetric matrix）}
+\expandafter\def\csname BookIndex@trBlockDiagonalMatrix\endcsname{duijiaofenkuaijuzhen@对角分块矩阵（block-diagonal matrix）}
+\expandafter\def\csname BookIndex@trMaximalCompactSubgroup\endcsname{jidajinziqun@极大紧子群（maximal compact subgroup）}
+\expandafter\def\csname BookIndex@trMonodromy\endcsname{danzhiyingshe@单值映射（monodromy）}
+\expandafter\def\csname BookIndex@trForm\endcsname{xingshi@形式（form）}
+\expandafter\def\csname BookIndex@trVolume\endcsname{tiji@体积（volume）}
+\expandafter\def\csname BookIndex@trComplexStructure\endcsname{fujiegou@复结构（complex structure）}
+\expandafter\def\csname BookIndex@trActionFunctional\endcsname{zuoyongfanhan@作用泛函（action functional）}
+\expandafter\def\csname BookIndex@trActionForm\endcsname{zuoyongxingshi@作用形式（action form）}
+\expandafter\def\csname BookIndex@trIntegrationCover\endcsname{jifenfugai@积分覆盖（integration cover）}
+\expandafter\def\csname BookIndex@trInjectivityRadius\endcsname{danshebanjing@单射半径（injectivity radius）}
+\expandafter\def\csname BookIndex@trFloerHomology\endcsname{fuluoertongdiao@弗洛尔同调（Floer homology）}
+\expandafter\def\csname BookIndex@trFloerComplex\endcsname{fuluoerfuxing@弗洛尔复形（Floer complex）}
+\expandafter\def\csname BookIndex@trFloerEquation\endcsname{fuluoerfangcheng@弗洛尔方程（Floer equation）}
+\expandafter\def\csname BookIndex@trArnoldConjecture\endcsname{anuodecaixiang@阿诺德猜想（Arnold conjecture）}
+\expandafter\def\csname BookIndex@trMaslovIndex\endcsname{masiluofuzhibiao@马斯洛夫指标（Maslov index）}
+\expandafter\def\csname BookIndex@trConleyZehnderIndex\endcsname{kanglizehnderzhibiao@康利--曾德尔指标（Conley–Zehnder index）}
+\expandafter\def\csname BookIndex@trMaslovCycle\endcsname{masiluofubilian@马斯洛夫闭链（Maslov cycle）}
+\expandafter\def\csname BookIndex@trCycle\endcsname{bilian@闭链（cycle）}
+\expandafter\def\csname BookIndex@trLoop\endcsname{huanlu@环路（loop）}
+\expandafter\def\csname BookIndex@trLoopSpace\endcsname{huanlukongjian@环路空间（loop space）}
+\expandafter\def\csname BookIndex@trFixedPoint\endcsname{budongdian@不动点（fixed point）}
+\expandafter\def\csname BookIndex@trCappingDisk\endcsname{maopan@帽盘（capping disk）}
+\expandafter\def\csname BookIndex@trCappingSphere\endcsname{maoqiumian@帽球面（capping sphere）}
+\expandafter\def\csname BookIndex@trCappingSurface\endcsname{maoqumian@帽曲面（capping surface）}
+\expandafter\def\csname BookIndex@trChernClass\endcsname{chenlei@陈类（Chern class）}
+\expandafter\def\csname BookIndex@trFirstChernClass\endcsname{diyichenlei@第一陈类（first Chern class）}
+\expandafter\def\csname BookIndex@trLagrangianGrassmannian\endcsname{lagelangrigelasimanliuxing@拉格朗日--格拉斯曼流形（Lagrangian Grassmannian）}
+\expandafter\def\csname BookIndex@trGeneratingFunction\endcsname{shengchenghanshu@生成函数（generating function）}
+\expandafter\def\csname BookIndex@trInnerProduct\endcsname{neiji@内积（inner product）}
+\expandafter\def\csname BookIndex@trPolarDecomposition\endcsname{jifenjie@极分解（polar decomposition）}
+\expandafter\def\csname BookIndex@trSpectralFlow\endcsname{puliu@谱流（spectral flow）}
+\expandafter\def\csname BookIndex@trCrossing\endcsname{chuanyuedian@穿越点（crossing）}
+\expandafter\def\csname BookIndex@trPseudoholomorphicCurve\endcsname{weiquanchunquxian@伪全纯曲线（pseudoholomorphic curve）}
+\expandafter\def\csname BookIndex@trCauchyRiemann\endcsname{kexiliman@柯西--黎曼（Cauchy–Riemann）}
+\expandafter\def\csname BookIndex@trEnergy\endcsname{nengliang@能量（energy）}
+\expandafter\def\csname BookIndex@trMomentum\endcsname{dongliang@动量（momentum）}
+\expandafter\def\csname BookIndex@trEnergyIdentity\endcsname{nenglianghengdengshi@能量恒等式（energy identity）}
+\expandafter\def\csname BookIndex@trContinuationMorphism\endcsname{yanxutongtai@延续同态（continuation morphism）}
+\expandafter\def\csname BookIndex@trSimilarityPrinciple\endcsname{xiangsixingyuanli@相似性原理（similarity principle）}
+\expandafter\def\csname BookIndex@trContinuationPrinciple\endcsname{yanxuyuanli@延续原理（continuation principle）}
+\expandafter\def\csname BookIndex@trMultiplePoint\endcsname{chongdian@重点（multiple point）}
+\expandafter\def\csname BookIndex@trInfiniteOrderZero\endcsname{wuqiongjielingdian@无穷阶零点（infinite-order zero）}
+\expandafter\def\csname BookIndex@trPerturbation\endcsname{raodong@扰动（perturbation）}
+\expandafter\def\csname BookIndex@trLinearization\endcsname{xianxinghua@线性化（linearization）}
+\expandafter\def\csname BookIndex@trBanachManifold\endcsname{banaheliuxing@巴拿赫流形（Banach manifold）}
+\expandafter\def\csname BookIndex@trFredholmOperator\endcsname{fuleidehuomusuanzi@弗雷德霍姆算子（Fredholm operator）}
+\expandafter\def\csname BookIndex@trBanachSpace\endcsname{banahekongjian@巴拿赫空间（Banach space）}
+\expandafter\def\csname BookIndex@trHilbertSpace\endcsname{xierbotekongjian@希尔伯特空间（Hilbert space）}
+\expandafter\def\csname BookIndex@trSobolevSpace\endcsname{suoboliefukongjian@索伯列夫空间（Sobolev space）}
+\expandafter\def\csname BookIndex@trWeakSolution\endcsname{ruojie@弱解（weak solution）}
+\expandafter\def\csname BookIndex@trWeakConvergence\endcsname{ruoshoulian@弱收敛（weak convergence）}
+\expandafter\def\csname BookIndex@trConvergence\endcsname{shoulian@收敛（convergence）}
+\expandafter\def\csname BookIndex@trDistribution\endcsname{fenbu@分布（distribution）}
+\expandafter\def\csname BookIndex@trEllipticRegularity\endcsname{tuoyuanzhengzexing@椭圆正则性（elliptic regularity）}
+\expandafter\def\csname BookIndex@trLinearOperator\endcsname{xianxingsuanzi@线性算子（linear operator）}
+\expandafter\def\csname BookIndex@trAdjointOperator\endcsname{bansuisuanzi@伴随算子（adjoint operator）}
+\expandafter\def\csname BookIndex@trUnboundedOperator\endcsname{wujiesuanzi@无界算子（unbounded operator）}
+\expandafter\def\csname BookIndex@trHilbertianBasis\endcsname{xierboteji@希尔伯特基（Hilbertian basis）}
+\expandafter\def\csname BookIndex@trSemiflow\endcsname{banliu@半流（semiflow）}
+\expandafter\def\csname BookIndex@trSemigroup\endcsname{banqun@半群（semigroup）}
+\expandafter\def\csname BookIndex@trSpectrum\endcsname{pu@谱（spectrum）}
+\expandafter\def\csname BookIndex@trUniformConvergence\endcsname{yizhishoulian@一致收敛（uniform convergence）}
+\expandafter\def\csname BookIndex@trEquicontinuity\endcsname{dengdulianxu@等度连续（equicontinuity）}
+\expandafter\def\csname BookIndex@trArzelaAscoliTheorem\endcsname{aerzelaasikelidingli@阿尔泽拉--阿斯科利定理（Arzelà–Ascoli theorem）}
+\expandafter\def\csname BookIndex@trImplicitFunctionTheorem\endcsname{yinhanshudingli@隐函数定理（implicit function theorem）}
+\expandafter\def\csname BookIndex@trLocalInversionTheorem\endcsname{jubufanyandingli@局部反演定理（local inversion theorem）}
+\expandafter\def\csname BookIndex@trRegularity\endcsname{zhengzexing@正则性（regularity）}
+\expandafter\def\csname BookIndex@T001\endcsname{xinliuxing@辛流形（symplectic manifold）}
+\expandafter\def\csname BookIndex@T002\endcsname{xinxiangliangkongjian@辛向量空间（symplectic vector space）}
+\expandafter\def\csname BookIndex@T003\endcsname{xinji@辛基（symplectic basis）}
+\expandafter\def\csname BookIndex@T004\endcsname{dabudingli@达布定理（Darboux theorem）}
+\expandafter\def\csname BookIndex@T005\endcsname{lagelangriziliuxing@拉格朗日子流形（Lagrangian submanifold）}
+\expandafter\def\csname BookIndex@T006\endcsname{hamidunweifentongpeiqun@哈密顿微分同胚群（Hamiltonian diffeomorphism group）}
+\expandafter\def\csname BookIndex@T007\endcsname{jiechuliuxing@接触流形（contact manifold）}
+\expandafter\def\csname BookIndex@T008\endcsname{moersibudengshi@莫尔斯不等式（Morse inequalities）}
+\expandafter\def\csname BookIndex@T009\endcsname{leibudingli@雷布定理（Reeb theorem）}
+\expandafter\def\csname BookIndex@T010\endcsname{simeierdingli@斯梅尔定理（Smale theorem）}
+\expandafter\def\csname BookIndex@T011\endcsname{kupukasimeierdingli@库普卡–斯梅尔定理（Kupka–Smale theorem）}
+\expandafter\def\csname BookIndex@T012\endcsname{sadesimeierdingli@萨德–斯梅尔定理（Sard–Smale theorem）}
+\expandafter\def\csname BookIndex@T013\endcsname{huiteniqianrudingli@惠特尼嵌入定理（Whitney embedding theorem）}
+\expandafter\def\csname BookIndex@T014\endcsname{bulaoweierbudongdiandingli@布劳威尔不动点定理（Brouwer fixed point theorem）}
+\expandafter\def\csname BookIndex@T015\endcsname{xileijitiandingli@希勒–吉田定理（Hille–Yosida theorem）}
+\expandafter\def\csname BookIndex@T016\endcsname{leilixijinxingdingli@雷利希紧性定理（Rellich compactness theorem）}
+\expandafter\def\csname BookIndex@T017\endcsname{leilixikongdelashaofudingli@雷利希–孔德拉绍夫定理（Rellich–Kondrachov theorem）}
+\expandafter\def\csname BookIndex@T018\endcsname{fuleidehuomuzhibiaowendingxing@弗雷德霍姆指标稳定性（Fredholm index stability）}
+\expandafter\let\csname BookOriginal@trCalderonZygmund\endcsname\trCalderonZygmund
+\renewcommand{\trCalderonZygmund}{\BookTerm{trCalderonZygmund}{\csname BookOriginal@trCalderonZygmund\endcsname}}
+\expandafter\let\csname BookOriginal@trHilleYosida\endcsname\trHilleYosida
+\renewcommand{\trHilleYosida}{\BookTerm{trHilleYosida}{\csname BookOriginal@trHilleYosida\endcsname}}
+\expandafter\let\csname BookOriginal@trHahnBanach\endcsname\trHahnBanach
+\renewcommand{\trHahnBanach}{\BookTerm{trHahnBanach}{\csname BookOriginal@trHahnBanach\endcsname}}
+\expandafter\let\csname BookOriginal@trManifold\endcsname\trManifold
+\renewcommand{\trManifold}{\BookTerm{trManifold}{\csname BookOriginal@trManifold\endcsname}}
+\expandafter\let\csname BookOriginal@trManifoldWithBoundary\endcsname\trManifoldWithBoundary
+\renewcommand{\trManifoldWithBoundary}{\BookTerm{trManifoldWithBoundary}{\csname BookOriginal@trManifoldWithBoundary\endcsname}}
+\expandafter\let\csname BookOriginal@trCorneredBoundary\endcsname\trCorneredBoundary
+\renewcommand{\trCorneredBoundary}{\BookTerm{trCorneredBoundary}{\csname BookOriginal@trCorneredBoundary\endcsname}}
+\expandafter\let\csname BookOriginal@trSubmanifold\endcsname\trSubmanifold
+\renewcommand{\trSubmanifold}{\BookTerm{trSubmanifold}{\csname BookOriginal@trSubmanifold\endcsname}}
+\expandafter\let\csname BookOriginal@trHypersurface\endcsname\trHypersurface
+\renewcommand{\trHypersurface}{\BookTerm{trHypersurface}{\csname BookOriginal@trHypersurface\endcsname}}
+\expandafter\let\csname BookOriginal@trTopology\endcsname\trTopology
+\renewcommand{\trTopology}{\BookTerm{trTopology}{\csname BookOriginal@trTopology\endcsname}}
+\expandafter\let\csname BookOriginal@trSphere\endcsname\trSphere
+\renewcommand{\trSphere}{\BookTerm{trSphere}{\csname BookOriginal@trSphere\endcsname}}
+\expandafter\let\csname BookOriginal@trBouquetOfSpheres\endcsname\trBouquetOfSpheres
+\renewcommand{\trBouquetOfSpheres}{\BookTerm{trBouquetOfSpheres}{\csname BookOriginal@trBouquetOfSpheres\endcsname}}
+\expandafter\let\csname BookOriginal@trMulticonnectionSpace\endcsname\trMulticonnectionSpace
+\renewcommand{\trMulticonnectionSpace}{\BookTerm{trMulticonnectionSpace}{\csname BookOriginal@trMulticonnectionSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trCircle\endcsname\trCircle
+\renewcommand{\trCircle}{\BookTerm{trCircle}{\csname BookOriginal@trCircle\endcsname}}
+\expandafter\let\csname BookOriginal@trTorus\endcsname\trTorus
+\renewcommand{\trTorus}{\BookTerm{trTorus}{\csname BookOriginal@trTorus\endcsname}}
+\expandafter\let\csname BookOriginal@trDisk\endcsname\trDisk
+\renewcommand{\trDisk}{\BookTerm{trDisk}{\csname BookOriginal@trDisk\endcsname}}
+\expandafter\let\csname BookOriginal@trChart\endcsname\trChart
+\renewcommand{\trChart}{\BookTerm{trChart}{\csname BookOriginal@trChart\endcsname}}
+\expandafter\let\csname BookOriginal@trAtlas\endcsname\trAtlas
+\renewcommand{\trAtlas}{\BookTerm{trAtlas}{\csname BookOriginal@trAtlas\endcsname}}
+\expandafter\let\csname BookOriginal@trCriticalPoint\endcsname\trCriticalPoint
+\renewcommand{\trCriticalPoint}{\BookTerm{trCriticalPoint}{\csname BookOriginal@trCriticalPoint\endcsname}}
+\expandafter\let\csname BookOriginal@trCriticalValue\endcsname\trCriticalValue
+\renewcommand{\trCriticalValue}{\BookTerm{trCriticalValue}{\csname BookOriginal@trCriticalValue\endcsname}}
+\expandafter\let\csname BookOriginal@trRegularValue\endcsname\trRegularValue
+\renewcommand{\trRegularValue}{\BookTerm{trRegularValue}{\csname BookOriginal@trRegularValue\endcsname}}
+\expandafter\let\csname BookOriginal@trCriticalLevel\endcsname\trCriticalLevel
+\renewcommand{\trCriticalLevel}{\BookTerm{trCriticalLevel}{\csname BookOriginal@trCriticalLevel\endcsname}}
+\expandafter\let\csname BookOriginal@trLevelSet\endcsname\trLevelSet
+\renewcommand{\trLevelSet}{\BookTerm{trLevelSet}{\csname BookOriginal@trLevelSet\endcsname}}
+\expandafter\let\csname BookOriginal@trSublevelSet\endcsname\trSublevelSet
+\renewcommand{\trSublevelSet}{\BookTerm{trSublevelSet}{\csname BookOriginal@trSublevelSet\endcsname}}
+\expandafter\let\csname BookOriginal@trSaddlePoint\endcsname\trSaddlePoint
+\renewcommand{\trSaddlePoint}{\BookTerm{trSaddlePoint}{\csname BookOriginal@trSaddlePoint\endcsname}}
+\expandafter\let\csname BookOriginal@trRectangularHyperbola\endcsname\trRectangularHyperbola
+\renewcommand{\trRectangularHyperbola}{\BookTerm{trRectangularHyperbola}{\csname BookOriginal@trRectangularHyperbola\endcsname}}
+\expandafter\let\csname BookOriginal@trBubble\endcsname\trBubble
+\renewcommand{\trBubble}{\BookTerm{trBubble}{\csname BookOriginal@trBubble\endcsname}}
+\expandafter\let\csname BookOriginal@trAsphericity\endcsname\trAsphericity
+\renewcommand{\trAsphericity}{\BookTerm{trAsphericity}{\csname BookOriginal@trAsphericity\endcsname}}
+\expandafter\let\csname BookOriginal@trConic\endcsname\trConic
+\renewcommand{\trConic}{\BookTerm{trConic}{\csname BookOriginal@trConic\endcsname}}
+\expandafter\let\csname BookOriginal@trExtremum\endcsname\trExtremum
+\renewcommand{\trExtremum}{\BookTerm{trExtremum}{\csname BookOriginal@trExtremum\endcsname}}
+\expandafter\let\csname BookOriginal@trHeightFunction\endcsname\trHeightFunction
+\renewcommand{\trHeightFunction}{\BookTerm{trHeightFunction}{\csname BookOriginal@trHeightFunction\endcsname}}
+\expandafter\let\csname BookOriginal@trFocalPoint\endcsname\trFocalPoint
+\renewcommand{\trFocalPoint}{\BookTerm{trFocalPoint}{\csname BookOriginal@trFocalPoint\endcsname}}
+\expandafter\let\csname BookOriginal@trSingularPoint\endcsname\trSingularPoint
+\renewcommand{\trSingularPoint}{\BookTerm{trSingularPoint}{\csname BookOriginal@trSingularPoint\endcsname}}
+\expandafter\let\csname BookOriginal@trPlateauFunction\endcsname\trPlateauFunction
+\renewcommand{\trPlateauFunction}{\BookTerm{trPlateauFunction}{\csname BookOriginal@trPlateauFunction\endcsname}}
+\expandafter\let\csname BookOriginal@trQuadric\endcsname\trQuadric
+\renewcommand{\trQuadric}{\BookTerm{trQuadric}{\csname BookOriginal@trQuadric\endcsname}}
+\expandafter\let\csname BookOriginal@trProjectiveSpace\endcsname\trProjectiveSpace
+\renewcommand{\trProjectiveSpace}{\BookTerm{trProjectiveSpace}{\csname BookOriginal@trProjectiveSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trProjectivePlane\endcsname\trProjectivePlane
+\renewcommand{\trProjectivePlane}{\BookTerm{trProjectivePlane}{\csname BookOriginal@trProjectivePlane\endcsname}}
+\expandafter\let\csname BookOriginal@trHomogeneousCoordinates\endcsname\trHomogeneousCoordinates
+\renewcommand{\trHomogeneousCoordinates}{\BookTerm{trHomogeneousCoordinates}{\csname BookOriginal@trHomogeneousCoordinates\endcsname}}
+\expandafter\let\csname BookOriginal@trHessian\endcsname\trHessian
+\renewcommand{\trHessian}{\BookTerm{trHessian}{\csname BookOriginal@trHessian\endcsname}}
+\expandafter\let\csname BookOriginal@trQuadraticForm\endcsname\trQuadraticForm
+\renewcommand{\trQuadraticForm}{\BookTerm{trQuadraticForm}{\csname BookOriginal@trQuadraticForm\endcsname}}
+\expandafter\let\csname BookOriginal@trSignature\endcsname\trSignature
+\renewcommand{\trSignature}{\BookTerm{trSignature}{\csname BookOriginal@trSignature\endcsname}}
+\expandafter\let\csname BookOriginal@trSymmetricBilinearForm\endcsname\trSymmetricBilinearForm
+\renewcommand{\trSymmetricBilinearForm}{\BookTerm{trSymmetricBilinearForm}{\csname BookOriginal@trSymmetricBilinearForm\endcsname}}
+\expandafter\let\csname BookOriginal@trBilinearForm\endcsname\trBilinearForm
+\renewcommand{\trBilinearForm}{\BookTerm{trBilinearForm}{\csname BookOriginal@trBilinearForm\endcsname}}
+\expandafter\let\csname BookOriginal@trMorseFunction\endcsname\trMorseFunction
+\renewcommand{\trMorseFunction}{\BookTerm{trMorseFunction}{\csname BookOriginal@trMorseFunction\endcsname}}
+\expandafter\let\csname BookOriginal@trMorseLemma\endcsname\trMorseLemma
+\renewcommand{\trMorseLemma}{\BookTerm{trMorseLemma}{\csname BookOriginal@trMorseLemma\endcsname}}
+\expandafter\let\csname BookOriginal@trMorseChart\endcsname\trMorseChart
+\renewcommand{\trMorseChart}{\BookTerm{trMorseChart}{\csname BookOriginal@trMorseChart\endcsname}}
+\expandafter\let\csname BookOriginal@trGradient\endcsname\trGradient
+\renewcommand{\trGradient}{\BookTerm{trGradient}{\csname BookOriginal@trGradient\endcsname}}
+\expandafter\let\csname BookOriginal@trVectorField\endcsname\trVectorField
+\renewcommand{\trVectorField}{\BookTerm{trVectorField}{\csname BookOriginal@trVectorField\endcsname}}
+\expandafter\let\csname BookOriginal@trVectorSpace\endcsname\trVectorSpace
+\renewcommand{\trVectorSpace}{\BookTerm{trVectorSpace}{\csname BookOriginal@trVectorSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trPseudogradient\endcsname\trPseudogradient
+\renewcommand{\trPseudogradient}{\BookTerm{trPseudogradient}{\csname BookOriginal@trPseudogradient\endcsname}}
+\expandafter\let\csname BookOriginal@trCollar\endcsname\trCollar
+\renewcommand{\trCollar}{\BookTerm{trCollar}{\csname BookOriginal@trCollar\endcsname}}
+\expandafter\let\csname BookOriginal@trExcision\endcsname\trExcision
+\renewcommand{\trExcision}{\BookTerm{trExcision}{\csname BookOriginal@trExcision\endcsname}}
+\expandafter\let\csname BookOriginal@trTrajectory\endcsname\trTrajectory
+\renewcommand{\trTrajectory}{\BookTerm{trTrajectory}{\csname BookOriginal@trTrajectory\endcsname}}
+\expandafter\let\csname BookOriginal@trFlowLine\endcsname\trFlowLine
+\renewcommand{\trFlowLine}{\BookTerm{trFlowLine}{\csname BookOriginal@trFlowLine\endcsname}}
+\expandafter\let\csname BookOriginal@trIntegralCurve\endcsname\trIntegralCurve
+\renewcommand{\trIntegralCurve}{\BookTerm{trIntegralCurve}{\csname BookOriginal@trIntegralCurve\endcsname}}
+\expandafter\let\csname BookOriginal@trFlow\endcsname\trFlow
+\renewcommand{\trFlow}{\BookTerm{trFlow}{\csname BookOriginal@trFlow\endcsname}}
+\expandafter\let\csname BookOriginal@trStableManifold\endcsname\trStableManifold
+\renewcommand{\trStableManifold}{\BookTerm{trStableManifold}{\csname BookOriginal@trStableManifold\endcsname}}
+\expandafter\let\csname BookOriginal@trUnstableManifold\endcsname\trUnstableManifold
+\renewcommand{\trUnstableManifold}{\BookTerm{trUnstableManifold}{\csname BookOriginal@trUnstableManifold\endcsname}}
+\expandafter\let\csname BookOriginal@trSmaleCondition\endcsname\trSmaleCondition
+\renewcommand{\trSmaleCondition}{\BookTerm{trSmaleCondition}{\csname BookOriginal@trSmaleCondition\endcsname}}
+\expandafter\let\csname BookOriginal@trIndex\endcsname\trIndex
+\renewcommand{\trIndex}{\BookTerm{trIndex}{\csname BookOriginal@trIndex\endcsname}}
+\expandafter\let\csname BookOriginal@trCompact\endcsname\trCompact
+\renewcommand{\trCompact}{\BookTerm{trCompact}{\csname BookOriginal@trCompact\endcsname}}
+\expandafter\let\csname BookOriginal@trCompactification\endcsname\trCompactification
+\renewcommand{\trCompactification}{\BookTerm{trCompactification}{\csname BookOriginal@trCompactification\endcsname}}
+\expandafter\let\csname BookOriginal@trConnectedness\endcsname\trConnectedness
+\renewcommand{\trConnectedness}{\BookTerm{trConnectedness}{\csname BookOriginal@trConnectedness\endcsname}}
+\expandafter\let\csname BookOriginal@trConnectedComponent\endcsname\trConnectedComponent
+\renewcommand{\trConnectedComponent}{\BookTerm{trConnectedComponent}{\csname BookOriginal@trConnectedComponent\endcsname}}
+\expandafter\let\csname BookOriginal@trGenericity\endcsname\trGenericity
+\renewcommand{\trGenericity}{\BookTerm{trGenericity}{\csname BookOriginal@trGenericity\endcsname}}
+\expandafter\let\csname BookOriginal@trTransversality\endcsname\trTransversality
+\renewcommand{\trTransversality}{\BookTerm{trTransversality}{\csname BookOriginal@trTransversality\endcsname}}
+\expandafter\let\csname BookOriginal@trSardTheorem\endcsname\trSardTheorem
+\renewcommand{\trSardTheorem}{\BookTerm{trSardTheorem}{\csname BookOriginal@trSardTheorem\endcsname}}
+\expandafter\let\csname BookOriginal@trSubmersion\endcsname\trSubmersion
+\renewcommand{\trSubmersion}{\BookTerm{trSubmersion}{\csname BookOriginal@trSubmersion\endcsname}}
+\expandafter\let\csname BookOriginal@trImmersion\endcsname\trImmersion
+\renewcommand{\trImmersion}{\BookTerm{trImmersion}{\csname BookOriginal@trImmersion\endcsname}}
+\expandafter\let\csname BookOriginal@trEmbedding\endcsname\trEmbedding
+\renewcommand{\trEmbedding}{\BookTerm{trEmbedding}{\csname BookOriginal@trEmbedding\endcsname}}
+\expandafter\let\csname BookOriginal@trParametrization\endcsname\trParametrization
+\renewcommand{\trParametrization}{\BookTerm{trParametrization}{\csname BookOriginal@trParametrization\endcsname}}
+\expandafter\let\csname BookOriginal@trDiffeomorphism\endcsname\trDiffeomorphism
+\renewcommand{\trDiffeomorphism}{\BookTerm{trDiffeomorphism}{\csname BookOriginal@trDiffeomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trHomeomorphism\endcsname\trHomeomorphism
+\renewcommand{\trHomeomorphism}{\BookTerm{trHomeomorphism}{\csname BookOriginal@trHomeomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trTangentSpace\endcsname\trTangentSpace
+\renewcommand{\trTangentSpace}{\BookTerm{trTangentSpace}{\csname BookOriginal@trTangentSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trTangentPlane\endcsname\trTangentPlane
+\renewcommand{\trTangentPlane}{\BookTerm{trTangentPlane}{\csname BookOriginal@trTangentPlane\endcsname}}
+\expandafter\let\csname BookOriginal@trTangentMap\endcsname\trTangentMap
+\renewcommand{\trTangentMap}{\BookTerm{trTangentMap}{\csname BookOriginal@trTangentMap\endcsname}}
+\expandafter\let\csname BookOriginal@trTangentBundle\endcsname\trTangentBundle
+\renewcommand{\trTangentBundle}{\BookTerm{trTangentBundle}{\csname BookOriginal@trTangentBundle\endcsname}}
+\expandafter\let\csname BookOriginal@trCotangent\endcsname\trCotangent
+\renewcommand{\trCotangent}{\BookTerm{trCotangent}{\csname BookOriginal@trCotangent\endcsname}}
+\expandafter\let\csname BookOriginal@trVectorBundle\endcsname\trVectorBundle
+\renewcommand{\trVectorBundle}{\BookTerm{trVectorBundle}{\csname BookOriginal@trVectorBundle\endcsname}}
+\expandafter\let\csname BookOriginal@trFiberBundle\endcsname\trFiberBundle
+\renewcommand{\trFiberBundle}{\BookTerm{trFiberBundle}{\csname BookOriginal@trFiberBundle\endcsname}}
+\expandafter\let\csname BookOriginal@trNormalBundle\endcsname\trNormalBundle
+\renewcommand{\trNormalBundle}{\BookTerm{trNormalBundle}{\csname BookOriginal@trNormalBundle\endcsname}}
+\expandafter\let\csname BookOriginal@trNormalVector\endcsname\trNormalVector
+\renewcommand{\trNormalVector}{\BookTerm{trNormalVector}{\csname BookOriginal@trNormalVector\endcsname}}
+\expandafter\let\csname BookOriginal@trTubularNeighborhood\endcsname\trTubularNeighborhood
+\renewcommand{\trTubularNeighborhood}{\BookTerm{trTubularNeighborhood}{\csname BookOriginal@trTubularNeighborhood\endcsname}}
+\expandafter\let\csname BookOriginal@trFiber\endcsname\trFiber
+\renewcommand{\trFiber}{\BookTerm{trFiber}{\csname BookOriginal@trFiber\endcsname}}
+\expandafter\let\csname BookOriginal@trSection\endcsname\trSection
+\renewcommand{\trSection}{\BookTerm{trSection}{\csname BookOriginal@trSection\endcsname}}
+\expandafter\let\csname BookOriginal@trZeroSection\endcsname\trZeroSection
+\renewcommand{\trZeroSection}{\BookTerm{trZeroSection}{\csname BookOriginal@trZeroSection\endcsname}}
+\expandafter\let\csname BookOriginal@trTrivialization\endcsname\trTrivialization
+\renewcommand{\trTrivialization}{\BookTerm{trTrivialization}{\csname BookOriginal@trTrivialization\endcsname}}
+\expandafter\let\csname BookOriginal@trMetric\endcsname\trMetric
+\renewcommand{\trMetric}{\BookTerm{trMetric}{\csname BookOriginal@trMetric\endcsname}}
+\expandafter\let\csname BookOriginal@trExponentialMap\endcsname\trExponentialMap
+\renewcommand{\trExponentialMap}{\BookTerm{trExponentialMap}{\csname BookOriginal@trExponentialMap\endcsname}}
+\expandafter\let\csname BookOriginal@trExponentialDecay\endcsname\trExponentialDecay
+\renewcommand{\trExponentialDecay}{\BookTerm{trExponentialDecay}{\csname BookOriginal@trExponentialDecay\endcsname}}
+\expandafter\let\csname BookOriginal@trPartitionOfUnity\endcsname\trPartitionOfUnity
+\renewcommand{\trPartitionOfUnity}{\BookTerm{trPartitionOfUnity}{\csname BookOriginal@trPartitionOfUnity\endcsname}}
+\expandafter\let\csname BookOriginal@trSupport\endcsname\trSupport
+\renewcommand{\trSupport}{\BookTerm{trSupport}{\csname BookOriginal@trSupport\endcsname}}
+\expandafter\let\csname BookOriginal@trHandle\endcsname\trHandle
+\renewcommand{\trHandle}{\BookTerm{trHandle}{\csname BookOriginal@trHandle\endcsname}}
+\expandafter\let\csname BookOriginal@trCWComplex\endcsname\trCWComplex
+\renewcommand{\trCWComplex}{\BookTerm{trCWComplex}{\csname BookOriginal@trCWComplex\endcsname}}
+\expandafter\let\csname BookOriginal@trComplex\endcsname\trComplex
+\renewcommand{\trComplex}{\BookTerm{trComplex}{\csname BookOriginal@trComplex\endcsname}}
+\expandafter\let\csname BookOriginal@trGenerator\endcsname\trGenerator
+\renewcommand{\trGenerator}{\BookTerm{trGenerator}{\csname BookOriginal@trGenerator\endcsname}}
+\expandafter\let\csname BookOriginal@trCardinality\endcsname\trCardinality
+\renewcommand{\trCardinality}{\BookTerm{trCardinality}{\csname BookOriginal@trCardinality\endcsname}}
+\expandafter\let\csname BookOriginal@trDisjointUnion\endcsname\trDisjointUnion
+\renewcommand{\trDisjointUnion}{\BookTerm{trDisjointUnion}{\csname BookOriginal@trDisjointUnion\endcsname}}
+\expandafter\let\csname BookOriginal@trCommutativeRing\endcsname\trCommutativeRing
+\renewcommand{\trCommutativeRing}{\BookTerm{trCommutativeRing}{\csname BookOriginal@trCommutativeRing\endcsname}}
+\expandafter\let\csname BookOriginal@trAbelianGroup\endcsname\trAbelianGroup
+\renewcommand{\trAbelianGroup}{\BookTerm{trAbelianGroup}{\csname BookOriginal@trAbelianGroup\endcsname}}
+\expandafter\let\csname BookOriginal@trDegree\endcsname\trDegree
+\renewcommand{\trDegree}{\BookTerm{trDegree}{\csname BookOriginal@trDegree\endcsname}}
+\expandafter\let\csname BookOriginal@trCellularDecomposition\endcsname\trCellularDecomposition
+\renewcommand{\trCellularDecomposition}{\BookTerm{trCellularDecomposition}{\csname BookOriginal@trCellularDecomposition\endcsname}}
+\expandafter\let\csname BookOriginal@trSkeleton\endcsname\trSkeleton
+\renewcommand{\trSkeleton}{\BookTerm{trSkeleton}{\csname BookOriginal@trSkeleton\endcsname}}
+\expandafter\let\csname BookOriginal@trAttachingMap\endcsname\trAttachingMap
+\renewcommand{\trAttachingMap}{\BookTerm{trAttachingMap}{\csname BookOriginal@trAttachingMap\endcsname}}
+\expandafter\let\csname BookOriginal@trMorseComplex\endcsname\trMorseComplex
+\renewcommand{\trMorseComplex}{\BookTerm{trMorseComplex}{\csname BookOriginal@trMorseComplex\endcsname}}
+\expandafter\let\csname BookOriginal@trMorseHomology\endcsname\trMorseHomology
+\renewcommand{\trMorseHomology}{\BookTerm{trMorseHomology}{\csname BookOriginal@trMorseHomology\endcsname}}
+\expandafter\let\csname BookOriginal@trModuliSpace\endcsname\trModuliSpace
+\renewcommand{\trModuliSpace}{\BookTerm{trModuliSpace}{\csname BookOriginal@trModuliSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trBrokenTrajectory\endcsname\trBrokenTrajectory
+\renewcommand{\trBrokenTrajectory}{\BookTerm{trBrokenTrajectory}{\csname BookOriginal@trBrokenTrajectory\endcsname}}
+\expandafter\let\csname BookOriginal@trGluing\endcsname\trGluing
+\renewcommand{\trGluing}{\BookTerm{trGluing}{\csname BookOriginal@trGluing\endcsname}}
+\expandafter\let\csname BookOriginal@trPregluing\endcsname\trPregluing
+\renewcommand{\trPregluing}{\BookTerm{trPregluing}{\csname BookOriginal@trPregluing\endcsname}}
+\expandafter\let\csname BookOriginal@trQuotientTopology\endcsname\trQuotientTopology
+\renewcommand{\trQuotientTopology}{\BookTerm{trQuotientTopology}{\csname BookOriginal@trQuotientTopology\endcsname}}
+\expandafter\let\csname BookOriginal@trApproximateSolution\endcsname\trApproximateSolution
+\renewcommand{\trApproximateSolution}{\BookTerm{trApproximateSolution}{\csname BookOriginal@trApproximateSolution\endcsname}}
+\expandafter\let\csname BookOriginal@trExitPoint\endcsname\trExitPoint
+\renewcommand{\trExitPoint}{\BookTerm{trExitPoint}{\csname BookOriginal@trExitPoint\endcsname}}
+\expandafter\let\csname BookOriginal@trEntryPoint\endcsname\trEntryPoint
+\renewcommand{\trEntryPoint}{\BookTerm{trEntryPoint}{\csname BookOriginal@trEntryPoint\endcsname}}
+\expandafter\let\csname BookOriginal@trParallelTransport\endcsname\trParallelTransport
+\renewcommand{\trParallelTransport}{\BookTerm{trParallelTransport}{\csname BookOriginal@trParallelTransport\endcsname}}
+\expandafter\let\csname BookOriginal@trSubbundle\endcsname\trSubbundle
+\renewcommand{\trSubbundle}{\BookTerm{trSubbundle}{\csname BookOriginal@trSubbundle\endcsname}}
+\expandafter\let\csname BookOriginal@trLift\endcsname\trLift
+\renewcommand{\trLift}{\BookTerm{trLift}{\csname BookOriginal@trLift\endcsname}}
+\expandafter\let\csname BookOriginal@trContractingMap\endcsname\trContractingMap
+\renewcommand{\trContractingMap}{\BookTerm{trContractingMap}{\csname BookOriginal@trContractingMap\endcsname}}
+\expandafter\let\csname BookOriginal@trResolvent\endcsname\trResolvent
+\renewcommand{\trResolvent}{\BookTerm{trResolvent}{\csname BookOriginal@trResolvent\endcsname}}
+\expandafter\let\csname BookOriginal@trHomology\endcsname\trHomology
+\renewcommand{\trHomology}{\BookTerm{trHomology}{\csname BookOriginal@trHomology\endcsname}}
+\expandafter\let\csname BookOriginal@trCohomology\endcsname\trCohomology
+\renewcommand{\trCohomology}{\BookTerm{trCohomology}{\csname BookOriginal@trCohomology\endcsname}}
+\expandafter\let\csname BookOriginal@trHomologyGroup\endcsname\trHomologyGroup
+\renewcommand{\trHomologyGroup}{\BookTerm{trHomologyGroup}{\csname BookOriginal@trHomologyGroup\endcsname}}
+\expandafter\let\csname BookOriginal@trInvariant\endcsname\trInvariant
+\renewcommand{\trInvariant}{\BookTerm{trInvariant}{\csname BookOriginal@trInvariant\endcsname}}
+\expandafter\let\csname BookOriginal@trInvariance\endcsname\trInvariance
+\renewcommand{\trInvariance}{\BookTerm{trInvariance}{\csname BookOriginal@trInvariance\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplecticFrame\endcsname\trSymplecticFrame
+\renewcommand{\trSymplecticFrame}{\BookTerm{trSymplecticFrame}{\csname BookOriginal@trSymplecticFrame\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplecticDual\endcsname\trSymplecticDual
+\renewcommand{\trSymplecticDual}{\BookTerm{trSymplecticDual}{\csname BookOriginal@trSymplecticDual\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplecticTransvection\endcsname\trSymplecticTransvection
+\renewcommand{\trSymplecticTransvection}{\BookTerm{trSymplecticTransvection}{\csname BookOriginal@trSymplecticTransvection\endcsname}}
+\expandafter\let\csname BookOriginal@trOctonion\endcsname\trOctonion
+\renewcommand{\trOctonion}{\BookTerm{trOctonion}{\csname BookOriginal@trOctonion\endcsname}}
+\expandafter\let\csname BookOriginal@trDerivation\endcsname\trDerivation
+\renewcommand{\trDerivation}{\BookTerm{trDerivation}{\csname BookOriginal@trDerivation\endcsname}}
+\expandafter\let\csname BookOriginal@trLieBracket\endcsname\trLieBracket
+\renewcommand{\trLieBracket}{\BookTerm{trLieBracket}{\csname BookOriginal@trLieBracket\endcsname}}
+\expandafter\let\csname BookOriginal@trLieDerivative\endcsname\trLieDerivative
+\renewcommand{\trLieDerivative}{\BookTerm{trLieDerivative}{\csname BookOriginal@trLieDerivative\endcsname}}
+\expandafter\let\csname BookOriginal@trInteriorProduct\endcsname\trInteriorProduct
+\renewcommand{\trInteriorProduct}{\BookTerm{trInteriorProduct}{\csname BookOriginal@trInteriorProduct\endcsname}}
+\expandafter\let\csname BookOriginal@trCovariantDerivative\endcsname\trCovariantDerivative
+\renewcommand{\trCovariantDerivative}{\BookTerm{trCovariantDerivative}{\csname BookOriginal@trCovariantDerivative\endcsname}}
+\expandafter\let\csname BookOriginal@trConnection\endcsname\trConnection
+\renewcommand{\trConnection}{\BookTerm{trConnection}{\csname BookOriginal@trConnection\endcsname}}
+\expandafter\let\csname BookOriginal@trGeodesic\endcsname\trGeodesic
+\renewcommand{\trGeodesic}{\BookTerm{trGeodesic}{\csname BookOriginal@trGeodesic\endcsname}}
+\expandafter\let\csname BookOriginal@trEulerClass\endcsname\trEulerClass
+\renewcommand{\trEulerClass}{\BookTerm{trEulerClass}{\csname BookOriginal@trEulerClass\endcsname}}
+\expandafter\let\csname BookOriginal@trAnnihilator\endcsname\trAnnihilator
+\renewcommand{\trAnnihilator}{\BookTerm{trAnnihilator}{\csname BookOriginal@trAnnihilator\endcsname}}
+\expandafter\let\csname BookOriginal@trConvolution\endcsname\trConvolution
+\renewcommand{\trConvolution}{\BookTerm{trConvolution}{\csname BookOriginal@trConvolution\endcsname}}
+\expandafter\let\csname BookOriginal@trFundamentalSolution\endcsname\trFundamentalSolution
+\renewcommand{\trFundamentalSolution}{\BookTerm{trFundamentalSolution}{\csname BookOriginal@trFundamentalSolution\endcsname}}
+\expandafter\let\csname BookOriginal@trWeakDerivative\endcsname\trWeakDerivative
+\renewcommand{\trWeakDerivative}{\BookTerm{trWeakDerivative}{\csname BookOriginal@trWeakDerivative\endcsname}}
+\expandafter\let\csname BookOriginal@trLaplacian\endcsname\trLaplacian
+\renewcommand{\trLaplacian}{\BookTerm{trLaplacian}{\csname BookOriginal@trLaplacian\endcsname}}
+\expandafter\let\csname BookOriginal@trPoissonKernel\endcsname\trPoissonKernel
+\renewcommand{\trPoissonKernel}{\BookTerm{trPoissonKernel}{\csname BookOriginal@trPoissonKernel\endcsname}}
+\expandafter\let\csname BookOriginal@trIsotopy\endcsname\trIsotopy
+\renewcommand{\trIsotopy}{\BookTerm{trIsotopy}{\csname BookOriginal@trIsotopy\endcsname}}
+\expandafter\let\csname BookOriginal@trContact\endcsname\trContact
+\renewcommand{\trContact}{\BookTerm{trContact}{\csname BookOriginal@trContact\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplectization\endcsname\trSymplectization
+\renewcommand{\trSymplectization}{\BookTerm{trSymplectization}{\csname BookOriginal@trSymplectization\endcsname}}
+\expandafter\let\csname BookOriginal@trClosedCharacteristic\endcsname\trClosedCharacteristic
+\renewcommand{\trClosedCharacteristic}{\BookTerm{trClosedCharacteristic}{\csname BookOriginal@trClosedCharacteristic\endcsname}}
+\expandafter\let\csname BookOriginal@trFrame\endcsname\trFrame
+\renewcommand{\trFrame}{\BookTerm{trFrame}{\csname BookOriginal@trFrame\endcsname}}
+\expandafter\let\csname BookOriginal@trTrace\endcsname\trTrace
+\renewcommand{\trTrace}{\BookTerm{trTrace}{\csname BookOriginal@trTrace\endcsname}}
+\expandafter\let\csname BookOriginal@trChainComplex\endcsname\trChainComplex
+\renewcommand{\trChainComplex}{\BookTerm{trChainComplex}{\csname BookOriginal@trChainComplex\endcsname}}
+\expandafter\let\csname BookOriginal@trBoundaryOperator\endcsname\trBoundaryOperator
+\renewcommand{\trBoundaryOperator}{\BookTerm{trBoundaryOperator}{\csname BookOriginal@trBoundaryOperator\endcsname}}
+\expandafter\let\csname BookOriginal@trDifferential\endcsname\trDifferential
+\renewcommand{\trDifferential}{\BookTerm{trDifferential}{\csname BookOriginal@trDifferential\endcsname}}
+\expandafter\let\csname BookOriginal@trCellularHomology\endcsname\trCellularHomology
+\renewcommand{\trCellularHomology}{\BookTerm{trCellularHomology}{\csname BookOriginal@trCellularHomology\endcsname}}
+\expandafter\let\csname BookOriginal@trBettiNumber\endcsname\trBettiNumber
+\renewcommand{\trBettiNumber}{\BookTerm{trBettiNumber}{\csname BookOriginal@trBettiNumber\endcsname}}
+\expandafter\let\csname BookOriginal@trEulerCharacteristic\endcsname\trEulerCharacteristic
+\renewcommand{\trEulerCharacteristic}{\BookTerm{trEulerCharacteristic}{\csname BookOriginal@trEulerCharacteristic\endcsname}}
+\expandafter\let\csname BookOriginal@trPoincarePolynomial\endcsname\trPoincarePolynomial
+\renewcommand{\trPoincarePolynomial}{\BookTerm{trPoincarePolynomial}{\csname BookOriginal@trPoincarePolynomial\endcsname}}
+\expandafter\let\csname BookOriginal@trPoincareDuality\endcsname\trPoincareDuality
+\renewcommand{\trPoincareDuality}{\BookTerm{trPoincareDuality}{\csname BookOriginal@trPoincareDuality\endcsname}}
+\expandafter\let\csname BookOriginal@trKunnethFormula\endcsname\trKunnethFormula
+\renewcommand{\trKunnethFormula}{\BookTerm{trKunnethFormula}{\csname BookOriginal@trKunnethFormula\endcsname}}
+\expandafter\let\csname BookOriginal@trLongExactSequence\endcsname\trLongExactSequence
+\renewcommand{\trLongExactSequence}{\BookTerm{trLongExactSequence}{\csname BookOriginal@trLongExactSequence\endcsname}}
+\expandafter\let\csname BookOriginal@trShortExactSequence\endcsname\trShortExactSequence
+\renewcommand{\trShortExactSequence}{\BookTerm{trShortExactSequence}{\csname BookOriginal@trShortExactSequence\endcsname}}
+\expandafter\let\csname BookOriginal@trMorphism\endcsname\trMorphism
+\renewcommand{\trMorphism}{\BookTerm{trMorphism}{\csname BookOriginal@trMorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trHomomorphism\endcsname\trHomomorphism
+\renewcommand{\trHomomorphism}{\BookTerm{trHomomorphism}{\csname BookOriginal@trHomomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trConnectingHomomorphism\endcsname\trConnectingHomomorphism
+\renewcommand{\trConnectingHomomorphism}{\BookTerm{trConnectingHomomorphism}{\csname BookOriginal@trConnectingHomomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trFunctor\endcsname\trFunctor
+\renewcommand{\trFunctor}{\BookTerm{trFunctor}{\csname BookOriginal@trFunctor\endcsname}}
+\expandafter\let\csname BookOriginal@trFunctoriality\endcsname\trFunctoriality
+\renewcommand{\trFunctoriality}{\BookTerm{trFunctoriality}{\csname BookOriginal@trFunctoriality\endcsname}}
+\expandafter\let\csname BookOriginal@trCategory\endcsname\trCategory
+\renewcommand{\trCategory}{\BookTerm{trCategory}{\csname BookOriginal@trCategory\endcsname}}
+\expandafter\let\csname BookOriginal@trCobordism\endcsname\trCobordism
+\renewcommand{\trCobordism}{\BookTerm{trCobordism}{\csname BookOriginal@trCobordism\endcsname}}
+\expandafter\let\csname BookOriginal@trOrientation\endcsname\trOrientation
+\renewcommand{\trOrientation}{\BookTerm{trOrientation}{\csname BookOriginal@trOrientation\endcsname}}
+\expandafter\let\csname BookOriginal@trCoorientation\endcsname\trCoorientation
+\renewcommand{\trCoorientation}{\BookTerm{trCoorientation}{\csname BookOriginal@trCoorientation\endcsname}}
+\expandafter\let\csname BookOriginal@trComplement\endcsname\trComplement
+\renewcommand{\trComplement}{\BookTerm{trComplement}{\csname BookOriginal@trComplement\endcsname}}
+\expandafter\let\csname BookOriginal@trModule\endcsname\trModule
+\renewcommand{\trModule}{\BookTerm{trModule}{\csname BookOriginal@trModule\endcsname}}
+\expandafter\let\csname BookOriginal@trFundamentalGroup\endcsname\trFundamentalGroup
+\renewcommand{\trFundamentalGroup}{\BookTerm{trFundamentalGroup}{\csname BookOriginal@trFundamentalGroup\endcsname}}
+\expandafter\let\csname BookOriginal@trCovering\endcsname\trCovering
+\renewcommand{\trCovering}{\BookTerm{trCovering}{\csname BookOriginal@trCovering\endcsname}}
+\expandafter\let\csname BookOriginal@trUniversalCover\endcsname\trUniversalCover
+\renewcommand{\trUniversalCover}{\BookTerm{trUniversalCover}{\csname BookOriginal@trUniversalCover\endcsname}}
+\expandafter\let\csname BookOriginal@trHomotopy\endcsname\trHomotopy
+\renewcommand{\trHomotopy}{\BookTerm{trHomotopy}{\csname BookOriginal@trHomotopy\endcsname}}
+\expandafter\let\csname BookOriginal@trDeformationRetract\endcsname\trDeformationRetract
+\renewcommand{\trDeformationRetract}{\BookTerm{trDeformationRetract}{\csname BookOriginal@trDeformationRetract\endcsname}}
+\expandafter\let\csname BookOriginal@trInterpolation\endcsname\trInterpolation
+\renewcommand{\trInterpolation}{\BookTerm{trInterpolation}{\csname BookOriginal@trInterpolation\endcsname}}
+\expandafter\let\csname BookOriginal@trDeformation\endcsname\trDeformation
+\renewcommand{\trDeformation}{\BookTerm{trDeformation}{\csname BookOriginal@trDeformation\endcsname}}
+\expandafter\let\csname BookOriginal@trMappingDegree\endcsname\trMappingDegree
+\renewcommand{\trMappingDegree}{\BookTerm{trMappingDegree}{\csname BookOriginal@trMappingDegree\endcsname}}
+\expandafter\let\csname BookOriginal@trIsomorphism\endcsname\trIsomorphism
+\renewcommand{\trIsomorphism}{\BookTerm{trIsomorphism}{\csname BookOriginal@trIsomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trEndomorphism\endcsname\trEndomorphism
+\renewcommand{\trEndomorphism}{\BookTerm{trEndomorphism}{\csname BookOriginal@trEndomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trAutomorphism\endcsname\trAutomorphism
+\renewcommand{\trAutomorphism}{\BookTerm{trAutomorphism}{\csname BookOriginal@trAutomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trGeneralLinearGroup\endcsname\trGeneralLinearGroup
+\renewcommand{\trGeneralLinearGroup}{\BookTerm{trGeneralLinearGroup}{\csname BookOriginal@trGeneralLinearGroup\endcsname}}
+\expandafter\let\csname BookOriginal@trStabilizer\endcsname\trStabilizer
+\renewcommand{\trStabilizer}{\BookTerm{trStabilizer}{\csname BookOriginal@trStabilizer\endcsname}}
+\expandafter\let\csname BookOriginal@trHomogeneousSpace\endcsname\trHomogeneousSpace
+\renewcommand{\trHomogeneousSpace}{\BookTerm{trHomogeneousSpace}{\csname BookOriginal@trHomogeneousSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trKernel\endcsname\trKernel
+\renewcommand{\trKernel}{\BookTerm{trKernel}{\csname BookOriginal@trKernel\endcsname}}
+\expandafter\let\csname BookOriginal@trRank\endcsname\trRank
+\renewcommand{\trRank}{\BookTerm{trRank}{\csname BookOriginal@trRank\endcsname}}
+\expandafter\let\csname BookOriginal@trCokernel\endcsname\trCokernel
+\renewcommand{\trCokernel}{\BookTerm{trCokernel}{\csname BookOriginal@trCokernel\endcsname}}
+\expandafter\let\csname BookOriginal@trImage\endcsname\trImage
+\renewcommand{\trImage}{\BookTerm{trImage}{\csname BookOriginal@trImage\endcsname}}
+\expandafter\let\csname BookOriginal@trPreimage\endcsname\trPreimage
+\renewcommand{\trPreimage}{\BookTerm{trPreimage}{\csname BookOriginal@trPreimage\endcsname}}
+\expandafter\let\csname BookOriginal@trTensorProduct\endcsname\trTensorProduct
+\renewcommand{\trTensorProduct}{\BookTerm{trTensorProduct}{\csname BookOriginal@trTensorProduct\endcsname}}
+\expandafter\let\csname BookOriginal@trTorsion\endcsname\trTorsion
+\renewcommand{\trTorsion}{\BookTerm{trTorsion}{\csname BookOriginal@trTorsion\endcsname}}
+\expandafter\let\csname BookOriginal@trDirectSum\endcsname\trDirectSum
+\renewcommand{\trDirectSum}{\BookTerm{trDirectSum}{\csname BookOriginal@trDirectSum\endcsname}}
+\expandafter\let\csname BookOriginal@trLocalCoefficient\endcsname\trLocalCoefficient
+\renewcommand{\trLocalCoefficient}{\BookTerm{trLocalCoefficient}{\csname BookOriginal@trLocalCoefficient\endcsname}}
+\expandafter\let\csname BookOriginal@trCoherentOrientation\endcsname\trCoherentOrientation
+\renewcommand{\trCoherentOrientation}{\BookTerm{trCoherentOrientation}{\csname BookOriginal@trCoherentOrientation\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplecticGroup\endcsname\trSymplecticGroup
+\renewcommand{\trSymplecticGroup}{\BookTerm{trSymplecticGroup}{\csname BookOriginal@trSymplecticGroup\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplecticForm\endcsname\trSymplecticForm
+\renewcommand{\trSymplecticForm}{\BookTerm{trSymplecticForm}{\csname BookOriginal@trSymplecticForm\endcsname}}
+\expandafter\let\csname BookOriginal@trSymplectomorphism\endcsname\trSymplectomorphism
+\renewcommand{\trSymplectomorphism}{\BookTerm{trSymplectomorphism}{\csname BookOriginal@trSymplectomorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trIsometry\endcsname\trIsometry
+\renewcommand{\trIsometry}{\BookTerm{trIsometry}{\csname BookOriginal@trIsometry\endcsname}}
+\expandafter\let\csname BookOriginal@trEigenvalue\endcsname\trEigenvalue
+\renewcommand{\trEigenvalue}{\BookTerm{trEigenvalue}{\csname BookOriginal@trEigenvalue\endcsname}}
+\expandafter\let\csname BookOriginal@trCharacteristicPolynomial\endcsname\trCharacteristicPolynomial
+\renewcommand{\trCharacteristicPolynomial}{\BookTerm{trCharacteristicPolynomial}{\csname BookOriginal@trCharacteristicPolynomial\endcsname}}
+\expandafter\let\csname BookOriginal@trMultiplicity\endcsname\trMultiplicity
+\renewcommand{\trMultiplicity}{\BookTerm{trMultiplicity}{\csname BookOriginal@trMultiplicity\endcsname}}
+\expandafter\let\csname BookOriginal@trEigenspace\endcsname\trEigenspace
+\renewcommand{\trEigenspace}{\BookTerm{trEigenspace}{\csname BookOriginal@trEigenspace\endcsname}}
+\expandafter\let\csname BookOriginal@trGeneralizedEigenspace\endcsname\trGeneralizedEigenspace
+\renewcommand{\trGeneralizedEigenspace}{\BookTerm{trGeneralizedEigenspace}{\csname BookOriginal@trGeneralizedEigenspace\endcsname}}
+\expandafter\let\csname BookOriginal@trComplexification\endcsname\trComplexification
+\renewcommand{\trComplexification}{\BookTerm{trComplexification}{\csname BookOriginal@trComplexification\endcsname}}
+\expandafter\let\csname BookOriginal@trSymmetricMatrix\endcsname\trSymmetricMatrix
+\renewcommand{\trSymmetricMatrix}{\BookTerm{trSymmetricMatrix}{\csname BookOriginal@trSymmetricMatrix\endcsname}}
+\expandafter\let\csname BookOriginal@trBlockDiagonalMatrix\endcsname\trBlockDiagonalMatrix
+\renewcommand{\trBlockDiagonalMatrix}{\BookTerm{trBlockDiagonalMatrix}{\csname BookOriginal@trBlockDiagonalMatrix\endcsname}}
+\expandafter\let\csname BookOriginal@trMaximalCompactSubgroup\endcsname\trMaximalCompactSubgroup
+\renewcommand{\trMaximalCompactSubgroup}{\BookTerm{trMaximalCompactSubgroup}{\csname BookOriginal@trMaximalCompactSubgroup\endcsname}}
+\expandafter\let\csname BookOriginal@trMonodromy\endcsname\trMonodromy
+\renewcommand{\trMonodromy}{\BookTerm{trMonodromy}{\csname BookOriginal@trMonodromy\endcsname}}
+\expandafter\let\csname BookOriginal@trForm\endcsname\trForm
+\renewcommand{\trForm}{\BookTerm{trForm}{\csname BookOriginal@trForm\endcsname}}
+\expandafter\let\csname BookOriginal@trVolume\endcsname\trVolume
+\renewcommand{\trVolume}{\BookTerm{trVolume}{\csname BookOriginal@trVolume\endcsname}}
+\expandafter\let\csname BookOriginal@trComplexStructure\endcsname\trComplexStructure
+\renewcommand{\trComplexStructure}{\BookTerm{trComplexStructure}{\csname BookOriginal@trComplexStructure\endcsname}}
+\expandafter\let\csname BookOriginal@trActionFunctional\endcsname\trActionFunctional
+\renewcommand{\trActionFunctional}{\BookTerm{trActionFunctional}{\csname BookOriginal@trActionFunctional\endcsname}}
+\expandafter\let\csname BookOriginal@trActionForm\endcsname\trActionForm
+\renewcommand{\trActionForm}{\BookTerm{trActionForm}{\csname BookOriginal@trActionForm\endcsname}}
+\expandafter\let\csname BookOriginal@trIntegrationCover\endcsname\trIntegrationCover
+\renewcommand{\trIntegrationCover}{\BookTerm{trIntegrationCover}{\csname BookOriginal@trIntegrationCover\endcsname}}
+\expandafter\let\csname BookOriginal@trInjectivityRadius\endcsname\trInjectivityRadius
+\renewcommand{\trInjectivityRadius}{\BookTerm{trInjectivityRadius}{\csname BookOriginal@trInjectivityRadius\endcsname}}
+\expandafter\let\csname BookOriginal@trFloerHomology\endcsname\trFloerHomology
+\renewcommand{\trFloerHomology}{\BookTerm{trFloerHomology}{\csname BookOriginal@trFloerHomology\endcsname}}
+\expandafter\let\csname BookOriginal@trFloerComplex\endcsname\trFloerComplex
+\renewcommand{\trFloerComplex}{\BookTerm{trFloerComplex}{\csname BookOriginal@trFloerComplex\endcsname}}
+\expandafter\let\csname BookOriginal@trFloerEquation\endcsname\trFloerEquation
+\renewcommand{\trFloerEquation}{\BookTerm{trFloerEquation}{\csname BookOriginal@trFloerEquation\endcsname}}
+\expandafter\let\csname BookOriginal@trArnoldConjecture\endcsname\trArnoldConjecture
+\renewcommand{\trArnoldConjecture}{\BookTerm{trArnoldConjecture}{\csname BookOriginal@trArnoldConjecture\endcsname}}
+\expandafter\let\csname BookOriginal@trMaslovIndex\endcsname\trMaslovIndex
+\renewcommand{\trMaslovIndex}{\BookTerm{trMaslovIndex}{\csname BookOriginal@trMaslovIndex\endcsname}}
+\expandafter\let\csname BookOriginal@trConleyZehnderIndex\endcsname\trConleyZehnderIndex
+\renewcommand{\trConleyZehnderIndex}{\BookTerm{trConleyZehnderIndex}{\csname BookOriginal@trConleyZehnderIndex\endcsname}}
+\expandafter\let\csname BookOriginal@trMaslovCycle\endcsname\trMaslovCycle
+\renewcommand{\trMaslovCycle}{\BookTerm{trMaslovCycle}{\csname BookOriginal@trMaslovCycle\endcsname}}
+\expandafter\let\csname BookOriginal@trCycle\endcsname\trCycle
+\renewcommand{\trCycle}{\BookTerm{trCycle}{\csname BookOriginal@trCycle\endcsname}}
+\expandafter\let\csname BookOriginal@trLoop\endcsname\trLoop
+\renewcommand{\trLoop}{\BookTerm{trLoop}{\csname BookOriginal@trLoop\endcsname}}
+\expandafter\let\csname BookOriginal@trLoopSpace\endcsname\trLoopSpace
+\renewcommand{\trLoopSpace}{\BookTerm{trLoopSpace}{\csname BookOriginal@trLoopSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trFixedPoint\endcsname\trFixedPoint
+\renewcommand{\trFixedPoint}{\BookTerm{trFixedPoint}{\csname BookOriginal@trFixedPoint\endcsname}}
+\expandafter\let\csname BookOriginal@trCappingDisk\endcsname\trCappingDisk
+\renewcommand{\trCappingDisk}{\BookTerm{trCappingDisk}{\csname BookOriginal@trCappingDisk\endcsname}}
+\expandafter\let\csname BookOriginal@trCappingSphere\endcsname\trCappingSphere
+\renewcommand{\trCappingSphere}{\BookTerm{trCappingSphere}{\csname BookOriginal@trCappingSphere\endcsname}}
+\expandafter\let\csname BookOriginal@trCappingSurface\endcsname\trCappingSurface
+\renewcommand{\trCappingSurface}{\BookTerm{trCappingSurface}{\csname BookOriginal@trCappingSurface\endcsname}}
+\expandafter\let\csname BookOriginal@trChernClass\endcsname\trChernClass
+\renewcommand{\trChernClass}{\BookTerm{trChernClass}{\csname BookOriginal@trChernClass\endcsname}}
+\expandafter\let\csname BookOriginal@trFirstChernClass\endcsname\trFirstChernClass
+\renewcommand{\trFirstChernClass}{\BookTerm{trFirstChernClass}{\csname BookOriginal@trFirstChernClass\endcsname}}
+\expandafter\let\csname BookOriginal@trLagrangianGrassmannian\endcsname\trLagrangianGrassmannian
+\renewcommand{\trLagrangianGrassmannian}{\BookTerm{trLagrangianGrassmannian}{\csname BookOriginal@trLagrangianGrassmannian\endcsname}}
+\expandafter\let\csname BookOriginal@trGeneratingFunction\endcsname\trGeneratingFunction
+\renewcommand{\trGeneratingFunction}{\BookTerm{trGeneratingFunction}{\csname BookOriginal@trGeneratingFunction\endcsname}}
+\expandafter\let\csname BookOriginal@trInnerProduct\endcsname\trInnerProduct
+\renewcommand{\trInnerProduct}{\BookTerm{trInnerProduct}{\csname BookOriginal@trInnerProduct\endcsname}}
+\expandafter\let\csname BookOriginal@trPolarDecomposition\endcsname\trPolarDecomposition
+\renewcommand{\trPolarDecomposition}{\BookTerm{trPolarDecomposition}{\csname BookOriginal@trPolarDecomposition\endcsname}}
+\expandafter\let\csname BookOriginal@trSpectralFlow\endcsname\trSpectralFlow
+\renewcommand{\trSpectralFlow}{\BookTerm{trSpectralFlow}{\csname BookOriginal@trSpectralFlow\endcsname}}
+\expandafter\let\csname BookOriginal@trCrossing\endcsname\trCrossing
+\renewcommand{\trCrossing}{\BookTerm{trCrossing}{\csname BookOriginal@trCrossing\endcsname}}
+\expandafter\let\csname BookOriginal@trPseudoholomorphicCurve\endcsname\trPseudoholomorphicCurve
+\renewcommand{\trPseudoholomorphicCurve}{\BookTerm{trPseudoholomorphicCurve}{\csname BookOriginal@trPseudoholomorphicCurve\endcsname}}
+\expandafter\let\csname BookOriginal@trCauchyRiemann\endcsname\trCauchyRiemann
+\renewcommand{\trCauchyRiemann}{\BookTerm{trCauchyRiemann}{\csname BookOriginal@trCauchyRiemann\endcsname}}
+\expandafter\let\csname BookOriginal@trEnergy\endcsname\trEnergy
+\renewcommand{\trEnergy}{\BookTerm{trEnergy}{\csname BookOriginal@trEnergy\endcsname}}
+\expandafter\let\csname BookOriginal@trMomentum\endcsname\trMomentum
+\renewcommand{\trMomentum}{\BookTerm{trMomentum}{\csname BookOriginal@trMomentum\endcsname}}
+\expandafter\let\csname BookOriginal@trEnergyIdentity\endcsname\trEnergyIdentity
+\renewcommand{\trEnergyIdentity}{\BookTerm{trEnergyIdentity}{\csname BookOriginal@trEnergyIdentity\endcsname}}
+\expandafter\let\csname BookOriginal@trContinuationMorphism\endcsname\trContinuationMorphism
+\renewcommand{\trContinuationMorphism}{\BookTerm{trContinuationMorphism}{\csname BookOriginal@trContinuationMorphism\endcsname}}
+\expandafter\let\csname BookOriginal@trSimilarityPrinciple\endcsname\trSimilarityPrinciple
+\renewcommand{\trSimilarityPrinciple}{\BookTerm{trSimilarityPrinciple}{\csname BookOriginal@trSimilarityPrinciple\endcsname}}
+\expandafter\let\csname BookOriginal@trContinuationPrinciple\endcsname\trContinuationPrinciple
+\renewcommand{\trContinuationPrinciple}{\BookTerm{trContinuationPrinciple}{\csname BookOriginal@trContinuationPrinciple\endcsname}}
+\expandafter\let\csname BookOriginal@trMultiplePoint\endcsname\trMultiplePoint
+\renewcommand{\trMultiplePoint}{\BookTerm{trMultiplePoint}{\csname BookOriginal@trMultiplePoint\endcsname}}
+\expandafter\let\csname BookOriginal@trInfiniteOrderZero\endcsname\trInfiniteOrderZero
+\renewcommand{\trInfiniteOrderZero}{\BookTerm{trInfiniteOrderZero}{\csname BookOriginal@trInfiniteOrderZero\endcsname}}
+\expandafter\let\csname BookOriginal@trPerturbation\endcsname\trPerturbation
+\renewcommand{\trPerturbation}{\BookTerm{trPerturbation}{\csname BookOriginal@trPerturbation\endcsname}}
+\expandafter\let\csname BookOriginal@trLinearization\endcsname\trLinearization
+\renewcommand{\trLinearization}{\BookTerm{trLinearization}{\csname BookOriginal@trLinearization\endcsname}}
+\expandafter\let\csname BookOriginal@trBanachManifold\endcsname\trBanachManifold
+\renewcommand{\trBanachManifold}{\BookTerm{trBanachManifold}{\csname BookOriginal@trBanachManifold\endcsname}}
+\expandafter\let\csname BookOriginal@trFredholmOperator\endcsname\trFredholmOperator
+\renewcommand{\trFredholmOperator}{\BookTerm{trFredholmOperator}{\csname BookOriginal@trFredholmOperator\endcsname}}
+\expandafter\let\csname BookOriginal@trBanachSpace\endcsname\trBanachSpace
+\renewcommand{\trBanachSpace}{\BookTerm{trBanachSpace}{\csname BookOriginal@trBanachSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trHilbertSpace\endcsname\trHilbertSpace
+\renewcommand{\trHilbertSpace}{\BookTerm{trHilbertSpace}{\csname BookOriginal@trHilbertSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trSobolevSpace\endcsname\trSobolevSpace
+\renewcommand{\trSobolevSpace}{\BookTerm{trSobolevSpace}{\csname BookOriginal@trSobolevSpace\endcsname}}
+\expandafter\let\csname BookOriginal@trWeakSolution\endcsname\trWeakSolution
+\renewcommand{\trWeakSolution}{\BookTerm{trWeakSolution}{\csname BookOriginal@trWeakSolution\endcsname}}
+\expandafter\let\csname BookOriginal@trWeakConvergence\endcsname\trWeakConvergence
+\renewcommand{\trWeakConvergence}{\BookTerm{trWeakConvergence}{\csname BookOriginal@trWeakConvergence\endcsname}}
+\expandafter\let\csname BookOriginal@trConvergence\endcsname\trConvergence
+\renewcommand{\trConvergence}{\BookTerm{trConvergence}{\csname BookOriginal@trConvergence\endcsname}}
+\expandafter\let\csname BookOriginal@trDistribution\endcsname\trDistribution
+\renewcommand{\trDistribution}{\BookTerm{trDistribution}{\csname BookOriginal@trDistribution\endcsname}}
+\expandafter\let\csname BookOriginal@trEllipticRegularity\endcsname\trEllipticRegularity
+\renewcommand{\trEllipticRegularity}{\BookTerm{trEllipticRegularity}{\csname BookOriginal@trEllipticRegularity\endcsname}}
+\expandafter\let\csname BookOriginal@trLinearOperator\endcsname\trLinearOperator
+\renewcommand{\trLinearOperator}{\BookTerm{trLinearOperator}{\csname BookOriginal@trLinearOperator\endcsname}}
+\expandafter\let\csname BookOriginal@trAdjointOperator\endcsname\trAdjointOperator
+\renewcommand{\trAdjointOperator}{\BookTerm{trAdjointOperator}{\csname BookOriginal@trAdjointOperator\endcsname}}
+\expandafter\let\csname BookOriginal@trUnboundedOperator\endcsname\trUnboundedOperator
+\renewcommand{\trUnboundedOperator}{\BookTerm{trUnboundedOperator}{\csname BookOriginal@trUnboundedOperator\endcsname}}
+\expandafter\let\csname BookOriginal@trHilbertianBasis\endcsname\trHilbertianBasis
+\renewcommand{\trHilbertianBasis}{\BookTerm{trHilbertianBasis}{\csname BookOriginal@trHilbertianBasis\endcsname}}
+\expandafter\let\csname BookOriginal@trSemiflow\endcsname\trSemiflow
+\renewcommand{\trSemiflow}{\BookTerm{trSemiflow}{\csname BookOriginal@trSemiflow\endcsname}}
+\expandafter\let\csname BookOriginal@trSemigroup\endcsname\trSemigroup
+\renewcommand{\trSemigroup}{\BookTerm{trSemigroup}{\csname BookOriginal@trSemigroup\endcsname}}
+\expandafter\let\csname BookOriginal@trSpectrum\endcsname\trSpectrum
+\renewcommand{\trSpectrum}{\BookTerm{trSpectrum}{\csname BookOriginal@trSpectrum\endcsname}}
+\expandafter\let\csname BookOriginal@trUniformConvergence\endcsname\trUniformConvergence
+\renewcommand{\trUniformConvergence}{\BookTerm{trUniformConvergence}{\csname BookOriginal@trUniformConvergence\endcsname}}
+\expandafter\let\csname BookOriginal@trEquicontinuity\endcsname\trEquicontinuity
+\renewcommand{\trEquicontinuity}{\BookTerm{trEquicontinuity}{\csname BookOriginal@trEquicontinuity\endcsname}}
+\expandafter\let\csname BookOriginal@trArzelaAscoliTheorem\endcsname\trArzelaAscoliTheorem
+\renewcommand{\trArzelaAscoliTheorem}{\BookTerm{trArzelaAscoliTheorem}{\csname BookOriginal@trArzelaAscoliTheorem\endcsname}}
+\expandafter\let\csname BookOriginal@trImplicitFunctionTheorem\endcsname\trImplicitFunctionTheorem
+\renewcommand{\trImplicitFunctionTheorem}{\BookTerm{trImplicitFunctionTheorem}{\csname BookOriginal@trImplicitFunctionTheorem\endcsname}}
+\expandafter\let\csname BookOriginal@trLocalInversionTheorem\endcsname\trLocalInversionTheorem
+\renewcommand{\trLocalInversionTheorem}{\BookTerm{trLocalInversionTheorem}{\csname BookOriginal@trLocalInversionTheorem\endcsname}}
+\expandafter\let\csname BookOriginal@trRegularity\endcsname\trRegularity
+\renewcommand{\trRegularity}{\BookTerm{trRegularity}{\csname BookOriginal@trRegularity\endcsname}}
+\makeatother

@@ -1,0 +1,121 @@
+
+\section{\trKunneth{}公式}
+\label{sec:kuenneth-formula}
+
+设 $M$ 与 $N$ 是两个\trManifold，分别被赋予\trMorseFunction{} $f$ 与 $g$ 以及满足%
+\trSmaleCondition{}的\trPseudogradient{}场 $X$ 与 $Y$，则 $f+g$ 是 $M\times N$ 上的
+一个\trMorseFunction，而 $(X,Y)$ 是一个\trAdapted{}且满足\trSmaleCondition{}的%
+\trPseudogradient{}场。$f+g$ 的诸\trCriticalPoint{}就是那些点 $(a,a')$：其中 $a$ 是 $f$
+的一个\trCriticalPoint，而 $a'$ 是 $g$ 的一个\trCriticalPoint。$(a,a')$ 的\trIndex{}是
+$a$ 的\trIndex{}与 $a'$ 的\trIndex{}之和。设 $(a,a')$ 是 $f+g$ 的一个\trIndex{}为 $k$ 的%
+\trCriticalPoint（其中 $a$ 是 $f$ 的\trIndex{}为 $i$ 的\trCriticalPoint，而 $a'$ 是 $g$
+的\trIndex{}为 $j$ 的\trCriticalPoint），并设 $(b,b')$ 是一个\trIndex{}为 $k-1$ 的%
+\trCriticalPoint，使得存在 $(X,Y)$ 的把 $(a,a')$ 连接到 $(b,b')$ 的一条\trTrajectory。
+$(X,Y)$ 的流为
+\[
+\varphi^t_{(X,Y)}(x,y)=\bigl(\varphi^t_X(x),\varphi^t_Y(y)\bigr)\text{。}
+\]
+特别地，
+\[
+\mathcal{L}_{(X,Y)}\bigl((a,a'),(b,b')\bigr)
+  \cong\mathcal{L}_X(a,b)\times\mathcal{L}_Y(a',b')\text{。}
+\]
+若 $a\neq b$ 且 $a'\neq b'$，则要使 $\mathcal{L}_X(a,b)\times\mathcal{L}_Y(a',b')$ 非空，\footnote{译注：原书“……to be nonempty”一句中第二因子印作 $\mathcal{L}_{X'}(a',b')$；本节仅定义了场 $X$ 与 $Y$，且上行同式即作 $\mathcal{L}_Y(a',b')$，疑系排印笔误；此处径改。——译者注}
+就必须有
+\[
+\operatorname{Ind}(a)\ge\operatorname{Ind}(b)+1
+\quad\text{且}\quad
+\operatorname{Ind}(a')\ge\operatorname{Ind}(b')+1\text{，}
+\]
+也就是说，
+\[
+\operatorname{Ind}(a,a')\ge\operatorname{Ind}(b,b')+2\text{。}
+\]
+于是，对于\trIndex{}相邻的两点 $(a,a')$ 与 $(b,b')$，我们有
+\[
+\mathcal{L}_{(X,Y)}\bigl((a,a'),(b,b')\bigr)=
+\begin{cases}
+a\times\mathcal{L}_Y(a',b') & \text{若 } a=b\\
+\mathcal{L}_X(a,b)\times a' & \text{若 } a'=b'
+\end{cases}
+\]
+从而
+\[
+n_{(X,Y)}\bigl((a,a'),(b,b')\bigr)=
+\begin{cases}
+n_Y(a',b') & \text{若 } a=b\\
+n_X(a,b) & \text{若 } a'=b'\\
+0 & \text{否则。}
+\end{cases}
+\]
+映射
+\[
+\varPhi\colon\bigoplus_{i+j=k}C_i(f)\otimes C_j(g)\longrightarrow C_k(f+g)
+\]
+由
+\[
+\varPhi(a\otimes a')=(a,a')
+\]
+给出，它是一个\trAbelianGroup{}之间的\trIsomorphism。
+
+\begin{proposition}\label{thm:kunneth-complex-isomorphism}
+映射 $\varPhi$ 定义了\trComplex{}之间的一个\trIsomorphism
+\[
+\bigl(C_\star(f)\otimes C_\star(g),\,\partial_X\otimes 1+1\otimes\partial_Y\bigr)
+  \longrightarrow\bigl(C_\star(f+g),\,\partial_{(X,Y)}\bigr)\text{。}
+\]
+\end{proposition}
+
+\begin{proof}
+设 $a$ 是 $f$ 的\trIndex{}为 $i$ 的一个\trCriticalPoint，并设 $a'$ 是 $g$ 的\trIndex
+{}为 $j$ 的一个\trCriticalPoint。一方面，我们有
+\[
+\begin{aligned}
+\varPhi(\partial_X\otimes 1+1\otimes\partial_Y)(a\otimes a')
+  &=\varPhi\bigl(\partial_X(a)\otimes a'+a\otimes\partial_Y(a')\bigr)\\
+&=\varPhi\Bigl(\sum_{b\in\operatorname{Crit}_{i-1}(f)}n_X(a,b)\,b\otimes a'\\
+&\qquad+\sum_{b'\in\operatorname{Crit}_{j-1}(g)}n_Y(a',b')\,a\otimes b'\Bigr)\\
+&=\sum_{b\in\operatorname{Crit}_{i-1}(f)}n_X(a,b)\,(b,a')
+  +\sum_{b'\in\operatorname{Crit}_{j-1}(g)}n_Y(a',b')\,(a,b')\text{，}
+\end{aligned}
+\]
+另一方面，我们有
+\[
+\begin{aligned}
+\partial_{(X,Y)}\varPhi(a\otimes a')
+  &=\sum_{(b,b')\in\operatorname{Crit}_{i+j-1}(f+g)}
+    n_{(X,Y)}\bigl((a,a'),(b,b')\bigr)(b,b')\\
+&=\sum_{b\in\operatorname{Crit}_{i-1}(f)}n_X(a,b)\,(b,a')
+  +\sum_{b'\in\operatorname{Crit}_{j-1}(g)}n_Y(a',b')\,(a,b')\text{，}
+\end{aligned}
+\]
+最后一步依据的是前面所作的注记。
+\end{proof}
+
+这个构造在 $\ZZ$ 上（考虑\trOrientation）与在 $\ZZ/2$ 上（不考虑\trOrientation）都行之
+有效。\footnote{译注：原书此命题及其证明中，\trTensorProduct\trComplex{}的%
+\trDifferential{}均印作 $\partial_X\otimes 1+1\otimes\partial_Y$，第二项不带任何
+符号，且声称此构造在 $\ZZ$ 上（考虑\trOrientation）行之有效；对带整数系数的通常%
+\trGraded{}\trTensorProduct\trComplex，第二项疑应带符号 $(-1)^i$（即 Koszul 符号
+约定），否则 $d^2=0$ 一般不成立；此处照原书排印，存疑备案。——译者注}
+不过，等到取%
+\trHomology{}时，在 $\ZZ/2$ 上工作更为便利（所需的\trHomology{}代数可在\cref{subsec:appB-kunneth-z2}中
+找到）。
+由此我们导出下述结果。
+
+\begin{corollary}\label{thm:mod2-tensor-homology}
+积 $M\times N$ 上的\trComplex{} $(C_\star(f+g),\partial_{(X,Y)})$ 的模 2 \trHomology{}%
+\trIsomorphic{}于 $(C_\star(f),\partial_X)$ 与 $(C_\star(g),\partial_Y)$ 的模 2 %
+\trHomology{}的\textbf{\trTensorProduct}（tensor product）。
+\end{corollary}
+
+\begin{corollary}[\trKunneth{}公式]\label{thm:kunneth-formula}\BookIndexDefinition{trKunnethFormula}
+若 $M$ 与 $N$ 是两个\trCompact{}\trManifold，则存在一个\trIsomorphism
+\[
+HM_k(M\times N;\ZZ/2)\longrightarrow
+\bigoplus_{i+j=k}HM_i(M;\ZZ/2)\otimes HM_j(N;\ZZ/2)\text{。}
+\]
+\end{corollary}
+
+证明是\cref{thm:kunneth-complex-isomorphism}与\cref{thm:appB-kunneth-tensor-product}的直接推论。
+\noqed

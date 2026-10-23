@@ -1,0 +1,138 @@
+
+\section{陈述与应用}
+
+\trHigherPushforward{}定义起来容易，但很难在几何上体会它们究竟是什么、又如何表现。比如，给定一个\trMorphism{} $\pi\colon X\to Y$ 与 $X$ 上的一个\trQCSheaf{} $\mathscr{F}$，你或许会合情合理地指望：$\mathrm{R}^1\pi_*\mathscr{F}$ 的诸\trFiber{}就是 $\mathscr{F}$ 沿诸\trFiber{}的\trCohomology。更精确地说，给定相应于一个点的包含的 $\psi\colon\mathfrak{q}\to Y$（更好的说法：$\psi\colon\Spec\kappa(\mathfrak{q})\to Y$），它给出\trCartesianDiagram
+\begin{equation*}\tag{25.1.0.1}\label{eq:cartesian-point-square}
+\begin{tikzcd}[row sep=2.6em, column sep=3.4em]
+X_{\mathfrak{q}} \ar[r, "\psi'"] & X \\
+\mathfrak{q} \ar[r, "\psi"] \ar[u, "\pi'"'] & Y, \ar[u, "\pi"']
+\end{tikzcd}
+\end{equation*}
+人们便会指望态射
+\[
+\boxed{\phi^p_{\mathfrak{q}}\colon\psi^*(\mathrm{R}^p\pi_*\mathscr{F})\longrightarrow\mathrm{H}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})}
+\]
+（即\mbox{练习~18.7.C} 中给出的上同调的\trPushPullMap）是一个\trIsomorphism。（注意：$\mathscr{F}|_{X_{\mathfrak{q}}}$ 与 $(\psi')^*\mathscr{F}$ 乃是同一事物的两种记号。通常更取前者，但我们也时或使用后者，因为我们会考虑更一般的 $\psi$ 与 $\psi'$。）这样一来，你便可以把 $\mathrm{R}^i\pi_*\mathscr{F}$ 想象成以某种方式把诸\trFiber{}的\trCohomology{}群拼合成一个\trCoherentSheaf。（\trhWarning{}：这个指望未免过头；见\mbox{练习~25.1.A}。）
+
+若 $\mathrm{h}^p(X_{\mathfrak{q}},(\psi')^*\mathscr{F})$ 为常数，且 $\phi^p_{\mathfrak{q}}$ 把它们拼合成一个漂亮的局部自由层（\trVectorBundle）$\mathrm{R}^p\pi_*\mathscr{F}$，那自然更美妙。
+
+基变换 $\psi\colon\mathfrak{q}\to Y$ 不应当是什么特殊情形。既然已经在做梦了，我们不妨再指望一步：在好的情势下，给定\trCartesianDiagram
+\begin{equation*}\tag{25.1.0.2}\label{eq:cartesian-square-general}
+\begin{tikzcd}[row sep=2.6em, column sep=3.4em]
+W \ar[r, "\psi'"] & X \\
+Z \ar[r, "\psi"] \ar[u, "\pi'"'] & Y, \ar[u, "\pi"']
+\end{tikzcd}
+\end{equation*}
+$Z$ 上诸层之间的自然推拉态射
+\begin{equation*}\tag{25.1.0.3}\label{eq:natural-pushpull-morphism}
+\boxed{\phi^p_Z\colon\psi^*(\mathrm{R}^p\pi_*\mathscr{F})\longrightarrow\mathrm{R}^p\pi'_*(\psi')^*\mathscr{F}}
+\end{equation*}
+（\mbox{练习~18.7.B}(a)）是\trIsomorphism。（在某些情形中，我们其实已经能回答这个问题。例如，\trCohomology{}与平坦\trBaseChange{}交换（\mbox{定理~24.1.9}），故当 $\psi$ \trFlat{}时结果成立。）\footnote{译注：原书在此图号「(25.1.0.2)」上方另印有「(18.7.4.1)」一号，系 \S18.7.4 中同一基变换方图之旧号，兹照录备案。——译者注}
+
+我们把这一情势下的梦想固化成三条漂亮的性质；我们将会看到，它们密切相关。设 $\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf、$\pi\colon X\to Y$ \trProper、$Y$（从而 $X$）\trNoether，且 $\mathscr{F}$ 在 $Y$ 上\trFlat。
+（a）给定\trCartesianDiagram{} \eqref{eq:cartesian-point-square}，$\phi^p_{\mathfrak{q}}\colon\mathrm{R}^p\pi_*\mathscr{F}\otimes\kappa(\mathfrak{q})\to\mathrm{H}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})$ 是\trIsomorphism{}吗？
+（b）给定\trCartesianDiagram{} \eqref{eq:cartesian-square-general}，$\phi^p_Z\colon\psi^*(\mathrm{R}^p\pi_*\mathscr{F})\to\mathrm{R}^p\pi'_*(\psi')^*\mathscr{F}$ 是\trIsomorphism{}吗？
+（c）$\mathrm{R}^p\pi_*\mathscr{F}$ 是否局部自由？
+
+我们先来处理性质 (a)。左边 $\mathrm{R}^p\pi_*\mathscr{F}\otimes\kappa(\mathfrak{q})$ 的维数作为 $\mathfrak{q}\in Y$ 的函数是上半连续的，依据是有限型\trQCSheaf{}之秩的\trUpperSemicontinuous{}性（\mbox{练习~14.3.J}）。半连续性定理则断言：右边的维数也是上半连续的。更正式地：
+
+\textbf{25.1.1. \trSemicontinuity{}定理。}\ ——\ \emph{设 $\pi\colon X\to Y$ 是\trNoether{}概形之间的一个\trProper\trMorphism，而 $\mathscr{F}$ 是 $X$ 上在 $Y$ 上\trFlat{}的\trCoherentSheaf。则对每个 $p\ge 0$，由 $\mathfrak{q}\mapsto\dim_{\kappa(\mathfrak{q})}\mathrm{H}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})$ 给出的函数 $Y\to\mathbb{Z}$ 是 $\mathfrak{q}\in Y$ 的\trUpperSemicontinuous{}函数。}
+
+转述：\trProper{}平坦\trFamily{}中\trCohomology{}群的秩上半连续。（证明将在 \S25.2.4 中给出。）
+
+\textbf{25.1.2.}\ \emph{\trhExample{}。}\quad 你或许已经在 \S24.3.14 中见过\trCohomology{}群跳动的一个例子。这里有一个更简单的例子，尽管它并非关于\trStructureSheaf{}。设 $(E,p_0)$ 是域 $k$ 上的一条\trEllipticCurve，并考虑到第二因子的\trProjection{} $\pi\colon E\times E\to E$。设 $\mathscr{L}$ 是 $E\times E$ 上相应于除子「对角线」减去 $\pi$ 的截面 $p_0\times E$（其中 $p_0\in E$）的\trInvertibleSheaf（\trLineBundle）。\footnote{译注：原书此处作「the section of \(p_0\times E\) of \(\pi\)」，衍一 of，疑当为「the section \(p_0\times E\) of \(\pi\)」，兹照录原书。——译者注}那么 $\mathscr{L}|_{p_0}$（即 $\mathscr{L}|_{E\times p_0}$）是\trTrivial{}的，但对任一 $p\neq p_0$，$\mathscr{L}|_p$ 都非平凡（正如我们在 \S19.9 中研究\trGenus{}为 $1$ 的\trCurve{}时所证明的）。于是 $\mathrm{h}^0(E,\mathscr{L}|_p)$ 一般为 $0$，但当 $p=p_0$ 时跳到 $1$。
+
+\textbf{25.1.A.（练习）}\quad 证明 $\pi_*\mathscr{L}=0$。由此可见，我们不能把 $\pi_*\mathscr{L}$ 想象成把诸\trFiber{}的 $\mathrm{h}^0$ 「拼合起来」；在这个例子中，\trCohomology{}与「\trBaseChange」或「取\trFiber」不交换。
+
+\textbf{25.1.3.}\ \emph{旁注。}\quad 在特征 $0$ 时，$\OO$ 的\trCohomology{}在\trSmooth{}\trFamily{}中不跳动。在 $\mathbb{C}$ 上，缘由在于：贝蒂数在\trConnected{}\trFamily{}中是常数，而 \eqref{eq:hodge-decomposition}（来自 Hodge 理论）把贝蒂常数 $\mathrm{h}^k_{\mathrm{Betti}}$ 表成\trUpperSemicontinuous{}函数 $\mathrm{h}^j(\Omega^i)$ 之和（对 $i+j=k$ 求和），于是 Hodge 数 $\mathrm{h}^j(\Omega^i)$ 必为常数。一般的特征 $0$ 情形可以借助\trLefschetz{}原理化归到 $\mathbb{C}$（\S21.5.9 中也曾用到它）。但在正特征下，\trSmooth{}\trFamily{}中簇的 $\OO$ 的\trCohomology{}群的秩可以跳动（比如见 [MO70920]）。此外，\S24.3.14 的例子表明「\trSmoothness」假设不能去掉。
+
+\textbf{25.1.4. \trGrauert{}定理。}\quad 若 $\mathrm{R}^p\pi_*\mathscr{F}$ 局部自由（性质 (c)），且 $\phi^p_{\mathfrak{q}}$ 是一个\trIsomorphism（性质 (a)），则 $\mathrm{h}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})$ 显然是\trLocallyConstant{}的。下面是一个部分的逆命题。
+
+\textbf{25.1.5. \trGrauert{}定理。}\ ——\ \emph{设 $\pi\colon X\to Y$ \trProper、$Y$ 既约且局部\trNoether、$\mathscr{F}$ 是 $X$ 上在 $Y$ 上\trFlat{}的\trCoherentSheaf，而 $\mathrm{h}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})$ 作为 $\mathfrak{q}\in Y$ 的函数是\trLocallyConstant{}的，则 $\mathrm{R}^p\pi_*\mathscr{F}$ 局部自由，且对一切 $\psi\colon Z\to Y$，$\phi^p_Z$ 都是\trIsomorphism。}
+
+换言之，若诸\trFiber{}的\trCohomology{}群具有局部常值的维数（在既约基底上），则它们可以拼合成一个\trVectorBundle，而\trPushforward{}的\trFiber{}便被等同于\trFiber{}的\trCohomology。我们在本章开头的梦想成真了！
+
+（要去掉\trNoether{}假设，见 \S25.2.10。）
+
+我们进一步指出：若 $Y$ 是\trIntegral{}的、$\pi$ \trProper，而 $\mathscr{F}$ 是 $X$ 上在 $Y$ 上\trFlat{}的\trCoherentSheaf，则由\mbox{半连续性定理~25.1.1}，存在 $Y$ 的一个\trDense\trOpenSubset，使 $\mathrm{R}^p\pi_*\mathscr{F}$ 在其上局部自由（并且在其上，第 $p$ 个\trHigherPushforward{}的\trFiber{}正是\trFiber{}的第 $p$ 个\trCohomology）。
+
+下面的陈述甚至比\mbox{\trGrauert{}定理~25.1.5} 更加神奇。
+
+\textbf{25.1.6. 上同调与基变换定理。}\ ——\ \emph{设 $\pi$ \trProper、$Y$ 局部\trNoether、$\mathscr{F}$ 在 $X$ 上凝聚且在 $Y$ 上\trFlat，而 $\phi^p_{\mathfrak{q}}$ \trSurjectiveMap。则下列诸条成立。}
+（i）\emph{存在 $\mathfrak{q}$ 的一个开邻域 $\mathscr{U}$，使得对任何 $\psi\colon Z\to\mathscr{U}$，$\phi^p_Z$ 都是\trIsomorphism。特别地，$\phi^p_{\mathfrak{q}}$ 是一个\trIsomorphism。}
+（ii）\emph{进而，}
+（a）\emph{$\phi^{p-1}_{\mathfrak{q}}$ \trSurjectiveMap（从而由 (i) 知它是\trIsomorphism），当且仅当}
+（b）\emph{$\mathrm{R}^p\pi_*\mathscr{F}$ 在 $\mathfrak{q}$ 的某个开邻域内局部自由（或者等价地，$(\mathrm{R}^p\pi_*\mathscr{F})_{\mathfrak{q}}$ 是一个自由 $\OO_{Y,\mathfrak{q}}$-\trModule{}，\mbox{练习~14.3.E}）。}
+\emph{（这些进而蕴含：对 $\mathfrak{q}$ 的一个开邻域内的 $\mathfrak{r}$，$\mathrm{h}^p(X_{\mathfrak{r}},\mathscr{F}|_{X_{\mathfrak{r}}})$ 为常数。）}
+
+（\mbox{定理~25.1.5} 与\mbox{定理~25.1.6} 的证明将在 \S25.2 中给出。注意 (ii) 中：当 $p=0$ 时，$\phi^{p-1}_{\mathfrak{q}}$ 自动\trSurjectiveMap，因为 $\phi^{-1}_{\mathfrak{q}}$ 是零映射。要去掉\trNoether{}假设，见 \S25.2.10。）
+
+这令人惊叹：$\phi^p_{\mathfrak{q}}$ \trSurjectiveMap{}这一假设只涉及 $X$ 的带\emph{既约}结构的点 $\mathfrak{q}$ 上发生的事情，却对整个（可能非既约的）概形都有蕴含！这或许会让你想起平坦性的局部判别法（\mbox{定理~24.6.1}）——它确实正是这个证明的关键技术原料。
+
+下面是几条推论。
+
+\textbf{25.1.B.（练习）}\quad 用\mbox{定理~25.1.6} 为\mbox{练习~24.3.E} 给出第二个解法。（对付这个问题，这是一件可以搬动的大武器，但它仍然富有启发；你对\mbox{练习~24.3.E} 的原有解法或许正预示着\mbox{上同调与基变换定理~25.1.6} 的证明。）
+
+\textbf{25.1.C.（练习）}\quad 设 $\pi\colon X\to Y$ \trProper、$Y$ 局部\trNoether，而 $\mathscr{F}$ 是 $X$ 上的\trCoherentSheaf、在 $Y$ 上\trFlat。再设对某个 $\mathfrak{q}\in Y$ 有 $\mathrm{H}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})=0$。证明：存在 $\mathfrak{q}$ 的一个开邻域 $\mathscr{U}$，使得 $(\mathrm{R}^p\pi_*\mathscr{F})|_{\mathscr{U}}=0$。
+
+\textbf{25.1.D.（练习）}\quad 设 $\pi\colon X\to Y$ \trProper、$Y$ 局部\trNoether，而 $\mathscr{F}$ 是 $X$ 上的\trCoherentSheaf、在 $Y$ 上\trFlat。再设对一切 $\mathfrak{q}\in Y$ 都有 $\mathrm{H}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})=0$。证明：第 $p-1$ 次\trCohomology{}与任意\trBaseChange{}交换：对一切 $\psi\colon Z\to Y$，$\phi^{p-1}_Z$ 都是\trIsomorphism。
+
+\textbf{25.1.E.（练习）}\quad 设 $\pi$ \trProper、$Y$ 局部\trNoether，而 $\mathscr{F}$ 是 $X$ 上在 $Y$ 上\trFlat{}的\trCoherentSheaf。再设当 $p\ge p_0$ 时 $\mathrm{R}^p\pi_*\mathscr{F}=0$。证明：对一切 $\mathfrak{q}\in Y$ 与一切 $p\ge p_0$，$\mathrm{H}^p(X_{\mathfrak{q}},\mathscr{F}|_{X_{\mathfrak{q}}})=0$。
+
+\textbf{25.1.F.（练习）}\quad 设 $\pi$ \trProper、$Y$ 局部\trNoether，而 $\mathscr{F}$ 是 $X$ 上在 $Y$ 上\trFlat{}的\trCoherentSheaf。再设 $Y$ 既约。证明：存在 $Y$ 的一个\trDense\trOpenSubset{} $\mathscr{U}$，使得对一切 $\psi\colon Z\to\mathscr{U}$ 与一切 $p$，$\phi^p_Z$ 都是\trIsomorphism。（提示：为 $Y$ 的诸\trGenericPoint{}找到合适的开邻域。见\mbox{练习~24.1.M} 及其后那段话。）
+
+\textbf{25.1.G.（练习）}\quad 设 $\pi\colon C\to S$ 是一个\trProper\trSmooth\trMorphism，其诸\trFiber{}都是\trGenus{}为 $g>1$ 的\trCurve（一个「光滑亏格 $g$ 曲线的平坦\trFamily」）。再设 $S$ 局部\trNoether。
+（a）若 $n>1$，证明 $\pi_*\Omega^{\otimes n}_{C/S}$ 是一个秩为 $(2n-1)(g-1)$ 的\trVectorBundle，且这一构造与任何\trBaseChange{} $S'\to S$ 交换（对 $S'$ 不加\trNoether{}假设）。更精确地说，若
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=3.6em]
+C' \ar[r] & C \\
+S' \ar[r, "\rho"] \ar[u, "\pi'"'] & S \ar[u, "\pi"']
+\end{tikzcd}
+\]
+是一张\trCartesianDiagram，证明 $\rho^*\pi_*\Omega^{\otimes n}_{C/S}\cong\pi'_*\Omega^{\otimes n}_{C'/S'}$。
+（b）若 $S$ 既约，证明 $\pi_*\Omega_{C/S}$ 是一个秩为 $g$ 的\trVectorBundle，且这一构造与任何\trBaseChange{} $S'\to S$ 交换（对 $S'$ 不加任何假设）。
+\trhRemark：其实，既约性假设可以去掉。一个古怪的做法是：证明存在一个由光滑亏格 $g>1$ 曲线组成的\trModuliSpace{} $\mathscr{M}_g$，它本身是\trSmooth{}的（尽管是一个\trDeligne{}--\trMumford{}叠，而非\trScheme），然后把这一论证应用于 $\mathscr{M}_g$ 上的万有曲线——一切亏格 $g$ 曲线的\trFamily{}皆由它拉回而得（对照\mbox{练习~25.3.A}）。
+
+\textbf{25.1.7. 一类重要的\trMorphism：局部\trNoether{}概形之间的\trProper{}、$\OO$-连通\trMorphism{} $\pi\colon X\to Y$。}\quad
+若\trMorphism{} $\pi\colon X\to Y$ 满足：自然映射 $\OO_Y\to\pi_*\OO_X$ 是一个\trIsomorphism，我们就说 $\pi$ 是 $\OO$-连通的。显然，$\OO$-连通性这一概念在靶上局部，并且在复合下保持。
+
+\textbf{25.1.H.（容易练习）}\quad 证明：局部\trNoether{}概形之间的\trProper{}、$\OO$-连通\trMorphism{}都是\trSurjectiveMap。
+
+\textbf{25.1.8.}\quad 我们很快就会遇到\mbox{\trZariski{}连通性引理~28.4.1}，它将表明：局部\trNoether{}概形之间的\trProper{}、$\OO$-连通\trMorphism{}具有\trConnected{}的\trFiber。在某种意义上，这一类\trMorphism{}才真正是我们想以「\trConnected{}\trFiber」来指称的那一类\trMorphism；这正是这一术语的动机。下面的结果在平坦的情境中为这一观点给出了一些佐证。
+
+\textbf{25.1.I.（重要练习）}\quad 设 $\pi\colon X\to Y$ 是局部\trNoether{}概形之间的一个\trProper\trFlat\trMorphism，其诸\trFiber{}满足 $\mathrm{h}^0(X_{\mathfrak{q}},\OO_{X_{\mathfrak{q}}})=1$。（重要注记：由 \S11.4.7，若 $\pi$ 具有几何连通且几何既约的\trFiber，则此条件满足。）证明 $\pi$ 是 $\OO$-连通的。提示：考虑
+\begin{equation*}\tag{25.1.8.1}\label{eq:oconnected-fiber-map}
+\OO_Y\otimes\kappa(\mathfrak{q})\longrightarrow(\pi_*\OO_X)\otimes\kappa(\mathfrak{q})\overset{\phi^0_{\mathfrak{q}}}{\longrightarrow}\mathrm{H}^0(X_{\mathfrak{q}},\OO_{X_{\mathfrak{q}}})\overset{\sim}{\hookleftarrow}\kappa(\mathfrak{q}).
+\end{equation*}
+这一复合是\trSurjectiveMap，故 $\phi^0_{\mathfrak{q}}$ \trSurjectiveMap，从而由\mbox{上同调与基变换定理~25.1.6}(i) 它是一个\trIsomorphism。再由\mbox{上同调与基变换定理~25.1.6}(ii)，$\pi_*\OO_X$ 局部自由，从而\trRank{}为 $1$。你或许可以借助\trNakayama{}引理证明：可逆层之间的映射 $\OO_Y\to\pi_*\OO_X$ 若在诸点（带既约结构）之上的\trFiber{}上\trSurjectiveMap{}，则必是层的\trIsomorphism。然后从 \eqref{eq:oconnected-fiber-map} 中提取「在\trFiber{}上满射」。
+
+\textbf{25.1.9.}\ \hard\ \emph{不重要的注记。}\quad 这一类\trProper{}、$\OO$-连通的\trMorphism{}在任意\trBaseChange{}下并不保持，因此在 \S8.1 的意义下不「\trReasonable」。但你可以证明：它们在\trFlat\trBaseChange{}下保持——用的是「\trCohomology{}与平坦\trBaseChange{}交换」这一事实（\mbox{定理~24.1.9}）。此外，\mbox{练习~25.1.I} 的诸条件在\trBaseChange{}下表现良好，而且\mbox{上同调与基变换定理~25.1.6} 的\trNoether{}假设也可以去掉（代价是换成有限表现假设；见 \S25.2.10），于是由\trProper{}、有限表现且\trFlat、并具有几何连通且几何既约\trFiber{}的\trMorphism{} $\pi\colon X\to Y$ 组成的类，确实「\trReasonable」（而且有用）。
+
+\textbf{25.1.10.}\quad 我们接下来讨论如下问题。设 $\pi\colon X\to Y$ 是概形之间的一个\trMorphism。给定 $X$ 上的一个\trInvertibleSheaf{} $\mathscr{L}$，我们要问：它何时是 $Y$ 上某个\trInvertibleSheaf{} $\mathscr{M}$ 的拉回？要让这件事成立，我们当然需要 $\mathscr{L}$ 在诸\trFiber{}上\trTrivial。我们将看到：若 $\pi$ 是局部\trNoether{}概形之间的一个\trProper{}、$\OO$-连通\trMorphism，那么这一点常常就够了。给定 $\mathscr{L}$，我们以 $\pi_*\mathscr{L}$ 复原出 $\mathscr{M}$；$\mathscr{M}$ 的诸\trFiber{}是一维的，并且拼合起来构成一个\trLineBundle。我们现在开始把这件事说精确。
+
+\textbf{25.1.J.（练习）}\quad 设 $\pi\colon X\to Y$ 是局部\trNoether{}概形之间的一个\trProper{}、$\OO$-连通\trMorphism。证明：若 $\mathscr{M}$ 是 $Y$ 上任一\trInvertibleSheaf，则自然态射 $\mathscr{M}\to\pi_*\pi^*\mathscr{M}$ 是一个\trIsomorphism。特别地，我们可以通过施加\trPushforward{} $\pi_*$ 而从 $\pi^*\mathscr{M}$ 复原 $\mathscr{M}$。（当 $\mathscr{M}$ 是有限秩局部自由的时，你的证明也更一般地有效。）
+
+\textbf{25.1.11. \trhProposition。}\ ——\ \emph{设 $\pi\colon X\to Y$ 是局部\trNoether{}概形之间的一个\trFlat{}、\trProper{}\trMorphism，其诸\trFiber{}\trGeometricallyConnected{}且\trGeometricallyReduced（从而由\mbox{练习~25.1.I}，它是 $\OO$-连通的）。再设 $Y$ 既约，而 $\mathscr{L}$ 是 $X$ 上的一个在 $\pi$ 的诸\trFiber{}上\trTrivial{}的\trInvertibleSheaf（即：对一切 $\mathfrak{q}\in Y$，$\mathscr{L}|_{X_{\mathfrak{q}}}$ 都是 $X_{\mathfrak{q}}$ 上的一个\trTrivial\trInvertibleSheaf）。那么 $\pi_*\mathscr{L}$ 是 $Y$ 上的一个\trInvertibleSheaf（记作 $\mathscr{M}$），并且自然映射 $\pi^*\mathscr{M}\to\mathscr{L}$ 是一个\trIsomorphism。}
+
+\emph{证明。}\quad 由\mbox{\trGrauert{}定理~25.1.5}，$\pi_*\mathscr{L}$ 是秩 $1$ 的局部自由层（同样记作 $\mathscr{M}$），且 $\mathscr{M}\otimes_{\OO_Y}\kappa(\mathfrak{q})\to\mathrm{H}^0(X_{\mathfrak{q}},\mathscr{L}|_{X_{\mathfrak{q}}})$ 是一个\trIsomorphism。我们有可逆层之间的一个自然映射 $\pi^*\mathscr{M}=\pi^*\pi_*\mathscr{L}\to\mathscr{L}$。为证它是\trIsomorphism，只须证明它\trSurjectiveMap{}。（你明白为什么吗？设 $A$ 是一个环，而 $\phi\colon A\to A$ 是 $A$-\trModule{}之间的一个\trSurjectiveMap{}，为什么 $\phi$ 是同构？）为此，只须证明它在 $\pi$ 的诸\trFiber{}上满射。（你明白为什么吗？提示：若该映射的余核不是 $0$，那么它在 $Y$ 的某点之上也不是 $0$。）而这可以由证明的第一行得到（比如利用「在 $\mathfrak{q}$ 的一个邻域内 $\mathscr{M}\cong\OO$」这一事实）。\hfill$\square$
+
+\mbox{命题~25.1.11} 有几条令人愉快的推论。比如，若 $X$ 上的两个\trInvertibleSheaf{} $\mathscr{A}$ 与 $\mathscr{B}$ 在 $\pi$ 的每个\trFiber{}上都同构，那么它们相差 $Y$ 上某个\trInvertibleSheaf{}的拉回：只须把\mbox{命题~25.1.11} 用于 $\mathscr{A}\otimes\mathscr{B}^{\vee}$。
+
+\textbf{25.1.12. \trProjective{}丛。}
+
+\textbf{25.1.K.（练习）}\quad 设 $X$ 是一个局部\trNoether{}\trScheme，而 $\mathrm{pr}_1\colon X\times\mathbb{P}^n\to X$ 是到第一因子的\trProjection。设 $\mathscr{L}$ 是 $X\times\mathbb{P}^n$ 上的一个\trLineBundle，其在 $\mathrm{pr}_1$ 的每个\trFiber{}上的\trDegree{}为零。用\mbox{上同调与基变换定理~25.1.6} 证明：$(\mathrm{pr}_1)_*\mathscr{L}$ 是 $X$ 上的一个\trInvertibleSheaf。证明自然映射 $\mathrm{pr}_1^*(\mathrm{pr}_1)_*\mathscr{L}\to\mathscr{L}$ 是一个\trIsomorphism，一如\mbox{命题~25.1.11} 证明的末尾。
+
+你的论证同样适用于这样的情形：把 $\mathrm{pr}_1\colon X\times\mathbb{P}^n\to X$ 换成 $X$ 上的一个 $\mathbb{P}^n$-丛 $\mathrm{pr}_1\colon Z\to X$；或者换成 $\mathrm{pr}_1\colon Z\to X$——一个\trProper\trSmooth\trMorphism，其几何\trFiber{}都是\trGenus{}为 $0$ 的\trIntegral\trCurve。
+此外，局部\trNoether{}假设可以去掉；见 \S25.2.10。
+
+\textbf{25.1.L.（练习）}\quad 设 $X$ 是一个\trConnected\trNoether{}\trScheme。证明 $\operatorname{Pic}(X\times\mathbb{P}^n)\cong\operatorname{Pic}X\times\mathbb{Z}$。提示：映射 $\operatorname{Pic}X\times\operatorname{Pic}\mathbb{P}^n\to\operatorname{Pic}(X\times\mathbb{P}^n)$ 由 $(\mathscr{L},\OO(m))\mapsto\mathrm{pr}_1^*\mathscr{L}\otimes\mathrm{pr}_2^*\OO(m)$ 给出，其中 $\mathrm{pr}_1\colon X\times\mathbb{P}^n\to X$ 与 $\mathrm{pr}_2\colon X\times\mathbb{P}^n\to\mathbb{P}^n$ 是 $X\times\mathbb{P}^n$ 到其两个因子的\trProjection。（记号 $\boxtimes$ 常被用于这一构造；见 \S15.2.10。）
+
+一个非常类似的论证将表明：若 $Z$ 是 $X$ 上的一个 $\mathbb{P}^n$-丛，则 $\operatorname{Pic}Z\cong\operatorname{Pic}X\times\mathbb{Z}$。而若 $X$ 不\trConnected，你无疑也能自行弄清正确的陈述该是什么。
+
+\textbf{25.1.13.}\ \emph{\trhRemark{}。}\quad 如 \S19.10.1 所述，概形的\trPicardGroup{}常常「想成为一个概形」。在 $\operatorname{Pic}\mathbb{P}^n_{\mathbb{Z}}$ 的情形，你或许能把这件事说精确。此时，\trScheme{} $\operatorname{Pic}\mathbb{P}^n_{\mathbb{Z}}$ 就是「$\mathbb{Z}$ 份 $\Spec\mathbb{Z}$」，并带有「显然」的\trGroupScheme{}结构。你能弄清它表示的是哪个函子吗？你能证明它表示这个函子吗？这需要把\mbox{练习~25.1.L} 推广出\trNoether{}设定之外，借助 \S25.2.10。
+
+\textbf{25.1.M.（练习）}\quad 设 $\pi\colon X\to Y$ 是\trNoether{}整概形上的一个\trProjective{}平坦\trMorphism，其一切几何\trFiber{}都同构于 $\mathbb{P}^n$（在相应的域上）。证明：$\pi$ 是一个\trProjective{}丛，当且仅当存在 $X$ 上的一个\trInvertibleSheaf{} $\mathscr{L}$，它在一切几何\trFiber{}上的限制为 $\OO(1)$。（一个方向是显然的：若它是一个\trProjective{}丛，则它有一个 $\OO(1)$，来自\trProjectivization；见\mbox{练习~17.2.D}。在另一个方向上，候选的\trVectorBundle{}是 $\pi_*\mathscr{L}$。证明它确实是一个所求秩的局部自由层。证明它的\trProjectivization{}确实就是 $\pi\colon X\to Y$。）
+
+\trhCaveat：映射 $\pi\colon\Proj\mathbb{R}[x,y,z]/(x^{2}+y^{2}+z^{2})\to\Spec\mathbb{R}$ 表明：\trNoether{}整概形上的\trProjective{}平坦\trMorphism，即便其一切几何\trFiber{}都同构于 $\mathbb{P}^n$，也未必是一个 $\mathbb{P}^n$-丛。然而，\emph{\trTsen{}定理}蕴含：若靶是\emph{代数闭域上的一条光滑曲线}，则该\trMorphism{}是一个 $\mathbb{P}^n$-丛（见 [GS, Thm.~6.2.8]）。\mbox{例~18.4.10} 表明，在这个陈述中「\trCurve」不能换成「五维体」——「万有光滑平面二次曲线」并不是光滑平面二次曲线的参数空间 $U\subset\mathbb{P}^5$ 上的一个 $\mathbb{P}^1$-丛。如果你愿意，你可以推广\mbox{例~18.4.10}，证明「\trCurve」甚至不能换成「\trSurface」。（只须把全体二次曲线的那个 $\mathbb{P}^5$ 换成一个一般选取的、由二次曲线组成的 $\mathbb{P}^2$——但接下来请弄清楚：若你试图把它换成一个一般选取的、由二次曲线组成的 $\mathbb{P}^1$，会出什么问题。）
+
+\textbf{25.1.N.（练习）}\quad 设 $\pi\colon X\to Y$ 是局部\trNoether{}\trScheme{}上一个有限秩\trLocallyFreeSheaf{} $\mathscr{F}$ 的\trProjectivization（即 $X\cong\mathit{Proj}(\Sym^\bullet\mathscr{F}^{\vee})$）（\S17.2.4）。回想 \S17.2.4：对 $Y$ 上任一\trInvertibleSheaf{} $\mathscr{L}$，有 $X\cong\mathit{Proj}(\Sym^\bullet(\mathscr{F}^{\vee}\otimes\mathscr{L}))$。证明：仅有这些方式能使它是某个\trVectorBundle{}的\trProjectivization。（提示：\trPushforward{} $\OO(1)$ 以复原 $\mathscr{F}$。）

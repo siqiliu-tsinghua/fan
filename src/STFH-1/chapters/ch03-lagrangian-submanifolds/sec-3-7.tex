@@ -1,0 +1,469 @@
+\section{拉格朗日子流形的构造}
+\label{sec:construction-lagrangian-submanifolds}
+
+\subsection{拉格朗日手术}
+\label{subsec:lagrangian-surgery}
+\stfhIndex{I189}{la^ge^lang^ri^shou^shu}{拉格朗日手术（Lagrangian surgery）}
+
+设 $L_1,L_2$ 是 $(M,\omega)$ 中一对已定向拉格朗日子流形，在 $p_{12}$ 处横截相交。固定该配对的次序为 $(L_1,L_2)$。总可以在 $p_{12}$ 的邻域 $U$ 中选取达布坐标卡
+$I:U\to V\subset\mathbb C^n$，使 $I(p_{12})=0$，并且
+\[
+ I(L_1\cap U)=\mathbb R^n\cap V,\qquad
+ I(L_2\cap U)=\sqrt{-1}\mathbb R^n\cap V.
+\]
+下面会用超出实际所需的细节解释这一构造；希望这种具体描述对于更几何地研究拉格朗日手术有所帮助，尤其是研究手术下全纯多边形模空间的蜕变时。这样的应用参见 (FOOO07)。
+
+证明来自达布定理的一个版本，但强烈依赖下面这个著名的辛线性代数事实。
+
+\begin{lemma}\label{lem:sp-transitive-transverse-lagrangian-pairs}
+线性辛群 $\operatorname{Sp}(2n)$ 在拉格朗日子空间横截配对的集合上传递地作用。
+\end{lemma}
+
+\begin{exercise}\label{ex:sp-transitive-transverse-lagrangian-pairs}
+证明这个引理。
+\end{exercise}
+
+需要指出，$U(n)\subset\operatorname{Sp}(2n)$ 在这类配对的集合上并不传递地作用。例如，酉群 $U(n)$ 的作用保持 $\mathbb C^n$ 的埃尔米特结构，因而保持两个拉格朗日子空间之间的“角度”。
+
+设 $\epsilon$ 是充分接近 $0$ 的实数。选取函数
+$f_\epsilon:\mathbb R^n\setminus\{0\}\to\mathbb R$：
+\begin{equation}
+ f_\epsilon(x)=\epsilon\log|x|,
+ \label{eq:surgery-log-function}
+\end{equation}
+并把 $\operatorname{Graph}df_\epsilon$ 记作
+$H_\epsilon\subset\mathbb C^n$。它是
+$T^*(\mathbb R^n\setminus\{0\})\cong
+ \mathbb C^n\setminus\sqrt{-1}\mathbb R^n$ 中的拉格朗日子流形；当
+$|x|\to0$ 时渐近于 $\sqrt{-1}\mathbb R^n$，当 $|x|\to\infty$ 时渐近于
+$\mathbb R^n$。注意
+\[
+ df_\epsilon(x)=\epsilon\frac{x\cdot dx}{|x|^2}
+ =\frac\epsilon{|x|^2}\sum_{j=1}^n x_j\,dx_j,
+\]
+所以在坐标中可写
+\begin{equation}
+ H_\epsilon=
+ \left\{(z_1,\ldots,z_n)\ \middle|\
+ y_j=\frac{\epsilon x_j}{|x|^2},\ j=1,\ldots,n\right\}.
+ \label{eq:surgery-handle-model}
+\end{equation}
+这里以 $z_j=x_j+\sqrt{-1}y_j$（$j=1,\ldots,n$）表示 $\mathbb C^n$ 的复坐标。
+
+令 $\tau:\mathbb C^n\to\mathbb C^n$ 为关于对角线
+\[
+ \Delta=\{(z_1,z_2,\ldots,z_n)\mid x_i=y_i\}
+\]
+的反射，即映射
+\[
+ (x_1+\sqrt{-1}y_1,\ldots,x_n+\sqrt{-1}y_n)
+ \longmapsto
+ (y_1+\sqrt{-1}x_1,\ldots,y_n+\sqrt{-1}x_n).
+\]
+式\eqref{eq:surgery-handle-model}蕴含 $|x|^2|y|^2=|\epsilon|^2$，所以
+\[
+ H_\epsilon=
+ \left\{(z_1,\ldots,z_n)\ \middle|\
+ x_j=\frac{\epsilon y_j}{|y|^2},\ j=1,\ldots,n\right\}.
+\]
+换言之，$\tau(H_\epsilon)=H_\epsilon$。容易验证
+\[
+ \inf\{|\vec z|\mid\vec z\in H_\epsilon\}=\sqrt{2|\epsilon|},
+\]
+并且最小值在 $(n-1)$-球面
+\[
+ \{(x,y)\mid |x|=|y|=\sqrt\epsilon\}\subset H_\epsilon
+\]
+上的点处取得。
+
+接着考虑函数 $\rho:\mathbb R_+\to\mathbb R$，使
+\[
+ \rho=
+ \begin{cases}
+  \log r-|\epsilon|,&r\le\sqrt{|\epsilon|}S_0,\\
+  \log\sqrt{|\epsilon|}S_0,&r\ge2\sqrt{|\epsilon|}S_0,
+ \end{cases}
+ \qquad
+ \rho'(r)\ge0,\quad\rho''(r)\le0,
+\]
+其中 $S_0$ 是充分大的数，而 $\epsilon$ 取得使
+$\sqrt{|\epsilon|}S_0$ 充分小。定义函数
+$\widetilde f_\epsilon:\mathbb R^n\setminus\{0\}\to\mathbb R$：
+\begin{equation}
+ \widetilde f_\epsilon(x)=\epsilon\rho(|x|).
+ \label{eq:cutoff-surgery-function}
+\end{equation}
+
+考虑图像 $\operatorname{Graph}d\widetilde f_\epsilon$，并定义拉格朗日子流形 $H_\epsilon'$ 使其满足：
+\begin{enumerate}[label=(\arabic*)]
+\item $\tau(H_\epsilon')=H_\epsilon'$；
+\item
+\[
+\begin{aligned}
+ &\{(x_1+\sqrt{-1}y_1,\ldots,x_n+\sqrt{-1}y_n)
+       \mid \forall i\;x_i\ge y_i\}\cap H_\epsilon'\\
+ &\quad=
+ \{(x_1+\sqrt{-1}y_1,\ldots,x_n+\sqrt{-1}y_n)
+       \mid \forall i\;x_i\ge y_i\}
+       \cap\operatorname{Graph}d\widetilde f_\epsilon.
+\end{aligned}
+\]
+\end{enumerate}
+由构造，$H_\epsilon'$ 在 $\tau$ 下不变，并且在
+$I(U)\subset\mathbb R^{2n}$ 中以 $0$ 为中心的球
+$B^{2n}(2\sqrt{|\epsilon|}S_0)$ 外，
+$H_\epsilon'=\mathbb R^n\cup\sqrt{-1}\mathbb R^n$。因此，对给定有序配对
+$(L_1,L_2)$，可以构造拉格朗日子流形 $L_\epsilon\subset M$，使
+\[
+ L_\epsilon-U=L_1\cup L_2-U,\qquad
+ I(L_\epsilon\cap U)=H_\epsilon'\cap V.
+\]
+
+\begin{definition}\label{def:lagrangian-connected-sum}
+对给定有序配对 $(L_1,L_2)$，称 $L_\epsilon$ 为 $L_1$ 与 $L_2$ 在
+$p_{12}\in L_1\cap L_2$ 处的\emph{拉格朗日连通和}，并写作
+\stfhIndex{I181}{la^ge^lang^ri^lian^tong^he}{拉格朗日连通和（Lagrangian connected sum）}
+$L_1\#_\epsilon L_2=L_\epsilon$。
+\end{definition}
+
+注意，如果在 $p\in L_1\cap L_2$ 处交换配对 $(L_1,L_2)$ 的次序，并同时改变
+$\epsilon$ 的符号，则所得拉格朗日子流形同构。事实上，
+\[
+ \mathbb R^n\#_\epsilon\sqrt{-1}\mathbb R^n
+ =\sqrt{-1}\mathbb R^n\#_{-\epsilon}\mathbb R^n.
+\]
+
+称原像
+\[
+ (L_1\#_\epsilon L_2)\cap U=I^{-1}(H_\epsilon'\cap V)
+\]
+为\emph{拉格朗日手柄}，称其子午球面 $S^{n-1}$ 为拉格朗日手术
+\stfhIndex{I184}{la^ge^lang^ri^shou^bing}{拉格朗日手柄（Lagrangian handle）}
+$L_\epsilon$ 的\emph{消失闭链}。
+\stfhIndex{I299}{xiao^shi^bi^lian}{消失闭链（vanishing cycle）}
+
+如果 $\epsilon>0$，并且作为已定向向量空间有
+\[
+ T_{p_{12}}L_1\oplus T_{p_{12}}L_2
+ =(-1)^{n(n-1)/2+1}T_{p_{12}}M,
+\]
+则称配对 $L_1,L_2$ 或其相伴拉格朗日手术 $L_1\#_\epsilon L_2$ 在
+\stfhSubIndex{I190}{la^ge^lang^ri^shou^shu}{拉格朗日手术（Lagrangian surgery）}{zheng^de}{正的（positive）}
+$p_{12}$ 处为\emph{正的}；否则称为\emph{负的}。（这里给 $T_{p_{12}}M$ 配备辛定向。）例如，取
+$L_1=\mathbb R$、$L_2=\sqrt{-1}\mathbb R\subset\mathbb C$，并在
+$\mathbb R,\sqrt{-1}\mathbb R$ 上取标准定向，则当 $\epsilon>0$ 时，拉格朗日手术
+$L_1\#_\epsilon L_2$ 是负的。（这一例子可直接推广到
+$L_1=\mathbb R^n$、$L_2=\sqrt{-1}\mathbb R^n\subset\mathbb C^n$。）容易验证，只有正手术才容许把 $L_1,L_2$ 上的定向粘合起来，使手术
+$L_1\#_\epsilon L_2$ 带有相容定向。（当
+$L_1=\mathbb R$、$L_2=\sqrt{-1}\mathbb R\subset\mathbb C$ 时，显然不可能给
+$L_1\#_\epsilon L_2$ 一个同时与两个 $L_i$ 的标准定向相容的定向；对
+$L_1=\mathbb R^n$、$L_2=\sqrt{-1}\mathbb R^n\subset\mathbb C^n$ 也有类似结论。）
+
+一般而言，即使 $L_1\#_\epsilon L_2$ 与 $L_2\#_\epsilon L_1$ 都可定向，前者甚至也不同痕于后者（或 $L_1\#_{-\epsilon}L_2$）。另一方面，容易验证：对同号的不同 $\epsilon$，各
+$L_1\#_\epsilon L_2$ 彼此拉格朗日同痕。不过一般而言，在固定边界的条件下，它们彼此并不哈密顿同痕。
+
+因为上述构造局限在交点的一个邻域内，也可以在拉格朗日浸入的\emph{自交}点处实施手术。设 $L\subset M$ 是浸入拉格朗日子流形，在
+$p\in L\subset M$ 处有横截自交。取 $M$ 中 $p$ 的小邻域 $U$，考察
+$U\cap L$；它在 $p$ 处有两个分支。为实施拉格朗日手术，需要给这两个分支排序。沿用 (Po91b) 的术语，引入如下定义。
+
+\begin{definition}\label{def:surgery-equipment}
+\stfhIndex{I118}{pei^bei}{配备（equipment）}
+设 $L,p$ 如上。$p$ 处的一个\emph{配备}，是 $L$ 在 $p$ 处两个分支的一个次序；等价地，它是相应两个切空间在 $p$ 处的一个次序。
+\end{definition}
+
+选定 $L$ 的一个自交点处的配备，就可以实施拉格朗日手术并减少交点数。这样，可以从一个拉格朗日浸入得到拉格朗日嵌入。由格罗莫夫的
+$h$-原理，拉格朗日浸入存在性的障碍纯属拓扑；相比之下，拉格朗日嵌入的存在性有更精细的硬障碍（此类定理参见 (Gr85)）。遗憾的是，由拉格朗日手术得到的嵌入往往具有复杂的拓扑。
+
+\begin{example}\label{ex:whitney-sphere-surgery}
+\stfhIndex{I305}{hui^te^ni^qiu^mian}{惠特尼球面（Whitney sphere）}
+格罗莫夫 (Gr85) 证明，$\mathbb C^n$ 中任意紧嵌入拉格朗日子流形 $L$ 必须满足
+$H_1(L;\mathbb R)\ne0$。特别地，$\mathbb C^n$ 中不存在嵌入拉格朗日球面
+$S^n$。但 $\mathbb C^n$ 中有一个著名的浸入球面，称为惠特尼球面，并且可以使它成为拉格朗日的。事实上，浸入
+$\psi:S^n\to\mathbb C^n$ 有如下显式公式：
+\begin{equation}
+ \psi(x_1,\ldots,x_{n+1})
+ =\frac1{1+x_{n+1}^2}
+ \bigl(x_1(1+ix_{n+1}),x_2(1+ix_{n+1}),\ldots,x_n(1+ix_{n+1})\bigr).
+ \label{eq:whitney-sphere-immersion}
+\end{equation}
+它在 $\mathbb C^n$ 的原点 $0$ 处有唯一一个横截自交点，其原像是
+$S^n\subset\mathbb R^{n+1}$ 的南北两极。也容易验证 $\psi$ 是拉格朗日的。在此交点对它实施拉格朗日手术，就得到
+$S^1\times S^{n-1}$ 到 $\mathbb C^n$ 中的拉格朗日嵌入。
+
+$n=2$ 的情形尤其有趣。以 $(z_1,z_2)$ 表示 $\mathbb C^2$ 的复坐标。这时公式化为
+\begin{equation}
+ \psi(x,y,z)=\frac1{1+z^2}\bigl(x(1+iz),y(1+iz)\bigr),
+ \qquad x^2+y^2+z^2=1,
+ \label{eq:whitney-sphere-dimension-two}
+\end{equation}
+其中 $x,y,z$ 是实数。
+
+$0$ 处切空间的两个分支为
+\[
+\begin{aligned}
+ V_+&=\operatorname{span}_{\mathbb R}
+ \left\{(1+i)\frac\partial{\partial z_1},
+        (1+i)\frac\partial{\partial z_2}\right\},&&z=1,\\
+ V_-&=\operatorname{span}_{\mathbb R}
+ \left\{(1-i)\frac\partial{\partial z_1},
+        (1-i)\frac\partial{\partial z_2}\right\},&&z=-1.
+\end{aligned}
+\]
+容易看出 $V_++V_-=\mathbb C^2$。以 $e_1,e_2$ 表示由如下次序给出的配备：
+\[
+ e_1=\{V_+,V_-\},\qquad e_2=\{V_-,V_+\},
+\]
+并以
+\[
+ L_\epsilon^{e_1},\qquad L_\epsilon^{e_2},\qquad\epsilon>0
+\]
+表示相应的拉格朗日手术。二者的拓扑类型都是环面 $T^2$。事实表明，对适当的
+$\epsilon_1$，$L_\epsilon^{e_1}$哈密顿同痕于标准乘积环面
+$S^1\times S^1\subset\mathbb C^2$，而 $L_\epsilon^{e_2}$ 并非如此。后一个环面已被证明同构于\emph{切卡诺夫环面} (Che96b)、(EP97)；其定义稍后解释。
+\stfhIndex{I075}{qie^ka^nuo^fu^huan^mian}{切卡诺夫环面（Chekanov torus）}
+\end{example}
+
+\subsection{拉格朗日悬垂}
+\stfhIndex{I191}{la^ge^lang^ri^xuan^chui}{拉格朗日悬垂（Lagrangian suspension）}
+\label{subsec:lagrangian-suspension}
+
+本小节以 $(X,\omega)$ 表示一般辛流形，而不用字母 $M$；还以 $Y$ 表示闭流形。给定 $Y$ 到 $(X,\omega)$ 中的拉格朗日嵌入时，我们往往不区分 $Y$ 与这个嵌入在 $X$ 中的像。
+
+设 $\psi:[0,1]\times Y\to X$ 是一族嵌入 $\psi_t:Y\to X$ 的同痕。由
+\cref{ex:smooth-primitive-exact-isotopy}，可以找到函数
+$h:[0,1]\times Y\to\mathbb R$，使
+$\psi^*\omega=dt\wedge dh$，即
+\[
+ \psi^*\omega+dt\wedge(-dh)=0.
+\]
+由\cref{thm:exact-lagrangian-isotopy-extension}，可以找到哈密顿量
+$H:[0,1]\times X\to\mathbb R$，使
+\begin{equation}
+ \psi(t,x)=\phi_H^t(\psi(0,x))=\phi_H^t(\psi_0(x)).
+ \label{eq:suspension-hamiltonian-isotopy}
+\end{equation}
+（给定正合拉格朗日同痕 $(h,\psi)$ 后，总可以在同痕的支集之外调整 $H$，使 $H$ 满足\emph{归一化}条件
+\[
+ \int_XH_t\,\omega^n=0.\text{）}
+\]
+此外，若同痕边界平坦，则 $h,H$ 也可取得边界平坦。也就是说，可以假设存在 $\epsilon_0>0$ 使
+\begin{equation}
+ H\equiv0\qquad\text{对 }t\in[0,\epsilon_0]\cup[1-\epsilon_0,1].
+ \label{eq:boundary-flat-hamiltonian}
+\end{equation}
+
+若正合拉格朗日同痕 $\psi:[0,1]\times Y\to X$ 的相伴配对 $(h,\psi)$ 满足
+\[
+ \psi(0,x)=\psi(1,x),\qquad h(0,x)=h(1,x)
+\]
+对所有 $x\in Y$ 成立，则称它为\emph{正合拉格朗日环路}。
+
+\begin{definition}\label{def:lagrangian-suspension}
+设 $\psi:[0,1]\times Y\to X$ 是正合拉格朗日环路。与 $(h,\psi)$ 相伴的\emph{拉格朗日悬垂}是拉格朗日嵌入
+\stfhIndex{I191}{la^ge^lang^ri^xuan^chui}{拉格朗日悬垂（Lagrangian suspension）}
+\[
+ \iota_{(h,\psi)}:S^1\times Y\longrightarrow
+ \mathbb R\times S^1\times X=T^*S^1\times X,
+\]
+其定义为
+\begin{equation}
+ \iota_{(h,\psi)}(\theta,y)
+ =(\theta,-h(\theta,x),\psi(\theta,x)).
+ \label{eq:lagrangian-suspension}
+\end{equation}
+\end{definition}
+
+下面陈述一个命题，它是拉格朗日悬垂构造及其应用中的关键成分。
+
+考虑哈密顿路径的同痕，即二参数\termHamiltonianDiffeomorphism{}族
+\[
+ (s,\theta)\in[0,1]\times S^1\longmapsto
+ \psi_s^\theta\in\operatorname{Ham}(X,\omega).
+\]
+以 $H=H(s,\theta,x)$ 表示生成 $\theta$-同痕
+$\theta\mapsto\psi_s^\theta$ 的归一化哈密顿量，以
+$K=K(s,\theta,x)$ 表示生成 $s$-同痕 $s\mapsto\psi_s^\theta$ 的哈密顿量。换言之，
+\[
+ \frac{\partial\psi_s^\theta}{\partial\theta}\circ(\psi_s^\theta)^{-1}=X_H,
+ \qquad
+ \frac{\partial\psi_s^\theta}{\partial s}\circ(\psi_s^\theta)^{-1}=X_K.
+\]
+回顾（2.5.34）中对归一化哈密顿量 $H$ 成立的恒等式
+\begin{equation}
+ \frac{\partial H}{\partial s}
+ =\frac{\partial K}{\partial\theta}-\{K,H\}
+ =\frac{\partial K}{\partial\theta}+\{H,K\}.
+ \label{eq:two-parameter-hamiltonian-identity}
+\end{equation}
+
+\begin{proposition}\label{prop:suspension-hamiltonian-isotopic-product}
+设 $(h,\psi)$ 是正合拉格朗日环路，并假设 $\psi$ 的像包含于
+$U\subset X$。在 $T^*S^1\times X$ 上配备辛形式
+\[
+ d\theta\wedge db+\omega_X,
+\]
+其中 $(\theta,b)$ 是 $T^*S^1$ 的典范坐标。则拉格朗日嵌入
+$\iota_{(h,\psi)}:S^1\times Y\to T^*S^1\times X$ 可由支集包含于
+$T^*S^1\times U$ 的哈密顿流同痕到嵌入
+$o_{S^1}\times i_Y:S^1\times Y\subset T^*S^1\times X$。
+\end{proposition}
+
+采用 (Oh07) 附录中的证明，来证明如下定理。
+
+\begin{theorem}\label{thm:two-parameter-suspension-exact}
+设 $Y\subset X$ 是拉格朗日嵌入，并考虑如上的二参数\termHamiltonianDiffeomorphism{}族
+$\psi_s^t$。由
+\begin{equation}
+ f(s,\theta,x)
+ =(\theta,-H(s,\theta,\psi_s^\theta(x)),\psi_s^\theta(x))
+ \label{eq:two-parameter-suspension-map}
+\end{equation}
+定义的同痕
+$f:[0,1]\times S^1\times Y\to T^*S^1\times X=:M$，在
+\cref{def:exact-lagrangian-isotopy}的意义下是正合拉格朗日同痕。此外，
+\begin{equation}
+ i_s^*\alpha=d(K\circ f)_s.
+ \label{eq:suspension-exact-primitive}
+\end{equation}
+\end{theorem}
+
+需要说明，此处 $s$ 取代\cref{def:exact-lagrangian-isotopy}中 $t$ 的角色，而
+$[a,b]\times Y$ 取代其中 $Y$ 的角色。
+
+\begin{proof}
+先计算
+\[
+ f^*(d\theta\wedge db+\omega_X).
+\]
+因为 $o_{S^1}\times i_Y\subset T^*S^1\times X$ 是拉格朗日嵌入，而
+$\psi_s^\theta$ 是辛的，容易验证对 $[0,1]\times(S^1\times Y)$ 上某个 $1$-形式 $\alpha$ 有
+\[
+ f^*(d\theta\wedge db+\omega_X)=\alpha\wedge ds.
+\]
+并且
+\[
+ \alpha=\frac\partial{\partial s}\mathbin{\lrcorner}
+ f^*(d\theta\wedge db+\omega_X).
+\]
+下面计算它。对一般切向量 $\xi\in T(S^1\times Y)$，先有
+\[
+ \alpha(\xi)=(d\theta\wedge db+\omega_X)
+ \left(\frac{\partial f}{\partial s},df(\xi)\right).
+\]
+直接计算得到
+\[
+\begin{aligned}
+ df\left(\frac\partial{\partial s}\right)
+ &=\left(-\frac{\partial H}{\partial s}-\{H,K\}\right)
+      \circ\psi_s^\theta\frac\partial{\partial b}
+      \oplus X_K\circ\psi_s^\theta\\
+ &=-\frac{\partial K}{\partial\theta}\circ\psi_s^\theta
+      \frac\partial{\partial b}\oplus X_K\circ\psi_s^\theta,\\
+ df\left(\frac\partial{\partial\theta}\right)
+ &=\frac\partial{\partial\theta}\oplus
+   -\frac{\partial H}{\partial\theta}\circ\psi_s^\theta
+       \frac\partial{\partial b}\oplus X_H\circ\psi_s^\theta,\\
+ df(\eta)
+ &=-d_XH(d\psi_s^\theta(\eta))\frac\partial{\partial b}
+      \oplus d\psi_s^\theta(\eta),
+\end{aligned}
+\]
+其中 $\eta$ 是投影到 $[0,1]\times S^1$ 后为零的向量场。第一个等式使用恒等式
+$dH(X_K)=\{H,K\}$，第二个等式使用（2.5.34）。由这些公式，得到
+\[
+\begin{aligned}
+ i_s^*\alpha
+ &=i_s^*\left(\frac\partial{\partial s}\mathbin{\lrcorner}
+      (d\theta\wedge db+\omega_X)\right)\\
+ &=\left(\left(\frac{\partial K}{\partial\theta}\circ f_s\right)
+      d\theta\circ Tf_s+d_XK\circ Tf_s\right)\\
+ &=f_s^*\left(\frac{\partial K}{\partial\theta}d\theta+d_XK\right)
+ =f_s^*dK=d(K\circ f)_s.
+\end{aligned}
+\]
+所以 $i_s^*\alpha$ 正合，$f$ 因而在\cref{def:exact-lagrangian-isotopy}的意义下定义了正合拉格朗日同痕；同时也证明了\eqref{eq:suspension-exact-primitive}。这就完成了证明。
+\end{proof}
+
+下面给出一种从任意给定正合拉格朗日同痕构造正合拉格朗日环路的简单方法。先引入同痕的\emph{时间反演}。
+
+\begin{definition}\label{def:isotopy-time-reversal}
+设 $Y\subset X$ 是拉格朗日子流形，$(h,\psi)$ 是正合拉格朗日同痕。$(h,\psi)$ 的\emph{时间反演}是配对 $(\widetilde h,\widetilde\psi)$：
+\[
+ \widetilde\psi(t,x)=\psi(1-t,x),
+ \qquad
+ \widetilde h(t,x)=-h(1-t,x).
+\]
+\end{definition}
+
+显然，对边界平坦的 $(h,\psi)$，拼接同痕
+\[
+ (h,\psi)*(\widetilde h,\widetilde\psi)
+\]
+定义\emph{光滑}闭嵌入
+$S^1(2)\times Y\to\mathbb R\times S^1(2)\times X$；这里把 $S^1$ 表成
+$\mathbb R/2\mathbb Z$。称这个拼接同痕为同痕 $(h,\psi)$ 的\emph{奇双重}，并记作
+\stfhIndex{I218}{qi^shuang^chong}{奇双重（odd-double）}
+$(h^{\mathrm{od}},\psi^{\mathrm{od}})$。
+
+\begin{definition}\label{def:odd-double-suspension}
+正合拉格朗日同痕
+$(h,\psi):[0,1]\times Y\to\mathbb R\times X$ 的\emph{奇双重悬垂}，是嵌入
+\[
+ \iota_{(h,\psi)}:S^1(2)\times Y\longrightarrow T^*S^1(2)\times X,
+\]
+其中
+\begin{equation}
+ \iota_{(h,\psi)}(\theta,x)=
+ \begin{cases}
+  (\theta,-h(\theta,x),\psi(\theta,x)),&\theta\in[0,1],\\
+  (\theta,h(2-\theta,x),\psi(2-\theta,x)),&\theta\in[1,2].
+ \end{cases}
+ \label{eq:odd-double-suspension}
+\end{equation}
+\end{definition}
+
+还用 $h^{\mathrm{od}}$ 表示哈密顿量 $h$ 的显然双重 $h*\widetilde h$。
+
+这一奇双重悬垂构造，在 (Vi06) 和 (Oh07) 中证明拓扑哈密顿量的唯一性结果时起重要作用。
+
+\subsection{切卡诺夫悬垂}
+\label{subsec:chekanov-suspension}
+
+本小节解释尤里·切卡诺夫（Yuri Chekanov）(Che96b) 引入的另一类悬垂；它只适用于
+$\mathbb R^{2n}$ 中的拉格朗日子流形。
+
+考虑浸没 $i_n:S^1\times\mathbb R^n\to\mathbb R^{n+1}$：
+\[
+ i_n(\theta,q_1,\ldots,q_n)
+ =(e^{q_1}\cos(2\pi\theta),e^{q_1}\sin(2\pi\theta),q_2,\ldots,q_n),
+\]
+它定义了到 $(\mathbb R^2\setminus\{0\})\times\mathbb R^{n-1}$ 上的微分同胚。再以
+\[
+ i_n^*:T^*((\mathbb R^2\setminus\{0\})\times\mathbb R^{n-1})
+ \longrightarrow T^*(S^1\times\mathbb R^n)
+\]
+表示 $i_n$ 的余微分。于是得到辛嵌入
+\[
+ I_n=(i_n^*)^{-1}:T^*(S^1\times\mathbb R^n)
+ \longrightarrow T^*\mathbb R^{n+1}\cong\mathbb R^{2n+2}.
+\]
+
+现在设 $L\subset\mathbb R^{2n}\cong T^*\mathbb R^n$ 是拉格朗日子流形，$a$ 是任意实数。以 $N_a$ 表示平行 $1$-形式 $a\,d\theta$ 的图像，即在 $T^*S^1$ 的典范坐标中
+\[
+ \{(\theta,\alpha)\in T^*S^1\mid\alpha=a\}.
+\]
+把 $N_a\times L$ 看作
+$T^*S^1\times T^*\mathbb R^n\cong T^*(S^1\times\mathbb R^n)$ 的拉格朗日子流形。于是 $L$ 的\emph{切卡诺夫悬垂}定义为
+\[
+ \Theta_a(L)=I_n(N_a\times L)
+ \subset T^*(\mathbb R^{n+1})\cong\mathbb R^{2n+2}.
+\]
+切卡诺夫 (Che96b) 利用这个悬垂得到如下有趣结果。
+
+\begin{theorem}[切卡诺夫]\label{thm:chekanov-suspension-torus}
+设 $S^1\subset\mathbb R^2$ 是半径为 $1$ 的标准圆，并考虑悬垂
+$\Theta_0(S^1)\subset\mathbb R^4$。则 $\Theta_0(S^1)$ 是 $\mathbb R^4$ 中的拉格朗日环面，但它不与标准环面
+$S^1\times S^1$哈密顿同痕。
+\end{theorem}
+
+切卡诺夫 (Che96b) 最初通过研究埃克兰--霍费尔容量的一个变体证明了这一结果。随后埃利亚什伯格与波尔捷罗维奇 (EP97) 使用单点开格罗莫夫--威腾不变量的一个版本区分了这两个拉格朗日环面。

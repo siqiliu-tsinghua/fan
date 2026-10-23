@@ -1,0 +1,62 @@
+\epigraph
+  {凡杀不死我的，必使我更强大。}
+  {——F.~\trNietzsche，[N]，格言第 8 条}
+
+在着手任何有趣的几何之前，我们需要先发展一门语言，好把事情讨论得干净而有效。这最好在范畴的语言中完成。要入门，关于范畴需要知道的东西并不多；它只是一门非常有用的语言。与一切数学语言一样，范畴论自带一种内嵌的逻辑，使我们能把熟稔情境中的直觉抽象出来，带到远为一般的情境中去。
+
+我们的动机如下。我们将创造一些新的数学对象（比如概形，以及某些层），并期望它们表现得像我们见过的对象。我们本可以设法把「表现得像」的确切含义钉死，弄清最少要检验哪几件事，才能证实它们确如所期地表现。所幸我们不必如此——前人已经替我们做过了：他们定义了若干关键概念，比如\trAbelianCategory，其行为恰如环上的\trModule。
+
+我们的一般办法如下。我只讲你需要知道的东西，绝不多言。（此誓可鉴：我若说出 “topoi” 一词，你可以毙了我。）我会先讲你早已知道的东西，描述例子里本质之所在，使我们得以从中抽象出更一般的定义；随后我们将在不那么熟悉的情境中与这个定义重逢，并渐渐习惯用它来解决问题、证明定理。
+
+\textbf{1.0.1. 例：积。}\quad 例如，我们将定义概形的\trProduct{}的观念。我们本可以径直给出积的一个定义，但你随后就应当想知道：凭什么这个精确定义配得上「积」这个名字。作为动机，我们在一个熟知的情境——集合——中重温积的观念。定义集合 $U$ 与 $V$ 之积的一种方式，是把它定义为有序对的集合
+$\{(u,v):u\in U,\,v\in V\}$。但来自另一种数学文化的人，也完全有理由把它定义为符号 $\{u\mathbin{\hat{\otimes}}v:u\in U,\,v\in V\}$ 的集合。这两种说法「显然相同」。更好的说法是：二者之间存在一个显然的\trBijection。
+
+借助\trUniversalProperty（universal property），可以把这一点弄严格：给出积的一个更好的定义。给定两个集合 $M$ 与 $N$，一个积是指一个集合 $P$，连同映射 $\mu\colon P\to M$ 与 $\nu\colon P\to N$，使得对任何带映射 $\mu'\colon P'\to M$ 与 $\nu'\colon P'\to N$ 的集合 $P'$，这些映射都唯一地穿过 $P$ 分解：
+\begin{equation*}\tag{1.0.1.1}\label{eq:product-unique-decomposition}
+\begin{tikzcd}[row sep=2.2em, column sep=2.8em]
+\mathrm{P}' \ar[drr,"\nu'"] \ar[dr,dashed,"\exists!"'] \ar[ddrr,bend right=15,"\mu'"'] & & \\
+ & \mathrm{P} \ar[r,"\nu"] \ar[dr,"\mu"'] & \mathrm{N} \\
+ & & \mathrm{M}
+\end{tikzcd}
+\end{equation*}
+（记号 $\exists$ 意为「存在」，$!$ 意为「唯一」。）于是，一个\textbf{积}是一个图
+\[
+\begin{tikzcd}[row sep=1.6em, column sep=2.4em]
+\mathrm{P} \ar[r,"\nu"] \ar[d,"\mu"'] & \mathrm{N} \\
+\mathrm{M} &
+\end{tikzcd}
+\]
+而不只是一个集合 $P$，尽管 $\mu$ 与 $\nu$ 常常隐而不写。
+
+这个定义与传统定义一致，但有一处转折：积并不只有一个；不过任何两个积都自带二者之间的一个\emph{唯一}同构。换言之，积在相差唯一同构的意义下唯一。缘由如下：若你有一个积
+\[
+\begin{tikzcd}[row sep=1.6em, column sep=2.4em]
+\mathrm{P}_1 \ar[r,"\nu_1"] \ar[d,"\mu_1"'] & \mathrm{N} \\
+\mathrm{M} &
+\end{tikzcd}
+\]
+而我有一个积
+\[
+\begin{tikzcd}[row sep=1.6em, column sep=2.4em]
+\mathrm{P}_2 \ar[r,"\nu_2"] \ar[d,"\mu_2"'] & \mathrm{N} \\
+\mathrm{M} &
+\end{tikzcd}
+\]
+那么，在\eqref{eq:product-unique-decomposition}中让 $(\mathrm{P}_2,\mu_2,\nu_2)$ 扮演 $(\mathrm{P},\mu,\nu)$ 的角色、$(\mathrm{P}_1,\mu_1,\nu_1)$ 扮演 $(\mathrm{P}',\mu',\nu')$ 的角色，由我的积的泛性质，便得到唯一的映射 $f\colon\mathrm{P}_1\to\mathrm{P}_2$，使相应的图交换（即 $\mu_1=\mu_2\circ f$ 且 $\nu_1=\nu_2\circ f$）。类似地，由你的积的泛性质，得到唯一的映射 $g\colon\mathrm{P}_2\to\mathrm{P}_1$，使相应的图交换。现在再考虑我的积的泛性质，这一次在\eqref{eq:product-unique-decomposition}中让 $(\mathrm{P}_2,\mu_2,\nu_2)$ 同时扮演 $(\mathrm{P},\mu,\nu)$ 与 $(\mathrm{P}',\mu',\nu')$ 两个角色。于是存在唯一的映射 $h\colon\mathrm{P}_2\to\mathrm{P}_2$，使得
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=2.8em]
+\mathrm{P}_2 \ar[drr,"\nu_2"] \ar[dr,dashed] \ar[ddrr,bend right=15,"\mu_2"'] & & \\
+ & \mathrm{P}_2 \ar[r,"\nu_2"] \ar[dr,"\mu_2"'] & \mathrm{N} \\
+ & & \mathrm{M}
+\end{tikzcd}
+\]
+交换。然而我能叫出两个这样的映射：恒等映射 $\id_{\mathrm{P}_2}$ 与 $f\circ g$。于是 $f\circ g=\id_{\mathrm{P}_2}$；类似地，$g\circ f=\id_{\mathrm{P}_1}$。因此，由泛性质得到的这两个映射 $f$ 与 $g$ 都是\trBijection{}。要言之，在 $\mathrm{P}_1$ 与 $\mathrm{P}_2$ 之间存在唯一的、保持「积结构」（即到 $M$ 与 $N$ 的那两个映射）的\trBijection。这便赋予我们权利，把任何一个这样的积命名为 $M\times N$，因为任何两个这样的积都被唯一地等同。
+
+这个定义的好处在于它在许多场合都能用；一旦定义了范畴，我们很快会看到，上述论证可以逐字照搬到任何范畴，以证明：只要积存在，它就在相差唯一同构的意义下唯一。即便你此前从未见过范畴的定义，也不妨验证一下：它与你见过的某个范畴（比如向量空间范畴，或流形范畴）中的积概念相符。
+
+即便在你已经理解的情形里，这也是顺手的工具。例如，定义两个\trManifold{} $M$ 与 $N$ 之积的一种办法，是把二者都切成坐标片，取坐标片的积，再把它们粘起来。但若我按一种方式切 $M$ 与 $N$，而你按另一种方式切，我们凭什么知道所得的积流形是「同一个」？我们可以含糊其辞，或者做一番关于加细覆盖的烦人论证；但我们也可以径直证明：它们都是「范畴的积」，从而典范地「相同」（即同构）。这个论证将在 \S1.2 中形式化。
+
+我们将要抽象的另一组概念，是「表现得像\trModule{}那样」的范畴。我们会想为新的概念定义\trKernel{}与\trCokernel，并且必须确保这些概念的表现如我们所期。这就把我们引向\trAbelianCategory{}的定义——它由\trGrothendieck{}在其 T\^ohoku 论文 [GrI] 中首次定义。
+
+在本章中，我们将对这些及相关概念作一个非正式的引介，盼能积累起恰到好处的熟悉感，以便在实践中从容使用。
+

@@ -1,0 +1,154 @@
+\section{作用量泛函}
+\label{sec:action-functional}
+
+对给定的对子 $(\ell,w)$，定义其作用量为
+\[
+  \mathcal A(\ell,w)=-\int w^*\omega,
+\]
+由此得到\emph{作用量泛函}
+\[
+  \mathcal A:
+  \widetilde\Omega(L_0,L_1;\ell_0)\longrightarrow\mathbb R.
+\]
+由 $G(L_0,L_1;\ell_0)$ 的定义可知，这个积分只依赖于
+$\Gamma$-等价类 $[\ell,w]$，因而下降为覆盖空间
+$\widetilde\Omega(L_0,L_1;\ell_0)$ 上一个良定义的泛函。
+
+\begin{proposition}
+\label{prop:action-functional-primitive}
+设
+\[
+  \pi:\widetilde\Omega(L_0,L_1;\ell_0)
+  \longrightarrow\Omega(L_0,L_1;\ell_0)
+\]
+为 $\Gamma$-\termCoveringProjection{}，\footnote{译者注：原书把映射 $\pi$
+称为“$\Gamma$-覆盖空间”；但式中波浪号空间才是覆盖空间，而 $\pi$ 是从它到
+底空间的投影，译文依所示映射的类型写作“$\Gamma$-覆盖投影”。}$\alpha$ 为
+$\Omega(L_0,L_1;\ell_0)$ 上由\eqref{eq:lagrangian-action-one-form}给出的
+作用 $1$-形式。则
+\begin{equation}
+  d\mathcal A=\pi^*\alpha.
+\label{eq:action-form-pullback}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+显然，
+\[
+  d\pi:
+  T_{[\ell,w]}\widetilde\Omega(L_0,L_1;\ell_0)
+  \longrightarrow T_\ell\Omega(L_0,L_1;\ell_0)
+\]
+诱导一个同构。取
+\[
+  [\ell,w]\in\widetilde\Omega(L_0,L_1;\ell_0),
+  \qquad
+  \widetilde\xi
+  \in T_{[\ell,w]}\widetilde\Omega(L_0,L_1;\ell_0).
+\]
+我们需要证明
+\begin{equation}
+  d\mathcal A([\ell,w])(\widetilde\xi)
+  =\alpha\bigl(d\pi(\widetilde\xi)\bigr).
+\label{eq:action-differential-tangent}
+\end{equation}
+记 $d\pi(\widetilde\xi)=\xi$。选取一条道路
+\[
+  u:(-\varepsilon,\varepsilon)
+  \longrightarrow\Omega(L_0,L_1;\ell_0),
+\]
+使得
+\begin{equation}
+  u(0)=\ell,
+  \qquad
+  \left.\frac{\partial u}{\partial s}\right|_{s=0}=\xi.
+\label{eq:path-variation-initial}
+\end{equation}
+再考虑 $u$ 经过
+$\widetilde u(0)=[\ell,w]$ 的\termLocalLifting{}
+\[
+  \widetilde u:(-\varepsilon,\varepsilon)
+  \longrightarrow\widetilde\Omega(L_0,L_1;\ell_0).
+\]
+稍微滥用记号，我们也把相应的映射记为
+\[
+  u:(-\varepsilon,\varepsilon)\times[0,1]\longrightarrow M.
+\]
+
+注意，\eqref{eq:action-differential-tangent}等价于
+\begin{equation}
+  \left.\frac{d}{ds}\right|_{s=0}
+  \mathcal A(\widetilde u(s))
+  =\int_0^1\omega\bigl(\dot\ell(t),\xi(t)\bigr)\,dt.
+\label{eq:action-differential-path}
+\end{equation}
+为了计算左端，需要把 $\widetilde u(r)$ 明确表示为对子
+$[\ell(r),w(r)]$，其中
+\[
+  \ell(r)=u(r,\mathord\cdot),
+  \qquad
+  w(r):[0,1]\times[0,1]\longrightarrow M
+\]
+是满足
+\[
+  w(r)(0,t)=\ell_0(t),
+  \qquad
+  w(r)(1,t)=u(r,t)
+\]
+的映射。注意，积分 $\int_w\omega$ 不依赖于 $w$ 的参数化，并且在保持端点
+不动的同伦下不变。借助这两种不变性，以对子 $[u(r),w(r)]$ 定义
+\[
+  \widetilde u:(-\varepsilon,\varepsilon)
+  \longrightarrow\widetilde\Omega(L_0,L_1;\ell_0),
+\]
+其中 $w(r)$ 是 $w$ 与 $u|_{[0,r]}$ 的拼接。（可以写出这个拼接的显式公式，
+但下文并不需要。）于是
+\footnote{译者注：原书在下一行把 $dt\,ds$ 置于同时包含
+$\int w^*\omega$ 与二重积分的右花括号之外，导致前一项也被错误地再乘积分微元。
+译文依拼接面积的类型，把新增面积直接写为
+$\int_{[0,r]\times[0,1]}u^*\omega$。}
+\begin{align*}
+  d\mathcal A([\ell,w])(\widetilde\xi)
+  &=-\left.\frac{d}{dr}\right|_{r=0}
+    \int_{w(r)}\omega\\
+  &=-\left.\frac{d}{dr}\right|_{r=0}
+    \left\{\int w^*\omega
+      +\int_{[0,r]\times[0,1]}u^*\omega\right\}\\
+  &=\left.\frac{d}{dr}\right|_{r=0}
+    \int_0^r\int_0^1
+      \omega\left(\frac{\partial u}{\partial t},
+        \frac{\partial u}{\partial s}\right)\,dt\,ds\\
+  &=\int_0^1
+      \omega\left(\frac{\partial u}{\partial t}(0,t),
+        \frac{\partial u}{\partial s}(0,t)\right)\,dt
+    =\int_0^1\omega\bigl(\dot\ell(t),\xi(t)\bigr)\,dt.
+\end{align*}
+最后一个等号使用了初值条件\eqref{eq:path-variation-initial}。因此我们证明了
+\eqref{eq:action-differential-path}，从而完成了
+\eqref{eq:action-form-pullback}的证明。\footnote{译者注：原书此处写成“完成
+(13.9.1) 的证明”，但本节尚未进入第 13.9 节；当前推导证明的是
+(13.5.19)，并由此得到命题所陈述的 (13.5.16)。译文依此补正结句所指。}
+\end{proof}
+
+这个命题立即给出 $\mathcal A$ 的\termCriticalPointSet{}的如下刻画。
+
+\begin{corollary}
+\label{cor:action-critical-points}
+$\mathcal A$ 的临界点集合 $\operatorname{Crit}(L_0,L_1;\ell_0)$ 由形如
+$[\widehat x,w]$ 的对子组成，其中 $\widehat x$ 是取值为
+$x\in L_0\cap L_1$ 的常值道路。此外，该集合在
+$G(L_0,L_1;\ell_0)$ 的作用下不变，因而构成 $L_0\cap L_1$ 上的一个
+$G(L_0,L_1;\ell_0)$-\termPrincipalBundle{}（或
+$G(L_0,L_1;\ell_0)$-\termTorsor{}）。
+\footnote{译者注：这里固定的是道路空间的单个连通分支
+$\Omega(L_0,L_1;\ell_0)$，因此严格说，底集只能包含常值道路
+$\widehat x$ 属于该分支的那些交点 $x$。原书无条件把底集写成全部
+$L_0\cap L_1$；这需要额外假设所有相关常值道路位于同一分支。这个分支问题在
+\eqref{eq:concrete-floer-novikov-data}中再次出现。}
+\end{corollary}
+
+对每个 $x\in L_0\cap L_1$，记
+\[
+  \pi_2(x;\ell_0)=\pi_2(L_0,L_1;x,\ell_0)
+\]
+为本推论中出现的这些 $w$ 的同伦类集合。

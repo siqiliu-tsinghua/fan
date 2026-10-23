@@ -1,0 +1,105 @@
+
+\section{对角态射的妙用，兼轻松搞定拟分离性}
+
+回想：大多数\trMorphism{}类在 \S8.1 的意义下都是「合理」的：它们 (i) 对\trComposition{}保持，(ii) 对\trBaseChange{}保持\footnote{原书此处作（presesrved），当系「preserved」之误，径改。——译者注}，(iii) 对目标局部，并且作为推论，(iv) 对\trProduct{}保持（\cref{ex:property-product-preserved}）。
+
+另一个有用的推论是：(v) 「合理」的\trMorphism{}类享有一条「\trCancellationProperty{}」（cancellation property）。这涉及那些\emph{对角态射}落在 $P$ 中的\trMorphism，也就是说，那些使得 $\delta_\pi\colon X\to X\times_Y X$ 落在 $P$ 中的\trMorphism{} $\pi\colon X\to Y$。我们把这个辅助的\trMorphism{}类称作 $P\delta$（「$P$-对角」）。
+
+\trCancellationTheorem{}是一个看上去很怪、却极为有用的结果。正如\cref{ex:diagonal-base-change-square}的对角—基变换图一样，这个结果出人意料地无处不在。
+
+\textbf{11.1.1.\ 关于态射性质 $P$ 的\trCancellationTheorem{}。}\ ——\ \emph{设 $P$ 是一个对\trBaseChange{}与\trComposition{}均保持的\trMorphism{}类。（每个「合理」的\trMorphism{}类都满足这一点，\S8.1。）设}
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+X \ar[rr, "\pi"] \ar[dr, "\tau"'] & & Y \ar[dl, "\rho"] \\
+& Z &
+\end{tikzcd}
+\]
+\emph{是概形的一个\trCommutativeDiagram。设 $\rho$ 属于 $P\delta$，$\tau$ 属于 $P$。那么 $\pi$ 属于 $P$。}
+
+下面的方图概括了这个重要的定理：
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+X \ar[rr, "\therefore\in P"] \ar[dr, "\in P"'] & & Y \ar[dl, "\in P\delta"] \\
+& Z &
+\end{tikzcd}
+\]
+
+代入不同的 $P$，你就会得到面貌迥异（而且并不显然）的推论，其中第一条由\mbox{练习~11.2.E}给出。（这里有几件你很容易证明的事实，它们可以被解读为\trCancellationTheorem{}在集合的\trCategory{} $\catSets$ 中的应用，从而有助于看清\trCancellationTheorem{}为何奏效。设 $\pi\colon X\to Y$ 与 $\rho\colon Y\to Z$ 都是集合的映射。若 $\rho\circ\pi$ 是\trInjectiveMap，则 $\pi$ 亦然；若 $\rho\circ\pi$ 是\trSurjectiveMap{}而 $\rho$ 是\trInjectiveMap，则 $\pi$ 是\trSurjectiveMap。）
+
+\textbf{11.1.A.（练习）}\quad 证明\trCancellationTheorem~11.1.1。可能的提示：解读并利用下面的方图。
+\[
+\begin{tikzcd}[row sep=3.4em, column sep=1.45em]
+X \ar[r, equals] \ar[rrrr, bend left=17, "\therefore\in P"] &
+X\times_Y Y \ar[r] \ar[dl] &
+X\times_Z Y \ar[r] \ar[dl] \ar[dr] &
+Z\times_Z Y \ar[r, equals] \ar[dr] &
+Y \\
+Y \ar[r, "\in P"] & Y\times_Z Y & & X \ar[r, "\in P"] & Z
+\end{tikzcd}
+\]
+
+(vi) 若 $P$ 是一个「合理」的类，则 $P\delta$ 也是：
+
+\textbf{11.1.2.\ \trhTheorem{}。}\ ——\ \emph{若 $P$ 是一个「合理」的\trMorphism{}类，那么由对角落在 $P$ 中的那些\trMorphism{}组成的类 $P\delta$ 也是一个「合理」的类。}
+
+\emph{证明。}\ 我们验证：$P\delta$ 满足「合理性的三公理」。
+
+\textbf{11.1.B.（练习）}\quad 证明：「$P\delta$ 对\trComposition{}保持」。提示：解读并利用下面的方图。
+\[
+\begin{tikzcd}[row sep=3em, column sep=2.9em]
+X \ar[r, "\in P"] \ar[rr, bend left=28, "\therefore\in P"] &
+X\times_Y X \ar[r] \ar[d] & X\times_Z X \ar[d] \\
+& Y \ar[r, "\in P"] & Y\times_Z Y
+\end{tikzcd}
+\]
+
+\textbf{11.1.C.（练习）}\quad 证明：「$P\delta$ 对\trBaseChange{}保持」。提示：设下面的 (a) 是\trCartesianDiagram，证明 (b) 也是\trCartesianDiagram。
+\[
+\text{（a）}\quad
+\begin{tikzcd}[row sep=2.4em, column sep=2.9em]
+\mathsf{V} \ar[r] \ar[d] & \mathsf{W} \ar[d] \\
+X \ar[r] & Y
+\end{tikzcd}
+\qquad\qquad
+\text{（b）}\quad
+\begin{tikzcd}[row sep=2.4em, column sep=2.9em]
+\mathsf{V} \ar[r] \ar[d] & \mathsf{V}\times_{\mathsf{W}}\mathsf{V} \ar[d] \\
+X \ar[r] & X\times_Y X
+\end{tikzcd}
+\]
+
+\textbf{11.1.D.（练习）}\quad 证明：「$P\delta$ 对目标局部」。提示：设我们有 $Y$ 的一个覆盖 $\{\mathsf{U}_i\to Y\}$，使得我们有一个\trCartesianDiagram{} (a)。那么我们就有\trCartesianDiagram{} (b)。
+\[
+\text{（a）}\quad
+\begin{tikzcd}[row sep=2.4em, column sep=2.7em]
+\mathsf{V}_i \ar[r, hook, "\in P\delta"] \ar[d, hook] & \mathsf{U}_i \ar[d, hook] \\
+X \ar[r] & Y
+\end{tikzcd}
+\qquad\qquad
+\text{（b）}\quad
+\begin{tikzcd}[row sep=2.4em, column sep=3.1em]
+\mathsf{V}_i \ar[r, "\therefore\in P"] \ar[d, hook] & \mathsf{V}_i\times_{\mathsf{U}_i}\mathsf{V}_i \ar[d] \\
+X \ar[r] & X\times_Y X
+\end{tikzcd}
+\]
+\hfill$\square$
+
+我们继续罗列「合理」的\trMorphism{}类的有用性质。
+
+(vii) 最后，若你有两个从 $X$ 出发、具有某种形态的\trMorphism，下一道练习将告诉你：还需要什么，才能保证到积上的那个映射也具有同样的形态。这一次，「看图证明」就留给你自己完成。
+
+\textbf{11.1.E.（练习）}\quad 设 $P$ 是一个「合理」的\trMorphism{}类。设 $\rho\colon X\to Y$ 与 $\sigma\colon X\to Z$ 都是 $S$-\trScheme{}之间的、属于类 $P$ 的\trMorphism，而 $X\to S$ 属于 $P\delta$。证明：$(\rho,\sigma)\colon X\to Y\times_S Z$ 也属于类 $P$。（一个应用见\mbox{练习~11.2.A}。）
+
+\textbf{11.1.F.}\ \hard\ \textbf{（练习）}\quad 证明：\trFinitelyPresented{}态射构成一个「合理」的\trMorphism{}类。
+
+\textbf{11.1.3.\ \trhExample{}：\trMonomorphism{}。}\quad 回想：\trMorphism{} $\pi\colon X\to Y$ 是\trMonomorphism，当且仅当\trDiagonalMorphism{} $\delta_\pi\colon X\to X\times_Y X$ 是一个\trIsomorphism（\cref{ex:monomorphism-diagonal-isomorphism}）。由于\trIsomorphism{}构成一个「合理」的\trMorphism{}类，我们便立即证明了\trMonomorphism{}也构成一个「合理」类（还顺带解掉了\cref{ex:composite-of-monomorphisms}，并证明了\trMonomorphism{}对\trBaseChange{}保持）。
+
+\textbf{11.1.4.\ 重新定义：拟分离\trMorphism{}。}
+
+我们（现在）说：\trMorphism{} $\pi\colon X\to Y$ 是\textbf{\trQuasiSeparated}的，若\trDiagonalMorphism{} $\delta_\pi\colon X\to X\times_Y X$ 是\trQuasicompact{}的。
+
+\textbf{11.1.G.（练习）}\quad 证明这与我们早先的拟分离定义（\S8.3.1）相一致：证明 $\pi\colon X\to Y$ 是\trQuasiSeparated{}的，当且仅当对 $Y$ 的任意\trAffine\trOpenSet{} $\Spec A$，以及 $X$ 中映入 $\Spec A$ 的两个\trAffine\trOpenSubset{} $\mathsf{U}$ 与 $\mathsf{V}$，交 $\mathsf{U}\cap\mathsf{V}$ 总是\emph{有限}多个\trAffine\trOpenSet{}之并。（可能的提示：与命题~11.2.13 相对照。另一个可能的提示：对角—基变换图，\cref{ex:diagonal-base-change-square}。）
+
+\textbf{11.1.5.}\ 由于\trQuasicompact{}态射构成一个「合理」的类（\S10.4.E），定理~11.1.2 蕴涵：\trQuasiSeparated{}态射竟也构成一个「合理」类！特别地，\trQuasiSeparated{}态射对\trComposition{}与\trBaseChange{}保持，并且这个概念是对目标局部的。
+
+\textbf{11.1.6.}\ 以上这番讨论出奇地置身于几何之外。为了请几何登场，我们现在更仔细地端详对角态射——它可不是随便哪一类\trMorphism。

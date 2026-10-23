@@ -1,0 +1,206 @@
+\section{拉格朗日作用量泛函及其第一变分}
+\stfhIndex{I180}{la^ge^lang^ri^zuo^yong^liang^fan^han}{拉格朗日作用量泛函（Lagrangian action functional）}
+\label{sec:lagrangian-action-first-variation}
+
+我们先在 $\mathbb R^n$ 上作说明，然后转向一般位形空间 $M$。我们称 $\mathbb R^n$ 为\emph{（位形）空间}，称 $\mathbb R\times\mathbb R^n$ 为\emph{时空}。记 $q^i$（$i=1,\ldots,n$）为 $\mathbb R^n$ 的标准坐标函数，并以
+\[
+  (q^1,\ldots,q^n,v^1,\ldots,v^n)
+\]
+表示 $T\mathbb R^n\cong\mathbb R^n\times\mathbb R^n$ 的相应\emph{典范坐标}。尤其在物理文献中，通常改将典范坐标记为
+\[
+  (q^1,\ldots,q^n,\dot q^1,\ldots,\dot q^n).
+\]
+只要没有混淆之虞，我们就采用这一约定。
+
+记 $\gamma:[t_0,t_1]\to\mathbb R^n$ 为一条连续道路，并把它看作一个运动粒子的轨迹。在坐标中可写为
+\[
+  \gamma(t)=(q^1(t),\ldots,q^n(t)),
+  \qquad q^i(t)=q^i(\gamma(t)).
+\]
+我们称 $[t_0,t_1]$ 为该道路的定义域，并记
+\[
+  \mathcal P=\mathcal P_{t_0}^{t_1}(\mathbb R^n)
+  =\{\gamma\mid\operatorname{Dom}(\gamma)=[t_0,t_1]\}.
+\]
+
+在经典力学的拉格朗日表述中，相关的作用量泛函称为\emph{拉格朗日作用量泛函}，其形式为
+\stfhIndex{I050}{zuo^yong^liang^fan^han}{作用量泛函（action functional）}\stfhSubIndex{I052}{zuo^yong^liang^fan^han}{作用量泛函（action functional）}{la^ge^lang^ri^zuo^yong^liang^fan^han}{拉格朗日作用量泛函（Lagrangian action functional）}
+\[
+  \Phi(\gamma)=\int_{t_0}^{t_1}L(t,\gamma,\dot\gamma)\,dt,
+\]
+其中函数
+\[
+  L=L(t,q,\dot q):\mathbb R\times\mathbb R^n\times\mathbb R^n\to\mathbb R
+\]
+称为拉格朗日量。
+
+\begin{example}
+\label{ex:energy-and-length}
+考虑时间区间 $[t_0,t_1]$ 上 $\mathbb R^n$ 中的一个运动，即映射 $\gamma:[t_0,t_1]\to\mathbb R^n$。
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{能量泛函}定义为
+  \[
+    E(\gamma)=\frac12\int_{t_0}^{t_1}|\dot\gamma|^2\,dt.
+  \]
+  \item 道路 $\gamma:[t_0,t_1]\to\mathbb R^n$ 的长度为
+  \[
+    L(\gamma)=\int_{t_0}^{t_1}|\dot\gamma|\,dt.
+  \]
+\end{enumerate}
+\end{example}
+
+与力学文献一样，我们用 $\Delta\gamma$ 表示\emph{无穷小变分}。在较为形式化的表述中，注意 $\mathbb R^n$ 在给定点 $x$ 处的切空间与 $\mathbb R^n$ 自身典范等同。因此，道路 $\gamma$ 处切空间中的变分 $h=\Delta\gamma\in T_\gamma\mathcal P$ 可以写成映射
+\[
+  h:[t_0,t_1]\to\mathbb R^n.
+\]
+给线性空间
+\[
+  T_\gamma\mathcal P_{t_0}^{t_1}(\mathbb R^n)
+  \cong\Gamma(\gamma^*(T\mathbb R^n))
+\]
+取定一个范数后，我们用 $|h|$ 表示 $h$ 关于该范数的模。下面定义是有限维情形中标准定义在当前\emph{无限维}情形下的类似物；我们不深入讨论如何给它作精确的数学表述。精确定义可参阅例如 (AMR88)。
+
+\begin{definition}
+\label{def:functional-differentiability}
+设 $\Phi$ 如上。
+\begin{enumerate}[label=(\arabic*)]
+  \item 若存在一个线性映射 $F(\gamma)$，使得
+  \begin{equation}\label{eq:differentiable-functional}
+    \Phi(\gamma+\Delta\gamma)-\Phi(\gamma)
+    =F(\gamma)\cdot\Delta\gamma+R,
+  \end{equation}
+  其中 $R=R(\gamma,h)=O(|h|^2)$，则称泛函 $\Phi$ 在 $x$ 处\emph{可微}。
+  \item 若上述条件成立，则称 $F(\gamma)$ 为 $\Phi$ 在 $\gamma$ 处的\emph{微分}，并记为 $d\Phi(\gamma)$。
+  \item 若一条道路 $\gamma$ 对所有变分 $h$ 都满足 $F(\gamma)\cdot h=0$，则称 $\gamma$ 为\emph{极值道路}。
+\end{enumerate}
+\end{definition}
+
+现在用拉格朗日密度 $L$ 求微分 $F(\gamma)\cdot h$ 的公式。给定 $h:[t_0,t_1]\to\mathbb R^n$，把它看成 $\gamma$ 的一个变分（或切向量），则
+\begin{align*}
+  F(\gamma)\cdot h
+  &=\left.\frac d{ds}\right|_{s=0}\Phi(\gamma+sh)\\
+  &=\left.\frac d{ds}\right|_{s=0}
+    \int_{t_0}^{t_1}L(t,q+sh,\dot q+s\dot h)\,dt\\
+  &=\int_{t_0}^{t_1}\left.\frac d{ds}\right|_{s=0}
+    L(t,q+sh,\dot q+s\dot h)\,dt\\
+  &=\int_{t_0}^{t_1}\left(
+    \frac{\partial L}{\partial q}\cdot h
+    +\frac{\partial L}{\partial\dot q}\cdot\dot h
+  \right)dt.
+\end{align*}
+对第二项作分部积分，得到
+\[
+  \int_{t_0}^{t_1}\frac{\partial L}{\partial\dot q}\cdot\dot h\,dt
+  =\left.\frac{\partial L}{\partial\dot q}\cdot h\right|_{t_0}^{t_1}
+  -\int_{t_0}^{t_1}\frac d{dt}\left(\frac{\partial L}{\partial\dot q}\right)\cdot h\,dt.
+\]
+因此
+\begin{equation}\label{eq:first-variation-lagrangian}
+  F(\gamma)\cdot h
+  =\int_{t_0}^{t_1}\left(
+    \frac{\partial L}{\partial q}
+    -\frac d{dt}\left(\frac{\partial L}{\partial\dot q}\right)
+  \right)\cdot h\,dt
+  +\left.\frac{\partial L}{\partial\dot q}\cdot h\right|_{t_0}^{t_1}.
+\end{equation}
+
+为了用拉格朗日密度函数 $L$ 描述 $\Phi$ 的极值道路条件，我们要求边界项，也就是式~\eqref{eq:first-variation-lagrangian} 的第二项消失。在力学中通常有以下两种实现方式。
+
+\medskip
+\noindent\textbf{1. 两点边界条件。}
+\stfhIndex{I294}{liang^dian^bian^jie^tiao^jian}{两点边界条件（two-point boundary condition）}
+定义 $\mathcal P_{t_0}^{t_1}(\mathbb R^n)$ 的子集
+\begin{equation}\label{eq:two-point-path-space}
+  \mathcal P_{t_0}^{t_1}(\mathbb R^n;q_0,q_1)
+  =\{\gamma\in\mathcal P_{t_0}^{t_1}(\mathbb R^n)
+  \mid q(t_0)=q_0,\ q(t_1)=q_1\},
+\end{equation}
+由满足所谓\emph{两点边界条件}的道路组成。在这种情况下，变分 $h=\Delta\gamma$ 满足
+\[
+  h(t_0)=0=h(t_1).
+\]
+对这样的 $\gamma$ 和 $h$，有
+\begin{align*}
+  \left.\frac{\partial L}{\partial\dot q}\cdot h\right|_{t_0}^{t_1}
+  &=\frac{\partial L}{\partial\dot q}(t_1,\gamma(t_1),\dot\gamma(t_1))\cdot h(t_1)\\
+  &\quad-\frac{\partial L}{\partial\dot q}(t_0,\gamma(t_0),\dot\gamma(t_0))\cdot h(t_0)
+  =0-0=0.
+\end{align*}
+因此，若把 $\Phi$ 限制在子集 $\mathcal P_{t_0}^{t_1}(\mathbb R^n;q_0,q_1)$ 上，相应限制泛函的第一变分为
+\begin{equation}\label{eq:first-variation-two-point}
+  F(\gamma)\cdot h
+  =\int_{t_0}^{t_1}\left(
+    \frac{\partial L}{\partial q}
+    -\frac d{dt}\left(\frac{\partial L}{\partial\dot q}\right)
+  \right)\cdot h\,dt.
+\end{equation}
+由此便导出了\emph{运动方程}。
+
+\begin{proposition}
+\label{prop:euler-lagrange-two-point}
+设 $q_0,q_1$ 是 $\mathbb R^n$ 中两个固定点。对满足两点边界条件
+\[
+  \gamma(0)=q_0,\qquad\gamma(1)=q_1
+\]
+的道路 $\gamma$，考虑泛函
+\[
+  \Phi(\gamma)=\int_{t_0}^{t_1}L(t,\gamma,\dot\gamma)\,dt.
+\]
+则 $\gamma$ 是极值道路，当且仅当它满足
+\begin{equation}\label{eq:euler-lagrange}
+  \frac{\partial L}{\partial q^i}
+  -\frac d{dt}\left(\frac{\partial L}{\partial\dot q^i}\right)=0,
+  \qquad i=1,\ldots,n.
+\end{equation}
+\end{proposition}
+
+下面讨论另一种自然边界条件，即周期边界条件。
+
+\medskip
+\noindent\textbf{2. 周期边界条件。}
+\stfhIndex{I224}{zhou^qi^bian^jie^tiao^jian}{周期边界条件（periodic boundary condition）}
+考虑子集
+\[
+  \mathcal L_{t_0}^{t_1}(\mathbb R^n)
+  =\{\gamma\in\mathcal P_{t_0}^{t_1}(\mathbb R^n)
+  \mid\gamma(t_0)=\gamma(t_1),\ \dot\gamma(t_0)=\dot\gamma(t_1)\}.
+\]
+相应的变分 $h=\Delta$ 将满足\emph{周期边界条件}
+\[
+  h(t_0)=h(t_1).
+\]
+此外，\emph{只要密度函数 $L=L(t,q,\dot q)$ 满足时间周期条件}
+\begin{equation}\label{eq:lagrangian-time-periodic}
+  L(t_0,\cdot,\cdot)\equiv L(t_1,\cdot,\cdot),
+\end{equation}
+式~\eqref{eq:first-variation-lagrangian} 的边界项便再次消失；但这一次是因为
+\[
+  \frac{\partial L}{\partial\dot q}(t_1,\gamma(t_1),\dot\gamma(t_1))\cdot h(t_1)
+  =\frac{\partial L}{\partial\dot q}(t_0,\gamma(t_0),\dot\gamma(t_0))\cdot h(t_0).
+\]
+总结如下。
+
+\begin{proposition}
+\label{prop:euler-lagrange-periodic}
+设 $L$ 满足式~\eqref{eq:lagrangian-time-periodic}。把泛函
+\[
+  \Phi(\gamma)=\int_{t_0}^{t_1}L(t,\gamma,\dot\gamma)\,dt
+\]
+限制到满足周期边界条件
+\[
+  \gamma(t_0)=\gamma(t_1),\qquad\dot\gamma(t_0)=\dot\gamma(t_1)
+\]
+的道路 $\gamma$ 上。则 $\gamma$ 是极值道路，当且仅当它满足式~\eqref{eq:euler-lagrange}。
+\end{proposition}
+
+方程~\eqref{eq:euler-lagrange} 称为 $L$ 的欧拉--拉格朗日方程。\stfhIndex{I120}{ou^la^la^ge^lang^ri^fang^cheng}{欧拉--拉格朗日方程（Euler–Lagrange equation）}注意，它关于变量 $\gamma(t)=(q^1(t),\ldots,q^n(t))$ 是二阶常微分方程。
+
+\begin{remark}
+\label{rem:euler-lagrange-covariance}
+\emph{只要使用 $T\mathbb R^n\cong\mathbb R^n\times\mathbb R^n$ 的相应典范坐标}，上述讨论就与坐标 $(q^1,\ldots,q^n)$ 的选择无关，因而 $L$ 的欧拉--拉格朗日方程也与坐标无关（用物理术语说，是\emph{协变的}）。换言之，若 $(Q^1,\ldots,Q^n)$ 是 $\mathbb R^n$ 的另一套坐标系，则相应的欧拉--拉格朗日方程具有同样的形式
+\[
+  \frac{\partial L}{\partial Q^i}
+  -\frac d{dt}\left(\frac{\partial L}{\partial\dot Q^i}\right)=0,
+  \qquad i=1,\ldots,n.
+\]
+\end{remark}

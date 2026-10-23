@@ -1,0 +1,304 @@
+
+\section{两个引理的证明：第一个}
+\label{sec:proof-first}
+
+让我们终于来证明这两条引理了。
+
+\begin{proof}[引理~9.4.8 的证明]
+为了应用\cref{sec:operator-frho}中所建立的 $F_{\rho}$ 的公式，我们需要一个断言下述性质的结果：引理~9.4.8 所宣告的性质在算子的复合下是稳定的。这件事由下面的引理来打理，其中 $\varphi$ 与 $\psi$ 表示\trBanachSpace{}之间的、不必然线性但可微的映射（我们将常常用“算子”这个词来指称这类对象）。
+
+\begin{lemma}\label{thm:dpsi-dphi-compose}
+设 $G$、$H$ 与 $K$ 是\trBanachSpace{}，并设 $\varphi\colon G\to H$ 与 $\psi\colon H\to K$ 是可微映射。我们假设存在一个 $r_{0}>0$ 与诸常数 $k_{i}>0$（对 $i=1,\dots,4$），使得：\footnote{译注：原书本句印作 “We suppose there that exist…”（there that 语序滑写），显见排印笔误，径顺不改义。——译者注}
+\begin{enumerate}[label=(\arabic*)]
+\item 对每个 $Z\in\overline{B}(0,r_{0})\subset G$，$\bigl\|(d\varphi)_{Z}-(d\varphi)_{0}\bigr\|^{\mathrm{op}}\le k_{1}\|Z\|$。
+\item $\bigl\|(d\varphi)_{0}\bigr\|^{\mathrm{op}}\le k_{2}$。
+\item 对每个 $Z\in\overline{B}(0,r_{0})\subset G$，$\bigl\|(d\psi)_{\varphi(Z)}-(d\psi)_{\varphi(0)}\bigr\|^{\mathrm{op}}\le k_{3}\|\varphi(Z)-\varphi(0)\|$。
+\item $\bigl\|(d\psi)_{\varphi(0)}\bigr\|^{\mathrm{op}}\le k_{4}$。
+\end{enumerate}
+那么存在一个 $k>0$，它只依赖于诸 $k_{i}$ 与 $r_{0}$，使得对每个 $Z\in\overline{B}(0,r_{0})$，我们有\footnote{译注：下一式原书印作 $\bigl\|(d\psi)_{Z}\circ\varphi-(d\psi)_{0}\circ\varphi\bigr\|^{\mathrm{op}}$；按 $\psi\colon H\to K$ 与 $Z\in G$，$(d\psi)_{Z}$ 不合型，而本证明首行所算者正是 $\bigl(d(\psi\varphi)\bigr)_{Z}$，疑此处下标 $Z$ 与 $0$ 应属复合映射的\trDifferential{} $d(\psi\circ\varphi)$，系排印之误。此处径改。——译者注}
+\[
+\bigl\|d(\psi\circ\varphi)_{Z}-d(\psi\circ\varphi)_{0}\bigr\|^{\mathrm{op}}\le k\|Z\|\text{。}
+\]
+\end{lemma}
+
+我们将把这个引理应用于依赖于参数 $\rho$ 的算子 $\varphi$ 与 $\psi$。这正是我们在假设中列入关于这些算子的\trDifferential{}的范数的诸条件的原因：我们想要得到一个不依赖于 $\rho$ 的常数 $k$。
+
+\begin{proof}[\cref{thm:dpsi-dphi-compose}的证明]
+设 $v\in G$。我们有
+\[
+\begin{aligned}
+\bigl\|\bigl(d(\psi\varphi)\bigr)_{Z}(v)-\bigl(d(\psi\varphi)\bigr)_{0}(v)\bigr\|&=\bigl\|(d\psi)_{\varphi(Z)}\bigl((d\varphi)_{Z}(v)\bigr)-(d\psi)_{\varphi(0)}\bigl((d\varphi)_{0}(v)\bigr)\bigr\|\\
+&\le\bigl\|(d\psi)_{\varphi(Z)}\bigl((d\varphi)_{Z}(v)\bigr)-(d\psi)_{\varphi(0)}\bigl((d\varphi)_{Z}(v)\bigr)\bigr\|\\
+&\qquad+\bigl\|(d\psi)_{\varphi(0)}\bigl((d\varphi)_{Z}(v)\bigr)-(d\psi)_{\varphi(0)}\bigl((d\varphi)_{0}(v)\bigr)\bigr\|\\
+&\le k_{3}\|\varphi(Z)-\varphi(0)\|\,\bigl\|(d\varphi)_{Z}(v)\bigr\|\\
+&\qquad+\bigl\|(d\psi)_{\varphi(0)}\bigr\|\,\bigl\|(d\varphi)_{Z}(v)-(d\varphi)_{0}(v)\bigr\|\\
+&\le k_{3}\sup_{r\in[0,1]}\bigl\|(d\varphi)_{rZ}\bigr\|\,\|Z\|\,\bigl\|(d\varphi)_{Z}\bigr\|\,\|v\|+k_{4}k_{1}\|Z\|\,\|v\|\text{。}
+\end{aligned}
+\]
+对每个 $r\in[0,1]$，\footnote{译注：上一链式第 2 行的第二项原书印作 $(d\varphi)_{0}(v)$，脱去 $(d\psi)_{\varphi(0)}$ 外壳；按上面第一行的拆分，疑应 $(d\psi)_{\varphi(0)}\bigl((d\varphi)_{0}(v)\bigr)$。此处径改。——译者注}
+\[
+\bigl\|(d\varphi)_{rZ}\bigr\|\le\bigl\|(d\varphi)_{rZ}-(d\varphi)_{0}\bigr\|+\bigl\|(d\varphi)_{0}\bigr\|
+\le k_{1}r\|Z\|+k_{2}\le k_{1}\|Z\|+k_{2}\text{。}
+\]
+于是我们得到
+\[
+\begin{aligned}
+\bigl\|\bigl(d(\psi\circ\varphi)\bigr)_{Z}(v)-\bigl(d(\psi\circ\varphi)\bigr)_{0}(v)\bigr\|&\le k_{3}(k_{1}\|Z\|+k_{2})^{2}\|Z\|\,\|v\|+k_{4}k_{1}\|Z\|\,\|v\|\\
+&\le\bigl(k_{3}(k_{1}r_{0}+k_{2})^{2}+k_{4}k_{1}\bigr)\|Z\|\,\|v\|\text{，}
+\end{aligned}
+\]
+这正是我们所要证明的。
+\end{proof}
+
+为了结束引理~9.4.8 的证明，只需应用这条引理：
+\begin{itemize}
+\item 首先取 $\varphi=i_{\rho}$，$\psi=\mathrm{Id}\times\widetilde{\scr{F}}_{\rho}$；
+\item 然后取 $\varphi=(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})i_{\rho}$，$\psi=p_{\rho}$……
+\end{itemize}
+前提是我们先来验证这些算子 $\varphi$、$\psi$ 满足必要的诸条件（常数不依赖于 $\rho$）。让我们证明情况确实如此。
+
+\begin{itemize}
+\item 对于 $\varphi=i_{\rho}$。这个映射是线性的，因而等于它自己的导数，即 $(di_{\rho})_{Z}=i_{\rho}$，从而也有 $(di_{\rho})_{Z}-(di_{\rho})_{0}=0$，故假设 (1) 得到满足。我们还已看到，$\|i_{\rho}\|^{\mathrm{op}}\le C_{1}$，其中常数 $C_{1}$ 不依赖于 $\rho$，故 (2) 成立。
+
+\item 对于 $\psi=\mathrm{Id}\times\widetilde{\scr{F}}_{\rho}$。由于 $\varphi(0)=i_{\rho}(0)=0$，只需验证：对每个 $X\in i_{\rho}\bigl(\overline{B}(0,r_{0})\bigr)\subset B(0,C_{1}r_{0})$，我们都有
+\[
+\bigl\|(d\psi)_{X}-(d\psi)_{0}\bigr\|^{\mathrm{op}}\le k_{3}\|X\|\qquad\text{与}\qquad\bigl\|(d\psi)_{X}\bigr\|^{\mathrm{op}}\le k_{4}
+\]
+（诸常数 $k_{3}$ 与 $k_{4}$ 不依赖于 $\rho$）。我们还有
+\[
+\bigl\|\bigl(d(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})\bigr)_{X}-\bigl(d(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})\bigr)_{0}\bigr\|^{\mathrm{op}}=\bigl\|(d\widetilde{\scr{F}}_{\rho})_{X}-(d\widetilde{\scr{F}}_{\rho})_{0}\bigr\|
+\]
+以及
+\[
+\bigl\|\bigl(d(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})\bigr)_{0}\bigr\|^{\mathrm{op}}\le 1+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{0}\bigr\|^{\mathrm{op}}\text{。}
+\]
+于是，只需验证条件 (3) 与 (4) 对 $\psi=\widetilde{\scr{F}}_{\rho}$ 得到满足。我们提醒一下，
+\[
+\widetilde{\scr{F}}_{\rho}(X)=\Bigl(\frac{\partial}{\partial s}+\widetilde{J}\frac{\partial}{\partial t}+\operatorname{grad}H_{t}\Bigr)\widetilde{\exp}(w_{\rho},X)=\widetilde{\scr{F}}\bigl(\widetilde{\exp}(w_{\rho},X)\bigr)
+\]
+从而
+\[
+(d\widetilde{\scr{F}}_{\rho})_{X}(v)=\bigl(d\widetilde{\scr{F}}\bigr)_{\widetilde{\exp}(w_{\rho},X)}\bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v)\bigr)\text{。}
+\]
+$(d\widetilde{\scr{F}})_{u}$ 的计算（其中 $u=\widetilde{\exp}(w_{\rho},X)$）与在\cref{sec:linearization-floer}中所进行的计算完全一样，并且给出
+\[
+(d\widetilde{\scr{F}})_{u}(Y)=\frac{\partial Y}{\partial s}+D_{1}\widetilde{J}_{(u,\partial u/\partial t)}(Y)+\widetilde{J}\Bigl(u,\frac{\partial Y}{\partial t}\Bigr)+(d\operatorname{grad}H)_{u}(Y)
+\]
+（我们回顾一下，$\widetilde{J}$ 是前文定义的 $J$ 到 $W\times\RR^{m}$ 上的扩张，因而对第二个变量是线性的）。于是，导数 $(d\widetilde{\scr{F}}_{\rho})_{X}(v)$ 是四项之和：
+\[
+\begin{aligned}
+(d\widetilde{\scr{F}}_{\rho})_{X}(v)&=\frac{\partial}{\partial s}\Bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v)\Bigr)&&\text{term}_{1}\\
+&\quad+D_{1}\widetilde{J}_{\bigl(\widetilde{\exp}(w_{\rho},X),\frac{\partial}{\partial t}\widetilde{\exp}(w_{\rho},X)\bigr)}\bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v)\bigr)&&\text{term}_{2}\\
+&\quad+\widetilde{J}\Bigl(\widetilde{\exp}(w_{\rho},X),\frac{\partial}{\partial t}\bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v)\bigr)\Bigr)&&\text{term}_{3}\\
+&\quad+\bigl(d\operatorname{grad}H_{t}\bigr)_{\widetilde{\exp}(w_{\rho},X)}\bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v)\bigr)\text{。}&&\text{term}_{4}
+\end{aligned}
+\]
+
+让我们改写这四项中的每一项，即把那些含 $\partial/\partial s$ 与 $\partial/\partial t$ 的项展开。为了澄清记号，我们把 $\widetilde{J}(p,\cdot)$ 写成 $\widetilde{J}_{p}(\cdot)$，把 $D_{1}\widetilde{J}_{(p,\cdot)}(\cdot)$ 写成 $D_{1}\widetilde{J}_{p}(\cdot,\cdot)$（这些映射对它们的每一个变元都是线性的）。于是这四项为
+\[
+\begin{aligned}
+\mathrm{term}_{1}&=D_{1}D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial w_{\rho}}{\partial s},v\Bigr)+D_{2}D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial X}{\partial s},v\Bigr)\\
+&\qquad+D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial v}{\partial s}\Bigr)\text{，}
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\mathrm{term}_{2}&=D_{1}\widetilde{J}_{\widetilde{\exp}(w_{\rho},X)}\Bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v),D_{1}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial w_{\rho}}{\partial t}\Bigr)\Bigr)\\
+&\qquad+D_{1}\widetilde{J}_{\widetilde{\exp}(w_{\rho},X)}\Bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v),D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial X}{\partial t}\Bigr)\Bigr)\text{，}
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\mathrm{term}_{3}&=\widetilde{J}_{\widetilde{\exp}(w_{\rho},X)}\Bigl(D_{1}D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial w_{\rho}}{\partial t},v\Bigr)\\
+&\qquad+D_{2}D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial X}{\partial t},v\Bigr)\Bigr)+\widetilde{J}_{\widetilde{\exp}(w_{\rho},X)}\Bigl(D_{2}\widetilde{\exp}(w_{\rho},X)\Bigl(\frac{\partial v}{\partial t}\Bigr)\Bigr)\text{，}
+\end{aligned}
+\]
+\[
+\mathrm{term}_{4}=\bigl(d\operatorname{grad}H_{t}\bigr)_{\widetilde{\exp}(w_{\rho},X)}\bigl(D_{2}\widetilde{\exp}(w_{\rho},X)(v)\bigr)\text{。}
+\]
+
+尽管这个公式很长，条件 (3) 与 (4) 却可以相当轻易地得到验证。我们取定一对 $(s,t)\in\RR\times S^{1}$，并把\cref{thm:a-b-estimates}应用于某些线性映射 $A(p,X,\cdot)$ 或双线性映射 $B(p,X,\cdot,\cdot)$，其中 $p=w_{\rho}(s,t)$ 而 $X=X(s,t)$。这些 $A$ 与 $B$ 就是上面诸项中出现的那些映射，即：
+\begin{itemize}
+\item[--] 线性映射：
+\begin{itemize}
+\item 首先是 $D_{2}\widetilde{\exp}(p,X)(\cdot)$；
+\item 其次是 $\widetilde{J}_{\widetilde{\exp}(p,X)}\bigl(D_{2}\widetilde{\exp}(p,X)(\cdot)\bigr)$；
+\item 最后是 $\bigl(d\operatorname{grad}H_{t}\bigr)_{\widetilde{\exp}(p,X)}\bigl(D_{2}\widetilde{\exp}(p,X)(\cdot)\bigr)$。
+\end{itemize}
+\item[--] 双线性映射：
+\begin{itemize}
+\item $D_{i}D_{2}\widetilde{\exp}(p,X)(\cdot,\cdot)$；
+\item 还有 $D_{1}\widetilde{J}_{\widetilde{\exp}(p,X)}\bigl(D_{2}\widetilde{\exp}(p,X)(\cdot),D_{i}\widetilde{\exp}(p,X)(\cdot)\bigr)$；
+\item 以及 $\widetilde{J}_{\widetilde{\exp}(p,X)}\bigl(D_{i}D_{2}\widetilde{\exp}(p,X)(\cdot,\cdot)\bigr)$（对 $i=1,2$）。
+\end{itemize}
+\end{itemize}
+
+我们对它们应用\cref{thm:a-b-estimates}，以便估计\trEuclidean{}范数（对取定的 $(s,t)$）：
+\[
+\bigl\|\bigl((d\widetilde{\scr{F}}_{\rho})_{X}(v)-(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr)(s,t)\bigr\|\text{。由于}
+\]
+\[
+X\in B(0,C_{1}r_{0})\subset W^{1,p}(\RR\times S^{1};\RR^{m})\text{，}
+\]
+对每对 $(s,t)\in\RR\times S^{1}$，我们都有
+\[
+\|X(s,t)\|\le\|X\|_{L^{\infty}}\le k\|X\|_{W^{1,p}}\le kC_{1}r_{0}=r_{1}\text{，}
+\]
+这意味着我们可以使用\cref{thm:a-b-estimates}，而且通过这条引理得到的诸常数将不依赖于 $(s,t)$（这就允许我们从此把 $(s,t)$ 从记号中略去）。我们用到了由\cref{thm:sobolev-estimates}所给出的连续包含 $W^{1,p}\subset L^{\infty}$。于是我们得到
+\[
+\begin{aligned}
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{X}(v)-(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr\|&\le C\Bigl(\|X\|\Bigl\|\frac{\partial w_{\rho}}{\partial s}\Bigr\|\,\|v\|+\Bigl\|\frac{\partial X}{\partial s}\Bigr\|\,\|v\|\\
+&\qquad+\|X\|\Bigl\|\frac{\partial v}{\partial s}\Bigr\|\Bigr)&&\text{term}_{1}\\
+&\quad+C\Bigl(\|X\|\,\|v\|\Bigl\|\frac{\partial w_{\rho}}{\partial t}\Bigr\|+\|v\|\Bigl\|\frac{\partial X}{\partial t}\Bigr\|\Bigr)&&\text{term}_{2}\\
+&\quad+C\Bigl(\|X\|\Bigl\|\frac{\partial w_{\rho}}{\partial t}\Bigr\|\,\|v\|+\Bigl\|\frac{\partial X}{\partial t}\Bigr\|\,\|v\|\\
+&\qquad+\|X\|\Bigl\|\frac{\partial v}{\partial t}\Bigr\|\Bigr)&&\text{term}_{3}\\
+&\quad+C\|X\|\,\|v\|\text{。}&&\text{term}_{4}
+\end{aligned}
+\]
+
+但是 $w_{\rho}$ 对 $s$ 与 $t$ 的偏导数的范数是一致\trBounded{}的——既对 $(s,t)$ 一致，也对 $\rho$ 一致，正如我们已经注意过的。于是存在一个常数（我们仍把它记作 $C$），使得对每个 $(s,t)\in\RR\times S^{1}$ 与 $\rho\ge\rho_{0}$，我们有
+\[
+\begin{aligned}
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{X}(v)-(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr\|&\le C\Bigl(\|X\|\Bigl\|\frac{\partial v}{\partial s}\Bigr\|+\|X\|\Bigl\|\frac{\partial v}{\partial t}\Bigr\|\Bigr)\\
+&\quad+C\Bigl(\|X\|\,\|v\|+\Bigl\|\frac{\partial X}{\partial s}\Bigr\|\,\|v\|+\Bigl\|\frac{\partial X}{\partial t}\Bigr\|\,\|v\|\Bigr)\text{。}
+\end{aligned}
+\]
+
+现在我们让 $(s,t)$ 变动，并研究 $L^{p}$ 范数。由\cref{thm:w1p-product-lp}，我们有
+\[
+\begin{aligned}
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{X}(v)-(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr\|_{L^{p}}&\le C\Bigl(\Bigl\|\|X\|\Bigl\|\frac{\partial v}{\partial s}\Bigr\|+\|X\|\Bigl\|\frac{\partial v}{\partial t}\Bigr\|\Bigr\|_{L^{p}}\Bigr)\\
+&\quad+C\Bigl(\Bigl\|\|X\|\,\|v\|+\Bigl\|\frac{\partial X}{\partial s}\Bigr\|\,\|v\|+\Bigl\|\frac{\partial X}{\partial t}\Bigr\|\,\|v\|\Bigr\|_{L^{p}}\Bigr)\\
+&\le Ck\,\|v\|_{W^{1,p}}\Bigl(\|X\|_{L^{p}}+\Bigl\|\frac{\partial X}{\partial s}\Bigr\|_{L^{p}}+\Bigl\|\frac{\partial X}{\partial t}\Bigr\|_{L^{p}}\Bigr)\\
+&\quad+Ck\Bigl(\Bigl(\Bigl\|\frac{\partial v}{\partial s}\Bigr\|_{L^{p}}+\Bigl\|\frac{\partial v}{\partial t}\Bigr\|_{L^{p}}\Bigr)\|X\|_{W^{1,p}}\Bigr)\\
+&\le 5Ck\,\|X\|_{W^{1,p}}\|v\|_{W^{1,p}}\text{。}
+\end{aligned}
+\]
+于是，对每个 $X\in\overline{B}(0,C_{1}r_{0})\subset W^{1,p}(\RR\times S^{1};\RR^{m})$，我们得到
+\[
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{X}-(d\widetilde{\scr{F}}_{\rho})_{0}\bigr\|^{\mathrm{op}}\le 5Ck\,\|X\|_{W^{1,p}}\text{，}
+\]
+也就是说，终于得到了\cref{thm:dpsi-dphi-compose}的条件 (3)。但我们还需验证同一引理的条件 (4) 也得到满足，即对某个不依赖于 $\rho$ 的 $k_{4}>0$ 有 $\bigl\|(d\widetilde{\scr{F}}_{\rho})_{0}\bigr\|^{\mathrm{op}}\le k_{4}$。在前面的那个四项公式中代入 $X=0$。此时须当心：$D_{2}\widetilde{\exp}(w_{\rho},0)(v)$ 并不就是 $v$ 本身，而是它的投影 $\pi_{w_{\rho}}(v)$。于是令 $V=\Pi_{\rho}v$，其中 $\Pi_{\rho}(s,t)=\pi_{w_{\rho}(s,t)}$，我们便得到（对取定的 $(s,t)$）\footnote{译注：原书在代入 $X=0$ 时，直接把 $D_{2}\widetilde{\exp}(w_{\rho},0)(v)$ 换成了任意的环境向量 $v$，即将首式印作 $\bigl(d\widetilde{\scr{F}}_{\rho}\bigr)_{0}(v)=\bigl(d\widetilde{\scr{F}}\bigr)_{w_{\rho}}(v)$；按 $D_{2}\widetilde{\exp}(w_{\rho},0)(v)=\pi_{w_{\rho}}(v)$，其右端实为 $\bigl(d\widetilde{\scr{F}}\bigr)_{w_{\rho}}\bigl(\pi_{w_{\rho}}(v)\bigr)$。此处径改。——译者注}
+\[
+\begin{aligned}
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr\|&=\bigl\|(d\widetilde{\scr{F}})_{w_{\rho}}(V)\bigr\|\\
+&=\Bigl\|\frac{\partial V}{\partial s}+D_{1}\widetilde{J}_{w_{\rho}}\Bigl(V,\frac{\partial w_{\rho}}{\partial t}\Bigr)+\widetilde{J}_{w_{\rho}}\Bigl(\frac{\partial V}{\partial t}\Bigr)+(d\operatorname{grad}H_{t})_{w_{\rho}}(V)\Bigr\|\\
+&\le\Bigl\|\frac{\partial v}{\partial s}\Bigr\|+C\Bigl\|\frac{\partial w_{\rho}}{\partial t}\Bigr\|\,\|v\|+C\Bigl\|\frac{\partial v}{\partial t}\Bigr\|+C\|v\|\text{，}
+\end{aligned}
+\]
+在最后一步中，我们利用了
+\[
+\frac{\partial V}{\partial s}=\pi_{w_{\rho}}\Bigl(\frac{\partial v}{\partial s}\Bigr)+(D\pi)_{w_{\rho}}\Bigl(\frac{\partial w_{\rho}}{\partial s},v\Bigr)\quad\text{与}\quad\frac{\partial V}{\partial t}=\pi_{w_{\rho}}\Bigl(\frac{\partial v}{\partial t}\Bigr)+(D\pi)_{w_{\rho}}\Bigl(\frac{\partial w_{\rho}}{\partial t},v\Bigr)
+\]
+（诸 $D\pi$ 项对 $v$ 而言是零阶的），以及 $\|V\|\le\|v\|$（$\pi_{w_{\rho}}$ 是\trOrthogonal{}投影）与 $D\pi$、$D_{1}\widetilde{J}$、$\widetilde{J}$、$d\operatorname{grad}H_{t}$ 的一致\trBounded{}性。
+其中 $C>0$ 是一个不依赖于 $\rho$ 的常数。仍然利用 $w_{\rho}$ 的偏导数在 $(s,t)$ 与 $\rho$ 中一致\trBounded{}这一事实，我们便得到另一个常数（仍记作 $C$），使得
+\[
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr\|\le C\Bigl(\|v\|+\Bigl\|\frac{\partial v}{\partial s}\Bigr\|+\Bigl\|\frac{\partial v}{\partial t}\Bigr\|\Bigr)\text{。}
+\]
+对两边取 $L^{p}$ 范数，这就蕴含
+\[
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{0}(v)\bigr\|_{L^{p}}\le 3C\,\|v\|_{W^{1,p}}
+\]
+从而
+\[
+\bigl\|(d\widetilde{\scr{F}}_{\rho})_{0}\bigr\|^{\mathrm{op}}\le 3C\text{，}
+\]
+这就是\cref{thm:dpsi-dphi-compose}的条件 (4)。经过这些冗长的验证之后，我们现在可以把这条引理应用于 $\varphi=i_{\rho}$ 与 $\psi=\mathrm{Id}\times\widetilde{\scr{F}}_{\rho}$。\footnote{译注：原书此处印作 “$\psi=\mathrm{Id}\,\widetilde{\scr{F}}_{\rho}$”，$\mathrm{Id}$ 后脱去乘号；按前文 p.485 之 $\psi=\mathrm{Id}\times\widetilde{\scr{F}}_{\rho}$ 及上下文，疑应为 $\mathrm{Id}\times\widetilde{\scr{F}}_{\rho}$。此处径改。——译者注}
+
+\item 我们也可以把它应用于 $\varphi=(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})\circ i_{\rho}$：条件 (1) 是把同一条引理（即\cref{thm:dpsi-dphi-compose}）应用于 $\varphi=i_{\rho}$ 与 $\psi=(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})$ 的结果。我们最终得到
+\[
+\bigl\|(d\varphi)_{0}\bigr\|^{\mathrm{op}}\le\bigl\|\bigl(d(\mathrm{Id}\times\widetilde{\scr{F}}_{\rho})\bigr)_{0}\bigr\|^{\mathrm{op}}\,\bigl\|(di_{\rho})_{0}\bigr\|^{\mathrm{op}}\le k_{2}\text{，}
+\]
+这里把我们方才进行的诸验证都计算在内。
+
+\item 我们还需验证诸条件对 $\psi=p_{\rho}$ 也得到满足，即映射
+\[
+W^{1,p}(\RR\times S^{1};\RR^{m})\times L^{p}(\RR\times S^{1};\RR^{m})\longrightarrow L^{p}(\RR\times S^{1};\RR^{2n})
+\]
+它由
+\[
+\bigl(p_{\rho}(X,Y)\bigr)_{i}=P\bigl(w_{\rho},X,Z_{i}^{\rho},Y\bigr)\qquad\text{对 }i=1,\dots,2n
+\]
+来定义（$P$ 即前文定义的那个在后两个变元上双线性的映射）。\footnote{译注：原书此处靶空间印作 $L^{p}(\RR\times S^{1};\RR^{m})$、分量范围印作 $i=1,\dots,n$；按\cref{sec:operator-frho}中 $p_{\rho}$ 的定义（分量 $j=1,\dots,2n$、靶空间 $L^{p}(\RR\times S^{1};\RR^{2n})$），疑应分别为 $L^{p}(\RR\times S^{1};\RR^{2n})$ 与 $i=1,\dots,2n$。两处均径改。——译者注}
+为了验证条件 (3)，只需证明下面的结果。
+
+\begin{lemma}\label{thm:dp-rho-estimate}
+对每个 $X\in\overline{B}(0,C_{1}r_{0})\subset W^{1,p}(\RR\times S^{1};\RR^{m})$ 与每个 $Y\in L^{p}(\RR\times S^{1};\RR^{m})$，我们都有
+\[
+\bigl\|(dp_{\rho})_{(X,Y)}-(dp_{\rho})_{\varphi(0)}\bigr\|^{\mathrm{op}}\le k_{3}\bigl\|(X,Y)-\varphi(0)\bigr\|
+\]
+其中常数 $k_{3}>0$ 不依赖于 $\rho$。\footnote{译注：此式左端第二项原书印作 $(dp_{\rho})_{0}$；按右端所量为 $(X,Y)$ 到 $\varphi(0)=\bigl(0,Y_{0}^{\rho}\bigr)$ 的距离，且下面的证明自始至终比较的都是 $(dp_{\rho})_{(X,Y)}$ 与 $(dp_{\rho})_{\varphi(0)}$——若按字面取 $(X,Y)=\varphi(0)$，则右端为 $0$ 而左端一般非 $0$，陈述为假——疑下标应作 $\varphi(0)$，系排印之误。此处径改。——译者注}
+\end{lemma}
+
+\begin{proof}
+当然，只需对 $p_{\rho}$ 的每一个分量 $p_{\rho}^{i}$ 建立这条估计就够了。我们提醒一下，$\varphi(0)=\bigl(0,\widetilde{\scr{F}}_{\rho}(0)\bigr)=\bigl(0,\scr{F}(w_{\rho})\bigr)$，并令
+\[
+Y_{0}^{\rho}=\scr{F}(w_{\rho})\in L^{p}(\RR\times S^{1};\RR^{m})\cap\cC^{\infty}_{0}(\RR\times S^{1};\RR^{m})\text{。}
+\]
+对 $(v,w)\in W^{1,p}(\RR\times S^{1};\RR^{m})\times L^{p}(\RR\times S^{1};\RR^{m})$，我们有
+\[
+(dp_{\rho}^{i})_{(X,Y)}(v,w)=(D_{2}P)_{(w_{\rho},X,Z_{\rho}^{i},Y)}v+P(w_{\rho},X,Z_{\rho}^{i},w)\text{。}
+\]
+我们取定一对 $(s,t)\in\RR\times S^{1}$。此时，我们有
+\[
+\begin{aligned}
+\bigl\|(dp_{\rho}^{i})_{(X,Y)}& (v,w)-(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|\\
+&\le\bigl\|(D_{2}P)_{(w_{\rho},X,Z_{\rho}^{i},Y)}v-(D_{2}P)_{(w_{\rho},0,Z_{\rho}^{i},Y_{0}^{\rho})}v\bigr\|\\
+&\qquad+\bigl\|P(w_{\rho},X,Z_{\rho}^{i},w)-P(w_{\rho},0,Z_{\rho}^{i},w)\bigr\|\text{。}
+\end{aligned}
+\]
+我们把\cref{thm:a-b-estimates}应用于双线性映射 $P_{(p,X)}(\cdot,\cdot)$，并把这条引理的类比（我们没有勇气把它写出来）应用于三线性映射 $(D_{2}P)_{(p,X,\cdot,\cdot)}(\cdot)$（其中 $p=w_{\rho}(s,t)$ 而 $X=X(s,t)$）。如上面那样，我们有
+\[
+\|X(s,t)\|\le r_{1}\qquad\text{对每个 }(s,t)\in\RR\times S^{1}\text{，}
+\]
+于是\cref{thm:a-b-estimates}可以应用，并给出一个不依赖于 $(s,t)$ 的常数 $C>0$。我们发现
+\[
+\begin{aligned}
+\bigl\|(dp_{\rho}^{i})_{(X,Y)}&(v,w)-(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|\\
+&\le C\bigl(\bigl\|Z_{\rho}^{i}\bigr\|\,\|Y-Y_{0}^{\rho}\|\,\|v\|+\|X\|\,\bigl\|Z_{\rho}^{i}\bigr\|\,\bigl\|Y_{0}^{\rho}\bigr\|\,\|v\|+\|X\|\,\bigl\|Z_{\rho}^{i}\bigr\|\,\|w\|\bigr)\text{。}
+\end{aligned}
+\]
+由构造，$\bigl\|Z_{\rho}^{i}\bigr\|$ 是一致\trBounded{}的（对 $\rho$、$s$ 与 $t$ 一致）。范数 $\bigl\|Y_{0}^{\rho}\bigr\|$ 也是一致\trBounded{}的（因为对 $|s|\ge1$ 有 $Y_{0}^{\rho}(s,t)=0$，而且在 $[-1,1]$ 上 $\lim_{\rho\to+\infty}Y_{0}^{\rho}(s,t)=0$）。于是我们找到一个正常数（仍记作 $C$），使得
+\[
+\begin{aligned}
+\bigl\|(dp_{\rho}^{i})_{(X,Y)}&(v,w)-(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|\\
+&\qquad\le C\left(\|Y-Y_{0}^{\rho}\|\,\|v\|+\|X\|\,\|v\|+\|X\|\,\|w\|\right)\text{。}
+\end{aligned}
+\]
+让 $(s,t)$ 变动，我们对两边取 $L^{p}$ 范数，并利用\cref{thm:w1p-product-lp}从上方估计右边，这就给出
+\[
+\begin{aligned}
+\bigl\|(dp_{\rho}^{i})_{(X,Y)}&(v,w)-(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|_{L^{p}}\\
+&\le Ck\left(\|Y-Y_{0}^{\rho}\|_{L^{p}}\|v\|_{W^{1,p}}+\|X\|_{W^{1,p}}\|v\|_{L^{p}}+\|X\|_{W^{1,p}}\|w\|_{L^{p}}\right)\\
+&\le Ck\left(\|X\|_{W^{1,p}}+\|Y-Y_{0}^{\rho}\|_{L^{p}}\right)\left(\|v\|_{W^{1,p}}+\|w\|_{L^{p}}\right)\\
+&=Ck\bigl\|(X,Y)-(0,Y_{0}^{\rho})\bigr\|_{W^{1,p}\times L^{p}}\,\bigl\|(v,w)\bigr\|_{W^{1,p}\times L^{p}}\text{。}
+\end{aligned}
+\]
+\end{proof}
+
+条件 (3) 因此得到满足。让我们验证 (4) 也是如此。对取定的 $(s,t)$，我们有
+\[
+\begin{aligned}
+\bigl\|(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|&=\bigl\|(D_{2}P)_{(w_{\rho},0,Z_{\rho}^{i},Y_{0}^{\rho})}(v)+P(w_{\rho},0,Z_{\rho}^{i},w)\bigr\|\\
+&\le C\left(\bigl\|Z_{\rho}^{i}\bigr\|\,\bigl\|Y_{0}^{\rho}\bigr\|\,\|v\|+\bigl\|Z_{\rho}^{i}\bigr\|\,\|w\|\right)\text{。}
+\end{aligned}
+\]
+由于 $Z_{\rho}^{i}$ 与 $Y_{0}^{\rho}$ 的范数一致\trBounded{}，这就给出
+\[
+\bigl\|(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|\le C\left(\|v\|+\|w\|\right)\text{，}
+\]
+对这个不等式应用 $L^{p}$ 范数便得到
+\[
+\bigl\|(dp_{\rho}^{i})_{(0,Y_{0}^{\rho})}(v,w)\bigr\|_{L^{p}}\le C\left(\|v\|_{L^{p}}+\|w\|_{L^{p}}\right)\le C\,\bigl\|(v,w)\bigr\|_{W^{1,p}\times L^{p}}\text{。}
+\]
+条件 (4) 因此得到满足。
+\end{itemize}
+
+我们终于可以应用\cref{thm:dpsi-dphi-compose}了，它给出
+\[
+\text{对 }\|y\|_{W^{1,p}}\le r_{0}\text{，我们有 }\bigl\|(dF_{\rho})_{y}-(dF_{\rho})_{0}\bigr\|^{\mathrm{op}}\le k\|y\|_{W^{1,p}}\text{。}
+\]
+这就结束了引理~9.4.8 的证明。
+\end{proof}
+
+

@@ -1,0 +1,678 @@
+\section{\termFloerChainModule{}}
+\label{sec:floer-chain-modules}
+
+现在尝试为每一对拉格朗日子流形 $(L_0,L_1)$ 配备第 13.8 节分次滤过\personFloer{}复形
+的抽象定义所要求的数据。
+
+给定 $(M,\omega)$ 中一对相互横截的紧拉格朗日子流形 $(L_0,L_1)$，令
+\footnote{译者注：原书在下式的集合描述中写成
+$\{\widehat p\mid x\in L_0\cap L_1\}$，集合元素和条件分别使用 $p$ 与 $x$；
+译文统一为 $p$。此外，固定道路空间分支
+$\Omega(L_0,L_1;\ell_0)$ 后，严格说只有常值道路属于该分支的交点才能出现在
+$S$ 及 $P$ 中；原书把它们直接等同于全部 $L_0\cap L_1$，却没有假设所有这些
+常值道路位于同一分支。译文保留原式的等同并明示这项隐含前提；第 13.9.3 小节
+才另行纳入全部分支。原书在本页作用量公式之后又把交点字母 $p$ 改成 $x$，译文
+同样统一为 $p$。}
+\begin{equation}
+  \begin{aligned}
+    S&=\widehat{L_0\cap L_1}
+      =\{\widehat p\mid p\in L_0\cap L_1\}
+      \cong L_0\cap L_1,\\
+    P&=\operatorname{Crit}\mathcal A_{(L_0,L_1;\ell_0)},\\
+    \Gamma&=G(L_0,L_1;\ell_0).
+  \end{aligned}
+\label{eq:concrete-floer-novikov-data}
+\end{equation}
+其中 $\widehat p$ 表示交点 $p$ 所给出的常值道路。$\Gamma$ 上的周期同态和次数同态
+分别由
+\[
+  g\longmapsto\omega(g),
+  \qquad
+  g\longmapsto\mu(g)
+\]
+给出。这里，若环带映射
+\[
+  u:S^1\times[0,1]\longrightarrow M
+\]
+代表 $g\in G(L_0,L_1;\ell_0)$，且满足
+\[
+  u(\theta,0)\in L_0,
+  \qquad
+  u(\theta,1)\in L_1,
+\]
+则
+\[
+  \omega(g)=\int u^*\omega,
+  \qquad
+  \mu(g)=\mu(u);
+\]
+其中 $\mu(u)$ 是按照前文定义、与映射 $u$ 相伴的丛对之马斯洛夫指标。这两个映射
+原先定义在
+\[
+  \pi_1\bigl(\Omega(L_0,L_1),\ell_0\bigr)
+\]
+上，并按定义下降到
+\[
+  G(L_0,L_1;\ell_0)
+  =
+  \frac{\pi_1\bigl(\Omega(L_0,L_1),\ell_0\bigr)}
+       {\ker I_\omega\cap\ker I_\mu}.
+\]
+需要强调，只要 $\ell_0$ 取自同一连通分支，群 $G(L_0,L_1;\ell_0)$ 就不依赖于
+$\ell_0$ 的选取。相应地，\personNovikov{}环只依赖于 $\ell_0$ 所在的连通分支。
+
+作用量泛函 $\mathcal A:P\to\mathbb R$ 无非是
+$\mathcal A_{(L_0,L_1;\ell_0)}$ 的临界值赋值：
+\[
+  \mathcal A_{(L_0,L_1;\ell_0)}([\widehat p,w])
+  =-\int w^*\omega,
+\]
+其中 $p\in L_0\cap L_1$，而 $w:[0,1]^2\to M$ 满足 $\Gamma$-覆盖投影
+\[
+  \widetilde\Omega(L_0,L_1;\ell_0)
+  \longrightarrow\Omega(L_0,L_1;\ell_0)
+\]
+的定义边界条件。
+
+回忆 $G(L_0,L_1;\ell_0)$ 在 $\widetilde\Omega(L_0,L_1;\ell_0)$ 上的作用。
+对任意 $g\in G(L_0,L_1;\ell_0)$ 和 $[\ell,w]$，把
+$g\cdot[\ell,w]$ 定义为映射
+\[
+  [\ell,u\#w]
+\]
+的等价类；这里 $u:S^1\times[0,1]\to M$ 是
+$g\in G(L_0,L_1;\ell_0)$ 的一个代表，而
+$u\#w:[0,1]^2\to M$ 由
+\[
+  u\#w(s,t)
+  =
+  \begin{cases}
+    u(2s,t),&0\leq s\leq\frac12,\\
+    w(2s-1,t),&\frac12\leq s\leq1
+  \end{cases}
+\]
+定义。
+
+这个作用限制为 $P=\operatorname{Crit}\mathcal A_{(L_0,L_1;\ell_0)}$ 上的作用，
+并使 $P$ 成为 $L_0\cap L_1$ 上的一个 $G(L_0,L_1;\ell_0)$-挠子（即主
+$G(L_0,L_1;\ell_0)$-丛）。注意，
+\[
+  \mathcal A([\ell,u\#w])
+  =\mathcal A([\ell,w])-\omega(u),
+\]
+其中
+\[
+  \omega(u)=\int u^*\omega.
+\]
+用\personMaslov{}--\personMorse{}指标给出分次映射
+\[
+  \operatorname{gr}:
+  \operatorname{Crit}\mathcal A_{(L_0,L_1;\ell_0)}
+  \longrightarrow\mathbb Z.
+\]
+一个简单的马斯洛夫指标计算还表明
+\[
+  \operatorname{gr}([\widehat p,u\#w])
+  =\operatorname{gr}([\widehat p,w])-\mu(u).
+\]
+
+\begin{exercise}
+\label{ex:grading-under-annulus-action}
+由\personMaslov{}--\personMorse{}指标的定义证明这个分次公式。
+\end{exercise}
+
+于是得到抽象\personFloer{}复形定义所要求的公式
+\[
+  \mathcal A(g\cdot p)=\mathcal A(p)-\omega(g),
+  \qquad
+  \operatorname{gr}(g\cdot p)=\operatorname{gr}(p)-d(g).
+\]
+
+现在可以像抽象定义中那样，定义与上述数据相伴的\personNovikov{}环和\personFloer{}复形，记为
+\[
+  \Lambda(L_0,L_1;\ell_0)
+  \quad\text{和}\quad
+  CF_*(L_0,L_1;\ell_0).
+\]
+为完整起见，下面讨论它们的分次。对每个给定的 $k\in\mathbb Z$，定义
+\footnote{译者注：原书把下式写成
+$\{\sigma\in\Lambda(L_0,L_1;\ell_0)\mid\mu(g)=k\}$，其中 $g$ 是未受约束的
+自由变量。译文依第 13.4 节对同一分次的定义，明确要求 $\sigma$ 支集中的每个
+$g$ 都满足 $\mu(g)=k$。}
+\[
+  \Lambda^k(L_0,L_1;\ell_0)
+  =
+  \left\{
+    \sigma=\sum_g a_g g\in\Lambda(L_0,L_1;\ell_0)
+    \ \middle|\
+    \mu(g)=k\text{ 对每个 }g\in\operatorname{supp}(\sigma)
+  \right\}.
+\]
+于是
+\[
+  \Lambda(L_0,L_1;\ell_0)
+  =
+  \bigoplus_{k\in\mathbb Z}\Lambda^k(L_0,L_1;\ell_0).
+\]
+
+类似地，定义 $CF_k(L_0,L_1;\ell_0)$ 为如下元素之集合：
+\[
+  \beta
+  =
+  \sum_{[\widehat p,w]\in\operatorname{Crit}\mathcal A}
+    a_{[\widehat p,w]}[\widehat p,w],
+  \qquad
+  a_{[\widehat p,w]}\in R,
+\]
+其中在上式中非平凡出现的每个 $[\widehat p,w]$ 都满足
+\[
+  \operatorname{gr}([\widehat p,w])=k.
+\]
+于是
+\[
+  CF_*(L_0,L_1;\ell_0)
+  =
+  \bigoplus_{k\in\mathbb Z}CF_k(L_0,L_1;\ell_0).
+\]
+这就是相对于参考对 $(\ell_0,\lambda^0)$、与对子 $(L_0,L_1)$ 相伴的\termFloerChainModule{}。
+\footnote{译者注：原书称这里相对于“锚 $(\ell_0,\gamma_0)$”，但本章没有定义
+这样的锚；第 13.6 节为\personMaslov{}--\personMorse{}分次固定的参考数据是
+$(\ell_0,\lambda^0)$，第 13.7 节的分次锚则形如 $(\gamma,\lambda)$。译文依当前
+分次实际依赖的对象改称参考对 $(\ell_0,\lambda^0)$。}
+
+接下来要构造满足 $\partial^2=0$ 的映射
+\[
+  \partial:CF_*(L_0,L_1;\ell_0)
+  \longrightarrow CF_{*-1}(L_0,L_1;\ell_0).
+\]
+为此，需要构造抽象定义中的映射
+\[
+  n:P\times P\longrightarrow\mathbb Z,
+\]
+\footnote{译者注：第 13.8 节在一般系数环 $R$ 上要求 $n:P\times P\to R$；
+本页随后又把 $CF_*$ 称为向下完备化的 $\mathbb Q$-向量空间，却没有明说系数
+从 $R$ 专门化为 $\mathbb Q$。这可以相容地理解为本段取 $R=\mathbb Q$，并把
+整数计数 $n(p,q)$ 经 $\mathbb Z\hookrightarrow\mathbb Q$ 作为系数；译文明示
+这项原书省略的系数约定。}
+使相应的 $\partial$ 满足 $\partial^2=0$。以 $n(p,q)$ 表示时，$\partial^2=0$
+等价于：对所有满足 $\mu(p)-\mu(r)=2$ 的给定 $p,r$，都有
+\begin{equation}
+  \sum_{q\in P}n(p,q)n(q,r)=0.
+\label{eq:boundary-square-coefficient}
+\end{equation}
+
+到目前为止，我们一直把 $CF_*(L_0,L_1;\ell_0)$ 看成以无穷多个
+$[\widehat p,w]$ 为生成元的向下完备化 $\mathbb Q$-向量空间。利用 $\partial$
+的 $G(L_0,L_1;\ell_0)$-等变性
+\footnote{译者注：原书在这里写成未定义的
+$\Gamma(L_0,L_1;\ell_0)$-等变性，并把下一行覆盖空间改记为
+$\widetilde\Omega_0(L_0,L_1)$；译文分别统一为此前定义的
+$G(L_0,L_1;\ell_0)$ 和
+$\widetilde\Omega(L_0,L_1;\ell_0)$。第 13.9.1 小节另一次
+$\Omega_0(L_0,L_1;\ell_0)$ 也同样统一。}，也可以把它看成以
+$L_0\cap L_1$ 为自由基的 $\Lambda(L_0,L_1;\ell_0)$-模。为此，需要选取一个提升
+\[
+  \widehat{L_0\cap L_1}
+  \longrightarrow\widetilde\Omega(L_0,L_1;\ell_0).
+\]
+
+\begin{proposition}
+\label{prop:free-novikov-module-identification}
+设
+\[
+  \widehat{L_0\cap L_1}
+  \longrightarrow\widetilde\Omega(L_0,L_1;\ell_0)
+\]
+是一个嵌入，并以 $[\widehat p,w_p]$ 表示 $p\in L_0\cap L_1$ 的像。考虑自由模
+\[
+  \Lambda(L_0,L_1;\ell_0)\{L_0\cap L_1\}.
+\]
+则由生成元映射
+\[
+  p\longmapsto[\widehat p,w_p],
+  \qquad p\in L_0\cap L_1,
+\]
+诱导的同态，给出 $\Lambda(L_0,L_1;\ell_0)$-模同构
+\[
+  \Lambda(L_0,L_1;\ell_0)\{L_0\cap L_1\}
+  \cong CF_*(L_0,L_1;\ell_0).
+\]
+\end{proposition}
+
+为了使上述同构保持滤过，只需在自由模
+$\Lambda(L_0,L_1;\ell_0)\{L_0\cap L_1\}$ 上定义一个\termNonArchimedeanNorm{}：
+对
+$\sigma\in\Lambda(L_0,L_1;\ell_0)$ 和 $p\in L_0\cap L_1$，赋予单项式
+$\sigma p$ 以范数\footnote{译者注：原书右端写成 $-\omega(\sigma)$，但 $\omega$ 只定义在
+群元素上，并未定义在一般\personNovikov{}级数 $\sigma$ 上。第 13.8 节对\personNovikov{}环
+元素定义的相应量是赋值 $\nu(\sigma)$；译文依所需滤过补正。}
+\[
+  v(\sigma p)
+  =-\nu(\sigma)+\mathcal A([\widehat p,w_p]).
+\]
+\subsection{\texorpdfstring{$\Omega(L_0,L_1)$ 上的\termLtwoMetric{}}{道路空间上的 L2 度量}}
+\label{subsec:l2-metrics-on-path-space}
+
+命题 13.5.1 已经对公式 (13.4.9) 中定义在
+$\Omega(L_0,L_1;\ell_0)$ 上的作用 $1$-形式 $\alpha$ 证明
+\[
+  d\mathcal A=\pi^*\alpha.
+\]
+\footnote{译者注：原书称作用 $1$-形式 $\alpha$ 定义在
+$\Gamma$-覆盖空间上；但上式中 $\mathcal A$ 定义在覆盖空间上，$\alpha$ 定义在
+底空间并由 $\pi$ 拉回。译文依命题 13.5.1 的映射类型补正。}
+与有限维\personMorse{}理论中一样，我们将在
+$\widetilde\Omega(L_0,L_1;\ell_0)$ 上借助一个给定的“\personRiemann{}度量”研究
+$\mathcal A$ 的梯度流。
+
+对每个给定的对子 $(L_0,L_1)$ 以及 $(M,\omega)$ 上一对相容殆复结构
+$(J_0,J_1)$，考虑 $(M,\omega)$ 上一条相容殆复结构道路
+\footnote{译者注：原书把这条殆复结构道路所在的辛流形写成未定义的
+$(X,\omega)$；本节始终固定 $(M,\omega)$，译文统一为 $M$。}
+\[
+  J=\{J(t)\}_{0\leq t\leq1},
+\]
+满足
+\begin{equation}
+  J(0)=J_0,
+  \qquad
+  J(1)=J_1.
+\label{eq:almost-complex-path-endpoints}
+\end{equation}
+以
+\stfhIndex{I011}{00-j-j0-j1}{$\mathfrak j_{(J_0,J_1)}$}
+\[
+  \mathfrak j_{(J_0,J_1)}
+\]
+表示所有这种单参数族的集合。于是，对每个给定的
+$J\in\mathfrak j_{(J_0,J_1)}$，用公式
+\[
+  \langle\xi_1,\xi_2\rangle_J
+  :=
+  \int_0^1\omega\bigl(\xi_1(t),J_t\xi_2(t)\bigr)\,dt
+\]
+在 $\Omega$ 上定义一个 $L^2$-度量；这里使用单参数\personRiemann{}度量族
+\[
+  g_t:=\omega(\mathord\cdot,J_t\mathord\cdot).
+\]
+
+依照 (13.5.16)，作用量泛函 $\mathcal A$ 的负 $L^2$-梯度下降到
+$\Omega(L_0,L_1;\ell_0)$ 后成为
+\[
+  \ell\longmapsto J\dot\ell.
+\]
+因此，把映射 $u:\mathbb R\times[0,1]\to M$ 看成
+$\Omega(L_0,L_1;\ell_0)$ 中的道路 $\tau\mapsto u(\tau)$ 时，$\mathcal A$ 的负
+$L^2$-梯度流线成为
+\begin{equation}
+  \begin{cases}
+    \displaystyle
+    \frac{\partial u}{\partial\tau}
+    +J_t\frac{\partial u}{\partial t}=0,\\[6pt]
+    u(\tau,0)\in L_0,\qquad u(\tau,1)\in L_1.
+  \end{cases}
+\label{eq:unperturbed-floer-strip}
+\end{equation}
+
+对每个给定的横截对 $(L_0,L_1)$，我们将研究覆盖空间上作用量泛函
+\footnote{译者注：原书直接把 $\mathcal A$ 写成底空间
+$\Omega(L_0,L_1;\ell_0)\to\mathbb R$ 上的泛函；但第 13.5 节只在\personNovikov{}覆盖空间上定义了单值作用量泛函。译文明确区分覆盖空间上的梯度流线与其在底空间
+中的投影。}
+\[
+  \mathcal A:\widetilde\Omega(L_0,L_1;\ell_0)\longrightarrow\mathbb R
+\]
+的\emph{\termBoundedGradientTrajectory{}}在底空间中的投影
+\[
+  u:\mathbb R\longrightarrow\Omega(L_0,L_1;\ell_0).
+\]
+由于定义域 $\mathbb R\times[0,1]$ 非紧，为研究解 $u$ 的紧性性质和形变理论，
+需要对 $u$ 的导数施加某种衰减条件。这将通过对流线施加一定的\emph{有界性}来实现。
+流线的有界性以道路 $u$ 的导数之 $L^2$ 积分衡量。反过来，$L^2$-能量由 $M$ 上的\personRiemann{}度量
+\[
+  g:=\omega(\mathord\cdot,J\mathord\cdot)
+\]
+定义，其中 $J$ 是与 $\omega$ 相容的殆复结构。当 $J$ 不依赖于 $t$ 时，对这样的
+梯度流线而言，把 $u$ 看成映射 $\mathbb R\times[0,1]\to M$，其 $L^2$-能量无非是
+$u$ 关于度量 $g$ 的\termHarmonicEnergy{}，并且等于辛面积
+\[
+  \int u^*\omega.
+\]
+我们还经常需要考虑 $t\in[0,1]$ 所参数化的依时殆复结构族 $J_t$。
+
+区分流线的如下三种不同有界性十分重要。
+\begin{enumerate}[label=(\arabic*)]
+  \item 从分析的观点看，控制由
+  \[
+    E_J(u)
+    :=
+    \frac12\int_{\mathbb R\times[0,1]}
+      \left(
+        \left|\frac{\partial u}{\partial\tau}\right|_{J_t}^2
+        +
+        \left|\frac{\partial u}{\partial t}\right|_{J_t}^2
+      \right)\,dt\,d\tau
+  \]
+\stfhIndex{I097}{Jihenengliang}{几何能量（geometric energy）}
+  定义的 $u$ 的\termGeometricEnergy{}，对方程\eqref{eq:unperturbed-floer-strip}
+  之解的形变理论
+  至关重要。
+
+  \item 对满足拉格朗日边界条件的一般映射
+  $u:\mathbb R\times[0,1]\to M$，辛面积 $\int u^*\omega$ 在保持边界条件
+  \begin{equation}
+    u(\tau,0)\in L_0,
+    \qquad
+    u(\tau,1)\in L_1
+  \label{eq:strip-lagrangian-boundary}
+  \end{equation}
+  和渐近条件
+  \begin{equation}
+    \lim_{\tau\to\pm\infty}u(\tau)=x_\pm
+  \label{eq:strip-asymptotic-points}
+  \end{equation}
+  的 $u$ 的同伦下不变；这里的极限在适当拓扑中理解。用物理学术语说，辛面积
+\stfhIndex{I144}{Liqiaojie}{离壳界（off-shell bound）}
+  $\int u^*\omega$ 具有\emph{\termOffShellBound{}}，而几何能量 $E_J(u)$ 不具有这种离壳界。
+
+  \item 另一方面，只要 $J=\{J_t\}_{0\leq t\leq1}$ 是一族相容殆复结构，对满足
+  \[
+    \frac{\partial u}{\partial\tau}
+    +J_t\frac{\partial u}{\partial t}=0
+  \]
+  的映射就有恒等式
+  \begin{equation}
+    E_J(u)=\int u^*\omega.
+  \label{eq:on-shell-energy-area}
+  \end{equation}
+\stfhIndex{I145}{Keshang}{壳上（on shell）}
+  用物理学术语说，恒等式\eqref{eq:on-shell-energy-area}\emph{\termOnShell{}}成立。
+\end{enumerate}
+
+\subsection{\termFloerModuliSpace{}}
+\label{subsec:floer-moduli-spaces}
+
+先对相关映射 $u:\mathbb R\times[0,1]\to M$ 作离壳描述。提醒读者，研究\personFloer{}同调的主要目的，是发展可用于研究辛流形 $(M,\omega)$ 或其拉格朗日子流形之辛拓扑
+的工具。从这个角度看，殆复结构 $J$ 应当只是辅助工具，不应进入定义\personCauchy{}--\personRiemann{}方程\eqref{eq:unperturbed-floer-strip}之映射空间的离壳设置。
+
+一劳永逸地固定一个\personRiemann{}度量，用于对所研究映射作各种分析估计。所有范数，
+包括\termPointwiseNorm{} $|\mathord\cdot|$ 和\termSobolevNorm{}
+$\|\mathord\cdot\|_{k,p}$，都依这个固定度量定义。我们总是假设
+\[
+  k-\frac2p>0,
+\]
+使边界条件\eqref{eq:strip-lagrangian-boundary}有意义；在估计及所需的\personFredholm{}理论中，大多考虑 $k=1$。
+
+现在设 $L_0,L_1$ 是 $(M,\omega)$ 中不必相互横截的拉格朗日子流形。记
+\[
+  \Theta=\mathbb R\times[0,1],
+\]
+并考虑映射空间
+\[
+  \mathcal P^p_{k:\mathrm{loc}}(L_0,L_1;M)
+  =
+  \left\{
+    u\in L^p_{k:\mathrm{loc}}(\Theta,M)
+    \ \middle|\
+    \begin{aligned}
+      u(\mathbb R\times\{0\})&\subset L_0,\\
+      u(\mathbb R\times\{1\})&\subset L_1
+    \end{aligned}
+  \right\},
+\]
+以及
+\stfhIndex{I010}{00-jomega}{$\mathfrak j_\omega$}
+\[
+  \mathcal J_\omega
+  =\mathcal J_\omega(M)
+  =C^\infty(S_\omega),
+  \qquad
+  \mathfrak j_\omega
+  =C^\infty([0,1],\mathcal J_\omega)
+  =C^\infty([0,1]\times S_\omega).
+\]
+
+对每个给定的 $J\in\mathfrak j_\omega$，研究方程
+\eqref{eq:unperturbed-floer-strip}，并把其有界解空间定义为
+\footnote{译者注：原书在下式中要求
+$\int_\Theta E_J(u)<\infty$，但前文已经把 $E_J(u)$ 本身定义为在整个
+$\Theta$ 上的积分，再次积分既无相应密度也类型不合。译文补正为
+$E_J(u)<\infty$。}
+\begin{equation}
+  \widetilde{\mathcal M}(L_0,L_1;J)
+  =
+  \left\{
+    u\in\mathcal P^p_{k:\mathrm{loc}}
+    \ \middle|\
+    \begin{gathered}
+      u\text{ 满足\eqref{eq:unperturbed-floer-strip}},\\
+      E_J(u)<\infty
+    \end{gathered}
+  \right\}.
+\label{eq:bounded-floer-solutions}
+\end{equation}
+
+当 $L_0$ 与 $L_1$ 横截时，将在命题 14.1.5 中证明的
+$\tau\to\pm\infty$ 指数收敛给出分解
+\[
+  \widetilde{\mathcal M}(L_0,L_1;J)
+  =
+  \coprod_{p,q\in L_0\cap L_1}
+    \widetilde{\mathcal M}(p,q;J),
+\]
+其中对每一对给定的 $p,q\in L_0\cap L_1$，定义
+\footnote{译者注：原书在这里把 $p$ 配给 $\tau\to+\infty$、把 $q$ 配给
+$\tau\to-\infty$；但定义 13.9.3 的带映射从 $s=0$ 处的 $p$ 连到 $s=1$
+处的 $q$，本节下一页也明确规定 $u(-\infty)=\widehat p$、
+$u(+\infty)=\widehat q$。译文依后两处统一渐近端次序。}
+\[
+  \widetilde{\mathcal M}(p,q;J)
+  =
+  \left\{
+    u\in\widetilde{\mathcal M}(L_0,L_1;J)
+    \ \middle|\
+    \begin{aligned}
+      \lim_{\tau\to-\infty}u(\tau)&=\widehat p,\\
+      \lim_{\tau\to+\infty}u(\tau)&=\widehat q
+    \end{aligned}
+  \right\}.
+\]
+\stfhIndex{I066}{Lianjieguidao}{连接轨道（connecting orbit）}
+这个 $\widetilde{\mathcal M}(p,q;J)$ 扮演\emph{\termConnectingOrbit{}}空间的角色，
+也就是有限维\personMorse{}理论中连接一个光滑函数的两个临界点之流线空间。
+
+$\tau$-平移在 $\widetilde{\mathcal M}(p,q;J)$ 上有一个自然的 $\mathbb R$-作用；
+把商记为
+\[
+  \mathcal M(p,q;J)
+  =
+  \widetilde{\mathcal M}(p,q;J)/\mathbb R.
+\]
+事实上，空间 $\mathcal M(p,q;J)$ 还可按其元素的同伦类进一步分解。在非正合情形
+的\personFloer{}同调理论中，为正确编码量子贡献，研究这个分解十分重要。
+
+\begin{definition}
+\label{def:strip-relative-homotopy-classes}
+以 $\pi_2(p,q)$ 表示满足边界条件
+\[
+  u(0,t)\equiv p,
+  \qquad
+  u(1,t)\equiv q,
+  \qquad
+  u(s,0)\in L_0,
+  \qquad
+  u(s,1)\in L_1
+\]
+的映射 $u:[0,1]^2\to M$ 之同伦类集合。对每个给定的
+$B\in\pi_2(p,q)$，以 $\operatorname{Map}(p,q;B)$ 表示类 $B$ 中所有这种
+$u$ 的集合。
+\end{definition}
+
+每个元素 $B\in\pi_2(p,q)$ 都诱导映射
+\[
+  (\mathord\cdot)\#B:
+  \pi_2(p;\ell_0)\longrightarrow\pi_2(q;\ell_0),
+\]
+它由显然的粘合映射
+\[
+  w\longmapsto w\#u
+\]
+给出。更具体地，一劳永逸地用如下公式定义
+$w\#u:[0,1]^2\to M$：
+\begin{equation}
+  w\#u(s,t)
+  =
+  \begin{cases}
+    w(2s,t),&0\leq s\leq\frac12,\\
+    u(2s-1,t),&\frac12\leq s\leq1.
+  \end{cases}
+\label{eq:strip-gluing-parametrization}
+\end{equation}
+还有自然的粘合映射
+\[
+  \pi_2(p,q)\times\pi_2(q,r)
+  \longrightarrow\pi_2(p,r),
+\]
+以及
+\[
+  (u_1,u_2)\longmapsto u_1\#u_2.
+\]
+也一劳永逸地以类似\eqref{eq:strip-gluing-parametrization}的标准方式，明确表示映射
+$u_1\#u_2:[0,1]^2\to M$。
+
+由 $L_0,L_1$ 的拉格朗日性质，下述引理由\personStokes{}公式立即可见。
+
+\begin{lemma}
+\label{lem:symplectic-area-strip-homotopy-class}
+给定 $p,q\in L_0\cap L_1$。则
+$u\in\operatorname{Map}(p,q;B)$ 的辛面积是常数。以 $\omega(B)$ 表示
+$\operatorname{Map}(p,q;B)$ 中元素的这个公共面积。
+\end{lemma}
+
+在横截情形，\personMaslov{}--\personViterbo{}指标将控制\personFloer{}模空间的维数；其讨论留待后续章节。
+
+现在，以
+\[
+  \mathcal M(L_0,L_1;p,q;B)
+\]
+表示\personCauchy{}--\personRiemann{}方程\eqref{eq:unperturbed-floer-strip}满足渐近条件和同伦条件
+\[
+  u(-\infty)\equiv\widehat p,
+  \qquad
+  u(+\infty)\equiv\widehat q,
+  \qquad
+  [u]=B
+\]
+的有限能量解集合。
+
+这里指出，尽管 $u$ 先验地定义在 $\mathbb R\times[0,1]$ 上，但当 $L_0,L_1$
+横截时，由\personCauchy{}--\personRiemann{}方程之解 $u$ 的指数衰减性质，它可以紧化为具有相应
+边界条件的连续映射
+\[
+  \overline u:[0,1]\times[0,1]\longrightarrow M.
+\]
+考虑映射
+\[
+  \rho^+(\tau)
+  =
+  \begin{cases}
+    1,&\tau=+\infty,\\
+    0,&\tau=-\infty,\\
+    \displaystyle
+    \frac12\left(1+\tau(1+\tau^2)^{-1/2}\right),
+      &\tau\in\mathbb R.
+  \end{cases}
+\]
+于是定义
+\[
+  \overline u:[0,1]\times[0,1]\longrightarrow M,
+  \qquad
+  \overline u(s,t)=u\bigl((\rho^+)^{-1}(s),t\bigr).
+\]
+由于 $u$ 在 $\pm\infty$ 处具有指数衰减性质，这个映射在
+$[0,1]\times[0,1]$ 上连续，并且属于
+$\operatorname{Map}(p,q;B)$。
+\footnote{译者注：原书在此写成此前没有定义的
+$\operatorname{Map}(L_0,L_1;p,q)$；当前 $u$ 已满足 $[u]=B$，而定义 13.9.3
+引入的对应集合是 $\operatorname{Map}(p,q;B)$，译文依此补正。}
+（进一步解释见 (Schw93)。）称 $\overline u$ 为 $u$ 的\emph{\termCompactifiedMap{}}。
+略微滥用记号，
+也用 $[u]$ 表示紧化映射的类
+\[
+  [\overline u]\in\pi_2(p,q).
+\]
+
+\subsection{\texorpdfstring{$\Lambda(L_0,L_1)$-模的结构}{\personNovikov{}环上的模结构}}
+\label{subsec:global-novikov-module-structure}
+
+到目前为止，我们已经为每个连通分支 $\Omega(L_0,L_1;\ell_0)$ 关联了一个\personFloer{}复形 $CF(L_0,L_1;\ell_0)$。它具有
+$\Lambda(L_0,L_1;\ell_0)$-模结构，并依赖于元素
+\[
+  [\ell_0]\in\pi_0\bigl(\Omega(L_0,L_1)\bigr).
+\]
+本小节说明如何把它扩充为纳入 $\Omega(L_0,L_1)$ 全部连通分支的\personFloer{}链模
+$CF(L_0,L_1)$，其系数取在\personNovikov{}环 $\Lambda(L_0,L_1)$ 中。
+
+按照第 13.8 节给出的\personUsher{}抽象框架，在分次滤过\personFloer{}复形的抽象定义中，辨认
+相应的五元组
+\[
+  \mathfrak c
+  =
+  \bigl(\pi:P\to S,\mathcal A,\omega,\operatorname{deg},\partial\bigr).
+\]
+
+\begin{definition}
+\label{def:global-lagrangian-period-group}
+\stfhIndex{I151}{Zhouqiqun}{周期群（period group）}
+定义 $\Omega(L_0,L_1)$ 的周期群为
+\[
+  G_\omega(L_0,L_1)
+  =
+  \left\{
+    \omega(u)
+    \ \middle|\
+    \begin{gathered}
+      u:S^1\times[0,1]\to M,\\
+      u(s,0)\in L_0,\quad u(s,1)\in L_1
+    \end{gathered}
+  \right\}.
+\]
+\end{definition}
+
+与前面类似，定义与 $G(L_0,L_1)$ 相伴的\personNovikov{}环
+$\Lambda(L_0,L_1)$。
+\footnote{译者注：原书在这里只定义了周期像 $G_\omega(L_0,L_1)$，随后却称
+$\Lambda(L_0,L_1)$ 与未定义的 $G(L_0,L_1)$ 相伴；它没有给出把不同道路空间
+分支的覆盖变换群合成为这个全局群的具体构造。由于本段不足以唯一重构该对象，
+译文保留原书记号并明示缺口。}
+
+对 $(M,\omega)$ 中一对给定的相互横截紧拉格朗日子流形 $(L_0,L_1)$，如
+\eqref{eq:concrete-floer-novikov-data} 那样取 $S,\Gamma,P$。$\Gamma$ 上的周期
+同态和次数同态仍分别由
+\[
+  g\longmapsto\omega(g),
+  \qquad
+  g\longmapsto\mu(g)
+\]
+\stfhIndex{I165}{Shifenci}{实分次（real grading）}
+给出；在任意生成元 $p$ 上规定\termRealGrading{}为零，由此定义
+\footnote{译者注：原书称周期与次数同态“由赋值 $g\mapsto\mu(g)$ 给出”，漏掉
+周期同态的 $g\mapsto\omega(g)$；随后直接写
+$\mathcal A(g\cdot p)=-\omega(g)$，下一句才说明每个生成元 $p$ 的实分次取零。
+译文补全两个同态，并把使该式成立的零分次约定提前明示。}
+\begin{equation}
+  \mathcal A(g\cdot p)=-\omega(g).
+\label{eq:global-real-grading}
+\end{equation}
+换言之，我们在任意生成元 $p$ 上赋予分次 $0$。由于\personFloer{}边界映射是
+$G(L_0,L_1;\ell_0)$-等变的，只要 $\partial^2=0$，这些赋值便给出一个分次滤过\personFloer{}复形，记为
+\[
+  CF\bigl(L_0,L_1;\Lambda(L_0,L_1)\bigr).
+\]
+
+注意，这个实分次\emph{并不}来自作用量泛函 $\mathcal A_{\ell_0}$ 的值。回忆，为了在\personFloer{}复形上定义实分次，只需为其生成元赋予分次，而不必在整个道路空间上赋值，
+并使该分次成为 $G(L_0,L_1)$-等变的。作出这些选取后，通过考虑\termConvolutionProduct{}
+\[
+  \Lambda(L_0,L_1)\times CF(L_0,L_1)
+  \longrightarrow CF(L_0,L_1),
+\]
+便可在 $CF(L_0,L_1)$ 上定义一个 $\Lambda(L_0,L_1)$-模结构。

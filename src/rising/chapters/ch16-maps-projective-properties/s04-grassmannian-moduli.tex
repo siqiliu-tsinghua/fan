@@ -1,0 +1,109 @@
+
+\section{\hard\ \trGrassmannian{}作为\trModuliSpace}
+
+（在本节及其他几节中，记号 $k$ 既用作一个\trField，也用作一个维数。对此我们深表歉意，希望它不至于引起太大的混淆。）
+
+我们最初在 \S4.4.9 中以不大体面的方式定义了\trProjectiveSpace，而在 \S15.2.3 中给出了一个干净（尽管也许出人意料）的\trFunctor{}式定义。类似地，我们在 \S7.7 中给出了\trGrassmannian{}的一份初步描述。如今我们已有条件给出一个更好的定义。在继续之前，如果你还没有读过 \extrahard{}节 \S10.1.7，应当先回头去读一读。
+
+我们来描述「\trGrassmannian{}（\trContravariantFunctor）」（我们也把它记作 $\mathrm{G}(k,n)$），然后证明它是\trRepresentable{}的（\S7.6.2）。这一构造在任意\trBaseScheme{}上都行得通，于是我们在\trFinalObject{} $\Spec\mathbb{Z}$ 上工作。（倘若你想在比如复概形上工作，应当先想清楚要改动些什么。）这个\trFunctor{}定义如下。对一个\trScheme{} $B$，我们给它配上由秩 $n$ 自由层的\emph{局部自由秩 $k$ 商}
+\begin{equation*}\tag{16.4.0.1}\label{eq:grassmannian-rank-k-quotient}
+\OO_{\mathrm{B}}^{\oplus n}\twoheadrightarrow\scr{Q},
+\end{equation*}
+（\emph{不计\trIsomorphism}）所构成的集合。两个这样的商 $\phi\colon\OO_{\mathrm{B}}^{\oplus n}\to\scr{Q}\to 0$ 与 $\phi'\colon\OO_{\mathrm{B}}^{\oplus n}\to\scr{Q}'\to 0$ 之间的一个\trIsomorphism，是指一个\trIsomorphism{} $\sigma\colon\scr{Q}\overset{\sim}{\longrightarrow}\scr{Q}'$，它使下图交换：
+\[
+\begin{tikzcd}
+\OO^{\oplus n} \ar[r, "\phi"] \ar[dr, "\phi'"'] & \scr{Q} \ar[d, "\sigma"] \\
+& \scr{Q}'
+\end{tikzcd}
+\]
+由\mbox{练习~14.2.H}(a)，$\ker\phi$ 是秩 $n-k$ 的\trLocallyFreeSheaf。（于是，如果你愿意，可以将 \eqref{eq:grassmannian-rank-k-quotient} 扩充，转而让这个\trFunctor{}把 $B$ 送到 $B$ 上\trLocallyFreeSheaf{}的如下\trShortExactSequence
+\begin{equation*}\tag{16.4.0.2}\label{eq:grassmannian-tautological-ses}
+0\longrightarrow\scr{S}\longrightarrow\OO^{\oplus n}\longrightarrow\scr{Q}\longrightarrow 0
+\end{equation*}
+其秩分别为 $n-k$、$n$、$k$。）
+
+看到这里你也许会吃惊：格拉斯曼本应参数化 $n$ 维空间中的 $k$ 维\trSubspace{}\footnote{原书此处作「k-dimensional subspace」，subspace 为单数，疑当为复数 subspaces，兹照录原书。——译者注}，而我们考虑的却是秩 $n$ 层的秩 $k$ \emph{商}，而非秩 $k$ \emph{\trSubobject}。这样做有好几个理由。其一是，\trLocallyFreeSheaf{}之间的满射的\trKernel{}必是\trLocallyFreeSheaf，而\trLocallyFreeSheaf{}之间的单射的\trCokernel{}却未必是\trLocallyFreeSheaf{}（分别见\mbox{练习~14.2.H}(a) 与 (b)）。（如果你愿意，也可以不考虑有限秩\trLocallyFreeSheaf{}的满射，而是等价地考虑有限秩\trLocallyFreeSheaf{}的单射——按\mbox{定义~14.2.4} 的说法，即「\trVectorBundle{}的单射」。）理由之二是：在 \S25.3.3 中我们将会看到，这个问题的几何化身确实恰好翻译成了这种提法。在这里我们已然能看到一个关键例子：若 $k=1$，我们的定义给出的便是一维商 $\OO^{\oplus n}\to\scr{L}\to 0$。而这恰好就是「$\scr{L}$ 的 $n$ 个没有公共零点的\trSection{}」这份数据；由\mbox{定理~15.2.2}（\trProjectiveSpace{}的\trFunctor{}式描述），它恰好对应于到 $\mathbb{P}^{n-1}$ 的映射，所以 $k=1$ 的情形参数化的正是我们想要的东西。
+
+现在我们来证明：对给定的 $n$ 与 $k$，\trGrassmannian{}（\trContravariantFunctor）是\trRepresentable{}的。
+
+到目前为止，我们描述了\trGrassmannian{}\trFunctor{}在\emph{\trObject} $B$ 上做什么；而要完整地描述一个\trFunctor，我们还得说明它在\emph{\trMorphism} $B_1\to B_2$ 上做什么。你能看出这个定义必然是什么吗？
+
+\textbf{16.4.A.（练习）}\quad 证明：\trGrassmannian{}\trFunctor{}是一个\trZariskiSheaf（\S10.1.8）。
+
+于是，由\mbox{关键练习~10.1.H}，要证明\trGrassmannian{}\trFunctor{}是\trRepresentable{}的，我们只消用\trRepresentable{}的\trOpen\trSubfunctor{}覆盖它即可。
+
+在本节余下的部分里，一个\textbf{$k$-子集}（$k$-subset）就是 $\{1,\dots,n\}$ 的一个大小为 $k$ 的子集。
+
+\textbf{16.4.B.（练习）}
+
+（a）设 $I$ 是一个 $k$-子集。把下面的陈述说精确：存在\trOpen\trSubfunctor{} $\mathrm{G}(k,n)_I\subset\mathrm{G}(k,n)$，使得 $\scr{Q}$ 的对应于 $I$ 的那 $k$ 个\trSection{}（在来自满射 $\phi\colon\OO^{\oplus n}\to\scr{Q}$ 的 $\scr{Q}$ 的 $n$ 个\trSection{}之中）是线性无关的。提示：在 $\scr{Q}$ 的一个\trTrivialization{}开邻域上，我们可以选取\trIsomorphism{} $\scr{Q}\overset{\sim}{\longrightarrow}\OO^{\oplus k}$，于是 $\phi$ 可被解读为一个 $k\times n$ 矩阵 $M$，而这个轨迹就是 $M$ 的由 $I$ 给出的那些列所拼成的 $k\times k$ 矩阵的\trDeterminant{}可逆的轨迹。证明这个轨迹在平凡化的转换下表现良好。
+
+（b）证明：当 $I$ 取遍全部 $k$-子集时，这些\trOpen\trSubfunctor{} $\mathrm{G}(k,n)_I$ 覆盖\trFunctor{} $\mathrm{G}(k,n)$。
+
+于是，由\mbox{练习~10.1.H}，要证明 $\mathrm{G}(k,n)$ 是\trRepresentable{}的，我们只消证明：$\mathrm{G}(k,n)_I$ 对任意的 $I$ 都是\trRepresentable{}的。把 $\OO^{\oplus n}$ 的各个直和项重新命名之后，不失一般性可设 $I=\{1,\dots,k\}$。
+
+\textbf{16.4.C.（练习）}\quad 证明：$\mathrm{G}(k,n)_{\{1\ldots,k\}}$\footnote{原书此处下标作「$\{1\ldots,k\}$」，「1」之后疑脱一逗号，兹照录原书。——译者注}由 $\mathbb{A}^{k(n-k)}$ 按如下方式表示。（你必须把它说精确。）给定一个满射 $\phi\colon\OO^{\oplus n}\to\scr{Q}$，令 $\phi_i\colon\OO\to\scr{Q}$ 为来自 $\OO^{\oplus n}$ 第 $i$ 个直和项的映射。（\emph{说实话}，$\phi_i$ 只不过是 $\scr{Q}$ 的一个\trSection{}。）对于\trOpen\trSubfunctor{} $\mathrm{G}(k,n)_I$，证明
+\[
+\phi_1\oplus\cdots\oplus\phi_k\colon\OO^{\oplus k}\longrightarrow\scr{Q}
+\]
+是一个\trIsomorphism。对一个\trScheme{} $B$，双射 $\mathrm{G}(k,n)_I(B)\leftrightarrow\Hom(B,\mathbb{A}^{k(n-k)})$ 给定如下。给定一个元素 $\phi\in\mathrm{G}(k,n)_I(B)$，对 $j\in\{k+1,\dots,n\}$，有 $\phi_j=a_{1j}\phi_1+a_{2j}\phi_2+\cdots+a_{kj}\phi_k$，其中诸 $a_{ij}$ 都是 $B$ 上的函数。但 $B$ 上的 $k(n-k)$ 个函数与一个到 $\mathbb{A}^{k(n-k)}$ 的映射是一回事（\mbox{练习~7.6.E}）。反之，给定 $k(n-k)$ 个函数 $a_{ij}$（$1\le i\le k<j\le n$），如下定义一个满射 $\phi\colon\OO^{\oplus n}\to\OO^{\oplus k}$：$(\phi_1,\dots,\phi_k)$ 是恒同映射，而对 $j>k$，$\phi_j=a_{1j}\phi_1+a_{2j}\phi_2+\cdots+a_{kj}\phi_k$。
+
+这样，你已经用 $\binom{n}{k}$ 份 $\mathbb{A}^{k(n-k)}$ 覆盖了 $\mathrm{G}(k,n)$，从而证明了它是\trRepresentable{}的。（你或许愿意把这件事与你在 \S7.7 中给出的描述联系起来。）特别地，域上的\trGrassmannian{}是\trSmooth{}的，并且是\trIrreducible{}的，其维数为 $k(n-k)$。（任何基上的\trGrassmannian{}都在该基上\trSmooth，因为 $\mathbb{A}_{\mathrm{B}}^{k(n-k)}\to B$ 是\trSmooth{}的；见 \S13.6.2。）
+
+\textbf{16.4.1.}\ \emph{\trGrassmannian{}上的\trUniversalExactSequence。}\quad 注意，我们有一条重言正合列
+\[
+0\longrightarrow\scr{S}\longrightarrow\OO^{\oplus n}\longrightarrow\scr{Q}\longrightarrow 0.
+\]
+丛 $\scr{Q}$ 被称作\trGrassmannian{}上的\textbf{\trTautologicalQuotientBundle}（tautological quotient bundle），而 $\scr{S}$ 被称作\textbf{\trTautologicalSubbundle}（tautological subbundle）。（\mbox{练习~1.2.Z}(b) 或许能让你约略领会，它为何可以称作「\trUniversalExactSequence」（universal exact sequence）。）
+
+\textbf{16.4.2.\ \trPluckerEmbedding。}
+
+对一个满射 $\phi\colon\OO^{\oplus n}\to\scr{Q}$（在任意基 $B$ 上）施加 $\wedge^k$，我们便得到一个满射
+\[
+\wedge^k\phi\colon\OO^{\oplus\binom{n}{k}}\longrightarrow\det\scr{Q}
+\]
+（\mbox{练习~14.2.N}）。但从秩 $N$ 自由层出发到一个\trLineBundle{}的满射，与一个到 $\mathbb{P}^{N-1}$ 的映射是同一回事（\mbox{定理~15.2.2}）。
+
+\textbf{16.4.D.（练习）}\quad 利用这一点描述一个映射 $P\colon\mathrm{G}(k,n)\to\mathbb{P}^{\binom{n}{k}-1}$。（这只是一个同义反复：\trFunctor{}之间的一个\trNaturalTransformation{}诱导出表示它们的概形之间的一个映射。这正是\trYonedaLemma，不过，如果你没做过\mbox{练习~1.2.Z}，你也许愿意亲手做一做这个练习。但一旦做了，你也不妨回头去证明\trYonedaLemma{}，再做一做\mbox{练习~1.2.Z}，因为论证完全是一回事！）
+
+\textbf{16.4.E.（练习）}\quad $\mathbb{P}^{\binom{n}{k}-1}$ 上对应于 $\OO^{\oplus\binom{n}{k}}$ 第 $I$ 个直和项的射影\trCoordinate{} $\mathrm{x}_I$，可以解读为映射 $\phi_I\colon\OO^{\oplus k}\to\scr{Q}$ 的\trDeterminant，其中这个 $\OO^{\oplus k}$ 由 $\OO^{\oplus n}$ 中对应于 $I$ 的那些直和项构成。请把这件事说精确。
+
+\textbf{16.4.F.（练习）}\quad 证明：$\mathbb{P}^{\binom{n}{k}-1}$ 中对应于 $k$-子集 $I$ 的\trStandardOpenSet{} $\mathrm{U}_I$（也就是对应的\trCoordinate{} $\mathrm{x}_I$ 不消失之处）拉回正是\trOpen\trSubscheme{} $\mathrm{G}(k,n)_I\subset\mathrm{G}(k,n)$。记这个映射为 $P_I\colon\mathrm{G}(k,n)_I\to\mathrm{U}_I$。
+
+\textbf{16.4.G.（练习）}\quad 证明：$P_I$ 是一个\trClosedEmbedding，做法如下。我们可以只处理 $I=\{1,\dots,k\}$ 的情形。注意 $\mathrm{G}(k,n)_I$ 是仿射的——你在\mbox{练习~16.4.C} 中已经描述了 $\Spec\mathbb{Z}[a_{ij}]_{1\le i\le k<j\le n}$\footnote{原书此处作「you described it Spec $\mathbb{Z}[a_{ij}]$」，当为「described it as Spec $\mathbb{Z}[a_{ij}]$」之脱漏，译文径顺化。——译者注}。此外，$\mathrm{U}_I$ 也是仿射的：当 $I'$ 取遍其余 $k$-子集时，它以诸 $\mathrm{x}_{I'/I}$ 为\trCoordinate。（$k=1$ 的情形，正是我们用来命名\trProjectiveSpace{}各卡上\trCoordinate{}的那个有用记号 $\mathrm{x}_{i/j}$，见 \S4.4.9。）你想证明映射
+\[
+P_I^{\sharp}\colon\mathbb{Z}[\mathrm{x}_{I'/I}]_{I'\subset\{1,\dots,n\},\,|I'|=k}/(\mathrm{x}_{I/I}-1)\longrightarrow\mathbb{Z}[a_{ij}]_{1\le i\le k<j\le n}
+\]
+是满射。\footnote{原书此展示式下标中「$|I'|=k$」之后衍一右花括号，径删。——译者注}把映射 $\phi\colon\OO^{\oplus n}\to\OO^{\oplus k}$ 解读为一个 $k\times n$ 矩阵 $M$——其左边 $k$ 列是单位矩阵，而其余元素是 $a_{ij}$（$1\le i\le k<j\le n$）——据此把 $P_I^{\sharp}$ 解读为把 $\mathrm{x}_{I'/I}$ 送到与 $I'$ 中那些列相对应的 $k\times k$ 子矩阵的\trDeterminant。对每一对 $(i,j)$（其中 $1\le i\le k<j\le n$），找出某个 $I'$ 使得 $\mathrm{x}_{I'/I}\mapsto\pm a_{ij}$。（取 $I'=\{1,\dots,i-1,i+1,\dots,k,j\}$。）
+
+于是 $\mathrm{G}(k,n)\to\mathbb{P}^{\binom{n}{k}-1}$ 是一个\trClosedEmbedding，故 $\mathrm{G}(k,n)$ 在 $\mathbb{Z}$ 上是射影的。
+
+\textbf{16.4.H.（不重要的练习）}\quad 一个有趣的几何推论：设 $V$ 是一个域上的\trVectorSpace，证明「$\wedge^k V$ 中的\trPureTensor{}恰以唯一的一种方式为纯」：若在 $\wedge^k V$ 中 $v_1\wedge\cdots\wedge v_k=w_1\wedge\cdots\wedge w_k\neq 0$，证明存在一个\trDeterminant{}为 $1$ 的 $k\times k$ 矩阵，把诸 $v_i$ 与诸 $w_i$ 联系起来。
+
+\textbf{16.4.3.}\ \emph{\trPlucker{}方程。}\quad $\mathrm{G}(k,n)\to\mathbb{P}^{\binom{n}{k}-1}$ 的方程格外好看。在一个 $k\times n$ 矩阵\footnote{原书此处作「k × (n−k) 矩阵」，当为「k × n 矩阵」之误——普吕克坐标正是 $k\times n$ 矩阵的各 $k\times k$ \trMinor，本节\mbox{练习~16.4.B} 与\mbox{练习~16.4.G} 中亦是如此——径改。——译者注}的诸 $k\times k$ \trMinor{}之间存在一些二次关系，称作\trPlucker{}方程。按我们的构造，它们是 $\mathrm{G}(k,n)$ 所满足的方程。事实证明，这些方程恰好切出 $\mathrm{G}(k,n)$，而且实际上生成 $\mathrm{G}(k,n)$ 的\trHomogeneous\trIdeal，不过这要费更多功夫（见 [F1, \S9.1, Lem.~1]）。我们在一个例子中对它作一番探讨。
+
+\textbf{16.4.I.（练习）}\quad 设 $v_1$、$v_2$、$v_3$、$v_4$ 是某个域上一个二维\trVectorSpace{} $V$ 中的四个向量。证明
+\[
+(v_1\wedge v_2)(v_3\wedge v_4)-(v_1\wedge v_3)(v_2\wedge v_4)+(v_1\wedge v_4)(v_2\wedge v_3)=0.
+\]
+这个练习的棘手之处在于弄清楚如何解读此处的乘法（诸\trPlucker{}坐标的乘法）。
+
+\textbf{16.4.J.（练习）}\quad 注意，\trPluckerEmbedding{}把\trGrassmannian{} $\mathrm{G}(2,4)$ 嵌入 $\mathbb{P}^5$。
+
+（a）证明：$\mathrm{G}(2,4)$ 由二次方程
+\[
+\mathrm{x}_{12}\mathrm{x}_{34}-\mathrm{x}_{13}\mathrm{x}_{24}+\mathrm{x}_{14}\mathrm{x}_{23}=0.
+\]
+切出。（提示：利用\mbox{练习~16.4.I} 证明这个二次式在 $\mathrm{G}(2,4)$ 上消失。但仅止于此还不够。）
+
+（b）证明：特征不为 $2$ 的\trAlgClosedField{} $\overline{k}$ 上，$\mathbb{P}^5$ 中的每一张\trSmooth{}\trQuadricHypersurface{}都\trIsomorphic{}于\trGrassmannian{}（在 $\overline{k}$ 上）。（作为比较：$\mathbb{P}^1_k$ 中的每张\trSmooth{}\trQuadricHypersurface{}是两个点；$\mathbb{P}^2_k$ 中的每张\trSmooth{}\trQuadricHypersurface\trIsomorphic{}于 $\mathbb{P}^1_k$，\S7.5.10；而 $\mathbb{P}^3_k$ 中的每张\trSmooth{}\trQuadricHypersurface\trIsomorphic{}于 $\mathbb{P}^1_k\times_{\overline{k}}\mathbb{P}^1_k$，\mbox{例~10.6.2}。）
+
+\textbf{16.4.K.（练习：$\mathbb{P}^5$ 中\trQuadricSurface{}上的\trRuling）}\quad 设 $k=\overline{k}$。由\mbox{注记~9.3.10}，我们预期 $\mathrm{G}(2,4)$（经由\trPluckerEmbedding{}把它视作 $\mathbb{P}^5$ 中的一张超曲面；见\mbox{练习~16.4.I}）中有两个由平面组成的三维族。其中一族可以描述如下：对每一点 $p\in\mathbb{P}^3_k$，我们有一族过 $p$ 的直线，它是二维的；这就给出 $\mathrm{G}(2,4)$ 中的一个平面。随 $p$ 的不同选取，这些平面构成一个三维的族。这是两条\trRuling{}中的一条。另一条是什么？证明（就你所掌握的内容，能证得多严格就证得多严格）这两者确实都是\trRuling。
+
+\textbf{16.4.4.}\ \emph{进一步的讨论。}
+
+\textbf{16.4.L.（练习）}\quad 证明：\trGroupScheme{} $\mathrm{GL}_n$ 作用在\trGrassmannian{} $\mathrm{G}(k,n)$ 上。（\trGroupScheme{}的\emph{作用}早先出现在\mbox{练习~7.6.S}(a) 中。）提示：用\trFunctor{}的语言（\S7.6）来做这件事，比用开片来描述\trGrassmannian{}（\S7.7）要容易得多。（\mbox{练习~15.5.F} 曾是\trProjectiveSpace{}的特殊情形。）
+
+\textbf{16.4.M.}\ \extrahard\ （练习：\trGrassmannianBundle）\quad 设 $\scr{F}$ 是一个概形 $X$ 上秩为 $n$ 的\trLocallyFreeSheaf。定义 $X$ 上的\textbf{\trGrassmannianBundle}（Grassmannian bundle）$\mathrm{G}(k,\scr{F})$。直观地说，若 $\scr{F}$ 是 $X$ 上 $n$ 维\trVectorSpace{}的一个变动的族，则 $\mathrm{G}(k,\scr{F})$ 应当参数化各\trFiber{}的 $k$ 维商。你不妨先定义这个\trFunctor，然后证明它是\trRepresentable{}的。你的构造在\trBaseChange{}之下将表现良好。
+
+\textbf{16.4.5.}\ \emph{（部分）\trFlagVariety。}\quad 这里的讨论可以原封不动地推广到\trPartialFlagVariety（\S7.7.1），有兴趣的读者应当把这件事想清楚。

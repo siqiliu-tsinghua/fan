@@ -1,0 +1,209 @@
+\stfhIndex{I242}{she^en}{舍恩（Schoen）}
+本章将研究 $J$-全纯曲线 $u:\Sigma\to M$ 在曲面 $\Sigma$ 的内部与边界附近的各种局部性质。我们从上一章所作的计算出发，先按照调和映射和极小曲面理论中几何分析的标准做法，导出主要的内部先验估计。然后，沿用 (SU81)、(Fl88a) 与 (Oh92) 中较为整体的方法，导出相应的边界估计。此后，我们依照 (Fl88b)、(Oh92) 中使用的论证，证明基本的 $\epsilon$-正则性定理。这个正则性定理是获得小能量 $J$-全纯映射导数界的关键环节。我们对这一 $\epsilon$-正则性结果的证明使用重标度论证，其风格与几何分析中的标准论证略有不同，例如不同于 (SU81) 中依赖某些几何计算的论证。不过，同一种重标度论证也是乔纳森·萨克斯（Jonathan Sacks）--凯伦·乌伦贝克（Karen Uhlenbeck）在 (SU81) 中发展出来的起泡论证之基石。
+
+在此之后，我们导出等周不等式与单调性公式，最后证明具有孤立奇点的有限能量 $J$-全纯曲线之可去奇点定理。
+
+\section{内部先验估计}
+\label{sec:interior-a-priori-estimates}
+
+本节假设 $u$ 是 $J$-全纯的。固定任意相容度量 $g$，并以 $\nabla$ 表示定理 7.1.5 所给出的殆凯勒流形 $(M,\omega,J)$ 的典范联络。于是 $u$ 满足方程 (7.3.28)。先把 (7.3.28) 改写为
+\begin{equation}
+ |\nabla du|^2=-\frac12\Delta e(u)-2\langle K\,\partial u,\partial u\rangle
+ -2\langle R(du,du)\partial u,\partial u\rangle .
+ \label{eq:ch8-bochner-rewrite}
+\end{equation}
+调和映射与极小曲面理论中出现的下述标准不等式立即由这个恒等式推出。
+
+\begin{lemma}\label{lem:ch8-energy-density-differential-ineq}
+对任意 $J$-全纯映射，都有逐点不等式
+\begin{equation}
+ \Delta e(u)\leq C_1e(u)+C_2e^2(u)
+ \label{eq:ch8-energy-density-ineq}
+\end{equation}
+其中普适常数 $C_1,C_2$ 只依赖于 $\omega,J$。事实上，可以取
+\begin{equation}
+ C_1=4\max_{z\in\Sigma}|K(z)|,\qquad
+ C_2=4\max_{x\in M}|R(x)|.
+ \label{eq:ch8-density-constants}
+\end{equation}
+\end{lemma}
+
+这里要指出，引理中的常数 $C_1$ 只依赖于 $\Sigma$，而 $R$ 只通过
+$\nabla$ 依赖于 $M$（因而依赖于 $\omega,J$）。
+
+\begin{remark}\label{rem:ch8-conformal-rescaling-domain-metric}
+此时回忆，在上述计算中对 $h$ 的唯一要求，是 $h$ 关于复结构 $j$ 为埃尔米特的。因此可以把埃尔米特度量 $h$ 乘以 $\lambda^{-2}$，转而考虑 $\lambda^{-2}h$。新的能量密度函数记作 $e_\lambda$，其形式为
+\[
+ e_\lambda(u)=\lambda^2e(u).
+\]
+由于度量 $\lambda^{-2}h$ 的面积元 $dA_\lambda$ 等于 $\lambda^{-2}dA$，总能量
+\[
+ E(u):=\frac12\int_\Sigma |du|^2\,dA
+\]
+保持不变，即 $E(u)=E_\lambda(u)$。
+
+这种度量族自然出现于如下几何情形：把 $\Sigma$ 中的测地球
+$D_r^2(z_0)\subset\Sigma$ 上给定度量 $h$ 的限制，经由指数映射
+$R_r:D^2(1)\to\Sigma$ 拉回到单位圆盘 $D^2(1)\subset\mathbb C\cong T_{z_0}\Sigma$，其中
+$R_r(y)=\exp_{z_0}(ry)$。拉回度量可写成
+$R_r^*h=\lambda_r(z)|dz|^2$，其中 $D^2(1)$ 上的函数 $\lambda_r$ 满足
+$r\to0$ 时 $\lambda_r\to1$ 于 $C^\infty$。还要指出，若 $\lambda>0$ 是常数，则 $\lambda^{-2}h$ 的高斯曲率为 $\lambda^2K$，故度量 $\lambda^{-2}h$ 的常数 $C_{1,\lambda}$ 可取为
+\begin{equation}
+ C_{1,\lambda}=\lambda^2C_1.
+ \label{eq:ch8-rescaled-curvature-constant}
+\end{equation}
+特别地，把 \eqref{eq:ch8-energy-density-ineq} 应用于 $D^2(1)$ 上的度量 $R_r^*h$，令 $r\to0$，便能使 $C_{1,\lambda}$ 任意小。
+\end{remark}
+
+下述密度估计是研究 $J$-全纯映射（内部）正则性的关键。证明的主要想法取自理查德·舍恩（Richard Schoen） (Sc84) 对调和映射的研究。以 $D(r)\subset\Sigma$ 表示半径为 $r$ 的圆盘，并以 $D(2r)\subset\operatorname{Int}\Sigma$ 表示同心的半径 $2r$ 圆盘，且 $2r$ 小于 $h$ 在 $\Sigma$ 上的单射半径。
+
+\begin{theorem}[内部密度估计]\label{thm:ch8-interior-density-estimate}
+存在只依赖于 $J$ 以及 $\Sigma$ 上埃尔米特度量 $h$ 的常数 $C,\epsilon_0,r_0>0$，使得：对任何满足 $E(r_0)\leq\epsilon_0$ 的 $C^1$ $J$-全纯映射，其中
+\[
+ E(r_0):=\frac12\int_{D(r_0)}|du|^2,
+\]
+以及满足 $D(2r)\subset\operatorname{Int}\Sigma$、$0<2r\leq r_0$ 的圆盘，$u$ 满足
+\begin{equation}
+ \max_{\sigma\in(0,r]}\left(\sigma^2\sup_{D(r-\sigma)}e(u)\right)
+ \leq CE(r)
+ \label{eq:ch8-interior-density-max}
+\end{equation}
+对所有 $0<r\leq r_0$ 成立。特别地，取 $\sigma=r/2$，得到
+\begin{equation}
+ \sup_{D(r/2)}|du|^2\leq\frac{4CE(r)}{r^2}
+ \label{eq:ch8-interior-density-sup}
+\end{equation}
+对所有 $r\leq r_0$ 成立。
+\end{theorem}
+
+\begin{proof}
+令 $r_0>0$，并任取 $0<r\leq r_0/2$。考虑函数
+\[
+ \sigma\longmapsto \sigma^2\sup_{D(r-\sigma)}e(u),
+\]
+它在 $\sigma=0,r$ 时均取值 $0$。因此可以选取 $\sigma_0\in(0,r)$，使得
+\[
+ \sigma_0^2\sup_{D(r-\sigma_0)}e(u)
+ =\max_{\sigma\in(0,r)}\left(\sigma^2\sup_{D(r-\sigma)}e(u)\right)>0,
+\]
+只要 $u$ 在 $D(r)$ 上不是常值映射。（若 $u$ 在某个 $D(r)$ 上为常值，则无须证明。）再选 $z_0\in D(r-\sigma_0)$，使得
+\[
+ e(u)(z_0)=\sup_{D(r-\sigma_0)}e(u).
+\]
+由 $\sigma_0,z_0$ 的选择，$D_{\sigma_0/2}(z_0)\subset D(r-\sigma_0/2)$，从而
+\[
+ \sup_{D_{\sigma_0/2}(z_0)}e(u)\leq
+ \sup_{D(r-\sigma_0/2)}e(u).
+\]
+另一方面，
+\[
+ \left(\frac{\sigma_0}{2}\right)^2
+ \sup_{D(r-\sigma_0/2)}e(u)
+ \leq \sigma_0^2\sup_{D(r-\sigma_0)}e(u)
+ \leq\sigma_0^2e(u)(z_0).
+\]
+合并即得
+\begin{equation}
+ \sup_{D_{\sigma_0/2}(z_0)}e(u)\leq4e(u)(z_0).
+ \label{eq:ch8-density-local-sup-four}
+\end{equation}
+若 $\sigma_0^2e(u)(z_0)\leq4E(r)$，则由 $\sigma_0,z_0$ 的定义以及恒等式
+\[
+ \sigma_0^2e(u)(z_0)=
+ \max_{\sigma\in[0,r]}\left(\sigma^2\sup_{D(r-\sigma)}e(u)\right)
+\]
+便得到 \eqref{eq:ch8-interior-density-max}。故不妨假设
+\begin{equation}
+ e(u)(z_0)>4E(r)\sigma_0^{-2}.
+ \label{eq:ch8-density-contrary-lower}
+\end{equation}
+现在施行重标度论证。令
+\begin{equation}
+ e_0=\frac{e(u)(z_0)}{E(r)},\qquad
+ R_0=\frac{e_0^{1/2}\sigma_0}{2}.
+ \label{eq:ch8-rescaling-e0-r0}
+\end{equation}
+于是 $e_0\geq4/\sigma_0^2$ 且 $R_0\geq1$。定义重标度映射
+$g:D_{R_0}(0)\to M$ 为
+\[
+ g(y)=u\bigl(z_0+y/e_0^{1/2}\bigr).
+\]
+这里把 $y\mapsto z_0+y/e_0^{1/2}$ 视为从
+$D_{R_0}(0)\subset T_{z_0}\Sigma\cong\mathbb C$ 到
+$D_{\sigma_0/2}(z_0)\subset\Sigma$ 的显然的重标度指数映射
+$\exp_{z_0}(y/e_0^{1/2})$。计算得
+\[
+ e(g)(0)=|dg|^2(0)=|du(z_0)|^2/e_0=E(r),
+\]
+最后一个等号来自 \eqref{eq:ch8-rescaling-e0-r0}。因此由
+\eqref{eq:ch8-density-local-sup-four} 与
+\eqref{eq:ch8-density-contrary-lower}，有
+\[
+ \sup_{D_{R_0}(0)}e(g)\leq4E(r).
+\]
+在变量替换
+\[
+ y\in D_{R_0}(0)\longmapsto y+z_0/e_0^{1/2}\in D_{\sigma_0/2}(z_0)
+\]
+之下，度量 $h$ 被拉回为 $D_{R_0}(0)$ 上的一个度量。由
+\eqref{eq:ch8-rescaled-curvature-constant} 附近的说明，拉回度量的最大高斯曲率 $K$ 在 $\sigma_0\to0$ 时趋于零。于是
+\[
+ \sigma_0^2\geq4\frac{E(r)}{e(u)(z_0)}=\frac4{e_0},
+\]
+且若令 $\lambda_0=1/e_0$，则
+$\max|K_{\lambda_0}|\sim\lambda_0^2\max|K|$。把 $r_0$（从而把 $\sigma_0$）取得充分小，便可在 $\sigma_0$ 充分小时假设
+$\max|K_{\lambda_0}|\leq2\max|K|$。
+
+结合此式与 \eqref{eq:ch8-energy-density-ineq}，得到
+\[
+ \Delta e(g)\leq
+ \left(\frac{C_1\sigma_0^2}{4}+C_2e(g)\right)e(g)
+ \leq\left(\frac{C_1\sigma_0^2}{4}+4C_2E(r)\right)e(g)
+\]
+于 $D_{R_0}(0)$ 上成立。另一方面，把莫雷平均值定理
+((GT77) 定理 9.20) 应用于 $D_1(0)\subset D_{R_0}(0)$，得到
+\begin{equation}
+ E(r)=e(g)(0)\leq C_0
+ \left(\frac{C_1\sigma_0^2}{4}+4C_2E(r)\right)
+ \int_{D_1}e(g),
+ \label{eq:ch8-morrey-mean-value}
+\end{equation}
+\stfhIndex{I207}{mo^lei^ping^jun^zhi^ding^li}{莫雷平均值定理（Morrey mean-value theorem）}
+其中普适常数 $C_0$ 只依赖于测地坐标中 $\Delta$ 的系数。对固定大小的球，例如充分小且固定的 $r\leq r_0$，这个常数可以一致地选取，而 $r_0$ 可只依赖度量 $h$。但有
+\begin{equation}
+ \int_{D_1}e(g)\leq\int_{D_{R_0}}e(g)
+ =\int_{D_{\sigma_0/2}(z_0)}e(u)
+ \leq\int_{D(r)}e(u)=2E(r).
+ \label{eq:ch8-rescaled-energy-bound}
+\end{equation}
+合并 \eqref{eq:ch8-morrey-mean-value} 与
+\eqref{eq:ch8-rescaled-energy-bound}，得到
+\[
+ E(r)\leq2C_0\left(\frac{C_1\sigma_0^2}{4}+4C_2E(r)\right)E(r),
+\]
+即
+\begin{equation}
+ 1\leq2C_0\left(\frac{C_1\sigma_0^2}{4}+4C_2E(r)\right).
+ \label{eq:ch8-density-contradiction-ineq}
+\end{equation}
+回忆 $\sigma_0\leq r\leq r_0$。先选
+\begin{equation}
+ r_0=\sqrt{\frac1{C_0C_1}}.
+ \label{eq:ch8-density-r0-choice}
+\end{equation}
+代入 \eqref{eq:ch8-density-contradiction-ineq} 得到
+\begin{equation}
+ E(r)\geq\frac1{16C_0C_2}.
+ \label{eq:ch8-density-energy-lower}
+\end{equation}
+因此若取
+\[
+ r_0=\sqrt{\frac1{C_0C_1}},\qquad
+ \epsilon_0=\frac1{17C_0C_2},
+\]
+则 \eqref{eq:ch8-density-contradiction-ineq} 不可能成立，因为
+$\sigma_0\leq r_0$ 且 $E(r)\leq E(r_0)\leq\epsilon_0$。这就证明了
+\eqref{eq:ch8-interior-density-max}。再在其中取 $\sigma=r/2$，便由
+\eqref{eq:ch8-interior-density-max} 得到
+\eqref{eq:ch8-interior-density-sup}，证明完毕。
+\end{proof}

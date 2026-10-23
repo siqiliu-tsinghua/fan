@@ -1,0 +1,522 @@
+
+\section{一个玩具模型：有理拉格朗日子流形}
+\label{sec:6-2}
+\liftIndexRangeStart{I364}
+
+如上一节所述，系数环
+$\Lambda_{0,\mathrm{nov}}$ 不是诺特环。
+因此，即使定义出谱序列，
+也不易证明 $E_r^{p,q}$ 项有限生成，
+或证明 (D.2) 收敛。
+定理 D 和定理 6.1.4 的证明，
+主要就在于解决这些问题。
+在构造一般情形的谱序列之前，
+我们先在一个简单情形中
+展示其构造及其在定理 I 证明中的用法。
+这个情形的系数环是诺特环。
+
+我们以能量滤过构造谱序列。
+先回顾一些记号。
+设 $L$ 是 $(M,\omega)$ 中
+相对 spin 的拉格朗日子流形，
+$\psi$ 是哈密顿微分同胚。
+假设 $L$ 无障碍，
+并与 $\psi(L)$ 横截。
+回忆定义 2.4.17 中的
+$\Pi(L)=\pi_2(M,L)/\sim$。
+它是覆叠
+\[
+\widetilde\Omega(L,\psi(L);\ell_0)
+\longrightarrow
+\Omega(L,\psi(L);\ell_0)
+\]
+的覆盖变换群
+（见第 2.4.3 小节）。
+取 $\ell_0=\ell_{\mathrm{can}}$，
+右端已在第 2.3.2 小节定义。
+对
+$[(\ell,w)]\in
+\widetilde\Omega(L,\psi(L);\ell_0)$，
+令
+$\mathcal A([(\ell,w)])=\int w^*\omega$。
+于是有称为\emph{能量}的群同态
+$E:\Pi(L)\to\mathbb R$，定义为
+\[
+E(g)=\mathcal A(g\cdot[(\ell,w)])
+-\mathcal A([(\ell,w)]).
+\]
+它与 $[(\ell,w)]$ 的选取无关
+（见第 2.2.1 小节）。
+注意，第 2.2.1 小节是在
+$L^{(0)}$ 与 $L^{(1)}$ 横截的情形
+定义 $E:\Pi(L)\to\mathbb R$；
+干净相交时的定义类似。
+
+本节对 $L$ 加以下条件。
+
+\begin{definition}{6.2.1}\label{def:6-2-1}
+\begin{enumerate}[label=\textup{(6.2.2.\arabic*)},leftmargin=5.8em]
+\item 若子群
+\[
+E(\Pi(L))
+=\{E(\beta)\mid\beta\in\Pi(L)\}
+\subset\mathbb R
+\]
+是离散的，
+则称拉格朗日子流形 $L$ 为\emph{有理的}。
+\item 设 $L\subset M$ 是有理拉格朗日子流形\liftIndex{I220}。
+若存在满足条件 3.1.6 的子幺半群 $G$，
+包含所有序对
+$\{(E(\beta),\mu_L(\beta))
+\mid\beta\in\Pi(L)\}$，
+且满足以下两条，
+则称 $L$ \emph{有理无障碍}\liftIndex{I221}：
+\translatornote{原书实体页 372 的
+(6.2.2.2) 要求 $G$ 包含全部
+$\Pi(L)$ 的能量--马斯洛夫对，
+但条件 3.1.6 要求 $G$ 的能量非负；
+若 $E(\Pi(L))$ 含非零值，
+群的取负运算使这两者按字面冲突。
+同处及实体页 373 又把含单位的
+$\pi(G)$ 写为 $\mathbb Z_{>0}$，
+而该集合不含加法单位零。
+这里保留原文，见疑误 A-0358。}
+\begin{enumerate}[label=\textup{(6.2.3.\arabic*)},leftmargin=5.8em]
+\item $\pi(G)\subset\mathbb R$
+作为幺半群同构于 $\mathbb Z_{>0}$；
+\item 按定义 3.6.16，
+$(C(L),\mathfrak m)$ 在 $G$ 上无障碍。
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+有理无障碍的弱版本、
+以及含 bulk 形变的版本，
+可类似定义。
+对于后者，还须假设
+$\boldsymbol b\in H^2(M;\Lambda_{0,\mathrm{nov}})$
+可写成
+\[
+\boldsymbol b
+=\sum_{(\lambda_i,\mu_i)\in G}
+b_iT^{\lambda_i}e^{\mu_i/2},
+\qquad b_i\in H^*(M;R).
+\]
+
+\begin{remark}{6.2.4}\label{rem:6-2-4}
+另有文献，例如 \textbf{[Fuk03I]}，
+以不同方式定义 $L$ 的有理性。
+假设 $[\omega]\in H^2(M;\mathbb Z)$。
+取复线丛 $\mathcal L\to M$，
+配备 $U(1)$-联络 $\nabla$，
+使其第一陈形式为 $\omega$。
+若 $\nabla$ 限制到 $L$ 后的和乐群
+为有限阶，便称 $L$ 有理。
+当 $M$ 单连通时，
+此定义与定义 6.2.1 等价；
+一般情形下则比定义 6.2.1 更严格。
+\end{remark}
+\liftIndexRangeEnd{I364}
+
+令 $G$ 是定义 6.2.1 所给的子幺半群；
+本节始终固定 $G$。
+引入如下诺维科夫环：
+\begin{equation}
+\widehat\Lambda(G)
+=\left\{
+\sum_i a_iT^{\lambda_i}e^{n_i}
+\in\Lambda_{\mathrm{nov}}
+\ \middle|\
+\lambda_i\in E(G),\ a_i\in R
+\right\},
+\tag{6.2.5.1}\label{eq:6-2-5-1}
+\end{equation}
+及其子环
+\begin{equation}
+\begin{aligned}
+\widehat\Lambda_+(G)
+&=\left\{
+\sum_i a_iT^{\lambda_i}e^{n_i}
+\in\Lambda_{0,\mathrm{nov}}
+\ \middle|\
+\lambda_i\in E(G)
+\right\}\\
+&=\Lambda_{0,\mathrm{nov}}
+\cap\widehat\Lambda(G).
+\end{aligned}
+\tag{6.2.5.2}\label{eq:6-2-5-2}
+\end{equation}
+它们与定义 2.4.17 之后的环
+$\Lambda^R(L)$ 有关，但并不相同。
+
+$\widehat\Lambda(G)$ 中元素的次数
+与其在 $\Lambda_{\mathrm{nov}}$ 中的次数相同。
+诺维科夫环 $\widehat\Lambda(G)$
+是 $\widehat\Lambda_+(G)$ 的局部化。
+若 $G$ 满足 (6.2.3.1)，
+则 $\widehat\Lambda_+(G)$ 是诺特环。
+事实上，若 $R$ 为域，
+其零次部分
+$\widehat\Lambda_+(G)^{(0)}$
+是离散赋值环。
+这使谱序列的研究较为简便。
+本节在 $L$ 有理且有理无障碍时，
+以 $\widehat\Lambda(G)$ 上的谱序列证明定理 I。
+此时，谱序列的收敛性
+由标准论证得到。
+另须指出，
+这里要用的性质 (D.3)
+不依赖于系数环的诺特性
+（见第 6.4.2 小节）。
+
+由 (6.2.3.1)，有
+$E(G)=\mathbb Z_{>0}\cdot\lambda_0$
+（$\lambda_0>0$），从而
+\begin{equation}
+\widehat\Lambda_+(G)
+\cong R[[T^{\lambda_0}]][e,e^{-1}].
+\tag{6.2.6}\label{eq:6-2-6}
+\end{equation}
+由 (6.1.1) 定义的
+$\Lambda_{0,\mathrm{nov}}$ 上的滤过
+在 $\widehat\Lambda_+(G)$ 上诱导滤过；令
+\[
+\mathfrak F^m\widehat\Lambda_+(G)
+=F^{m\lambda_0}\widehat\Lambda_+(G).
+\]
+注意，$\Lambda_{0,\mathrm{nov}}$
+作为 $\widehat\Lambda_+(G)$-模是平坦的，
+因而诱导出定理 D 中的谱序列。
+为在当前情形证明定理 I，
+如上一节所述，
+我们改在 $\widehat\Lambda(G)$
+而非 $\widehat\Lambda_+(G)$ 上工作。
+这时有
+\begin{equation}
+\widehat\Lambda(G)
+\cong R[[T^{\lambda_0}]]
+[T^{-\lambda_0}][e,e^{-1}].
+\tag{6.2.7}\label{eq:6-2-7}
+\end{equation}
+式 (6.1.2) 中
+$\Lambda_{\mathrm{nov}}$ 的滤过
+也在 $\widehat\Lambda(G)$ 上诱导滤过；令
+\[
+\mathfrak F^m\widehat\Lambda(G)
+=F^{m\lambda_0}\widehat\Lambda(G).
+\]
+于是
+\[
+\operatorname{gr}_q
+(\mathfrak F\widehat\Lambda(G))
+\cong R[e,e^{-1}].
+\]
+
+在由 $L$ 上光滑奇异
+$(n-k)$-单形生成的自由 $R$-模
+$S^k(L;R)$ 中，
+取一个可数生成子模 $C^k(L;R)$。
+用 $C(L;\widehat\Lambda(G))$
+表示
+$C(L;R)\otimes_R\widehat\Lambda(G)$
+的完备化。
+$\widehat\Lambda(G)$ 的滤过
+在它上面诱导出
+$\mathfrak F^*C(L;\widehat\Lambda(G))$；
+总次数是 $C(L;R)$ 与
+$\widehat\Lambda(G)$ 的次数之和。
+因为 $L$ 在 $G$ 上无障碍，
+存在定界余链 $b\in\mathcal M(L)$，
+并可选取 $b$ 使其属于
+$C(L;\widehat\Lambda(G))$。
+由命题 3.6.10，
+得到形变 $A_\infty$ 代数
+$(C(L;\widehat\Lambda(G)),\mathfrak m^b)$，
+其中 $\mathfrak m_0^b=0$。
+于是 $\mathfrak m_1^b$
+定义 $C(L;\widehat\Lambda(G))$ 上的上边界算子，
+并给出以此环为系数的形变弗洛尔上同调
+$HF((L,b),(L,b);\widehat\Lambda(G))$。
+本节在不致混淆时，
+省略记号中的 $b$。
+$C(L;\widehat\Lambda(G))$ 上的滤过
+诱导我们要构造的谱序列。
+
+首先有作为
+$\operatorname{gr}_*(\mathfrak F\widehat\Lambda(G))$-模
+的同构\translatornote{原书实体页 373
+在刚定义 $\mathfrak F\widehat\Lambda(G)$ 后，
+把其伴随分次写成
+$\operatorname{gr}_q(\mathfrak F\widehat\Lambda_+(G))$；
+式 (6.2.8) 左端又写作
+$C(L;\widehat\Lambda(L))$。
+这里依同页已定义的滤过与复形
+统一用 $G$ 且去掉前一处多出的 $+$；
+见疑误 A-0359。}
+\begin{equation}
+\operatorname{gr}_*
+(\mathfrak F C(L;\widehat\Lambda(G)))
+\cong C(L;R)\otimes
+\operatorname{gr}_*
+(\mathfrak F\widehat\Lambda(G)).
+\tag{6.2.8}\label{eq:6-2-8}
+\end{equation}
+由微分的构造（定义 3.5.6），
+(6.2.8) 上诱导的微分是
+$(-1)^n\partial\otimes\mathrm{id}$，
+其中 $\partial$ 是 $C(L;R)$
+上的经典边界算子。
+因此得到谱序列 $E_r^{p,q}$，
+其 $E_2$ 项为
+\begin{equation}
+E_2^{p,q}
+=\bigoplus_{k=0}^{n}
+H^k(L;R)\otimes
+\operatorname{gr}_q
+\bigl(\mathfrak F
+\widehat\Lambda(G)^{(p-k)}\bigr).
+\tag{6.2.9}\label{eq:6-2-9}
+\end{equation}
+这里 $\widehat\Lambda(G)^{(p-k)}$
+表示 $p-k$ 次部分。
+还可证明，
+$HF^p(L,L;\widehat\Lambda(G))$
+上存在滤过，使
+\begin{equation}
+E_\infty^{p,q}
+\cong
+\frac{\mathfrak F^q
+HF^p(L,L;\widehat\Lambda(G))}
+{\mathfrak F^{q+1}
+HF^p(L,L;\widehat\Lambda(G))}.
+\tag{6.2.10}\label{eq:6-2-10}
+\end{equation}
+上述谱序列的收敛性证明
+适用于任意交换环 $R$。
+
+注意，分别乘以
+$T^{\lambda_0}$ 和 $e$
+给出如下同构：
+\[
+\begin{aligned}
+T^{\lambda_0}\cdot:
+&\ \mathfrak F^qHF^p(L,L;\widehat\Lambda(G))
+\longrightarrow
+\mathfrak F^{q+1}HF^p(L,L;\widehat\Lambda(G)),\\
+e\cdot:
+&\ \mathfrak F^qHF^p(L,L;\widehat\Lambda(G))
+\longrightarrow
+\mathfrak F^qHF^{p+2}(L,L;\widehat\Lambda(G)).
+\end{aligned}
+\]
+现在考虑带滤过 $\mathfrak F^*D$
+的分次 $\widehat\Lambda(G)$-模 $D$，
+其滤过与 $\widehat\Lambda(G)$ 的滤过相容，
+即
+\[
+\mathfrak F^\ell\widehat\Lambda(G)
+\cdot\mathfrak F^kD
+\subset\mathfrak F^{k+\ell}D.
+\]
+记 $\widehat\Lambda(G)^{(0)}$
+为 $\widehat\Lambda(G)$ 的零次部分。
+由
+\[
+\widehat\Lambda(G)^{(0)}
+\cong R[[T^{\lambda_0}]][T^{-\lambda_0}]
+\]
+可知，若 $R$ 为域，
+$\widehat\Lambda(G)^{(0)}$ 也是域，
+故 $D^p$ 是其上的向量空间。
+
+\begin{definition}{6.2.11}\label{def:6-2-11}
+定义 $t$-秩\liftIndex{I222}
+（拓扑秩，或暂定秩）为
+\[
+\operatorname{t-rank}D
+=\dim_{\widehat\Lambda(G)^{(0)}}D^p
++\dim_{\widehat\Lambda(G)^{(0)}}D^{p+1}.
+\]
+\end{definition}
+
+由于乘以 $e$ 给出
+$D^p\cong D^{p+2}$，
+右端与 $p$ 无关。
+以下令 $R=\mathbb Q$。
+若弗洛尔上同调可在
+$\Lambda_{0,\mathrm{nov}}(R)$ 上定义，
+且 $L$ 有理，
+本节剩余论证也适用于任意域 $R$。
+
+\begin{lemma}{6.2.12}\label{lem:6-2-12}
+对任意 $q$，有
+\[
+\begin{aligned}
+&\operatorname{t-rank}
+HF(L,L;\widehat\Lambda(G))\\
+&=\dim_{\mathbb Q}
+\frac{\mathfrak F^qHF^p(L,L;\widehat\Lambda(G))}
+{\mathfrak F^{q+1}HF^p(L,L;\widehat\Lambda(G))}\\
+&\quad+\dim_{\mathbb Q}
+\frac{\mathfrak F^qHF^{p+1}(L,L;\widehat\Lambda(G))}
+{\mathfrak F^{q+1}HF^{p+1}(L,L;\widehat\Lambda(G))}\\
+&=\dim_{\mathbb Q}E_\infty^{p,q}
++\dim_{\mathbb Q}E_\infty^{p+1,q}.
+\end{aligned}
+\]
+\end{lemma}
+
+证明容易，故略。
+下一个引理由定理 3.7.21
+与定理 4.1.3 直接推出。
+
+\begin{lemma}{6.2.13}\label{lem:6-2-13}
+若 $\psi$ 是哈密顿微分同胚，
+且 $L$ 与 $\psi(L)$ 横截，
+则对任意 $b\in\mathcal M(L)$，
+\[
+\#(L\cap\psi(L))
+\ge
+\operatorname{t-rank}
+HF((L,b),(L,b);\widehat\Lambda(G)).
+\]
+\end{lemma}
+
+现在从下方估计
+$\dim_{\mathbb Q}E_\infty^{p,q}
++\dim_{\mathbb Q}E_\infty^{p+1,q}$。
+令 $\delta_r:E_r\to E_r$
+为谱序列的上边界算子。
+有 $\delta_r\delta_r=0$，且
+\[
+E_{r+1}=\ker\delta_r/\operatorname{Im}\delta_r.
+\]
+$E_r$ 是
+$\operatorname{gr}_*(\mathfrak F\widehat\Lambda(G))$-模，
+而原书写
+$\operatorname{gr}_*(\mathfrak F\widehat\Lambda(G))
+\cong\widehat\Lambda(G)$；
+因而原书据定义 6.2.11
+给 $E_r$ 定义 $t$-秩。
+\translatornote{原书实体页 374
+在此断言伴随分次环
+$\operatorname{gr}_*(\mathfrak F\widehat\Lambda(G))$
+与完成环 $\widehat\Lambda(G)$ 同构。
+但由 (6.2.7) 的形式，
+前者仅含能量方向的有限 Laurent 和，
+后者还含无穷正向幂级数；
+按字面不能同构。
+后续 $t$-秩的移用因而需要额外论证；
+见疑误 A-0360。}
+
+\begin{lemma}{6.2.14}\label{lem:6-2-14}
+\[
+\operatorname{t-rank}E_r
+-2\operatorname{t-rank}
+\operatorname{Im}\delta_r
+=\operatorname{t-rank}E_{r+1}
+\le\operatorname{t-rank}E_r.
+\]
+\end{lemma}
+
+\begin{proof}
+存在如下 $\widehat\Lambda(G)$-模短正合列：
+\[
+\begin{aligned}
+0&\longrightarrow\ker\delta_r
+\longrightarrow E_r
+\longrightarrow(\operatorname{Im}\delta_r)[-1]
+\longrightarrow0,\\
+0&\longrightarrow\operatorname{Im}\delta_r
+\longrightarrow\ker\delta_r
+\longrightarrow E_{r+1}
+\longrightarrow0.
+\end{aligned}
+\]
+由第一列得到
+\[
+\operatorname{t-rank}E_r
+=\operatorname{t-rank}\ker\delta_r
++\operatorname{t-rank}\operatorname{Im}\delta_r.
+\]
+第二列遂推出引理。
+\end{proof}
+
+下面证明定理 I，
+设 $L$ 在 $G$ 上经 bulk 形变后
+为（弱）无障碍。
+由 (6.2.9) 及 $\deg e=2$，
+得到\translatornote{原书实体页 375
+首式右侧写
+$\sum t\text{-rank}_{\mathbb Q}H^*(L;\mathbb Q)$，
+但定义 6.2.11 未给普通有理向量空间
+定义这一记号；同页下一式明确以
+有理上同调各次数的普通秩求和。
+此处按后式排印，见疑误 A-0361。}
+\[
+\operatorname{t-rank}E_2
+=\sum_k\operatorname{rank}_{\mathbb Q}
+H^k(L;\mathbb Q).
+\]
+按 (D.3) 的记号，令
+\[
+\begin{aligned}
+K_2
+&=\operatorname{PD}
+\bigl(\ker(H_*(L;\mathbb Q)
+\longrightarrow H_*(M;\mathbb Q))\bigr)
+\otimes_{\mathbb Q}
+\operatorname{gr}_*
+(\mathfrak F\widehat\Lambda(G)),\\
+K_{r+1}
+&=\frac{K_r\cap\ker(\delta_r)}
+{K_r\cap\operatorname{Im}(\delta_r)},
+\end{aligned}
+\]
+将在第 6.4.2 小节证明：
+利用算子 $\mathfrak p$ 可得
+\begin{equation}
+\operatorname{Im}(\delta_r)\subset K_r.
+\tag{6.2.15}\label{eq:6-2-15}
+\end{equation}
+故
+\[
+\operatorname{t-rank}K_{r+1}
+\le\operatorname{t-rank}K_r
+-\operatorname{t-rank}
+\operatorname{Im}(\delta_r).
+\]
+结合引理 6.2.14，得到
+\[
+\begin{aligned}
+\operatorname{t-rank}E_r
+&=\operatorname{t-rank}E_2
+-2\sum_{2\le i<r}
+\operatorname{t-rank}
+\operatorname{Im}(\delta_i)\\
+&=\sum_k\operatorname{rank}_{\mathbb Q}
+H^k(L;\mathbb Q)
+-2\sum_{2\le i<r}
+\operatorname{t-rank}
+\operatorname{Im}(\delta_i)\\
+&\ge\sum_k\operatorname{rank}_{\mathbb Q}
+H^k(L;\mathbb Q)
+-2\bigl(\operatorname{t-rank}K_2
+-\operatorname{t-rank}K_r\bigr).
+\end{aligned}
+\]
+因此
+\[
+\begin{aligned}
+\operatorname{t-rank}
+HF(L,L;\widehat\Lambda(G))
+&=\operatorname{t-rank}E_\infty\\
+&\ge\sum_k\operatorname{rank}_{\mathbb Q}
+H^k(L;\mathbb Q)
+-2\operatorname{t-rank}K_2.
+\end{aligned}
+\]
+对于有理无障碍的拉格朗日子流形，
+定理 I 的证明至此完成，
+惟仍需证明 (6.2.15)。
+\hfill$\square$

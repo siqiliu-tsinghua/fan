@@ -1,0 +1,223 @@
+
+\section{\trProjectiveScheme{}与$\Proj$构造}
+
+\trProjectiveScheme{}之重要，有几个理由，这里举出几条。几何中那些具有「经典趣味」的\trScheme——以及你在还不知\trScheme{}为何物时就该会关心的那些\trScheme——全是\trProjective{}的，或是\trProjective{}者的\trOpenSubset（基本上就是\emph{\trQuasiprojective}（quasiprojective）的；见 \S4.5.10）。此外，大多数「令人感兴趣的\trScheme」也趋于\trProjective{}或\trQuasiprojective。事实上，哪怕是举出一个例子：一个满足基本性质——比如说，在\trField{}上\trFiniteType{}且「\trHausdorff」（即「\trSeparated」）——却可证明不是\trQuasiprojective{}的\trScheme，都是极难的。对做复几何的人：很难找到一个可证明非\trProjective{}的\trCompact\trComplex\trVariety（见\mbox{注记~11.4.6}），也很难造出一个可证明不是「\trProjective\trVariety{}的\trOpenSubset」的复\trVariety。所以\trProjectiveScheme{}实在无处不在。再者，「\trProjective{} $k$-\trScheme」这一概念，是\trCompactness{}之代数几何版本（即「\trProperness{}」（properness）；见 \S11.4）的一个良好近似。
+
+最后，尽管\trProjectiveScheme{}可以由\trAffineScheme{}粘合而成，而且我们也知道追踪粘合是件烦人的事，但有一种不必操心粘合的简单办法来对付它们。正如\trRing{}与\trAffineScheme{}之间存在一部粗糙的词典，\trGradedRing{}与\trProjectiveScheme{}之间也将有一部（稍宽松些的）类比词典。正如人们能以\trRing{}代\trAffineScheme{}而工作，人们也能以\trGradedRing{}代\trProjectiveScheme{}而工作。
+
+\textbf{4.5.1.\ 来自经典几何的动机。}\quad 为得几何直观，我们回忆一下人们如何「经典地」思考\trProjectiveSpace（在实数上、带\trClassicalTopology）。$\mathbb{P}^n$ 可以被解读为 $\mathbb{R}^{n+1}$ 中过原点的诸直线。于是 $\mathbb{P}^n$ 的子集对应于 $\mathbb{R}^{n+1}$ 中过原点的一些直线之并，而\trClosedSubset{}对应的则是其中为\trClosedSet{}的那些并。（若把「闭」换成「开」，同样的说法便不成立！）
+
+人们常把 $\mathbb{P}^n$ 想象成 $\mathbb{R}^{n+1}$ 中「无穷远处」的那些点：沿一个方向无穷远的点，与沿相反方向无穷远的点被联系在一起。利用分解式
+\[
+\mathbb{P}^{n+1}=\mathbb{R}^{n+1}\amalg\mathbb{P}^n,
+\]
+可以把这件事说得更精确：它的意思是，$\mathbb{P}^{n+1}$ 中有一个\trOpenSubset{}被认同于 $\mathbb{R}^{n+1}$（最后一个「\trProjective\trCoordinate」非零的那些点），而余下的\trClosedSubset{}则被认同于 $\mathbb{P}^n$（最后一个「\trProjective\trCoordinate」为零的那些点）。（「\trProjective\trCoordinate」一语要到 \S4.5.9 才正式定义，但我们在那之前就会用它，见\cref{ex:conic-via-standard-charts}与\cref{ex:cut-out-by-forms}。）
+
+举例来说，在 $\mathbb{P}^n$ 中切出某个点集 $V$ 的任何方程，也会在 $\mathbb{R}^{n+1}$ 中切出某个点集，它将是过原点的诸直线之闭并。我们称之为 $V$ 的\emph{\trAffine\trCone}（affine cone）。这些方程还会在 $\mathbb{P}^{n+1}$ 中切出由一簇 $\mathbb{P}^1$ 组成的并，我们称之为 $V$ 的\emph{\trProjective\trCone}（projective cone）。\trProjective\trCone{}正是\trAffine\trCone{}与 $V$ 的\trDisjointUnion。例如，$\mathbb{P}^2$ 中 $x^2+y^2=z^2$ 的\trAffine\trCone，正是 $\mathbb{R}^3$ 中锥面的那幅「经典」图像；见图~\ref{fig:affine-projective-cone}。我们将在 \S9.3.11 于代数的场景中把这一类比做精确。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.92,every node/.style={font=\small}]
+  \draw[thick] (0,0) circle (1.5);
+  \draw[dotted,thick] (0,-0.1) ellipse (1.46 and 0.3);
+  \draw[thick] (-0.73,0.92) -- (0,0.02) -- (0.73,0.92);
+  \draw[thick] (0,0.92) ellipse (0.73 and 0.17);
+  \draw[thick] (-0.73,-0.92) -- (0,0.02) -- (0.73,-0.92);
+  \draw[thick] (0,-0.92) ellipse (0.73 and 0.17);
+  \node[anchor=west] at (1.75,1.7) {$x^2+y^2=z^2$（在 $\mathbb{P}^2$ 中）};
+  \draw[dashed,->] (1.7,1.6) -- (0.18,1.02);
+  \draw[dashed,->] (1.7,1.56) -- (-0.4,1.0);
+  \node[anchor=west] at (1.9,0.85) {$\mathbb{P}^3$ 中的\trProjective\trCone};
+  \draw[dashed,->] (1.85,0.85) -- (0.7,0.97);
+  \node[anchor=west] at (2.15,-0.2) {\trAffine\trCone：$x^2+y^2=z^2$（在 $\mathbb{R}^3$ 中）};
+  \draw[dashed,->] (2.1,-0.16) -- (0.42,0.54);
+\end{tikzpicture}
+\caption{经典几何中 $x^2+y^2=z^2$ 的\trAffine\trCone{}与\trProjective\trCone。（依原书手绘图重绘。）}\label{fig:affine-projective-cone}
+\end{figure}
+
+\textbf{4.5.2.\ \trProjectiveScheme：第一份描述。}\quad 我们现在来描述\trProjectiveScheme{}的一种构造，它将有助于为$\Proj$构造提供动机。我们先把刚才描述的锥作代数解读，更一般地，也来练习一番「在诸\trProjective\trCoordinate{}之间」与「在标准\trAffine\trOpenSubset{}上的坐标」之间的换算。我们把坐标从 $x$、$y$、$z$ 换成 $x_0$、$x_1$、$x_2$，以便使用 \S4.4.9 的记号。对下面的诸问题，在 $\mathbb{P}^2_k$ 中取\trProjective\trCoordinate{} $x_0$、$x_1$、$x_2$。（「\trProjective\trCoordinate」这个术语到 \S4.5.9 才正式定义，但这些练习你反正应当能做。）大\trOpenSet（或曰「坐标卡」（coordinate chart））$U_0=\{[x_0,x_1,x_2]\ :\ x_0\neq0\}$ 带有坐标 $x_{1/0}$ 与 $x_{2/0}$，我们把它们解读为 $x_1/x_0$ 与 $x_2/x_0$。$U_1$ 与 $U_2$ 也有类似的定义。为方便起见，约定 $x_{0/0}$ 为 $1$。
+
+\begin{exercise}\label{ex:proj-coordinate-change}
+用 $(x_{1/0},x_{2/0})$ 描述 $(x_{0/1},x_{2/1})$。
+\end{exercise}
+
+\begin{exercise}\label{ex:conic-via-standard-charts}
+解释如何定义一个\trScheme，它应被解读为「『在 $\mathbb{P}^2_k$ 中』的 $x_0^2+x_1^2-x_2^2=0$」。提示：在 $x_2\neq0$ 所对应的\trAffine\trOpenSubset{}中，它应当（用 \S4.4.9 的语言）由 $x_{0/2}^2+x_{1/2}^2-1=0$ 切出，也就是说，它应当「就是」\trScheme{} $\Spec k[x_{0/2},x_{1/2}]/(x_{0/2}^2+x_{1/2}^2-1)$。你可以同样猜出它在另外两个标准\trOpenSet{}上应当是什么，并证明这三个\trScheme{}能够粘合在一起。
+\end{exercise}
+
+\begin{exercise}\label{ex:dehomogenization}
+(a)~描述 $x_0$、$x_1$、$x_2$ 的\emph{所有}那些能被「去齐次化」（dehomogenized）为 $x_{1/0}^2+x_{2/0}^5=1$ 的\trHomogeneous{}多项式，并解释其中哪一个是「最好的」。
+
+(b)~这些多项式的\trVanishingSet{}与 $\mathbb{P}^2_k$ 中的「\trLineAtInfinity」（line at infinity）$x_0=0$ 相交于哪些点？
+\end{exercise}
+
+\begin{exercise}\label{ex:parabola-at-infinity}
+考虑抛物线 $x_{2/0}=x_{1/0}^2$（或者随你所好，$y=x^2$）。它与\trLineAtInfinity{}如何相交？（这是什么意思？）它在各个\trCoordinatePatch{} $U_1$ 与 $U_2$ 中的描述又是什么？
+\end{exercise}
+
+\textbf{4.5.3.}\ \emph{\trhRemark{}：$\mathbb{P}^n$ 中的次数 $d$ \trHypersurface。}\quad \trField{}上 $n+1$ 个变量的次数 $d$ \trHomogeneous{}多项式构成一个 $\binom{n+d}{d}$ 维\trVectorSpace。（这基本上就是\mbox{练习~9.3.J}与\mbox{练习~15.1.C}的内容。）「两个多项式切出 $\mathbb{P}^n_k$ 的同一个子集，当且仅当其中一个是另一个的非零标量倍」——这话几乎是真的。遗憾的是，$x^2y=0$ 与 $xy^2=0$ 这两个例子表明「仅当」并不总成立。日后你将能够验证（例如用\mbox{练习~9.5.C}）：两个多项式切出同一个\emph{\trClosedSubscheme}（不论那是什么意思），当且仅当其中一个是另一个的非零标量倍。（这是「\trClosedSubscheme」这一观念优于「\trClosedSubset」的某种证据。）零多项式无论按这个词的哪种合理解读，都谈不上真正切出一张\trHypersurface。于是我们不严格地想象：「$\mathbb{P}^n$ 中次数 $d$ 的\trHypersurface{}由 $\mathbb{P}^{\binom{n+d}{d}-1}$ 参数化」。这一直觉将（在特殊情形中）反复出现，我们将在 \S25.3.5 赋予它精确的含义。（要等有了\trClosedSubscheme{}的语言，我们才会在 \S9.3.2 正式定义\trHypersurface；届时我们还会定义直线、\trHyperplane{}（hyperplane）、二次超曲面、\trConic{}（conic curve），以及其他种种奇妙的观念。）
+
+\begin{exercise}[推广\cref{ex:conic-via-standard-charts}的练习]\label{ex:cut-out-by-forms}
+考虑带\trProjective\trCoordinate{} $x_0,\dots,x_n$ 的 $\mathbb{P}^n_A$。给定一组\trHomogeneous{}多项式 $f_i\in A[x_0,\dots,x_n]$，请为「在 $\mathbb{P}^n_A$ 中由诸 $f_i$ 切出的\trScheme」这一说法赋予意义。（日后将把这件事精确化为\trVanishingScheme（vanishing scheme）的一个例子；见\cref{ex:vanishing-scheme-definition}。）
+\end{exercise}
+
+这一句本来就可以当作\emph{\trProjective{} $A$-\trScheme}的定义，但我们要按兵不动，留到 \S4.5.10 再把它陈述得稍好一些。
+
+\textbf{4.5.4.\ 关于\trGradedRing{}的预备知识。}\quad $\Proj$构造从一个\trGradedRing{}造出一个\trScheme。我们现在给出一些关于\trGradedRing{}的背景知识。
+
+\textbf{4.5.5.}\ \emph{定义：$\mathbb{Z}$-\trGradedRing。}\quad 一个\textbf{$\mathbb{Z}$-\trGradedRing}（$\mathbb{Z}$-graded ring）是一个\trRing{} $S_\bullet=\oplus_{n\in\mathbb{Z}}S_n$（该下标称为\textbf{\trGrading}（grading）），其乘法与\trGrading{}相容，即把 $S_m\times S_n$ 送入 $S_{m+n}$。显然 $S_0$ 是一个\trSubring，每个 $S_n$ 都是 $S_0$-\trModule，而 $S_\bullet$ 是一个 $S_0$-\trAlgebra。在本 \S4.5.5 的其余部分，设 $S_\bullet$ 是一个 $\mathbb{Z}$-\trGradedRing。诸个别 $S_n$ 中的元素称为 $S_\bullet$ 的\textbf{\trHomogeneous{}元素}（homogeneous elements）。$S_\bullet$ 的一个\trIdeal{} $I$ 称为\textbf{\trHomogeneous\trIdeal}（homogeneous ideal）（或称\trGradedIdeal{}（graded ideal），不过我们不会使用这个术语），如果它由\trHomogeneous{}元素生成。非零的\trHomogeneous{}元素带有显然的\textbf{次数}（degree）。$S_d$ 中的元素称为\textbf{次数 $d$ 的\trForm}（form of degree $d$）。
+
+\begin{exercise}\label{ex:homogeneous-ideal-basics}
+(a)~证明：一个\trIdeal{} $I$ 是\trHomogeneous\trIdeal，当且仅当对每个 $n$，它都含有其每个元素的次数 $n$ 分片。（于是 $I$ 可以分解为\trHomogeneous{}分片 $I=\oplus I_n$，且 $S_\bullet/I$ 带有自然的 $\mathbb{Z}$-\trGrading。这正是「\trHomogeneous\trIdeal」之名的缘由。）
+
+(b)~证明：给定的 $\mathbb{Z}$-\trGradedRing{} $S_\bullet$ 的全体\trHomogeneous\trIdeal{}这一集合，对和、积、交与\trRadical{}封闭。
+
+(c)~设 $I\subset S_\bullet$ 是\trHomogeneous\trIdeal。证明：若 $I\neq S_\bullet$，并且对任意\trHomogeneous{}的 $a$, $b\in S_\bullet$，只要 $ab\in I$ 就有 $a\in I$ 或 $b\in I$，则 $I$ 是\trPrimeIdeal。
+
+若 $T$ 是 $S_\bullet$ 的一个只含\trHomogeneous{}元素的\trMultiplicativeSubset，则 $T^{-1}S_\bullet$ 自然带有 $\mathbb{Z}$-\trGradedRing{}结构。
+\end{exercise}
+
+\textbf{4.5.6.}\ \emph{$\mathbb{Z}^{\ge0}$-\trGradedRing、$A$ 上的\trGradedRing{}与\trFinitelyGenerated{}的\trGradedRing。}\quad 一个 $\mathbb{Z}^{\ge0}$-\trGradedRing{}是不含负次数元素的 $\mathbb{Z}$-\trGradedRing。
+
+\textbf{在本书的其余部分，\trGradedRing{}一词均指 $\mathbb{Z}^{\ge0}$-\trGradedRing。警告：这一约定是非标准的（而且自有其理由）。}
+
+从今往后，除非另有声明，$S_\bullet$ 均被默认为\trGradedRing。取定一个\trRing{} $A$，我们称之为\textbf{\trBaseRing}（base ring）。若 $S_0=A$，我们就说 $S_\bullet$ 是 $A$ 上的\textbf{\trGradedRing}（graded ring over $A$）。一个关键例子是 $A[x_0,\dots,x_n]$，或者更一般地 $A[x_0,\dots,x_n]/I$，其中 $I$ 是满足 $I\cap S_0=0$ 的\trHomogeneous\trIdeal（参\cref{ex:cut-out-by-forms}）。这里对 $A[x_0,\dots,x_n]$ 取通常的\trGrading，即每个 $x_i$ 的权都是 $1$。
+
+子集 $S_+:=\oplus_{i>0}S_i\subset S_\bullet$ 是一个\trIdeal，称为\textbf{\trIrrelevantIdeal}（irrelevant ideal）。「无关」之名的缘由，再过几段自会清楚。若\trIrrelevantIdeal{} $S_+$ 是一个\trFinitelyGenerated{}的\trIdeal，我们就说 $S_\bullet$ 是 $A$ 上的\textbf{\trFinitelyGenerated\trGradedRing}（finitely generated graded ring over $A$）。若 $S_\bullet$ 作为 $A$-\trAlgebra{}由 $S_1$ 生成，我们就说 $S_\bullet$ 是\textbf{在次数 $1$ 处生成的}（generated in degree 1）。（日后我们会发现，把「$S_\bullet$ 在次数 $1$ 处生成」解读为「自然映射 $\mathrm{Sym}^{\bullet}S_1\to S_\bullet$ 是\trSurjectiveMap」会很有用。\emph{\trSymmetricAlgebra}（symmetric algebra）这一构造将在 \S14.2.6 中简略讨论。）
+
+\begin{exercise}\label{ex:fg-graded-rings}
+(a)~证明：$A$ 上的\trGradedRing{} $S_\bullet$ 是（$A$ 上的）\trFinitelyGenerated\trGradedRing，当且仅当 $S_\bullet$ 是\trFinitelyGenerated{}的\trGrading{} $A$-\trAlgebra，也就是说，它由 $A=S_0$ 添上有限多个正次数的\trHomogeneous{}元素生成。（正向蕴涵的提示：证明 $S_+$ 作为\trIdeal{}的\trGenerator，同时也是 $S_\bullet$ 作为\trAlgebra{}的\trGenerator。）
+
+(b)~证明：$A$ 上的\trGradedRing{} $S_\bullet$ 是\trNoetherian{}的，当且仅当 $A=S_0$ 是\trNoetherian{}的，且 $S_\bullet$ 是\trFinitelyGenerated{}的\trGradedRing。
+\end{exercise}
+
+\textbf{4.5.7.\ $\Proj$构造。}\quad 我们现在来定义一个\trScheme{} $\Proj S_\bullet$，其中 $S_\bullet$ 是（$\mathbb{Z}^{\ge0}$-）\trGradedRing。这里先给出两个例子，好让隧道尽头先透出一点亮光。若 $S_\bullet=A[x_0,\dots,x_n]$，我们将会复原出 $\mathbb{P}^n_A$；而若 $S_\bullet=A[x_0,\dots,x_n]/(f(x_0,\dots,x_n))$，其中 $f$ 是\trHomogeneous{}的，我们将会构造出某个「在 $\mathbb{P}^n_A$ 中由方程 $f=0$ 切出」的东西（参\cref{ex:cut-out-by-forms}）。
+
+正如我们对\trRing{}的 $\Spec$ 所做的那样，我们将先把 $\Proj S_\bullet$ 造为集合，再造为\trTopologicalSpace，最后造为\trRingedSpace。在对 $\mathbb{P}^n_A$ 的初步定义中，我们把 $n+1$ 片精心挑选的\trAffine{}拼片粘合在一起；但我们不想做任何选取，于是改为同时考虑「一切可能」的\trAffine\trOpenSet{}来做这件事。我们的\trAffine{}砌块将如下。对每个\trHomogeneous{}的 $f\in S_+$，注意\trLocalization{} $(S_\bullet)_f$ 自然是一个 $\mathbb{Z}$-\trGradedRing，其中 $\deg(1/f)=-\deg f$。考虑
+\begin{equation*}\tag{4.5.7.1}\label{eq:spec-localized-zero-graded}
+\Spec((S_\bullet)_f)_0,
+\end{equation*}
+其中 $((S_\bullet)_f)_0$ 表示\trGradedRing{} $(S_\bullet)_f$ 的次数 $0$ 分片。（当 $f$ 跑遍 $S_+$ 的全部\trHomogeneous{}元素时，这些 $((S_\bullet)_f)_0$ 将是我们的\trAffine{}砌块。）记号 $((S_\bullet)_f)_0$ 坦白说糟糕透顶——第一个与第三个下标关乎\trGrading，第二个则关乎\trLocalization。至于为何要考虑这一构造，这里给出动机：把它应用到 $S_\bullet=k[x_0,\dots,x_n]$、$f=x_i$，便得到出现于 \eqref{eq:proj-patches-notation} 中的那个\trRing
+\[
+k[x_{0/i},x_{1/i},\dots,x_{n/i}]/(x_{i/i}-1).
+\]
+
+（在开始构造之前：定义 $\Proj S_\bullet$ 的另一条可能路径，是把这种形状的\trAffineScheme{}直接粘合起来——你可以径直跳到\cref{ex:pairwise-gluing-affines}与\cref{ex:triple-overlap-proj}。你若偏爱那条路，尽管自便。）
+
+$\Proj S_\bullet$ 的\emph{点}，是 $S_\bullet$ 的那些不包含\trIrrelevantIdeal{} $S_+$ 的\trHomogeneous\trPrimeIdeal（即「相关的\trHomogeneous\trPrimeIdeal」（relevant homogeneous prime ideals））。
+
+\begin{exercise}[重要而棘手的练习]\label{ex:zero-piece-prime-bijection}
+设 $f\in S_+$ 是\trHomogeneous{}的。
+
+(a)~给出 $((S_\bullet)_f)_0$ 的诸\trPrimeIdeal{}与 $(S_\bullet)_f$ 的诸\trHomogeneous\trPrimeIdeal{}之间的一个\trBijection。提示：为避免记号上的混淆，改为证明：若 $A_\bullet$ 是一个 $\mathbb{Z}$-\trGradedRing，带有一个\trInvertible{}的正次数\trHomogeneous{}元素 $f$，那么 $A_0$ 的诸\trPrimeIdeal{}与 $A_\bullet$ 的诸\trHomogeneous\trPrimeIdeal{}之间存在\trBijection。利用\trRingMorphism{} $A_0\to A_\bullet$，从 $A_\bullet$ 的每个\trHomogeneous\trPrimeIdeal{} $P$ 得到 $A_0$ 的一个\trPrimeIdeal{} $P_0:=P\cap A_0$。反方向：对 $A_0$ 的每个\trPrimeIdeal{} $P_0$，证明 $P:=\sqrt{P_0A_\bullet}$ 是 $A_\bullet$ 的\trPrimeIdeal。务必证明这两个映射的确构成\trBijection！
+
+(b)~把 $((S_\bullet)_f)_0$ 的\trPrimeIdeal{}之集解读为 $\Proj S_\bullet$ 的一个子集。
+\end{exercise}
+
+$\Proj S_\bullet$ 的点与\trHomogeneous\trPrimeIdeal{}之间的这一对应，有助于我们对 $\Proj S_\bullet$ 形成图景。例如，设 $S_\bullet=k[x,y,z]$ 带通常的\trGrading，我们先把这个\trHomogeneous\trPrimeIdeal{} $(z^2-x^2-y^2)$ 想象成 $\Spec S_\bullet$ 的一个子集；它是一个\trCone（见图~\ref{fig:affine-projective-cone}）。如 \S4.5.1 中那样，我们把 $\mathbb{P}^2_k$ 想象成「\trPlaneAtInfinity」（plane at infinity）。于是我们把这条方程想象成在「无穷远处」切出一条\trConic（于 $\Proj S_\bullet$ 中）。我们将在 \S9.3.11 把这一直觉说得稍微精确些。
+
+\textbf{4.5.8.}\quad 仿照仿射情形，若 $T$ 是 $S_\bullet$ 的一组\trHomogeneous{}元素，定义 $T$ 的（射影）\textbf{\trVanishingSet}：$V(T)\subset\Proj S_\bullet$，即那些包含 $T$ 但不包含 $S_+$ 的\trHomogeneous\trPrimeIdeal。若 $I$ 是\trHomogeneous\trIdeal，则以同样的方式定义 $V(I)$；注意它就等于 $V(T)$，其中 $T$ 是 $I$ 的任意一组\trHomogeneous\trGenerator。
+
+若 $f$ 是正次数的\trHomogeneous{}元素，则按显而易见的方式定义 $V(f)$。令 $D_+(f):=\Proj S_\bullet\smallsetminus V(f)$（\textbf{\trProjective\trDistinguishedOpen}（projective distinguished open set）），即 $V(f)$ 的\trComplement。（这个下标意在把该记号与相仿的 $D(f)$ 区别开。）一旦我们在 $\Proj S_\bullet$ 上定义了\trScheme{}结构，我们就会（不加声明地）用 $D_+(f)$ 指称那个\trOpenSubscheme，而不只是\trOpenSubset。（虽然 $D_+(f)$ 的定义即便在 $f$ 次数为 $0$ 时也有意义，但我们有意只允许正次数的 $f$。例如，我们会希望诸 $D_+(f)$ 构成一张\trAffine\trCover；而若 $f$ 的次数为 $0$，$D_+(f)$ 就未必是\trAffine{}的了。）
+
+\begin{exercise}\label{ex:d-plus-is-spec}
+证明 $D_+(f)$「就是」（或者更精确地说，「对应于」）你在\cref{ex:zero-piece-prime-bijection}(b) 中描述的那个子集 $\Spec((S_\bullet)_f)_0$。例如在 \S4.4.9 中，诸 $D_+(x_i)$ 正是覆盖\trProjectiveSpace{}的标准\trOpenSet。
+\end{exercise}
+
+与仿射情形一样，诸 $V(I)$ 满足某一\trTopology{}的诸\trClosedSet{}之公理，我们称之为 $\Proj S_\bullet$ 上的\textbf{\trZariskiTopology}。（文献中给出的其他定义看上去也许貌异，但不难证明它们相同。）关于\trRing{}之 $\Spec$ 上\trZariskiTopology{}的许多论断，只需极少额外工夫便可搬到眼下这种情况。显然 $D_+(f)\cap D_+(g)=D_+(fg)$，其论证与仿射情形如出一辙（\cref{ex:distinguished-opens-intersection}）。
+
+\begin{exercise}[容易的练习]\label{ex:d-plus-base}
+验证诸\trProjective\trDistinguishedOpen{} $D_+(f)$（$f$ 跑遍 $S_+$ 的全部\trHomogeneous{}元素）构成\trZariskiTopology{}的一组\trBase。
+\end{exercise}
+
+\begin{exercise}\label{ex:proj-vanishing-ideals}
+取定一个\trGradedRing{} $S_\bullet$。
+
+(a)~设 $I$ 是 $S_\bullet$ 的含于 $S_+$ 的任一\trHomogeneous\trIdeal，$f$ 是一个正次数的\trHomogeneous{}元素。证明：$f$ 在 $V(I)$ 上消失（即 $V(I)\subset V(f)$），当且仅当对某个 $n$ 有 $f^n\in I$。（提示：模仿仿射情形；见\cref{ex:vanish-on-vi-radical}。）特别地，正如仿射情形（\cref{ex:distinguished-open-inclusion}）那样：若 $D_+(f)\subset D_+(g)$，则对某个 $n$ 有 $f^n\in(g)$，反之亦然。（这里 $g$ 也是正次数的\trHomogeneous{}元素。）
+
+(b)~若 $Z\subset\Proj S_\bullet$，定义 $I(Z)\subset S_\bullet$。证明它是 $S_\bullet$ 的一个\trHomogeneous\trIdeal。对任意两个子集，证明 $I(Z_1\cup Z_2)=I(Z_1)\cap I(Z_2)$。
+
+(c)~对任意子集 $Z\subset\Proj S_\bullet$，证明 $V(I(Z))=\overline{Z}$。
+\end{exercise}
+
+\begin{exercise}[参看\cref{ex:distinguished-cover-unit-ideal}]\label{ex:empty-vanishing-equivalents}
+取定一个\trGradedRing{} $S_\bullet$ 与一个\trHomogeneous\trIdeal{} $I\subseteq S_+$。证明下列三条等价：
+\begin{itemize}[label={},leftmargin=2.2em,itemsep=2pt,topsep=3pt]
+\item (a)~$V(I)=\varnothing$。
+\item (b)~对任何生成 $I$ 的\trHomogeneous{}元 $f_i$（$i$ 跑遍某个\trIndexSet），都有 $\cup D_+(f_i)=\Proj S_\bullet$。
+\item (c)~$\sqrt{I}\supset S_+$。
+\end{itemize}
+这再次为 $S_+$ 之「无关」提供了动机：任何\trRadical{}包含它的\trIdeal{}都是「几何上无关的」。
+\end{exercise}
+
+我们现在把 $\Proj S_\bullet$ 造为\emph{\trScheme}。
+
+\begin{exercise}\label{ex:zariski-restriction-d-plus}
+设给定某个\trHomogeneous{}的 $f\in S_+$。经由\cref{ex:d-plus-is-spec}中的\trInclusionMap
+\[
+D_+(f)=\Spec((S_\bullet)_f)_0\lhook\joinrel\longrightarrow\Proj S_\bullet
+\]
+证明：$\Proj S_\bullet$ 上的\trZariskiTopology{}限制到 $\Spec((S_\bullet)_f)_0$ 上，正是 $\Spec((S_\bullet)_f)_0$ 自身的\trZariskiTopology。
+\end{exercise}
+
+至此我们已把 $\Proj S_\bullet$ 定义为\trTopologicalSpace，可以着手定义\trStructureSheaf{}了。在 $D_+(f)$ 上，我们希望它就是 $\Spec((S_\bullet)_f)_0$ 的\trStructureSheaf。我们将用\cref{ex:gluing-sheaves-cocycle}（关于粘合层的那条练习）把这些\trSheaf{}粘合起来。
+
+\begin{exercise}\label{ex:pairwise-gluing-affines}
+若 $f$, $g\in S_+$ 是\trHomogeneous{}且非零的，描述 $\Spec((S_\bullet)_{fg})_0$ 与 $\Spec((S_\bullet)_f)_0$ 的\trDistinguishedOpen{}子集 $D(g^{\deg f}/f^{\deg g})$ 之间的一个\trIsomorphism。
+\end{exercise}
+
+类似地，$\Spec((S_\bullet)_{fg})_0$ 也被认同于 $\Spec((S_\bullet)_g)_0$ 的一个\trDistinguishedOpen{}子集。于是我们便用这些两两粘合，把诸 $\Spec((S_\bullet)_f)_0$（$f$ 变动）粘合在一起。
+
+\begin{exercise}\label{ex:triple-overlap-proj}
+通过核查这些粘合在三重叠上表现良好（见\cref{ex:gluing-sheaves-cocycle}），完成\trScheme{} $\Proj S_\bullet$ 的定义。
+\end{exercise}
+
+\begin{exercise}\label{ex:proj-sheaf-compatible-germs}
+（有人会觉得这条必不可少，也有人宁可视而不见。）用\trCompatibleGerm{}（重新）解读 $\Proj S_\bullet$ 的\trStructureSheaf。
+\end{exercise}
+
+\textbf{4.5.9.}\ \emph{\trhDefinition{}。}\quad 我们（重新）定义\textbf{\trProjectiveSpace}（\trRing{} $A$ 上的）为
+\[
+\mathbb{P}^n_A:=\Proj A[x_0,\dots,x_n].
+\]
+这一定义既不牵涉烦琐的粘合，也不牵涉对拼片的特殊选取。注意：诸变量 $x_0,\dots,x_n$——我们称之为 $\mathbb{P}^n_A$ 上的\textbf{\trProjective\trCoordinate}（projective coordinates）——是定义的一部分。（视上下文而定，它们也可以不叫 $x_i$ 而叫别的名字。）
+
+\begin{exercise}\label{ex:proj-agrees-preliminary}
+核查这与我们先前对 $\mathbb{P}^n_A$ 的构造（\S4.4.9）相一致。（你怎么知道诸 $D_+(x_i)$ 覆盖 $\Proj A[x_0,\dots,x_n]$？）
+\end{exercise}
+
+不难注意到：若按旧的\trProjectiveSpace{}定义，要证明 $D_+(x^2+y^2-z^2)\subset\mathbb{P}^2_k$（一条平面\trConic{}的\trComplement）是\trAffine{}的，会是一道并不平凡的练习；而有了新的视角，此事立等可取——它就是 $\Spec(k[x,y,z]_{(x^2+y^2-z^2)})_0$。
+
+\begin{exercise}\label{ex:classical-point-homogeneous-prime}
+设 $k$ 是\trAlgClosedField。由\cref{ex:closed-points-pn-traditional}我们知道，按 \S4.4.9 定义的 $\mathbb{P}^n_k$，其\trClosedPoint{}与「经典」\trProjectiveSpace{}的点成\trBijection。由\cref{ex:proj-agrees-preliminary}，按 \S4.4.9 定义的\trScheme{} $\mathbb{P}^n_k$\trIsomorphic{}于 $\Proj k[x_0,\dots,x_n]$。于是，经典\trProjectiveSpace{}的每个点 $[a_0,\dots,a_n]$ 都对应于 $k[x_0,\dots,x_n]$ 的一个\trHomogeneous\trPrimeIdeal。它是哪一个\trHomogeneous\trPrimeIdeal？
+\end{exercise}
+
+现在我们来弄清\trVanishingScheme{}的「正确定义」，以类比\trVanishingSet{} $V(\cdot)$（\S3.4.1）。你将在其中定义一个\trClosedSubscheme（注记~4.3.5 中已提及，其正式定义见 \S9.1）。
+
+\begin{exercise}\label{ex:vanishing-scheme-definition}
+若 $S_\bullet$ 在次数 $1$ 处生成，且 $f\in S_+$ 是\trHomogeneous{}的，解释如何在 $\Proj S_\bullet$「之中」定义 $V(f)$，即 $f$ 的\textbf{\trVanishingScheme}（vanishing scheme）。这与「\trVanishingSet」$V(\cdot)$ 用的是同一个记号，但现在意指比单纯一个集合更为丰富的对象。（\mbox{练习~9.1.K}与此相仿。警告：一般地，$f$ 并不是 $\Proj S_\bullet$ 上的函数。日后我们会把它解读为某个相近的东西：一个\trLineBundle{}的\trSection；例如见 \S15.1.2。）于是对 $S_+$ 的任意\trHomogeneous\trIdeal{} $I$ 定义 $V(I)$。（更一般情形下的另一套解法将在\mbox{练习~14.2.D}中给出。）
+\end{exercise}
+
+\textbf{4.5.10.\ \trProjectiveScheme{}与\trQuasiprojective\trScheme。}\quad 我们把形如（即\trIsomorphic{}于）$\Proj S_\bullet$ 的\trScheme——其中 $S_\bullet$ 是 $A$ 上的\trFinitelyGenerated\trGradedRing——称为 $A$ 上的\textbf{\trProjectiveScheme}（projective scheme over $A$），或一个\textbf{\trProjective{} $A$-\trScheme}（projective $A$-scheme）。一个\textbf{\trQuasiprojective{} $A$-\trScheme}（quasiprojective $A$-scheme）是\trProjective{} $A$-\trScheme{}的\trQuasicompact\trOpenSubscheme。当 $A$ 由上下文自明时便略去不写；$A$ 常是一个\trField。
+
+\textbf{4.5.11.\ 不重要的注记。}\quad (i)~注意：即便 $S_\bullet$ 不是\trFinitelyGenerated{}的，$\Proj S_\bullet$ 也有意义。这可能有用。例如，日后你将能够不依赖\mbox{练习~7.4.H}而做出\mbox{练习~7.4.D}。
+
+(ii)~\trQuasiprojectivity{}定义中的\trQuasicompact{}要求，在\trNoetherian{}情形当然是多余的（参\cref{ex:noetherian-open-quasicompact}），而对大多数人来说，需要操心的也只有这种情形。
+
+\textbf{4.5.12.}\ \emph{傻例子。}\quad 注意 $\mathbb{P}^0_A=\Proj A[T]\cong\Spec A$。于是「$\Spec A$ 是一个\trProjective{} $A$-\trScheme」。
+
+\textbf{4.5.13.\ 例：\trVectorSpace{}的\trProjectivization{} $\mathbb{P}V$。}\quad 我们可以把\trProjectiveSpace{}的这个定义弄得更加「无需选取」：设 $V$ 是 $k$ 上的 $(n+1)$ 维\trVectorSpace。（照例，这里的 $k$ 可以换成任意\trRing{} $A$，$V$ 可以换成\trFreeModule。）定义
+\[
+\mathrm{Sym}^{\bullet}V^{\vee}=k\oplus V^{\vee}\oplus\mathrm{Sym}^2V^{\vee}\oplus\cdots.
+\]
+（取对偶的缘由将由下一道练习解释。）例如，若 $V$ 是以 $x_0,\dots,x_n$ 为基的那个\trVectorSpace{}的对偶，则 $\mathrm{Sym}^{\bullet}V^{\vee}=k[x_0,\dots,x_n]$。于是我们可以定义 $\mathbb{P}V:=\Proj(\mathrm{Sym}^{\bullet}V^{\vee})$。在这种语言下，我们对 $x_0,\dots,x_n$ 有了如下解读：它们是底\trVectorSpace{} $V$ 上的线性泛函。（警告：有些作者采用 $\mathbb{P}V=\Proj(\mathrm{Sym}^{\bullet}V)$ 的定义，务必当心。）
+
+\begin{exercise}[不重要练习]\label{ex:pv-closed-points}
+设 $k$ \trAlgClosed。描述 $V$ 的一维子空间与 $\mathbb{P}V$ 的\trClosedPoint{}之间的一个自然\trBijection。于是这一构造以\trCanonical{}的方式（不依赖于基的选取）描述了\trVectorSpace{} $V$ 的一维子空间。
+\end{exercise}
+
+不重要的注记：你或许会对 $\mathbb{P}V$ 的定义中对偶的出现感到意外。上一道练习部分地解释了这件事。大多数正常人（传统派）把\trVectorSpace{} $V$ 的\emph{\trProjectivization}定义为 $V$ 的一维子空间所成之空间；\trGrothendieck{}则把\trProjectivization{}视为一维\emph{\trQuotient}所成之空间。这样做的一个动机是：它摆脱了上面定义中那个碍事的对偶。此外还有更好的理由，此处不表。要言不烦：对于\trCoherentSheaf——它推广了\trVectorBundle{}的概念——\trQuotient{}往往比\trSubobject{}表现得更规矩。（\trCoherentSheaf{}将在第~14~章讨论。）
+
+说一条与\cref{ex:pv-closed-points}有关的题外话：你也能描述 $V$ 的点与 $\Spec(\mathrm{Sym}^{\bullet}V^{\vee})$ 的\trClosedPoint{}之间的一个自然\trBijection。这一构造与 \S9.3.11 的\trAffine\trCone／\trProjective\trCone{}图像相合。
+
+\textbf{4.5.14.}\ \emph{\trGrassmannian{}。}\quad 写到此处，我们本可以来描述那个名为\trGrassmannian{}的基本几何对象，并给出它的那个「错误」（但却正确）的定义。我们偏要按兵不动，等到 \S7.7 再给出那个错误的定义——届时你将懂得足够多，足以察觉事情有些不对劲。正确的定义则将在 \S16.4 给出。

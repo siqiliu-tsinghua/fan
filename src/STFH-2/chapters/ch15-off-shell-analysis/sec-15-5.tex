@@ -1,0 +1,712 @@
+\section{\personFloer{}模空间的粘合}
+\label{sec:gluing-floer-moduli-spaces}
+
+在第 14.2、14.3 节中，我们通过描述
+$\mathcal M(x,y;B;J)$ 中序列所有可能的收敛失效方式，并把它们组装成断裂尖点流线
+之集，精确描述了 $\mathcal M(x,y;B;J)$ 的（稳定映射型）紧化
+$\overline{\mathcal M}(x,y;B;J)$。
+
+本节描述 $\overline{\mathcal M}(x,y;B;J)$ 中一条这种断裂尖点流线的邻域结构。
+一般而言，即使在构造中选择通有的 $J=\{J_t\}_{0\leq t\leq1}$，
+$\overline{\mathcal M}(x,y;B;J)$ 也不带有标准的（带边与角）流形（或 orbifold）结构。
+原因在于存在多重覆叠的伪全纯球面或圆盘。它们只带有 (FOn99) 及 (FOOO09)
+附录 A.1 意义下的带边与角\personKuranishi{}空间结构。为在无穷远处，即在断裂尖点流线
+的邻域中，建立\termKuranishiStructure{}的存在性，需要证明一个建立领口与角之构造的\termGluingTheorem{}。\termKuranishiStructure{}框架下的这一结果已在 (FOOO09) 第 7 章中确立，
+但超出了本书层次。当所有不可约分支映射及相关纤维积取值映射都满足横截性要求时，
+这个构造归结为标准带边与角流形中领口和角邻域的构造，下面对此加以说明。
+
+始终假设 $J$ 满足命题~\ref{prop:generic-floer-regularity-ch15}中的横截性结论。
+需要强调，这一通有横截性结论对任意 $(M,\omega)$ 中的任意横截对 $(L_0,L_1)$ 都成立。
+
+为简化叙述，只考虑下列三类位形。
+\begin{enumerate}[label=(\arabic*)]
+\item （分裂）$u_-\#u_+$，其中
+$(u_-,u_+)\in\mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)$，且
+$B_1\#B_2=B$。
+\footnote{译者注：原书把此处写成单个 $u_-$ 属于乘积空间；译文依位形
+$u_-\#u_+$ 及紧邻的乘积补入二元组 $(u_-,u_+)$。}
+\item （圆盘冒泡）$u\#w$，其中 $u$ 是光滑\personFloer{}流线，$w$ 是边界落在
+$L_i$ 上的 $J_i$-全纯圆盘，$i=0,1$，并且 $B_0\#\beta=B$。
+\item （球面冒泡）$u\#v$，其中 $u$ 是光滑\personFloer{}流线，而 $v$ 是某个
+$t_0\in[0,1]$ 的 $J_{t_0}$-全纯球面，并且 $B_0\#\alpha=B$。
+\end{enumerate}
+一般情形是这三类情形的合并；除更复杂的记号外，不包含新的要素。\personTaubes{}粘合方案(Ta82)把奇异扰动问题、\personLyapunov{}--\personSchmidt{}约化法
+\footnote{译者注：原书此处把 ``Schmidt'' 误拼成 ``Schmit''；译文采用规范人名。}与隐函数定理
+结合起来，用以在从给定方程的退化极限得到\termApproximateSolution{}时求解一般非线性偏微分方程。
+典型地，极限图像带有由不止一个不可约分支组成的奇异解；这种\termApproximateSolution{}通常很容易从
+给定几何背景猜出。下面先从一般扰动方案的抽象框架开始。
+
+\stfhIndex{I152}{Raodongfangan}{扰动方案（perturbation scheme）}
+\subsection{扰动方案概述}
+\label{subsec:outline-perturbation-scheme}
+
+设 $F:B_1\to B_2$ 是\personBanach{}空间 $B_1,B_2$ 之间的光滑映射。希望求解
+\begin{equation}
+ F(x)=0.
+ \label{eq:abstract-nonlinear-equation}
+\end{equation}
+出发点是存在一个\termApproximateSolution{} $x_0$，即 $F(x_0)$ 在 $B_2$ 中很小，比如
+\begin{equation}
+ |F(x_0)|\leq\epsilon.
+ \label{eq:approximate-solution-error}
+\end{equation}
+在应用中，\termApproximateSolution{}在给定几何背景下很明确，并且常常来自某些\emph{退化}位形。我们希望把
+$x_0$ 扰动到形如 $x=x_0+h$ 的解 $x_0+h$。作\personTaylor{}展开
+\[
+ F(x_0+h)=F(x_0)+dF(x_0)h+N(x_0,h),
+\]
+其中 $N$ 满足下列条件。
+\begin{enumerate}[label=(\arabic*)]
+\item
+\[
+ |N(x_0,h)|\leq o(|h|)|h|,
+ \qquad
+ |N(x_0,h_1)-N(x_0,h_2)|
+ \leq o(|h_1|+|h_2|)|h_1-h_2|.
+\]
+\item 假设存在函数 $\epsilon_1=\epsilon_1(\delta)$，当 $\delta\to0$ 时
+$\epsilon_1(\delta)\to0$，并且
+\begin{align}
+ \frac{|N(x_0,h)|}{|h|}&\leq\epsilon_1(|h|),
+ \label{eq:nonlinear-remainder-bound}\\
+ \frac{|N(x_0,h_1)-N(x_0,h_2)|}{|h_1-h_2|}
+ &\leq\epsilon_1(|h_1|+|h_2|).
+ \label{eq:nonlinear-remainder-lipschitz}
+\end{align}
+\item 当考虑一族\termApproximateSolution{} $x_0$ 时，还假设
+$\epsilon_1(\delta)\to0$ 关于 $x_0$ 一致成立。
+\end{enumerate}
+令 $F(x_0+h)=0$，则
+$F(x_0)+dF(x_0)h+N(x_0,h)=0$，原书由此写出
+\begin{equation}
+ dF(x_0)h=-F(x_0)+N(x_0,h).
+ \label{eq:abstract-linearized-correction}
+\end{equation}
+\footnote{译者注：由上一行\personTaylor{}展开直接移项，右端应为
+$-F(x_0)-N(x_0,h)$；原书从本式到后面的不动点映射始终使用加号。
+由于后续范数估计不依赖该符号，译文照录原式并指出代数不一致。}
+再作如下假设。
+\begin{enumerate}[label=(\arabic*),start=4]
+\item $dF(x_0)$ 是满射线性映射，而 $Q(x_0)$ 是其\termRightInverse{}，即
+$dF(x_0)\circ Q(x_0)=\operatorname{id}$。
+\item 当考虑一族\termApproximateSolution{} $x_0$ 时，存在一致常数 $C>0$，使
+\begin{equation}
+ \|Q(x_0)\|\leq C
+ \label{eq:uniform-right-inverse-abstract}
+\end{equation}
+对 $x_0$ 成立。
+\end{enumerate}
+
+对 $k\in B_2$ 作 Ansatz $h=Q(x_0)k$。于是
+\eqref{eq:abstract-linearized-correction} 化为
+\begin{equation}
+ k=-F(x_0)+N(x_0,Q(x_0)k).
+ \label{eq:abstract-fixed-point-equation}
+\end{equation}
+把右端看成从 $B_2$ 到 $B_2$ 的映射，记为
+\[
+ G(k)=-F(x_0)+N(x_0,Q(x_0)k).
+\]
+注意，$G(0)=-F(x_0)$ 已假设充分小。为求解 $G$ 的不动点问题 $k=G(k)$，
+应用\personPicard{}不动点定理。为此，需要证明存在 $\delta>0$，使得
+\begin{enumerate}[label=(\arabic*)]
+\item $G$ 把闭球 $B(\delta)\subset B_1$ 映到自身；
+\item $G$ 是压缩映射，即对某个 $0<\lambda<1$ 有
+\[
+ |G(x_1)-G(x_2)|\leq\lambda|x_1-x_2|.
+\]
+\end{enumerate}
+\footnote{译者注：$G$ 的定义域、值域均为 $B_2$，故第 (1) 项的闭球应为
+$B(\delta)\subset B_2$；原书印作 $B_1$。译文正文照录原书。}
+先考察 (1) 对 $F,x_0$ 的含义：
+\[
+\begin{aligned}
+ |-F(x_0)+N(x_0,Q(x_0)k)|
+ &\leq|F(x_0)|+|N(x_0,Q(x_0)k)|\\
+ &\leq\epsilon+\epsilon_1(|Q(x_0)k|)|Q(x_0)k|\\
+ &\leq\epsilon+C\epsilon_1(C|k|)|k|.
+\end{aligned}
+\]
+若 $|k|\leq\delta$，则
+\[
+ |-F(x_0)+N(x_0,Q(x_0)k)|
+ \leq\epsilon+C\epsilon_1(C\delta)\delta.
+\]
+解不等式 $\epsilon+C\epsilon_1(C\delta)\delta\leq\delta$，得到
+\[
+ (1-C\epsilon_1(C\delta))\delta\geq\epsilon.
+\]
+因此先选取 $\delta$，使
+\[
+ |1-C\epsilon_1(C\delta)|\geq\frac12
+ \qquad(\text{从而 }\delta\geq2\epsilon).
+\]
+当 $\delta\leq\delta_0$ 时，第一个不等式成立，其中某个 $\delta_0>0$
+\emph{只依赖于 $N$（进而依赖于 $F,x_0$）}。故需选取
+\begin{equation}
+ 2\epsilon\leq\delta\leq\delta_0.
+ \label{eq:abstract-contraction-radius}
+\end{equation}
+注意，$\epsilon$ 与 $\delta_0$ 都依赖于方程 $F(x)=0$ 及\termApproximateSolution{} $x_0$。
+在应用中，只要 $\epsilon$ 充分小，$\delta_0$ 的选择常可关于 $\epsilon$ 一致。
+因此通过改进\termApproximateSolution{} $x_0$，总能找到满足
+\eqref{eq:abstract-contraction-radius}的 $\delta$。
+
+接下来估计 $|G(k_1)-G(k_2)|$：
+\[
+\begin{aligned}
+ |G(k_1)-G(k_2)|
+ &=|N(x_0,Q(x_0)k_1)-N(x_0,Q(x_0)k_2)|\\
+ &\leq\epsilon_1(|Q(x_0)k_1|+|Q(x_0)k_2|)
+ |Q(x_0)|\,|k_1-k_2|\\
+ &\leq\epsilon_1(|Q(x_0)k_1|+|Q(x_0)k_2|)C|k_1-k_2|.
+\end{aligned}
+\]
+选取 $\delta_1>0$，使
+\[
+ \epsilon_1(2C\delta_1)C\leq\frac12.
+\]
+这种 $\delta_1$ 的选择\emph{只依赖 $N$（进而依赖 $F,x_0$）}。它总是可能的，因为
+$\epsilon_1(\delta)\to0$；只要 $\epsilon$ 充分小，$\delta_1$ 的选取还可关于
+$x_0$ 一致。令
+\[
+ \delta_2=\min\{\delta_0,\delta_1\}.
+\]
+由构造可知，若 $\epsilon$ 充分小，可以取 $\delta_2=2\epsilon$。
+总结如下。
+
+\begin{proposition}
+\label{prop:abstract-gluing-perturbation}
+设 $B_1,B_2$ 为\personBanach{}空间，$F:B_1\to B_2$ 光滑，并设 $x_0\in U$ 满足
+\[
+ |F(x_0)|\leq\epsilon,
+\]
+其中 $U\subset B_1$ 开。假设 $dF(x_0)$ 满射，$Q(x_0)$ 是其右逆，且
+$|Q(x_0)|\leq C$ 关于 $x_0\in U$ 一致成立。任取上述
+$\delta_2=2\epsilon$。则 $F(x)=0$ 有唯一的如下形式的解：
+\[
+ x=x_0+Q(x_0)k,
+ \qquad |k|\leq2\epsilon.
+\]
+特别地，存在 $\epsilon_0>0$，使每当 $0<\epsilon\leq\epsilon_0$ 时，扰动误差
+$|Q(x_0)k|$ 可做到与 $\epsilon$ 同阶，即
+\[
+ |Q(x_0)k|\leq C\epsilon;
+\]
+换言之，真解 $x$ 关于 $x_0$ 一致地落在球 $B_{x_0}(C\epsilon)\subset U$ 中。
+\end{proposition}
+
+本节余下部分在适当横截性假设下实施这一扰动方案，在每条断裂流线附近构造光滑\personFloer{}流线。
+
+\stfhSubIndexRangeStart{I101}{Zhanhe}{粘合（gluing）}{Duanlieliuxiandezhanhe}{断裂流线的粘合（of broken trajectories）}
+\subsection{断裂流线的粘合}
+\label{subsec:gluing-broken-trajectories}
+
+设 $u_-\#u_+$，其中
+\[
+ (u_-,u_+)\in\mathcal M(x,z;B_1;J)\times\mathcal M(z,y;B_2;J),
+ \qquad B_1\#B_2=B.
+\]
+由于假设 $J=\{J_t\}$ 满足命题~\ref{prop:generic-floer-regularity-ch15}
+中的横截性，线性化
+\[
+ D\overline\partial_J(u_\pm):W^{1,p}(u_\pm^*TM)
+ \longrightarrow L^p(u_\pm^*TM)
+\]
+均为满射。以下不改变 $J$，故从模空间记号中略去对 $J$ 的依赖。本小节的主要结果如下。
+
+\begin{theorem}
+\label{thm:gluing-broken-floer-trajectories}
+给定紧子集 $K_-\subset\mathcal M(x,z;B_1)$、
+$K_+\subset\mathcal M(z,y;B_2)$。
+\begin{enumerate}[label=(\arabic*)]
+\item 存在 $R_0>0$ 及微分同胚
+\[
+ \operatorname{Glue}:K_-\times K_+\times(R_0,\infty)
+ \longrightarrow\mathcal M(x,y;B),
+\]
+其为到像上的微分同胚。
+\item 还存在同胚
+\[
+ \varphi:[R_0,\infty)\cup\{\infty\}\longrightarrow(-\epsilon_0,0],
+\]
+使重参数化后的微分同胚
+\[
+ \operatorname{Glue}_\varphi:
+ K_-\times K_+\times(-\epsilon_0,0)\longrightarrow\mathcal M(x,y;B)
+\]
+延拓为
+\[
+ \overline{\operatorname{Glue}}_\varphi:
+ K_-\times K_+\times(-\epsilon_0,0]\longrightarrow
+ \overline{\mathcal M}(x,y;B),
+\]
+并使下图交换：
+\[
+\begin{array}{ccccc}
+ K_-\times K_+\times\{0\}&\xrightarrow{\ \cong\ }&K_-\times K_+
+ &\searrow&\mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)\\
+ \downarrow&&&&\downarrow\\
+ K_-\times K_+\times(-\epsilon_0,0]&
+ \xrightarrow{\ \overline{\operatorname{Glue}}_\varphi\ }&
+ \overline{\mathcal M}(x,y;B)&\longleftarrow&
+ \mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)\\
+ \searrow&&\downarrow&&\downarrow\\
+ &&(-\epsilon_0,0]&\longleftarrow&\{0\}.
+\end{array}
+\]
+\end{enumerate}
+\end{theorem}
+
+\stfhSubIndex{I103}{Zhanhe}{粘合（gluing）}{Wuqiongyuanchuzhanhedingli}{“无穷远处”粘合定理（gluing theorem at infinity）}
+断言 (1) 是\personFloer{}原始形式的粘合定理(Fl88b)；表面上看，这是“无穷远处”的
+粘合定理。然而，当把 $\overline{\mathcal M}(x,y;B)$ 看作边界微分同胚于
+\[
+ \mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)
+\]
+的带边流形时，\termGluingMap{}本身并不能构造边界
+$\partial\overline{\mathcal M}(x,y;B)$ 的\termCollarNeighborhood{}。主要问题是按第 14.2 节所描述
+的收敛方式，把断裂流线添加到 $\mathcal M(x,y;B)$，从而把
+$\operatorname{Glue}$ \emph{光滑}延拓到无穷远处
+\[
+ \mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)\times\{\infty\}.
+\]
+断言 (2) 则是通过适当选择重参数化函数
+$\varphi:[R_0,\infty)\to[-\epsilon_0,0)$，从断言 (1) 建立该\termCollarNeighborhood{}。
+
+先证明断言 (1)。证明分四步：
+\begin{enumerate}[label=(\arabic*)]
+\item 构造\termApproximateSolution{}；
+\item 构造线性化的右逆；
+\item 构造真解，从而构造 $\operatorname{Glue}$；
+\item 建立 $\operatorname{Glue}$ 的微分同胚性质。
+\end{enumerate}
+\stfhIndex{I168}{Taobusizhanhefa}{陶布斯粘合法（Taubes' gluing method）}
+前三步所用方案常称为\emph{\personTaubes{}粘合法}。\personTaubes{}首先在正定四维流形上构造自对偶联络
+时使用它(Ta82)，\personDonaldson{}后来在研究四维流形微分拓扑时广泛采用它(Do86)。
+此后，这一粘合方案成为伪全纯曲线分析及其辛几何应用的基本要素，也是\personYang{}--\personMills{}和\personSeiberg{}--\personWitten{}模空间分析及其低维拓扑应用的基本要素。
+
+最后一步又分为四步：
+\begin{enumerate}[label=(\arabic*)]
+\item 证明局部单射性；
+\item 证明真性；
+\item 对某些 $\epsilon,\delta$，证明 $\operatorname{Glue}$ 到
+\[
+ V^\epsilon(K_-\times K_+,\delta)
+ =\bigcup_{(u_-,u_+)\in K_-\times K_+}V_\delta^\epsilon(u_-,u_+)
+\]
+上的满射性，其中 $V_\delta^\epsilon(u_-,u_+)$ 定义于
+式~\eqref{eq:splitting-end-neighborhood-basis}；
+\item 证明 $\operatorname{Glue}$ 的整体单射性。
+\end{enumerate}
+
+下面给出各步的一些细节。我们将指出构造中的所有主要成分，但不试图给出解析估计的
+全部细节；这些估计主要利用命题~\ref{prop:finite-energy-exponential-decay}中的指数衰减
+估计，通过直接的积分估计即可得到。其余细节参见\personFloer{}的原始论文 (Fl88b) 或
+(FOOO07)。
+
+\subsubsection*{预粘合与误差估计}
+回忆，
+$\mathcal M(x,y;B)=\widetilde{\mathcal M}(x,y;B)/\mathbb R$ 是商空间，而\termGluingMap{}应以
+\[
+ \mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)\times(R_0,\infty)
+\]
+为定义域，以 $\mathcal M(x,y;B)$ 为目标。但实际的粘合构造使用\emph{映射}，而非其等价类。
+因此首先需要从 $\widetilde{\mathcal M}(x,z;B)$、
+$\widetilde{\mathcal M}(z,y;B)$ 中取出 $\mathcal M(x,z;B_1)$、
+$\mathcal M(z,y;B_2)$ 的切片，即良好代表元。仍使用第 14.2 节末的归一化条件
+\begin{equation}
+ E_J(u|_{(-\infty,0]\times[0,1]})
+ =E_J(u|_{[0,\infty)\times[0,1]})
+ \label{eq:gluing-energy-normalization}
+\end{equation}
+把 $\mathcal M$ 的元素表示为 $\widetilde{\mathcal M}_0$。
+
+现取 $u_-\in\widetilde{\mathcal M}_0(x,z;B_1)$、
+$u_+\in\widetilde{\mathcal M}_0(z,y;B_2)$ 作为这样的一对代表。固定
+$z\in L_0\cap L_1$ 的小测地邻域 $U$，使 $U=\exp_zV$，其中
+$V\subset T_zM$，并且 $U$ 不含其他交点。命题
+\ref{prop:finite-energy-exponential-decay}立即蕴含下述引理。
+
+\begin{lemma}
+\label{lem:uniform-entry-geodesic-neighborhood}
+对任给紧子集
+$K_-\subset\widetilde{\mathcal M}_0(x,z;B_1)$ 与
+$K_+\subset\widetilde{\mathcal M}_0(z,y;B_2)$，存在
+$R_0=R_0(z,U;K_-,K_+)>0$，使
+\begin{equation}
+ u_-([R_0,\infty)\times[0,1]),\quad
+ u_+(( -\infty,-R_0]\times[0,1])\subset U.
+ \label{eq:gluing-ends-enter-neighborhood}
+\end{equation}
+\end{lemma}
+
+由此可写
+\[
+ u_-(\tau,t)=\exp_z\xi_-(\tau,t)\quad(\tau\geq R_0),
+ \qquad
+ u_+(\tau,t)=\exp_z\xi_+(\tau,t)\quad(\tau\leq-R_0).
+\]
+取截断函数 $\chi:\mathbb R\to[0,1]$，使 $\{1-\chi,\chi\}$ 是从属于覆盖
+$\{(-R,1),(-1,R)\}$ 的单位分解，定义预粘合
+$u_-\#_{(R;\chi)}u_+=:u_{\mathrm{app}}$ 为
+\[
+ u_{\mathrm{app}}(\tau,t)=
+ \begin{cases}
+ u_-(\tau+2R,t),&\tau\leq-R,\\
+ \exp_z\bigl((1-\chi(\tau))\xi_-(\tau+2R,t)
+ +\chi(\tau)\xi_+(\tau-2R,t)\bigr),&-R\leq\tau\leq R,\\
+ u_+(\tau-2R,t),&\tau\geq R.
+ \end{cases}
+\]
+为使构造关于正负对称，还可要求 $\chi(-\tau)=1-\chi(\tau)$。
+
+\begin{proposition}
+\label{prop:pregluing-error-estimate}
+\termPreGluingMap{}
+\[
+\begin{aligned}
+ \operatorname{PreG}:(u_-,u_+,R)&\longmapsto u_-\#_{R;\chi}u_+,\\
+ \widetilde{\mathcal M}_0(x,z;B_1)
+ \times\widetilde{\mathcal M}_0(z,y;B_2)\times(R_0,\infty)
+ &\longrightarrow\mathcal F(x,y;B)
+\end{aligned}
+\]
+在 $R_1$ 充分大时，诱导 $K_-\times K_+\times(R_0,\infty)$ 到
+$\mathcal F(x,y;B)$ 中的光滑嵌入。此外，对某些
+$C=C(K_-,K_+)$、$\delta_1=\delta_1(K_-,K_+)$，有误差估计
+\begin{equation}
+ \|\overline\partial_J(u_-\#_{R;\chi}u_+)\|_p
+ \leq Ce^{-\delta_1R},
+ \qquad R\geq R_1.
+ \label{eq:pregluing-error-exponential}
+\end{equation}
+\end{proposition}
+
+该命题由命题~\ref{prop:finite-energy-exponential-decay}中的指数衰减估计推出。
+
+\subsubsection*{右逆的构造}
+由对 $J$ 的假设，$D\overline\partial_J(u_\pm)$ 满射，并且各有右逆
+\[
+ Q(u_\pm):L^p(u_\pm^*TM)\longrightarrow W^{1,p}(u_\pm^*TM).
+\]
+右逆并不唯一，故需分别随
+$u_-\in\widetilde{\mathcal M}_0(x,z;B_1)$、
+$u_+\in\widetilde{\mathcal M}_0(z,y;B_2)$ 光滑地选取，使
+\begin{equation}
+ \|Q(u_\pm)\|\leq C,
+ \qquad
+ D\overline\partial_J(u_\pm)\circ Q(u_\pm)=\operatorname{id},
+ \label{eq:smooth-uniform-right-inverses}
+\end{equation}
+其中 $C=C(K_\pm)$ 与 $u_\pm\in K_\pm$ 无关。
+
+\begin{exercise}
+\label{ex:smooth-choice-right-inverse}
+证明总能作出这样的选择。
+\end{exercise}
+
+现考虑\termPreGluingMap{}
+\[
+ \operatorname{PreG}(u_-,u_+,R):=u_-\#_{\chi;R}u_+=u_{\mathrm{app}}
+\]
+及其协变线性化 $D=D\overline\partial_J(u_{\mathrm{app}})$。类似于\termApproximateSolution{}的构造，
+先如下显式构造 $D$ 的近似右逆。令
+$\eta\in L^p(u_{\mathrm{app}}^*TM)$。对每个 $R\geq R_0$，分别定义
+$L^p(u_\pm^*TM)$ 中的元素族
+\[
+ \eta_{-,R}(\tau,t)=
+ \begin{cases}
+ \eta(\tau-2R,t),&\tau\leq2R,\\
+ 0,&\tau\geq2R,
+ \end{cases}
+\qquad
+ \eta_{+,R}(\tau,t)=
+ \begin{cases}
+ 0,&\tau\leq-2R,\\
+ \eta(\tau+2R,t),&\tau\geq-2R.
+ \end{cases}
+\]
+由构造，
+\[
+ \eta_{-,R}(\tau,t)\in T_{u_-(\tau,t)}M,
+ \qquad
+ \eta_{+,R}(\tau,t)\in T_{u_+(\tau,t)}M,
+\]
+故 $\eta_{\pm,R}$ 确实分别定义 $L^p(u_\pm^*TM)$ 的截面。并且
+\begin{equation}
+ \operatorname{supp}\eta_{-,R}\subset(-\infty,2R]\times[0,1],
+ \qquad
+ \operatorname{supp}\eta_{+,R}\subset[-2R,\infty)\times[0,1].
+ \label{eq:cutoff-eta-supports}
+\end{equation}
+由 $u_{\mathrm{app}}$ 的定义，
+\[
+ u_{\mathrm{app}}([-2R,2R]\times[0,1])\subset U.
+\]
+当 $d(p,q)\leq\iota(g)$ 时，以
+\[
+ \Pi_p^q:T_pM\longrightarrow T_qM
+\]
+表示沿 $p$ 到 $q$ 的短测地线的平行移动，其中 $\iota(g)$ 是 $g$ 的单射半径。
+显然 $(\Pi_p^q)^{-1}=\Pi_q^p$。记
+\begin{equation}
+ \xi_{\pm,R}=Q_\pm(u_\pm)(\eta_{\pm,R})
+ \in W^{1,p}(u_\pm^*TM).
+ \label{eq:right-inverse-sections-xi}
+\end{equation}
+定义
+\[
+ Q_{\mathrm{app}}(u_\pm,R):L^p(u_{\mathrm{app}}^*TM)
+ \longrightarrow W^{1,p}(u_{\mathrm{app}}^*TM)
+\]
+如下。对 $\xi_{\mathrm{app}}:=Q_{\mathrm{app}}(u_\pm,R)(\eta)$，令
+\begin{equation}
+\xi_{\mathrm{app}}(\tau,t)=
+\begin{cases}
+ \xi_{-,R}(\tau+2R,t),&\tau\leq-R,\\
+ \xi_{+,R}(\tau-2R,t),&\tau\geq R,\\
+ \begin{aligned}
+ &\Pi_z^{u_{\mathrm{app}}(\tau,t)}\Bigl(
+ (1-\chi(\tau))\Pi_{u_-(\tau,t)}^z(\xi_{-,R}(\tau,t))\\
+ &\hspace{8em}
+ +\chi(\tau)\Pi_{u_+(\tau,t)}^z(\xi_{+,R}(\tau,t))\Bigr),
+ \end{aligned}
+ &-R\leq\tau\leq R.
+\end{cases}
+\label{eq:approximate-right-inverse}
+\end{equation}
+\footnote{译者注：原书在中间区间使用未平移的
+$u_\pm(\tau,t)$ 与 $\xi_{\pm,R}(\tau,t)$，而外侧分段及预粘合定义使用
+$\tau\pm2R$ 的平移；译文保留原公式，未据上下文重构。}
+由该近似逆的构造，容易得到如下命题。
+
+\begin{proposition}
+\label{prop:approximate-right-inverse-uniform}
+有
+\[
+ \|Q_{\mathrm{app}}(u_\pm,R)\|\leq C,
+ \qquad
+ \|D\overline\partial(u_{\mathrm{app}})\circ
+ Q_{\mathrm{app}}(u_\pm,R)-\operatorname{id}\|\leq\frac12.
+\]
+特别地，$D\overline\partial(u_{\mathrm{app}})\circ
+Q_{\mathrm{app}}(u_\pm,R)$ 可逆。
+\end{proposition}
+
+由此可以构造真右逆
+\[
+ Q(u_\pm,R)=Q_{\mathrm{app}}(u_\pm,R)\circ
+ \bigl(D\overline\partial(u_{\mathrm{app}})\circ
+ Q_{\mathrm{app}}(u_\pm,R)\bigr)^{-1},
+\]
+它满足~\eqref{eq:smooth-uniform-right-inverses}，并随粘合参数 $(u_\pm,R)$ 光滑变化。
+此时像命题~\ref{prop:abstract-gluing-perturbation}那样应用\personPicard{} \termContractionMappingTheorem{}，
+构造与 $\operatorname{PreG}(u_-,u_+;R)$ 相伴的真解，记为
+\[
+ \operatorname{Glue}(u_-,u_+;R)=u_-\widetilde{\#}_Ru_+.
+\]
+这定义光滑映射
+\[
+ \operatorname{Glue}:K_-\times K_+\times[R_0,\infty)
+ \longrightarrow\mathcal M(x,y;B).
+\]
+
+\stfhSubIndexRangeEnd{I101}{Zhanhe}{粘合（gluing）}{Duanlieliuxiandezhanhe}{断裂流线的粘合（of broken trajectories）}
+\subsection{定理~\ref{thm:gluing-broken-floer-trajectories}证明的收尾}
+\label{subsec:wrap-up-gluing-theorem}
+
+本小节证明\termGluingMap{} $\operatorname{Glue}$ 的各种性质，并完成
+定理~\ref{thm:gluing-broken-floer-trajectories}的证明。
+
+\subsubsection*{局部单射性}
+固定紧子集 $K_1\subset\mathcal M(x,z;B_1)$、
+$K_2\subset\mathcal M(z,y;B_2)$。考虑 $B=B_1\#B_2$ 及
+$\mathcal M(x,y;B)$。
+
+\begin{proposition}
+\label{prop:glue-local-injectivity}
+$\operatorname{Glue}:K_-\times K_+\times[R_0,\infty)\to\mathcal M(x,y;B)$
+局部单射。
+\end{proposition}
+
+\begin{proof}
+这由\termPreGluingMap{} $\operatorname{PreG}$ 的局部单射性，以及应用\personPicard{}不动点定理时
+不动点的唯一性推出。
+\end{proof}
+
+\subsubsection*{真性}
+令 $K\subset\mathcal M(x,y;B)$ 为任意紧子集。
+
+\begin{proposition}
+\label{prop:glue-properness}
+$\operatorname{Glue}^{-1}(K)\subset
+\mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)\times[R_0,\infty)$ 为紧集。
+\end{proposition}
+
+\begin{proof}
+设 $u_i=\operatorname{Glue}(u_i^-,u_i^+,R_i)$，其中
+\begin{equation}
+ E_{J,(-\infty,0]}(u_i^\pm)=E_{J,[0,\infty)}(u_i^\pm),
+ \label{eq:gluing-representative-energy-balance}
+\end{equation}
+且 $[u_i]\in K$。由于 $K$ 紧，存在仍记为 $i$ 的子列及 $\tau_i$，使
+$u_i\circ\tau_i$ 收敛到
+$u_\infty\in\widetilde{\mathcal M}(x,y;B)$。不失一般性，设 $\tau_i=0$。
+由收敛性，存在 $C>0$ 使 $|du_i|\leq C$ 一致成立；特别地，不发生冒泡。
+命题 14.2.4 还蕴含
+\begin{equation}
+ \lim_{R\to\infty}E_{J,[-R,R]}(u_i)=\omega(B).
+ \label{eq:central-energy-glued-sequence}
+\end{equation}
+由~\eqref{eq:gluing-representative-energy-balance}、$\operatorname{Glue}$ 的定义及
+\eqref{eq:central-energy-glued-sequence}容易看出，对某个 $C>0$ 有 $R_i<C$。
+
+还需证明存在子列 $i_j$，使 $u_{i_j}^-$ 与 $u_{i_j}^+$ 收敛。由
+$u_i=\operatorname{Glue}(u_i^-,u_i^+,R_i)$ 的定义及导数界 $|du_i|\leq C$，有
+$|du_{i_j}^\pm|\leq C'$。因此，若 $u_{i_j}^-$（或 $u_{i_j}^+$）不收敛，
+则~\eqref{eq:central-energy-glued-sequence}蕴含存在仍记为 $i_j$ 的子列，使
+\[
+ \lim_{j\to\infty}E_{J,[-R_{i_j},R_{i_j}]}(u_{i_j}^-)
+ <\omega(B_1)\leq\omega(B).
+\]
+但 $\operatorname{Glue}(u_i^-,u_i^+,R_i)$ 的定义及
+\eqref{eq:central-energy-glued-sequence}又排除了这种情形。因此真性得证。
+\end{proof}
+
+\subsubsection*{满射性}
+考虑邻域
+\[
+ V^\epsilon(K_-\times K_+,\delta)
+ =\bigcup_{(u_-,u_+)\in K_-\times K_+}V_\delta^\epsilon(u_-,u_+),
+\]
+其中 $V_\delta^\epsilon(u_-,u_+)$ 定义于
+式~\eqref{eq:splitting-end-neighborhood-basis}。
+
+\begin{proposition}
+\label{prop:glue-surjectivity-near-boundary}
+假设对某个 $R_0>0$，$\operatorname{Glue}$ 定义在
+\[
+ K_-\times K_+\times[R_0,\infty)
+ \subset\mathcal M(x,z;B_1)\times\mathcal M(z,y;B_2)\times[R_0,\infty)
+\]
+上。则存在 $\epsilon,\delta>0$，使
+\[
+ V^\epsilon(K_-\times K_+,\delta)\cap\mathcal M(x,y;B)
+ \subset\operatorname{Image}\operatorname{Glue}.
+\]
+\end{proposition}
+
+\begin{proof}
+反设存在 $\epsilon_i,\delta_i\to0$ 以及
+\[
+ u_i\in V^{\epsilon_i}(K_-\times K_+,\delta_i)
+ \cap\mathcal M(x,y;B)\setminus\operatorname{Image}\operatorname{Glue}.
+\]
+\footnote{译者注：原书在此引入 $\epsilon_i,\delta_i$ 后，成员关系中仍写固定的
+$\epsilon,\delta$；译文依反证序列补正下标。}
+由 (14.2.37) 及 $K_\pm$ 的紧性，$u_i^\pm$ 局部收敛到某些
+$u_\pm\in K_\pm$。又因 $\delta_i\to0$，(14.2.38) 与命题 14.2.4 蕴含
+$u_i^\pm$ 在 $K_\pm$ 中整体收敛到 $u_\pm$。故可写
+\[
+ u_i^\pm(\tau,t)=\exp_{u_\pm(\tau,t)}\xi_i^\pm(\tau,t)
+\]
+其中 $\xi_i^\pm:\mathbb R\times[0,1]\to T_{p_\pm}M$。于是存在
+\footnote{译者注：原书把 $\xi_i^\pm$ 写成取值于固定切空间
+$T_{p_\pm}M$；但指数映射的基点随 $(\tau,t)$ 变化，类型上应为
+$u_\pm^*TM$ 的截面。译文保留原书写法。}
+$R_i\to\infty$，使
+\[
+ \operatorname{dist}\bigl(u_i,\operatorname{PreG}(u_-,u_+,R_i)\bigr)\to0.
+\]
+\footnote{译者注：原书把 $R_i$ 印作趋于 $0$，并在 $\operatorname{PreG}$ 中把
+$u_+,u_-$ 逆序；这与定义域 $[R_0,\infty)$ 及趋近断裂流线的颈长参数矛盾。
+译文补正为 $R_i\to\infty$ 与 $\operatorname{PreG}(u_-,u_+,R_i)$。}
+但 $\overline\partial_Ju_i=0$，故命题
+\ref{prop:abstract-gluing-perturbation}的唯一性部分蕴含：当 $i$ 充分大时，
+$u_i=\operatorname{Glue}(u_-,u_+,R_i)$。这与
+$u_i\notin\operatorname{Image}\operatorname{Glue}$ 矛盾，证明完成。
+\end{proof}
+
+\subsubsection*{整体单射性}
+至此已证明
+$\operatorname{Glue}:K_-\times K_+\times[R_0,\infty)\to\mathcal M(x,y;B)$
+是到 $\mathcal M(x,y;B)$ 某个子集上的覆盖映射。下面证明：
+
+\begin{proposition}
+\label{prop:glue-global-injectivity}
+若 $R_0$ 充分大，则 $\operatorname{Glue}$ 是一一映射。
+\end{proposition}
+
+\begin{proof}
+可以假设 $K_\pm$ 道路连通，且对某些开子集 $U_\pm$ 有
+$K_\pm=\overline U_\pm$。反设
+\begin{equation}
+ \operatorname{Glue}(u_i^-,u_i^+,R_i)
+ =\operatorname{Glue}(u_i^{-'},u_i^{+'},R_i')=:u_i
+ \label{eq:two-gluing-parameters-same-solution}
+\end{equation}
+对某些
+$(u_i^-,u_i^+,R_i)\neq(u_i^{-'},u_i^{+'},R_i')\in U_-\times U_+\times\mathbb R$
+成立，并且 $R_i,R_i'\to\infty$。取子列后，由构造有
+\[
+ \lim_{i\to\infty}u_i^\pm
+ =\lim_{i\to\infty}u_i^{\pm'}=:u_\infty^\pm.
+\]
+再由粘合构造的唯一性，对某些 $R_{\infty,i}\to\infty$ 有
+\[
+ \operatorname{Glue}(u_i^-,u_i^+,R_i)
+ =\operatorname{Glue}(u_\infty^-,u_\infty^+,R_{\infty,i})
+ =\operatorname{Glue}(u_i^{-'},u_i^{+'},R_i').
+\]
+由于 $R_i,R_i'\to\infty$ 且 $u_i^\pm,u_i^{\pm'}\to u_\infty^\pm$，
+对某些 $\epsilon,\delta>0$ 及一切充分大的 $i$，有
+\[
+ (u_i^-,u_i^+,R_i),\ (u_i^{-'},u_i^{+'},R_i')
+ \in V_\delta^\epsilon(u_\infty^-,u_\infty^+).
+\]
+于是与满射性证明相同的论证给出，两组粘合参数都趋近于
+\[
+ (u_\infty^-,u_\infty^+,R_{\infty,i}).
+\]
+这一结论在原书中写成两个距离式。
+\footnote{译者注：原书的两个距离式完全重复，且共同把极限对逆写为
+$(u_+,u_-)$；译文按前文的有序乘积与两组参数概述其应有结论。}
+这与式~\eqref{eq:two-gluing-parameters-same-solution}中两组参数不同相矛盾：
+它违反命题~\ref{prop:glue-local-injectivity}在任意
+$R_{\infty,i}>R_0$ 的点
+$[u_\infty^-,u_\infty^+,R_{\infty,i}]$ 处所给的局部单射性。命题得证。
+\end{proof}
+
+\subsubsection*{边界坐标卡的构造}
+至此已证明定理~\ref{thm:gluing-broken-floer-trajectories}(1)。还需证明 (2)。
+为此，需选取光滑函数
+$\varphi:(R_0,\infty)\to(-\epsilon_0,0)$，使
+$\lim_{T\to\infty}\varphi(T)=0$。定义
+\[
+ \varphi(T)=-\frac1T=:s.
+\]
+\footnote{译者注：原书把 $\varphi(T)$ 写成 $1/T$，但同时指定其值域为负区间
+$(-\epsilon_0,0)$，后面也只在负 $s$ 上使用 $\varphi^{-1}$；译文补上负号。}
+定义
+\[
+ \operatorname{Glue}_\varphi:
+ K_-\times K_+\times(-\epsilon_0,0)\longrightarrow\mathcal M(x,y;B)
+\]
+以及
+\[
+ \operatorname{Glue}_\varphi(u_-,u_+,s)
+ =\operatorname{Glue}(u_-,u_+,\varphi^{-1}(s)).
+\]
+该映射连续延拓为一一映射
+\[
+ \overline{\operatorname{Glue}}_\varphi:
+ K_-\times K_+\times(-\epsilon_0,0]
+ \longrightarrow\overline{\mathcal M}(x,y;B),
+\]
+因而是到其像上的同胚。这给出 $\overline{\mathcal M}(x,y;B)$ 的一张边界坐标卡。
+
+\begin{exercise}
+\label{ex:compatibility-gluing-boundary-charts}
+证明上述坐标卡彼此相容。
+\end{exercise}

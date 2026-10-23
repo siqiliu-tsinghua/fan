@@ -1,0 +1,258 @@
+本章说明在伪全纯映射模空间的关键横截性研究中所使用的适当泛函分析框架。用物理学语言来说，这对应于模空间问题的离壳描述。为此，重要的是注意到：$J$-全纯映射的模空间可以看成一个弗雷德霍姆截面的\emph{零点集}；该截面属于一个以巴拿赫流形为底的无穷维巴拿赫向量丛。
+
+\section{巴拿赫流形简述}
+\label{sec:quick-review-banach-manifolds}
+
+我们先简要概述巴拿赫流形理论与萨德--斯梅尔定理 (Sm65)。
+
+设 $\mathbb B_1,\mathbb B_2$ 是两个巴拿赫空间。以
+$L(\mathbb B_1,\mathbb B_2)$ 表示所有有界线性映射组成的集合，并赋予范数拓扑。
+
+\begin{definition}\label{def:fredholm-operator}
+有界线性映射 $L:\mathbb B_1\to\mathbb B_2$ 称为一个\emph{弗雷德霍姆算子}，如果它满足下列三个条件：
+\begin{enumerate}[label=(\arabic*)]
+ \item 它的像是闭的；
+ \item $\dim(\ker L)<\infty$；
+ \item $\dim(\operatorname{coker}L)<\infty$。
+\end{enumerate}
+\emph{弗雷德霍姆指标}记为 $\operatorname{Index}L$，定义为
+\stfhIndex{I131}{fu^lei^de^huo^mu^zhi^biao}{弗雷德霍姆指标（Fredholm index）}
+\[
+ \operatorname{Index}L=\dim(\ker L)-\dim(\operatorname{coker}L).
+\]
+\end{definition}
+
+下面是一个标准定理，可以由定义和巴拿赫空间泛函分析中的基本定理证明。（证明细节例如见 (Rud73)、(La83)。）
+
+\begin{proposition}\label{prop:index-continuity-fredholm-open}
+指标函数 $L\mapsto\mathbb Z$ 关于 $L(\mathbb B_1,\mathbb B_2)$ 上的范数拓扑是连续函数（因而在弗雷德霍姆算子的连续同伦下不变）。此外，弗雷德霍姆算子组成 $L(\mathbb B_1,\mathbb B_2)$ 中的一个开子集。
+\end{proposition}
+
+\begin{proof}
+我们概述证明的主要步骤，把细节留作习题。首先，$\ker L$ 和 $\operatorname{coker}L$ 的有限维性给出分裂
+\[
+ \mathbb B_1=\mathbb B'_1\oplus\ker L,
+ \qquad
+ \mathbb B_2=\operatorname{image}L\oplus C_2.
+\]
+关于这些分裂，$L$ 可以写成
+\[
+ L=
+ \begin{pmatrix}
+  L_{11}&L_{12}\\
+  L_{21}&L_{22}
+ \end{pmatrix},
+\]
+其中 $L_{11}:\mathbb B'_1\to\operatorname{image}L$ 是同构，而
+$L_{12},L_{21},L_{22}$ 是紧算子。
+\end{proof}
+
+\begin{exercise}\label{ex:fredholm-index-continuity}
+从上述准备出发，完成证明。
+\end{exercise}
+
+现在设 $f:U_1\to U_2$ 是连续映射，其中 $U_i\subset\mathbb B_i$ 是相应 $\mathbb B_i$ 的开子集。若 $f$ 在微积分的意义下是 $C^k$ 的，就称它为 $C^k$ 映射。更准确地说，有如下定义。
+
+\begin{definition}\label{def:differentiability-banach-spaces}
+连续映射 $f:U_1\to U_2$ 称为在 $x\in U_1$ 处可微，如果存在有界线性映射
+$A:\mathbb B_1\to\mathbb B_2$，使得对所有 $h\in\mathbb B_1$ 都有
+\[
+ f(x+h)-f(x)=A\cdot h+c(h),
+\]
+其中 $c$ 是 $\mathbb B_1$ 中 $0$ 的某邻域上的连续映射，并满足
+\[
+ \lim_{h\to0}\frac{\lVert c(h)\rVert_{\mathbb B_2}}
+ {\lVert h\rVert_{\mathbb B_1}}=0.
+\]
+我们把这样的线性算子 $A$ 称为 $f$ 在 $x$ 处的导数，并记作 $df(x)$。若映射
+\[
+ df:\mathbb B_1\to L(\mathbb B_1,\mathbb B_2)
+\]
+关于 $L(\mathbb B_1,\mathbb B_2)$ 的范数拓扑连续，就称 $f$ 连续可微，或称属于 $C^1$ 类。归纳地定义第 $r$ 阶导数
+\[
+ d^rf=d(d^{r-1}f):U_1\to
+ L^r(\mathbb B_1,\mathbb B_2)
+ =L^r(\mathbb B_1^{\otimes r},\mathbb B_2),
+\]
+并由此定义 $C^r$ 类映射。若映射对所有 $r=0,\ldots,\to\infty$ 都属于 $C^r$ 类，就称它光滑（或无穷可微）。
+\end{definition}
+
+关于巴拿赫可微流形及其微积分的更多细节，我们请读者参见 (La02) 与 (AMR88)。
+
+\begin{definition}\label{def:banach-manifold}
+巴拿赫流形是一个第二可数拓扑空间，它带有由局部坐标卡
+\stfhIndex{I058}{ba^na^he^liu^xing}{巴拿赫流形（Banach manifold）}
+$\phi_\alpha:U_\alpha\to\mathbb B$ 组成的图册
+$\{(U_\alpha,\phi_\alpha)\}$，其中 $\mathbb B$ 是巴拿赫空间，并且
+\[
+ \phi_\alpha\circ\phi_\beta^{-1}:
+ \phi_\beta(U_\alpha\cap U_\beta)
+ \longrightarrow
+ \phi_\alpha(U_\alpha\cap U_\beta)
+\]
+是光滑的（或 $C^k$ 的）。
+\end{definition}
+
+还可以在巴拿赫流形上定义局部平凡的巴拿赫向量丛
+$E\to M$，其每条纤维 $E_x$ 都是巴拿赫空间。与有限维情形一样，可以把切丛 $TM\to M$ 定义为一个向量丛；也可以考虑联络及其相伴协变导数。
+
+\begin{definition}\label{def:fredholm-map}
+设 $k\geq1$。$C^k$ 映射 $f:M\to N$ 称为\emph{弗雷德霍姆映射}，如果对每个 $x\in M$，
+\stfhIndex{I132}{fu^lei^de^huo^mu^ying^she}{弗雷德霍姆映射（Fredholm map）}
+\[
+ T_xf:T_xM\to T_{f(x)}N
+\]
+都是弗雷德霍姆算子。
+\end{definition}
+
+由定义和指标的同伦不变性，函数
+\[
+ x\longmapsto\operatorname{Index}T_xf
+\]
+是局部常值的，因而在 $M$ 的每个道路连通分支上为常值。下面的基本定理及其推论由斯梅尔 (Sm65) 证明。
+
+\begin{theorem}[萨德--斯梅尔定理]\label{thm:sard-smale}
+\stfhIndex{I241}{sa^de^si^mei^er^ding^li}{萨德--斯梅尔定理（Sard–Smale theorem）}
+设 $M$ 连通，并以 $\operatorname{index}f$ 表示对 $x\in M$ 的公共整数
+$\operatorname{Index}T_xf$。设 $f:M\to N$ 是 $C^k$ 弗雷德霍姆映射，并且
+\[
+ k>\max\{\operatorname{index}f,0\}.
+\]
+则 $f$ 的正则值集合是 $N$ 的一个稠余子集。
+\end{theorem}
+
+我们陈述该定理的若干推论。
+
+\begin{corollary}\label{cor:negative-index-image-no-interior}
+若 $f:M\to N$ 是负指标弗雷德霍姆映射，则它的像不含内点。
+\end{corollary}
+
+\begin{corollary}\label{cor:fredholm-preimage-generic-submanifold}
+设 $M$ 连通，且 $f:M\to N$ 是弗雷德霍姆映射。则对几乎所有
+$y\in N$，原像 $f^{-1}(y)$ 或者为空，或者是一个光滑子流形，其维数由
+\[
+ \operatorname{index}f=\dim\ker T_yf
+\]
+给出。
+\end{corollary}
+
+\begin{definition}\label{def:fredholm-section}
+设 $E$ 是 $M$ 上以巴拿赫空间 $\mathbb E$ 为模型的巴拿赫向量丛，并设
+$s:M\to E$ 是 $C^1$ 截面。若对于一个（因而任意一个）联络 $\nabla$，协变导数
+\[
+ \nabla s(x):T_xM\to E_x
+\]
+是弗雷德霍姆算子，就称 $s$ 为\emph{弗雷德霍姆截面}。
+\end{definition}
+
+注意，在满足 $s(x)=0$ 的零点 $x$ 处，线性算子 $\nabla s(x)$ 与联络 $\nabla$ 的选择无关。我们把这个公共算子 $\nabla s(x)$ 称为 $s$ 在零点 $x$ 处的\emph{（协变）线性化}，并记作
+$Ds(x):T_xM\to E_x$。
+
+\begin{proposition}\label{prop:transverse-fredholm-section-zero-set}
+设 $s$ 是弗雷德霍姆截面，并且 $s\pitchfork o_E$，其中 $o_E$ 是 $E$ 的零截面。则零点集
+\[
+ s^{-1}(o_E)\cong\operatorname{Im}s\cap o_E
+\]
+是 $M\cong o_E$ 的光滑子流形。$s^{-1}(o_E)$ 的维数在 $M$ 的每个连通分支上保持常值。
+\end{proposition}
+
+接下来回顾作用在光滑截面空间上的椭圆微分算子的若干基本事实。设
+$E_1,E_2\to M$ 是有限维流形 $M$ 上的两个向量丛。
+
+\begin{enumerate}[label=(\arabic*)]
+ \item 若对任意 $s\in C^\infty(E_1)$ 都有
+ $\operatorname{supp}(Ls)\subset\operatorname{supp}(s)$，则线性算子
+ $L:C^\infty(E_1)\to C^\infty(E_2)$ 称为局部的。任何局部线性算子都是微分算子（佩特雷定理 (Pe59)）。
+
+ \item 线性微分算子还有一个等价而纯代数的描述：若对任意
+ $k+1$ 个光滑函数 $f_0,\ldots,f_k\in C^\infty(M)$ 都有
+ \begin{equation}
+  [f_k,[f_{k-1},[\cdots[f_0,P]\cdots]]]=0,
+  \label{eq:iterated-commutator-differential-operator}
+ \end{equation}
+ 则 $\mathbb R$-线性映射 $L$ 是 $k$ 阶线性微分算子。这里括号
+ $[f,L]:\Gamma(E)\to\Gamma(F)$ 定义为交换子
+ \[
+  [f,L](s)=L(f\cdot s)-f\cdot L(s).
+ \]
+
+ \item $\operatorname{order}(L)$ 是使得对所有
+ $f_0,\ldots,f_k\in C^\infty(M)$ 都有\eqref{eq:iterated-commutator-differential-operator}成立的最小可能整数 $k$。
+
+ \item 任意 $k$ 阶局部算子都可表示为
+ \[
+  \sum_{|I|\leq k}A_I\frac{\partial}{\partial x^I},
+ \]
+ 其中 $A_i\in\operatorname{Hom}(E_1,E_2)$，而最高阶部分在下述意义下与平凡化无关：在
+ \[
+  \frac{\partial}{\partial x^I}:=
+  \left(\frac{\partial}{\partial x^1}\right)^{k_1}
+  \left(\frac{\partial}{\partial x^2}\right)^{k_2}
+  \cdots
+  \left(\frac{\partial}{\partial x^n}\right)^{k_n},
+  \qquad |I|=\sum_{i=1}^n k_i=k,
+ \]
+ 中把 $\partial/\partial x^i$ 换成 $\xi_i\in T^*M$，便定义 $L$ 的（主）\emph{符号映射}
+\stfhIndex{I266}{fu^hao^ying^she}{符号映射（symbol map）}
+ \begin{equation}
+  \sigma(L)(\xi):=
+  \sum_{|I|=\operatorname{order}L}A_I\xi^I.
+  \label{eq:principal-symbol-map}
+ \end{equation}
+ 这里 $\pi:T^*M\to M$ 是典范投影，$\pi^*E_i$ 是 $T^*M$ 上的拉回丛。于是该映射定义丛
+ \[
+  \operatorname{Hom}(\pi^*E_1,\pi^*E_2)\longrightarrow T^*M
+ \]
+ 的一个光滑截面，使得
+ $\sigma(L)(\xi):E_{1,\pi(\xi)}\to E_{2,\pi(\xi)}$ 是线性映射。
+\end{enumerate}
+
+\begin{definition}\label{def:elliptic-differential-operator}
+若对所有 $\xi\in T^*M\setminus\{0\}$，
+$\sigma(L)(\xi)$ 都是同构，则微分算子
+$L:C^\infty(E_1)\to C^\infty(E_2)$ 称为椭圆的。
+\end{definition}
+
+注意，仅当 $\operatorname{rank}(E_1)=\operatorname{rank}(E_2)$ 时 $L$ 才可能是椭圆的，因为只有在这种情况下，线性映射 $\sigma(L)(\xi)$ 才可能是同构。
+
+下面是适用于任意椭圆微分算子 $L$ 的基本先验估计（算子定义在无边紧流形上）。
+
+\begin{proposition}\label{prop:elliptic-a-priori-estimate-fredholm}
+设 $M$ 是无边紧流形，并设算子
+$L:C^\infty(E_1)\to C^\infty(E_2)$ 是椭圆的。则对任意
+$\xi\in C^\infty(E_1)$，都有
+\[
+ \lVert\xi\rVert_{s+k,p}\leq
+ C\bigl(\lVert L\xi\rVert_{s,p}+\lVert\xi\rVert_{s+k-1,p}\bigr)
+\]
+对所有 $s$ 和 $1<p<\infty$ 成立，其中 $k=\operatorname{order}(L)$。特别地，$L$ 延拓为从 $W^{k+s,p}(E_1)$ 到 $W^{s,p}(E_2)$ 的有界线性映射，并且这个延拓是弗雷德霍姆的。
+\end{proposition}
+
+\begin{remark}\label{rem:elliptic-boundary-value-problem}
+当 $M$ 有边界时，可以把椭圆边值问题定义为微分算子对
+\[
+ (L,B):C^\infty(E_1)\longrightarrow
+ C^\infty(E_2)\times C^\infty(i^*E_2).
+\]
+这里 $B:C^\infty(E_1)\to C^\infty(F_2)$ 是迹算子，而
+$F_2\to\partial M$ 是 $E_2|_{\partial M}$ 在 $\partial M$ 上的子丛，且
+$\operatorname{order}B\leq\operatorname{order}L-1$，并使先验估计
+\[
+ \lVert\xi\rVert_{s+k,p}\leq C\bigl(
+ \lVert L\xi\rVert_{s,p}+\lVert\xi\rVert_{s+k-1,p}
+ +\lVert B(\xi\circ i)\rVert_{s+l-1-1/p,p}\bigr)
+\]
+对所有 $s$ 和 $1<p<\infty$ 成立。关于一般椭圆边值问题，即满足洛帕京斯基--沙皮罗条件的算子 $(L,B)$ 的先验估计推导，见 (ADN59)、(ADN64)（该条件的说明例如见 (ADN64)）。
+
+从这一观点看，黎曼--希尔伯特问题
+\[
+ \overline\partial\xi=0,
+ \qquad \xi(\theta)\in\tau(\theta),
+\]
+是一个椭圆边值问题；这里 $\tau\to\partial\Sigma$ 是 $\mathbb C^n$ 的全实子丛。这是因为该问题可以化为某个零阶算子 $B$ 的边值问题
+$B\xi|_{\partial\Sigma}=0$。
+\end{remark}
+
+\begin{exercise}\label{ex:riemann-hilbert-zero-order-boundary-operator}
+对上式 $B\xi|_{\partial\Sigma}=0$ 中的零阶算子 $B$ 给出精确定义。
+\end{exercise}

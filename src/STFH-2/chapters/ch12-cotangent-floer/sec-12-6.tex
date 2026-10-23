@@ -1,0 +1,731 @@
+\section{\termLagrangianSpectralInvariant{}}
+\label{sec:lagrangian-spectral-invariants}
+
+固定典范的相容定向 $\sigma\in\operatorname{or}([S]:N)$，使得 $HF_*^\sigma(H,S;N)$ 同构于\termSingularCohomology{} $H^*(S;\mathbb Z)$。把这个同构记为
+\[
+  \Phi_{(H,S)}:H^*(S;\mathbb Z)
+  \longrightarrow HF_*^\sigma(H,S;N).
+\]
+有了这个约定，也将在记号 $HF_*^\sigma(H,S,J;N)$ 中省略 $\sigma$。这里略去该同构的构造；完整细节可参见 (MiO97) 与 (Mi00)。
+
+本节假设这一典范同构存在，利用\emph{\personFloer{}同调}机制探测极小极大集合的\termLinkingProperty{}，从而应用作用量泛函的\termMinimaxTheory{}。这取代了 (BnR79) 与 (Bn82) 在\personSobolev{}空间 $H^{1/2}(S^1,\mathbb R^{2n})$ 上发展出的作用量泛函经典极小极大理论的直接方法；该方法利用作用量泛函的整体梯度流把极小极大集合向下推，并用\emph{经典拓扑}探测链接性质。
+
+先注意，方程~\eqref{eq:perturbed-cauchy-riemann-conormal} 是 $\Omega(S)$ 上 $\mathcal A_H|_{\Omega(S)}$ 关于 $L^2$-度量 $\langle\!\langle\mathord\cdot,\mathord\cdot\rangle\!\rangle_J$ 的负梯度流，因而保持由作用量泛函 $\mathcal A_H$ 的值给出的\termDownwardFiltration{}。这一事实在分析上体现为恒等式\footnote{译者注：原书公式 (12.6.25) 左边写成 $\frac d{dt}\mathcal A_H(u(\tau))$，但被微分的流参数是 $\tau$；积分号也没有标出上下限。译文分别改为 $\frac d{d\tau}$ 与 $\int_0^1$。}
+\begin{equation}
+  \frac d{d\tau}\mathcal A_H(u(\tau))
+  =-\int_0^1
+    \left\lVert\frac{\partial u}{\partial t}-X_H(u)\right\rVert_J^2dt
+  \le0.
+\label{eq:action-decreases-along-floer-flow}
+\end{equation}
+
+设 $S\subset N$ 是给定的紧子流形，并设 $(H,J)\in\mathcal N_{\mathrm{reg}}(S)$ 如前定义。\footnote{译者注：原书称 $\mathcal N_{\mathrm{reg}}(S)$ “如前定义”，但此前没有给出这个集合记号；译文照录。}对 $a\in\mathbb R$，定义 $CF_*^a(H,S;N)$ 为由满足
+\[
+  z\in\operatorname{Crit}\bigl(\mathcal A_H|_{\Omega(S)}\bigr),
+  \qquad
+  \mathcal A_H(z)\le a
+\]
+的 $z$ 生成的自由 $\mathbb Z$-模，并定义\footnote{译者注：原书先用阈值 $a$，生成元条件却写成 $\mathcal A_H(z)\le\lambda_1$；相对复形采用 $\lambda_1,\lambda_2$ 后，又写“for any $b>a$”。译文把两处阈值分别统一为 $a$ 与 $\lambda_1<\lambda_2$。}
+\[
+  CF_*^{[\lambda_1,\lambda_2)}
+  =CF_*^{\lambda_2}/CF_*^{\lambda_1}.
+\]
+于是，由方程~\eqref{eq:perturbed-cauchy-riemann-conormal} 定义的边界映射
+\[
+  \partial_{(H,J)}:CF_*(H,S:N)\longrightarrow CF_*(H,S:N)
+\]
+对任意 $\lambda_2>\lambda_1$ 都诱导（相对）边界映射
+\[
+  \partial_{(H,J)}^{[\lambda_1,\lambda_2)}:
+  CF_*^{[\lambda_1,\lambda_2)}(H,S:N)
+  \longrightarrow
+  CF_*^{[\lambda_1,\lambda_2)}(H,S:N),
+\]
+并且显然满足
+\[
+  \partial_{(H,J)}^{[\lambda_1,\lambda_2)}
+  \circ
+  \partial_{(H,J)}^{[\lambda_1,\lambda_2)}=0.
+\]
+\stfhIndex{I003}{00-hf-filtered}{$HF_*^{[\lambda_1,\lambda_2)}(H,S,J;N)$}
+因此可以定义\termRelativeHomologyGroup{}
+\[
+  HF_*^{[\lambda_1,\lambda_2)}(H,S,J;N)
+  :=\operatorname{Ker}\partial_{(H,J)}^{[\lambda_1,\lambda_2)}
+  /\operatorname{Im}\partial_{(H,J)}^{[\lambda_1,\lambda_2)}.
+\]
+由定义，当 $\lambda_1\le\mu_1$ 且 $\lambda_2\le\mu_2$ 时，存在自然同态
+\[
+  j_*:HF_*^{[\lambda_1,\lambda_2)}
+  \longrightarrow HF_*^{[\mu_1,\mu_2)}.
+\]
+特别地，存在自然同态
+\begin{equation}
+  j_*^\lambda:HF_*^{(-\infty,\lambda)}
+  \longrightarrow HF_*=HF_*^{(-\infty,\infty)}.
+\label{eq:filtered-to-total-floer-homology}
+\end{equation}
+
+\stfhIndex{I023}{00-rho-hjsa}{$\rho(H,J;S,a)$}
+\begin{definition}
+\label{def:lagrangian-spectral-number-regular}
+设 $S\subset N$ 是紧子流形，且 $(H,J)\in\mathcal N_{\mathrm{reg}}(S)$。对给定的 $0\ne a\in H^*(S)$，定义实数
+\[
+\begin{split}
+  \rho(H,J;S,a)
+  :=\inf_\lambda\{\lambda\in\mathbb R\mid {}&
+  \Phi_{(H,S,J)}(a)\in\operatorname{im}j_*^\lambda\\
+  &\subset HF_*(H,S,J:N)\}.
+\end{split}
+\]
+\end{definition}
+
+先验地，并不明显 $\rho(H,J;S,a)$ 是否有限，亦即是否有 $\rho(H,J;S,a)\ne-\infty$。
+
+在这方面，下述引理十分重要；它建立了 $\Omega(S;N)$ 的“\termFundamentalCycle{}”的“\termLinkingProperty{}”。这是把\personFloer{}理论版本的链接性质与\termPalaisSmaleCondition{}结合起来。（这些条件在经典变分理论中的定义见 (BnR79)。）
+
+\begin{lemma}
+\label{lem:spectral-number-lower-bound}
+若 $H\in\mathcal H(S)$ 且
+\[
+  \operatorname{supp}X_H\subset D^R(T^*N),
+\]
+则\footnote{译者注：本节在定义 12.6.5 证明 $J$-独立之前便把 $\rho(H,J;S,a)$ 简写成 $\rho(H;S,a)$；此外，第 12.3 节把圆盘丛记作 $D_R\subset T^*N$，原书此处未经说明改用 $D^R(T^*N)$。译文均照录。}
+\[
+  \rho(H;S,a)
+  \ge-\left(
+    R\lvert dH\rvert_{C^0}
+    +\lvert H\rvert_{C^0;D^R(T^*N)}
+  \right)>-\infty.
+\]
+\end{lemma}
+
+\begin{proof}
+对任意 $z\in\operatorname{Chord}(H;o_N,\nu^*S)$，有\footnote{译者注：原书下一行的典范配对写作 $\langle T\pi(\dot z),z\rangle$，但随后用余切分量 $p(z)$ 估计第二个因子；译文将配对中的 $z$ 改为 $p(z)$。}
+\[
+\begin{split}
+  \mathcal A_H(z)
+  &=\int z^*\theta-\int_0^1H(t,z(t))\,dt\\
+  &=\int_0^1\langle T\pi(\dot z),p(z)\rangle\,dt
+    -\int_0^1H(t,z(t))\,dt.
+\end{split}
+\]
+写 $z(t)=(q(t),p(t))$，则
+\[
+  \bigl\lvert\langle T\pi(\dot z),p(z)\rangle\bigr\rvert
+  \le
+  \lvert T\pi(X_H(t,z(t)))\rvert\,\lvert p(z)\rvert.
+\]
+因此，对所有 $z\in\operatorname{Chord}(H;o_N,\nu^*S)$，
+\[
+  \lvert\mathcal A_H(z)\rvert
+  \le\int_0^1
+  \max_{x\in D^R(T^*N)}
+  \bigl(\lvert X_{H_t}(x)\rvert R+\lvert H_t\rvert(x)\bigr)\,dt.
+\]
+若记
+\[
+  \lambda_H
+  =\inf\operatorname{Spec}(H;S)
+  :=\min\{\mathcal A_H(z)\mid
+    z\in\operatorname{Chord}(H;o_N,\nu^*S)\},
+\]
+则显然
+\[
+  \lambda_H
+  \ge-\left(
+    R\lvert dH\rvert_{C^0}
+    +\lvert H\rvert_{C^0;D^R(T^*N)}
+  \right)>-\infty.
+\]
+另一方面，按照定义，当 $\lambda<\lambda_H$ 时，$HF_*^{(-\infty,\lambda)}=0$。结合这两个事实，便得到
+\[
+  \rho(H;S,a)
+  \ge-\left(
+    R\lvert dH\rvert_{C^0}
+    +\lvert H\rvert_{C^0;D^R(T^*N)}
+  \right)>-\infty.
+\]
+这就完成了证明。
+\end{proof}
+
+数 $\rho(H,J;S,a)$ 还可按如下更直观的几何方式实现为极小极大值。回顾每条\personFloer{}链 $\alpha$ 都是有限线性组合
+\[
+  \alpha
+  =\sum_{z\in\operatorname{Crit}(\mathcal A_H|_{\Omega(S)})}
+  a_z[z],
+  \qquad a_z\in\mathbb Z.
+\]
+\stfhIndex{I024}{00-supp-alpha}{$\operatorname{supp}\alpha$}
+定义 $\alpha$ 的支集为
+\[
+  \operatorname{supp}\alpha
+  =\{z\in\operatorname{Crit}(\mathcal A_H|_{\Omega(S)})
+    \mid a_z\ne0\}.
+\]
+所谓\personFloer{}闭链，是指满足 $\partial_{(H,S,J)}(\alpha)=0$ 的\personFloer{}链 $\alpha$。
+
+\stfhIndex{I021}{00-lambda-hsn}{$\lambda_{(H,S;N)}(\alpha)$}
+现在，对每条给定的\personFloer{}闭链 $\alpha$，定义其\termActionLevel{}为
+\[
+  \lambda_{(H,S:N)}(\alpha)
+  =\max_{z\in\operatorname{supp}\alpha}\mathcal A_H(z).
+\]
+于是，按照定义，
+\begin{equation}
+  \rho(H,J;S,a)
+  =\inf_{\alpha;\,[\alpha]=\Phi_{(H,S,J)}(a)}
+    \lambda_{(H,S;N)}(\alpha).
+\label{eq:spectral-number-minimax}
+\end{equation}
+
+\begin{lemma}
+\label{lem:spectrality-regular-data}
+设 $(H,S,J)$ 是\personFloer{}正则的。则 $\rho(H,J;S,a)$ 是 $\mathcal A_H|_{\Omega(S)}$ 的一个临界值。
+\end{lemma}
+
+\begin{proof}
+由于 $\nu^*S\pitchfork\phi_H^1(o_N)$，下列方程只有有限多个解：
+\begin{equation}
+  \dot z=X_H(t,z),
+  \qquad
+  z(0)\in o_N,
+  \quad z(1)\in\nu^*S.
+\label{eq:finite-hamiltonian-chords-spectrality}
+\end{equation}
+所以 $\mathcal A_H|_{\Omega(S)}$ 只有有限多个临界值。记其中的最小临界值为 $\lambda_S^->-\infty$。显然，每条非零\personFloer{}链 $\alpha$ 的层级都不小于 $\lambda_S^-$。另一方面，式~\eqref{eq:spectral-number-minimax} 可改写为
+\[
+  \rho(H,J;S,a)
+  =\inf_{\beta\in CF_*(H)}
+  \{\lambda_{(H,S;N)}(\alpha-\partial_{(H,S,J)}(\beta))\}.
+\]
+由于 $[\alpha]\ne0$，$\alpha-\partial_{(H,S,J)}(\beta)\ne0$，从而对所有 $\beta\in CF_*(H)$ 都有\footnote{译者注：原书下式的 $\partial_{(H,S,J)}$ 后漏掉了上一行已有的自变量 $\beta$；译文补回。}
+\[
+  \lambda_{(H,S;N)}
+  \bigl(\alpha-\partial_{(H,S,J)}(\beta)\bigr)
+  \ge\lambda_S^-.
+\]
+这证明了 $\rho(H,J;S,a)\ge\lambda_S^-$。因为临界值只有有限多个，$\rho(H,J;S,a)$ 由方程~\eqref{eq:finite-hamiltonian-chords-spectrality} 的一个解达到，证明即告完成。
+\end{proof}
+
+接下来固定 $S$ 与 $H\in\mathcal H(S)$，在 $J$ 取遍 $\mathcal J_{H,S}$ 时研究 $\rho(H,J;S,a)$ 对 $J$ 的依赖性。\footnote{译者注：原书在本段、下述引理及定义 12.6.5 中把第 12.4 节的 $\mathcal J_{H,S}$ 改写为未定义的 $\mathcal J_{(S,H)}$；译文统一回已定义的记号。}
+
+\begin{lemma}
+\label{lem:spectral-number-independent-of-j}
+若 $J^\alpha,J^\beta\in\mathcal J_{H,S}$，则
+\[
+  \rho(H,J^\alpha;S,a)=\rho(H,J^\beta;S,a).
+\]
+\end{lemma}
+
+\begin{proof}
+利用 $\mathcal J^c$ 可缩、因而特别地连通这一事实，可以在 $\mathcal J^c$ 中选取连接 $J^\alpha$ 与 $J^\beta$ 的道路
+\[
+  \overline J=\{J^s\}_{0\le s\le1},
+\]
+使方程
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +J^{\rho(\tau)}\left(
+      \dfrac{\partial u}{\partial t}-X_H(u)
+    \right)=0,\\[6pt]
+    u(\tau,0)\in o_N,
+    \qquad u(\tau,1)\in\nu^*S
+  \end{cases}
+\label{eq:continuation-varying-j-only}
+\end{equation}
+的解集满足前面所需的 $(H,S)$-正则性质。回顾典范同态
+\[
+  h_{\alpha\beta;\overline J}:
+  CF_*(H,J^\alpha;S)
+  \longrightarrow CF_*(H,J^\beta;S)
+\]
+由下式定义：\footnote{译者注：原书在这一证明中先后使用 $h_{\alpha\beta;\overline J}$、$h_{\alpha\beta}^{\rho}$、$h_{\alpha\beta,J}$ 与 $h_{\alpha\beta;J}^{\rho}$，但未说明这些上下标变体之间的关系；译文保留各处原记号。原书在本证明末尾诱导同态的定义域中还把此前的 $J^\alpha$ 改写为 $J_\alpha$，而同式值域仍使用 $J^\beta$；译文将前者统一回 $J^\alpha$。}
+\[
+  h_{\alpha\beta}^{\rho}(z^\alpha)
+  =\sum_\beta n(\overline J;z^\alpha,z^\beta)z^\beta,
+\]
+其中
+\[
+  n(\overline J;z^\alpha,z^\beta)
+  =\#\mathcal M_\rho(z^\alpha,z^\beta).
+\]
+该映射诱导同构
+\[
+  HF_*(H,J^\alpha,S;N)
+  \longrightarrow HF_*(H,J^\beta,S;N).
+\]
+
+为了考察 $J$ 改变时 $\rho(H,J;S,a)$ 如何变化，需要在 $n(\overline J;z^\alpha,z^\beta)\ne0$ 时估计差
+\[
+  \mathcal A_H(z^\beta)-\mathcal A_H(z^\alpha).
+\]
+特别地，此时存在方程~\eqref{eq:continuation-varying-j-only} 的解 $u$，满足
+\[
+  \lim_{\tau\to-\infty}u(\tau)=z^\alpha,
+  \qquad
+  \lim_{\tau\to\infty}u(\tau)=z^\beta.
+\]
+对这样的 $u$，写成
+\[
+  \mathcal A_H(z^\beta)-\mathcal A_H(z^\alpha)
+  =\int_{-\infty}^{\infty}
+    \frac d{d\tau}\mathcal A_H(u(\tau))\,d\tau.
+\]
+然而，
+\[
+\begin{split}
+  \frac d{d\tau}\mathcal A_H(u(\tau))
+  &=d\mathcal A_H(u(\tau))\cdot\frac{\partial u}{\partial\tau}\\
+  &=\int_0^1\left(
+    \omega\left(\frac{\partial u}{\partial t},
+                 \frac{\partial u}{\partial\tau}\right)
+    -dH_t(u)\frac{\partial u}{\partial\tau}
+  \right)dt\\
+  &=\int_0^1\left\langle
+    J^{\rho(\tau)}\left(
+      \frac{\partial u}{\partial t}-X_H(u)
+    \right),
+    \frac{\partial u}{\partial\tau}
+  \right\rangle_{J_t^{\rho(\tau)}}dt\\
+  &=-\int_0^1
+    \left\lVert\frac{\partial u}{\partial t}-X_H(u)\right\rVert_{J_t^{\rho(\tau)}}^2dt
+  \le0.
+\end{split}
+\]
+第三个等号使用了方程
+\[
+  \frac{\partial u}{\partial\tau}
+  =-J^{\rho(\tau)}\left(
+    \frac{\partial u}{\partial t}-X_H(u)
+  \right).
+\]
+因此，只要存在如上的解 $u$，便有
+\[
+  \mathcal A_H(z^\beta)\le\mathcal A_H(z^\alpha).
+\]
+这表明，对任意 $\lambda\in\mathbb R$，映射
+\[
+  h_{\alpha\beta,J}:CF_*(H,S,J^\alpha)
+  \longrightarrow CF_*(H,S,J^\beta)
+\]
+限制为映射
+\[
+  h_{\alpha\beta;J}^{\rho}:
+  CF_*^{(-\infty,\lambda)}(H,S,J^\alpha)
+  \longrightarrow
+  CF_*^{(-\infty,\lambda)}(H,S,J^\beta),
+\]
+从而诱导同态
+\[
+  h_{\alpha\beta;J}^{\rho}:
+  HF_*^{(-\infty,\lambda)}(H,S,J^\alpha:N)
+  \longrightarrow
+  HF_*^{(-\infty,\lambda)}(H,S,J^\beta:N).
+\]
+
+现在考虑交换图
+\[
+\begin{array}{ccc}
+  HF_*^{(-\infty,\lambda)}(H,S,J^\alpha:N)
+  &\xrightarrow{\ j_*^\lambda\ }&
+  HF_*(H,S,J^\alpha:N)\\[4pt]
+  \Big\downarrow && \Big\downarrow\\[4pt]
+  HF_*^{(-\infty,\lambda)}(H,S,J^\beta:N)
+  &\xrightarrow{\ j_*^\lambda\ }&
+  HF_*(H,S,J^\beta:N),
+\end{array}
+\]
+其中所有竖直箭头都由典范同态 $h_{\alpha\beta;J}$ 诱导，水平箭头则由典范的包含诱导映射 $j_*^\lambda$ 给出。
+
+由于右边的 $h_{\alpha\beta;J}$ 是同构，如果
+\[
+  [a]^\alpha:=\Phi_{(H,S,J^\alpha)}(a)
+  \in\operatorname{Im}(j_*^\lambda)_\alpha,
+\]
+那么 $[a]^\beta\in\operatorname{Im}(j_*^\lambda)_\beta$。因此已经证明
+\[
+  \rho(H,J^\alpha;S,a)\ge\rho(H,J^\beta;S,a).
+\]
+交换 $\alpha$ 与 $\beta$ 的角色，又得到
+\[
+  \rho(H,J^\beta;S,a)\ge\rho(H,J^\alpha;S,a),
+\]
+从而完成 $\rho(H,J^\alpha;S,a)=\rho(H,J^\beta;S,a)$ 的证明。
+\end{proof}
+
+\begin{definition}
+\label{def:lagrangian-spectral-invariant}
+设 $S\subset N$ 是紧子流形，且 $H\in\mathcal H(S)$。对任意 $J\in\mathcal J_{H,S}$，定义
+\[
+  \rho(H;S,a):=\rho(H,J;S,a).
+\]
+\end{definition}
+
+现在研究 $\rho(H;S,a)$ 对 $(H,S)$ 的依赖性。先固定 $S\subset N$，并考虑 $\mathcal H(S)$ 中的 $H$，从而研究 $\rho(H;S,a)$ 对 $H$ 的依赖性。
+
+下述定理概括了 $\rho(H;S,a)$ 的基本性质。
+
+\begin{theorem}
+\label{thm:basic-properties-lagrangian-spectral-invariant}
+设 $S\subset N$ 是紧子流形，且 $H,H^\alpha,H^\beta\in\mathcal H(S)$。则有下列性质。
+\begin{enumerate}[label=(\arabic*)]
+  \item 有
+  \begin{equation}
+  \begin{split}
+    \int_0^1-\max_x(H^\beta-H^\alpha)\,dt
+    &\le\rho(H^\beta;S,a)-\rho(H^\alpha;S,a)\\
+    &\le\int_0^1-\min_x(H^\beta-H^\alpha)\,dt.
+  \end{split}
+  \label{eq:spectral-invariant-lipschitz-two-hamiltonians}
+  \end{equation}
+  特别地，
+  \begin{equation}
+    \int_0^1-\max_xH\,dt
+    \le\rho(H;S,a)
+    \le\int_0^1-\min_xH\,dt.
+  \label{eq:spectral-invariant-hamiltonian-bounds}
+  \end{equation}
+  \item 由第 (1) 项还有\footnote{译者注：原书下式把本定理一直使用的上标 $H^\alpha,H^\beta$ 改成下标 $H_\alpha,H_\beta$；译文统一为上标。}
+  \[
+    \bigl\lvert\rho(H^\beta;S,a)-\rho(H^\alpha;S,a)\bigr\rvert
+    \le\operatorname{osc}(H^\beta-H^\alpha).
+  \]
+  特别地，这意味着对固定的 $S$，赋值 $H\longmapsto\rho(H;S,a)$ 可按 $\mathcal H$ 的 $C^0$ 拓扑连续延拓到所有 $H$。仍用 $\rho(H;S,a)$ 表示这一延拓。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+第 (2) 项由式~\eqref{eq:spectral-invariant-lipschitz-two-hamiltonians} 立即推出，故只需证明第 (1) 项。考虑线性同伦
+\[
+  H^s:=(1-s)H^\alpha+sH^\beta.
+\]
+这个同伦可能不是\personFloer{}正则的；暂且假装它是正则的，并在证明末尾给出必要的说明。考虑方程
+\[
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +J\left(
+      \dfrac{\partial u}{\partial t}-X_{H^{\rho(\tau)}}(u)
+    \right)=0,\\[6pt]
+    u(\tau,0)\in o_N,
+    \qquad u(\tau,1)\in\nu^*S,\\[4pt]
+    \displaystyle\lim_{\tau\to-\infty}u(\tau)=z^\alpha,
+    \qquad
+    \displaystyle\lim_{\tau\to\infty}u(\tau)=z^\beta.
+  \end{cases}
+\]
+同前一样，对满足 $n_{\alpha\beta}(z^\alpha,z^\beta)\ne0$ 的对子 $(z^\alpha,z^\beta)$，计算得
+\[
+  \mathcal A_{H^\beta}(z^\beta)-\mathcal A_{H^\alpha}(z^\alpha)
+  =\int_{-\infty}^{\infty}
+    \frac d{d\tau}
+    \bigl(\mathcal A_{H^{\rho(\tau)}}(u(\tau))\bigr)\,d\tau.
+\]
+而
+\[
+\begin{split}
+  \frac d{d\tau}
+  \bigl(\mathcal A_{H^{\rho(\tau)}}(u(\tau))\bigr)
+  &=d\mathcal A_{H^{\rho(\tau)}}(u(\tau))
+    \left(\frac{du}{d\tau}\right)\\
+  &\quad-
+    \int_0^1
+    \left(\frac{\partial H^{\rho(\tau)}}{\partial\tau}\right)(u,t)\,dt,
+\end{split}
+\]
+并且
+\[
+  d\mathcal A_{H^{\rho(\tau)}}(u(\tau))
+  \left(\frac{du}{d\tau}\right)
+  =-\int_0^1
+    \left\lVert
+      \frac{\partial u}{\partial t}-X_{H^{\rho(\tau)}}(u)
+    \right\rVert_J^2dt
+  \le0.
+\]
+此外，\footnote{译者注：原书下式第一行左边没有整体负号，但按 $H^s=(1-s)H^\alpha+sH^\beta$，右边的负号来自作用量导数中的项 $-\int\partial_\tau H^{\rho(\tau)}$；译文在左边补上负号。}
+\begin{equation}
+\begin{split}
+  -\int_0^1
+  \left(\frac{\partial H^{\rho(\tau)}}{\partial\tau}\right)(u,t)\,dt
+  &=-\int_0^1\rho'(\tau)(H^\beta-H^\alpha)(u,t)\,dt\\
+  &\le-\rho'(\tau)
+    \int_0^1\min_x(H^\beta-H^\alpha)\,dt.
+\end{split}
+\label{eq:hamiltonian-homotopy-action-derivative}
+\end{equation}
+这里使用了不等式 $\rho'(\tau)\ge0$。因此，作与引理 14.4.5 的证明相同的计算，得到
+\[
+  \mathcal A_{H^\beta}(z^\beta)-\mathcal A_{H^\alpha}(z^\alpha)
+  \le\int_0^1-\min_x(H^\beta-H^\alpha)\,dt.
+\]
+
+采用与前面\cref{lem:spectral-number-independent-of-j}的证明类似的论证，这一估计蕴含
+\[
+  \rho(H^\beta;S,a)
+  \le\rho(H^\alpha;S,a)
+    +\int_0^1-\min_x(H^\beta-H^\alpha)\,dt,
+\]
+亦即
+\begin{equation}
+  \rho(H^\beta;S,a)-\rho(H^\alpha;S,a)
+  \le\int_0^1-\min_x(H^\beta-H^\alpha)\,dt,
+\label{eq:spectral-invariant-upper-hamiltonian-change}
+\end{equation}
+其中考虑了同态
+\[
+  h_{\alpha\beta}:
+  HF_*^{(-\infty,\lambda)}(H^\alpha,S,J:N)
+  \longrightarrow
+  HF_*^{(-\infty,\lambda+\epsilon^{\alpha\beta})}(H^\beta,S,J:N),
+\]
+且
+\[
+  \epsilon^{\alpha\beta}
+  =-\int_0^1\min_x(H^\beta-H^\alpha)\,dt.
+\]
+交换 $\alpha$ 与 $\beta$ 的角色，又有
+\[
+  \rho(H^\alpha;S,a)
+  \le\rho(H^\beta;S,a)
+    +\int_0^1-\min_x(H^\alpha-H^\beta)\,dt,
+\]
+亦即
+\begin{equation}
+\begin{split}
+  \rho(H^\beta;S,a)-\rho(H^\alpha;S,a)
+  &\ge\int_0^1\min_x(H^\alpha-H^\beta)\,dt\\
+  &=\int_0^1-\max_x(H^\beta-H^\alpha)\,dt.
+\end{split}
+\label{eq:spectral-invariant-lower-hamiltonian-change}
+\end{equation}
+
+结合式~\eqref{eq:spectral-invariant-upper-hamiltonian-change} 与式~\eqref{eq:spectral-invariant-lower-hamiltonian-change} 后，只要说明可能不正则的线性同伦确实可以使用，证明就完成了。\footnote{译者注：原书此处引用的是不存在于本章的公式 (22.5.66) 与 (22.5.63)；从紧前推导看，译文改为引用 (12.6.33) 与 (12.6.34)。}为此，作如下处理。对每个给定的 $\epsilon>0$，用 $C^1$-接近的正则同伦 $\overline H$ 逼近上述线性同伦，使得对所有 $t\in[0,1]$，
+\[
+  \max_{x,s}
+  \left\lvert
+    \frac{\partial\overline H}{\partial s}(x,t,s)
+    -(H^\beta-H^\alpha)(x,t)
+  \right\rvert
+  \le\epsilon.
+\]
+对这样的同伦，式~\eqref{eq:hamiltonian-homotopy-action-derivative} 替换为
+\[
+\begin{split}
+  -\int_0^1
+  \left(\frac{\partial\overline H^{\rho(\tau)}}{\partial\tau}\right)(u,t)\,dt
+  &=-\int_0^1\rho'(\tau)
+    \frac{\partial\overline H}{\partial s}(u,t,\rho(\tau))\,dt\\
+  &\le\rho'(\tau)
+    \int_0^1-\min_{x,s}
+    \frac{\partial\overline H}{\partial s}(x,t,s)\,dt\\
+  &\le\rho'(\tau)
+    \left(
+      \int_0^1-\min_{x,s}(H^\beta-H^\alpha)\,dt
+      +\epsilon
+    \right).
+\end{split}
+\]
+\footnote{译者注：原书第二行把 $\partial_s\overline H$ 的首个自变量写成 $s$，与 $\min_{x,s}$ 不符；译文改为 $x$。}
+由此推出\footnote{译者注：原书下式末尾缺少积分微分，且 $\epsilon$ 的结合范围不清；译文把整个估计写入同一个 $dt$ 积分。}
+\[
+  \mathcal A_{H^\beta}(z^\beta)-\mathcal A_{H^\alpha}(z^\alpha)
+  \le\int_0^1
+  \left(-\min_x(H^\beta-H^\alpha)+\epsilon\right)dt.
+\]
+令 $\epsilon\to0$，即得式~\eqref{eq:spectral-invariant-lipschitz-two-hamiltonians}。为证明式~\eqref{eq:spectral-invariant-hamiltonian-bounds}，令 $H^\beta=H$，并让 $H^\alpha$ 在 $C^1$ 拓扑中趋于 0，再应用\cref{lem:spectral-number-lower-bound}和式~\eqref{eq:spectral-invariant-lipschitz-two-hamiltonians}。证明完成。
+\end{proof}
+
+式~\eqref{eq:spectral-invariant-lipschitz-two-hamiltonians} 的一个直接推论是：映射 $H\longmapsto\rho(H;S,a)$ 可以从 $\mathcal H(S)$ 连续延拓到任意哈密顿量 $H\in\mathcal H$。具体地，任取 $H$ 的 $C^2$ 逼近 $H_i\in\mathcal H(S)$，然后取极限
+\[
+  \rho(H;S,a):=\lim_{i\to\infty}\rho(H_i;S,a).
+\]
+
+下述命题是\cref{lem:spectrality-regular-data}的加强。
+
+\begin{proposition}
+\label{prop:spectrality-arbitrary-hamiltonian}
+对任意 $H\in\mathcal H$，都有
+\[
+  \rho(H;S,a)\in\operatorname{Spec}(H;o_N,\nu^*S).
+\]
+\end{proposition}
+
+\begin{proof}
+由 $\mathcal H$ 的定义，对某个充分大的 $R>0$，有 $H\in\mathcal H_R$。取 $H$ 的 $C^2$ 逼近 $H_i$，使 $H_i\in\mathcal H_{R+1}$。
+
+由\cref{lem:spectral-number-lower-bound}以及 $C^2$-连续性，映射
+\[
+  H\longmapsto
+  R\lvert dH\rvert_{C^0}
+  +\lvert H\rvert_{C^0;D^R(T^*N)}
+\]
+连续，并满足不等式
+\[
+  \rho(H;S,a)
+  \ge-\left(
+    (R+1)\lvert dH\rvert_{C^0}
+    +\lvert H\rvert_{C^0;D^{R+1}(T^*N)}
+  \right).
+\]
+（这一部分只需 $C^1$ 逼近；但在证明后半部分需要 $X_{H_i}$ 的哈密顿轨道收敛，因而需要 $C^2$ 逼近。）特别地，$\rho(H;S,a)$ 是有限值。还需证明它属于 $\operatorname{Spec}(H;o_N,\nu^*S)$。
+
+按照定义，
+\[
+  \rho(H;S,a)=\lim_{i\to\infty}\rho(H_i;S,a).
+\]
+由\cref{lem:spectrality-regular-data}，对某条道路 $z_i:[0,1]\to T^*N$，有
+\[
+  \rho(H_i;S,a)=\mathcal A_{H_i}(z_i),
+\]
+且 $z_i$ 满足\footnote{译者注：原书下式右边写成 $X_{H_i}(t,z)$，漏掉道路下标 $i$；译文改为 $X_{H_i}(t,z_i)$。}
+\[
+  \dot z_i=X_{H_i}(t,z_i),
+  \qquad z_i(0)\in o_N,
+  \quad z_i(1)\in\nu^*S.
+\]
+由于 $H_i\to H$ 于 $C^2$，有 $X_{H_i}\to X_H$ 于 $C^1$。又因为
+\[
+  \operatorname{supp}X_{H_i}\subset D^{R+1}(T^*N),
+\]
+所以存在与 $i$ 和 $t\in[0,1]$ 无关的常数 $C>0$，使 $\lvert\dot z_i(t)\rvert\le C$；故 $z_i$ 是\termEquicontinuous{}的。最后，边界条件 $z_i(0)\in o_N$ 与 $o_N$ 的紧性给出一个子列，仍记为 $z_i$，它收敛到光滑道路 $z$，且
+\[
+  \dot z=X_H(t,z),
+  \qquad z(0)\in o_N,
+  \quad z(1)\in\nu^*S.
+\]
+这意味着
+\[
+  \rho(H;S,a)
+  =\lim_{i\to\infty}\rho(H_i;S,a)
+  =\lim_{i\to\infty}\mathcal A_{H_i}(z_i)
+  =\mathcal A_H(z),
+\]
+从而证明 $\rho(H;S,a)\in\operatorname{Spec}(H;S)$。
+\end{proof}
+
+现在研究 $S$ 改变时 $\rho(H;S,a)$ 的依赖性。
+
+\begin{proposition}
+\label{prop:spectral-invariant-continuous-in-submanifold}
+设 $S_0\subset N$，并设 $\operatorname{Iso}(S_0;N)$ 是 $S_0$ 在 $N$ 中的同痕类。则赋值
+\[
+  S^\alpha\longmapsto\rho(H;S^\alpha,a)
+\]
+在 $S^\alpha\in\operatorname{Iso}^{H}(S_0:N)$ 上关于 $\operatorname{Iso}(S_0:N)$ 的 $C^1$ 拓扑连续。因此，可按 $\operatorname{Iso}(S_0;N)$ 的 $C^1$ 拓扑连续地把 $\rho(H;S,a)$ 的定义延拓到所有 $S\in\operatorname{Iso}(S_0;N)$。\footnote{译者注：原书最后一句把 $\rho(H;S,a)$ 写成 $\rho(S,H)$，既颠倒参数顺序又漏掉 $a$；译文改回前文记号。}
+\end{proposition}
+
+\begin{proof}
+本命题的证明思路与\cref{lem:spectral-number-independent-of-j}相似。设
+\[
+  S^\alpha,S^\beta\in\operatorname{Iso}^{H}(S_0:N),
+\]
+并设 $S^s$ 是连接它们的通有同痕。把这个同痕分段，使第 12.5.2 小节证明的 $C^0$ 界与能量界可以应用之后，只需考虑 $S^\alpha$ 与 $S^\beta$ 在 $C^1$ 意义下充分接近、从而由最近点定义的映射
+\[
+  \phi:S^\alpha\longrightarrow S^\beta
+\]
+成为微分同胚的情形。
+
+现在考虑\cref{thm:continuation-chain-map-cotangent}中构造的链映射 $h_{\alpha\beta}$。对第一个链映射 $h_{\psi_{(1)}}$，存在常数 $C_2=C_2(H,J,\overline S)>0$，使得有 $C^0$ 界
+\[
+  \lvert p(\tau,1)\rvert_g\le C_2.
+\]
+由式~\eqref{eq:cotangent-action-first-variation} 推出\footnote{译者注：原书下式第一个双重积分缺少外层微分 $d\tau$；第一个边界配对的第二个因子又写成 $u(\tau,1)$，下一行才改用其余切分量 $p(\tau,1)$。译文补入 $d\tau$，并把该因子改为 $p(\tau,1)$。}
+\[
+\begin{split}
+  \mathcal A_H(z^\beta)-\mathcal A_H(z^\alpha)
+  &=-\int_{\mathbb R}\!\int_0^1
+    \left\lVert\frac{\partial u}{\partial t}-X_H(u)\right\rVert_{J_t}^2
+    \,dt\,d\tau\\
+  &\quad-\int_{\mathbb R}
+    \left\langle
+      T\pi\frac{\partial u}{\partial\tau}(\tau,1),
+      p(\tau,1)
+    \right\rangle d\tau\\
+  &\le-\int_{\mathbb R}
+    \left\langle
+      \frac{\partial}{\partial\tau}(\pi\circ u)(\tau,1),
+      p(\tau,1)
+    \right\rangle d\tau\\
+  &=-\int_{\mathbb R}\rho'(\tau)
+    \left\langle
+      p(\tau,1),
+      \frac{\partial q}{\partial\tau}(\tau,1)
+    \right\rangle d\tau\\
+  &=-\int_{\mathbb R}\rho'(\tau)
+    \left\langle
+      p(\tau,1),X_{\rho(\tau)}(q(\tau,1))
+    \right\rangle d\tau.
+\end{split}
+\]
+\footnote{译者注：原书在倒数第二行已经乘上 $\rho'(\tau)$，却仍写 $\partial_\tau q$，下一行又把它替换为未定义的同痕生成向量场 $X_{\rho(\tau)}$；若 $X_s$ 表示 $s$-方向导数，这会重复计入链式法则因子。译文照录两行，不自行重构参数化。}
+应用 $C^0$ 界 $\lvert p(\tau,1)\rvert_g\le C_2$，并回顾
+\[
+  \int_{\mathbb R}\rho'(\tau)\,d\tau=1,
+\]
+得到
+\[
+  \bigl\lvert\mathcal A_H(z^\beta)-\mathcal A_H(z^\alpha)\bigr\rvert
+  \le C_2\lVert X\rVert_{C^0}.
+\]
+显然，可以选取道路 $\{S^s\}_{0\le s\le1}$，使得
+\[
+  \max_{s\in[0,1]}
+  \left\lVert\frac{\partial S^s}{\partial s}\right\rVert
+  \sim d_{C^1}(S^\alpha,S^\beta),
+\]
+从而只要 $S^\alpha$ 与 $S^\beta$ 在 $C^1$ 意义下充分接近，就有
+\[
+  \bigl\lvert\mathcal A_H(z^\beta)-\mathcal A_H(z^\alpha)\bigr\rvert
+  \le C d_{C^1}(S^\alpha,S^\beta)=:\epsilon^{\alpha\beta}.
+\]
+
+同前一样，自然同态
+\[
+  h_{\psi_{(1)}}:
+  HF_*(H,S^\alpha,J:N)
+  \longrightarrow HF_*(H,S^\beta,J:N)
+\]
+诱导交换图
+\[
+\begin{array}{ccc}
+  HF_*^{(-\infty,\lambda)}(H,S^\alpha,J:N)
+  &\xrightarrow{\ j_*^\lambda\ }&
+  HF_*(H,S^\alpha,J:N)\\[4pt]
+  \Big\downarrow && \Big\downarrow\\[4pt]
+  HF_*^{(-\infty,\lambda+\epsilon^{\alpha\beta})}(H,S^\beta,J:N)
+  &\xrightarrow{\ j_*^{\lambda+\epsilon^{\alpha\beta}}\ }&
+  HF_*(H,S^\beta,J:N).
+\end{array}
+\]
+同样，由于右边的 $h_{\alpha\beta}$ 是同构，得到
+\[
+  \rho(H;S^\beta,a)
+  \le\rho(H;S^\alpha,a)+C d_{C^1}(S^\alpha,S^\beta).
+\]
+交换 $\alpha$ 与 $\beta$ 的角色，便证明另一侧不等式，因而
+\begin{equation}
+  \bigl\lvert\rho(H;S^\beta,a)-\rho(H;S^\alpha,a)\bigr\rvert
+  \le C d_{C^1}(S^\alpha,S^\beta),
+\label{eq:spectral-invariant-lipschitz-submanifold}
+\end{equation}
+这特别证明了 $S\longmapsto\rho(H;S,a)$ 关于 $S$ 的 $C^1$ 拓扑连续。\footnote{译者注：原书从这里到注 12.6.9 多次把最后一个参数 $a$ 写成未定义的 $u$；译文统一改回 $a$。}
+
+另一方面，链映射 $h_{\psi_{(2)}}$ 按构造保持滤过，从而完成连续性的证明。
+\end{proof}
+
+需要指出，在\cref{prop:spectral-invariant-continuous-in-submanifold}的证明中，先验 $C^0$ 估计起了本质作用。
+
+\begin{remark}
+\label{rem:spectral-invariant-c0-lipschitz-extension}
+结合\cref{prop:spectral-invariant-continuous-in-submanifold}与\cref{thm:basic-properties-lagrangian-spectral-invariant}，现在可以把 $\rho(H;S,a)$ 的定义延拓到集合
+\[
+  \mathcal H_{C^0}\times\operatorname{Iso}_{C^1}(S_0;N),
+\]
+其中 $\mathcal H_{C^0}$ 是 $T^*N\times[0,1]$ 上渐近常值的 $C^0$ 函数所成的集合，$\operatorname{Iso}_{C^1}(S_0;N)$ 是与 $S_0$ 同痕的 $C^1$ 嵌入所成的集合。事实上，还可以把定义延拓到
+\[
+  \mathcal H_{C^0}\times\operatorname{Iso}_{\mathrm{Lip}}(S_0;N).
+\]
+研究 $H\in C^0$ 但 $H\notin C^1$ 时 $\rho(H;S,a)$ 的几何意义，会是很有意思的问题。
+\end{remark}

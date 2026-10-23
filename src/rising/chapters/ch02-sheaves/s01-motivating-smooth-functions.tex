@@ -1,0 +1,45 @@
+
+\section{动机性例子：光滑函数层}
+
+考虑\trTopologicalSpace{} $X=\mathbb{R}^n$ 上（或更一般地，某个\trManifold{} $X$ 上）的光滑（$C^\infty$）函数。$X$ 上的光滑函数之\trSheaf，指的是「$X$ 的所有\trOpenSubset{}上的所有光滑函数」这份数据。我们会看到如何打理这些数据，并考察它们的几条性质。在每个\trOpenSet{} $\mathcal{U}\subset X$ 上，全体光滑函数构成一个\trRing；这个函数\trRing{}记作 $\mathscr{O}(\mathcal{U})$。
+
+给定一个定义在\trOpenSet{}上的光滑函数，总可以把它限制到更小的\trOpenSet{}上去，从而在那里也得到一个光滑函数。换言之，若 $\mathcal{U}\subset V$ 是\trOpenSet{}之间的包含关系，则有一条\textbf{\trRestrictionMap}（restriction map）$\operatorname{res}_{V,\mathcal{U}}\colon\mathscr{O}(V)\to\mathscr{O}(\mathcal{U})$。
+
+取一个大\trOpenSet{}上的光滑函数，先限制到一个中等\trOpenSet{}上，再把所得限制到一个小\trOpenSet{}上；其结果与你把大\trOpenSet{}上的那个光滑函数直接限制到小\trOpenSet{}上相同。换言之，若 $\mathcal{U}\hookrightarrow V\hookrightarrow W$，则下图交换：
+\begin{center}
+\begin{tikzcd}[row sep=3em, column sep=6em]
+\mathscr{O}(W) \ar[rr, "\operatorname{res}_{W,V}"] \ar[dr, "\operatorname{res}_{W,U}"'] && \mathscr{O}(V) \ar[dl, "\operatorname{res}_{V,U}"'] \\
+& \mathscr{O}(U)
+\end{tikzcd}
+\end{center}
+
+接着在大\trOpenSet{} $\mathcal{U}$ 上取两个光滑函数 $f_1$ 与 $f_2$，并取由一族\trOpenSubset{} $\{\mathcal{U}_i\}$ 给出的 $\mathcal{U}$ 的一个\trOpenCover。（若 $\mathcal{U}=\bigcup_i\mathcal{U}_i$，则称 $\{\mathcal{U}_i\}$ \textbf{\trCover}（cover）$\mathcal{U}$，或者说它是 $\mathcal{U}$ 的一个\textbf{\trOpenCover}（open cover）。）设 $f_1$ 与 $f_2$ 在这些 $\mathcal{U}_i$ 的每一块上都一致，那么它们打从一开始就必须是同一个函数。换言之，若 $\{\mathcal{U}_i\}_{i\in I}$ 是 $\mathcal{U}$ 的\trCover，且 $f_1$ 与 $f_2$ 都属于 $\mathscr{O}(\mathcal{U})$，并且对每个 $i$ 都有 $\operatorname{res}_{\mathcal{U},\,\mathcal{U}_i}\,f_1=\operatorname{res}_{\mathcal{U},\,\mathcal{U}_i}\,f_2$，则 $f_1=f_2$。于是，只要在一个由小\trOpenSet{}构成的\trCover{}上逐片察看，我们便能\emph{辨认}出一个\trOpenSet{}上的函数。
+
+最后，仍取同一个 $\mathcal{U}$ 及其\trCover{} $\{\mathcal{U}_i\}$；在每个 $\mathcal{U}_i$ 上各取一个光滑函数——比如 $\mathcal{U}_1$ 上的 $f_1$、$\mathcal{U}_2$ 上的 $f_2$，依此类推——并设它们在两两相交之处都一致。那么诸函数便可以「粘合」成整个 $\mathcal{U}$ 上的单独一个光滑函数。换言之，给定对一切指标成立的 $f_i\in\mathscr{O}(\mathcal{U}_i)$，若对一切 $i$ 与 $j$ 都有 $\operatorname{res}_{\mathcal{U}_i,\,\mathcal{U}_i\cap\mathcal{U}_j}\,f_i=\operatorname{res}_{\mathcal{U}_j,\,\mathcal{U}_i\cap\mathcal{U}_j}\,f_j$，则存在某个 $f\in\mathscr{O}(\mathcal{U})$，使得对每个 $i$ 都有 $\operatorname{res}_{\mathcal{U},\,\mathcal{U}_i}\,f=f_i$。
+
+以上整个例子，若把光滑函数换成\trContinuous{}函数、\trReal\trAnalytic{}函数，乃至普普通通的实值函数，全都照样成立。可见这几类「好」函数共享着若干共同性质。我们很快就会把这些性质正式化为\trSheaf{}的概念。
+
+\textbf{2.1.1. 光滑函数的\trGerm。}\quad 但在做这件事之前，我们先给出另一个定义：光滑函数在点 $p\in X$ 处的\trGerm（germ）。直观地说，它是光滑函数在 $p$ 处的一枚「碎片」。\trGerm{}乃是形如下者的对象：
+\[
+(f,\ \text{\trOpenSet{} }\mathcal{U})\qquad\text{满足}\qquad p\in\mathcal{U},\ f\in\mathscr{O}(\mathcal{U}),
+\]
+并对它模去下述关系：若有某个包含 $p$ 的\trOpenSet{} $W\subset\mathcal{U}\cap V$ 使 $f|_{W}=g|_{W}$（即 $\operatorname{res}_{\mathcal{U},W}\,f=\operatorname{res}_{V,W}\,g$），则 $(f,\mathcal{U})\sim(g,V)$。换句话说，凡在 $p$ 的某一开\trNeighborhood{}之内相同的两个函数（至于别处是否不同全无所谓），都具有同一个\trGerm。这组\trGerm{}所成的集合称为点 $p$ 处的\textbf{\trStalk}（stalk），记作 $\mathscr{O}_p$。注意\trStalk{}是一个\trRing：两个\trGerm{}可以相加而仍旧得到一个\trGerm——设 $\mathcal{U}$ 上有一个函数 $f$、而 $V$ 上有一个函数 $g$，则 $f+g$ 定义在 $\mathcal{U}\cap V$ 上。而且 $f+g$ 是\trWellDefined{}的：设 $\tilde{f}$ 与 $f$ 同\trGerm，即存在某个含 $p$ 的\trOpenSet{} $W$ 使二者在其上一致；又设 $\tilde{g}$ 与 $g$ 同\trGerm，即二者在某含 $p$ 的\trOpenSet{} $W'$ 上一致；则在 $\mathcal{U}\cap V\cap W\cap W'$ 上，$\tilde{f}+\tilde{g}$ 与 $f+g$ 是同一个函数。
+
+再请注意：只要 $p\in\mathcal{U}$，便得到一个映射 $\mathscr{O}(\mathcal{U})\to\mathscr{O}_p$。行家或许已经看出，我们正是在把\trGerm{}当作\trColimit{}来谈。
+
+按如下思路可见 $\mathscr{O}_p$ 是\trLocalRing。考察那些在 $p$ 处消失的\trGerm，记作 $\mathfrak{m}_p\subset\mathscr{O}_p$。它们无疑构成一个\trIdeal：$\mathfrak{m}_p$ 对加法封闭，而且拿任何函数去乘一个在 $p$ 处消失的东西，乘积依然在 $p$ 处消失。为核验这个\trIdeal{}是极大的，我们证明其\trQuotient\trRing{}是个\trField：
+\begin{equation*}\tag{2.1.1.1}\label{eq:maximal-ideal-sequence}
+0\longrightarrow
+\mathfrak{m}_p:=\text{\ 在 }p\text{ 处消失的\trGerm{}所成的\trIdeal\ }
+\longrightarrow\mathscr{O}_p\xrightarrow{\;\;f\mapsto f(p)\;\;}\mathbb{R}\longrightarrow0.
+\end{equation*}
+\begin{exercise}\label{ex:only-maximal-ideal}
+证明这是 $\mathscr{O}_p$ 唯一的\trMaximalIdeal。（提示：证明 $\mathscr{O}_p\smallsetminus\mathfrak{m}_p$ 中的每个元素都\trInvertible。）
+\end{exercise}
+
+注意，函数在一点处的值——或者说得更妥帖些，一个\trGerm{}在一点处的值——可以理解为\trLocalRing{}模去\trMaximalIdeal{}之后的元素。（往后会看到，这对更一般的\trSheaf{}并不适用，但对那些行为如同函数\trSheaf{}的对象\emph{确实}适用。这件事将正式化为\emph{\trLocallyRingedSpace{}}（locally ringed space）的概念；届时会在 \S7.3 与之短暂重逢。）
+
+\textbf{2.1.2. 旁注。}\quad 注意 $\mathfrak{m}_p/\mathfrak{m}_p^2$ 是 $\mathscr{O}_p/\mathfrak{m}_p\cong\mathbb{R}$ 上的模，也就是说它是一个\trReal\trVectorSpace。事后发现，它恰好是此\trDifferentiable\trManifold{}或\trAnalytic\trManifold{}在点 $p$ 处的\trCotangentSpace（cotangent space），而且是十分\emph{\trNatural{}地}——但愿这个词真有什么含义——如此。这一洞见日后将大派用场，待到我们定义\trScheme{}的\trTangentSpace{}与\trCotangentSpace{}之时。
+\begin{exercise}[\hard\ 供微分几何背景者做]\label{ex:cotangent-space-proof}
+证明上一段的断言。（抛给行家的反问：如果把上文的\trSheaf{}换成\trContinuous{}函数的\trSheaf，会坏在哪里？改用 $C^1$ 函数的\trSheaf{}呢？）
+\end{exercise}

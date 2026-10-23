@@ -1,0 +1,81 @@
+\paragraph{\trComposition\trFunctor。}\label{sub:composition-functors}
+与一个固定的 $\scr{G}\colon\scr{A}\to\scr{B}$ 作左\trComposition{}与右\trComposition{}，
+对任意\trNonunital{} \trACategory{} $\scr{C}$，给出两个\trNonunital{} \trAFunctor
+\begin{equation*}
+\begin{aligned}
+\scr{L}_{\scr{G}}&\colon\mathit{nu}\text{-}\mathit{fun}(\scr{C},\scr{A})
+  \longrightarrow\mathit{nu}\text{-}\mathit{fun}(\scr{C},\scr{B}),\\
+\scr{R}_{\scr{G}}&\colon\mathit{nu}\text{-}\mathit{fun}(\scr{B},\scr{C})
+  \longrightarrow\mathit{nu}\text{-}\mathit{fun}(\scr{A},\scr{C}).
+\end{aligned}
+\end{equation*}
+它们在\trObject{}上的作用前面已经描述过了。其在预\trNaturalTransformation{}上的
+一阶映射为：对
+$T\in\hom_{\mathit{nu}\text{-}\mathit{fun}(\scr{C},\scr{A})}(\scr{F}_0,\scr{F}_1)$，
+\begin{equation}\label{eq:left-composition-first-order}
+\begin{split}
+(\scr{L}^1_{\scr{G}}T)^d(a_d,\ldots,a_1)
+&=\sum_{r,i}\sum_{s_1,\ldots,s_r}(-1)^{\dagger}\,\scr{G}^r\bigl(
+  \scr{F}_1^{s_r}(a_d,\ldots,a_{d-s_r+1}),\ldots,\scr{F}_1^{s_i+1}(\ldots),\\
+&\qquad T^{s_i}(a_{s_1+\cdots+s_i},\ldots,a_{s_1+\cdots+s_{i-1}+1}),\\
+&\qquad \scr{F}_0^{s_{i-1}}(\ldots),\ldots,\scr{F}_0^{s_1}(a_{s_1},\ldots,a_1)\bigr)
+\end{split}
+\end{equation}
+其中 $\dagger$ 如\eqref{eq:natural-transformation-boundary}；而对
+$T\in\hom_{\mathit{nu}\text{-}\mathit{fun}(\scr{B},\scr{C})}(\scr{F}_0,\scr{F}_1)$，
+\begin{equation*}
+(\scr{R}^1_{\scr{G}}T)^d(a_d,\ldots,a_1)
+=\sum_{r}\sum_{s_1,\ldots,s_r}T^r\bigl(\scr{G}^{s_r}(a_d,\ldots,a_{d-s_r+1}),\ldots,
+  \scr{G}^{s_1}(a_{s_1},\ldots,a_1)\bigr).
+\end{equation*}
+高阶项 $\scr{R}^d_{\scr{G}}$（$d\ge 2$）全部消没。$\scr{L}_{\scr{G}}$ 则不然，但相应的
+公式不过是\eqref{eq:left-composition-first-order} 的直接推广，例如参见
+[55, Equation (8.42)]。特别地，\trACategory{} $\scr{A}$、$\scr{B}$、$\scr{C}$ 的%
+\trStructureMap{} $\mu$ 并不出现在其中。\trComposition\trFunctor{}自身也可以相互\trComposition{}，
+而且其表现正如所期：
+\begin{equation}\label{eq:composition-functor-relations}
+\scr{R}_{\scr{G}_1}\circ\scr{R}_{\scr{G}_2}=\scr{R}_{\scr{G}_2\circ\scr{G}_1},
+\qquad
+\scr{L}_{\scr{G}_1}\circ\scr{L}_{\scr{G}_2}=\scr{L}_{\scr{G}_1\circ\scr{G}_2},
+\qquad
+\scr{L}_{\scr{G}_1}\circ\scr{R}_{\scr{G}_2}=\scr{R}_{\scr{G}_2}\circ\scr{L}_{\scr{G}_1}.
+\end{equation}
+下面这条关系稍欠显然，它推广了\trGerstenhaber{}的一个观察，即\trHochschildCohomology{}%
+上的 \trYoneda{}乘积是\trGraded{}交换的：
+\vkthmsync{4}
+\begin{lemma}\label{thm:left-right-composition}
+设 $\scr{Q}=\mathit{nu}\text{-}\mathit{fun}(\scr{A},\scr{A})$。设已有\trFunctor{}%
+$\scr{G}_1,\scr{G}_2\in\Ob\scr{Q}$ 与\trNaturalTransformation{}%
+$T_1\in\hom_{\scr{Q}}(\scr{G}_1,\mathrm{Id}_{\scr{A}})$、
+$T_2\in\hom_{\scr{Q}}(\scr{G}_2,\mathrm{Id}_{\scr{A}})$。则
+\begin{equation*}
+[\mu^2_{\scr{Q}}(T_1,\scr{L}^1_{\scr{G}_1}(T_2))]
+=(-1)^{\$}[\mu^2_{\scr{Q}}(T_2,\scr{R}^1_{\scr{G}_2}(T_1))]
+\in H(\hom_{\scr{Q}}(\scr{G}_1\circ\scr{G}_2,\mathrm{Id}_{\scr{A}})),
+\end{equation*}
+其中 $\$=(|T_1|-1)(|T_2|-1)+1$。
+\end{lemma}
+\begin{proof}
+定义
+$U\in\hom^{|T_1|+|T_2|-1}_{\scr{Q}}(\scr{G}_1\circ\scr{G}_2,\mathrm{Id}_{\scr{A}})$
+如下：
+\begin{equation*}
+\begin{split}
+U^d(a_d,\ldots,a_1)
+=\sum_{m,n,r}\sum_{s_1,\ldots,s_r}&(-1)^{(|T_2|-1)\clubsuit_n}\,
+T_1^{r+d-n-m+1}(a_d,\ldots,a_{n+m+1},\\
+& T_2^m(a_{n+m},\ldots,a_{n+1}),\\
+& \scr{G}_2^{s_r}(a_n,\ldots,a_{n-s_r+1}),\ldots,
+\scr{G}_2^{s_1}(a_{s_1},\ldots,a_1)).
+\end{split}
+\end{equation*}
+直接计算表明，$\mu^1_{\scr{Q}}(U)$ 恰为\eqref{eq:composition-functor-relations}
+两端之差。\footnote{译注：原书此处印作“the two sides of (1.12)”，字面即指上文的\trComposition\trFunctor{}关系式\eqref{eq:composition-functor-relations}；按数学内容
+（$\mu^1_{\scr{Q}}(U)$ 与本引理陈述中显示式的两端同为
+$H(\hom_{\scr{Q}}(\scr{G}_1\circ\scr{G}_2,\mathrm{Id}_{\scr{A}}))$
+中之物）疑应指该无编号显示式。此处照原书排印，存疑备案。——译者注}
+\end{proof}
+\begin{remark}\label{thm:composition-only-part}
+与一个固定\trFunctor{}的\trComposition{}当然只是整个故事的一部分。为简单起见我们
+到此为止，尽管这会令我们在后文讨论\trQuasiequivalence{}时略处劣势。
+\end{remark}

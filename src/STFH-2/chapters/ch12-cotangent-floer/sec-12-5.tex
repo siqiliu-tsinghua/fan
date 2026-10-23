@@ -1,0 +1,466 @@
+\section{子流形 \texorpdfstring{$S\subset N$}{S ⊂ N} 的\personFloer{}同调}
+\label{sec:floer-homology-submanifold}
+
+设 $H\in\mathcal H_0$、$S\in\operatorname{Emb}^{H}(S_0;N)$ 且 $J\in\mathcal J_{H,S}$。\footnote{译者注：原书此前只定义了 $\mathcal H_R$ 和 $\mathcal H=\bigcup_R\mathcal H_R$，并未定义此处的 $\mathcal H_0$；译文照录。}相对于 $L^2$-度量 $\langle\!\langle\mathord\cdot,\mathord\cdot\rangle\!\rangle_J$，$\mathcal A_H|_{\Omega_{o_N\nu^*S}}$ 的梯度流线就是方程~\eqref{eq:perturbed-cauchy-riemann-conormal} 的解。用 $\mathcal M(H,J,S;N)$ 表示满足
+\[
+  \inf_{\tau\in\mathbb R}\mathcal A_H(u(\tau))>-\infty,
+  \qquad
+  \sup_{\tau\in\mathbb R}\mathcal A_H(u(\tau))<\infty
+\]
+的有限能量解所成的集合。
+
+\subsection{边界映射与\personFloer{}复形}
+\label{subsec:boundary-map-floer-complex}
+
+记
+\begin{equation}
+\begin{split}
+  \operatorname{Chord}(H;o_N,\nu^*S)
+  :=\{z:[0,1]\to T^*N\mid {}&\dot z=X_H(t,z),\\
+  &z(0)\in o_N,\ z(1)\in\nu^*S\}.
+\end{split}
+\label{eq:hamiltonian-chords-conormal}
+\end{equation}
+回顾 $\operatorname{Chord}(H;o_N,\nu^*S)$ 与集合
+\[
+  \phi_H^1(o_N)\cap\nu^*S
+\]
+通过下述映射一一对应：\footnote{译者注：原书此处两次把交集写成 $o_N\cap\nu^*S$；但所给公式以及紧接着引用的横截性条件都要求 $p\in\phi_H^1(o_N)\cap\nu^*S$。译文据此补正。}
+\[
+  p\in\phi_H^1(o_N)\cap\nu^*S
+  \longmapsto z_p^H,
+  \qquad
+  z_p^H(t)=\phi_H^t(\phi_H^1)^{-1}(p).
+\]
+
+由于分别按式~\eqref{eq:transverse-embedding-space} 与式~\eqref{eq:regular-hamiltonians-for-submanifold} 选取了 $S\in\operatorname{Emb}^{H}(S_0;N)$ 和 $H\in\mathcal H(S)$，$\operatorname{Chord}(H;o_N,\nu^*S)$ 中只有有限多个元素。现在考虑\personFloer{}方程\footnote{译者注：原书公式 (12.5.19) 及紧接的定理 12.5.1 都把端点写成 $\nu^*S_1$，但本节只固定了 $S$；译文改为 $\nu^*S$。}
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+      +J\left(\dfrac{\partial u}{\partial t}-X_H(u)\right)=0,\\[6pt]
+    u(\tau,0)\in o_N,\qquad u(\tau,1)\in\nu^*S.
+  \end{cases}
+\label{eq:floer-equation-zero-conormal}
+\end{equation}
+
+下述两个定理在这里作为已知结论使用；其证明可参见 (Oh97b)。稍后我们将在更一般的背景下讨论相应的定理。
+
+\begin{theorem}[\termCanonicalGrading{}]
+\label{thm:canonical-grading-cotangent-floer}
+对每个满足
+\[
+  \dot z=X_H(t,z),
+  \qquad z(0)\in o_N,
+  \quad z(1)\in\nu^*S
+\]
+的解 $z$，都被典范地赋予一个取值于 $\frac12\mathbb Z$ 的\termMaslovIndex{}。将这个映射记为
+\[
+  \mu_S:\operatorname{Chord}(H;o_N,\nu^*S)
+  \longrightarrow\frac12\mathbb Z.
+\]
+此外，$\mu_S$ 满足下列性质。
+\begin{enumerate}[label=(\arabic*)]
+  \item 对方程~\eqref{eq:perturbed-cauchy-riemann-conormal} 的每个解 $u$，若 $u(-\infty)=z^\alpha$ 且 $u(+\infty)=z^\beta$，则 $u$ 的\personFredholm{}指标为
+  \[
+    \operatorname{Index}u
+    =\mu_S(z^\alpha)-\mu_S(z^\beta).
+  \]
+  \item 考虑不依赖时间的哈密顿量 $F=f\circ\pi$，其中 $f\in C^\infty(N)$ 是 $N$ 上的\personMorse{}函数。设
+  \[
+    p\in\operatorname{Graph}df\cap\nu^*S,
+    \qquad
+    x=\pi(p)\in\operatorname{Crit}(f|_S).
+  \]
+  记
+  \[
+    z_x(t)=(x,t\,df(x)),
+  \]
+  这是 $F$ 的哈密顿路径，并满足 $z_x(0)\in o_N$、$z_x(1)\in\nu^*S$。于是
+  \[
+    \mu_S(z_x)=\frac12\dim S-\mu_f^S(x),
+  \]
+  其中 $\mu_f^S$ 是 $f|_S$ 在 $x$ 处的\personMorse{}指标。
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[\termCoherentOrientation{}]
+\label{thm:coherent-orientation-cotangent-floer}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $(H,S,J)$ 在同痕类 $[H,S,J]$ 中是通有的。对任意
+  \[
+    z^\alpha,z^\beta\in\operatorname{Chord}(H;o_N,\nu^*S),
+  \]
+  $\mathcal M_J(z^\alpha,z^\beta)$ 都存在定向；也就是说，\termDeterminantBundle{}
+  \[
+    \operatorname{Det}\longrightarrow\mathcal M_J(z^\alpha,z^\beta)
+  \]
+  是平凡的，其在 $u\in\mathcal M_J(z^\alpha,z^\beta)$ 处的纤维是一维实向量空间
+  \[
+    \det\bigl(D\bar\partial_{J,H}(u)\bigr)
+    :=\Lambda^{\max}\!\bigl(\ker D\bar\partial_{J,H}(u)\bigr)
+    \otimes
+    \Lambda^{\max}\!\bigl(\operatorname{Coker}D\bar\partial_{J,H}(u)\bigr)^*.
+  \]
+  对通有道路 $(\overline H,\overline S,\overline J)$ 的参数化\personFloer{}模空间 $\mathcal M(\overline H,\overline S,\overline J)$，同样的结论成立。
+  \item 此外，在每个同痕类中，当 $(H,S,J)$ 以及道路 $(\overline H,\overline S,\overline J)$ 变化时，所有 $\mathcal M_J(H,S)$ 和 $\mathcal M(\overline H,\overline S,\overline J)$ 上都存在一个\termCoherentOrientation{}（其含义见 (FH93) 或第 15.6 节）。把这类相容定向所成的集合记为
+  \[
+    \operatorname{or}([H,S,J]:N)=\operatorname{or}([S]:N).
+  \]
+\end{enumerate}
+\end{theorem}
+
+构造一个按 $\frac12\mathbb Z$ 分次的自由阿贝尔群（即 $\mathbb Z$-模）
+\[
+  CF_*(H,S:N)
+  =\mathbb Z\{\operatorname{Chord}(H;o_N,\nu^*S)\}.
+\]
+事实上，对任意阿贝尔群 $G$，也可以考虑自由 $G$-模。
+
+固定一组相容定向 $\sigma\in\operatorname{or}([S]:N)$。对满足
+\[
+  \mu(z^\alpha)-\mu(z^\beta)=1
+\]
+的每一对 $z^\alpha,z^\beta\in\operatorname{Chord}(H;o_N,\nu^*S)$，每个元素
+\[
+  u\in\mathcal M(z^\alpha,z^\beta)
+  =\mathcal M(H,J;z^\alpha,z^\beta)
+\]
+都确定一个 $[u_\tau]$。我们把流的这个 $[u_\tau]$ 与\cref{thm:coherent-orientation-cotangent-floer}中的相容定向所诱导的定向 $\sigma(u)$ 作比较，并由等式
+\[
+  \sigma(u)=\tau(u)[u_\tau]
+\]
+定义符号 $\tau(u)\in\{1,-1\}$。
+
+对这样的对子 $(z^\alpha,z^\beta)$，定义整数
+\begin{equation}
+  n_{(H,J)}^\sigma(z^\alpha,z^\beta)
+  :=\sum_{u\in\mathcal M(z^\alpha,z^\beta)}\tau(u),
+\label{eq:signed-count-floer-trajectories}
+\end{equation}
+并定义同态
+\[
+  \partial_{(H,J)}^\sigma:CF_*(H,S:N)\longrightarrow CF_*(H,S:N)
+\]
+如下：
+\[
+  \partial_{(H,J)}^\sigma(z^\alpha)
+  =\sum_\beta n_{(H,J)}^\sigma(z^\alpha,z^\beta)z^\beta.
+\]
+按照定义，$\partial_{(H,J)}^\sigma$ 关于上述分次的次数为 $-1$。利用紧性与配边论证——我们稍后会在更一般的背景下说明这一论证——可以证明
+\[
+  \partial_{(H,J)}^\sigma\circ\partial_{(H,J)}^\sigma=0.
+\]
+因而得到\termGradedComplex{}
+\[
+  \bigl(CF_*(H,S:N),\partial_{(H,J)}^\sigma\bigr).
+\]
+
+\begin{definition}
+\label{def:cotangent-floer-homology}
+对每个\personFloer{}正则参数 $(H,S,J)$，定义
+\[
+  HF_*^\sigma(H,S,J;N)
+  =\operatorname{Ker}\partial_{(H,J)}^\sigma
+   /\operatorname{Im}\partial_{(H,J)}^\sigma,
+\]
+并称其为 $N$ 上 $(H,S,J)$ 的\personFloer{}同调（相对于相容定向 $\sigma$）。
+\end{definition}
+
+\subsection{链映射及其同构性质}
+\label{subsec:chain-map-isomorphism}
+
+下述定理是本小节要建立的主要定理。
+
+\begin{theorem}
+\label{thm:continuation-chain-map-cotangent}
+设两个正则参数 $(H^\alpha,S^\alpha,J^\alpha)$ 与 $(H^\beta,S^\beta,J^\beta)$ 相互同痕。则存在保持分次的\mbox{自然链映射}
+\[
+  h_{\alpha\beta}^\sigma:
+  CF_*^\sigma(H^\alpha,S^\alpha,J^\alpha;N)
+  \longrightarrow
+  CF_*^\sigma(H^\beta,S^\beta,J^\beta;N).
+\]
+\end{theorem}
+
+固定单调函数 $\rho:\mathbb R\to[0,1]$，使得
+\[
+  \rho(\tau)=
+  \begin{cases}
+    0,&\tau\le0,\\
+    1,&\tau\ge1.
+  \end{cases}
+\]
+现在考虑道路
+\[
+  (\overline H,\overline S,\overline J)
+  =\{(H^s,S^s,J^s)\}_{s\in[0,1]}.
+\]
+取其延长
+\[
+  (\overline H,\overline S,\overline J)
+  =\{(H^{\rho(\tau)},S^{\rho(\tau)},J^{\rho(\tau)})\}_{-\infty\le\tau\le\infty},
+\]
+并考虑方程~\eqref{eq:perturbed-cauchy-riemann-conormal} 的非自治版本
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +J^\rho\left(\dfrac{\partial u}{\partial t}-X_{H^\rho}(u)\right)=0,\\[6pt]
+    u(\tau,0)\in o_N,
+    \qquad u(\tau,1)\in\nu^*S^{\rho(\tau)}.
+  \end{cases}
+\label{eq:moving-boundary-continuation}
+\end{equation}
+
+对给定的\footnote{译者注：原书此处把两个端点分别写成 $\operatorname{Chord}(o_N,\nu^*S^\alpha)$ 与 $\operatorname{Chord}(o_N,\nu^*S^\beta)$，漏掉公式 (12.5.18) 中的哈密顿量参数；译文补入 $H^\alpha$ 与 $H^\beta$。}
+\[
+  z^\alpha\in\operatorname{Chord}(H^\alpha;o_N,\nu^*S^\alpha),
+  \qquad
+  z^\beta\in\operatorname{Chord}(H^\beta;o_N,\nu^*S^\beta),
+\]
+定义
+\[
+\begin{split}
+  \mathcal M(z^\alpha,z^\beta)
+  :=\{u:\mathbb R\times[0,1]\to T^*N\mid {}&u\text{ 满足式~\eqref{eq:moving-boundary-continuation}，且}\\
+  &\lim_{\tau\to-\infty}u(\tau)=z^\alpha,
+  \quad
+  \lim_{\tau\to+\infty}u(\tau)=z^\beta\}.
+\end{split}
+\]
+利用\cref{thm:coherent-orientation-cotangent-floer}给出的定向，与式~\eqref{eq:signed-count-floer-trajectories} 类似地定义整数
+\[
+  n_{\alpha\beta}(z^\alpha,z^\beta)
+  :=\#\mathcal M(z^\alpha,z^\beta),
+  \qquad
+  \mu(z^\alpha)-\mu(z^\beta)=0,
+\]
+并由下式定义链映射
+\[
+  h_{\alpha\beta}:CF_*(H^\alpha,S^\alpha)
+  \longrightarrow CF_*(H^\beta,S^\beta):
+\]
+\begin{equation}
+  h_{\alpha\beta}(z^\alpha)
+  =\sum_\beta n_{\alpha\beta}(z^\alpha,z^\beta)z^\beta.
+\label{eq:continuation-chain-map}
+\end{equation}
+这里求和只对 $\beta$ 进行。\footnote{译者注：原书公式 (12.5.22) 的求和下标为 $\alpha,\beta$，但左边已固定 $z^\alpha$；译文删去多余的 $\alpha$。}
+
+需要强调的是，按照定义，只有那些使方程~\eqref{eq:moving-boundary-continuation} 存在具有给定渐近条件
+\[
+  \lim_{\tau\to-\infty}u(\tau)=z^\alpha,
+  \qquad
+  \lim_{\tau\to+\infty}u(\tau)=z^\beta
+\]
+之解的对子 $(z^\alpha,z^\beta)$，才会对式~\eqref{eq:continuation-chain-map} 作出非平凡贡献。正是这一点，使人能够估计不同参数的\personFloer{}同调之间各种同态所造成的滤过变化。
+
+在上述利用方程~\eqref{eq:moving-boundary-continuation} 构造链映射的过程中，带\emph{非紧}拉格朗日子流形上\emph{\termMovingBoundaryCondition{}}的\personCauchy{}--\personRiemann{}方程有一个关键问题：为了应用紧性论证，必须为方程~\eqref{eq:moving-boundary-continuation} 的解建立先验 $C^0$ 界。证明这个 $C^0$ 界颇不平凡（在一般\personWeinstein{}流形中的锥形拉格朗日子流形这一更一般的背景下，证明见 (Oh09b)）。这里不直接用方程~\eqref{eq:moving-boundary-continuation} 的解的模空间构造链映射
+\[
+  h_{\alpha\beta}^\sigma:
+  CF_*^\sigma(H^\alpha,S^\alpha,J^\alpha;N)
+  \longrightarrow
+  CF_*^\sigma(H^\beta,S^\beta,J^\beta;N),
+\]
+而是采用\personDavidNadler{}在 (Na09)、(NaZ09) 中使用的技巧，绕开这一微妙之处。这个构造的主要思想，是把同痕
+\[
+  s\longmapsto\nu^*S^s=:L^s
+\]
+表示成 $\nu^*S^\alpha=L^\alpha$ 的两个不同同痕的复合。由于假设 $X_H$ 紧支，存在 $R_1>0$，使得对所有 $s\in[0,1]$ 以及任意
+\[
+  z\in\operatorname{Chord}(H^s;o_N,\nu^*S^s),
+\]
+都有
+\[
+  \operatorname{Image}z\subset D_{R_1}.
+\]
+这意味着，对所有 $s\in[0,1]$ 的所有有限能量解 $u$，都有
+\[
+  \operatorname{Image}u(\pm\infty)\subset D_{R_1}.
+\]
+
+首先选取充分大的常数 $R_2>R_1$，使得
+\[
+  \operatorname{supp}H^s\subset D_{R_2}.
+\]
+再取另一个充分大的常数 $R_3>R_2$，并考虑 $\psi_{(1)}^{\rho(\tau)}(L^\alpha)$ 的同痕，使得
+\[
+  \operatorname{supp}\psi_{(1)}^1\subset D_{R_3},
+  \qquad
+  \psi_{(1)}^s(L^\alpha)\cap D_{R_2}
+  =\nu^*S^s\cap D_{R_2}.
+\]
+由于这个同痕在圆盘丛 $D_{R_3}$ 外固定 $L^\alpha$，\cref{thm:cotangent-floer-c0-bound}中的 $C^0$ 界仍然适用。因此，考虑相应的\personFloer{}模空间，便可构造链映射
+\[
+  h_{\psi_{(1)}}:
+  CF_*^\sigma(H^\alpha,L^\alpha)
+  \longrightarrow
+  CF_*^\sigma(H^\beta,\psi_{(1)}^1(L^\alpha)).
+\]
+
+接着，把上述同痕固定在 $D_{R_2}$ 上，并通过另一个同痕移动 $L^\alpha$，使 $\psi_{(2)}$ 满足
+\[
+  \operatorname{supp}\psi_{(2)}\subset T^*N\setminus D_{R_2},
+  \qquad
+  \psi_{(2)}^1\psi_{(1)}^1(L^\alpha)=\nu^*S^\beta,
+\]
+以及\footnote{译者注：原书公式 (12.5.23) 只写 $\psi_{(2)}^s(L^\alpha)$，但紧前的终点条件和紧后的参数化边界条件都含有复合 $\psi_{(2)}^s\psi_{(1)}^1(L^\alpha)$；译文照录原公式。}
+\begin{equation}
+  \psi_{(2)}^s(L^\alpha)\cap(T^*N\setminus D_{R_3})
+  =\nu^*S^s\cap(T^*N\setminus D_{R_3}).
+\label{eq:second-isotopy-outside-disc}
+\end{equation}
+注意，在同痕 $\psi_{(2)}$ 过程中，这个同痕不改变下列哈密顿轨道集合：\footnote{译者注：原书下列陈列式把零截面记号误排为 $0_S$（数字 $0$），并以并集而非等式连接两个集合，且端点条件本身没有展示 $\psi_{(2)}$ 的变化；因无法唯一确定预期公式，译文仅将 $0_S$ 依本节 $o_N$ 记号写作 $o_S$，其余照录，不自行重构。}
+\[
+\begin{split}
+  &\{z:[0,1]\to T^*N\mid
+    \dot z=X_{H^\alpha}(t,z),\ z(0)\in o_S,\ z(1)\in L^\alpha\}\\
+  &\quad\cup
+  \{z:[0,1]\to T^*N\mid
+    \dot z=X_{H^\alpha}(t,z),\ z(0)\in o_S,\
+    z(1)\in\psi_{(1)}^1(L^\alpha)\}.
+\end{split}
+\]
+现在用与 $h_{\psi_{(1)}}$ 不同的方法构造另一个链映射
+\[
+  h_{\psi_{(2)}}:
+  CF_*^\sigma(H^\alpha,\psi_{(1)}^1(L^\alpha))
+  \longrightarrow
+  CF_*^\sigma(H^\beta,\psi_{(2)}^1\psi_{(1)}^1(L^\alpha)).
+\]
+由于这个映射的定义域与值域复形的生成元都是固定的，可以考虑下述\emph{\termParameterizedModuliSpace{}}
+\begin{equation}
+  \mathcal M^{\mathrm{para}}(z^-,z^+)
+  :=\bigcup_{s\in[0,1]}\{s\}\times\mathcal M^s(z^-,z^+),
+\label{eq:parameterized-moduli-second-isotopy}
+\end{equation}
+其中 $\mathcal M^s(z^-,z^+)$ 是下列方程之解的模空间：
+\[
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +J^{\rho(\tau)}\left(
+      \dfrac{\partial u}{\partial t}-X_{H^\rho}(u)
+    \right)=0,\\[6pt]
+    u(\tau,0)\in o_N,
+    \qquad
+    u(\tau,1)\in\psi_{(2)}^s\psi_{(1)}^1(L^\alpha),
+  \end{cases}
+\]
+其中 $s\in[0,1]$。研究 $\mathcal M^{\mathrm{para}}(z^-,z^+)$ 时，\emph{我们并不在单个方程中移动边界条件}，而是对每个固定的 $s$ 研究 $\mathcal M^s(z^-,z^+)$；因此，$\mathcal M^{\mathrm{para}}(z^-,z^+)$ 中的元素具有一致 $C^0$ 界。若像构造链映射时那样，对子 $(z^-,z^+)$ 满足指标条件
+\[
+  \mu(z^-)=\mu(z^+),
+\]
+则在通有地选取 $J$ 时，$\mathcal M^{\mathrm{para}}(z^-,z^+)$ 成为紧的一维流形。配边论证给出
+\[
+  \#\mathcal M^0(z^-,z^+)=\#\mathcal M^1(z^-,z^+).
+\]
+受此启发，定义 $h_{\psi_{(2)}}$，使它关于 $CF_*^\sigma(H^\alpha,\psi_{(1)}^1(L^\alpha))$ 与 $CF_*^\sigma(H^\beta,\psi_{(2)}^1\psi_{(1)}^1(L^\alpha))$ 的基的矩阵为恒等矩阵。原书给出的理由是，这两个向量空间具有由\emph{同一}组哈密顿轨道构成的生成元。\footnote{译者注：原书在 $h_{\psi_{(2)}}$ 的定义域和值域中分别使用 $H^\alpha$ 与 $H^\beta$，而此前声称轨道集合不变的陈列式只使用 $H^\alpha$；“同一组生成元”的断言因而与所示参数并不直接相容。译文保留原论证。}
+
+\begin{exercise}
+\label{ex:second-isotopy-chain-map}
+证明映射 $h_{\psi_{(2)}}$ 是链映射。（提示：考虑满足 $\mu(z^-)=\mu(z^+)+1$ 的对子 $(z^-,z^+)$，考察 $\mathcal M^{\mathrm{para}}(z^-,z^+)$ 的紧化并分析其边界分支。此时 $\mathcal M^{\mathrm{para}}(z^-,z^+)$ 的维数为 2。）
+\end{exercise}
+
+复合两个链映射 $h_{\psi_{(2)}}$、$h_{\psi_{(1)}}$，便得到\cref{thm:continuation-chain-map-cotangent}所要求的链映射。\hfill$\square$
+
+\subsection{链同伦映射}
+\label{subsec:chain-homotopy-map}
+
+现在要证明\cref{thm:continuation-chain-map-cotangent}中构造的链映射在同调上诱导同构。
+
+为此，考虑同痕 $s\longmapsto S^s$ 与其逆 $s\longmapsto S^{1-s}$ 的拼接。对 $\kappa\ge1$，作代换
+\[
+  s=\rho_\kappa=\rho(\tau-\kappa),
+\]
+再将这个拼接延长。把拼接函数记为 $\chi_\kappa$：\footnote{译者注：按原书定义，$\kappa\ge1$ 时 $\rho_\kappa(0)=\rho(-\kappa)=0$，所以下述两支在 $\tau=0$ 分别给出 0 与 1。译文照录这个不连续的分段式，不猜测缺失的反向参数。}
+\[
+  \chi_\kappa(\tau)=
+  \begin{cases}
+    \rho_\kappa(\tau),&\tau\ge0,\\
+    1-\rho_\kappa(\tau),&\tau\le0,
+  \end{cases}
+  \qquad \kappa\ge1.
+\]
+再随着 $\kappa\to0$，把 $\chi_{\kappa=1}$ 进一步形变为零函数，使得当 $0\le\kappa'\le\kappa\le1$ 时
+\[
+  \chi_{\kappa'}\le\chi_\kappa.
+\]
+
+对每个 $\kappa\in[0,\infty)$，把链映射 $h_{\psi_{(1)}}$ 的构造中的 $\rho$ 换成 $\chi_\kappa$，并作同样的构造。对 $\kappa=0$ 以及任意通有参数 $\kappa$，这会给出链映射
+\[
+  h_{\chi_\kappa}:
+  CF_*^\sigma(H^\alpha,S^\alpha,J^\alpha;N)
+  \longrightarrow
+  CF_*^\sigma(H^\alpha,S^\alpha,J^\alpha;N),
+\]
+而用与习题~\ref{ex:second-isotopy-chain-map}相同的证明，可以说明相应的参数化模空间会给出一个\termChainHomotopyMap{}。注意，$\kappa=0$ 对应于恒等映射
+\[
+  \operatorname{id}:
+  CF_*^\sigma(H^\alpha,S^\alpha,J^\alpha;N)
+  \longrightarrow
+  CF_*^\sigma(H^\alpha,S^\alpha,J^\alpha;N).
+\]
+这是因为，在指标差为 0 时，由 $\mathbb R$-平移以及“指标差为 0 的对子不存在非静止解”这一通有性假设，只允许静止解。
+
+另一方面，当 $\kappa\to\infty$ 时，\termGluingTheorem{}（见第 15.5 节）蕴含：若 $\kappa$ 充分大，则
+\[
+  h_{\chi_\kappa}
+  =h_{\psi_{(1)};\beta\alpha}\circ h_{\psi_{(1)};\alpha\beta}.
+\]
+这就在同调上证明了
+\[
+  (h_{\psi_{(1)};\beta\alpha})_*
+  \circ(h_{\psi_{(1)};\alpha\beta})_*
+  =\operatorname{id}.
+\]
+由于可以交换 $\alpha$ 与 $\beta$ 的角色，这意味着 $(h_{\psi_{(1)};\alpha\beta})_*$ 是同构，从而完成证明。
+
+$h_{\psi_{(2)};\alpha\beta}$ 的同构性质由定义看更为清楚。因此我们已经证明，复合
+\[
+  h_{\alpha\beta}
+  =h_{\psi_{(2)};\alpha\beta}h_{\psi_{(1)};\alpha\beta}
+\]
+在同调上诱导同构。
+
+下面只陈述一个基本定理；其证明可参见\personFloer{}的原始论文 (Fl89a) 和 (Oh96b)。
+
+\begin{theorem}
+\label{thm:morse-floer-moduli-correspondence}
+设 $(f,g)$ 是由 $N$ 上的\personMorse{}函数 $f$ 与\personRiemann{}度量 $g$ 构成的对子。则存在某个 $\delta=\delta(f,g)>0$，\footnote{译者注：原书令阈值 $\delta$ 依赖于已经固定的 $f$，随即又用 $\lVert f\rVert_{C^2}\le\delta(f,g)$ 限制同一个 $f$；这一量词表述带有循环性，译文照录。}使得只要
+\[
+  \lVert f\rVert_{C^2}\le\delta,
+\]
+便有：
+\begin{enumerate}[label=(\arabic*)]
+  \item \termMorseModuliSpace{} $\mathcal M^{\mathrm{Morse}}(f,g)$ 与\personFloer{}模空间 $\mathcal M(\phi_{f\circ\pi},J_g)$ 之间存在一一对应；
+  \item 对子 $(f,g)$ 是\personMorse{}--\personSmale{}的，当且仅当 $\mathcal M(\phi_{f\circ\pi},J_g)$ 是\personFredholm{}正则的。
+\end{enumerate}
+\end{theorem}
+
+这个定理有如下直接推论。
+
+\begin{corollary}
+\label{cor:morse-floer-natural-isomorphism}
+存在自然同构\footnote{译者注：原书在本节一直使用 $S\subset N$，且紧前的定理仍以 $N$ 为底流形，此处却未经说明改用 $L$；译文保留 $L$。此外，原书称其为自然同构，却把下式最后一个关系印成单箭头 $\to$；译文改为同构号。又，原书中间一项上下标对调，印作 $H^{\mathrm{Morse}}_*$；按首项 $H^*(L;\mathbb Z)$ 及正文说明（该侧为上同调），译文改为 $H^*_{\mathrm{Morse}}$。}
+\[
+  H^*(L;\mathbb Z)
+  \cong H^*_{\mathrm{Morse}}(f;L)
+  \cong HF_*(-f\circ\pi,J_g).
+\]
+\end{corollary}
+
+这里提醒读者，我们对作用量泛函采用约定
+\[
+  \mathcal A_H(\gamma)
+  =\int\gamma^*\theta-
+   \int_0^1H(t,\gamma(t))\,dt.
+\]
+这个约定以及哈密顿向量场的约定，使 $f$ 的\emph{正}\personMorse{}梯度流线 $\chi$——它满足
+\[
+  \dot\chi(\tau)-\operatorname{grad}_g f(\chi(\tau))=0
+\]
+——对应于 $H=-f$ 的、不依赖 $t$ 的\emph{负}\personFloer{}梯度流线；后者满足
+\[
+  \frac{\partial u}{\partial\tau}
+  +J\left(\frac{\partial u}{\partial t}-X_H(u)\right)=0.
+\]
+（回顾公式 (18.5.40)。）这迫使\personMorse{}一侧出现上同调，而\personFloer{}一侧出现同调。

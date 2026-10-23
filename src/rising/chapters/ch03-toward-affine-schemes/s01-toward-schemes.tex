@@ -1,0 +1,51 @@
+
+\section{走向概形}
+
+从「\trManifold{}这类东西」的观念推广到更为万能的「\trGeometricSpace」观念，其背后的关键洞见如下：一个\trGeometricSpace{}（比如一个\trManifold{}）是可以通过理解其上的函数而被透彻理解的。更精确地说，我们将通过该空间上的函数\trSheaf{}来理解它。若你感兴趣的是\trDifferentiable\trManifold，你就去考虑光滑函数；若感兴趣的是\trAnalytic\trManifold，就去考虑\trReal\trAnalytic{}函数；如此等等。
+
+于是，我们将把\trScheme{}定义为如下数据：
+\begin{itemize}
+\item \emph{\trSet}：概形的点；
+\item \emph{\trTopology}：概形的诸\trOpenSet；
+\item \emph{\trStructureSheaf}：概形上「代数函数」的\trSheaf{}（一个环的\trSheaf{}）。
+\end{itemize}
+
+回想一下：带有一个环的\trSheaf{}的\trTopologicalSpace{}称为\trRingedSpace{}（\S2.2.13）。
+
+我们会在全书尽力多画图。图有助于培养几何直观，而几何直观又能为代数上的展开引路（并且最终，二者相互为用）。有人觉得图极有帮助，也有人见到图便望而却步，或者干脆被弄得一头雾水。
+
+我们将尽力让这三个观念都尽可能直观。对于\trSet，在复（仿射）\trVariety{}这一关键例子中（粗略地说，即被多项式在 $\mathbb{C}^n$ 中切出来的那些东西），我们将会看到，点正是那些「传统的点」（复数的 $n$ 元组），外加一些额外的点——把它们备在手边，迟早派上用场。对于\trTopology，我们将只要求「某代数函数在其中消失的子集必须是闭集」，此外别无所求。对于代数函数的\trSheaf{}（即\trStructureSheaf），我们预期：在复平面 $\mathbb{C}^2$ 中，$(3x^2+y^2)/(2x+4xy+1)$ 应当是「由分母不消失的点所组成的那个\trOpenSet{}」上的一个代数函数；这将在很大程度上为我们的定义提供动机。
+
+\textbf{3.1.1.\ 例：\trDifferentiable\trManifold。}\quad 作为动机，我们回到\trDifferentiable\trManifold{}那个例子，从眼下的视角把它重新解读一遍。这里的讨论将相当不拘形式。设 $X$ 是一个\trDifferentiable\trManifold。它是一个\trTopologicalSpace，并且带有光滑（$C^\infty$）函数的\trSheaf{} $\OO_X$（见 \S2.1）。这就赋予 $X$ 一种\trRingedSpace{}结构。我们已经观察到：在一点 $p\in X$ 处取值，给出一个从\trStalk{}到 $\mathbb{R}$ 的满射
+\[
+\OO_{X,p}\twoheadrightarrow\mathbb{R}
+\]
+于是\trKernel——即在 $p$ 处消失的函数（的诸\trGerm{}）——是一个\trMaximalIdeal{} $\mathfrak{m}_{X,p}$（见 \S2.1.1）。
+
+我们其实可以\emph{定义}实的\trDifferentiable\trManifold{}为一个带有一个环的\trSheaf{}的\trTopologicalSpace{} $X$（见定义~4.3.9）。我们将要求：存在 $X$ 的一个由\trOpenSet{}构成的\trCover，使得在每一个\trOpenSet{}上，相应的\trRingedSpace{}都同构于 $\mathbb{R}^n$ 中原点附近的一个球（连同该球上光滑函数的\trSheaf{}）。在此定义下，球便是基本的\trCoordinatePatch，而一般的\trManifold{}便通过把这些\trCoordinatePatch{}粘合在一起而得到。（平心而论，几何学的一大半正来自于你如何选取这些球的拼合方式！）在代数的场景中，基本的\trCoordinatePatch{}则是一个\trAffineScheme，我们很快就会讨论它。（在\trManifold{}的定义里还有一条附加要求：\trTopologicalSpace{}应当是豪斯多夫的、第二可数的，以免出现病态。\trScheme{}则常被要求是「分离」的，以防实质上相同的病态。分离性将在第 11 章讨论。）
+
+\emph{函数由其在诸点处的值决定。}这是一句显而易见的话，但对一般的\trScheme{}却并不成立。我们将在\cref{ex:small-schemes-dual-numbers}(a) 中见到一个例子，并在 \S3.2.12 进一步讨论这种行为。
+
+\emph{\trManifold{}的\trMorphism。}我们该如何描述\trDifferentiable\trManifold{}之间的映射 $\pi\colon X\to Y$？它们当然是\trContinuousMap——但究竟是哪些？我们可以沿\trContinuousMap{}拉回函数：光滑函数拉回后仍是光滑函数。更形式化地说，我们有一条映射 $\pi^{-1}\OO_Y\to\OO_X$（逆像\trSheaf{} $\pi^{-1}$ 定义于 \S2.7）。\trInverseImage{}是\trPushforward{}的\trLeftAdjoint，于是我们还有一条映射 $\pi^{\sharp}\colon\OO_Y\to\pi_*\OO_X$。
+
+当然，给定\trDifferentiable\trManifold{}之间的一个映射，光滑函数拉回后仍是光滑函数。较不显然的是，这件事竟是\emph{\trContinuousMap{}为光滑的一个充分条件}。
+
+\begin{exercise}[重要，供对\trManifold{}略具经验者]\label{ex:pullback-detects-smoothness}
+设 $\pi\colon X\to Y$ 是\trDifferentiable\trManifold{}之间的一个\trContinuousMap{}（就\trTopologicalSpace{}而言——并非先验地光滑）。证明：若光滑函数拉回后仍是光滑函数——也就是说，若沿 $\pi$ 的拉回给出一个映射 $\OO_Y\to\pi_*\OO_X$——则 $\pi$ 是光滑的。（提示：在小块\trCoordinatePatch{}上核验此事。一旦你弄清自己要证的是什么，便会发现结论立时可得。）
+\end{exercise}
+
+\begin{exercise}\label{ex:stalk-map-preserves-vanishing}
+证明：\trDifferentiable\trManifold{}之间的一个满足 $\pi(p)=q$ 的\trMorphism{} $\pi\colon X\to Y$，会诱导诸\trStalk{}之间的一个\trMorphism{} $\pi^{\sharp}\colon\OO_{Y,q}\to\OO_{X,p}$。证明 $\pi^{\sharp}(\mathfrak{m}_{Y,q})\subset\mathfrak{m}_{X,p}$。换言之，把一个在 $q$ 处消失的函数拉回去，得到的便是一个在 $p$ 处消失的函数——这实在算不上多大的意外。（在 \S7.3 中，我们将把它形式化成一句话：\trManifold{}之间的映射就是\trLocallyRingedSpace{}之间的映射。）
+\end{exercise}
+
+\textbf{3.1.2.\ 旁注。}\quad 这里再给行家多说一点：注意 $\pi$ 会在诸\trTangentSpace{}上诱导一个映射（见旁注~2.1.2），
+\[
+(\mathfrak{m}_{X,p}/\mathfrak{m}_{X,p}^2)^{\vee}\longrightarrow(\mathfrak{m}_{Y,q}/\mathfrak{m}_{Y,q}^2)^{\vee}.
+\]
+这正是你在几何上所期待的切映射。又一次，有趣的是：余切映射 $\mathfrak{m}_{Y,q}/\mathfrak{m}_{Y,q}^2\to\mathfrak{m}_{X,p}/\mathfrak{m}_{X,p}^2$ 在代数上比切映射更为自然（这里没有「\trDual」）。
+
+行家们现在不妨放手一试：只凭借\trTopologicalSpace{}的映射与\trSheaf{}的映射，去解读其他种种微分几何信息。例如：如何检验 $\pi$ 是否是诸\trManifold{}之间的一个淹没？如何检验 $f$ 是否是一个\trImmersion？（我们将会看到，这些观念的代数几何版本分别是\trSmooth\trMorphism{}与「\trUnramified\trMorphism」；分别见\mbox{定义~13.6.2} 与 \S21.7。）
+
+\textbf{3.1.3.\ 边注。}\quad 诸\trManifold{}可以被一些彼此皆同构的圆盘所覆盖。对\trScheme{}而言这不再成立（甚至对「光滑复\trVariety」也不成立）。有这样的例子：两条「光滑复\trCurve」（即\trRiemannSurface{}的代数版本）$X$ 与 $Y$，使得 $X$ 的任何非空\trOpenSubset{}都不同构于 $Y$ 的任何非空\trOpenSubset{}（见练习~7.5.L）。而且，还存在这样一个\trRiemannSurface{} $X$：$X$ 的任何两个\trOpenSubset{}都互不同构（见练习~19.7.E）。不严格地说，原因在于：在\trScheme{}的\trZariskiTopology{}里，一切非空\trOpenSet{}都是「庞大」的，并且带有更多的「结构」。
+
+\textbf{3.1.4.\ 其他例子。}\quad 若你感兴趣的是\trDifferentialGeometry，你感兴趣的或许就是\trDifferentiable\trManifold，在其上所考虑的函数是光滑函数。类似地，若你感兴趣的是拓扑学，你感兴趣的就会是\trTopologicalSpace，在其上你将考虑\trContinuous{}函数。若你感兴趣的是\trComplexGeometry，你感兴趣的就会是\trComplex\trManifold（或者「复解析\trVariety」），在其上函数是\trHolomorphic{}函数。在每一种这类有趣的「几何空间」中，\trTopologicalSpace{}与函数\trSheaf{}都是明明白白的，而\trScheme{}的观念则自然而然地融入这个家族。

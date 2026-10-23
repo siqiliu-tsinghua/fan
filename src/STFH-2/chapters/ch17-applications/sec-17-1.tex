@@ -1,0 +1,287 @@
+\section{邻近拉格朗日对子：\termThickThinDichotomy{}}
+\label{sec:nearby-lagrangian-thick-thin}
+
+本节研究当 $\phi\to\mathrm{id}$（按 $C^1$ 拓扑）时
+$\mathcal M(L,\phi(L);p,q)$ 的一些收敛结果。我们还将说明，这种退化的研究如何
+产生 (Oh96b) 中引入的一个谱序列。这个形式的谱序列后来在 (Bu10)、(BCo09)、
+(D09) 中得到进一步研究。(FOOO09) 给出了这类谱序列更一般的版本；在附加\emph{无障碍}
+假设下，它也能处理非单调拉格朗日子流形。
+
+下面给出研究这一退化的精确设定。设 $L$ 是给定的紧拉格朗日子流形。以下概念由
+(Oh05d, Spa08) 引入。
+
+\stfhIndex{I073}{Tunmeihamiduntonghen}{吞没哈密顿同痕（engulfed Hamiltonian isotopy）}
+\begin{definition}
+\label{def:v-engulfed-isotopy}
+设 $V$ 是 $L$ 的一个给定\personDarboux{}--\personWeinstein{}邻域。若对所有
+$t\in[0,1]$ 都有 $\phi_H^t(L)\subset V$，则称哈密顿同痕
+$L_t=\phi_H^t(L)$ 为\termVEngulfedHamiltonianIsotopy{}。
+\end{definition}
+
+固定 $L$ 的\personDarboux{}邻域 $U$ 及其余切坐标卡
+\[
+  \Phi:U\longrightarrow V\subset T^*L,
+\]
+其中 $V$ 是 $T^*L$ 的零截面的一个邻域。若 $\phi$ 在 $C^1$ 意义下接近
+$\mathrm{id}$，则可将 $\Phi(\phi(L))$ 写成 $\operatorname{Graph}df$，其中
+$f:L\to\mathbb R$ 是光滑函数。我们假设 $\|df\|_{C^1}$ 充分小。
+
+当 $\|df\|_{C^1}$ 变小时，\personFloer{}流线的模空间会出现\termThickThinDichotomy{}。这一二分在
+(Oh96b) 中得到了详细分析，后来事实表明，它是拉格朗日\personFloer{}同调在辛拓扑中
+应用的关键成分。出现这种二分，主要是因为薄流线与厚（或非薄）流线之间存在一个
+“能隙”。
+
+为精确定义这个间隙，对每个不依赖于时间的相容殆复结构
+$J_0\in\mathcal J_\omega$，使用式 (8.4.32) 中引入的几何不变量
+$A(\omega,L;J_0)$。回忆
+\[
+ A(\omega,J_0:L)=\min\{A_S(\omega,J_0),A_D(\omega,J_0;L)\}>0,
+\]
+其中
+\[
+ A_S(\omega,J_0):=\inf\left\{\int v^*\omega>0\ \middle|\
+ v:S^2\to M,\ \overline\partial_{J_0}v=0\right\},
+\]
+而对给定的拉格朗日子流形 $L\subset(M,\omega)$，
+\[
+ A_D(\omega,J_0;L):=\inf\left\{\int w^*\omega>0\ \middle|\
+ w:(D^2,\partial D^2)\to(M,L),\ \overline\partial_{J_0}w=0\right\}.
+\]
+
+可以把这个不变量推广到相容殆复结构的任意紧族
+$K\subset\mathcal J_\omega$。从 $C^1$ 拓扑中的连续 $k$-参数族
+$K:[0,1]^k\to\mathcal J_\omega$ 出发，定义常数
+\[
+ A_S(\omega;K)=\inf_{\kappa\in[0,1]^k}\{A_S(\omega,J(\kappa))\}.
+\]
+这个常数也是正的，并具有如下下半连续性。
+\footnote{译者注：原书这里印作族内的上确界，但随后的下半连续命题及其反证都
+使用族内能量下界，因而应为下确界；译文据此改正。}
+
+\begin{proposition}
+\label{prop:family-sphere-energy-lsc}
+常数 $A_S(\omega;K)$ 关于 $K$ 下半连续。换言之，给定任意 $K$ 以及
+$0<\epsilon<A_S(\omega;K)$，存在 $\delta=\delta(K,\epsilon)>0$，使得对任意
+满足 $\|K'-K\|_{C^1}\leq\delta$ 的 $K'$，都有
+\[
+ A_S(\omega;K')\geq A_S(\omega;K)-\epsilon.
+\]
+\end{proposition}
+
+\begin{proof}
+用反证法。反设存在 $\epsilon>0$ 及序列 $K_i\to K$，使得对所有 $i$ 都有
+\begin{equation}
+ A_S(\omega;K_i)<A_S(\omega;K)-\epsilon.
+\label{eq:17-family-energy-contradiction}
+\end{equation}
+\footnote{译者注：命题定义并讨论的是 $A_S(\omega;K)$，但原书证明在本式及
+随后两处均省去下标 $S$，写作未在此定义的 $A(\omega;K_i)$；证明只使用全纯球面，
+故译文补回下标 $S$。同段又把 $k$ 参数族的参数域印作 $[0,1]^n$，译文改为
+$[0,1]^k$。}
+对每个 $i$，由 $A_S(\omega;K_i)$ 的定义和~\eqref{eq:17-family-energy-contradiction}，
+存在 $t_i\in[0,1]^k$ 及非常值 $J_{t_i}$-全纯球面 $v_i$，满足
+\[
+ A_S(\omega;K_i)\leq\omega([v_i])<A_S(\omega;K)-\frac{\epsilon}{3}.
+\]
+由\personGromov{}紧性，$v_i$ 收敛到一个 $J_{t_\infty}$-尖点曲线
+\[
+ v_\infty=\sum_a v_{\infty,a},
+\]
+其中 $J_{t_\infty}\in K$。若 $v_\infty$ 为常值，则当 $i$ 充分大时 $v_i$ 与零同调，
+故 $\omega([v_i])=0$；这又蕴含 $v_i$ 是常值映射，与既定假设矛盾。若某个
+$v_{\infty,a}$ 是非常值 $J_{t_\infty}$-全纯球面，则
+\[
+ \omega([v_{\infty,a}])\leq A_S(\omega;K)-\frac{\epsilon}{3},
+\]
+这与 $A_S(\omega;K)$ 的定义矛盾。证明完毕。
+\end{proof}
+
+类似论证证明不变量 $A(\omega,K;L)$ 的半连续性。
+
+现在设 $U$ 是 $(M,\omega)$ 中 $L$ 的\personDarboux{}邻域，$H$ 是满足
+\begin{equation}
+ \phi_H^1(L)\subset U
+\label{eq:17-hamiltonian-image-in-U}
+\end{equation}
+的哈密顿量，并令 $J=\{J_t\}_{t\in[0,1]}$ 是依赖于 $t$ 的殆复结构族。我们研究
+记作 $\mathcal M(J;L,\phi_H^1(L))$ 的如下方程解的模空间：
+\[
+ \frac{\partial u}{\partial\tau}+J_t\frac{\partial u}{\partial t}=0,
+ \quad u(\tau,0)\in L,\quad u(\tau,1)\in\phi_H^1(L),\quad E_J(u)<\infty.
+\]
+以 $d_{C^1}(L_0,L_1)$ 表示 $L_0$ 与 $L_1$ 的 $C^1$ 距离。
+
+\begin{proposition}
+\label{prop:nearby-thick-thin-gap}
+给定任意 $0<\alpha<A(\omega,L;J_0)$ 及任意不依赖于时间的 $J_0$，存在常数
+$\epsilon>0$，使得只要
+$d_{C^1}(\phi_H^1(L),L)<\epsilon$ 且
+$\max_{t\in[0,1]}|J_t-J_0|_{C^0}<\epsilon$，便有：
+\begin{enumerate}[label=(\arabic*)]
+\item 对所有满足 $\operatorname{Im}u\subset U$ 的
+$u\in\mathcal M(J;L,\phi_H^1(L))$，都有
+\begin{equation}
+ \int u^*\omega<A(\omega,L;J_0)-\alpha,
+\label{eq:17-thin-area-upper}
+\end{equation}
+反之亦然；
+\item 其他所有 $u\in\mathcal M(J;L,\phi_H^1(L))$ 的像均不包含于 $U$，并且满足
+\begin{equation}
+ \int u^*\omega>A(\omega,L;J_0)-\delta,
+\label{eq:17-thick-area-lower}
+\end{equation}
+其中 $\delta$ 依赖于 $\epsilon>0$（但不依赖于 $\alpha$），且充分小。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+先给出一个简单引理。
+
+\begin{lemma}
+\label{lem:strip-area-graph-df}
+设 $L_0$ 是 $T^*L$ 的零截面，$L_1=\operatorname{Graph}df$，其中 $f$ 是 $L$ 上
+的函数。假设 $L_0$ 与 $L_1$ 横截相交，且
+$x,y\in L_0\cap L_1=\operatorname{Crit}(f)$。设
+$u:[0,1]\times[0,1]\to T^*L$ 是 $C^1$ 映射，满足
+\[
+ u(s,0)\subset L_0,\quad u(s,1)\subset L_1,\quad
+ u(0,t)\equiv y,\quad u(1,t)\equiv x.
+\]
+则
+\[
+ \int u^*\omega=f(y)-f(x).
+\]
+\footnote{译者注：原书在本引理边界条件中印作 $u(s,1)\subset L$；结合
+$L_1=\operatorname{Graph}df$ 及证明第一句，译文改为 $L_1$。}
+\end{lemma}
+
+\begin{proof}
+记 $u(s,1)=(q(s,1),p(s,1))$。由假设 $u(s,1)\in\operatorname{Graph}df$，故
+$p(s,1)=df(q(s,1))$。定义
+\[
+ u_f(s,t)=(q(s,1),t\,df(q(s,1))).
+\]
+把 $u$ 与 $u_f$ 拼接得到 $w:=u\#u_f$，其边界包含在 $L_0$ 中。因此
+\[
+ 0=\int w^*(-d\theta)=\int w^*\omega_0
+   =\int u^*\omega-\int u_f^*\omega.
+\]
+另一方面，
+\[
+ \int u_f^*\omega=-\int_{\partial u_f}\theta
+ =-\int_{u_f|_{t=1}}\theta
+ =-\int_{s\mapsto q(s,1)}df=f(y)-f(x).
+\]
+\footnote{译者注：原书证明首句记 $u(1,t)=(q(1,t),p(1,t))$，$u_f$ 的定义亦随之
+印作 $u_f(s,t)=(q(1,t),s\,df(q(1,t)))$。按引理的边界条件，含于
+$\operatorname{Graph}df$ 的是 $t=1$ 边而非 $s=1$ 边，故此两处系槽位误植；译文
+改记 $u(s,1)=(q(s,1),p(s,1))$，并把 $u_f$ 补正为
+$(q(s,1),t\,df(q(s,1)))$。原书末式道路 $s\mapsto q(s,1)$ 与补正后的 $u_f$
+一致，译文照录。}
+证明完毕。
+\end{proof}
+
+当 $\phi_H^1(L)$ 在 $C^1$ 意义下接近 $L$ 时，对
+$u\in\mathcal M^J(L,\phi_H^1(L);U)$ 应用引理，可写
+$\Phi(\phi_H^1(L))=\operatorname{Graph}df$。由于 $\Phi$ 是辛的，即
+$\Phi^*\omega_0=\omega$，故
+\[
+ \int u^*\omega=\int(\Phi\circ u)^*\omega_0=f(y)-f(x).
+\]
+此外，只要 $d_{C^1}(L,\phi_H^1(L))$ 充分小（例如小于 $\epsilon$），就有与 $H$
+无关的 $C>0$，使得
+\[
+ \frac1C|df|_{C^0}\leq d_{C^1}(L,\phi_H^1(L))\leq C|df|_{C^0}.
+\]
+显然
+\[
+ |f(y)-f(x)|\leq\max f-\min f\leq |df|_{C^0}\operatorname{diam}(L).
+\]
+
+给定 $0<\alpha<A(\omega,L;J_0)$。先证明 (1)。若
+$d_{C^1}(L,\phi_H^1(L))<\epsilon$ 且 $\epsilon$ 充分小，则
+\[
+ |df|_{C^0}<C\epsilon\leq
+ \frac{A(\omega,L;J_0)-\alpha}{\operatorname{diam}(L)}.
+\]
+于是
+\[
+ \begin{aligned}
+ \int u^*\omega&=f(y)-f(x)\leq\max f-\min f
+ \leq |df|_{C^0}\operatorname{diam}(L)\\
+ &\leq\frac{A(\omega,L;J_0)-\alpha}{\operatorname{diam}(L)}
+ \operatorname{diam}(L)=A(\omega,L;J_0)-\alpha.
+ \end{aligned}
+\]
+
+现证其逆命题。反设存在 $0<\alpha<A(\omega,L;J_0)$，以及序列
+$(J^i,H^i)$，使得当 $i\to\infty$ 时
+$d_{C^1}(\phi_{H^i}^1(L),L)\to0$ 且
+$\max_{t\in[0,1]}|J_t^i-J_0|_{C^1}\to0$，并存在
+$u_i\in\mathcal M(\phi_{H^i}^1(L),L;J^i)$，对所有 $i$ 满足
+\footnote{译者注：原书已引入哈密顿量序列 $H^i$，但此处模空间中漏掉上标 $i$；
+译文按同段的 $\phi_{H^i}^1(L)\to L$ 补正。}
+\footnote{译者注：命题假设只要求 $J_t$ 与 $J_0$ 在 $C^0$ 意义下接近，但原书
+反证在此改用 $C^1$ 收敛；译文照录这一加强的假设，因为原文未补出由 $C^0$ 控制
+得到所需 $C^1$ 收敛的论证。}
+\begin{equation}
+ \operatorname{Im}u_i\not\subset U,
+ \qquad \int u_i^*\omega\leq A(\omega,L;J_0)-\alpha.
+\label{eq:17-thin-converse-sequence}
+\end{equation}
+由 $A(\omega,L;J_0)$ 的定义，此序列既不能冒出 $J_0$-全纯球面，也不能冒出圆盘。
+由于 $\phi_{H^i}^1(L)\to L$（按 $C^1$ 拓扑）且 $L$ 紧，取子列后可设存在
+$x_i,y_i\in\phi_{H^i}^1(L)\cap L$，满足 $x_i\to x_\infty$、
+$y_i\to y_\infty$，其中 $x_\infty,y_\infty\in L$，并且
+\[
+ u_i\in\mathcal M(\phi_{H^i}^1(L),L;x_i,y_i;J^i).
+\]
+再由~\eqref{eq:17-thin-converse-sequence}，必要时沿 $\tau$ 方向平移 $u_i$，可设
+\[
+ u_i(0,t_i)\to p_\infty\in M\setminus U.
+\]
+序列不冒泡，故可应用局部收敛；得到局部极限
+$J_0$-全纯映射 $u_\infty:\mathbb R\times[0,1]\to M$，满足
+\[
+ u_\infty(0,t_\infty)=p_\infty\notin U,\qquad
+ u_\infty(\tau,0),u_\infty(\tau,1)\subset L,
+ \qquad \int u_\infty^*\omega\leq A(\omega,L;J_0)-\alpha.
+\]
+利用 $\mathbb R\times i[0,1]$ 与 $D^2\setminus\{-1,1\}$ 的共形等价，可将
+$u_\infty$ 看作定义在 $D^2\setminus\{-1,1\}$ 上的非常值映射，且
+\[
+ \overline\partial_{J_0}u_\infty=0,\quad
+ u_\infty(\partial D^2\setminus\{-1,1\})\subset L,\quad
+ \int u_\infty^*\omega<A(\omega,L;J_0)-\alpha.
+\]
+由可去奇点定理，它延拓为非常值 $J_0$-全纯映射
+$u_\infty:(D^2,\partial D^2)\to(M,L)$，满足
+\[
+ 0<\int u_\infty^*\omega\leq A(\omega,L;J_0)-\alpha,
+\]
+与 $A(\omega,L;J_0)$ 的定义矛盾，故 (1) 得证。
+
+为证 (2)，仍作反设：存在 $\delta>0$、满足
+$\phi_{H^k}(L)\to L$ 的 $H^k$、满足 $J^k\to J_0$（按 $C^1$）的 $J^k$，以及
+$u_k\in\mathcal M(J^k;\phi_{H^k}^1(L),L)$，其像不包含于 $U$，但
+\begin{equation}
+ \int u_k^*\omega<A(\omega,L;J_0)-\delta.
+\label{eq:17-thick-contradiction}
+\end{equation}
+在\personDarboux{}坐标卡中把 $\phi_{H^k}^1(L)$ 写成
+$\operatorname{Graph}(df_k)$，只需考虑在 $U$ 中
+$H_k=f_k\circ\pi$ 且 $|df_k|_{C^0}\to0$ 的情形。细化 (1) 的论证，在一致面积界
+\eqref{eq:17-thick-contradiction} 下，得到仍记作 $u_k$ 的子列局部收敛到
+$u_\infty$。因假设 $u_k$ 的像不包含于 $U$，$u_\infty$ 的像经过
+$M\setminus U$ 中一点。由可去奇点定理，$u_\infty$ 给出一个边界落在 $L$ 上的
+非常值圆盘或一个球面。因此按 $A(\omega,L;J_0)$ 的定义，
+\[
+ \int u_\infty^*\omega\geq A(\omega,L;J_0),
+\]
+从而
+\[
+ \liminf_{k\to\infty}\int u_k^*\omega
+ \geq\int u_\infty^*\omega\geq A(\omega,L;J_0).
+\]
+但当 $k$ 充分大时，这与~\eqref{eq:17-thick-contradiction} 矛盾。证明完毕。
+\end{proof}

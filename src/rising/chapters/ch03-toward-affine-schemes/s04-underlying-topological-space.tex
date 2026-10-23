@@ -1,0 +1,175 @@
+
+\section{仿射概形的底拓扑空间}
+
+接下来，我们将在一个环的\trSpectrum{}上引入\emph{\trZariskiTopology}。这个定义初听之下颇为
+古怪，但稍加经验便会觉得合情合理。作为动机，考虑 $\mathbb{A}^2_{\mathbb{C}}=%
+\Spec\mathbb{C}[x,y]$，即复（仿射）平面（外加几个额外的点）。在\trAlgebraicGeometry{}中，
+我们将只被允许考虑\trAlgebraicFunction，也就是 $x$ 与 $y$ 的多项式。一个多项式
+在其中消失的\trLocus，按理应当是一个\trClosedSet；而\trZariskiTopology{}的定义方式，就是规定：
+我们应当视为闭的集合，唯有这些集合，以及被它们连带逼成闭的那些集合。换言之，
+它是使这些集合成为闭集的最\trCoarse\trTopology。
+
+\textbf{3.4.1.}\quad 特别地，虽然\trTopology{}通常借\trOpenSubset{}来描述，但对我们
+而言，以\trClosedSubset{}来定义这个\trTopology{}反而更方便。若 $S$ 是\trRing{} $A$ 的一个子集，
+定义 $S$ 的\textbf{\trVanishingSet{}}（vanishing set）为
+\[
+V(S):=\{\, [\mathfrak{p}]\in\Spec A \;:\; S\subset\mathfrak{p} \,\}.
+\]
+它是 $S$ 的全部元素在其上都取值为零的那些点所成的集合。（把「在一点处消失」与
+「含于一个\trPrimeIdeal{}之中」等同起来，如今应当已成为你的第二天性。）我们宣布：
+唯有这些集合——别无其他——才是\trClosedSubset。
+
+例如，考虑 $V(xy,\,yz)\subset\mathbb{A}^3_{\mathbb{C}}=\Spec\mathbb{C}[x,y,z]$。
+哪些点含于这个\trLocus？我们把它想成求解 $xy=yz=0$。在「传统点」之中（把它们解读为
+复数的三元组，这要多亏\trHilbert{}弱\trNullstellensatz，即%
+\cref{thm:hilbert-weak-nullstellensatz}），我们有 $y=0$ 或 $x=z=0$ 的那些点：分别是
+$xz$-平面与 $y$-轴。在「新」点之中，我们有 $xz$-平面的\trGenericPoint（亦即点 $[(y)]$），
+以及 $y$-轴的\trGenericPoint（亦即点 $[(x,z)]$）。你或许还会想象，我们另有一些含于
+$xz$-平面之中的「一维」点。
+
+\begin{exercise}[容易的练习]\label{ex:x-axis-vanishing-locus}
+验证 $x$-轴含于 $V(xy,\,yz)$。（$x$-轴由 $y=z=0$ 定义，$y$-轴与 $z$-轴可类似定义。）
+\end{exercise}
+
+让我们回到一般情形。下面的练习使我们能把注意力限定在\trIdeal{}的\trVanishingSet{}上。
+
+\begin{exercise}[容易的练习]\label{ex:vanishing-set-generated-ideal}
+证明：若 $(S)$ 是由 $S$ 生成的\trIdeal，则 $V(S)=V((S))$。
+\end{exercise}
+
+\textbf{3.4.2.}\ \emph{\trhDefinition{}。}\quad 我们如此定义\textbf{\trZariskiTopology}：
+宣布对一切 $S$，$V(S)$ 都是闭集。（我们不妨在此顺便声明：\textbf{\trZariskiClosure{}}
+（Zariski closure）指\trZariskiTopology{}中的闭包。）我们来验证\trZariskiTopology{}
+的确是一个\trTopology：
+
+\begin{exercise}\label{ex:zariski-topology-axioms}
+(a)~证明 $\varnothing$ 与 $\Spec A$ 都是 $\Spec A$ 的\trOpenSubset。
+
+(b)~若 $I_i$（$i$ 跑遍某个\trIndexSet）是一族\trIdeal，证明
+$\bigcap_i V(I_i)=V\bigl(\sum_i I_i\bigr)$。于是，任意一族\trOpenSet{}的并仍是开的。
+
+(c)~证明 $V(I_1)\cup V(I_2)=V(I_1I_2)$。（$A$ 的两个\trIdeal{} $I_1$ 与 $I_2$ 的%
+\textbf{乘积}（product of two ideals），指形如 $\sum_{j=1}^{n}i_{1,j}i_{2,j}$（其中
+$i_{k,j}\in I_k$）的有限多条 $A$-线性组合；等价地，它是由 $I_1$ 的元素与 $I_2$ 的
+元素的乘积所生成的\trIdeal。你应当迅速核验：这是一个\trIdeal，而且乘积满足结合律，
+即 $(I_1I_2)I_3=I_1(I_2I_3)$。）于是，任意有限多个\trOpenSet{}的交仍是开的。
+\end{exercise}
+
+\textbf{3.4.3.\ 「\trVanishingSet{}」函数 $V(\cdot)$ 的性质。}\quad 函数 $V(\cdot)$ 显然反转
+包含关系：若 $S_1\subset S_2$，则 $V(S_2)\subset V(S_1)$。\trhWarning：可能出现
+第二个包含取等号、而第一个不取等号的情形，正如下面的练习所示。
+
+\begin{exercise}[练习兼定义]\label{ex:radical-of-an-ideal}
+设 $I\subset A$ 是一个\trIdeal，定义它的\textbf{\trRadical}（radical）为
+\[
+\sqrt{I}:=\{\, r\in A \;:\; r^n\in I \text{ 对某个 } n\in\mathbb{Z}^{>0} \,\}.
+\]
+例如，\trNilradical{} $\mathfrak{N}$（\cref{ex:nilpotents-and-nilradical}）就是 $\sqrt{(0)}$。
+证明 $\sqrt{I}$ 是一个\trIdeal（参看\cref{ex:nilpotents-and-nilradical}(b)）。证明
+$V(\sqrt{I})=V(I)$。若一个\trIdeal{}等于它自身的根，我们就称它是\textbf{\trRadicalIdeal{}}
+（radical）。证明 $\sqrt{\sqrt{I}}=\sqrt{I}$，并且\trPrimeIdeal{}都是\trRadicalIdeal{}。
+\end{exercise}
+
+下面是两条有用的推论。由于 $(I\cap J)^2\subset IJ\subset I\cap J$（\trIdeal{}的乘积
+定义于\cref{ex:zariski-topology-axioms}），我们有 $V(IJ)=V(I\cap J)$（由%
+\cref{ex:zariski-topology-axioms}(c)，它又等于 $V(I)\cup V(J)$）。此外，将它与%
+\cref{ex:vanishing-set-generated-ideal}相结合，便得
+$V(S)=V((S))=V(\sqrt{(S)})$。
+
+\begin{exercise}[练习：根与有限交交换]\label{ex:radicals-finite-intersections}
+若 $I_1,\dots,I_n$ 是\trRing{} $A$ 的\trIdeal，证明
+$\sqrt{\bigcap_{i=1}^{n}I_i}=\bigcap_{i=1}^{n}\sqrt{I_i}$。日后我们将反复使用这条
+性质，而不再回指本练习。
+\end{exercise}
+
+\begin{exercise}[留待后用的练习]\label{ex:radical-intersection-primes}
+证明 $\sqrt{I}$ 是包含 $I$ 的全部\trPrimeIdeal{}的交。（提示：在一个适当的环上
+使用\cref{thm:nilradical-intersection-primes}。）
+\end{exercise}
+
+\textbf{3.4.4.\ 例子。}\quad 我们来看看这套机制与前一小节的诸例子如何互相咬合。
+
+回想一下：$\mathbb{A}^1_{\mathbb{C}}$ 作为一个\trSet，本就只有「传统点」（对应于诸%
+\trMaximalIdeal，与 $a\in\mathbb{C}$ 成\trBijection），外加一个「新」点 $[(0)]$。
+$\mathbb{A}^1_{\mathbb{C}}$ 上的\trZariskiTopology{}不怎么令人激动：诸\trOpenSet{}
+就是空集，以及 $\mathbb{A}^1_{\mathbb{C}}$ 挖去有限多个\trMaximalIdeal{}所得的集合。
+（它「差点儿」就是\trCofiniteTopology{}（cofinite topology）。注意：诸\trOpenSet{}由它们与
+「传统点」的交所决定；「新」点 $[(0)]$ 只是顺路被捎带着走，这是个好兆头，说明它
+并无大碍。若无视那个「新」点，便能看到 $\mathbb{A}^1_{\mathbb{C}}$ 上的\trTopology{}比
+$\mathbb{C}$ 上的\trClassicalTopology{}更\trCoarse。）
+
+\begin{exercise}\label{ex:topological-space-a1k}
+描述\trTopologicalSpace{} $\mathbb{A}^1_k$（参看\cref{ex:spec-kx-infinite}）。
+（注意：那个奇怪的
+新点 $[(0)]$ 「贴近每一个其他的点」——每个点的每个\trNeighborhood{}都含有 $[(0)]$。
+这是这类新点的通性；参看\cref{ex:generic-point-near-every-point}。）
+\end{exercise}
+
+$\Spec\mathbb{Z}$ 的情形类似：\trTopology{}以同样的方式「差点儿」是\trCofiniteTopology{}。
+诸\trOpenSet{}
+是空集，以及 $\Spec\mathbb{Z}$ 挖去有限多个「寻常」素数（即诸点 $(p)$，其中 $p$
+为素数）所得的集合。
+
+\textbf{3.4.5.}\ \emph{$\mathbb{A}^2_{\mathbb{C}}$ 的闭子集。}\quad
+$\mathbb{A}^2_{\mathbb{C}}$ 的情形更有意思。你应当把「一维\trPrimeIdeal」究竟怎样
+嵌入这幅图景想透彻。在\cref{ex:prime-ideals-cxy}中，我们已把 $\mathbb{C}[x,y]$ 的
+全部\trPrimeIdeal（即 $\mathbb{A}^2_{\mathbb{C}}$ 的点）认定为：诸\trMaximalIdeal{}
+$[(x-a,\,y-b)]$（其中 $a,\,b\in\mathbb{C}$——「零维点」）、「一维点」$[(f(x,y))]$
+（其中 $f(x,y)$ 是\trIrreducible{}的），以及「二维点」$[(0)]$。
+
+于是，诸\trClosedSubset{}都具如下形状：
+(a)~整个空间（「二维点」$[(0)]$ 的闭包）；
+(b)~有限条（也可以没有）「曲线」（每条都是一个「一维点」的闭包——即这个「一维点」
+连同「躺在其上」的诸「零维点」），以及有限个（也可以没有）「零维」点（我们很快会
+称之为「\trClosedPoint」；见定义~3.6.8）。
+
+要不了多久，我们就会有足够的工具用一般理论来验证这件事；但你现在就可以亲证它，
+用的是\cref{ex:prime-ideals-cxy}中的想法。（关键想法：若 $f(x,y)$ 与 $g(x,y)$ 是
+互不为彼此倍数的\trIrreducible{}多项式，为什么它们的\trZeroSet{}只会交于有限多个点？）
+
+\textbf{3.4.6.\ 重要事实：环的映射诱导诸\trTopologicalSpace{}之间的\trContinuousMap。}\quad
+我们在 \S3.2.10 中曾看到，环的映射 $\phi\colon B\to A$ 诱导集合的映射
+$\pi\colon\Spec A\to\Spec B$。
+
+\begin{exercise}[重要而容易的练习]\label{ex:ring-maps-continuous-maps}
+通过证明\trClosedSet{}经拉回仍是\trClosedSet，证明 $\pi$ 是一个\trContinuousMap。
+请把 $\Spec$ 解读为一个\trContravariantFunctor{} $\catRings\to\catTop$。
+\end{exercise}
+
+并非一切\trContinuousMap{}都能由此产生。例如，考虑 $\mathbb{A}^1_{\mathbb{C}}$ 上的%
+\trContinuousMap：它在其余各点处均为恒等，唯独把 $0$ 与 $1$（即 $[(x)]$ 与
+$[(x-1)]$）对调；没有哪个多项式能完成这桩妙技。
+
+在 \S3.2.10 中，我们曾看到 $\Spec B/I$ 与 $\Spec S^{-1}B$ 自然地是 $\Spec B$ 的
+子集。一个自然的问题是：\trZariskiTopology{}对这些包含关系是否表现良好？而它确实
+表现良好。
+
+\begin{exercise}[重要练习；参看\cref{ex:inclusion-quotient-localization}]
+\label{ex:subspace-topology-inclusions}
+设 $I\subset B$ 是一个\trIdeal，$S\subset B$ 是一个\trMultiplicativeSubset。
+(a)~证明 $\Spec B/I$ 自然地是 $\Spec B$ 的一个\trClosedSubset。若
+$S=\{1,f,f^2,\dots\}$（$f\in B$），证明 $\Spec S^{-1}B$ 自然地是 $\Spec B$ 的一个%
+\trOpenSubset。证明：对任意的 $S$，$\Spec S^{-1}B$ 未必是开的，也未必是闭的。（提示：
+$\Spec\mathbb{Q}\subset\Spec\mathbb{Z}$，或者也可参看图~\ref{fig:shred-of-a2}。）
+
+(b)~证明 $\Spec B/I$（相应地，$\Spec S^{-1}B$）上的\trZariskiTopology，就是由其在
+$\Spec B$ 中的包含所诱导的\trSubspaceTopology{}（subspace topology）。（提示：比较诸%
+\trClosedSubset。）
+\end{exercise}
+
+\textbf{3.4.7.}\quad 特别地，若 $I\subset\mathfrak{N}$ 是由\trNilpotent{}元组成的%
+\trIdeal，则\trBijection{} $\Spec B/I\to\Spec B$（\cref{ex:nilpotents-and-nilradical}）
+是一个\trHomeomorphism。于是，\trNilpotent{}元并不影响这个\trTopologicalSpace
+（差别将体现在\trStructureSheaf{}之中。）
+
+\begin{exercise}[日后有用的练习]\label{ex:vanish-on-vi-radical}
+设 $I\subset B$ 是一个\trIdeal。证明：$f$ 在 $V(I)$ 上消失，当且仅当
+$f\in\sqrt{I}$（即 $f^n\in I$，对某个 $n\ge 1$）。（提示：%
+\cref{ex:radical-intersection-primes}。若你卡住了，等见到\cref{ex:distinguished-open-inclusion} 时还会得到
+一条提示。）
+\end{exercise}
+
+\begin{exercise}[容易的练习；参看\cref{ex:small-schemes-dual-numbers}]
+\label{ex:topological-space-kx-p}
+描述\trTopologicalSpace{} $\Spec k[x]_{(x)}$。
+\end{exercise}

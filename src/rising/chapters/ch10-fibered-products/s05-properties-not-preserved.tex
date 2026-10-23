@@ -1,0 +1,241 @@
+
+\section{\hard\ 基变换下不保持的性质及其补救}
+
+上一节里我们看到：态射的许多有用的性质都在\trBaseChange{}下保持。事实上，「在\trBaseChange{}下保持」本身就是任何「合理」的态射类所应具备的性质之一（\S8.1）。但有些看上去合理的观念并不在\trBaseChange{}下保持；本节就来讨论如何对它们加以恰当的改造，使之得到保持。我们这样做并非为了自娱，而是因为由此得到的观念在自然界中确会出现，而且事后回想，它们或许才是我们一开始就该采用的那套观念。
+
+这一问题的「泛」补丁如下。设 $\mathrm{P}$ 是概形的某条性质。若概形之间的一个\trMorphism{}在任意\trBaseChange{}之下都保持性质 $\mathrm{P}$，就称它是\textbf{泛} $\mathrm{P}$（universally $\mathrm{P}$）的。于是，泛 $\mathrm{P}$ 态射所成之类便在\trBaseChange{}下保持。（你能看出这是为什么吗？）
+
+一个重要的例子（\S11.4）是\textbf{\trUniversallyClosed{}}（universally closed）\trMorphism{}的观念。另一个例子是\textbf{\trUniversallyInjective{}}（universally injective）\trMorphism，它被证明推广了（并且「几何化」了）\trPurelyInseparable{}（purely inseparable）的\trFieldExtension（\S10.5.4）。
+
+「泛 $\mathrm{P}$」态射的一个问题在于：先验地判定一个给定的\trMorphism{}是否泛 $\mathrm{P}$ 很困难——你似乎不得不对这个\trMorphism{}的每一次\trBaseChange{}逐一检验。因此，寻找别的等价判别法就成了一件要紧事。
+
+\textbf{10.5.1.\ \trGeometricFiber{}。}\quad 有一些观念，凭你的几何直觉，你本有理由期待它们在\trPullback{}下保持。在拓扑范畴中给定一个族，它的纤维在拉回时的表现是合理的。例如，一个所有纤维都\trIrreducible{}的族，其任何拉回也都具有这条性质；\trConnected{}的情形亦然。遗憾的是，在代数几何中这两条都会落空，例~10.2.3 便表明了这一点：
+\begin{equation*}\tag{10.5.1.1}\label{eq:geometric-fibers-pullback-square}
+\begin{tikzcd}[row sep=2.6em, column sep=4.4em]
+\Spec\mathbb{C}\amalg\Spec\mathbb{C} \ar[r] \ar[d] & \Spec\mathbb{C} \ar[d] \\
+\Spec\mathbb{C} \ar[r] & \Spec\mathbb{R}
+\end{tikzcd}
+\end{equation*}
+右边的族（那条竖直的\trMap）具有\trIrreducible{}且\trConnected{}的纤维，而左边的那个则不然。同一个例子还表明「\trIntegral{}纤维」这一观念在\trPullback{}下同样表现不佳。而且我们在 \S10.4.1 中正是用它证明了单射性并不在\trBaseChange{}下保持。
+
+\textbf{10.5.A.（练习）}\quad 设 $k$ 是特征为 $p$ 的一个\trField，于是 $k(u)/k(u^p)$ 是一个\trPurelyInseparable{}的\trFieldExtension。通过考虑 $k(u)\otimes_{k(u^p)}k(u)$，证明「既约纤维」这一观念在\trPullback{}下未必表现良好。（我们很快会看到，这只在特征 $p$ 且有不可分性在场的情形下才会发生。）
+
+我们如下补救这一问题。
+
+\textbf{10.5.2.}\quad 概形 $X$ 的一个\textbf{\trGeometricPoint{}}（geometric point）定义为\trMorphism{} $\Spec k\to X$，其中 $k$ 是一个\trAlgClosedField。尴尬的是：这已经是概形的第三种「点」了！有平平无奇的点，即\trUnderlyingSet{}的元素；有 $\mathbb{Z}$-\trValuedPoint（$\mathbb{Z}$ 是一个概形），即\trMap{} $\mathbb{Z}\to X$（\S7.3.10）；还有\trGeometricPoint{}。\trGeometricPoint{}显然是概形值点的一种风味，但它同时也是（普通）点的充实版：它是一组数据，由一个点连同该点的\trResidueField{}在一个\trAlgClosedField{}中的包含关系构成。
+
+\trMorphism{} $X\to Y$ 的一个\textbf{\trGeometricFiber{}}（geometric fiber）定义为 $Y$ 的某个\trGeometricPoint{}之上的\trFiber，也就是与\trGeometricPoint{} $\Spec k\to Y$ 作\trFiberProduct。如果一个\trMorphism{}的一切\trGeometricFiber{}都连通（相应地，不可约、整、既约），就说它具有\textbf{连通（相应地，不可约、整、既约）\trGeometricFiber{}}。人们通常说这个\trMorphism{}具有\textbf{\trGeometricallyConnected{}}（geometrically connected；相应地，\textbf{\trGeometricallyIrreducible{}}、\textbf{几何整}、\textbf{\trGeometricallyReduced{}}）的纤维。一个 $k$-\trScheme{} $X$ 称为\trGeometricallyConnected{}（相应地，\trGeometricallyIrreducible{}、几何整、\trGeometricallyReduced{}）的，若\trStructureMorphism{} $X\to\Spec k$ 具有\trGeometricallyConnected{}（相应地，不可约、整、既约）的纤维。我们很快会看到：要检验这些条件中的任何一个，只需对 $\overline{k}$ 作\trBaseChange{}即可。
+
+（警示：在另一些文献里，「\trGeometricPoint{}」定义中的「代数闭」会被换成「\trSeparablyClosed{}」（separably closed）。）
+
+\textbf{10.5.B.（练习）}\quad 证明：「连通（相应地，不可约、整、既约）\trGeometricFiber{}」这一观念在\trBaseChange{}下表现良好。
+
+\textbf{10.5.C.（算术取向读者的练习）}\quad 证明：对\trMorphism{} $\Spec\mathbb{C}\to\Spec\mathbb{R}$ 而言，所有的\trGeometricFiber{}都由两个既约的点组成。（试与例~10.2.3 比较。）于是 $\Spec\mathbb{C}$ 是一个\trGeometricallyReduced{}但并非\trGeometricallyIrreducible{}的 $\mathbb{R}$-\trScheme。
+
+\textbf{10.5.D.（容易的练习）}\quad 举出满足下列条件的 $k$-\trScheme{}的例子：
+\begin{enumerate}[label=(\alph*)]
+  \item 既约，却不\trGeometricallyReduced{}；
+  \item 连通，却不\trGeometricallyConnected{}；
+  \item 整，却不几何整。
+\end{enumerate}
+
+\textbf{10.5.E.（为使几何工作者信服\trGeometricFiber{}之意义而设的练习）}\quad 回想例~10.3.4：抛物线 $y^2=x$ 到 $x$-轴的投射，对应于环映射 $\mathbb{Q}[x]\to\mathbb{Q}[y]$，$x\mapsto y^2$。证明：这个\trMap{}的\trGeometricFiber{}总是两个点，唯有「在 $0=[(x)]$ 之上」的那些\trGeometricFiber{}除外。（注意：$\Spec\mathbb{C}\to\Spec\mathbb{Q}[x]$ 与 $\Spec\overline{\mathbb{Q}}\to\Spec\mathbb{Q}[x]$ 这两者都对应于 $x\mapsto 0$ 的环映射，因而都是在「$0$ 之上」的\trGeometricPoint{}。）
+
+要检验一个 $k$-\trScheme{}是否\trGeometricallyConnected{}等等，看上去挺烦人：你得对包含 $k$ 的每一个\trAlgClosedField{}逐一检验。然而，在这四种情形的每一种里，\trGeometricFiber{}之良好行为的失效，都只需经过某次\trFinite{}的\trFieldExtension{}便能被检测出来。例如，$\Spec\mathbb{Q}(i)\to\Spec\mathbb{Q}$ 不是\trGeometricallyConnected{}的，而且事实上只需以 $\Spec\mathbb{Q}(i)$ 作\trBaseChange{}便可看出这一点。我们把它精确陈述如下。
+
+设 $X$ 是一个 $k$-\trScheme。若 $K/k$ 是一个\trFieldExtension，令 $X_K=X\times_k\Spec K$。考虑以下十二条形如「对一切满足［条件］的域 $K$，$X_K$ 都是［性质］」的陈述：
+\begin{itemize}
+  \item $(C_K)$、$(C_{K=\overline{K}})$、$(C_{\overline{k}})$、$(C_{k^s})$，
+  \item $(I_K)$、$(I_{K=\overline{K}})$、$(I_{\overline{k}})$、$(I_{k^s})$，
+  \item $(R_K)$、$(R_{K=\overline{K}})$、$(R_{\overline{k}})$、$(R_{k^p})$。
+\end{itemize}
+这里 $C$ 表示「连通」，$I$ 表示「不可约」，$R$ 表示「既约」。又，$k^s$ 是 $k$ 的\trSeparablyClosed{}闭包（separable closure），$k^p$ 是 $k$ 的\trPerfectClosure{}（perfect closure）。若 $\operatorname{char}k=0$，则 $\overline{k}=k^s$ 且 $\overline{k}=k^p$，于是日子简单些。
+
+于是，$(C_K)$ 意即「对一切域 $K$，$X_K$ 连通」，$(I_{\overline{k}})$ 意即「$X_{\overline{k}}$ 不可约」，$(R_{k^p})$ 意即「$X_{k^p}$ 既约」。\trGeometricallyConnected{}（相应地，\trGeometricallyIrreducible{}、\trGeometricallyReduced{}）译成这套记号便是 $(C_{K=\overline{K}})$（相应地，$(I_{K=\overline{K}})$、$(R_{K=\overline{K}})$）。
+
+平凡地，$(C_K)$ 蕴含 $(C_{K=\overline{K}})$，后者又蕴含 $(C_{\overline{k}})$；而 $(C_K)$ 蕴含 $(C_{k^s})$。把「连通」换成「不可约」与「既约」，同理（作相应的改动）。（见图~\ref{fig:connectedness-conditions}。）
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzcd}[row sep=3.2em, column sep=4.8em]
+(C_K) \ar[r, bend right=28] \ar[d] \ar[dr] & (C_{K=\overline{K}}) \ar[l, dotted, bend right=28] \ar[dl] \\
+(C_{\overline{k}}) \ar[r, dotted] & (C_{k^s})
+\end{tikzcd}
+\caption{日后将被证明为等价的诸\trConnected{}性条件（实线箭头是平凡的，虚线箭头对应\mbox{练习~10.5.F}）。（依原书手绘图重绘。）}%
+\label{fig:connectedness-conditions}
+\end{figure}
+
+\vkexsync{F}
+\begin{exercise}\label{ex:geometric-fiber-condition-implications}
+\begin{enumerate}[label=(\alph*)]
+  \item 设 $E/F$ 是一个\trFieldExtension，而 $A$ 是一个 $F$-\trAlgebra。证明：$A$ 是 $A\otimes_F E$ 的一个\trSubalgebra。（提示：把它们都看作 $F$ 上的\trVectorSpace。）
+  \item 证明：$(C_{K=\overline{K}})$ 蕴含 $(C_K)$，而 $(C_{\overline{k}})$ 蕴含 $(C_{k^s})$。
+  \item 证明：$(I_{K=\overline{K}})$ 蕴含 $(I_K)$，而 $(I_{\overline{k}})$ 蕴含 $(I_{k^s})$。
+  \item 证明：$(R_{K=\overline{K}})$ 蕴含 $(R_K)$，而 $(R_{\overline{k}})$ 蕴含 $(R_{k^p})$。
+\end{enumerate}
+\end{exercise}
+
+于是，举例来说，一个 $k$-\trScheme{}是几何整的，当且仅当它在任何\trFieldExtension{}下都保持为整。因此「几何整」就意味着「泛的整纤维」。
+
+\textbf{10.5.3.\ 更难事实。}\quad 实际上，$(C_K)$ 到 $(C_{k^s})$ 的诸条件全都等价；另外两条性质（把连通换成不可约与既约）同理——在既约的情形，以 $k^p$ 代替 $k^s$。我们把解释推迟到本节末尾的双星讨论（\S10.5.5）中。初读时，你或许只想读关于连通性的推论~10.5.12、关于不可约性的命题~10.5.15、关于既约性的命题~10.5.22，以及关于簇的命题~11.2.11，然后用它们去解\mbox{练习~10.5.Q}。日后你可以回头再读那些证明，其中包含一些把「域上一般概形的问题」化归为「有限型概形的问题」的有用技巧。
+
+下面的练习或许能帮助哪怕是几何取向的读者领会这些观念的用处。（这个练习里的维数 $2$ 与次数 $4$ 都没有什么要紧之处！）
+
+\textbf{10.5.G.}\ \hard\ \textbf{（练习）}\quad 回想注记~4.5.3：$\mathbb{P}^2_k$ 中的四次曲线由一个 $\mathbb{P}^{14}_k$ 所参数化。（这在 \S25.3.5 中会精确得多。）证明：$\mathbb{P}^{14}_k$ 中对应于几何整曲线的那些点构成一个\trOpenSubset。解释修饰语「几何」的必要性（即便 $k$ 是\trAlgClosed{}的，也照样需要）。
+
+\textbf{10.5.4.\ \trUniversallyInjective{}（$=$ 根性）\trMorphism。}\quad 如 \S10.4.1 所评述，单射性并不在\trBaseChange{}下保持。一个更好的观念是\trUniversallyInjective{}\trMorphism：在任意\trBaseChange{}之后都是集合单射的\trMorphism。为了沿用传统的农学术语（层、芽……；试比较注记~2.4.3），这些\trMorphism{}被命名为\textbf{根性}（radicial）的——得名于萝卜（radish）。\footnote{译注：radicial（根性的）与 radish（萝卜）同出拉丁词根 radix（根）。}举一个头号例子：一切\trLocally\trClosedEmbedding{}都是\trUniversallyInjective{}的（因为它们是单射，而且在任何\trBaseChange{}之后仍是\trLocally\trClosedEmbedding）。如果你愿意，还可以更一般地证明：一切\trMonomorphism{}都是\trUniversallyInjective{}的。（提示：证明\trMonomorphism{}是单射，并且\trMonomorphism{}之类在\trBaseChange{}下保持。）
+
+设你想判定一个给定的\trMorphism{}是否\trUniversallyInjective{}。集合的\trMap{}是单射的，当且仅当每根\trFiber{}至多含一个点。而「\trBaseChange{}的\trFiber{}就是\trFiber{}的\trBaseChange」（\mbox{练习~10.3.C}）。此外，概形论纤维的\trUnderlyingSet{}就是底集合上的映射的纤维。于是，\trUniversallyInjective{}性的问题便化成了一个域论问题。我们先在\mbox{练习~10.5.H}中把域论问题精确化，然后在\mbox{练习~10.5.I}中把这里的问题精确化。沿途我们将会看到，\trUniversallyInjective{}性何以是「\trPurelyInseparable{}域扩张」这一观念的代数几何式推广。
+
+\textbf{10.5.H.（练习）}\quad 设 $E/F$ 是一个\trFieldExtension，诱导出 $\phi\colon\Spec E\to\Spec F$。
+
+(a)~若 $E$ 含有一个在 $F$ 上超越的元素 $x$，证明 $\phi$ 不是\trUniversallyInjective{}的。提示：\mbox{练习~10.2.L}（关于 $k(x)\otimes_k k(y)$）以及\trCartesianDiagram
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.6em]
+? \ar[r] & \Spec F(x)\otimes_F F(y) \ar[r] & \Spec F(y) \ar[d] \\
+\Spec E \ar[r] \ar[u] & \Spec F(x) \ar[r] \ar[u] & \Spec F
+\end{tikzcd}
+\]
+现在 $\Spec E\to\Spec F(x)$（一个从点到点的\trMap）是满射的，而满射性在\trBaseChange{}下保持（\mbox{练习~10.4.G}(a)）。
+
+(b)~若 $E\setminus F$ 含有一个在 $F$ 上代数（设其\trMinimalPolynomial{}（minimal polynomial）为 $m_x(t)\in F[t]$）且在 $F$ 上可分的元素 $x$，证明 $\phi$ 不是\trUniversallyInjective{}的。提示：\trCartesianDiagram
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.6em]
+? \ar[r] & \Spec F[t]/(m_x(t))\otimes_F\overline{F} \ar[r] & \Spec\overline{F} \ar[d] \\
+\Spec E \ar[r] \ar[u] & \Spec F[t]/(m_x(t)) \ar[r] \ar[u] & \Spec F
+\end{tikzcd}
+\]
+
+(c)~设 $E$ 不含任何上述形态的元素，也就是说，$E/F$ 是\trPurelyInseparable{}扩张（$E$ 的一切元素在 $F$ 上都是代数的，并且其某个 $p^N$ 次幂落在 $F$ 中）。若 $E'/F$ 是任何别的\trFieldExtension，证明 $\Spec E\otimes_F E'$ 恰含一个点。
+
+\textbf{10.5.I.（练习）}\quad 设 $\pi\colon X\to Y$ 是概形之间的一个\trMorphism。证明下述两条等价：
+\begin{enumerate}[label=(\roman*)]
+  \item \trMorphism{} $\pi$ 是\trUniversallyInjective{}的。
+  \item \trMorphism{} $\pi$ 是单射的，并且对每个 $p\in X$，\trFieldExtension{} $\kappa(p)/\kappa(\pi(p))$ 是\trPurelyInseparable{}的。
+\end{enumerate}
+
+你或许已经看出：\trUniversallyInjective{}\trMorphism{}之类还对\trComposition{}保持，并且对目标局部，因而构成一个「合理」类（\S8.1）。无论如何，我们将在 \S11.2.16 中以另一种方式看到这一点。
+
+\textbf{10.5.5.}\ \extrahard\ \textbf{更难事实~10.5.3 的证明。}\quad 我们要用到一个很晚之后才会证明的事实。回想：\trTopologicalSpace{}之间的一个\trMap{}称为\textbf{\trOpen\trMap}，若每个\trOpenSet{}的像都是\trOpenSet。
+
+\textbf{10.5.6.\ 事实（将在定理~24.5.11 中证明）。}\ ——\ \emph{设 $X$ 是一个 $k$-\trScheme。那么 $X\to\Spec k$ 是\textbf{\trUniversallyOpen{}}（universally open）的，即在任意\trBaseChange{}之后仍然是开的。}
+
+我们本可以现在就证明事实~10.5.6，不至于有\emph{太多}麻烦，但凭借平坦性的魔力，它会被轻易得多地推出来。
+
+\textbf{10.5.7.\ \trhLemma{}。}\ ——\ \emph{设\trFieldExtension{} $E/F$ 是\trPurelyInseparable{}的。设 $X$ 是任何一个 $F$-\trScheme。那么 $\phi\colon X_E\to X$ 是一个\trHomeomorphism。}
+
+\emph{证明。}\ \trMorphism{} $\phi$ 是双射，所以我们不妨把 $X$ 与 $X_E$ 的点认同起来。（理由：对 $X$ 的任何一点 $p$，概形论纤维 $\phi^{-1}(p)$ 是单个的点，这由\trPurelyInseparable{}性的定义而来。）\trMorphism{} $\phi$ 是\trContinuous{}的（于是 $X$ 中的\trOpenSet{}在 $X_E$ 中也是开的），而由事实~10.5.6，$\phi$ 是开的（于是 $X_E$ 中的\trOpenSet{}在 $X$ 中也是开的）。\hfill$\square$
+
+\textbf{10.5.8.\ \trConnected{}性。}\quad 回想：\trTopologicalSpace{} $X$ 的一个\trConnectedComponent，就是 $X$ 的一个极大的\trConnected{}子集（\S3.6.12）。
+
+\textbf{10.5.J.（注记~3.6.13 所许诺的练习）}\quad 证明：每个点都含在某个\trConnectedComponent{}之中，并且诸\trConnectedComponent{}都是闭的。（提示：参看\cref{ex:point-in-irreducible-component}的提示。）
+
+\textbf{10.5.K.（容易的拓扑练习）}\quad 设 $\phi\colon X\to Y$ 是开的，并且具有非空的\trConnected{}纤维。证明：$\phi$ 诱导出诸\trConnectedComponent{}之间的一个\trBijection。
+
+\textbf{10.5.9.\ \trhLemma{}。}\ ——\ \emph{设 $X$ 在 $k$ 上\trGeometricallyConnected{}。那么对任何概形 $Y/k$，$X\times_k Y\to Y$ 诱导出诸\trConnectedComponent{}之间的一个\trBijection。}
+
+\emph{证明。}\ 把事实~10.5.6 与\mbox{练习~10.5.K}结合起来。\hfill$\square$
+
+接着而来的是一条反复有用的代数—几何联系（注记~3.6.3 所许诺的）：代数一侧 $X$ 上的幂等函数，对应于几何一侧把 $X$ 分解成两个既开又闭的集合。
+
+\textbf{10.5.L.（\trIdempotent{}-\trConnected{}性套餐）}\quad 证明：概形 $X$ 是不连通的，当且仅当存在一个函数 $e\in\Gamma(X,\OO_X)$，它是异于 $0$ 与 $1$ 的\trIdempotent（$e^2=e$）。（提示：若 $X$ 是两个\trOpenSet{} $X_0$ 与 $X_1$ 的\trDisjointUnion，就令 $e$ 为在 $X_0$ 上取 $0$、在 $X_1$ 上取 $1$ 的那个函数。反过来，给定这样一个幂等元，令 $X_0=V(e)$、$X_1=V(1-e)$。）
+
+\textbf{10.5.10.\ \trhProposition{}。}\ ——\ \emph{设 $k$ 是\trSeparablyClosed{}的，而 $A$ 是一个 $\Spec A$ 连通的 $k$-\trAlgebra。那么 $\Spec A$ 在 $k$ 上\trGeometricallyConnected{}。更一般地，对任何\trFieldExtension{} $K/k$，$\Spec A\otimes_k K$ 连通。}
+
+\emph{证明。}\ 只需设 $K$ 是代数闭的即可（因为 $\Spec A\otimes_k\overline{K}\to\Spec A\otimes_k K$ 是满射的）。选定一个嵌入 $\overline{k}\hookrightarrow K$，并考虑图
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+\Spec A\otimes_k K \ar[r] & \Spec A\otimes_k\overline{k} \ar[r, "\text{同胚}"', "\text{由引理 10.5.7}"] & \Spec A \ar[d] \\
+\Spec K \ar[r] \ar[u] & \Spec\overline{k} \ar[r] \ar[u] & \Spec k
+\end{tikzcd}
+\]
+便只需设 $k$ 是代数闭的即可。
+
+若 $\Spec A\otimes_k K$ 不连通，则 $A\otimes_k K$ 含有一个异于 $0$ 与 $1$ 的幂等元 $e$（由\mbox{练习~10.5.L}）。写 $e=\sum_{i=1}^{N}a_i\otimes\ell_i$，其中 $a_i\in A$、$\ell_i\in K$。令 $B$ 为 $K$ 中由诸 $\ell_i$ 在 $k$ 上生成的子代数（作为代数生成），于是 $B$ 是 $k$ 上一个有限型的\trIntegralDomain。那么 $K(B)$ 是 $k$ 的一个\trFinitelyGenerated{}\trFieldExtension。
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.2em]
+\Spec A\otimes_k K \ar[r] & \Spec A\otimes_k B \ar[r] & \Spec A \ar[d, "\text{\trUniversallyOpen}"] \\
+\Spec K \ar[r] \ar[u] & \Spec B \ar[r] \ar[u] & \Spec k
+\end{tikzcd}
+\]
+此外，$e\in A\otimes_k B$，而且我们记得 $e$ 是一个异于 $0$ 与 $1$ 的幂等元（即便在这个环里也是如此）。把\trIdempotent{}-\trConnected{}性套餐（\mbox{练习~10.5.L}）应用于 $A\otimes_k B$，便知 $\Spec A\otimes_k B$ 不连通，比如说，带有非空的\trOpenSubset{} $U$ 与 $V$，使得 $U\amalg V=\Spec A\otimes_k B$。
+
+现在 $\phi\colon\Spec A\otimes_k B\to\Spec B$ 是一个\trOpen\trMap（因为 $\Spec A\to\Spec k$ 是\trUniversallyOpen{}的，事实~10.5.6），所以 $\phi(U)$ 与 $\phi(V)$ 是 $\Spec B$ 的非空开集。由于 $\Spec B$ 连通，交 $\phi(U)\cap\phi(V)$ 是一个非空开集，它有一个\trClosedPoint{} $p$（其\trResidueField{}为 $k$，因为 $k=\overline{k}$）。但这样一来 $\phi^{-1}(p)\cong\Spec A$，于是我们用两个不交开集覆盖了 $\Spec A$，得出矛盾。\hfill$\square$
+
+\textbf{10.5.11.\ 刚才偷偷使出的「张量有限性」技巧。}\quad 刚才的论证用了一个特别聪明、日后还要再用的技巧：我们凭空变出了一个有限生成的代数 $B$，然后用经典的「代数闭域上的几何」证明了一件远离经典代数几何的事情。让我们得以这么做的是：张量积的任何一个单独的元素（比如上述论证中的 $e$）都是「初等张量」（elementary tensor）的\emph{有限和}，于是我们转而在一个由那些「初等张量」的「各个部分」生成的子环中工作。我们将把它称为\textbf{张量有限性技巧}（tensor-finiteness trick），以便帮助你的注意力落到它还能再度派上用场的地方。
+
+\textbf{10.5.12.\ \trhCorollary{}。}\ ——\ \emph{若 $k$ 是\trSeparablyClosed{}的，而 $Y$ 是一个连通的 $k$-\trScheme，则 $Y$ \trGeometricallyConnected{}。}
+
+\emph{证明。}\ 我们要证明的是：对任何\trFieldExtension{} $K/k$，$Y_K$ 连通。由命题~10.5.10，$\Spec K$ 在 $k$ 上\trGeometricallyConnected{}。在引理~10.5.9 中取 $X=\Spec K$ 即可。\hfill$\square$
+
+\textbf{10.5.13.\ \trIrreducible{}性。}
+
+\textbf{10.5.14.\ \trhProposition{}。}\ ——\ \emph{设 $k$ 是\trSeparablyClosed{}的，$A$ 是一个 $\Spec A$ 不可约的 $k$-\trAlgebra，而 $K/k$ 是一个\trFieldExtension。那么 $\Spec A\otimes_k K$ 不可约。}
+
+\emph{证明。}\ 我们遵循命题~10.5.10 之证明的哲学。如该证明的第一段，只需设 $k$ 是代数闭的。
+
+若 $A\otimes_k K$ 不是不可约的，则可以找到 $x$ 与 $y$，使得 $V(x)$ 与 $V(y)$ 都不等于 $\Spec A\otimes_k K$，而 $V(x)\cup V(y)=\Spec A\otimes_k K$。如命题~10.5.10 之证明的第二段，我们使用「张量有限性技巧」（\S10.5.11）。选取表达式 $x=\sum a_i\otimes\ell_i$ 与 $y=\sum a_j'\otimes\ell_j'$（$a_i$、$a_j'\in A$，$\ell_i$、$\ell_j'\in K$），然后令 $B$ 为 $K$ 中由诸 $\ell_i$ 与 $\ell_j'$ 生成的子环。于是 $B$ 是 $k=\overline{k}$ 上有限生成的\trIntegralDomain，并且 $x$、$y\in A\otimes_k B$。那么 $D(x)$ 与 $D(y)$ 是 $\Spec A\otimes_k B$ 的非空开子集，它们在 $\Spec B$ 中的像是非空开集（由 $\Spec A\to\Spec k$ 的\trUniversallyOpen{}性，事实~10.5.6），于是其交非空，并且含有一个\trClosedPoint{} $p$（其\trResidueField{}为 $k=\overline{k}$）。但这样一来 $\phi^{-1}(p)\cong\Spec A$，于是我们用两个真闭集（$V(x)$ 与 $V(y)$ 的限制）覆盖了 $\Spec A$，得出矛盾。\hfill$\square$
+
+\textbf{10.5.M.（练习）}\quad 设 $k$ 是\trSeparablyClosed{}的，而 $A$ 与 $B$ 是两个 $k$-\trAlgebra，其 Spec 都不可约（即只有一个\trMinimalPrime）。证明：$A\otimes_k B$ 的 Spec 也不可约。（提示：化归到 $A$ 与 $B$ 在 $k$ 上都是有限型的情形。把前一个命题的证明接着往下做。）
+
+\textbf{10.5.N.（容易的练习）}\quad 证明：概形 $X$ 不可约，当且仅当存在一个开覆盖 $X=\bigcup_i U_i$，其中诸 $U_i$ 都不可约，并且对一切 $i$、$j$ 都有 $U_i\cap U_j\neq\varnothing$。
+
+\textbf{10.5.15.\ \trhProposition{}。}\ ——\ \emph{设 $K/k$ 是\trSeparablyClosed{}域上的一个\trFieldExtension，而 $X_k$ 不可约。那么 $X_K$ 不可约。}
+
+\emph{证明。}\ 取 $X_k=\bigcup_i U_i$ 的一个由两两相交的不可约仿射开子集构成的\trOpenCover。每个 $U_i$ 到 $K$ 的\trBaseChange{}由命题~10.5.14 知不可约，并且它们两两相交。于是结论由\mbox{练习~10.5.N}得出。\hfill$\square$
+
+\textbf{10.5.O.（练习：几何整 $\times$ 整 $=$ 整）}\quad 设 $B$ 是一个使 $B\otimes_k\overline{k}$ 为\trIntegralDomain{}的 $k$-\trAlgebra（即 $\Spec B$ 几何整），而 $A$ 是一个作为\trIntegralDomain{}的 $k$-\trAlgebra（即 $\Spec A$ 是整的）。证明：$A\otimes_k B$ 是一个\trIntegralDomain（即 $\Spec A\otimes_k B$ 是整的）。（等我们定义了「\trVariety」之后，这将蕴含：几何整\trVariety{}与\trIntegral{}\trVariety{}的积是一个整的\trVariety。）提示：重温\mbox{练习~10.4.H}的证明。
+
+\textbf{10.5.16.\ \trReducedness。}\quad 我们回忆超越理论（transcendence theory）中的一条陈述（其基础知识在\mbox{练习~12.2.A}中展开）。由于本节带星，我们满足于给出出处而非证明。
+
+\textbf{10.5.17.\ \trhTheorem{}：\trPerfectField{}（perfect field）的有限生成扩张是\trSeparablyGenerated{}的。}\ ——\ \emph{\trPerfectField{}的任何有限生成扩张 $E/F$ 都可以分解为一个有限可分的部分与一个纯超越的部分：}
+\[
+\begin{tikzcd}[row sep=3.2em]
+E \ar[d, "\text{有限可分}"] \\
+F(t_1,\dots,t_n) \ar[d, "\text{纯超越}"] \\
+F
+\end{tikzcd}
+\]
+证明可参看 [E, Cor.~16.17(b)] 或 [van, \S19.7]。若你想自己证明，见\mbox{练习~10.5.P}。
+
+\textbf{10.5.18.}\quad 能够这样分解的有限生成扩张称为\textbf{\trSeparablyGenerated{}}（separably generated）的。\trTranscendenceBase{}（transcendence basis）$\{t_1,\dots,t_n\}$ 称为一个\textbf{\trSeparatingTranscendenceBase{}}（separating transcendence basis）。
+
+\textbf{10.5.P.}\ \extrahard\ \textbf{（定理~10.5.17 的证明）}\quad 设 $E/F$ 是特征为 $p$ 的\trPerfectField{}的一个有限生成扩张。取定 $E/F$ 的一个\trTranscendenceBase{} $\{x_1,\dots,x_d\}$。
+
+(a)~设\trInseparableDegree{}（inseparable degree）$n:=[E:F(x_1,\dots,x_d)]_i>1$。证明：存在 $\alpha\in E$，它在 $F(x_1,\dots,x_d)$ 上\emph{不}可分，使得其\trMinimalPolynomial{} $f\in F(x_1,\dots,x_d)[T]$ 落在 $F[x_1,\dots,x_d,T]$ 中；并证明 $f$ 在 $F[x_1,\dots,x_d,T]$ 中不可约，同时在 $F(x_1,\dots,x_{d-1},T)[x_d]$ 中也不可约。
+
+(b)~对 (a) 中的 $\alpha$ 与 $f$，证明：对某个 $j$ 有 $\partial f/\partial x_j\neq 0$。重新给诸 $x_i$ 编号，使 $j=d$。证明 $\{x_1,\dots,x_{d-1},\alpha\}$ 是 $E$ 在 $F$ 上的一个\trTranscendenceBase{}，并利用\trInseparableDegree{}的乘性证明 $[E:F(x_1,\dots,x_{d-1},\alpha)]_i<n$。
+
+(c)~推出 $E/F$ 的\trSeparatingTranscendenceBase{}的存在性。
+
+\textbf{10.5.19.\ \trhProposition{}（\trGeometricallyReduced{} $\times$ 既约 $=$ 既约）。}\ ——\ \emph{设 $B$ 是一个\trGeometricallyReduced{}的 $k$-\trAlgebra，而 $A$ 是一个既约的 $k$-\trAlgebra。那么 $A\otimes_k B$ 既约。}
+
+（试与\mbox{练习~10.5.O}比较。）
+
+\emph{证明。}\ 用张量有限性技巧（\S10.5.11）化归到 $A$ 在 $k$ 上有限生成的情形。（设有 $x\in A\otimes_k B$ 使 $x^n=0$。设 $x=\sum a_i\otimes b_i$。令 $A'$ 为 $A$ 中由诸 $a_i$ 生成的有限生成子环。那么 $A'\otimes_k B$ 是 $A\otimes_k B$ 的子环。把 $A$ 换成 $A'$。）那么 $A$ 是积 $\prod K_i$ 的一个子环，其中诸 $K_i$ 是 $A$ 的诸\trIrreducibleComponent{}的\trFunctionField。（可以这样看出：$A\to\prod A/\mathfrak{p}_i$ 的\trKernel{}是诸素理想 $\mathfrak{p}_i$ 的交，由定理~3.2.13，它就是幂零元理想 $\mathfrak{N}$；但 $A$ 既约，故 $\mathfrak{N}=0$。而 $A/\mathfrak{p}_i\hookrightarrow K(A/\mathfrak{p}_i)=K_i$，显然。换一种办法，你或许会发现从我们对相伴点的讨论（\S6.6）来看这一点是清楚的。）于是，对 $A$ 为诸域之积的情形证明结果就够了。进而，对 $A$ 是一个域的情形证明结果就够了。但此时由\trGeometricallyReduced{}性的定义便告完成。\hfill$\square$
+
+\textbf{10.5.20.\ \trhProposition{}。}\ ——\ \emph{设 $A$ 是一个既约的 $k$-\trAlgebra。那么：}
+
+\emph{(a)~$A\otimes_k k(t)$ 既约。}
+
+\emph{(b)~若 $E/k$ 是一个\trFinite{}可分\trFieldExtension，则 $A\otimes_k E$ 既约。}
+
+\emph{证明。}\ (a)~显然 $A\otimes_k k[t]$ 既约，而局部化保持既约性（因为既约性是\trStalkLocal{}的，\mbox{练习~5.2.A}）。
+
+(b)~归纳地进行，我们可以设 $E$ 由单个元素生成，其\trMinimalPolynomial{}为 $p(t)$。由张量有限性技巧，可以设 $A$ 在 $k$ 上有限生成。（为什么可以这样做？在这个论证里，那有限多个初等张量是什么？）然后，由命题~10.5.19 之证明中的同一个技巧，可以把 $A$ 换成其诸分量的函数域之积，进而可以设 $A$ 是一个域。但此时 $A[t]/p(t)$ 由 $p$ 的可分性之定义知是既约的。\hfill$\square$
+
+\textbf{10.5.21.\ \trhLemma{}。}\ ——\ \emph{设 $E/k$ 是\trPerfectField{}的一个\trFieldExtension，而 $A$ 是一个既约的 $k$-\trAlgebra。那么 $A\otimes_k E$ 既约。}
+
+\emph{证明。}\ 由张量有限性技巧，可以设 $E$ 在 $k$ 上有限生成。（务必看清这是怎么做到的！）由定理~10.5.17，可以把 $E/k$ 分解成命题~10.5.20(a) 与 (b) 两种形式的\trExtension。然后应用命题~10.5.20。\hfill$\square$
+
+\textbf{10.5.22.\ \trhProposition{}。}\ ——\ \emph{设 $E/k$ 是\trPerfectField{}的一个\trFieldExtension，而 $X$ 是一个既约的 $k$-\trScheme。那么 $X_E$ 既约。}
+
+\emph{证明。}\ 化归到 $X$ 仿射的情形。用引理~10.5.21。\hfill$\square$
+
+\textbf{10.5.23.\ \trhCorollary{}。}\ ——\ \emph{设 $k$ 是完全的，而 $A$ 与 $B$ 是既约的 $k$-\trAlgebra。那么 $A\otimes_k B$ 既约。}
+
+\emph{证明。}\ 由引理~10.5.21，$A$ 是一个\trGeometricallyReduced{}的 $k$-\trAlgebra。然后应用命题~10.5.19\footnote{原书此处作「引理~10.5.19」（10.5.19 实为命题），当系「命题」之误，径改。——译者注}。\hfill$\square$
+
+\textbf{10.5.Q.（练习：补全更难事实~10.5.3）}\quad 证明：$(R_{k^p})$ 蕴含 $(R_K)$，$(I_{k^s})$ 蕴含 $(I_K)$，而 $(C_{k^s})$ 蕴含 $(C_K)$。
+
+\textbf{10.5.R.（练习）}\quad 设 $A$ 与 $B$ 是两个同为 $\overline{k}$-\trAlgebra{}的\trIntegralDomain。证明：$A\otimes_{\overline{k}}B$ 是一个\trIntegralDomain。（试与\mbox{练习~10.4.H}比较，那里带有有限型的假设。）

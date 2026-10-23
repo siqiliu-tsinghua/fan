@@ -1,0 +1,826 @@
+
+\section{同伦幺元的代数框架}
+\label{sec:3-3}
+
+第 3.5 节将构造与拉格朗日子流形相伴的滤过 $A_\infty$ 代数。一般而言，
+我们不知道这个滤过 $A_\infty$ 代数是否具有定义 3.2.20 (3) 意义下的幺元；
+不过，第 7.3 节将说明它具有同伦幺元\liftIndexRangeStart{I099}\liftIndex{I102}。
+本节给出同伦幺元的代数定义；与拉格朗日子流形相伴的 $A_\infty$ 代数之同伦幺元，
+将在第 7.3 节中给出几何实现。第 3.3.2 小节还将定义保持幺元（相应地，保持同伦幺元）
+的含幺（相应地，同伦含幺）$A_\infty$ 同态。
+
+\subsection{同伦幺元的定义}
+\label{subsec:3-3-1}
+
+令 $(C,\mathfrak m)$ 为滤过 $A_\infty$ 代数。（我们主要取
+$\Lambda_{0,\mathrm{nov}}$ 为系数环，但下面的框架显然也适用于 $R$ 上无滤过的
+$A_\infty$ 代数。）这里不假设它含幺。
+
+先准备一些记号。以 $B_k(B(C[1]))$ 表示 $k$ 个 $B(C[1])$ 的张量积，并置
+\[
+  B(B(C[1]))
+  =\bigoplus_{k\geq1}B_k(B(C[1]))
+  =B(C[1])\oplus
+  \bigl(B(C[1])\otimes B(C[1])\bigr)\oplus\cdots .
+\]
+令 $\widehat B(\widehat B(C[1]))$ 为 $B(B(C[1]))$ 关于能量滤过的完备化。
+为了区分 $B(C[1])$ 内部的张量积与 $B(B(C[1]))$ 中的张量积，我们把后者记作
+$\mathbin{\overline\otimes}$，并用粗体字母 $\mathbf x$ 等表示 $B(C[1])$ 的元素。
+例如，$x_1\otimes x_2$ 属于 $B_2(C[1])$，而
+$\mathbf x_1\mathbin{\overline\otimes}\mathbf x_2$ 属于
+$B_2(B(C[1]))$。若
+\[
+  \mathbf x_i=x_{i,1}\otimes\cdots\otimes x_{i,\ell_i}
+  \in B_{\ell_i}(C[1]),
+\]
+则
+\[
+\begin{gathered}
+  \mathbf x_1\mathbin{\overline\otimes}\cdots
+  \mathbin{\overline\otimes}\mathbf x_k\in B_k(B(C[1])),\\
+  \mathbf x_1\otimes\cdots\otimes\mathbf x_k
+  \in B_{\ell_1+\cdots+\ell_k}(C[1]),
+\end{gathered}
+\]
+而且
+\[
+  \mathbf x_1\otimes\cdots\otimes\mathbf x_k
+  =x_{1,1}\otimes x_{1,2}\otimes\cdots\otimes x_{1,\ell_1}
+  \otimes x_{2,1}\otimes\cdots\otimes x_{k,\ell_k}.
+\]
+
+现在置
+\begin{equation}
+  C^+=C\oplus\Lambda_{0,\mathrm{nov}}\mathbf e^+
+  \oplus\Lambda_{0,\mathrm{nov}}\mathbf f,
+  \tag{3.3.1}\label{eq:3-3-1}
+\end{equation}
+其中 $\deg\mathbf e^+=0$、$\deg\mathbf f=-1$；这里的次数是移位前次数。
+
+\begin{definition}{3.3.2}\label{def:3-3-2}
+令 $(C,\mathfrak m)$ 为 $A_\infty$ 代数。若元素
+$\mathbf e\in C^0=C[1]^{-1}$ 具有如下性质，就称它是
+$(C,\mathfrak m)$ 的\emph{同伦幺元}：存在保持能量滤过、次数为 $3-2k$ 的映射
+\[
+  \mathfrak h_k\colon B_k(B(C[1]))\longrightarrow C[1],
+  \qquad k=1,2,\ldots,
+\]
+使得
+\begin{equation}
+  \mathfrak h_1=\mathfrak m,
+  \tag{3.3.3}\label{eq:3-3-3}
+\end{equation}
+并使下面的 $(C^+,\mathfrak m^+)$ 成为定义 3.2.20 (3) 意义下以
+$\mathbf e^+\in C^+[1]^{-1}$ 为幺元的 $A_\infty$ 代数。这里的 $C^+$ 如
+\eqref{eq:3-3-1}，而 $\mathfrak m^+$ 定义如下：对 $x\in C^+$，
+\begin{equation}
+\begin{gathered}
+  \mathfrak m_2^+(\mathbf e^+,x)
+  =(-1)^{\deg x}\mathfrak m_2^+(x,\mathbf e^+)=x,\\
+  \mathfrak m_k^+(\ldots,\mathbf e^+,\ldots)=0,
+  \qquad k\ne2,
+\end{gathered}
+\tag{3.3.4}\label{eq:3-3-4}
+\end{equation}
+并且
+\begin{equation}
+\begin{aligned}
+  &\mathfrak m^+
+  (\mathbf x_1\otimes\mathbf f\otimes\mathbf x_2
+  \otimes\mathbf f\otimes\cdots\otimes\mathbf f\otimes\mathbf x_k)\\
+  &\qquad={}
+  \mathfrak h_k(\mathbf x_1\mathbin{\overline\otimes}\cdots
+  \mathbin{\overline\otimes}\mathbf x_k),
+\end{aligned}
+\tag{3.3.5.1}\label{eq:3-3-5-1}
+\end{equation}
+但 $k=2$ 且
+$\mathbf x_1,\mathbf x_2\in\Lambda_{0,\mathrm{nov}}
+(=\Lambda_{0,\mathrm{nov}}\cdot1)$ 时除外。在后一情形，置
+\begin{equation}
+  \mathfrak m_1^+(\mathbf f)
+  =\mathbf e^+-\mathbf e
+  +\mathfrak h_2(1\mathbin{\overline\otimes}1),
+  \tag{3.3.5.2}\label{eq:3-3-5-2}
+\end{equation}
+并要求
+\begin{equation}
+  \mathfrak h_2(1\mathbin{\overline\otimes}1)
+  \equiv0\pmod{\Lambda^+_{0,\mathrm{nov}}C^+}.
+  \tag{3.3.5.3}\label{eq:3-3-5-3}
+\end{equation}
+还假定 $\mathfrak m_k^+$ 满足 (3.2.13)。换言之，假定
+\[
+  \mathfrak h_k\bmod\Lambda^+_{0,\mathrm{nov}}\colon
+  B_k(B(\overline C[1]))\otimes_RR[e,e^{-1}]
+  \longrightarrow\overline C[1]\otimes_RR[e,e^{-1}]
+\]
+由一个 $R$-模同态
+\begin{equation}
+  \overline{\mathfrak h}_k\colon
+  B_k(B(\overline C[1]))\longrightarrow\overline C[1]
+  \tag{3.3.6}\label{eq:3-3-6}
+\end{equation}
+诱导。
+\end{definition}
+
+称满足 (3.3.3)--(3.3.6) 的 $(C,\mathfrak m)$ 为\emph{带同伦幺元的滤过
+$A_\infty$ 代数}，或简称\emph{同伦含幺滤过 $A_\infty$ 代数}
+\liftIndexRangeEnd{I099}。
+
+\begin{remark}{3.3.7}\label{rem:3-3-7}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.8em]
+  \item 若把 $\mathbin{\overline\otimes}$ 的次数计作
+  $\deg'\mathbin{\overline\otimes}=-2$（即 $\mathbf f$ 的移位次数），
+  则算子 $\mathfrak h_k$ 总是次数 $+1$ 的。
+
+  \item 下面说明同伦幺元定义的几何来源。令 $(X,x_0)$ 为带基点空间，并假设存在
+  乘法结构 $\mathord\cdot\colon X\times X\to X$，它在
+  $\{x_0\}\times X$ 与 $X\times\{x_0\}$ 上的限制都同伦于恒等映射
+  （换言之，$X$ 是 $H$-空间）。令
+  \[
+  \begin{aligned}
+    H_1&\colon\{x_0\}\times X\times[0,1]\longrightarrow X,\\
+    H_2&\colon X\times\{x_0\}\times[0,1]\longrightarrow X
+  \end{aligned}
+  \]
+  分别为这样的同伦，即
+  \[
+  \begin{gathered}
+    H_1(x_0,x,1)=H_2(x,x_0,1)=x,\\
+    H_1(x_0,x,0)=x_0\mathbin{\cdot}x,\qquad
+    H_2(x,x_0,0)=x\mathbin{\cdot}x_0.
+  \end{gathered}
+  \]
+  那么 $x_0$ 是同伦幺元。取不交并 $X\sqcup[0,1]$，再把 $x_0$ 与 $0$
+  识别，也就是置
+  \[
+    X_+=X\sqcup[0,1]/(x_0\sim0).
+  \]
+  把乘法延拓成 $\mathord\cdot\colon X_+\times X_+\to X_+$：若
+  $s,s'\in[0,1]$ 且 $x,x'\in X$，则令
+  \[
+    s\mathbin{\cdot}x'=H_1(x_0,x',s),\qquad
+    x\mathbin{\cdot}s'=H_2(x,x_0,s').
+  \]
+  因而 $1\cdot x=x\cdot1=x$，即 $1$ 是幺元。定义 3.3.2 中
+  $(C^+,\mathfrak m^+)$ 的构造正是这个构造的代数版本。更准确地说，至少在经典层面，
+  上面的观察给出了同伦幺元的几何含义。在这里，(3.3.5.1) 中含有
+  $\mathfrak h_2(1\mathbin{\overline\otimes}1)$ 的公式，也就是
+  (3.3.5.2)，并不出现。第 7.3 节将更详细地解释滤过 $A_\infty$ 代数中
+  $\mathfrak h_2(1\mathbin{\overline\otimes}1)$ 一项的几何含义。
+
+  \item 定义 3.3.2 中映射族 $\mathfrak h$ 的选择并不唯一，所以
+  $(C^+,\mathfrak m^+)$ 不能由 $(C,\mathfrak m)$ 唯一确定。不过我们将证明，
+  $(C^+,\mathfrak m^+)$ 作为滤过 $A_\infty$ 代数的同伦等价类
+  （见第 4.2 节）由 $(C,\mathfrak m)$ 唯一确定。事实上，
+  $(C^+,\mathfrak m^+)$ 与 $(C,\mathfrak m)$ 作为滤过 $A_\infty$ 代数同伦等价；
+  见引理 4.2.55 和命题 4.2.52。在这个意义下，可以把 $C$ 看作类似于
+  $C^+$ 的一个形变收缩核。
+\end{enumerate}
+\end{remark}
+
+$(C^+,\mathfrak m^+)$ 的 $A_\infty$ 公式蕴含映射 $\mathfrak h_k$ 之间的若干关系。
+现在把这些关系明确写出。定义
+\[
+\begin{aligned}
+  \widehat{\mathfrak h}_k&\colon
+  B(B(C[1]))\longrightarrow B(B(C[1])),\\
+  \widehat{\mathfrak h}&\colon
+  B(B(C[1]))\longrightarrow B(B(C[1]))
+\end{aligned}
+\]
+如下。令
+$\Delta\colon B(C[1])\to B(C[1])\otimes B(C[1])$ 为余积。对 $k\geq2$，置
+\[
+\begin{aligned}
+ &\widehat{\mathfrak h}_k
+ (\mathbf x_1\mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_n)\\
+ &={}\sum_{a,b,i}
+ (-1)^{\deg'\mathbf x_1+\cdots+\deg'\mathbf x_{i-1}
+ +\deg'\mathbf x'_{i,a}}\,
+ \mathbf x_1\mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_{i-1}\\
+ &\quad{}\mathbin{\overline\otimes}
+ \Bigl(
+ \mathbf x'_{i,a}\otimes
+ \mathfrak h_k(
+ \mathbf x''_{i,a}\mathbin{\overline\otimes}\mathbf x_{i+1}
+ \mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_{i+k-2}
+ \mathbin{\overline\otimes}\mathbf x'_{i+k-1,b})
+ \otimes\mathbf x''_{i+k-1,b}
+ \Bigr)\\
+ &\quad{}\mathbin{\overline\otimes}\mathbf x_{i+k}
+ \mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_n,
+\end{aligned}
+\]
+其中
+\[
+  \Delta\mathbf x_i
+  =\sum_a\mathbf x'_{i,a}\otimes\mathbf x''_{i,a}.
+\]
+注意，$\widehat{\mathfrak h}_k$ 把 $B_n(B(C[1]))$ 映到
+$B_{n-k+1}(B(C[1]))$；这是因为上面第三行括号内的
+$\otimes$ 并不是 $\mathbin{\overline\otimes}$。这里 $\deg'$ 是移位后次数：
+若 $\mathbf x=x_1\otimes\cdots\otimes x_m$，则
+\[
+  \deg'\mathbf x=\deg x_1+\cdots+\deg x_m-m;
+\]
+参见 (3.2.2)。对 $k=1$，置\translatornote{原书此式在求和号下写作
+$a,i$，但外层被加数中没有自由指标 $a$；该指标只在紧接着展开
+$\widehat d\mathbf x_i$ 时出现。译文删去外层游离的 $a$，保留对 $i$ 的求和。}
+\[
+\begin{aligned}
+ &\widehat{\mathfrak h}_1
+ (\mathbf x_1\mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_n)\\
+ &\quad={}
+ \sum_i(-1)^{\deg'\mathbf x_1+\cdots+\deg'\mathbf x_{i-1}}\,
+ \mathbf x_1\mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_{i-1}
+ \mathbin{\overline\otimes}\widehat d\mathbf x_i
+ \mathbin{\overline\otimes}\mathbf x_{i+1}
+ \mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_n.
+\end{aligned}
+\]
+这里回忆
+\[
+  \widehat d\mathbf x_i
+  =\sum_a(-1)^{\deg'\mathbf x_{i,a}^{3;1}}\,
+  \mathbf x_{i,a}^{3;1}\otimes
+  \mathfrak m(\mathbf x_{i,a}^{3;2})\otimes
+  \mathbf x_{i,a}^{3;3},
+\]
+其中使用了 (Conv.3) 的 (1.34)。
+
+置 $\widehat{\mathfrak h}=\sum_k\widehat{\mathfrak h}_k$，并把它延拓到
+$\widehat B(\widehat B(C[1]))$。对给定的
+$\mathbf e\in C^0=C[1]^{-1}$，再引入映射族
+\[
+  \mathfrak b_{k,i}\colon B_k(B(C[1]))
+  \longrightarrow B_{k-1}(B(C[1])),
+  \qquad i=1,\ldots,k-1,
+\]
+定义为
+\[
+\begin{aligned}
+ &\mathfrak b_{k,i}
+ (\mathbf x_1\mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_k)\\
+ &\quad={}
+ (-1)^{\deg'\mathbf x_1+\cdots+\deg'\mathbf x_i}\,
+ \mathbf x_1\mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}
+ (\mathbf x_i\otimes\mathbf e\otimes\mathbf x_{i+1})
+ \mathbin{\overline\otimes}\cdots
+ \mathbin{\overline\otimes}\mathbf x_k .
+\end{aligned}
+\]
+若把 $\deg'\mathbin{\overline\otimes}$ 计作 $-2$，则
+$\mathfrak b_{k,i}$ 的次数为 $+1$。
+
+\begin{proposition}{3.3.8}\label{prop:3-3-8}
+令 $(C,\mathfrak m)$ 为 $A_\infty$ 代数，则陈述 (3.3.9) 与 (3.3.10) 等价。
+\end{proposition}
+
+\par\smallskip\noindent\textup{(3.3.9)}\quad
+定义 3.3.2 所定义的 $(C^+,\mathfrak m^+)$ 是以 $\mathbf e^+$ 为幺元的
+$A_\infty$ 代数。
+
+\par\smallskip\noindent\textup{(3.3.10)}\quad
+映射 $\mathfrak h_k\colon B_k(B(C[1]))\to C[1]$ 满足
+(3.3.5.2)、(3.3.5.3)、(3.3.6)，并具有如下性质：
+\begin{equation}
+  \mathfrak h_1=\mathfrak m.
+  \tag{3.3.10.0}\label{eq:3-3-10-0}
+\end{equation}
+\begin{equation}
+  \sum_{\ell=1}^{k}
+  \mathfrak h_\ell\circ\widehat{\mathfrak h}_{k-\ell+1}
+  -\sum_{i=1}^{k-1}\mathfrak h_{k-1}\circ\mathfrak b_{k,i}
+  +\mathfrak P_k=0.
+  \tag{3.3.10.1}\label{eq:3-3-10-1}
+\end{equation}
+这里当 $k\ne2$ 时 $\mathfrak P_k=0$；此外，在
+\[
+  \bigl(B_0(C[1])\mathbin{\overline\otimes}B_1(C[1])\bigr)
+  \oplus
+  \bigl(B_1(C[1])\mathbin{\overline\otimes}B_0(C[1])\bigr)
+  \subset B_2(B(C[1]))
+\]
+的补集上，$\mathfrak P_2=0$；而在上述子空间上，
+\begin{equation}
+  -\mathfrak P_2(x\mathbin{\overline\otimes}1)
+  =\mathfrak P_2(1\mathbin{\overline\otimes}x)=x.
+  \tag{3.3.10.2}\label{eq:3-3-10-2}
+\end{equation}
+
+上面的 (3.3.10) 使我们无需引入 $(C^+,\mathfrak m^+)$，便可直接用原
+$A_\infty$ 代数 $(C,\mathfrak m)$ 本身来表述其同伦幺元的定义。
+命题 3.3.8 的证明只是直接计算，从略。
+
+\subsection{含幺（相应地，同伦含幺）$A_\infty$ 同态}
+\label{subsec:3-3-2}
+
+本小节定义保持幺元或同伦幺元的 $A_\infty$ 同态。令
+$(C_1,\mathfrak m^1)$、$(C_2,\mathfrak m^2)$ 为滤过 $A_\infty$ 代数，并令
+$\mathfrak f\colon C_1\to C_2$ 为滤过 $A_\infty$ 同态。先假定 $C_i$ 以
+$\mathbf e_i$ 为幺元（$i=1,2$）。
+
+\begin{definition}{3.3.11}\label{def:3-3-11}
+若
+\begin{equation}
+  \mathfrak f_k(x_1,\ldots,x_{i-1},\mathbf e_1,
+  x_{i+1},\ldots,x_k)=0,\qquad k\geq2,
+  \tag{3.3.12.1}\label{eq:3-3-12-1}
+\end{equation}
+并且
+\begin{equation}
+  \mathfrak f_1(\mathbf e_1)=\mathbf e_2,
+  \tag{3.3.12.2}\label{eq:3-3-12-2}
+\end{equation}
+就称 $\mathfrak f$ \emph{保持幺元}，有时也称它为\emph{含幺
+$A_\infty$ 同态}\liftIndex{I101}。
+\end{definition}
+
+无滤过版本以同样方式定义。
+
+下面考虑具有同伦幺元的 $A_\infty$ 代数。假定滤过 $A_\infty$ 代数
+$(C_1,\mathfrak m^1)$ 与 $(C_2,\mathfrak m^2)$ 分别具有同伦幺元
+$\mathbf e_1$ 与 $\mathbf e_2$，并依 (3.3.1) 置
+\translatornote{原书此式把最后一个生成元写成 $\mathbf f_i^+$，但它明言这里依
+(3.3.1) 定义，而 (3.3.1) 的生成元是 $\mathbf f$；译文据此去掉不相容的上标。}
+\[
+  C_i^+=C_i\oplus\Lambda_{0,\mathrm{nov}}\mathbf e_i^+
+  \oplus\Lambda_{0,\mathrm{nov}}\mathbf f_i.
+\]
+
+\begin{definition}{3.3.13}\label{def:3-3-13}
+若滤过 $A_\infty$ 同态 $\mathfrak f\colon C_1\to C_2$ 可以延拓成含幺滤过
+$A_\infty$ 同态 $\mathfrak f^+\colon C_1^+\to C_2^+$，就称
+$\mathfrak f$ \emph{保持同伦幺元}，或称它为\emph{同伦含幺
+$A_\infty$ 同态}。
+\end{definition}
+
+\section{杯积的 $A_\infty$ 形变}
+\label{sec:3-4}
+
+本节利用度量带状树空间与常值伪全纯圆盘的模空间，对每个定向但不必相对 spin 的
+拉格朗日子流形，几何地构造与之相伴的经典 $A_\infty$ 代数
+\liftIndex{I100}。（事实上，这一构造适用于任意定向流形 $L$。）
+这里“经典”是指无滤过的 $A_\infty$ 代数；它定义在 $\mathbb Z$ 上。
+应当指出，在经典 $A_\infty$ 代数的几何构造中，大对角线处的横截性问题起着关键作用。
+相关证明将在第 7.2 节给出。本节只精确陈述所需的主要命题，并说明构造这一形变所需的
+主要几何素材。
+
+先回忆度量带状树的概念；更多细节见 \textbf{[FuOh97]}。在该文中，把度量带状树用于
+莫尔斯理论和拓扑场论的想法首次得到严格实现。一个\emph{带状树}
+\liftIndex{I103}是一个对子 $(T,i)$，其中 $T$ 是树，
+$i\colon T\to D^2$ 是嵌入，并满足
+\begin{align}
+  &T\text{ 的任何顶点都不恰好连接两条边};
+  \tag{3.4.1.1}\label{eq:3-4-1-1}\\
+  &\text{若 }v\in T\text{ 是一价顶点，则 }i(v)\in\partial D^2;
+  \tag{3.4.1.2}\label{eq:3-4-1-2}\\
+  &i(T)\cap\partial D^2\text{ 由一价顶点组成}.
+  \tag{3.4.1.3}\label{eq:3-4-1-3}
+\end{align}
+令 $G_k$ 为三元组 $(T,i,v_1)$ 的集合，其中 $(T,i)$ 是带状树的同痕类，
+\[
+  \#\bigl(i(T)\cap\partial D^2\bigr)=k,\qquad
+  v_1\in i(T)\cap\partial D^2.
+\]
+位于 $\partial D^2$ 上的顶点称为\emph{外顶点}，其余称为\emph{内顶点}。
+给外顶点排序，使 $v_1$ 为第一个，且该次序与 $\partial D^2$ 的逆时针定向相容。
+含有外顶点的边称为\emph{外边}，其余称为\emph{内边}。
+
+对每个 $\mathfrak t=(T,i,v_1)\in G_k$，分别以
+$C_{\mathrm{ext}}^0(\mathfrak t)$、$C_{\mathrm{int}}^0(\mathfrak t)$ 表示
+全体外顶点与全体内顶点之集；类似地，以
+$C_{\mathrm{ext}}^1(\mathfrak t)$、$C_{\mathrm{int}}^1(\mathfrak t)$ 表示
+全体外边与全体内边之集。
+
+令 $\operatorname{Gr}(\mathfrak t)$ 为所有映射
+\[
+  \ell\colon C_{\mathrm{int}}^1(\mathfrak t)\longrightarrow\mathbb R^+
+\]
+组成的集合，并置
+\[
+  \operatorname{Gr}_k=\bigcup_{\mathfrak t\in G_k}
+  \operatorname{Gr}(\mathfrak t).
+\]
+称其中的元素为\emph{度量带状树}：把 $\ell(e)$ 看作边 $e$ 的长度，并约定外边的
+长度为无穷。$\operatorname{Gr}_k$ 上拓扑的描述见 \textbf{[FuOh97]}。
+再以 $\overline{\operatorname{Gr}}(\mathfrak t)$ 表示所有映射
+\[
+  \ell\colon C_{\mathrm{int}}^1(\mathfrak t)
+  \longrightarrow\mathbb R^+\cup\{\infty\}
+\]
+组成的集合，并把它们的并记作
+$\overline{\operatorname{Gr}}_k$；这个空间是
+$\operatorname{Gr}_k$ 的紧化。
+
+下面依照 \textbf{[FuOh97]} 第 10 节定义映射
+\[
+  \Theta\colon\operatorname{Gr}_k
+  \longrightarrow\mathcal M_k^{\mathrm{main,reg}}.
+\]
+取 $(\mathfrak t,\ell)\in\operatorname{Gr}_k$。对每条
+$e\in C_{\mathrm{int}}^1(\mathfrak t)$，取欧氏矩形
+$L_e=[0,\ell(e)]\times[0,1]$；对
+$e\in C_{\mathrm{ext}}^1(\mathfrak t)$，取
+$L_e=(-\infty,0]\times[0,1]$。分别从中删去
+\[
+  \{0,\ell(e)\}\times\{1/2\}
+  \subset[0,\ell(e)]\times[0,1],
+  \qquad
+  \{0\}\times\{1/2\}
+  \subset(-\infty,0]\times[0,1].
+\]
+给定 $v\in C_{\mathrm{int}}^0(\mathfrak t)$，考虑含有 $v$ 的两条相邻边
+$e,e'$，其中 $e'$ 是依照含 $v$ 各边的循环次序紧接在 $e$ 后面的边。若
+$e,e'$ 都是出边，就把
+\[
+  \{0\}\times(1/2,1]\subset\partial L_e
+  \quad\text{与}\quad
+  \{0\}\times[0,1/2)\subset\partial L_{e'}
+\]
+粘合；对 $e,e'$ 的其他定向情形也作类似粘合。见图 3.4.1。
+
+\begin{figure}[htbp]
+  \centering
+  \setlength{\unitlength}{0.9mm}
+  \begin{picture}(138,58)
+    \put(27,55){\line(0,-1){9}}
+    \put(37,55){\line(0,-1){9}}
+    \put(27,46){\line(1,0){10}}
+    \put(32,46){\circle{2}}
+    \put(5,42){\line(1,0){20}}
+    \put(25,42){\line(0,-1){10}}
+    \put(5,32){\line(1,0){20}}
+    \put(25,37){\circle{2}}
+    \put(39,42){\line(1,0){20}}
+    \put(39,42){\line(0,-1){10}}
+    \put(39,32){\line(1,0){20}}
+    \put(39,37){\circle{2}}
+    \put(27,29){\line(1,0){10}}
+    \put(27,29){\line(0,-1){13}}
+    \put(37,29){\line(0,-1){13}}
+    \put(27,16){\line(1,0){10}}
+    \put(32,29){\circle{2}}
+    \put(32,16){\circle{2}}
+    \put(8,0){\line(4,3){18}}
+    \put(15,0){\line(4,3){14}}
+    \put(26,13.5){\circle{2}}
+    \put(29,10.5){\circle{2}}
+    \put(56,0){\line(-4,3){18}}
+    \put(49,0){\line(-4,3){14}}
+    \put(38,13.5){\circle{2}}
+    \put(35,10.5){\circle{2}}
+    \put(67,26){$\Longrightarrow$}
+    \put(102,55){\line(0,-1){12}}
+    \put(112,55){\line(0,-1){12}}
+    \put(86,43){\line(1,0){16}}
+    \put(112,43){\line(1,0){21}}
+    \put(102,43){\line(1,-1){10}}
+    \put(112,43){\line(-1,-1){10}}
+    \put(83,33){\line(1,0){19}}
+    \put(112,33){\line(1,0){24}}
+    \put(102,33){\line(0,-1){14}}
+    \put(112,33){\line(0,-1){14}}
+    \put(102,19){\line(-3,-2){21}}
+    \put(102,19){\line(1,-1){5}}
+    \put(112,19){\line(3,-2){21}}
+    \put(112,19){\line(-1,-1){5}}
+    \put(107,14){\line(-3,-2){18}}
+    \put(107,14){\line(3,-2){18}}
+  \end{picture}
+  \par\smallskip
+  \renewcommand{\thefigure}{3.4.1}
+  \refstepcounter{figure}
+  \textbf{\figurename~\thefigure}\label{fig:3-4-1}
+\end{figure}
+
+这样便得到带有一个不完备平坦度量的空间 $X_0(\mathfrak t,\ell)$。
+把 $X_0(\mathfrak t,\ell)$ 中的孔共形填上，得到带复结构和奇异黎曼度量的空间
+$X(\mathfrak t,\ell)$。以
+\[
+  \Theta(\mathfrak t,\ell):=[X(\mathfrak t,\ell)]
+\]
+表示 $X(\mathfrak t,\ell)$ 的同构类。本书前两位署名作者在
+\textbf{[FuOh97]} 的定理 10.4 中证明了
+\[
+  \Theta\colon\operatorname{Gr}_k
+  \longrightarrow\mathcal M_k^{\mathrm{main,reg}}
+\]
+是同胚。（回忆 $\mathcal M_k^{\mathrm{main,reg}}$ 微分同胚于
+$\mathbb R^{k-3}$；见第 2.1 节。）我们正是利用这个同胚在
+$\operatorname{Gr}_k$ 上定义光滑结构。
+
+映射 $\Theta$ 可以延拓到 $\operatorname{Gr}_k$ 的紧化，并给出同胚
+\[
+  \overline\Theta\colon\overline{\operatorname{Gr}}_k
+  \longrightarrow\mathcal M_k^{\mathrm{main}}.
+\]
+由此，我们在 $\mathcal M_k^{\mathrm{main,reg}}$ 的每个元素上选定了一个奇异度量。
+在奇点邻域内修改这族度量，就得到一族光滑的光滑黎曼度量。第 7.1 节将用这些度量
+定义适当的索伯列夫范数。
+
+现在为辛流形 $M$ 中的每个定向拉格朗日子流形 $L$ 构造相伴的经典
+$A_\infty$ 代数。令
+\[
+  \Delta_{k+1}\subset L^{k+1}
+  =\underbrace{L\times\cdots\times L}_{k+1\text{ 个}}
+\]
+为大对角线，故 $\Delta_{k+1}\cong L$；并令
+$N_{\Delta_{k+1}}L^{k+1}$ 为 $\Delta_{k+1}$ 在 $L^{k+1}$ 中的法丛。
+把这个法丛同 $\Delta_{k+1}$ 在 $L^{k+1}$ 中的一个管状邻域
+$\operatorname{Tube}_{\Delta_{k+1}}L^{k+1}$ 识别。对
+$\beta\in\Pi(M,L)$，以 $\mathcal M_{k+1}^{\mathrm{main}}(\beta)$ 表示如下
+模空间的主分支：从 $(\Sigma,\partial\Sigma)$ 到 $(M,L)$、代表类 $\beta$、
+边界上带 $k+1$ 个标记点的亏格零稳定伪全纯映射（见定义 2.1.27）。
+
+在
+\[
+  \beta_0=0,\qquad k+1>2
+\]
+的情形，$\mathcal M_{k+1}^{\mathrm{main}}(\beta_0)$ 是常值映射的模空间。
+这个模空间是横截的，即具有正确的维数 $k-2+n$。然而，评价映射
+\[
+  \operatorname{ev}\colon
+  \mathcal M_{k+1}^{\mathrm{main}}(\beta_0)\longrightarrow L^{k+1}
+\]
+不是浸没。因此，在它上面取如下仓西结构（仓西结构的定义见第 A1 节）：
+\[
+  U_{k+1}
+  =\operatorname{Tube}_{\Delta_{k+1}}L^{k+1}
+  \times\overline{\operatorname{Gr}}_{k+1}.
+\]
+把法丛 $N_{\Delta_{k+1}}L^{k+1}$ 拉回到 $U_{k+1}$，以所得丛为障碍丛
+$E_{k+1}$。利用识别
+\[
+  \operatorname{Tube}_{\Delta_{k+1}}L^{k+1}
+  \cong N_{\Delta_{k+1}}L^{k+1},
+\]
+可以找到截面
+$\mathfrak s_{k+1}\colon U_{k+1}\to E_{k+1}$，它恰好在
+$\Delta_{k+1}\times\overline{\operatorname{Gr}}_{k+1}$ 上为零。
+于是 $(U_{k+1},E_{k+1},\mathfrak s_{k+1})$ 定义一个仓西结构，其自同构群平凡；
+而
+\[
+  \operatorname{ev}=(\operatorname{ev}_1,\ldots,\operatorname{ev}_k,
+  \operatorname{ev}_0)\colon U_{k+1}\longrightarrow L^{k+1}
+\]
+是浸没（事实上，它是一个开嵌入与投影的复合）。这就是说，相对于这个仓西结构，
+$\operatorname{ev}$ 是弱浸没的（定义 A1.13）。
+
+为了构造滤过 $A_\infty$ 代数，还必须在
+$\mathcal M_{k+1}^{\mathrm{main}}(\beta)$ 上选取适当的仓西结构；原因正是上面提到的
+横截性问题。第 7 章的第 7.1、7.2 节将详细讨论这一点。在现阶段，本节暂不展开仓西
+结构的讨论，只陈述下面的命题。
+
+\begin{proposition}{3.4.2}\label{prop:3-4-2}
+模空间 $\mathcal M_{k+1}^{\mathrm{main}}(\beta)$ 上存在一个定向仓西结构，
+它与紧化相容；而在
+$\mathcal M_{k+1}^{\mathrm{main}}(\beta_0)$ 上，该仓西结构与上面构造的仓西结构
+一致。
+\end{proposition}
+
+命题 3.4.2 将在第 7.1 节证明，其中还会给出命题所说“相容”的精确定义
+（命题 7.1.2）。粗略地说，含义如下：
+$\mathcal M_{k+1}^{\mathrm{main}}(\beta)$ 的紧化中出现的边界分支，可以同若干
+$\mathcal M_{k'+1}^{\mathrm{main}}(\beta')$ 的纤维积识别。带仓西结构空间的纤维积
+具有诱导仓西结构（见第 A1.2 节）；相容性是说，由纤维积在边界上诱导的仓西结构，
+与从 $\mathcal M_{k+1}^{\mathrm{main}}(\beta)$ 的仓西结构作为边界所诱导的仓西结构
+一致。
+
+下面陈述原仓西映射 $\mathfrak s$ 存在适当扰动这一主要结果。考虑 $L$ 上光滑奇异
+单形的一个可数集 $\mathcal X_L$，要求只要 $P\in\mathcal X_L$，它的每个面
+$\partial_iP$ 也属于 $\mathcal X_L$。之所以取可数集，是因为我们采用“光滑对应”
+方法，并需要使用贝尔纲定理来作横截性论证；第 7 章将详细讨论这一点。把
+$\mathcal X_L$ 中的元素写成 $P=(|P|,f)$，其中 $|P|$ 是单形，
+$f\colon|P|\to L$ 是光滑映射。（有时滥用记号，以 $P$ 代替 $|P|$。）
+
+考虑由 $\mathcal X_L$ 生成的自由 $\mathbb Z$-模，记作
+$\mathbb Z\mathcal X_L$。我们将在 $\mathbb Z\mathcal X_L$ 上定义
+$A_\infty$ 代数结构。令 $(P_i,f_i)\in\mathcal X_L$，并置
+\begin{equation}
+\begin{aligned}
+ &\mathcal M_{k+1}^{\mathrm{main}}
+   (\beta_0;P_1,\ldots,P_k)\\
+ &\quad={}
+ \mathcal M_{k+1}^{\mathrm{main}}(\beta_0)
+ {}_{(\operatorname{ev}_1,\ldots,\operatorname{ev}_k)}
+ \mathop{\times}_{f_1\times\cdots\times f_k}
+ (P_1\times\cdots\times P_k).
+\end{aligned}
+\tag{3.4.3}\label{eq:3-4-3}
+\end{equation}
+式 \eqref{eq:3-4-3} 右端是仓西结构空间意义下的纤维积；一般定义见
+第 A1.2 节的引理 A1.39。这里说明它在当前情形中的含义。我们已经在
+$\mathcal M_{k+1}^{\mathrm{main}}(\beta_0)$ 上定义了仓西结构
+$(U_{k+1},E_{k+1},\mathfrak s_{k+1})$。评价映射
+\[
+  \operatorname{ev}=(\operatorname{ev}_1,\ldots,\operatorname{ev}_k,
+  \operatorname{ev}_0)\colon U_{k+1}\longrightarrow L^{k+1}
+\]
+是浸没，因而纤维积
+\begin{equation}
+\begin{aligned}
+ U_{k+1}(P_1,\ldots,P_k)
+ &={}
+ U_{k+1}
+ {}_{(\operatorname{ev}_1,\ldots,\operatorname{ev}_k)}
+ \mathop{\times}_{f_1\times\cdots\times f_k}
+ (P_1\times\cdots\times P_k)
+\end{aligned}
+\tag{3.4.4}\label{eq:3-4-4}
+\end{equation}
+是横截的，并且是一个带有光滑三角剖分的流形（可能带角）。
+把丛 $E_{k+1}\to U_{k+1}$ 拉回，所得丛记作
+$E_{k+1}(P_1,\ldots,P_k)$。$E_{k+1}$ 的截面 $\mathfrak s_{k+1}$
+（仓西映射）在这个拉回丛上诱导一个截面，记作
+$\mathfrak s_{P_1,\ldots,P_k}$。于是
+\[
+  \bigl(U_{k+1}(P_1,\ldots,P_k),
+  E_{k+1}(P_1,\ldots,P_k),
+  \mathfrak s_{P_1,\ldots,P_k}\bigr)
+\]
+在把 \eqref{eq:3-4-3} 右端纤维积视为拓扑空间时，为其定义了仓西结构。
+
+从现在起，把 $\mathcal M_{k+1}^{\mathrm{main}}
+(\beta_0;P_1,\ldots,P_k)$ 视为带仓西结构的空间；并且定义了强连续映射
+\[
+  \operatorname{ev}_0\colon
+  \mathcal M_{k+1}^{\mathrm{main}}(\beta_0;P_1,\ldots,P_k)
+  \longrightarrow L
+\]
+（定义见定义 A1.13）。
+
+下面的命题将在第 7.2 节证明（命题 7.2.35）。置
+$\vec P=(P_1,\ldots,P_k)$，其中 $P_i\in\mathcal X_L$。
+
+\begin{proposition}{3.4.5}\label{prop:3-4-5}
+可以选取 $\mathcal X_L$，并在
+$\mathcal M_{k+1}^{\mathrm{main}}(\beta_0;\vec P)$ 上选取一套扰动
+$\mathfrak s_{\vec P}$（即障碍丛的单值截面），使得下列性质成立：
+\translatornote{原书 (3.4.6.4) 把包含关系与同构目标分别写成
+$\mathbb Z\mathcal X_L\subset C(L;\mathbb Q)$ 和 $H(L;\mathbb Q)$。
+但 $C(L;\mathbb Q)$ 到第 3.5 节才定义，而本节已将
+$\mathbb Z\mathcal X_L$ 定义为 $S(L;\mathbb Z)$ 的子模；更直接地，
+定理 3.4.8 的 (3.4.9.3) 明确给出 $\mathbb Z$ 系数结论并说它由
+(3.4.6.4) 推出。译文据此统一为整数系数。}
+\begin{align}
+  &\mathfrak s_{\vec P}\text{ 横截于 }0;
+  \tag{3.4.6.1}\label{eq:3-4-6-1}\\
+  &\mathfrak s_{\vec P}\text{ 在紧化处相容};
+  \tag{3.4.6.2}\label{eq:3-4-6-2}\\
+  &\mathfrak s_{\vec P}^{-1}(0)\text{ 存在一个光滑三角剖分，使}\notag\\[-0.3em]
+  &\quad\bigl(\mathfrak s_{\vec P}^{-1}(0),\operatorname{ev}_0\bigr)
+  \text{ 可视为 }\mathcal X_L\text{ 中元素的}\notag\\[-0.3em]
+  &\quad\mathbb Z\text{-线性组合};
+  \tag{3.4.6.3}\label{eq:3-4-6-3}\\
+  &\mathbb Z\mathcal X_L\subset S(L;\mathbb Z),\qquad
+  \text{其包含映射诱导同构}\notag\\[-0.3em]
+  &H(\mathbb Z\mathcal X_L,\delta)\cong H(L;\mathbb Z).
+  \tag{3.4.6.4}\label{eq:3-4-6-4}
+\end{align}
+\end{proposition}
+
+对 (3.4.6.3) 作些说明。由 (3.4.6.1)，
+$\mathfrak s_{\vec P}^{-1}(0)$ 是光滑流形。给它取一个光滑三角剖分，并给各顶点
+排序。利用顶点次序，可以把这个剖分的每个单形典范地同标准单形识别。把
+\[
+  \operatorname{ev}_0\colon\mathfrak s_{\vec P}^{-1}(0)\longrightarrow L
+\]
+限制到其中一个单形上，就得到 $L$ 的一个光滑奇异单形；(3.4.6.3) 断言它属于
+$\mathcal X_L$。
+
+令 $\Delta_a^d$（$a\in A$）为 $\mathfrak s_{\vec P}^{-1}(0)$ 中所有维数为
+\[
+  d=\dim\mathfrak s_{\vec P}^{-1}(0)
+\]
+的单形。以后记
+\[
+\begin{aligned}
+ &\mathcal M_{k+1}^{\mathrm{main}}
+   (\beta_0;P_1,\ldots,P_k)^{\mathfrak s}\\
+ &\quad:={}
+ \bigl(\mathfrak s_{\vec P}^{-1}(0),\operatorname{ev}_0\bigr)
+ =\sum_{a\in A}\pm(\Delta_a^d,\operatorname{ev}_0),
+\end{aligned}
+\]
+并把它看作 $L$ 的光滑奇异链。上式中正负号的定义如下：
+模空间 $\mathcal M_{k+1}^{\mathrm{main}}(\beta_0;\vec P)$ 带有定向
+（见第 8 章）；每个单形 $\Delta_a^d$ 都同带标准定向的
+$\mathbb R^d$ 中的标准单形识别。当且仅当这两个定向一致时取正号
+（见第 7.2 节注 7.2.15 (3)）。
+
+现在定义
+$\overline{\mathfrak m}^{\,L}
+=\{\overline{\mathfrak m}_k^{\,L}\}_{k=0}^{\infty}$；它们将在
+$\mathbb Z\mathcal X_L$ 上给出 $A_\infty$ 代数结构：
+\begin{align}
+  &\overline{\mathfrak m}_0^{\,L}=0,
+  \tag{3.4.7.1}\label{eq:3-4-7-1}\\
+  &\overline{\mathfrak m}_1^{\,L}(P)=(-1)^n\partial P,
+  \tag{3.4.7.2}\label{eq:3-4-7-2}\\
+  &\overline{\mathfrak m}_k^{\,L}(P_1,\ldots,P_k)
+  =\mathcal M_{k+1}^{\mathrm{main}}
+  (\beta_0;P_1,\ldots,P_k)^{\mathfrak s},
+  \tag{3.4.7.3}\label{eq:3-4-7-3}
+\end{align}
+其中 $n=\dim L$。(3.4.7.2) 中的 $\partial$ 是通常的经典边界算子；
+这里把 $P$ 看作一条链，另见注 3.5.8 (1)。
+
+注意，命题 3.4.2 和 $\mathcal X_L$ 的选取保证了
+(3.4.7.3) 右端的纤维积可以在仓西结构的意义下定义。
+(3.4.7.3) 中模空间的定向在第 8 章定义 8.4.1 中给出。这里，经同构
+\[
+  \overline\Theta\colon
+  \overline{\operatorname{Gr}}_{k+1}
+  \longrightarrow\mathcal M_{k+1}^{\mathrm{main}}
+  \cong\mathcal M_{k+1}^{\mathrm{main}}(\beta_0),
+\]
+把常值映射模空间 $\mathcal M_{k+1}^{\mathrm{main}}(\beta_0)$ 上的定向转移到
+$\Delta_k\times\overline{\operatorname{Gr}}_{k+1}$。前一模空间的定向将在
+第 8 章第 8.6 节给出。另一方面，第 2.1.2 小节已经在
+$\mathcal M_{k+1}^{\mathrm{main,reg}}$ 上定义了另一个定向。分析
+$\mathcal M_{k+1}^{\mathrm{main}}$ 上的定向并使用
+\[
+  \overline\Theta\colon\overline{\operatorname{Gr}}_{k+1}
+  \longrightarrow\mathcal M_{k+1}^{\mathrm{main}},
+\]
+也可在 $\Delta_k\times\overline{\operatorname{Gr}}_{k+1}$ 上得到一个定向。
+这个定向可能不同于上面把它视为零点集
+$\mathfrak s_{k+1}^{-1}(0)$ 时所定义的定向。两者的差异可以精确算出，但因后文
+不需要，这里从略。
+
+由此得到下面的定理。
+
+\begin{theorem}{3.4.8}\label{thm:3-4-8}
+令 $L$ 为光滑定向流形，则 $L$ 上存在一个由光滑奇异单形组成的可数集
+$\mathcal X_L$，满足下列性质：
+\begin{align}
+  &(\mathbb Z\mathcal X_L,\overline{\mathfrak m}^{\,L})
+  \text{ 是 }\mathbb Z\text{ 上的 }A_\infty\text{ 代数};
+  \tag{3.4.9.1}\label{eq:3-4-9-1}\\
+  &\text{$L$ 存在一个光滑单纯剖分，使得可将 }
+  PD[L]\text{ 看作 }\mathbb Z\mathcal X_L\text{ 的元素};\notag\\[-0.2em]
+  &\text{此时 }PD[L]\text{ 是 }
+  (\mathbb Z\mathcal X_L,\overline{\mathfrak m}^{\,L})\text{ 的同伦幺元};
+  \tag{3.4.9.2}\label{eq:3-4-9-2}\\
+  &H(\mathbb Z\mathcal X_L,\overline{\mathfrak m}_1^{\,L})
+  \cong H(L;\mathbb Z).
+  \tag{3.4.9.3}\label{eq:3-4-9-3}
+\end{align}
+这里 $PD$ 表示庞加莱对偶。
+\end{theorem}
+
+(3.4.9.1) 由命题 3.4.5，特别是 (3.4.6.2) 推出；详细证明见
+第 7.2.4--7.2.8 小节。下面解释 (3.4.9.2)。给 $L$ 取一个光滑单纯剖分，并给
+它的顶点排序。于是每个单形都可同标准单形识别，从而确定一个奇异单形。所有维数为
+$\dim L$ 的这些奇异单形之和
+\begin{equation}
+  \sum_a\pm\Delta_a^{\dim L}
+  \tag{3.4.10}\label{eq:3-4-10}
+\end{equation}
+代表基本同调类 $[L]$；这里的正负号由标准单形的定向是否同 $L$ 的定向一致而定
+（见第 7.3.2 小节）。
+
+本书把奇异链复形视作上链复形，因此 \eqref{eq:3-4-10} 被看作
+$S^0(L;\mathbb Z)$ 的元素，并记作 $PD[L]$。(3.4.9.2) 将在第 7.3 节证明，
+而 (3.4.9.3) 由 (3.4.6.4) 推出。称
+$(\mathbb Z\mathcal X_L,\overline{\mathfrak m}^{\,L})$ 为\emph{与 $L$ 相伴的经典
+$A_\infty$ 代数}。
+
+文献 \textbf{[McC04, Wil05]} 中还有一些与定理 3.4.8 密切相关的工作。
+
+\begin{remark}{3.4.11}\label{rem:3-4-11}
+第 7.2 节并不直接使用扰动截面 $\mathfrak s_{\vec P}$ 构造
+$A_\infty$ 结构。相反，对每个 $K$，我们先直接用
+$\mathfrak s_{\vec P}$ 构造一个 $A_K$ 结构（见定义 4.4.6），然后得到一个与它
+$A_K$-同伦等价的 $A_\infty$ 结构（定义 4.4.8）。不能一次直接构造
+$A_\infty$ 结构的原因将在第 7.2.3 小节解释；这是一个相当技术性的要点。
+本章其他构造同样有这个问题，但以后不再重复说明。实际使用时，一次构造
+$A_\infty$ 结构，或先对每个 $K$ 构造 $A_K$ 结构、再以较间接的方式得到
+$A_\infty$ 结构，并无实质区别。
+\end{remark}
+
+第 4 章将证明（作为该章定理 4.1.1 的一部分），$A_\infty$ 代数
+$(\mathbb Z\mathcal X_L,\overline{\mathfrak m}^{\,L})$ 的弱同伦等价类由 $L$ 唯一确定。
+也就是说，在弱同伦等价意义下，它与命题 3.4.5 所构造的扰动截面
+$\mathfrak s^k$ 及可数集 $\mathcal X_L$ 的选择无关。
+\translatornote{原书此处写“定理 3.4.8 所构造的扰动截面”，但扰动截面的存在与
+性质陈述在命题 3.4.5；定理 3.4.8 陈述由其导出的 $A_\infty$ 代数。译文改正交叉引用。}
+此外，第 7.5 节将证明：若置
+\[
+  \mathbb R\mathcal X_L=\mathbb Z\mathcal X_L\otimes\mathbb R
+\]
+并把 $\overline{\mathfrak m}^{\,L}$ 延拓到 $\mathbb R\mathcal X_L$，则
+$(\mathbb R\mathcal X_L,\overline{\mathfrak m}^{\,L})$ 与 $L$ 在 $\mathbb R$ 上的德拉姆复形弱同伦等价
+（定理 X）。

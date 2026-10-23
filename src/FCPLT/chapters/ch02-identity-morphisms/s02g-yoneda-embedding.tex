@@ -1,0 +1,99 @@
+\paragraph{\trYonedaEmbedding。}\label{sub:cunital-yoneda-embedding}
+按定义，对 \trCunital{}的 $\scr{A}$ 而言，\trYonedaEmbedding{}%
+$\scr{J}=\scr{J}_{\scr{A}}$ 的\trImage{}落在子\trCategory{}%
+$\mathit{mod}(\scr{A})\subset\mathit{nu}\text{-}\mathit{mod}(\scr{A})$ 之中。
+
+\vkthmsync{12}
+\begin{lemma}\label{thm:yoneda-evaluation-quasiisomorphism}
+对任意 \trCunital{} \trAinfty-模 $\scr{M}$ 与 $\scr{A}$ 的任意\trObject{} $Y$，
+\eqref{eq:yoneda-evaluation-chain-map}中的映射 $\lambda$ 是一个\trQuasiisomorphism。
+\end{lemma}
+\begin{proof}
+按定义，$\lambda$ 的\trMappingCone{}（\trSuspension{} $-1$）是\trChainComplex
+\begin{equation}\label{eq:mapping-cone-of-lambda}
+\Bigl(\scr{M}(Y)\oplus\hom_{\scr{Q}}(\scr{Y},\scr{M})[-1],\;
+\begin{pmatrix}
+\mu^1_{\scr{M}} & 0\\
+\lambda & -\mu^1_{\scr{Q}}
+\end{pmatrix}\Bigr).
+\end{equation}
+过滤的办法是：先取子\trComplex{} $\hom_{\scr{Q}}(\scr{Y},\scr{M})[-1]$，然后再施以其通常的
+长度\trFiltration。令 $A=H(\scr{A})$、$M=H(\scr{M})$，则所得的\trSpectralSequence{}具有
+\begin{equation*}
+E_1^{rs}=
+\begin{cases}
+M^s(Y), & r=0,\\[2.5ex]
+\begin{aligned}[t]\displaystyle
+\prod_{X_0,\ldots,X_{r-1}}\Hom^{s}_{\KK}\bigl(
+&\Hom_A(X_{r-1},Y)\otimes\Hom_A(X_{r-2},X_{r-1})\otimes\cdots\\
+&\cdots\otimes\Hom_A(X_0,X_1),\,M(X_0)\bigr),
+\end{aligned}
+& r>0.
+\end{cases}
+\end{equation*}
+由\eqref{eq:yoneda-evaluation-chain-map}与\eqref{eq:module-composition-maps}可以
+看出，\trDifferential{} $\partial=\partial^{rs}\colon E_1^{rs}\to E_1^{r+1,s}$ 在 $r=0$ 时由
+$(\partial c)(b)=(-1)^{|b|}cb$ 给出，而在 $r>1$ 时则为
+\begin{equation*}
+\begin{split}
+(\partial t)(b,a_r,\ldots,a_1)
+&=(-1)^{\clubsuit_{r+|b|}}\,t(b,a_r,\ldots,a_2)a_1\\
+&\quad+(-1)^{|b|}\,t(ba_r,a_{r-1},\ldots,a_1)\\
+&\quad+\sum_n(-1)^{\Delta}\,t(b,a_r,\ldots,a_{n+2}a_{n+1},\ldots,a_1)
+\end{split}
+\end{equation*}
+其中 $\Delta=|a_{n+2}|+\cdots+|a_r|+|b|-r+n+1$。这是一个标准的 \trBarResolution；当 $A$ 中的%
+\trIdentityMorphism{}在 $M$ 上充当恒等时，它容有一个\trContractingHomotopy{}%
+$(\kappa t)(b,a_{r-1},\ldots,a_1)=t(e_Y,b,a_{r-1},\ldots,a_1)$。于是
+\eqref{eq:mapping-cone-of-lambda}是\trAcyclic{}的，这就蕴涵了所要的结论。
+\end{proof}
+
+特别地，对那些来自\trYonedaEmbedding{}的 \trAinfty-模 $\scr{M}$，我们有
+$\lambda=\scr{J}^1$，于是：
+
+\begin{corollary}\label{thm:yoneda-cohomologically-full-faithful}
+$\scr{J}$ 是\trCohomology\trFullyFaithful{}的（从而也是\trCunital{}的）。
+\noqed
+\end{corollary}
+
+观察 $\scr{J}$ 的\trImage，还可以看到：
+
+\begin{corollary}\label{thm:cunital-quasiisomorphic-strictly-unital}
+任何 \trCunital{} \trACategory{}都以\trCanonical{}的方式与一个\trStrictlyUnital{} dg
+\trCategory{}\trQuasiisomorphism{}。
+\noqed
+\end{corollary}
+
+现在我们来考虑\trYonedaEmbedding{}关于 \trCunital{} \trACategory{}之间的%
+\trCohomology\trFullyFaithful{} \trAFunctor{} $\scr{F}\colon\scr{A}\to\scr{B}$
+的自然性。对任意这样的\trFunctor{} $\scr{F}$，
+\eqref{eq:yoneda-pullback-transformation}中那个\trNaturalTransformation{}的一阶项
+是 \trCunital{} \trAinfty-模之间的一个\trIsomorphism（由%
+\cref{thm:module-composition-quasiisomorphism}）。鉴于%
+\cref{thm:right-composition-iso}，这蕴涵 $T$ 本身在 \trAFunctor{}的底层%
+\trCohomology{}\trCategory{}中是一个\trIsomorphism。换言之，图
+\begin{equation}\label{eq:yoneda-naturality-diagram}
+\begin{tikzcd}
+\scr{A}\ar[r,"\scr{F}"]\ar[d,"\scr{J}_{\scr{A}}"] & \scr{B}\ar[d,"\scr{J}_{\scr{B}}"]\\
+\mathit{mod}(\scr{A}) & \mathit{mod}(\scr{B})\ar[l,"\scr{F}^*"]
+\end{tikzcd}
+\end{equation}
+在 $H^0(\mathit{fun}(\scr{A},\mathit{mod}(\scr{A})))$ 中交换至相差一个%
+\trCanonical{}\trIsomorphism{}的程度。
+
+\begin{remark}\label{thm:yoneda-ext-interpretation}
+下面是\cref{thm:yoneda-evaluation-quasiisomorphism}之证明的一个更抽象的重述，
+其精神与\cref{thm:morita-bimod-route}一致。令 $\mathit{Mod}^0(A)$ 为从 $A$ 到\trGraded\trVectorSpace{}%
+的\trContravariant{}（\trUnital{}）\trFunctor{}所成的阿贝尔\trCategory。设
+$\scr{M}_0$、$\scr{M}_1$ 是 \trCunital{} \trAinfty-模，则其底层的\trCohomology{}模
+$M_0$、$M_1$ 是 $\mathit{Mod}^0(A)$ 的\trObject。经由 \trBarResolution，来自
+$\hom_{\scr{Q}}(\scr{M}_0,\scr{M}_1)$ 的长度\trFiltration{}的\trSpectralSequence{}，其 $E_2$
+项可以解释为
+\begin{equation}\label{eq:ext-e2-term}
+E_2=\operatorname{Ext}_{\mathit{Mod}^0(A)}(M_0,M_1),
+\end{equation}
+其中右边按与\eqref{eq:hh-as-ext} 中相同的方式双\trGraded。与\trYoneda{} \trAinfty-模相伴的诸%
+\trCohomology{}模是 $\mathit{Mod}^0(A)$ 的投射\trObject。因此，若 $M_0=\scr{Y}$，
+则\eqref{eq:ext-e2-term}中仅有一个非零的列，而该列可以等同于 $M_1(Y)$。于是，
+$\scr{M}_1(Y)$ 与 $\hom_{\scr{Q}}(\scr{Y},\scr{M}_1)$ \trQuasiisomorphism。
+\end{remark}

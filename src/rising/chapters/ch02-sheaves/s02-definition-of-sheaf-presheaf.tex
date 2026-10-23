@@ -1,0 +1,163 @@
+
+\section{层与预层的定义}
+
+现在我们来把前文的这些观念形式化：定义\trPresheaf{}与\trSheaf。\trPresheaf{}的定义要简单些，诸如\trKernel{}与\trCokernel{}之类的观念都直截了当；\trSheaf{}的定义则更费周折，有些观念（比如\trCokernel）需要多想一步。但\trSheaf{}更有用，因为它在某种含混的意义上更具几何味：关于一个\trSheaf{}的信息可以局部地获取。
+
+\textbf{2.2.1.\ \trTopologicalSpace{} $X$ 上的\trSheaf{}与\trPresheaf{}的定义。}\quad 为了具体起见，我们将定义\trSetsWord{}的\trSheaf。不过在定义里，\trCategory{} $\catSets$ 可以替换成任何说得过去的\trCategory；其他重要的例子还有\trAbelianGroups{} $\catAb$、$k$-\trVectorSpace{} $\catVec_k$、\trRing{} $\catRings$、\trRing{}上的\trModule{} $\catMod{A}$，等等。（处理\trObject{}并非「带有附加结构的\trSet」的那类\trCategory{}时，你或许得多想一想，但不会冒出什么出人意料的麻烦。无论如何，这对我们并不相干；尽管如此，真想这么做的读者应当从做\cref{ex:sheaf-axioms-as-limit}起步。）\trSheaf{}（与\trPresheaf）常用花体字母书写。$\scr{F}$ 是某个\trTopologicalSpace{}上的\trSheaf{}这一事实，常写作
+\[
+\begin{array}{c}
+\scr{F}\\[6pt]
+\big\vert\\[6pt]
+X
+\end{array}
+\]
+
+\textbf{2.2.2.\ 定义：\trPresheaf。}\quad \trTopologicalSpace{} $X$ 上的一个\textbf{\trSetsWord{}的\trPresheaf}（presheaf of sets）$\scr{F}$ 由如下数据构成。
+\begin{itemize}
+\item 对每个\trOpenSubset{} $U\subset X$，给定一个\trSet{} $\scr{F}(U)$（例如，动机例子中的\trDifferentiable{}函数全体）。（记号警示：出于种种好理由，业内通行为数不少的几种记号，例如 $\scr{F}(U)=\Gamma(U,\scr{F})=\mathrm{H}^0(U,\scr{F})$；我们会把它们全部用上。）$\scr{F}(U)$ 的元素称为 $\scr{F}$ 在 $U$ 上的\textbf{\trSection}（section）。（\S2.2.11 与 \cref{ex:sections-of-a-map}合在一起，将为这一称呼提供动机，尽管此事对我们并不十分重要。）
+
+按约定，若把那个「$U$」省去，则默认其取为 $X$：「$\scr{F}$ 的\trSection」意即「$\scr{F}$ 在 $X$ 上的\trSection」；它们也称\textbf{\trGlobalSections}。
+
+\item 对\trOpenSet{}之间的每个包含 $U\subset V$，给定一个\textbf{\trRestrictionMap}（restriction map）
+\[
+\mathrm{res}_{V,U}\colon\scr{F}(V)\longrightarrow\scr{F}(U)
+\]
+（正如我们在\trDifferentiable{}函数那里做过的那样）。若 $f\in\scr{F}(V)$，则常把
+\[
+f|_{U}
+\]
+用作 $\mathrm{res}_{V,U}(f)$ 的简写。
+
+\item 这些数据须满足下面两个条件。
+\begin{itemize}
+\item \trMap{} $\mathrm{res}_{U,U}$ 是恒等：$\mathrm{res}_{U,U}=\id_{\scr{F}(U)}$。
+\item 若\trOpenSet{}之间有包含 $U\subset V\subset W$，则诸\trRestrictionMap{}按你所预期的方式复合，也就是说，图
+\begin{tikzcd}[row sep=2.2em, column sep=2.8em]
+\scr{F}(W) \ar[rr, "\mathrm{res}_{W,V}"] \ar[dr, "\mathrm{res}_{W,U}"'] & & \scr{F}(V) \ar[dl, "\mathrm{res}_{V,U}"] \\
+& \scr{F}(U)
+\end{tikzcd}
+交换。
+\end{itemize}
+\end{itemize}
+
+\begin{exercise}[给\trCategory{}爱好者：「\trPresheaf{}无非是\trContravariantFunctor」]\label{ex:presheaf-contravariant-functor}
+给定任一\trTopologicalSpace{} $X$，便有一个「\trOpenSet\trCategory」（\mbox{例~1.1.9}）：其\trObject{}是诸\trOpenSet，\trMorphism{}是包含。请验证：\trPresheaf{}的数据恰好就是从 $X$ 的\trOpenSet\trCategory{}到 $\catSets$ 的\trContravariantFunctor{}的数据。（这一解读出奇地有用。）
+\end{exercise}
+
+\textbf{2.2.3.\ 定义：\trStalk{}与\trGerm。}\quad \trPresheaf{}在一点处的\trStalk，我们将用两种等价的办法来定义。一种是动手操作式的，另一种则把它定义为\trColimit。
+
+\textbf{2.2.4.}\quad 把\trPresheaf{} $\scr{F}$ 在点 $p$ 处的\textbf{\trStalk}定义为 $\scr{F}$ 在 $p$ 处的\textbf{\trGerm}（germ）的\trSet，记作 $\scr{F}_p$，一如 \S2.1.1 的例子。\trGerm{}对应于某个含 $p$ 的\trOpenSet{}上的\trSection，而两个\trSection{}只要在某个更小的含 $p$ \trOpenSet{}上一致，就视为同一个。更精确地说：\trStalk{}是
+\[
+\bigl\{(f,\ \text{\trOpenSet{} } U)\ :\ p\in U,\ f\in\scr{F}(U)\bigr\}
+\]
+模去如下关系：$(f,U)\sim(g,V)$，若存在某个\trOpenSet{} $W\subset U\cap V$，使 $p\in W$ 且 $\mathrm{res}_{U,W}f=\mathrm{res}_{V,W}g$。（解释一下这套农学术语：法语名「germe」意在令人想起从种子里萌出的幼芽，试比较「germinate」（发芽）。）
+
+\textbf{2.2.5.}\quad \trStalk{}还有一个同样有用、且与之等价的定义：把它定义为诸 $\scr{F}(U)$ 在全体含 $p$ 的\trOpenSet{} $U$ 上的\trColimit：
+\[
+\scr{F}_p=\colim\,\scr{F}(U).
+\]
+指标\trCategory{}是一个\trFiltered{}集（任给两个这样的\trOpenSet，总有第三个这样的\trOpenSet{}含于二者之内），所以由\cref{ex:filtered-colimit-formula}可知，这两种定义是一回事。因此，凡\trSetsWord\trSheaf、\trGroup\trSheaf、\trRing\trSheaf，以及其他一切「\trColimit{}在有向\trSet{}上存在」的东西，都可以定义\trStalk。把\trStalk{}的这两种定义同时记在心里，是极有帮助的。
+
+若 $p\in U$ 且 $f\in\scr{F}(U)$，则 $f$ 在 $\scr{F}_p$ 中的\trImage{}称为 $f$ 在 $p$ 处的\textbf{\trGerm}（germ）。（警示：与 \S2.1.1 的例子不同，一般来讲，\trSection{}「在一点处的取值」是没有意义的。）
+
+\textbf{2.2.6.\ 定义：\trSheaf。}\quad \trPresheaf{}若再满足两条公理，便称为\textbf{\trSheaf}（sheaf）。注意：这两条公理用上了「一些\trOpenSet{}覆盖另一个\trOpenSet」这层额外的信息。
+
+\textbf{\trIdentityAxiom。}\quad 对任何\trOpenSet{} $U$，若 $\{U_i\}_{i\in I}$ 是 $U$ 的\trOpenCover，且 $f_1$ 与 $f_2$ 都属于 $\scr{F}(U)$，并对一切 $i$ 都有 $f_1|_{U_i}=f_2|_{U_i}$，则 $f_1=f_2$。
+
+（满足\trIdentityAxiom{}的\trPresheaf{}称为\textbf{\trSeparated\trPresheaf}（separated presheaf），但我们不会以任何实质的方式使用这一称谓。）
+
+\textbf{\trGluingAxiom。}\quad 若 $\{U_i\}_{i\in I}$ 是 $U$ 的\trOpenCover，并且给定了诸 $f_i\in\scr{F}(U_i)$，使得对一切 $i$ 与 $j$ 都有 $f_i|_{U_i\cap U_j}=f_j|_{U_i\cap U_j}$，则存在某个 $f\in\scr{F}(U)$，使得对一切 $i$ 都有 $\mathrm{res}_{U,U_i}f=f_i$。
+
+在数学里，定义常常成对出现：「至多一个」与「至少一个」。在此处，\trIdentityAxiom{}说的是粘合的方式至多有一种，而\trGluability{}说的是粘合的方式至少有一种。
+
+（只写给专家与空集的学者看：有时会追加一条公理，要求 $\scr{F}(\varnothing)$ 是该\trCategory{}的\trFinalObject{}。只要把空积恰当地定义为\trFinalObject{}，这一条其实可以从上面的定义推出来。）\footnote{译注：Vakil 喜欢拿「空集爱好者」打趣，这一梗后文还会重现，例如 \mbox{例~2.2.10}。}
+
+\emph{例。}\ 若 $U$ 与 $V$ 不相交，则 $\scr{F}(U\cup V)=\scr{F}(U)\times\scr{F}(V)$；这里用到了 $\scr{F}(\varnothing)$ 为\trFinalObject{}这一事实。
+
+\trSheaf{}在一点处的\textbf{\trStalk}，就是把它当作\trPresheaf{}时的\trStalk——同一套定义照用即可——\trSheaf{}的\trSection{}的\textbf{\trGerm}亦然。
+
+\begin{exercise}[无足轻重的练习：不是\trSheaf{}的\trPresheaf]\label{ex:presheaves-not-sheaves}
+验证下列两样东西都是 $\mathbb{C}$ 上（带\trClassicalTopology）的\trPresheaf，但都不是\trSheaf：(a)~\trBounded{}函数；(b)~容许存在\trHolomorphic{}平方根的\trHolomorphic{}函数。
+\end{exercise}
+
+上一练习中的两个\trPresheaf{}都满足\trIdentityAxiom。一个连\trIdentityAxiom{}都不满足的「自然」例子，暗藏在\mbox{注记~2.5.5}里。下面我们来讲几点只说给\trCategory{}爱好者听的内容。
+
+\textbf{2.2.7.\ 用「\trEqualizer{}正合列」来解读。}\quad \trPresheaf{}要成为\trSheaf{}所需的那两条公理，可以解读为「\trEqualizer{}正合列」的「\trExactness」：$\cdot\longrightarrow\scr{F}(U)\longrightarrow\prod\scr{F}(U_i)\ \rightrightarrows\ \prod\scr{F}(U_i\cap U_j)$。\trIdentityAxiom{}就是在 $\scr{F}(U)$ 处的\trExactness，\trGluability{}就是在 $\prod\scr{F}(U_i)$ 处的\trExactness。我不打算把这件事说精确，甚至也不打算解释那个双向右箭头是什么意思（\trSetsWord{}的\trExactSequence?!）。但你或许能从上下文里把它琢磨出来。
+
+\begin{exercise}\label{ex:sheaf-axioms-as-limit}
+\trIdentityAxiom{}与\trGluingAxiom{}可以解读为：$\scr{F}\bigl(\bigcup_{i\in I}U_i\bigr)$ 是某个\trLimit。那个\trLimit{}是什么？
+\end{exercise}
+
+下面给出一批\trSheaf{}的例子。
+
+\begin{exercise}\label{ex:examples-are-sheaves}
+(a)~验证 \S2.1 的那些例子确实都是\trSheaf（\trManifold{}或 $\mathbb{R}^n$ 上的\trSmooth{}函数、\trContinuous{}函数、实\trAnalytic{}函数，或者干脆是寻常的实值函数）。
+
+(b)~证明：\trTopologicalSpace{} $X$ 的（各个\trOpenSet{}上的）实值\trContinuous{}函数构成一个\trSheaf。
+\end{exercise}
+
+\textbf{2.2.8.\ 重要例子：\trSheaf{}的限制。}\quad 设 $\scr{F}$ 是 $X$ 上的\trSheaf，$U$ 是 $X$ 的\trOpenSubset。把\textbf{$\scr{F}$ 到 $U$ 上的限制}（restriction of $\scr{F}$ to $U$）记作 $\scr{F}|_U$，其定义为：对一切\trOpenSubset{} $V\subset U$，置 $\scr{F}|_U(V)=\scr{F}(V)$。显然这是 $U$ 上的一个\trSheaf。（虽不重要却有趣的一条事实：\S2.7 将告诉我们如何把\trSheaf{}限制到\emph{任意}的子集上。）
+
+\textbf{2.2.9.\ 重要例子：\trSkyscraperSheaf。}\quad 设 $X$ 是\trTopologicalSpace{}，$p\in X$，且 $S$ 是一个\trSet。设 $i_p\colon p\to X$ 是\trInclusionMap。则由
+\[
+i_{p,*}S(U)=
+\begin{cases}
+S, & \text{若 } p\in U\text{；}\\
+\{e\}, & \text{若 } p\notin U
+\end{cases}
+\]
+给出的 $i_{p,*}S$ 构成一个\trSheaf。这里 $\{e\}$ 是任取的一个单元素集。（若此事还不明朗，就请自行核查——\trRestrictionMap{}是什么？）它称为支撑在 $p$ 处的\textbf{\trSkyscraperSheaf}（skyscraper sheaf），因为它那非正式的图景看上去就像矗立在 $p$ 处的一座摩天大楼。（小小警示：这幅非正式图景会诱使人以为\trSkyscraperSheaf{}唯一非平凡的\trStalk{}就在 $p$ 处，其实不然。\mbox{练习~6.1.B(b)}给了一个这样的例子，尽管它肯定算不上最简单的。）对\trAbelianGroups{}的\trSheaf{}有类似的定义，只是当 $p\notin U$ 时取 $i_{p,*}S(U)=\{0\}$；更一般地，对取值于某\trCategory{}的\trSheaf，$i_{p,*}S(U)$ 应当取成一个\trFinalObject。
+
+（这个记号诚然奇丑无比，而替代写法 $(i_p)_*S$ 也一样糟糕。\S2.2.12 将来解释这个记号。）
+
+\textbf{2.2.10.\ \trConstantPresheaf{}与\trConstantSheaf。}\quad 设 $X$ 是\trTopologicalSpace{}，$S$ 是一个\trSet。对一切\trOpenSet{} $U$ 置 $\underline{S}_{\mathrm{pre}}(U)=S$。你将很快验证：$\underline{S}_{\mathrm{pre}}$ 构成一个\trPresheaf（\trRestrictionMap{}全是恒等）。它称为\textbf{与 $S$ 相伴的\trConstantPresheaf}（constant presheaf associated to $S$）。它（一般）不是\trSheaf。（要说清缘由，恐怕会让人分心。空集的爱好者们会坚持：\trSheaf{}公理逼迫空集上的\trSection{}成为\trCategory{}中的\trFinalObject{}，即一个单元素集。但即便我们给定义打上补丁、规定 $\underline{S}_{\mathrm{pre}}(\varnothing)=\{e\}$，只要 $S$ 的元素多于一个，而 $X$ 是带\textbf{\trDiscreteTopology}（discrete topology）的两点空间——即每个子集都是\trOpenSet——你仍可验证 $\underline{S}_{\mathrm{pre}}$ 不满足\trGluability。）
+
+\begin{exercise}[\trConstantSheaf]\label{ex:constant-sheaves}
+现在令 $\scr{F}(U)$ 为从 $U$ 到 $S$ 的\emph{\trLocallyConstant}映射的\trSet，也就是说：对 $U$ 中的任一点 $p$，都存在 $p$ 的一个开\trNeighborhood，使该函数在其上为常值。证明这是一个\emph{\trSheaf}。（更好的描述是这样的：给 $S$ 装备\trDiscreteTopology，令 $\scr{F}(U)$ 为从 $U$ 到 $S$ 的\trContinuousMap{}全体。）它称为（取值于 $S$ 的）\textbf{\trConstantSheaf}（constant sheaf）；不要与\trConstantPresheaf{}相混淆。（我更乐意叫它「\emph{\trLocallyConstant\trSheaf}」，但历史长河既已流过，此改无从谈起。）我们把这个\trSheaf{}记作 $\underline{S}$。
+\end{exercise}
+
+\begin{exercise}[「\trMorphism{}可粘」]\label{ex:morphisms-glue}
+设 $Y$ 是\trTopologicalSpace。证明「到 $Y$ 的\trContinuousMap{}」构成 $X$ 上的一个\trSetsWord{}的\trSheaf。更精确地说：对 $X$ 的每个\trOpenSet{} $U$，配上从 $U$ 到 $Y$ 的\trContinuousMap{}全体。证明这构成一个\trSheaf。（\cref{ex:examples-are-sheaves} 的 (b)，取 $Y=\mathbb{R}$；以及 \cref{ex:constant-sheaves}，取 $Y$ 为带\trDiscreteTopology{}的 $S$：两者都是其特例。）
+\end{exercise}
+
+\begin{exercise}\label{ex:sections-of-a-map}
+这是上一练习的升级版。
+(a)~（\emph{一个\trMap{}的\trSection\trSheaf}。）设给定\trContinuousMap{} $\mu\colon Y\to X$。证明「$\mu$ 的\trSection」构成一个\trSheaf。更精确地说：对 $X$ 的每个\trOpenSet{} $U$，配上满足 $\mu\circ s=\id_U$ 的\trContinuousMap{} $s\colon U\to Y$ 的全体。证明这构成一个\trSheaf。（对听说过\trVectorBundle{}的人来说，这些正是好例子。）这正是「\trSheaf{}的\trSection」这一说法的动机所在。
+
+(b)~（这一问是为知道\trTopologicalGroup{}为何物的人准备的。若你还不知道什么是\trTopologicalGroup，或许也能猜个八九不离十。）设 $Y$ 是\trTopologicalGroup。证明：到 $Y$ 的\trContinuousMap{}构成一个\emph{\trGroup}的\trSheaf。
+\end{exercise}
+
+\textbf{2.2.11.\ \hard\ （\trPresheaf）\trSheaf{}的\trSection{}空间（espace étalé）。}\quad 视背景而定，你也许更偏爱下面这种看待\trSheaf{}的方式。设 $\scr{F}$ 是某\trTopologicalSpace{} $X$ 上的一个\trSetsWord\trPresheaf（比如说，一个\trSheaf）。如下构造一个\trTopologicalSpace{} $\mathrm{F}$，连同\trContinuousMap{} $\pi\colon \mathrm{F}\to X$：作为\trSet，$\mathrm{F}$ 是 $\scr{F}$ 的全部\trStalk{}的\trDisjointUnion；这就自然给出一个\trSetsWord{}间的\trMap{} $\pi\colon \mathrm{F}\to X$。再如下给 $\mathrm{F}$ 装备拓扑：每个 $s\in\scr{F}(U)$ 决定了 $\mathrm{F}$ 的一个子集 $\{(x,s_x)\ :\ x\in U\}$。$\mathrm{F}$ 上的拓扑是使这些子集皆为\trOpenSet{}的最弱拓扑。（这些子集构成该拓扑的一个\trBase。对每个 $y\in\mathrm{F}$，都存在 $y$ 的开\trNeighborhood{} $V$ 与 $\pi(y)$ 的开\trNeighborhood{} $U$，使得 $\pi|_V$ 是从 $V$ 到 $U$ 的\trHomeomorphism{}。这些论断为什么成立，你看得出所以然吗？）\trTopologicalSpace{} $\mathrm{F}$ 可以看作 $\scr{F}$ 的\textbf{\trSection{}空间}（space of sections）（即\trEspaceEtale：espace étalé）。我们不会花多少篇幅讨论这个构造，但它自有几样好处：(a)~对一个概念，多掌握一种思考方式总归更好；(b)~「\trInverseImage」（非正式的说法：「\trPullback」）在这种语言里有自然的解读（\cref{ex:stalks-of-inverse-image}有简要提及）；(c)~\trSheafification{}在这种语言里也有自然的解读（见\cref{thm:sheafification-espace-etale}）。
+
+\begin{exercise}[重要练习兼定义：\trPushforward\trSheaf{}或\trDirectImage\trSheaf]\label{ex:pushforward-sheaf}
+设 $\pi\colon X\to Y$ 是一个\trContinuousMap{}，$\scr{F}$ 是 $X$ 上的一个\trPresheaf。对 $Y$ 的\trOpenSubset{} $V$ 置 $\pi_*\scr{F}(V)=\scr{F}\bigl(\pi^{-1}(V)\bigr)$，从而在 $Y$ 上定义一个\trPresheaf。证明：$\pi_*\scr{F}$ 是 $Y$ 上的\trPresheaf，并且当 $\scr{F}$ 是\trSheaf{}时它也是\trSheaf。它称为 $\scr{F}$ 的\textbf{\trPushforward}（pushforward）或\textbf{\trDirectImage}（direct image）。更精确地说：$\pi_*\scr{F}$ 称为 $\scr{F}$ 沿 $\pi$ 的\textbf{\trPushforward}。
+\end{exercise}
+
+\textbf{2.2.12.}\quad 一如记号所暗示，\mbox{例~2.2.9}的\trSkyscraperSheaf{}可以这样解读：单点空间 $p$ 上的\trConstantSheaf{} $\underline{S}$ 沿包含\trMorphism{} $i_p\colon\{p\}\to X$ 的\trPushforward。
+
+一旦我们给\trSheaf{}装备上\trCategory{}的结构，就会看到\trPushforward{}是一个从 $X$ 上的\trSheaf{}到 $Y$ 上的\trSheaf{}的\trFunctor{}（\cref{ex:pushforward-induces-functor}）。
+
+\begin{exercise}[\trPushforward{}诱导\trStalk{}间映射]\label{ex:pushforward-stalks}
+设 $\pi\colon X\to Y$ 是\trContinuousMap{}，$\scr{F}$ 是 $X$ 上的\trSetsWord\trSheaf{}（或\trRing{}的、$A$-\trModule{}的\trSheaf）。若 $\pi(p)=q$，请描述\trStalk{}之间的\trNatural\trMorphism{} $(\pi_*\scr{F})_q\to\scr{F}_p$。（你既可以用 \S2.2.4 那个以代表元表述的\trStalk{}的显式定义，也可以用 \S2.2.5 的\trUniversalProperty。若你偏爱其中一种方式，就应当把另一种也试一试。）
+\end{exercise}
+
+\textbf{2.2.13.\ 重要例子：\trRingedSpace{}与 $\OO_X$-\trModule。}\quad 设 $\OO_X$ 是\trTopologicalSpace{} $X$ 上的一个\trRing{}的\trSheaf{}（即取值于\trCategory{} $\catRings$ 的、$X$ 上的\trSheaf）。则 $(X,\OO_X)$ 称为\textbf{\trRingedSpace}（ringed space）。这一\trRing\trSheaf{}常记作 $\OO_X$，读作「oh-X」。它称为该\trRingedSpace{}的\textbf{\trStructureSheaf}（structure sheaf）。\trStructureSheaf{} $\OO_X$ 在\trOpenSubset{} $U$ 上的\trSection{}称为\textbf{$X$ 上的函数}，或简称\textbf{函数}。\emph{警示：我们称之为「函数」的东西，别人有时称作「\trRegular{}函数」。此外，我们日后将在 \S5.2.1 与 \S6.6.36 于\trScheme{}上定义「有理函数」，它们并非这种意义下严格意义上的函数，而是「部分有定义的函数」的一种。}
+
+符号 $\OO_X$ 将永远指\trRingedSpace{} $X$ 的\trStructureSheaf。$\OO_X$ 限制到\trOpenSubset{} $U\subset X$ 上所得的 $\OO_{X|U}$ 记作 $\OO_U$。（日后我们将把 $(U,\OO_U)\to(X,\OO_X)$ 称为\trRingedSpace{}之间的\emph{\trOpenEmbedding}；见\mbox{定义~7.2.1}。）$\OO_X$ 在点 $p$ 处的\trStalk{}写作 $\OO_{X,p}$，因为这副模样看起来没有 $\OO_{X_p}$ 那么丑。
+
+正如\trRing{}上有\trModule，\trRing\trSheaf{} $\OO_X$ 上也有 $\OO_X$-\trModule。配得上 $\OO_X$-\textbf{\trModule}（$\OO_X$-module）（常简称 $\OO$-\trModule）之名的定义只有一种可能——即一个\trAbelianGroups{}的\trSheaf{} $\scr{F}$，附带如下额外结构：对每个 $U$，$\scr{F}(U)$ 是一个 $\OO_X(U)$-\trModule；而且这个结构应当与\trRestrictionMap{}良好相容：若 $U\subset V$，则
+\begin{equation*}\tag{2.2.13.1}\label{eq:ox-module-action-square}
+\begin{tikzcd}[row sep=2.8em, column sep=3.2em]
+\OO_X(V)\times\scr{F}(V) \ar[r, "\mathrm{action}"] \ar[d, "\mathrm{res}_{V,U}\times\mathrm{res}_{V,U}"'] & \scr{F}(V) \ar[d, "\mathrm{res}_{V,U}"] \\
+\OO_X(U)\times\scr{F}(U) \ar[r, "\mathrm{action}"'] & \scr{F}(U)
+\end{tikzcd}
+\end{equation*}
+交换。（你应当说服自己：我没有忘掉任何东西。）
+
+回忆一下：$A$-\trModule{}的观念推广了\trAbelianGroups{}的观念，因为\trAbelianGroups{}无非是一个 $\mathbb{Z}$-\trModule。类似地，$\OO_X$-\trModule{}的观念推广了\trAbelianGroups{}的\trSheaf{}的观念，因为后者无非是 $\underline{\mathbb{Z}}$-\trModule。于是，当我们证明关于 $\OO_X$-\trModule{}的种种命题时，我们同时也是在证明关于\trAbelianGroups{}的\trSheaf{}的种种命题。
+
+\begin{exercise}\label{ex:stalk-of-ox-module}
+设 $(X,\OO_X)$ 是\trRingedSpace，$\scr{F}$ 是一个 $\OO_X$-\trModule。请描述：对每一点 $p\in X$，$\scr{F}_p$ 如何成为一个 $\OO_{X,p}$-\trModule。
+\end{exercise}
+
+\textbf{2.2.14.\ 给知道\trVectorBundle{}的读者。}\quad $\OO_X$-\trModule{}的动机性例子是\trVectorBundle{}的\trSection\trSheaf。设 $(X,\OO_X)$ 是一个\trDifferentiable\trManifold{}（于是 $\OO_X$ 是\trSmooth{}函数的\trSheaf），而 $\pi\colon V\to X$ 是 $X$ 上的一个\trVectorBundle，则\trSmooth{}\trSection{} $\sigma\colon X\to V$ 的\trSheaf{}是一个 $\OO_X$-\trModule。确实如此：给定 $\pi$ 在\trOpenSubset{} $U\subset X$ 上的一个\trSection{} $s$，以及 $U$ 上的一个函数 $f$，把 $s$ 乘以 $f$，便得到 $\pi$ 在 $U$ 上的一个新\trSection{} $fs$。再者，若 $U'$ 是更小的子集，那么我们既可以先用 $f$ 乘 $s$ 再限制到 $U'$，也可以先把 $f$ 与 $s$ 都限制到 $U'$ 再相乘，两种做法给出相同的答案。这恰恰就是 \eqref{eq:ox-module-action-square} 的交换性。

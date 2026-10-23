@@ -1,0 +1,409 @@
+\section{谱容量与最优能量--容量不等式}
+\label{sec:spectral-capacities-energy-capacity}
+
+本节研究若干已知辛容量构造的各种谱类比。我们以霍费尔直径、霍费尔位移能以及
+$\pi_1$-敏感霍费尔--曾德尔容量为例。谱位移能由 (Oh05d) 引入；
+$\pi_1$-敏感霍费尔--曾德尔容量由\personLu{} (LuG96) 与施瓦茨 (Schw00) 引入，
+随后厄舍 (Ush10a) 用谱不变量进一步研究了它。
+
+\stfhIndex{I173}{Puzhijing}{谱直径（spectral diameter）}
+\begin{definition}[谱直径]
+\label{def:22-spectral-diameter}
+设 $(M,\omega)$ 是不必无边界的紧辛流形。考虑支集包含于 $M\setminus\partial M$ 的
+哈密顿微分同胚群 $\operatorname{Ham}_c(M,\omega)$。定义
+$\operatorname{Ham}_c(M,\omega)$ 的\emph{谱直径}为
+\[
+ \begin{aligned}
+ \operatorname{diam}_\rho(\operatorname{Ham}_c(M,\omega))
+ &:=\sup_H\{\gamma(H)\mid\operatorname{supp}H\subset M\setminus\partial M\}\\
+ &=\sup_{\phi\in\operatorname{Ham}_c(M,\omega)}\{\gamma(\phi)\}.
+ \end{aligned}
+\]
+\end{definition}
+
+一般而言，尚不清楚哪些辛流形 $(M,\omega)$ 满足
+$\operatorname{diam}_\rho(M,\omega)<\infty$。稍后将在第 22.5 节证明
+$\mathbb{CP}^n$ 的谱直径有限。
+
+然而，若考虑可位移开子集 $U\subset M$，便可用\emph{谱位移能}（从而也可用霍费尔位移
+能量）给出 $\operatorname{diam}_\rho(\operatorname{Ham}_c(U,\omega))$ 的一个界。
+\stfhIndex{I174}{Puweiyineng}{谱位移能（spectral displacement energy）}
+现在引入谱位移能。
+
+\begin{definition}
+\label{def:22-spectral-displacement-energy}
+设 $A$ 是 $M$ 的任意闭子集。定义 $A$ 的谱位移能 $e_\rho(A)$ 为
+\begin{equation}
+ e_\rho(A)=\inf_H\{\gamma(H)\mid\phi_H^1(A)\cap A=\varnothing\}.
+ \label{eq:22-spectral-displacement-energy}
+\end{equation}
+\end{definition}
+
+为简化记号，以
+\[
+ \mathcal P_U^{\mathrm{ham}}
+ :=\mathcal P^{\mathrm{ham}}(\operatorname{Symp}_U(M,\omega),\mathrm{id})
+\]
+表示所有满足 $\operatorname{supp}F\subset U$ 的哈密顿路径 $\phi_F$ 之集。
+
+有了这些定义，我们陈述如下结论。
+
+\begin{proposition}[与 (EnP06) 引理 7.2 比较]
+\label{prop:22-displaceable-spectral-diameter}
+设 $U$ 是闭包 $\overline U$ 可位移的开子集。对任意
+$\lambda=\phi_F\in\mathcal P_U^{\mathrm{ham}}$，都有
+\[
+ \gamma(\phi_F)\leq2e_\rho(\overline U).
+\]
+特别地，
+\[
+ \operatorname{diam}_\rho(\operatorname{Ham}_c(U))\leq2e_\rho(\overline U).
+\]
+\end{proposition}
+
+\begin{proof}
+设 $H$ 是满足 $\phi_H^1(U)\cap\overline U=\varnothing$ 的任意哈密顿量，$F$ 是满足
+$\operatorname{supp}F\subset U$ 的哈密顿量。
+\footnote{译者注：原书此处连续两次把新引入的哈密顿量写作 $F$，但首个对象满足的位移
+条件写作 $\phi_H^1(U)\cap\overline U=\varnothing$；译文依该条件把首个对象改作 $H$。}
+注意，$\gamma(\lambda)$ 的值不依赖于
+代表 $\lambda=\phi_F$ 的哈密顿量 $F$ 的归一化。因此，为证明命题，只需对满足
+$\operatorname{supp}F\subset U$、但不必均值归一化的哈密顿量 $F$ 证明
+\begin{equation}
+ \gamma(F)=\rho(\phi_F;1)+\rho(\phi_F^{-1};1)\leq2\gamma(H).
+ \label{eq:22-local-gamma-bound}
+\end{equation}
+先从如下引理开始。
+
+\begin{lemma}
+\label{lem:22-calabi-spectral-shift}
+有
+\[
+ \begin{aligned}
+ \rho(\phi_H\phi_F;1)&=\rho(\phi_H;1)+\operatorname{Cal}_U(F),\\
+ \rho(\phi_H^{-1}(\phi_F)^{-1};1)
+ &=\rho(\phi_H^{-1};1)-\operatorname{Cal}_U(F).
+ \end{aligned}
+\]
+\end{lemma}
+
+\begin{proof}
+证明第一式即可，因为 $(\phi_F)^{-1}=\phi_{\overline F}$、
+$\operatorname{supp}\overline F\subset U$，并且当 $\operatorname{supp}F\subset U$ 时
+$\operatorname{Cal}^{\mathrm{path}}(\phi_{\overline F})
+=-\operatorname{Cal}^{\mathrm{path}}(\phi_F)$。我们依照 (EnP06) 引理 7.2 的方案；该方案
+\stfhIndex{I148}{Aositeluofu}{奥斯特罗弗（Ostrover）}
+又基于奥斯特罗弗 (Os03) 的一个技巧。
+
+对 $0\leq s\leq1$，考虑族 $\lambda_s$：
+\[
+ \lambda_s(t)=
+ \begin{cases}
+  \phi_H^{2t},&0\leq t\leq\frac12,\\
+  \phi_H^1\phi_F^{2s(t-1/2)},&\frac12\leq t\leq1.
+ \end{cases}
+\]
+有
+\[
+ \operatorname{Dev}(\lambda_s)(t)=
+ \begin{cases}
+  2H(2t,x),&0\leq t\leq\frac12,\\
+  2sF(2s(t-1/2),x),&\frac12\leq t\leq1.
+ \end{cases}
+\]
+记 $F^s:=\operatorname{Dev}(\lambda_s)$。注意
+$\operatorname{Fix}(\phi_H^1\lambda_s)=\operatorname{Fix}(\phi_H^1)$。对每个不动点
+$x\in\operatorname{Fix}(\phi_H^1\lambda_s)\equiv\operatorname{Fix}\phi_H^1$，以
+$z_x^s$ 表示 $F^s$ 的相应周期轨道。则当 $0\leq t\leq1/2$ 时
+$z_x^s(t)=\phi_H^{2t}(x)$，当 $1/2\leq t\leq1$ 时
+$z_x^s(t)\equiv\phi_H^1(x)=x$。因此可取光滑提升
+$[z_x^s,w]\in\widetilde\Omega_0(M)$，其中填充圆盘 $w$ 与 $s$ 无关。于是对每个
+$s\in[0,1]$，
+\[
+ \begin{aligned}
+ \mathcal A_{F^s}([z_x^s,w])
+ &=-\int w^*\omega-\int_0^1F^s(t,z_x^s(t))\,dt\\
+ &=-\int w^*\omega
+ -\int_0^{1/2}2H(2t,\phi_H^{2t}(x))\,dt\\
+ &\quad-\int_{1/2}^1 2sF(2s(t-1/2),\phi_H^1(x))\,dt.
+ \end{aligned}
+\]
+注意
+\[
+ \int_{1/2}^1F^s(t,z_x^s(t))\,dt
+ =\int_{1/2}^1 2sF(2s(t-1/2),\phi_H^1(x))\,dt
+ =\int_0^sF(t,x)\,dt,
+\]
+其中第二个等号来自 $x\in\operatorname{Fix}\phi_H^1$；并且
+\[
+ \int_0^{1/2}2H(2t,\phi_H^{2t}(x))\,dt
+ =\int_0^1H(t,\phi_H^t(x))\,dt.
+\]
+由此得到
+\[
+ \mathcal A_{F^s}([z_x^s,w])
+ =\mathcal A_H([z_x^0,w])-\int_0^sF(t,x)\,dt.
+\]
+但对任意 $x\in M\setminus U$，
+\begin{equation}
+ F(t,x)\equiv\{\operatorname{vol}(M)\}^{-1}\int_MF_t\,d\mu.
+ \label{eq:22-hamiltonian-outside-support}
+\end{equation}
+所以对所有 $x\in\operatorname{Fix}\phi_H^1$ 与 $s\in[0,1]$，
+\[
+ \mathcal A_{F^s}([z_x^s,w])
+ =\mathcal A_H([z_x^0,w])
+ -\int_0^s\{\operatorname{vol}(M)\}^{-1}\int_MF_t\,d\mu\,dt,
+\]
+从而
+\[
+ \mathcal A_{F^s}([z_x^s,w])\in\operatorname{Spec}H+c(s),
+ \qquad
+ c(s)=\int_0^s\operatorname{vol}_\omega(M)^{-1}\int_MF_t\,d\mu\,dt.
+\]
+特别地，作为 $\mathbb R$ 的子集，有
+\footnote{译者注：原书上一行把作用量写成属于
+$\operatorname{Spec}H+c(s)$，此式却给出
+$\operatorname{Spec}F^s=\operatorname{Spec}H-c(s)$；译文逐式照录并提示符号不一致。}
+\begin{equation}
+ \operatorname{Spec}F^s=\operatorname{Spec}H-c(s).
+ \label{eq:22-spectrum-shift}
+\end{equation}
+
+现考虑连续函数 $s\mapsto\rho(\lambda_s;1)=\rho(F^s;1)$。由于所有 $F^s$ 都非退化，
+\footnote{译者注：命题 22.3.3 并未假设 $H$ 非退化，此处也没有给出逼近步骤，却直接
+断言所有 $F^s$ 非退化；译文照录。}
+非退化谱性公理给出 $\rho(F^s;1)\in\operatorname{Spec}F^s$，故由
+~\eqref{eq:22-spectrum-shift}，
+\[
+ \rho(F^s;1)+c(s)\in\operatorname{Spec}H.
+\]
+因为 $s\mapsto\rho(F^s;1)+c(s)$ 连续，而 $\operatorname{Spec}H$ 无处稠密，前者必为
+常值。特别地，
+\[
+ \rho(F^0;1)+c(0)=\rho(F^1;1)+c(1).
+\]
+但 $c(0)=0$ 且
+\[
+ c(1)=\frac1{\operatorname{vol}_\omega(M)}
+ \int_0^1\int_MF\,d\mu\,dt=\operatorname{Cal}_U(F),
+\]
+又有 $F^0=H$、$F^1=H*F$。所以
+\[
+ \rho(\phi_H;1)=\rho(\phi_H\phi_F;1)-\operatorname{Cal}_U(F),
+\]
+等价地，
+\begin{equation}
+ \rho(\phi_H\phi_F;1)=\rho(\phi_H;1)+\operatorname{Cal}_U(F).
+ \label{eq:22-calabi-shift}
+\end{equation}
+引理得证。
+\end{proof}
+
+
+回到~\eqref{eq:22-local-gamma-bound} 与命题
+~\ref{prop:22-displaceable-spectral-diameter} 的证明。把引理
+~\ref{lem:22-calabi-spectral-shift} 中两式相加，得到
+\begin{equation}
+ \rho(\phi_H\phi_F;1)+\rho(\phi_H^{-1}\phi_F^{-1};1)
+ =\rho(\phi_H;1)+\rho(\phi_H^{-1};1).
+ \label{eq:22-calabi-sum}
+\end{equation}
+由三角不等式，还有
+\[
+ \begin{aligned}
+ \rho(\phi_F;1)&\leq\rho(\phi_H\phi_F;1)+\rho(\phi_H^{-1};1),\\
+ \rho(\phi_F^{-1};1)&\leq
+ \rho(\phi_F^{-1}\phi_H^{-1};1)+\rho(\phi_H;1).
+ \end{aligned}
+\]
+把这两个不等式相加，并将所得和代入~\eqref{eq:22-calabi-sum}，便得到
+\[
+ \gamma(F)\leq2\rho(\phi_H;1)+2\rho(\phi_H^{-1};1)=2\gamma(H),
+\]
+从而完成证明。
+\end{proof}
+
+此时尚不显然 $\operatorname{diam}_\rho(\operatorname{Ham}_c(U))>0$。依照
+(LuG96), (Schw00), (Ush10a) 的论证，我们将通过把 $\rho(\mathord\cdot;1)$ 与另一
+个称为 $\pi_1$-敏感霍费尔--曾德尔容量的容量比较来证明这一点。这一概念最初由\personLu{} (LuG96)
+引入；这里采用施瓦茨在 (Schw00) 中使用的术语。
+
+为引出卢广存对 $\pi_1$-敏感霍费尔--曾德尔容量的定义，先回忆霍费尔--曾德尔
+容量 $c_{\mathrm{HZ}}(A)$ 的构造。为定义 $c_{\mathrm{HZ}}(A)$，回忆\emph{假设 $M$ 有非空
+边界} $\partial M$。记
+\[
+ \begin{aligned}
+ \mathcal H_{\mathrm{HZ}}(A)=\{H\in C^\infty(M)\mid{}&
+ \operatorname{supp}(H)\subset A\setminus\partial M,
+ \quad0\leq H\leq\max H,\\
+ &H^{-1}(0)\text{ 与 }H^{-1}(\max H)
+ \text{ 均包含非空开集}\}.
+ \end{aligned}
+\]
+
+\stfhIndex{I004}{00-hz-rongxu}{HZ-容许}
+\begin{definition}
+\label{def:22-hz-admissible}
+若 $H\in\mathcal H_{\mathrm{HZ}}(A)$ 作为一周期函数时，其哈密顿流 $\phi_H$ 没有周期
+小于或等于 $1$ 的非常值周期轨道，则称 $H$ 为 \emph{HZ-容许的}。类似地，若
+$\phi_H$ 没有在 $M$ 中可缩、周期小于或等于 $1$ 的非常值周期轨道，则称 $H$ 为
+\emph{$\mathrm{HZ}^\circ$-容许的}。分别以
+$\mathcal H_{\mathrm{HZ}}^{\mathrm{ad}}(A)$ 和
+$\mathcal H_{\mathrm{HZ}}^{\circ,\mathrm{ad}}(A,M)$ 表示 HZ-容许与
+$\mathrm{HZ}^\circ$-容许哈密顿量的集合。（路使用 C-容许性一词，而非
+$\mathrm{HZ}^\circ$-容许性。）
+\end{definition}
+
+霍费尔--曾德尔容量 (HZ94) 定义如下。
+
+\stfhIndex{I113}{Huofeier-Zengdeerrongliang}{霍费尔--曾德尔容量（Hofer--Zehnder capacity）}
+\begin{definition}[霍费尔--曾德尔容量]
+\label{def:22-hofer-zehnder-capacity}
+设 $A\subset M\setminus\partial M$。定义
+\footnote{译者注：原书此处印作 $A\subset M\subset\partial M$，与“$M$ 有非空边界”
+以及上文 $\operatorname{supp}(H)\subset A\setminus\partial M$ 不相容；译文据定义域改作
+$A\subset M\setminus\partial M$。}
+\[
+ c_{\mathrm{HZ}}(A)=\sup\{\max H\mid
+ H\in\mathcal H_{\mathrm{HZ}}(A)\text{ 是 HZ-容许的}\},
+\]
+称之为霍费尔--曾德尔容量。
+\end{definition}
+
+\stfhIndex{I172}{Shiwaci}{施瓦茨（Schwarz）}
+把 $\pi_1(M)$ 对哈密顿流的影响纳入考虑后，路 (LuG96) 与施瓦茨 (Schw00) 引入
+$c_{\mathrm{HZ}}$ 的如下变体：
+\[
+ c_{\mathrm{HZ}}^\circ(A,M)
+ :=\sup\{\max H\mid H\in\mathcal H_{\mathrm{HZ}}(A)
+ \text{ 是 $\mathrm{HZ}^\circ$-容许的}\}.
+\]
+他们称之为 $\pi_1$-敏感霍费尔--曾德尔容量。在该定义中，$M$ \emph{现在可以是闭的}。
+
+这两个记号符合如下事实：$c_{\mathrm{HZ}}(A)$ 只依赖于
+$(A,\phi_H^t|_A)$（以及 $\dim M$）；而 $\phi_H^t$ 的轨道在 $M$ 中是否可缩依赖于
+$M$，故 $c_{\mathrm{HZ}}^\circ(A,M)$ 依赖于环境流形 $M$，而不仅依赖于 $A$。
+显然，任意 HZ-容许哈密顿量都是 $\mathrm{HZ}^\circ$-容许的，所以
+\[
+ c_{\mathrm{HZ}}(A)\leq c_{\mathrm{HZ}}^\circ(A,M).
+\]
+霍费尔--曾德尔在 (HZ94) 中证明 $c_{\mathrm{HZ}}$ 是辛容量；若
+$B^{2n}(r)$ 是 $\mathbb R^{2n}$ 中半径为 $r$ 的球，则
+$c_{\mathrm{HZ}}(B^{2n}(r))=\pi r^2$。
+
+\stfhIndex{I190}{Eshe}{厄舍（Usher）}
+下述结果由厄舍 (Ush10a) 证明。
+
+\begin{proposition}
+\label{prop:22-displaced-support-spectral-bound}
+设 $F,H:(\mathbb R/\mathbb Z)\times M\to\mathbb R$ 是无边界紧辛流形
+$(M,\omega)$ 上两个不必归一化的哈密顿量，并满足
+\[
+ \phi_H^1(\operatorname{supp}F)\cap\operatorname{supp}F=\varnothing,
+\]
+其中
+\[
+ \operatorname{supp}F:=\bigcup_{t\in\mathbb R/\mathbb Z}
+ \operatorname{supp}F_t\subset M.
+\]
+则
+\[
+ \rho(F;1)\leq\gamma(H)
+ =\rho(H;1)+\rho(\overline H;1).
+\]
+\end{proposition}
+
+\begin{proof}
+选择可位移开子集 $U\subset M$，使 $\operatorname{supp}F\subset U$。记
+$\underline F$ 为 $F$ 的归一化：
+\[
+ \underline F_t=F_t-\frac1{\operatorname{vol}(M)}\int_MF_t\,\omega^n
+\]
+对每个 $t$ 成立。由定义，
+\begin{align}
+ \rho(F;1)
+ &=\rho(\underline F;1)+\frac1{\operatorname{vol}(M)}
+ \int_0^1\int_MF_t\,\omega^n\,dt\notag\\
+ &=\rho(\underline F;1)+\operatorname{Cal}_U(F)\notag\\
+ &\leq\rho(F\#H;1)+\rho(\overline H;1)+\operatorname{Cal}_U(F).
+ \label{eq:22-displaced-support-intermediate}
+\end{align}
+\footnote{译者注：原书式 (22.3.30) 第一行的空间积分 $\int_MF_t$ 未写体积形式；同页
+归一化公式明确使用 $\omega^n$，译文据此补出。}
+另一方面，~\eqref{eq:22-calabi-shift} 蕴含：对每个满足
+$\phi_H^1(U)\cap\overline U=\varnothing$ 的 $H$，
+\[
+ \operatorname{Cal}_U^{\mathrm{path}}(\phi_F)
+ =\rho(H;1)-\rho(F\#H;1).
+\]
+把它代入~\eqref{eq:22-displaced-support-intermediate}，便得到
+\[
+ \rho(F;1)\leq\rho(H;1)+\rho(\overline H;1).
+\]
+\end{proof}
+
+结合定理~\ref{thm:22-slow-fundamental-cycle-tight} 与此命题，得到如下定理。
+
+\begin{theorem}[厄舍]
+\label{thm:22-pi-one-capacity-displacement}
+若 $(M,\omega)$ 闭，则对任意 $A\subset M$ 有
+\[
+ c_{\mathrm{HZ}}^\circ(A,M)\leq e(A,M).
+\]
+\end{theorem}
+
+\begin{proof}
+以一列慢、欠扭且非退化的自治哈密顿量 $F_i$ 逼近任意容许的 $F$。由定理
+~\ref{thm:22-slow-fundamental-cycle-tight}，
+$\rho(-F_i;1)=E^+(F_i)$。利用 $\rho(\mathord\cdot;1)$ 与 $E^+$ 的 $C^0$-连续性取
+极限，得到 $\rho(-F;1)=E^+(F)=\max F$。于是命题
+~\ref{prop:22-displaced-support-spectral-bound} 蕴含
+\[
+ \max F\leq\rho(H;1)+\rho(\overline H;1).
+\]
+让右端对所有满足 $\phi_H^1(U)\cap\overline U=\varnothing$ 的 $H$ 取下确界，再让
+$\max F$ 对所有 $\mathrm{HZ}^\circ$-容许的 $F$ 取上确界，即得定理。
+\end{proof}
+
+定理~\ref{thm:22-pi-one-capacity-displacement} 的一个直接推论是谱范数的非退化性。
+
+\begin{corollary}
+\label{cor:22-spectral-norm-nondegenerate}
+谱范数 $\gamma:\operatorname{Ham}(M,\omega)\to\mathbb R_+$ 满足
+$\gamma(\phi)=0$ 当且仅当 $\phi=\mathrm{id}$。
+\end{corollary}
+
+\begin{proof}
+设 $\phi\neq\mathrm{id}$。则可找到一个可位移的充分小辛球 $B\cong B^{2n}(r)$。
+\footnote{译者注：原书这里只说所选小球“可位移”，但随即用它给出给定 $\phi$ 的谱范数
+下界；论证还需选择满足 $\phi(B)\cap B=\varnothing$ 的充分小球。}
+于是 $\gamma(\phi)\geq c_{\mathrm{HZ}}^\circ(B,M)$。另一方面，
+\footnote{译者注：定义 22.3.6 中 $c_{\mathrm{HZ}}$ 只有集合参数，此处原书却写
+$c_{\mathrm{HZ}}(B,M)$；译文保留二参数写法。}
+\[
+ c_{\mathrm{HZ}}^\circ(B,M)\geq c_{\mathrm{HZ}}(B,M)=\pi r^2>0.
+\]
+结合这两个不等式便有 $\gamma(\phi)>0$。
+\end{proof}
+
+另一推论给出格罗莫夫面积与霍费尔位移能之间如下的最优不等式，即能量--容量
+不等式；证明见 (Ush10a), (Sch06)。
+
+\begin{corollary}[最优能量--容量不等式]
+\label{cor:22-sharp-energy-capacity}
+设 $A\subset M$ 是任意紧闭子集，以 $c(A)$ 表示格罗莫夫面积，以 $e(A)$ 表示霍费尔
+位移能。则
+\footnote{译者注：原书在本推论中先以 $e(A)$ 表示霍费尔位移能，结论却改写为
+$e(A,M)$；译文逐处照录这一参数数目不一致。}
+\[
+ c(A)\leq e(A,M).
+\]
+\end{corollary}
+
+\begin{proof}
+众所周知（见命题 6.1.5），由于格罗莫夫面积是最小的可能辛容量，
+$c(A)\leq c_{\mathrm{HZ}}(A)$。因此，定理
+~\ref{thm:22-pi-one-capacity-displacement} 以及不等式
+$c_{\mathrm{HZ}}(A)\leq c_{\mathrm{HZ}}^\circ(A,M)$ 立即给出此推论。
+\end{proof}

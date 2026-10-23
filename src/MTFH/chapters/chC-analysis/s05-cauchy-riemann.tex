@@ -1,0 +1,231 @@
+
+\section{\trCauchyRiemann{}方程}
+\label{sec:cauchy-riemann-equation}
+
+算子 $\bar{\partial}$ 在\trFloerHomology{}理论中扮演着一个重要角色，这一点我们已经见到过。在 $\RR^{2}=\CC$ 上，我们考虑如下两个算子：
+\[
+\bar{\partial}=\frac{1}{2}\left(\frac{\partial}{\partial x}+i\,\frac{\partial}{\partial y}\right)
+\qquad\text{与}\qquad
+\partial=\frac{1}{2}\left(\frac{\partial}{\partial x}-i\,\frac{\partial}{\partial y}\right)\text{。}
+\]
+
+$\CC$ 的一个\trOpen{}子集上的一个 $\cC^{1}$ 类函数 $u$ 是\trHolomorphic{}的，当且仅当它满足\trCauchyRiemann{}方程
+\[
+\bar{\partial}u=0\text{。}
+\]
+函数
+\[
+N(z)=\frac{1}{\pi z}
+\]
+（\trCauchy{}核）是\trCauchyRiemann{}方程的一个\trFundamentalSolution——这里用的是\cref{subsec:fundamental-solution-weak-solutions}中给出的那个意义——正如下面的引理所表明的那样。
+
+\begin{lemma}\label{thm:cauchy-kernel-fundamental-solution}
+设 $u$ 与 $f$ 是属于 $L^{p}(\CC)$ 的、具有紧\trSupport{}的连续函数。那么，$u$ 是 $\bar{\partial}u=f$ 的一个\trWeakSolution{}当且仅当 $u=N\star f$。
+
+换言之，
+\[
+u(z)=\frac{1}{2\pi i}\int_{\CC}\frac{f(w)}{w-z}\,dw\wedge d\bar{w}\text{。}
+\]
+\end{lemma}
+
+\noindent\textbf{注记。}当 $u$ 属于 $\cC^{1}$ 类时，\trCauchy{}公式（例如作为\trStokes{}定理的一个推论，参见 [40,~p.~3]）给出：对每个\trDisk $D\subset\CC$ 与每个位于 $D$ 中的 $z$，
+\[
+u(z)=\frac{1}{2\pi i}\int_{\partial D}\frac{u(w)}{w-z}\,dw
++\frac{1}{2\pi i}\int_{D}\frac{\partial u}{\partial\bar{w}}\,\frac{dw\wedge d\bar{w}}{w-z}\text{。}
+\]
+如果 $u$ 具有紧\trSupport{}而 $D$ 包含这个\trSupport，那么第一个积分为零。
+
+\begin{proof}[\cref{thm:cauchy-kernel-fundamental-solution}的证明]
+利用\cref{thm:weak-solution-compact-support}，只需证明 $\bar{\partial}N=\delta$。设 $\varphi\in\cC^{\infty}_{0}(\CC)$。我们有%
+\footnote{译注：下式两处均印作 $d\rho\,d\theta$；按积分限，外层自 $0$ 至 $+\infty$ 配 $\rho$、内层自 $0$ 至 $2\pi$ 配 $\theta$，其先后次序应相反，应作 $d\theta\,d\rho$。此处照原书排印。——译者注}
+\begin{align*}
+\langle\bar{\partial}N,\varphi\rangle
+&=\int_{\CC}-\bar{\partial}\varphi(z)\,N(z)\,dz\\
+&=\int_{\RR^{2}}-\frac{1}{2}\left(\frac{\partial\varphi}{\partial x}
++i\,\frac{\partial\varphi}{\partial y}\right)
+\frac{x-iy}{\pi\,(x^{2}+y^{2})}\,dx\,dy\\
+&=-\frac{1}{2\pi}\int_{\RR^{2}}\frac{x\,\dfrac{\partial\varphi}{\partial x}
++y\,\dfrac{\partial\varphi}{\partial y}}{x^{2}+y^{2}}\,dx\,dy
+-\frac{i}{2\pi}\int_{\RR^{2}}\frac{-y\,\dfrac{\partial\varphi}{\partial x}
++x\,\dfrac{\partial\varphi}{\partial y}}{x^{2}+y^{2}}\,dx\,dy\\
+&=-\frac{1}{2\pi}\int_{0}^{+\infty}\int_{0}^{2\pi}
+\frac{\partial}{\partial\rho}\varphi(\rho\cos\theta,\rho\sin\theta)\,d\rho\,d\theta\\
+&\qquad\qquad-\frac{i}{2\pi}\int_{0}^{+\infty}\int_{0}^{2\pi}
+\frac{1}{\rho}\,\frac{\partial}{\partial\theta}\varphi(\rho\cos\theta,\rho\sin\theta)\,d\rho\,d\theta\\
+&=\varphi(0)\text{。}\qedhere
+\end{align*}
+\end{proof}
+
+\subsection{\trLaplacian}
+\label{subsec:laplacian}
+
+在 $\RR^{n}$ 上，\trLaplacian（Laplacian）是算子
+\[
+\Delta=\sum_{i=1}^{n}\frac{\partial^{2}}{\partial x_{i}^{2}}\text{。}
+\]
+在一个\trOpen{}集 $U$ 上满足 $\Delta u=0$ 的那些 $\cC^{2}$ 函数称为\textbf{\trHarmonic{}函数}（harmonic functions）。让我们回顾一下，在我们感兴趣的 $n=2$ 情形，\trHarmonic{}函数恰是解析函数的实部。\trHarmonic{}函数满足平均值性质。
+
+\begin{proposition}[平均值性质]\label{thm:mean-value-property}
+设 $u$ 是 $U\subset\RR^{2}$ 上的一个\trHarmonic{}函数。我们有
+\[
+u(x)=\frac{1}{\pi r^{2}}\int_{B(x,r)}u(z)\,dz
+\qquad\text{对每个球 } B(x,r)\subset U\text{。}
+\]
+\end{proposition}
+
+具有这个平均值性质的一个 $L^{1}_{\mathrm{loc}}$ 函数必然是 $\cC^{\infty}$ 的。事实上，我们有下述结果。
+
+\begin{lemma}\label{thm:mean-value-regularity}
+一个满足平均值等式的 $L^{1}_{\mathrm{loc}}$ 函数属于 $\cC^{\infty}$ 类。
+\end{lemma}
+
+\begin{proof}
+其想法是：左端的这个 $u$ 比积分中的那个 $u$ 更\trRegular（这是一次“自举”（bootstrapping））。为了证明这一点，让我们注意到，平均值等式也等价于
+\[
+u=\chi_{r}\star u\text{，}\qquad\text{其中 } \chi_{r}=\frac{1}{\pi r^{2}}\,\chi_{B(0,r)}\text{，}
+\]
+这个等式在 $U_{r}=\{x\in U\mid B(x,r)\subset U\}$ 上成立。这就蕴含：在 $U_{mr}$ 上，
+\[
+u=\underbrace{\chi_{r}\star\chi_{r}\star\cdots\star\chi_{r}}_{m\ \text{次}}\star u\text{。}
+\]
+如果我们知道
+\[
+\underbrace{\chi_{r}\star\chi_{r}\star\cdots\star\chi_{r}}_{m\ \text{次}}
+\in\cC^{m-2}_{0}(\RR^{2})\text{，}
+\]
+那么结果便立即由\trConvolution{}的\trRegularity（见上面的\cref{subsec:convolution}）得到，而这将是我们接下来用归纳法来证明的。
+
+首先，
+\[
+\chi_{r}\star\chi_{r}(x)=\frac{1}{(\pi r^{2})^{2}}\operatorname{Aire}\bigl(B_{r}(0,0)\cap B_{r}(x)\bigr)\text{，}
+\]
+\footnote{译注：“Aire”（面积）系原书排印所保留的法文词。——译者注}
+我们可以容易地验证它是一个具有紧\trSupport{}的连续函数；更精确地说，
+\[
+\chi_{r}\star\chi_{r}(x)=\frac{1}{(\pi r^{2})^{2}}
+\left(2r^{2}\arccos\frac{\|x\|}{2r}-\frac{\|x\|\sqrt{4r^{2}-\|x\|^{2}}}{2}\right)
+\]
+（当 $B_{r}(0)\cap B_{r}(x)\ne\varnothing$ 时；否则为 $0$）。\footnote{译注：原书首项印作 $2\arccos\frac{\|x\|}{2r}$，漏去因子 $r^{2}$：以 $x=0$ 核验，交叠面积应为整个\trDisk{}的面积 $\pi r^{2}$，而原式给出 $\pi$。按两半径为 $r$、圆心距为 $\|x\|$ 的\trDisk{}交叠面积的标准公式 $2r^{2}\arccos\frac{\|x\|}{2r}-\frac{\|x\|}{2}\sqrt{4r^{2}-\|x\|^{2}}$，此处径改补足 $r^{2}$；补足后 $\chi_{r}\star\chi_{r}(0)=1/(\pi r^{2})$，且 $\int(\chi_{r}\star\chi_{r})=(\int\chi_{r})^{2}=1$，与 $\chi_{r}$ 的归一化\trCompatible。——译者注}
+
+其次，如果 $f\in\cC^{k}_{0}(\RR^{2})$，那么 $\chi_{r}\star f\in\cC^{k+1}_{0}(\RR^{2})$。事实上，这个函数显然具有紧\trSupport{}。此外，这个\trConvolution{}属于 $\cC^{k}_{0}$ 类，并且当 $|\alpha|=k$ 时，
+\[
+\frac{\partial^{\alpha}}{\partial x^{\alpha}}(\chi_{r}\star f)=\chi_{r}\star\frac{\partial^{\alpha}}{\partial x^{\alpha}}f\text{，}
+\]
+从而 $(\partial^{\alpha}/\partial x^{\alpha})f$ 是连续的。让我们把它记作 $g$，并来证明 $\chi_{r}\star g$ 属于 $\cC^{1}$ 类。我们有
+\[
+\pi r^{2}(\chi_{r}\star g)(s,t)=\int_{B_{r}}g(x,y)\,dx\,dy
+=\int_{s-r}^{s+r}\left(\int_{t-\sqrt{r^{2}-(x-s)^{2}}}^{t+\sqrt{r^{2}-(x-s)^{2}}}g(x,y)\,dy\right)dx\text{，}
+\]
+于是这个函数在 $t$ 上可微，并且它的导数是连续的。对其关于 $s$ 的导数亦然。
+\end{proof}
+
+属于 $\cC^{2}$ 类并不是\trHarmonic{}性的一个本质条件，正如下面的引理（它常被称为“\trWeyl{}引理”（Weyl's lemma））所表述的那样。
+
+\begin{lemma}\label{thm:weyl-lemma}
+$\Delta u=0$ 的每个属于 $L^{p}_{\mathrm{loc}}(U)$（对 $p\ge1$）的\trWeakSolution{}都是\trHarmonic{}的。
+\end{lemma}
+
+\begin{proof}
+我们使用一族逼近 $0$ 处的狄拉克 $\delta$ 函数的 $\cC^{\infty}$ 类函数 $\beta_{\delta}$（如同\cref{thm:sobolev-weak-derivatives}的证明中那样）：我们选取一个非负的、$\cC^{\infty}$ 类的映射 $\beta:\RR^{n}\to\RR$，其\trSupport{}含在单位球中，并且满足 $\int_{\RR^{n}}\beta(x)\,dx=1$，然后令 $\beta_{\delta}=\delta^{-n}\beta(\delta^{-1}x)$。$\beta_{\delta}$ 的\trSupport{}含在半径为 $\delta$ 的球中，而它在 $\RR^{n}$ 上的积分等于 $1$。
+
+设 $u\in L^{p}_{\mathrm{loc}}(U)$。函数 $u\star\beta_{\delta}$ 属于 $\cC^{\infty}$ 类，其\trSupport{}含于 $\{x\in U\mid B(x,\delta)\subset U\}$ 之中\footnote{译注：此句照原书排印，存疑备案：$U_{\delta}=\{x\in U\mid B(x,\delta)\subset U\}$ 是为避免取到 $U$ 之外的值而设的\trConvolution{}定义域，而非 $u\star\beta_{\delta}$ 的\trSupport{}所在——例如取 $U$ 为一个\trDisk{}而 $u\equiv1$，则 $u\star\beta_{\delta}$ 在整个 $U_{\delta}$ 上恒等于 $1$，在 $\partial U_{\delta}$ 处并不归零。正确的表述应为“$u\star\beta_{\delta}$ 在 $U_{\delta}$ 上有定义且属于 $\cC^{\infty}$ 类”；随后的推理只需在 $U$ 的诸\trCompact{}子集上取极限并过渡到平均值性质，照旧成立。——译者注}，并且我们有
+\[
+\Delta(u\star\beta_{\delta})=\beta_{\delta}\star\Delta u
+\]
+（由\trWeakDerivative{}的定义），从而当 $u$ 是一个\trWeakSolution{}时，$u\star\beta_{\delta}$ 是\trHarmonic{}的。特别地，对每个 $\delta$，\trConvolution $u\star\beta_{\delta}$ 都满足平均值等式。
+
+然而，当 $\delta$ 趋于 $0$ 时，$u\star\beta_{\delta}$ 按 $L^{p}$ 范数、并且几乎处处在 $U$ 的诸\trCompact{}子集上\trConvergence{}到 $u$。于是，这个\trWeakSolution{} $u$ 也满足平均值性质，从而属于 $\cC^{\infty}$ 类，并且由\cref{thm:mean-value-regularity}进而可知它是\trHarmonic{}的。
+\end{proof}
+
+\trCauchyRiemann{}方程的一个\trWeakSolution{}的实部与虚部，就是拉普拉斯方程的\trWeakSolution。因此我们有下述结果。
+
+\begin{lemma}\label{thm:weak-cr-holomorphic}
+\trCauchyRiemann{}方程的每个在\trOpen{}集 $U$ 上局部可积的\trWeakSolution{}都是\trHolomorphic{}的。
+\end{lemma}
+
+\begin{proposition}[平均值不等式]\label{thm:appC-mean-value-inequality}
+设 $u$ 是 $U\subset\RR^{2}$ 上的一个 $\cC^{2}$ 类函数，它满足 $\Delta u\ge0$。我们有
+\[
+u(x)\le\frac{1}{\pi r^{2}}\int_{B(x,r)}u(z)\,dz
+\qquad\text{对每个球 } B(x,r)\subset U\text{。}
+\]
+\end{proposition}
+
+让我们给出这条不等式的一个证明（它不费力便可转化为关于等式的一个证明），它由\trStokes{}定理而来。
+
+\begin{proof}[平均值不等式（以及等式）的证明]
+由于 $\Delta u\ge0$，我们有 $\int_{B_{\rho}}\Delta u\ge0$。然而，由“散度定理”（\trStokes{}定理在这里的特设（ad hoc）版本），我们有
+\[
+\int_{B_{\rho}}\Delta u=\int_{\partial B_{\rho}}\frac{\partial u}{\partial\nu}
+=\rho\int_{0}^{2\pi}\frac{\partial}{\partial\rho}u(\rho e^{i\theta})\,d\theta\text{。}
+\]
+接着，
+\[
+\int_{0}^{2\pi}\frac{\partial}{\partial\rho}u(\rho e^{i\theta})\,d\theta
+=\frac{d}{d\rho}\left(\frac{1}{\rho}\int_{\partial B_{\rho}}u\right)
+\qquad\text{从而}\quad
+\frac{d}{d\rho}\left(\frac{1}{\rho}\int_{\partial B_{\rho}}u\right)\ge 0\text{，}
+\]
+\footnote{译注：原书此式两处的积分域均印作 $B_{\rho}$，下文“函数 $\rho\mapsto\frac{1}{\rho}\int_{\partial B_{\rho}}u$ \trMonotone{}不减”同。由恒等式 $\frac{1}{\rho}\int_{\partial B_{\rho}}u=\int_{0}^{2\pi}u(\rho e^{i\theta})\,d\theta$ 恰可保证首式成立，且其后沿 $\partial B_{\rho}$、$\partial B_{r}$ 的不等式亦由此而来，疑三处均应为 $\partial B_{\rho}$。此处径改。——译者注}
+于是函数 $\rho\mapsto\frac{1}{\rho}\int_{\partial B_{\rho}}u$ \trMonotone{}不减，从而对 $r\ge\rho$，我们有
+\[
+\frac{1}{2\pi\rho}\int_{\partial B_{\rho}}u\le\frac{1}{2\pi r}\int_{\partial B_{r}}u\text{。}
+\]
+当 $\rho$ 趋于 $0$ 时，左端趋于 $u(0)$，这就给出
+\[
+2\pi r\,u(0)\le\int_{\partial B_{r}}u\text{。}
+\]
+我们把它从 $0$ 到 $r$ 积分，便得到
+\[
+\pi r^{2}u(0)\le\int_{B_{r}}u\text{，}
+\]
+即所求的不等式。
+\end{proof}
+
+仍在 $n=2$ 的情形，我们考虑函数（\trPoissonKernel（Poisson kernel））
+\[
+K(z)=\frac{1}{2\pi}\log|z|\text{。}
+\]
+我们可以容易地验证%
+\footnote{这是一个练习：把 $K$ 写成极坐标。}
+$K$ 属于 $L^{1}_{\mathrm{loc}}(\RR^{2})$，并且 $\Delta K=\delta$（按\trDistribution{}的意义）。因此，$K$ 是 $\Delta$ 的一个\trFundamentalSolution（按\cref{subsec:fundamental-solution-weak-solutions}中的意义）。
+
+让我们注意到
+\[
+\Delta=4\partial\bar{\partial}\text{，}
+\]
+而且，此外，\trPoisson{}核与\trCauchy{}核由
+\[
+N(z)=4\partial K
+\]
+相联系。
+
+我们有 $\Delta K=0$，但是要当心：$K$ 的二阶导数在诸紧集上甚至都不可积。%
+\footnote{译注：此句照原书排印，存疑备案：按上文 $\Delta K=\delta$，此处疑指 $K$ 在 $\CC\setminus\{0\}$ 上\trHarmonic（即 $\Delta K=0$）。——译者注}
+尽管如此，我们仍有\cref{thm:weak-solution-compact-support}的下述推论。
+
+\begin{proposition}\label{thm:fundamental-solution-laplacian}
+设 $u$ 与 $f$ 是 $\RR^{2}$ 上两个具有紧\trSupport{}的函数。我们假设 $u$、$f\in L^{1}(\RR^{2})$。那么，函数 $u$ 是 $\Delta u=f$ 的一个\trWeakSolution{}当且仅当 $u=K\star f$。
+\end{proposition}
+
+设 $K_{i}$（$i=1,2$）是\trFundamentalSolution $K$ 关于 $x$ 与 $y$ 的偏导数：
+\[
+K_{1}(z)=\frac{x}{2\pi\,|z|^{2}}\text{，}\qquad
+K_{2}(z)=\frac{y}{2\pi\,|z|^{2}}\text{。}
+\]
+这些也是局部可积的函数。此外，按\trDistribution{}的意义，我们有
+\[
+\Delta K_{1}=\frac{\partial}{\partial x}\,\Delta K=\frac{\partial}{\partial x}\,\delta
+\qquad\text{与}\qquad
+\Delta K_{2}=\frac{\partial}{\partial y}\,\delta\text{。}\footnote{译注：原书此式印作 $\frac{\partial}{\partial s}\Delta K=\frac{\partial}{\partial s}\,\delta$ 与 $\frac{\partial}{\partial t}\,\delta$（分母作 $s$、$t$）；由上句“关于 $x$ 与 $y$ 的偏导数”疑应为 $\frac{\partial}{\partial x}$、$\frac{\partial}{\partial y}$。此处径改。——译者注}
+\]
+
+\begin{theorem}[\trCalderonZygmund{}不等式]\label{thm:calderon-zygmund-inequality}
+对每个满足 $1<p<+\infty$ 的 $p$，存在一个常数 $C(p)>0$，使得对 $\RR^{2}$ 上每个具有紧\trSupport{}的 $\cC^{\infty}$ 函数 $f$，我们有
+\[
+\|\operatorname{grad}(K_{j}\star f)\|_{L^{p}}\le C(p)\,\|\Delta f\|_{L^{p}}\text{。}
+\]
+\end{theorem}
+
+有关其证明，我们援引 [51]。%
+\footnote{译注：右端 $\|\Delta f\|_{L^{p}}$ 与左端的缩放尺度不\trCompatible：由 $K_{j}=\partial_{j}K$ 与 $\Delta K=\delta$，两式若同时成立，则由 $f=\Delta(K\star f)=\partial_{1}^{2}(K\star f)+\partial_{2}^{2}(K\star f)$ 可推出 $\|f\|_{L^{p}}\le 2C\,\|\Delta f\|_{L^{p}}$ 对 $\RR^{2}$ 上每个具有紧\trSupport{}的 $\cC^{\infty}$ 函数 $f$ 成立；取 $f_{R}(x)=f(x/R)$，则左端按 $R^{2/p}$、右端按 $R^{2/p-2}$ 缩放，令 $R\to+\infty$ 即得矛盾。故按左端（零阶\trSingular{}积分），右端疑应作 $\|f\|_{L^{p}}$；若保留右端，则左端应改为 $f$ 的相应二阶导数范数。此处照原书排印，存疑备案。——译者注}

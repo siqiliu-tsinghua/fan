@@ -1,0 +1,236 @@
+\section{一维情形的显式计算}
+\label{sec:app-c-one-dimensional-calculation}
+
+注意算子 $\bar\partial$ 与边界条件 $\Lambda$ 都是\emph{可分离}的，我们已把指标计算约化为
+下面的一维问题。回忆，$\bar\partial_{i,0,\Lambda}$ 的弗雷德霍姆指标和
+$\Lambda$ 的马斯洛夫指标都对直和可加。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.9cm,y=1.05cm]
+  \draw[->] (-0.1,0) -- (6.65,0) node[right] {$\tau$};
+  \draw[->] (0,-0.45) -- (0,1.65) node[above] {$t$};
+  \draw (0,1) -- (6.55,1);
+  \draw (4.35,0) -- (4.35,1);
+  \draw (5.15,0) -- (5.15,1);
+  \draw[->] (1.8,1) -- (2.5,1);
+  \draw[->] (5.35,1) -- (6.05,1);
+  \draw[<-] (1.8,0) -- (2.5,0);
+  \draw[->] (5.35,0) -- (6.05,0);
+  \draw[->] (0,0.25) -- (0,0.7);
+  \node[left] at (0,0) {$0$};
+  \node[left] at (0,1) {$1$};
+  \node at (2.3,0.55) {$\Theta_{0,1}$};
+  \node[above] at (4.35,1) {$(\tau,1)$};
+  \node[below] at (5.85,0) {$(\tau,0)$};
+  \node[below] at (4.35,0) {$R$};
+  \node[below] at (5.15,0) {$R+1$};
+\end{tikzpicture}
+\caption{半带 $\Theta_{0,1}$。}
+\label{fig:app-c-semi-strip}
+\end{figure}
+
+现在研究下述一维方程：
+\begin{equation}
+\label{eq:app-c-one-dimensional-problem}
+ \begin{cases}
+ \bar\partial\zeta=0,\\
+ \zeta(\tau,0)\in\mathbb R,\quad\zeta(\tau,1)\in i\mathbb R,\\
+ \zeta(0,t)\in e^{-(\ell+\frac12)\pi it}\mathbb R.
+ \end{cases}
+\end{equation}
+
+\begin{proposition}
+\label{prop:app-c-one-dimensional-index}
+以 $\bar\partial_{i,0,\ell}$ 表示与这一边值问题相伴的柯西--黎曼算子。则
+\begin{equation}
+\label{eq:app-c-one-dimensional-index}
+ \operatorname{Index}\bar\partial_{i,0,\ell}
+ =\dim\ker\bar\partial_{i,0,\ell}
+  -\dim\operatorname{coker}\bar\partial_{i,0,\ell}
+ =\ell+1.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+注意，任意满足
+\[
+ \bar\partial\zeta=0,
+ \qquad\zeta(\tau,0)\in\mathbb R,
+ \qquad\zeta(\tau,1)\in i\mathbb R,
+ \qquad\int|D\zeta|^2<\infty
+\]
+的 $\zeta$ 必须具有形式
+\[
+ \zeta(z)=\sum_{k=1}^{\infty}a_ke^{-(k-\frac12)\pi z},
+ \qquad a_k\in\mathbb R,\quad z\in\Theta.
+\]
+在 $\{0\}\times[0,1]$ 上，这成为
+\[
+ \zeta(0,t)=\sum_{k=1}^{\infty}a_ke^{-(k-\frac12)\pi it}.
+\]
+由于\eqref{eq:app-c-one-dimensional-problem}的第三个方程蕴含
+\[
+ e^{(\ell+\frac12)\pi it}\zeta(0,t)\in\mathbb R,
+\]
+故有
+\[
+ \sum_{k=1}^{\infty}a_ke^{-(k-\ell-1)\pi it}\in\mathbb R.
+\]
+等价地，
+\begin{equation}
+\label{eq:app-c-kernel-reindexed}
+ \sum_{k=-\ell}^{\infty}a_{k+\ell+1}e^{-k\pi it}\in\mathbb R.
+\end{equation}
+
+分别考虑 $\ell\geq0$ 和 $\ell\leq-1$。先设 $\ell\geq0$。由
+\eqref{eq:app-c-kernel-reindexed}得到
+\[
+ \begin{aligned}
+ a_{k+\ell+1}&=0&&\text{若 }k\geq\ell+2,\\
+ a_{\ell+1}&\text{ 任意},\\
+ a_{k+\ell+1}&=a_{-k+\ell+1}&&\text{若 }-\ell\leq k\leq-1,
+ \end{aligned}
+\]
+即
+\[
+ \begin{aligned}
+ a_k&=0&&\text{若 }k\geq\ell+2,\\
+ a_{\ell+1}&\text{ 任意},\\
+ a_k&=a_{-k+2(\ell+1)}&&\text{若 }1\leq k\leq\ell.
+ \end{aligned}
+\]
+另一方面，若 $\ell\leq-1$，则由\eqref{eq:app-c-kernel-reindexed}立即可知
+\eqref{eq:app-c-one-dimensional-problem}没有非平凡解。以 $\ker$ 表示
+\eqref{eq:app-c-one-dimensional-problem}的解空间，以
+$\operatorname{coker}(\mathrm{C.8})$ 表示其伴随问题的解空间。于是
+\begin{equation}
+\label{eq:app-c-kernel-dimension}
+ \dim\ker(\mathrm{C.8})=
+ \begin{cases}
+ \ell+1,&\ell\geq0,\\
+ 0,&\ell\leq-1.
+ \end{cases}
+\end{equation}
+
+现在研究\eqref{eq:app-c-one-dimensional-problem}的 $L^2$-伴随问题
+\begin{equation}
+\label{eq:app-c-adjoint-problem}
+ \begin{cases}
+ \partial\eta=0,\\
+ \eta(\tau,0)\in\mathbb R,\quad\eta(\tau,1)\in i\mathbb R,\\
+ i\eta(0,t)\in e^{-(\ell+\frac12)\pi it}\mathbb R,
+ \end{cases}
+\end{equation}
+并以 $\operatorname{coker}(\mathrm{C.8})$ 表示
+\eqref{eq:app-c-adjoint-problem}的解空间。将\eqref{eq:app-c-one-dimensional-problem}
+与 $\eta$ 作 $L^2$ 内积后分部积分，即可导出此方程。由
+\[
+ \partial\eta=0,
+ \qquad\eta(\tau,0)\in\mathbb R,
+ \qquad\eta(\tau,1)\in i\mathbb R,
+ \qquad\int|D\eta|^2<\infty,
+\]
+可知 $\eta$ 必须具有形式
+\[
+ \eta(z)=\sum_{j=1}^{\infty}b_je^{-(j-\frac12)\pi\bar z},
+ \qquad b_j\in\mathbb R.
+\]
+令 $z=(0,t)$，得到
+\[
+ \eta(0,t)=\sum_{j=1}^{\infty}b_je^{(j-\frac12)\pi it},
+ \qquad b_j\in\mathbb R.
+\]
+\eqref{eq:app-c-adjoint-problem}第三个方程中的条件等价于
+\[
+ ie^{(\ell+\frac12)\pi it}\eta(0,t)\in\mathbb R,
+ \quad\text{即}\quad
+ \sum_{j=1}^{\infty}ib_je^{(j+\ell)\pi it}\in\mathbb R,
+\]
+因此得到
+\begin{equation}
+\label{eq:app-c-cokernel-reindexed}
+ \sum_{j=\ell+1}^{\infty}ib_{j-\ell}e^{j\pi it}\in\mathbb R.
+\end{equation}
+由此立即得出：若 $\ell\geq0$，则\eqref{eq:app-c-adjoint-problem}没有非平凡解。
+当 $\ell\leq-1$ 时，由\eqref{eq:app-c-cokernel-reindexed}得到
+\[
+ \begin{aligned}
+ b_{j-\ell}&=0&&\text{若 }j\geq-\ell,\\
+ b_{-\ell}&=0,\\
+ b_{j-\ell}&=-b_{-j-\ell}&&\text{若 }1\leq j\leq-\ell-1.
+ \end{aligned}
+\]
+因此
+\begin{equation}
+\label{eq:app-c-cokernel-dimension}
+ \dim\operatorname{coker}(\mathrm{C.8})=
+ \begin{cases}
+ 0,&\ell\geq0,\\
+ -\ell-1,&\ell\leq-1.
+ \end{cases}
+\end{equation}
+结合\eqref{eq:app-c-kernel-dimension}与\eqref{eq:app-c-cokernel-dimension}，已经证明
+\begin{equation}
+\label{eq:app-c-index-from-kernel-cokernel}
+ \operatorname{Index}(\mathrm{C.8})
+ =\dim\ker(\mathrm{C.8})-\dim\ker(\mathrm{C.12})
+ =\ell+1
+\end{equation}
+对所有 $\ell$ 成立，命题得证。
+\footnote{译者注：原书写“结合 (C.8) 与 (C.14)”，并在式 (C.15) 中把相减的
+两个空间都印成 $\ker(\mathrm{C.12})$。译文依紧邻的维数公式补正前一引用为
+(C.11)，并把第一项补正为 $\ker(\mathrm{C.8})$。}
+\end{proof}
+
+对 $\ell=0$ 应用\eqref{eq:app-c-index-from-kernel-cokernel}，并加上 $D(t)$ 其余分量的
+贡献，得到
+\begin{equation}
+\label{eq:app-c-direct-sum-index}
+ \operatorname{Index}\bar\partial_{i,0,\Lambda}
+ =\ell+1+(n-1)=\ell+n.
+\end{equation}
+现在计算道路 $t\mapsto D(t)\cdot\mathbb R^n$ 的马斯洛夫指标
+$\mu(D(t)\cdot\mathbb R^n,\mathbb R^n)$。由马斯洛夫指标对直和的可加性，
+\begin{equation}
+\label{eq:app-c-diagonal-maslov}
+ \mu(D(t)\cdot\mathbb R^n,\mathbb R^n)
+ =\mu(e^{-i(\ell+\frac12)\pi t}\cdot\mathbb R,\mathbb R)
+ +(n-1)\mu(e^{-\frac\pi2it}\cdot\mathbb R,\mathbb R).
+\end{equation}
+而由 (RS93) 的马斯洛夫指标定义容易验证
+\[
+ \mu(e^{-i(\ell+\frac12)\pi t}\cdot\mathbb R,\mathbb R)
+ =\ell+\frac12.
+\]
+对\eqref{eq:app-c-diagonal-maslov}第二项也取 $\ell=0$，得到
+\[
+ \mu(D\cdot\mathbb R^n,\mathbb R^n)=\ell+\frac n2.
+\]
+另一方面，由\eqref{eq:app-c-boundary-path-maslov}以及此后形变算子的方式，
+\[
+ \mu(\Psi\cdot\mathbb R^n,\mathbb R^n)
+ =\mu(D\cdot\mathbb R^n,\mathbb R^n),
+\]
+这就最终证明了\eqref{eq:app-c-positive-half-strip-index}，从而证明
+\cref{thm:app-c-lagrangian-half-strip-index}。继而命题 20.2.13 也得证。
+
+可用同样的论证求一般
+$\mathcal M_{\Theta_{g,k}}(\widetilde H,J;\widetilde z_-,\widetilde z_+)$ 的维数公式；
+这是任意 $(g,k)$ 上扰动柯西--黎曼方程的解空间。下面不加证明地陈述该定理。
+（其证明见 (Schw00) 等文献。）
+
+\begin{theorem}
+\label{thm:app-c-general-punctured-index}
+设 $\Theta_{g,k}$ 是带 $k$ 个穿孔的亏格 $g$ 曲面。则
+\begin{align*}
+ \operatorname{vir.dim}
+ \mathcal M_{\Theta_{g,k}}
+ (\widetilde H,J;\widetilde z_-,\widetilde z_+)
+ &=n(1-g)-\sum_{j=1}^{k_-}
+   \left(-\mu_{\mathrm{CZ}}(z_j^-)+\frac n2\right)\\
+ &\quad-\sum_{j=1}^{k_+}
+   \left(\mu_{\mathrm{CZ}}(z_j^+)+\frac n2\right),
+\end{align*}
+其中 $k=k_-+k_+$，且 $k_-$、$k_+$ 分别是出边和入边的数目。
+\end{theorem}

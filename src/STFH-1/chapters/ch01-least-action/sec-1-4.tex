@@ -1,0 +1,112 @@
+\section{经典泊松括号}
+\label{sec:classical-poisson-brackets}
+
+回顾一下，与函数 $H$（它可以依赖时间，也可以不依赖时间）相伴的经典哈密顿方程，是相空间
+\stfhIndex{I225}{xiang^kong^jian}{相空间（phase space）}
+\stfhIndex{I231}{yan^ta}{延拓（prolongation）}
+\[
+  \mathbb R^n\times(\mathbb R^n)^*\cong\mathbb R^{2n}
+\]
+上与向量场
+\[
+  \frac{\partial H}{\partial p}\frac{\partial}{\partial q}
+  -\frac{\partial H}{\partial q}\frac{\partial}{\partial p}
+\]
+相伴的一阶常微分方程。我们把这个向量场记为 $X_H$，称之为与函数 $H$ 相伴的\emph{哈密顿向量场}。
+\stfhSubIndex{I155}{ha^mi^dun}{哈密顿（Hamiltonian）}{ha^mi^dun^xiang^liang^chang}{哈密顿向量场（Hamiltonian vector field）}
+
+哈密顿力学的历史发展，以及经典物理学家和数学家为求各种力学系统显式解所作的尝试，表明可微函数空间上的如下代数结构十分有用。事实证明，它是支配哈密顿力学的基本背景几何结构。
+
+\begin{definition}[经典泊松括号]
+\label{def:classical-poisson-bracket}
+设 $F,H$ 是 $\mathbb R^n\times(\mathbb R^n)^*$ 上的两个函数。$F$ 与 $H$ 之间的\emph{泊松括号}记为 $\{F,H\}$，定义为
+\begin{equation}\label{eq:classical-poisson-bracket}
+  \{F,H\}=dF(X_H)
+  =\sum_j\left(
+    \frac{\partial F}{\partial q^j}\frac{\partial H}{\partial p_j}
+    -\frac{\partial H}{\partial q^j}\frac{\partial F}{\partial p_j}
+  \right).
+\end{equation}
+\end{definition}
+
+由公式显然可见，泊松括号定义了映射
+\[
+  \{\cdot,\cdot\}:C^\infty(\mathbb R^{2n})\times C^\infty(\mathbb R^{2n})
+  \longrightarrow C^\infty(\mathbb R^{2n}).
+\]
+下面的命题概括了这个括号的性质。
+\stfhIndex{I226}{po^song^kuo^hao}{泊松括号（Poisson bracket）}
+\stfhSubIndex{I227}{po^song^kuo^hao}{泊松括号（Poisson bracket）}{jing^dian^po^song^kuo^hao}{经典泊松括号（classical Poisson bracket）}
+
+\begin{proposition}
+\label{prop:poisson-bracket-properties}
+该括号满足如下性质：
+\begin{enumerate}[label=(\arabic*)]
+  \item \textup{\bfseries（斜对称性）}$\{F,H\}=-\{H,F\}$；
+  \item \textup{\bfseries（双线性）}$\{F+G,H\}=\{F,H\}+\{G,H\}$；
+  \item \textup{\bfseries（莱布尼茨法则）}$\{FG,H\}=F\{G,H\}+\{F,H\}G$；
+  \item \textup{\bfseries（雅可比恒等式）}
+  \stfhIndex{I177}{ya^ke^bi^heng^deng^shi}{雅可比恒等式（Jacobi identity）}
+  \[
+    \{F,\{G,H\}\}+\{G,\{H,F\}\}+\{H,\{F,G\}\}=0;
+  \]
+  \item \textup{\bfseries（非退化性）}对所有 $G$ 都有 $\{F,G\}=0$，当且仅当 $F\equiv C$，其中 $C\in\mathbb R$ 为某个常值函数。
+\end{enumerate}
+\end{proposition}
+
+性质 (1)--(3) 由公式~\eqref{eq:classical-poisson-bracket} 容易看出。为证明 (4) 和 (5)，需要作些准备。
+
+令 $\mathfrak X(\mathbb R^{2n})$ 为 $\mathbb R^{2n}$ 上向量场的集合，令 $\mathfrak{ham}(\mathbb R^{2n})$ 为其中哈密顿向量场组成的子集，即
+\[
+  \mathfrak{ham}(\mathbb R^{2n})
+  =\{X\mid X=X_H,\ H\in C^\infty(\mathbb R^{2n})\}.
+\]
+记
+\[
+  \operatorname{ev}_{(q,p)}:\mathfrak X(\mathbb R^{2n})
+  \longrightarrow T_{(q,p)}\mathbb R^{2n}\cong\mathbb R^{2n}
+\]
+为评价映射，定义为 $\operatorname{ev}_{(q,p)}(X)=X(q,p)$。下面的引理表明 $\mathfrak{ham}(\mathbb R^{2n})$ 在切空间上有充分多的取值。
+
+\begin{lemma}
+\label{lem:hamiltonian-vector-fields-ample}
+在每一点 $(q,p)\in\mathbb R^{2n}$，都有
+\[
+  \operatorname{ev}_{(q,p)}(\mathfrak{ham}(\mathbb R^{2n}))
+  =T_{(q,p)}\mathbb R^{2n}\cong\mathbb R^{2n}.
+\]
+\end{lemma}
+
+\begin{proof}
+这是下列基本公式的直接推论：
+\begin{equation}\label{eq:coordinate-hamiltonian-vector-fields}
+  X_{q^j}=-\frac{\partial}{\partial p_j},
+  \qquad
+  X_{p_j}=\frac{\partial}{\partial q^j}.
+\end{equation}
+\end{proof}
+
+\begin{proof}[非退化性 (5) 的证明]
+由公式~\eqref{eq:classical-poisson-bracket}，若 $C$ 是常值函数，则对所有 $H$ 都有 $\{C,H\}=0$。反过来，取 $H=p_j$ 或 $H=q^j$，便有
+\[
+  \{F,p_j\}=dF(X_{p_j})
+  =dF\left(\frac{\partial}{\partial q^j}\right)
+  =\frac{\partial F}{\partial q^j},
+\]
+以及
+\[
+  \{F,q^j\}=dF(X_{q^j})
+  =-dF\left(\frac{\partial}{\partial p_j}\right)
+  =-\frac{\partial F}{\partial p_j}.
+\]
+因此，若对所有 $H$ 都有 $\{F,H\}=0$，则特别地有
+\[
+  \frac{\partial F}{\partial q^j}
+  =\frac{\partial F}{\partial p_j}=0.
+\]
+这证明了 $F$ 必为常数。
+\end{proof}
+
+最后，可以直接从定义~\eqref{eq:classical-poisson-bracket} 证明雅可比恒等式。我们不进行这一直接计算，而把证明留待后续章节；届时将在一般背景下证明雅可比恒等式。
+
+泊松括号在寻找哈密顿力学系统的守恒量时起重要作用，进而在\emph{完全可积系统}的研究中起基础性作用。它在把经典力学量子化为量子力学的过程中也起着基础性作用。关于完全可积系统及其用求积法求解的一般讨论，可参阅 (Ar89)；关于通过泊松括号进行量子化的过程，可参阅 (Di58)。事实证明，泊松括号是隐藏在 $\mathbb R^{2n}$ 中、支配哈密顿力学的几何结构；在后续章节中，我们将把它推广到\emph{\termSymplecticManifold}。

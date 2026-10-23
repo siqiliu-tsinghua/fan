@@ -1,0 +1,176 @@
+
+\section{曲面上的相交理论}
+
+我们现在把 \S20.1 的这套一般机器应用到正则射影\trSurface{} $X$ 的情形。（真正要紧的只是：$X$ 是\trNoetherian{}且\trFactorial{}的，从而 $\mathrm{Pic}\,X\to\mathrm{Cl}\,X$ 是同构，\mbox{命题~15.4.16}。回忆一下，由 Auslander--Buchsbaum 定理（\mbox{事实~13.8.5}），正则概形都是\trFactorial{}的。）
+
+\textbf{20.2.A.（练习／定义）}\quad 设 $C$ 与 $D$ 是 $X$ 上的两个\trEffectiveDivisor（即\trCurve{}）。（这里说的是「\trWeilDivisor」还是「\trCartierDivisor」呢？）
+
+（a）证明：
+\begin{align*}
+\deg_C\OO_X(D)|_C \tag{20.2.0.1}\label{eq:surface-intersection-deg-c}\\
+&= (\OO(C)\cdot\OO(D)\cdot X) \tag{20.2.0.2}\label{eq:surface-intersection-euler}\\
+&= \deg_D\OO_X(C)|_D. \tag{20.2.0.3}\label{eq:surface-intersection-deg-d}
+\end{align*}
+
+我们把这个数称作 $C$ 与 $D$ 的\textbf{\trIntersectionNumber}（intersection number），记作 $C\cdot D$。
+
+（b）若 $C$ 不含 $D$ 的任何\trAssociatedPoint（从而特别地，$C$ 与 $D$ 没有公共\trIrreducibleComponent），证明：
+\begin{equation*}\tag{20.2.0.4}\label{eq:surface-intersection-h0}
+C\cdot D=h^0(C\cap D,\OO_{C\cap D}),
+\end{equation*}
+其中 $C\cap D$ 是 $C$ 与 $D$ 在 $X$ 上的\trSchemeTheoretic{}交。（谈及 $D$ 的\trAssociatedPoint{}时，按定义我们必定是把 $D$ 当作\trEffectiveCartierDivisor{}来看待的。）
+
+\textbf{20.2.1.}\ \emph{重要的题外话。}\quad \mbox{练习~20.2.A(b)} 中的那条假设——$C$ 不含 $D$ 的任何\trAssociatedPoint——其实是一枚「红鲱鱼」。\footnote{译注：原文作 a red herring（红鲱鱼），英语习语，指转移注意力之物。}事实上，$D$ 根本不可能有任何\trEmbeddedPoint，我们将在 \S26.2.5 讨论 \trCM{}环时看到这一点。（这应当会激发你去学习 \trCM{}性。）$\mathbb{A}^2$（从而 $\mathbb{P}^2$）的情形可以徒手完成（\mbox{练习~6.6.F}）。
+
+于是，\mbox{练习~20.2.A(b)} 中的假设可以换成更简单的「$C$ 与 $D$ 无公共\trIrreducibleComponent」。
+
+\textbf{20.2.2.}\ \emph{\trhRemark。}\quad 特别地，若 $C$ 与 $D$ 没有公共的\trIrreducibleComponent，则 $C\cdot D\ge 0$。这意味着：我们别指望像拓扑学中那样借助\trMovingLemma（moving lemma）来理解\trIntersectionNumber——倘若我们有一条满足 $E^2<0$ 的\trIrreducible\trCurve{} $E$，我们便无法把 $E$ 「移动」到某个与 $E$ 「等价」的东西（称之为 $F$）上去，以便把 $E\cdot E$ 作为 $E\cdot F$ 来计算。
+
+\textbf{20.2.3.}\ \emph{\trhRemark。}\quad $C$ 在 $X$ 中的\trNormalBundle{}的次数（定义见 \S15.6.2）就是 $C$ 的\textbf{\trSelfIntersection}（self-intersection）$C\cdot C$，因为二者都是 $\deg_C\OO_X(C)|_C$。
+
+\textbf{20.2.4.}\ \emph{优点与缺点。}\quad 于是，关于这个\trIntersectionNumber{}我们共有四种描述——\eqref{eq:surface-intersection-deg-c}--\eqref{eq:surface-intersection-h0}，各有其优点与缺点。\trEulerCharacteristic{}式的描述 \eqref{eq:surface-intersection-euler} 出奇地有用（比如在下面的练习中），但几何却被遮蔽了。定义 $\deg_C\OO_X(D)|_C$（\eqref{eq:surface-intersection-deg-c}）在 $C$ 与 $D$ 之间并不显然对称。定义 $h^0(C\cap D,\OO_{C\cap D})$（\eqref{eq:surface-intersection-h0}）则显然是局部的——对 $C\cap D$ 的每一点，都有一个\trVectorSpace。例如，我们知道在 $\mathbb{A}^2_k$ 中，$y-x^2=0$ 与 $x$-轴以重数 $2$ 相交，因为概形论交（$k[x,y]/(y-x^2,y)$）的 $h^0$ 维数为 $2$。（这个 $h^0$ 也是这个 $0$ 维概形的\trLength，见\mbox{练习~6.6.Y}。）
+
+由\mbox{命题~20.1.3}，\trIntersectionNumber{}诱导出一个双线性的「\trIntersectionForm」（intersection form）
+\begin{equation*}\tag{20.2.4.1}\label{eq:surface-intersection-form}
+\mathrm{Pic}\,X\times\mathrm{Pic}\,X\longrightarrow\mathbb{Z}.
+\end{equation*}
+由渐近\trRiemannRoch{}（\mbox{练习~20.1.I}），$\chi(X,\OO(nD))$ 是 $n$ 的二次多项式。
+
+\textbf{20.2.5.}\ 你可以验证（见\mbox{练习~18.6.J}）：\mbox{练习~20.2.A} 能够重新得到平面\trCurve{}的\trBezout{}定理，办法是用 $\chi(\mathbb{P}^2,\OO(n))=(n+2)(n+1)/2$（来自\mbox{定理~18.1.2}），再加上「$\mathbb{P}^2_k$ 上的\trEffectiveCartierDivisor{}没有\trEmbeddedPoint」这一事实（\mbox{练习~6.6.F}）。
+
+在进入一批有趣的具体例子之前，我们先推导几条基本的理论事实。
+
+\textbf{20.2.B.（练习）}\quad 假设\trSmooth\trProjective\trSurface{} $X$ 的\trSerre{}对偶（\mbox{定理~18.5.1}）成立，证明下述结论。（我们在混用\trDivisor{}与\trInvertibleSheaf{}记号，如\mbox{注记~20.1.4} 所描述的那样，所以要当心。这里 $K_X$ 是相应于 $\omega_X$ 的一个\trDivisor。）
+
+（a）（有时称作\textbf{\trAdjunctionFormula}（adjunction formula））对任意\trCurve{} $C\subset X$ 有 $C\cdot(K_X+C)=2p_a(C)-2$。提示：改为计算 $C\cdot(-K_X-C)$。（\trAdjunctionFormula{}的其他版本见\mbox{练习~21.5.B} 与 \S29.4。）
+
+（b）（曲面的\trRiemannRoch）对任意\trWeilDivisor{} $D$ 有
+\[
+\chi(X,\OO_X(D))=D\cdot(D-K_X)/2+\chi(X,\OO_X)
+\]
+（对照\trCurve{}的\trRiemannRoch，\mbox{练习~18.4.B}）。
+
+\textbf{20.2.6. 两个具体例子：$\mathbb{P}^1\times\mathbb{P}^1$ 与 $\mathrm{Bl}_p\mathbb{P}^2$。}
+
+\textbf{20.2.C.（练习：$X=\mathbb{P}^1\times\mathbb{P}^1$）}\quad 由\mbox{练习~15.5.K} 回忆：$\mathrm{Pic}(\mathbb{P}^1\times\mathbb{P}^1)=\mathbb{Z}\ell\times\mathbb{Z}m$，其中 $\ell$ 是\trCurve{} $\mathbb{P}^1\times\{0\}$，而 $m$ 是\trCurve{} $\{0\}\times\mathbb{P}^1$。证明：\trIntersectionForm \eqref{eq:surface-intersection-form} 由 $\ell\cdot\ell=m\cdot m=0$、$\ell\cdot m=1$ 给出。（提示：你可以用\mbox{练习~20.2.A(b)} 计算 $\mathbb{P}^1\times\mathbb{P}^1$ 上\trLineBundle{}的各\trCohomology{}群。）$\mathbb{P}^1\times\mathbb{P}^1$ 中的对角在这组生成元下是什么类？
+
+\textbf{20.2.D.（练习：胀开的射影平面）}\quad （做这道练习无须先读第 22 章。）设 $X=\mathrm{Bl}_p\mathbb{P}^2$ 是 $\mathbb{P}^2_k$ 在一个 $k$-值点 $p$（比如取原点）处的\trBlowup——见\mbox{练习~10.3.F}，那里描述了 $\mathbb{A}^2_k$ 的\trBlowup，然后再「紧化」。请把 $\mathrm{Pic}\,X$ 解读为由 $\ell$ 与 $e$ 生成（作为\trAbelianGroups），其中 $\ell$ 是一条不过原点的直线，而 $e$ 是\trExceptionalDivisor。证明：\trIntersectionForm \eqref{eq:surface-intersection-form} 由 $\ell\cdot\ell=1$、$e\cdot e=-1$、$\ell\cdot e=0$ 给出。进而证明：$\mathrm{Pic}\,X\cong\mathbb{Z}\ell\times\mathbb{Z}e$（正如\mbox{练习~15.5.L} 的题外话中所许诺的那样）。特别地，\trExceptionalDivisor{}具有负的\trSelfIntersection。（这道练习将在 \S22.4.13 中被推广。）
+
+\textbf{20.2.7.}\ \emph{提示。}\quad 下面是一个可能的提示，用以得到\mbox{练习~20.2.D} 中的\trIntersectionForm。过原点的一条直线在 $\mathrm{Bl}_p\mathbb{P}^2$ 中的\trSchemeTheoreticPreimage，是\trExceptionalDivisor{} $e$ 与该过原点直线的「\textbf{\trProperTransform}」（proper transform）$m$ 二者的\trSchemeTheoretic{}并。证明：在 $\mathrm{Pic}(\mathrm{Bl}_p\mathbb{P}^2)$ 中有 $\ell=e+m$（把\trPicardGroup{}的运算写成加法；对照\mbox{注记~20.1.4}）。证明：$\ell\cdot m=e\cdot m=1$，且 $m\cdot m=0$。
+
+\textbf{20.2.8.}\ \emph{定义：$(-1)$-\trCurve。}\quad 注意，\trExceptionalDivisor{} $e$ 的\trSelfIntersection{}为 $-1$。我们将在\mbox{练习~22.4.O} 中更一般地看到：对\trSmooth\trSurface{}（$k$ 上）在某个 $k$-值点处\trBlowup{}所得的一切\trExceptionalDivisor，情形皆如此。我们给这类\trCurve{}起个名字。设 $X$ 是 $k$ 上的一个\trSurface，而 $C\subset X$ 是 $X$ 中一条由\trSmooth{}点组成的\trCurve，满足 $C\cong\mathbb{P}^1_k$ 且 $C\cdot C=-1$，我们就说 $C$ 是一条 $(-1)$-\textbf{\trCurve}（$(-1)$-curve）。（我们可以把「$C\cdot C=-1$」复述为「$C$ 的\trNormalBundle{}为 $\OO(-1)$」。）
+
+\textbf{20.2.E.（练习）}\quad 证明：\mbox{练习~20.2.D} 中那个胀开的射影平面 $\mathrm{Bl}_p\mathbb{P}^2$ 与 $\mathbb{P}^1\times\mathbb{P}^1$ 不\trIsomorphic，不妨考察二者（同构的）\trPicardGroup，并辨别出哪些类是有效的（即由\trEffectiveDivisor{}所表示的）。（这是一对\trSmooth\trProjective\trBirational\trSurface{}的例子，二者具有同构的\trPicardGroup，却不\trIsomorphic。这道练习表明 $\mathbb{F}_0$ 与 $\mathbb{F}_1$ 不\trIsomorphic。其方法与结果将在\mbox{练习~20.2.Q} 中被推广。）
+
+一个更简单的做法（但没有随之而来的那些推广）：证明：在两种情形下，\trPicardGroup{}的全部元素的\trSelfIntersection{}给出 $\mathbb{Z}$ 的不同子集。
+
+\textbf{20.2.F.（练习；对照\mbox{练习~18.4.X}）}\quad 证明：$\mathrm{Bl}_p\mathbb{P}^2$ 的\trNef{}锥（\mbox{练习~18.4.W}）由 $\ell$ 与 $m$ 生成。提示：证明 $\ell$ 与 $m$ 都是\trNef{}的。将诸\trLineBundle{}与\trCurve{} $e$、$m$ 相交，证明：由 $\ell$ 与 $m$ 张成的锥之外没有\trNef{}的东西。（旁注：注意，正如\mbox{练习~18.4.X} 中那样，相应于锥之边界的\trLinearSystem{}给出「有趣的收缩」。）
+
+\textbf{20.2.G.（练习：又一个固有的非射影曲面）}\quad 按下述方式证明域上存在固有的非射影\trSurface{}（仿照 \S15.2.11 中固有非射影三维体的构造）：取两张胀开射影平面 $\mathrm{Bl}_p\mathbb{P}^2$ 的副本，把第一张上的 $\ell$ 与第二张上的 $e$ 粘合，再把第一张上的 $e$ 与第二张上的 $\ell$ 粘合。提示：利用\mbox{提示~20.2.7} 中的 $\ell=e+m$，证明：若 $\mathscr{L}$ 是一个在每条有效\trCurve{}上都具有正次数的\trLineBundle，则 $\mathscr{L}\cdot\ell>\mathscr{L}\cdot e$。（另一个固有非射影\trSurface{}的例子见 \S19.11.11。）
+
+\textbf{20.2.9.}\ \emph{\trFibration（fibrations）。}\quad 设 $\pi\colon X\to B$ 是从一个正则射影\trSurface{}到一个正则\trCurve{}的\trMorphism，它不收缩 $X$ 的任何\trIrreducibleComponent，又设 $b\in B$ 是一个\trClosedPoint。令 $F=\pi^{-1}(b)$。那么 $\OO_X(F)=\pi^*\OO_B(b)$，后者在 $F$ 上同构于 $\OO$。于是 $F\cdot F=\deg_F\OO_X(F)=0$：「\trFiber{}的\trSelfIntersection{}为 $0$」。同样的论证在 $X$ 不正则时也行得通，只要陈述得当：$(\pi^*\OO_B(b))^2=0$\footnote{原书此处作『$\pi^*\OO_X(b)$』，当为『$\pi^*\OO_B(b)$』之误，径改。——译者注}。
+
+\textbf{20.2.H.（练习）}\quad 设 $E$ 是一条\trEllipticCurve，取原点 $p$。在 $E\times E$ 上，令 $\Delta$ 为对角。通过考虑「差」映射 $E\times E\to E$（对其而言 $\pi^{-1}(p)=\Delta$），证明 $\Delta^2=0$。证明：$\mathrm{N}^1_{\mathbb{Q}}(E\times E)$（定义见 \S18.4.12）的\trRank{}至少为 $3$。证明：一般地，对\trScheme{} $X$ 与 $Y$，$\mathrm{Pic}\,X\times\mathrm{Pic}\,Y\to\mathrm{Pic}(X\times Y)$（由 $\boxtimes$ 定义，即拉回再作张量）未必是同构；$X=Y=\mathbb{P}^1$ 的情形是有误导性的。
+
+\emph{注记}：$\dim_{\mathbb{Q}}\mathrm{N}^1_{\mathbb{Q}}(E\times E)$ 总是 $3$ 或 $4$。若存在从 $E$ 到自身的非平凡\trEndomorphism（即不只是「乘以 $n$」映射 $[n]$（\S19.11.5）再复合一个平移），则它为 $4$；多出来的那个类便来自这个\trEndomorphism{}的图像。（证明此事所需的工具，可参看 [Mu3, \S21, App.~III] 的入门介绍。）
+
+我们的下一个目标是描述\trRuling{}曲面上一条\trCurve{}的\trSelfIntersection（\mbox{练习~20.2.J}）。为作铺垫，我们有一条有用的预备结果。
+
+\textbf{20.2.I.（练习：秩 $2$ \trVectorBundle{}的\trProjectivization{}中一个截面的\trNormalBundle）}\quad 设 $X$ 是一个\trScheme，而 $\mathscr{V}$ 是 $X$ 上秩为 $2$ 的\trLocallyFreeSheaf。由\mbox{练习~17.2.I} 与\mbox{练习~14.2.H(a)}，$X$ 上的那些短正合列
+\begin{equation*}\tag{20.2.9.1}\label{eq:section-filtration-sequence}
+0\longrightarrow\mathscr{S}\longrightarrow\mathscr{V}\longrightarrow\mathscr{Q}\longrightarrow 0
+\end{equation*}
+（其中 $\mathscr{S}$ 与 $\mathscr{Q}$ 的秩为 $1$）相应于\trProjection{} $\mathbb{P}\mathscr{V}\to X$ 的诸截面 $\sigma\colon X\to\mathbb{P}\mathscr{V}$。（$\mathbb{P}\mathscr{V}$ 的定义见 \S17.2.3，其中还包括一处关于对偶的警示。）证明：$\sigma(X)$ 在 $\mathbb{P}\mathscr{V}$ 中的\trNormalBundle{}（\S15.6.2）是 $\mathscr{Q}\otimes\mathscr{S}^{\vee}$。（\S21.3.10 陈述了一个推广。）提示：（i）为简单起见，不妨假定 $\mathscr{S}=\OO_X$，办法是用 $\mathscr{V}\otimes\mathscr{S}^{\vee}$ 替换 $\mathscr{V}$，因为问题的陈述在\trInvertibleSheaf{}的张量下不变（见\mbox{练习~17.2.G}）。（ii）现在假设（有失一般性）\footnote{原书此处作『(with loss of generality)』（有失一般性）；然 $\mathscr{Q}$ 的平凡性与正合列的分裂均可在 $X$ 上局部实现，此假设并无损失，疑当为『(without loss of generality)』之误，兹照录原书。——译者注}$\mathscr{Q}\cong\OO_X$，并且该正合列分裂。然后把该截面描述为 $\sigma\colon X\to\mathbb{P}^1\times X$，其中 $X$ 打到 $0$-截面上。请描述 $\OO_X$ 与「$\sigma(X)\to\mathbb{P}^1\times X$ 的\trNormalBundle」之间的一个同构。（不要只说一句「这个\trNormalBundle{}是平凡的」就完事。）（iii）现在考虑 $\mathscr{Q}$ 为一般时的情形。选取 $\mathscr{Q}$ 的诸\trTrivialization{}开邻域 $U_i$，并令 $g_{ij}$ 为 $\mathscr{Q}$ 的\trTransitionFunction。在两个\trTrivialization{}开邻域之交 $U_i\cap U_j$ 上，弄清楚你从 (ii) 得到的两个 $\OO_X$ 与 $\mathrm{N}_{\sigma(X)/\mathbb{P}\mathscr{V}}$ 的同构（一个对应 $U_i$，一个对应 $U_j$）彼此有何关联。特别地，证明它们相差 $g_{ij}$。
+
+\textbf{20.2.J.（练习：\trRuling{}曲面之截面的\trSelfIntersection）}\quad 设 $C$ 是一个正则\trCurve，而 $\mathscr{V}$ 是 $C$ 上秩为 $2$ 的\trLocallyFreeSheaf。那么 $\mathbb{P}\mathscr{V}$ 是一个\trRuling{}曲面（\mbox{例~17.2.6}）。取定 $\mathbb{P}\mathscr{V}$ 的一个相应于某个滤过 \eqref{eq:section-filtration-sequence} 的截面 $\sigma$。证明：$\sigma(C)\cdot\sigma(C)=\deg_C(\mathscr{Q}\otimes\mathscr{S}^{\vee})$。
+
+\textbf{20.2.10. \trHirzebruchSurface{} $\mathbb{F}_n=\mathbb{P}(\OO_{\mathbb{P}^1}\oplus\OO_{\mathbb{P}^1}(n))$。}\quad 回忆\mbox{例~17.2.6} 中\trHirzebruchSurface{} $\mathbb{F}_n=\mathbb{P}(\OO_{\mathbb{P}^1}\oplus\OO_{\mathbb{P}^1}(n))$ 的定义。它是 $\mathbb{P}^1$ 之上的一个 $\mathbb{P}^1$-丛；令 $\pi\colon\mathbb{F}_n\to\mathbb{P}^1$ 为其\trStructureMorphism。利用\mbox{练习~20.2.J}，相应于
+\[
+0\longrightarrow\OO(n)\longrightarrow\OO\oplus\OO(n)\longrightarrow\OO\longrightarrow 0,
+\]
+我们得到 $\pi$ 的一个\trSelfIntersection{}为 $-n$ 的截面；把它记作 $E\subset\mathbb{F}_n$。类似地，相应于
+\[
+0\longrightarrow\OO\longrightarrow\OO\oplus\OO(n)\longrightarrow\OO(n)\longrightarrow 0,
+\]
+我们得到 $\mathbb{F}_n$ 的一个\trSelfIntersection{}为 $n$ 的截面 $C\subset\mathbb{F}_n$。设 $p$ 是 $\mathbb{P}^1$ 的任一 $k$-值点，并令 $F=\pi^{-1}(p)$。
+
+\textbf{20.2.K.（练习）}\quad 证明：\trLineBundle{} $\OO(F)$ 不依赖于 $p$ 的选取。
+
+\textbf{20.2.L.（练习）}\quad 证明：$\mathrm{Pic}\,\mathbb{F}_n$ 由 $E$ 与 $F$ 生成。在做这件事的过程中，你或许会发展出 $\mathbb{F}_n$ 的一套「局部坐标卡」，它们可能有助于你求解后面的练习。
+
+\textbf{20.2.M.（练习）}\quad 计算 $\mathrm{Pic}\,\mathbb{F}_n$ 上的相交矩阵。证明：$E$ 与 $F$ 无关，从而 $\mathrm{Pic}\,\mathbb{F}_n\cong\mathbb{Z}E\oplus\mathbb{Z}F$。用 $E$ 与 $F$ 把 $C$ 表示出来。
+
+\textbf{20.2.N.（练习）}\quad 证明如何把 $\mathbb{F}_n\setminus E$ 连同\trStructureMorphism{} $\pi$ 一起，等同于 $\mathbb{P}^1$ 上\trLineBundle{} $\OO(n)$ 的\trTotalSpace，其中 $C$ 充当 $0$-截面。类似地，证明如何把 $\mathbb{F}_n\setminus C$ 等同于 $\mathbb{P}^1$ 上\trLineBundle{} $\OO(-n)$ 的\trTotalSpace，其中 $E$ 充当 $0$-截面。
+
+\textbf{20.2.O.（练习）}\quad 证明：$h^0(\mathbb{F}_n,\OO_{\mathbb{F}_n}(C))>1$。提示：由于 $\OO_{\mathbb{F}_n}(C)$ 有一个截面——即以 $C$ 为其除子的那个「典范的」截面。用\mbox{练习~20.2.M} 找出另一个截面。
+
+\textbf{20.2.P.（练习）}\quad 证明：$\mathbb{F}_n$ 上每条有效\trCurve{}都是 $E$ 与 $F$ 的非负线性组合。（反过来说，显然对每一对非负的 $a$ 与 $b$，$\OO(aE+bF)$ 都有一个截面，相应于有效\trCurve{}「$aE+bF$」。把这件事推广到 $\mathrm{N}^1_{\mathbb{Q}}$（定义见 \S18.4.12）上，便得到所谓的\textbf{\trEffective{}锥}（effective cone）；而这个概念推广到更一般的\trProper\trVariety{}上，可以非常有用。这道练习表明：$E$ 与 $F$ 生成 $\mathbb{F}_n$ 的\trEffective{}锥。）提示：证明：由于「$F$ 会移动」，任何有效\trCurve{}都必须与 $F$ 非负地相交；类似地，由于「$C$ 会移动」（\mbox{练习~20.2.O}），任何有效\trCurve{}都必须与 $C$ 非负地相交。若 $\OO(aE+bF)$ 有一个相应于有效\trCurve{} $D$ 的截面，那么关于 $a$ 与 $b$ 你能说出什么？
+
+\textbf{20.2.Q.（练习）}\quad 通过比较\trEffective{}锥与相交配对，证明：诸 $\mathbb{F}_n$ 两两不\trIsomorphic。（这一结果在\mbox{例~17.2.6} 中已被许诺过。\mbox{练习~20.2.E} 是其特例。）
+
+\mbox{练习~20.2.Q} 换别的办法来做会很困难，而它也预示了这样一个事实：\trNef{}锥与\trEffective{}锥是分类和理解一般\trVariety{}的得力工具。特别地，它们是极小模型纲领（minimal model program）的核心。
+
+\textbf{20.2.R.（练习）}\quad 若 $n=0$，证明：$\mathbb{F}_n$ 上没有负\trSelfIntersection{}的\trCurve。若 $n\ge 0$\footnote{原书此处作『$n\ge 0$』；然 $n=0$ 时 $\mathbb{F}_0\cong\mathbb{P}^1\times\mathbb{P}^1$ 上\trSelfIntersection{}为 $0$ 的既约\trCurve{}并不唯一（$\mathbb{P}^1\times\{0\}$ 与 $\{0\}\times\mathbb{P}^1$ 皆然），「$E$ 是唯一的」并不成立，疑当为『$n>0$』之误，兹照录原书。——译者注}，证明：$E$ 是 $\mathbb{F}_n$ 上唯一一条\trSelfIntersection{}为 $-n$ 的\trCurve，并且 $\mathbb{F}_n$ 上没有\trSelfIntersection{}更小的既约\trCurve。这再次给出了表明诸 $\mathbb{F}_n$ 两两不\trIsomorphic{}的另一条（与之相关的）途径。
+
+\textbf{20.2.S.（练习）}\quad 证明：$\mathbb{F}_n$ 的\trNef{}锥由 $C$ 与 $F$ 生成。（我们很快会看到，由\trKleiman{}丰富性判别法（\mbox{定理~20.4.7}），丰富锥是这个锥的内部，于是我们现已把 $\mathbb{F}_n$ 上的诸\trAmple\trLineBundle{}辨认了出来。）
+
+\textbf{20.2.T.（练习）}\quad 我们先前已经见过（\mbox{练习~20.2.F} 与\mbox{练习~18.4.X}）：\trNef{}锥的边界给出「有趣的收缩」。证明：由相应于 $\OO(F)$ 的\trLinearSystem{}给出的映射是 $\mathbb{F}_n$ 到 $\mathbb{P}^1$ 上的\trProjection，而由相应于 $\OO(C)$ 的\trLinearSystem{}给出的映射把 $\mathbb{F}_n$ 打到 $n$ 次\trRationalNormalCurve{}上的\trProjective{}锥。
+
+在这一系列练习之后，你或许愿意重访\mbox{练习~20.2.C--20.2.F}，并把它们解读为下述特例：$\mathbb{F}_0\cong\mathbb{P}^1\times\mathbb{P}^1$，$\mathbb{F}_1\cong\mathrm{Bl}_p\mathbb{P}^2$。
+
+\textbf{20.2.11. \trHodge{}指标定理。}
+
+我们用已学到的知识来证明一个著名结果：\trHodge{}指标定理。这个名字里的「指标」来自下述概念。
+
+\textbf{20.2.12.}\ \emph{实二次型的指标。}\quad 用与\trAlgClosedField{}上\trQuadraticForm{}的分类（\mbox{练习~5.4.J}）相仿的论证，可以证明：给定一个（有限）维数为 $n$ 的\trReal\trVectorSpace{} $V$ 上的对称双线性型，必存在整数 $a_+$、$a_0$、$a_-$，使得随后任意给定一组正交基 $v_1,\dots,v_n$ 时，$v_i\cdot v_i$ 为正（相应地，为零、为负）的个数便是 $a_+$（相应地，$a_0$、$a_-$）。有序对 $(a_+,a_-)$ 常被称作\textbf{指标}（index），有时也被称作\textbf{\trSignature}（signature）。（这条结果有时称作 Sylvester 惯性定律（Sylvester's law of inertia）。你可以按下述思路自行证明：给定 $V$ 的任意一组基 $(v_1,\dots,v_n)$，我们可以构造 $n\times n$ 相交矩阵 $(v_i\cdot v_j)_{1\le i,j\le n}$。它是对称的，故由谱定理，它有实特征值。如果你换一组基，诸特征值会怎样变化？为什么正特征值的个数保持不变？）
+
+\textbf{20.2.13.\ \trHodge{}指标定理。}\ ——\ \emph{设 $X$ 是（域 $k$ 上的）\trIrreducible\trSmooth\trProjective\trSurface，并设 $\mathscr{L},\mathscr{H}\in\mathrm{Pic}\,X$，满足 $\mathscr{H}\cdot\mathscr{H}>0$ 与 $\mathscr{L}\cdot\mathscr{H}=0$。那么 $(a)$ $\mathscr{L}\cdot\mathscr{L}\le 0$，且 $(b)$ 等号成立当且仅当 $\mathscr{L}$ 是\trNumericallyTrivial{}的。}
+
+\textbf{20.2.U.（启发性练习）}\quad 若 $\rho(X)$ 有限，证明：\trHodge{}指标定理等价于如下陈述：$\mathrm{N}^1_{\mathbb{R}}(X):=\mathrm{N}^1_{\mathbb{Q}}(X)\otimes_{\mathbb{Q}}\mathbb{R}$ 连同其「\trIntersectionForm」具有指标 $(1,\rho(X)-1)$。（我们在 \S18.4.12 中定义过 $\mathrm{N}^1(X)$ 与 $\rho(X)$。）别忘了 $X$ 是\trProjective{}的，因此在 $X$ 上存在\trAmple\trLineBundle！你应当把那个正的「分量」想象成来自丰富类；「其余」则是负的。我们不会用到 $\rho(X)$ 有限这一事实——因为我们尚未证明它——但它会给我们以动机。
+
+\textbf{20.2.14.}\ \emph{\mbox{\trHodge{}指标定理~20.2.13} 的证明。}\quad 受\mbox{练习~20.2.U} 的启发，我们先在「$\mathscr{H}$ 是\trAmple{}的」这条附加假设下证明该结果。
+
+\textbf{20.2.15.}\ 我们从下面这个事实开始。若 $\mathscr{H}$ 是一个\trAmple\trInvertibleSheaf，$\mathscr{M}$ 是任意\trInvertibleSheaf，且 $\mathscr{M}\cdot\mathscr{H}>\omega_X\cdot\mathscr{H}$，则 $h^2(X,\mathscr{M})=0$。（白话版：对一切「比 $\omega_X$ 更正」的\trInvertibleSheaf，都不存在最高次\trCohomology；请与 \S19.2.5 的维数 $1$ 相应陈述比较。）理由：由\trSerre{}对偶（\mbox{定理~18.5.1}），我们想证 $h^0(X,\omega_X\otimes\mathscr{M}^{\vee})=0$。但倘若不然，$\omega_X\otimes\mathscr{M}^{\vee}$ 有一个非零截面，那么它的（有效且非零的）除子将会与 $\mathscr{H}$ 非负地相交（\mbox{练习~20.1.K}），于是（采用加法记号；见\mbox{注记~20.1.4}）$(\omega_X-\mathscr{M})\cdot\mathscr{H}\ge 0$，与 $\mathscr{M}\cdot\mathscr{H}>\omega_X\cdot\mathscr{H}$ 矛盾。
+
+\textbf{20.2.16.}\ 我们接下来证明：若 $\mathscr{H}$ \trAmple，而 $\mathscr{L}$ 是任意一个满足 $\mathscr{L}\cdot\mathscr{L}>0$ 且 $\mathscr{L}\cdot\mathscr{H}>0$ 的\trInvertibleSheaf，则对 $n\gg 0$，$\mathscr{L}^{\otimes n}$ 有截面。道理如下。对 $n\gg 0$，
+\[
+\mathscr{L}^{\otimes n}\cdot\mathscr{H}=n\mathscr{L}\cdot\mathscr{H}>\omega_X\cdot\mathscr{H},
+\]
+故由 \S20.2.15（取 $\mathscr{M}=\mathscr{L}^{\otimes n}$）得 $h^2(X,\mathscr{L}^{\otimes n})=0$。于是对 $n\gg 0$，由曲面的\trRiemannRoch{}（\mbox{练习~20.2.B(b)}），
+\[
+\begin{aligned}
+h^0(X,\mathscr{L}^{\otimes n})-h^1(X,\mathscr{L}^{\otimes n})&=\chi(X,\mathscr{L}^{\otimes n})\\
+&=(n^2/2)\mathscr{L}\cdot\mathscr{L}-(n/2)\mathscr{L}\cdot\omega_X+\chi(X,\OO_X).
+\end{aligned}
+\]
+由于 $\mathscr{L}\cdot\mathscr{L}>0$，右端在 $n\gg 0$ 时为正，所以
+\[
+h^0(X,\mathscr{L}^{\otimes n})\ge h^0(X,\mathscr{L}^{\otimes n})-h^1(X,\mathscr{L}^{\otimes n})>0,
+\]
+正如所求。
+
+\textbf{20.2.17.}\ 现在我们已准备好证明关于\trAmple{} $\mathscr{H}$ 的\trHodge{}指标定理。先设 $\mathscr{L}\cdot\mathscr{L}>0$（并且 $\mathscr{L}\cdot\mathscr{H}=0$）。那么对 $n\gg 0$，$\mathscr{H}':=\mathscr{L}\otimes\mathscr{H}^{\otimes n}$ 由\mbox{练习~16.2.E} 是\trAmple{}的（实际上是\trVeryAmple{}的）。于是 $\mathscr{L}\cdot\mathscr{H}'=\mathscr{L}\cdot\mathscr{L}>0$，故由 \S20.2.16，$\mathscr{L}^{\otimes n}$ 是有效的，而这蕴涵 $\mathscr{L}\cdot\mathscr{H}=(\mathscr{L}^{\otimes n}\cdot\mathscr{H})/n>0$（再次用\mbox{练习~20.1.K}），与我们的假设矛盾。
+
+\textbf{20.2.18.}\ 最后设 $\mathscr{L}\cdot\mathscr{H}=0$，并且 $(i)$ $\mathscr{L}\cdot\mathscr{L}=0$，而 $(ii)$ $\mathscr{L}$ 不是\trNumericallyTrivial{}的。由 $(ii)$，我们可以找到一个\trInvertibleSheaf{} $\mathscr{Q}$，使得 $\mathscr{Q}\cdot\mathscr{L}\ne 0$。于是我们可以找到一个\trInvertibleSheaf{} $\mathscr{R}$，使得 $\mathscr{R}\cdot\mathscr{L}\ne 0$ 且 $\mathscr{R}\cdot\mathscr{H}=0$：取
+\[
+\mathscr{R}=(\mathscr{H}\cdot\mathscr{H})\mathscr{Q}-(\mathscr{Q}\cdot\mathscr{H})\mathscr{H}.
+\]
+然后取 $\mathscr{L}'=\mathscr{L}^{\otimes n}\otimes\mathscr{R}$，那么 $\mathscr{L}'\cdot\mathscr{H}=0$，但由于 $\mathscr{R}\cdot\mathscr{L}\ne 0$，我们可以找到某个 $n\in\mathbb{Z}$，使得
+\[
+\mathscr{L}'\cdot\mathscr{L}'=2n\mathscr{L}\cdot\mathscr{R}+\mathscr{R}\cdot\mathscr{R}>0.
+\]
+于是 \S20.2.17 的论证便适用了，只是把 $\mathscr{L}'$ 放在 $\mathscr{L}$ 的位置上。这样我们便证明了「关于\trAmple\trLineBundle{}的\trHodge{}指标定理」。
+
+\textbf{20.2.19.}\ 尚待证明的是：免去「$\mathscr{H}$ \trAmple」这一假设的\trHodge{}指标定理。现在设 $\mathscr{H}$ 与 $\mathscr{L}$ 如定理陈述中所述，并设 $\mathscr{A}\in\mathrm{Pic}\,X$ 是 $X$ 上的一个\trAmple\trLineBundle。（如果你想从这里开始自行完成证明，下面这个提示应当足够了：试着把关于\trAmple\trLineBundle{}的\trHodge{}指标定理应用三次，其中\trAmple\trLineBundle{}当然是 $\mathscr{A}$，而那个「另一」线丛依次为 $\mathscr{L}$、$\mathscr{H}$ 与 \eqref{eq:hodge-index-m-combination}。）
+
+若 $\mathscr{A}\cdot\mathscr{L}=0$，那么我们甚至无须用到 $\mathscr{H}$ 便已完成：由关于\trAmple\trLineBundle{}的\trHodge{}指标定理（用 $\mathscr{A}$ 与 $\mathscr{L}$）。所以现在设 $\mathscr{A}\cdot\mathscr{L}\ne 0$。类似地，$\mathscr{A}\cdot\mathscr{H}\ne 0$（否则，把关于\trAmple\trLineBundle{}的\trHodge{}指标定理应用于\footnote{原书此处作『appplying』，当为『applying』之误，径改。——译者注}$\mathscr{A}$ 与 $\mathscr{H}$ 将给出 $\mathscr{H}\cdot\mathscr{H}\le 0$，与假设 $\mathscr{H}\cdot\mathscr{H}>0$ 矛盾）。取
+\begin{equation*}\tag{20.2.19.1}\label{eq:hodge-index-m-combination}
+\mathscr{M}=(\mathscr{A}\cdot\mathscr{L})\mathscr{H}-(\mathscr{A}\cdot\mathscr{H})\mathscr{L}.
+\end{equation*}
+注意 $\mathscr{A}\cdot\mathscr{M}=0$。由关于\trAmple\trLineBundle{}的\trHodge{}指标定理（这次应用于 $\mathscr{A}$ 与 $\mathscr{M}$），我们有 $\mathscr{M}\cdot\mathscr{M}\le 0$，即
+\[
+(\mathscr{A}\cdot\mathscr{L})^2(\mathscr{H}\cdot\mathscr{H})+(\mathscr{A}\cdot\mathscr{H})^2(\mathscr{L}\cdot\mathscr{L})\le 0.
+\]
+但 $(\mathscr{A}\cdot\mathscr{L})^2$、$\mathscr{H}\cdot\mathscr{H}$ 与 $(\mathscr{A}\cdot\mathscr{H})^2$ 全为正，故 $\mathscr{L}\cdot\mathscr{L}<0$，正如所求。\hfill$\square$
+
+\textbf{20.2.20.}\ \emph{推广与变体。}\quad 这些假设可以在相当大的程度上削弱。我们用到\trSmooth{}性，仅仅是因为我们需要带有一个\trInvertibleSheaf{} $\omega_X$ 的\trSerre{}对偶。我们将在 \S29.4 中看到，为此所需要的少于\trSmooth{}性。但我们能做得好得多：若只要求 $X$ 是\trGeometricallyIrreducible{}且\trProper{}的，其证明只须对我们的论证稍作修改；见 [FGIKNV, Thm.~B.27]。

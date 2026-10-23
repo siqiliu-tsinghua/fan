@@ -1,0 +1,187 @@
+
+\section{\trSymplecticVectorSpace}
+\label{sec:symplectic-vector-spaces}
+
+\begin{definition}\label{def:symplectic-vector-space}
+\textbf{\trSymplecticVectorSpace}（symplectic vector space）$(V,\omega)$ 是一个有限维实向量空间 $V$ 连同一个指定的\trBilinear{}形式 $\omega$，它\trSkewSymmetric{}且\trNondegenerate，即
+\begin{equation}\label{eq:antisymmetry}
+\omega(u,v)=-\omega(v,u),\qquad u,v\in V,
+\end{equation}
+且对每一个 $u\neq0\in V$，存在 $v\in V$ 使得 $\omega(u,v)\neq0$。这种\trNondegenerate{}性等价于下述要求：映射
+\begin{equation}\label{eq:v-onto-dual}
+V\to V^{*},\qquad v\mapsto\omega(v,\,\cdot\,)
+\end{equation}
+是 $V$ 到其\textbf{\trDual{}向量空间}（dual vector space）$V^{*}$ 上的\textbf{\trLinear\trIsomorphism}（linear isomorphism）。一个例子是所谓的\textbf{\trStandard\trSymplecticVectorSpace}（standard symplectic vector space）$(\R^{2n},\omega_0)$，\mbox{其中}
+\begin{equation}\label{eq:standard-form}
+\omega_0(u,v)=\langle Ju,v\rangle \quad \text{对一切}\quad u,v\in\R^{2n},
+\end{equation}
+这里括号 $\langle\cdot,\cdot\rangle$ 表示 $\R^{2n}$ 中的\textbf{\trEuclidean\trInnerProduct}（Euclidean inner product），而 $2n\times 2n$ 矩阵 $J$ 定义为
+\begin{equation}\label{eq:j-matrix}
+J=\begin{pmatrix}0 & 1\\ -1 & 0\end{pmatrix}
+\end{equation}
+（相对于分解 $\R^{2n}=\R^{n}\times\R^{n}$）。显然 $\det J\neq0$，并且由于 $J^{T}=-J$，形式 $\omega_0$ \trNondegenerate{}且\trSkewSymmetric。我们指出
+\begin{equation}\label{eq:j-inverse}
+J^{T}=J^{-1}=-J.
+\end{equation}
+特别地，$J^{2}=-1$，并且
+\[
+\omega_0(u,Jv)=\langle u,v\rangle.
+\]
+因此，$J$ 是 $\R^{2n}$ 上的一个与\trEuclidean\trInnerProduct\trCompatible{}的\textbf{\trComplexStructure}（complex structure）。回忆：实向量空间 $V$ 上的\trComplexStructure{}是满足 $J^{2}=-1$ 的\trLinearTransformation{} $J:V\to V$；借助于定义
+\[
+(\alpha+i\beta)v=\alpha v+\beta Jv
+\]
+（其中 $\alpha$, $\beta\in\R$，$v\in V$），它使 $V$ 成为 $n$ 维复向量空间。在例子 $(\R^{2n},\omega_0)$ 中，我们可以按通常方式把 $z=(x,y)\in\R^{n}\times\R^{n}$ 映为 $x+iy\in\C^{n}$，从而将 $\R^{2n}$ 等同于 $\C^{n}$。\trLinear\trMapping $J$ 对应于 $\C^{n}$ 中乘以 $-i$ 的乘法。
+\end{definition}
+
+往后，若 $\omega(v,u)=0$，我们就称 $v$ 与 $u$ \trOrthogonal{}，并记作 $v\perp u$。若 $E$ 是 $V$ 的一个\textbf{\trLinear\trSubspace}（linear subspace），我们定义它的\textbf{\trOrthogonalComplement}（orthogonal complement）为
+\begin{equation}\label{eq:orthogonal-complement}
+E^{\perp}=\bigl\{\,u\in V\ \bigm|\ \omega(v,u)=0\quad\text{对一切}\quad v\in E\,\bigr\}.
+\end{equation}
+$E^{\perp}$ 是线性\trSubspace{}，并且鉴于\trBilinear{}形式 $\omega$ 的\trNondegenerate{}性，我们有
+\begin{equation}\label{eq:dim-sum}
+\dim E+\dim E^{\perp}=\dim V.
+\end{equation}
+事实上，在 $E$ 中取一组基 $e_1,\dots,e_d$，则\trSubspace{} $E^{\perp}$ 便是 $V$ 上\trLinearlyIndependent{}的\textbf{\trFunctional}（functional）$\omega(e_j,\cdot)$ 的\textbf{\trKernel}（kernel），于是 $\dim E^{\perp}=\dim V-\dim E$，正如所断言的。由于 $u\perp v$ 等价于 $v\perp u$，我们看到
+\begin{equation}\label{eq:double-orthogonal}
+\bigl(E^{\perp}\bigr)^{\perp}=E.
+\end{equation}
+\textbf{\trSymplecticGeometry}（symplectic geometry）中的\textbf{\trOrthogonality}（orthogonality）概念与\trEuclidean{}几何中的截然不同：$E$ 与 $E^{\perp}$ 未必是互补的\trSubspace{}。例如，每个向量 $v\in V$ 都与自身\trOrthogonal{}，因为 $\omega(v,v)=-\omega(v,v)$；于是当 $\dim E=1$ 时，有 $E\subset E^{\perp}$。
+
+当然，我们可以把\trBilinear{}形式 $\omega$ 限制到线性\trSubspace{} $E\subset V$ 上。这个限制形式显然仍是\trSkewSymmetric{}的，但一般不再是\trNondegenerate{}的。它在 $E$ 上\trNondegenerate{}当且仅当
+\begin{equation}\label{eq:sympl-criterion}
+E\cap E^{\perp}=\{0\},
+\end{equation}
+这由定义立即得出。鉴于\eqref{eq:dim-sum}，\eqref{eq:sympl-criterion} 成立恰好当 $E$ 与 $E^{\perp}$ 互补时，即
+\[
+E\oplus E^{\perp}=V.
+\]
+我们看到，若 \eqref{eq:sympl-criterion} 满足，则 $(E,\omega)$ 是一个\trSymplecticVectorSpace{}，此时称 $E$ 为\trSymplectic\trSubspace{}。由于 \eqref{eq:sympl-criterion} 在 $E$ 与 $E^{\perp}$ 中的对称性，我们得出：$E$ 是\trSymplectic{}的当且仅当 $E^{\perp}$ 是\trSymplectic{}的。
+
+下面的命题表明，每个\trSymplectic{}空间看上去都与\trStandard{}空间 $(\R^{2n},\omega_0)$ 一样。
+
+\begin{proposition}\label{prop:symplectic-basis}
+\trSymplecticVectorSpace{} $(V,\omega)$ 的维数是偶数。若 $\dim V=2n$，则存在 $V$ 的一组基 $e_1,\dots,e_n$, $f_1,\dots,f_n$，满足对 $i,j=1,2,\dots,n$，
+\begin{align*}
+\omega(e_i,e_j) &= 0\\
+\omega(f_i,f_j) &= 0\\
+\omega(f_i,e_j) &=
+\begin{cases}
+1 & \text{若}\ i=j\\
+0 & \text{若}\ i\neq j
+\end{cases}.
+\end{align*}
+\end{proposition}
+
+这样的基称为 $V$ 的\textbf{\trSymplecticBasis}（symplectic basis）或标准基。把 $u$, $v\in V$ 在这组基下写成
+\begin{align*}
+u &= \sum_{j=1}^{n}\bigl(x_j e_j+x_{n+j} f_j\bigr)\\
+v &= \sum_{j=1}^{n}\bigl(y_j e_j+y_{n+j} f_j\bigr),
+\end{align*}
+立即可算出
+\[
+\omega(u,v)=\langle Jx,y\rangle,\qquad x,y\in\R^{2n},
+\]
+其中矩阵 $J$ 由 \eqref{eq:j-matrix} 给出。诸\trSubspace{} $V_j=\operatorname{span}\{e_j,f_j\}$ 是\trSymplectic{}的，并且当 $i\neq j$ 时两两\trOrthogonal{}，于是向量空间 $V$ 就是二维\trSymplectic\trSubspace{}的\textbf{\trOrthogonalSum}（orthogonal sum）
+\begin{equation}\label{eq:orthogonal-sum}
+V=V_1\oplus V_2\oplus\dots\oplus V_n.
+\end{equation}
+相对于这一分解，\trBilinear{}形式 $\omega$ 在\textbf{\trSymplecticCoordinates}（symplectic coordinates）下的矩阵表示为
+\[
+\begin{pmatrix}
+\begin{matrix}0 & 1\\ -1 & 0\end{matrix} & & & \\[10pt]
+& \begin{matrix}0 & 1\\ -1 & 0\end{matrix} & & \\[10pt]
+& & \ddots & \\[4pt]
+& & & \begin{matrix}0 & 1\\ -1 & 0\end{matrix}
+\end{pmatrix}
+\]
+
+\begin{proof}[\cref*{prop:symplectic-basis}的证明]
+在 $V$ 中任取向量 $e_1\neq0$。由于 $\omega$ 是\trNondegenerate{}的，我们可以找到 $u\in V$ 使得 $\omega(u,e_1)\neq0$，并且可以规范化 $f_1=\alpha u$ 使得
+\[
+\omega(f_1,e_1)=1.
+\]
+于是，由于 $\omega$ 是\trSkewSymmetric{}的，$f_1$ 与 $e_1$ \trLinearlyIndependent，从而 $E=\operatorname{span}\{e_1,f_1\}$ 是 $V$ 的一个二维\trSymplectic\trSubspace{}。若 $\dim V=2$，证明即告完成。若 $\dim V>2$，我们对 $V$ 的互补\trSymplectic\trSubspace{} $E^{\perp}$ 施行同样的论证，如此经有限多步便得到所要的基。
+\end{proof}
+
+我们看到，对固定的维数，每个\trSymplecticVectorSpace{} $(V,\omega)$ 都能化成同一个\textbf{\trNormalForm}（normal form），这与\trNondegenerate\trSymmetric\trBilinear{}形式的情形恰恰相反。\textbf{\trSymplecticForm}（symplectic form）$\omega$ 挑出了那些使该形式保持\trInvariant{}的\trLinear\trMapping\footnote{原书印作「linear maps of v」，疑为大写 $V$ 之误，此处径改。——译者注}。
+
+\begin{definition}\label{def:symplectic-linear-map}
+\trSymplecticVectorSpace{} $(V,\omega)$ 的\trLinear\trMapping $A:V\to V$ 称为\trSymplectic{}的（或\trCanonical{}的），若
+\[
+A^{*}\omega=\omega.
+\]
+按定义，$A^{*}\omega$ 是所谓\textbf{\trPullback\trTwoForm}（pullback 2-form），由 $A^{*}\omega(u,v)=\omega(Au,Av)$ 给出。于是在\trStandard{}空间 $(\R^{2n},\omega_0)$ 中，矩阵 $A$ 是\trSymplectic{}的当且仅当 $\langle JAu,Av\rangle=\langle Ju,v\rangle$ 对一切 $u$, $v\in\R^{2n}$ 成立，或者等价地，
+\begin{equation}\label{eq:sympl-matrix-condition}
+A^{T}JA=J.
+\end{equation}
+\end{definition}
+
+在二维的特殊情形 $\R^{2}$ 中，这等价于条件 $\det A=1$。一般地，从 \eqref{eq:sympl-matrix-condition} 立即得出 $(\det A)^{2}=1$。结果表明
+\begin{equation}\label{eq:det-one}
+\det A=1,
+\end{equation}
+从而 $\R^{2n}$ 中的\textbf{\trSymplecticMatrix}（symplectic matrix）是\trVolumePreserving{}的。这需要一个证明，而借助\textbf{\trDifferentialForm}（differential form）的语言将十分方便。回忆：取坐标 $z=(z_1,\dots,z_{2n})\in\R^{2n}$，则 $\R^{2n}$ 上的\trBilinear{}形式 $dz_i\wedge dz_j$ 定义为
+\[
+(dz_i\wedge dz_j)(u,v)=u_i v_j-u_j v_i,
+\]
+其中 $u$, $v\in\R^{2n}$。引入记号 $z=(x,y)\in\R^{2n}$，我们于是可以把 $\omega_0$ 表示成
+\[
+\omega_0=\sum_{j=1}^{n} dy_j\wedge dx_j.
+\]
+于是，$\R^{2n}$ 上的 $2n$-形式
+\[
+\Omega=\omega_0\wedge\omega_0\wedge\dots\wedge\omega_0 \qquad\text{（$n$ 次）}
+\]
+是\textbf{\trVolumeForm}（volume form）
+\[
+\Omega=c\,dx_1\wedge\dots\wedge dx_n\wedge dy_1\wedge\dots\wedge dy_n
+\]
+（常数 $c\neq0$）。若 $A$ 是 $\R^{2n}$ 中的一个矩阵，则由行列式的定义有 $A^{*}\Omega=(\det A)\Omega$。设 $A^{*}\omega_0=\omega_0$，我们便得出 $A^{*}\Omega=\Omega$，从而 $\det A=1$，正如所断言的。
+
+$\R^{2n}$ 中满足条件 \eqref{eq:sympl-matrix-condition} 的\trSymplecticMatrix{}全体，在矩阵乘法下构成一个群。它是经典\trLie{}群之一，记作 $\Sp(n)$。
+
+\begin{proposition}\label{prop:spn-group-closure}
+若 $A$, $B\in\Sp(n)$，则 $A^{-1}$, $AB\in\Sp(n)$。此外，$A^{T}\in\Sp(n)$，并且 $J\in\Sp(n)$。
+\end{proposition}
+\begin{proof}
+把 $A^{T}JA=J$ 右乘 $A^{-1}$、左乘 $(A^{T})^{-1}$，我们得到 $J=(A^{T})^{-1}JA^{-1}$，因此 $A^{-1}\in\Sp(n)$。再对后一恒等式两端取逆，得 $J^{-1}=AJ^{-1}A^{T}$；由于 $J^{-1}=-J$，我们得到 $(A^{T})^{T}JA^{T}=J$，从而 $A^{T}\in\Sp(n)$。
+\end{proof}
+
+注意，若把 $2n\times 2n$ 矩阵写成分块形式
+\begin{equation}\label{eq:block-form}
+U=\begin{pmatrix}A & B\\ C & D\end{pmatrix}
+\end{equation}
+（相对于分解 $\R^{2n}=\R^{n}\times\R^{n}$），则它是\trSymplectic{}的当且仅当
+\[
+A^{T}C,\ B^{T}D \quad\text{为对称的，且}\quad A^{T}D-C^{T}B=1,
+\]
+这容易直接验证。例如，具有 $B=0$ 的矩阵 $U$ 是\trSymplectic{}的当且仅当 $A$ \trNonsingular{}，并且此时 $U$ 可以写成
+\[
+U=\begin{pmatrix}A & 0\\ 0 & (A^{T})^{-1}\end{pmatrix} \begin{pmatrix}1 & 0\\ S & 1\end{pmatrix},
+\]
+其中 $S$ 为某个对称矩阵。
+
+\begin{definition}\label{def:symplectic-map-between-spaces}
+若 $(V_1,\omega_1)$ 与 $(V_2,\omega_2)$ 是两个\trSymplecticVectorSpace{}，我们把\trLinear\trMapping $A:V_1\to V_2$ 称为\trSymplectic{}的，若
+\[
+A^{*}\omega_2=\omega_1,
+\]
+其中按定义 $(A^{*}\omega_2)(u,v)=\omega_2(Au,Av)$ 对一切 $u$, $v\in V_1$ 成立。显然 $A$ 是\trInjective{}，从而 $\dim V_1\leq\dim V_2$。
+\end{definition}
+
+\begin{proposition}\label{prop:same-dim-isomorphism}
+若 $(V_1,\omega_1)$ 与 $(V_2,\omega_2)$ 是两个同维数的\trSymplectic{}空间，则存在\trLinear\trIsomorphism{} $A:V_1\to V_2$ 满足 $A^{*}\omega_2=\omega_1$。
+\end{proposition}
+
+这意味着，一切具有相同维数的\trSymplecticVectorSpace{}在此意义下都是等价的；它们在\trSymplectic{}的意义下无法彼此分辨。
+
+\begin{proof}
+证明立即可由\cref{prop:symplectic-basis}中的\trNormalForm{}得到。选取 $(V_1,\omega_1)$ 中的\trSymplecticBasis{} $(e_j,f_j)$ 与 $(V_2,\omega_2)$ 中的\trSymplecticBasis{} $(\hat{e}_j,\hat{f}_j)$，并定义\trLinear\trMapping $A:V_1\to V_2$ 如下：
+\[
+Ae_j=\hat{e}_j \qquad\text{且}\qquad Af_j=\hat{f}_j
+\]
+（对 $1\leq j\leq n$）。于是，由\trSymplecticBasis{}的定义显然有 $A^{*}\omega_2=\omega_1$。
+\end{proof}
+
+由于在构造\trSymplecticBasis{}时 $e_1$ 与 $\hat{e}_1$ 的选取尽可随意，我们从上述证明得知：群 $\Sp(n)$ 在 $\R^{2n}\setminus\{0\}$ 中的作用是传递的\footnote{原书印作「群 $\Sp(n)$ 在 $\R^{2n}$ 中的作用是传递的」，漏排零点：线性作用必固定零向量，而 $e_1$ 与 $\hat{e}_1$ 均非零，故所证实为在 $\R^{2n}\setminus\{0\}$ 上的传递性，此处径补。——译者注}。此外，它在 $\R^{2n}$ 的具有相同维数的\trSymplectic\trSubspace{}所成的集合上的作用也是传递的。理由是：\trSubspace{} $E$ 中的\trSymplecticBasis{}总可以通过添入其补空间 $E^{\perp}$ 的\trSymplecticBasis{}而扩充为 $V$ 的基，正如我们在\cref{prop:symplectic-basis}的证明中所做的那样。

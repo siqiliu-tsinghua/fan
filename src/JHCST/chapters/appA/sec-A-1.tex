@@ -1,0 +1,152 @@
+
+本附录回顾证明\BookRecordIndex{T0246}模空间构成光滑有限维流形所需的泛函分析基础。第 A.1 节介绍\BookRecordIndex{T0128}弗雷德霍姆算子
+及其稳定性。第 A.2 节讨论两个巴拿赫空间之间的\BookRecordIndex{T0128}弗雷德霍姆算子空间上的\BookRecordIndex{T0162}行列式线丛；
+这是确立\BookRecordIndex{T0246}模空间可定向性所需的。第 A.3 节给出巴拿赫空间情形下逆函数定理与\BookRecordIndex{T0380}隐函数定理
+的证明。第 A.4 节说明\BookRecordIndex{T0388}有限维约化技术，有时也称为 \BookRecordIndex{T0029}Kuranishi 模型；它把奇异点附近
+弗雷德霍姆映射零点集的局部分析化为有限维模型。第 A.5 节证明 萨德--斯梅尔定理。
+
+\section{弗雷德霍姆理论}\label{sec:A-1}
+
+本节讨论抽象\BookRecordIndex{T0128}弗雷德霍姆算子及其基本性质。巴拿赫空间之间的有界线性算子 $D:X\to Y$
+若核有限维、像闭，且余核 $Y/\operatorname{im}D$ 有限维，就称为\emph{\BookRecordIndex{T0128}弗雷德霍姆算子}。
+\BookRecordIndex{T0128}弗雷德霍姆算子 $D$ 的\emph{指标}定义为
+\[
+  \operatorname{index}D:=\dim\ker D-\dim\operatorname{coker}D.
+\]
+这里的核与余核都视作实向量空间。若 $D$ 是复巴拿赫空间之间的复线性\BookRecordIndex{T0128}弗雷德霍姆算子，
+就必须区分实\BookRecordIndex{T0129}弗雷德霍姆指标和复\BookRecordIndex{T0129}弗雷德霍姆指标。显然，实指标是复指标的两倍。
+下面的引理在证明给定线性算子 $D$ 具有弗雷德霍姆性质时起重要作用。
+
+\begin{lemma}\label{lem:A-1-1}
+设 $X,Y,Z$ 是巴拿赫空间，$D:X\to Y$ 是有界线性算子，$K:X\to Z$ 是紧算子。
+假设存在常数 $c>0$，使得对每个 $x\in X$ 都有
+\begin{equation}\label{eq:A-1-1}
+  \|x\|_X\le c\bigl(\|Dx\|_Y+\|Kx\|_Z\bigr).
+\end{equation}
+则 $D$ 的像是闭的，核是有限维的。
+\end{lemma}
+
+\begin{proof}
+要证明 $\ker D$ 有限维，只须证明其单位球紧。为此，取序列 $x_\nu\in X$，满足
+\[
+  \|x_\nu\|\le1,\qquad Dx_\nu=0.
+\]
+由于 $x_\nu$ 有界，可取一子序列，仍记作 $x_\nu$，使 $Kx_\nu$ 收敛。
+因为 $x_\nu\in\ker D$，由式~\eqref{eq:A-1-1} 可知 $x_\nu$ 是柯西序列。
+由于 $X$ 完备，$x_\nu$ 收敛。
+
+现在不失一般性地假定 $D$ 是单射；否则，以 $\ker D$ 的一个补空间替换 $X$。
+这样的补空间由 Hahn--Banach 定理保证存在：取 $\ker D$ 的一组基
+$x_1,\ldots,x_N$，并选取 $x_k^*\in X^*$，使
+$\langle x_k^*,x_j\rangle=\delta_{jk}$。于是
+\[
+  X_0:=\bigl\{x\in X\mid
+  \langle x_1^*,x\rangle=\cdots=\langle x_N^*,x\rangle=0\bigr\}
+\]
+就是所需的补空间。
+
+设 $y\in\operatorname{cl}(\operatorname{im}D)$。则存在序列 $x_\nu\in X$，使得
+\[
+  y=\lim_{\nu\to\infty}Dx_\nu.
+\]
+先证明 $x_\nu$ 有界。反设 $x_\nu$ 无界；必要时取子序列，可假定
+$\|x_\nu\|\to\infty$。考虑序列
+\[
+  \xi_\nu:=\|x_\nu\|^{-1}x_\nu.
+\]
+它的每一项范数均为 $1$，且 $D\xi_\nu\to0$。再取子序列，可假定
+$K\xi_\nu$ 收敛。由式~\eqref{eq:A-1-1} 可知 $\xi_\nu$ 是柯西序列。
+其极限 $\xi:=\lim_{\nu\to\infty}\xi_\nu$ 的范数为 $1$，又满足 $D\xi=0$，
+这与 $D$ 为单射矛盾。因此 $x_\nu$ 确实有界。再次利用 $K$ 的\BookRecordIndex{T0192}紧性、
+估计~\eqref{eq:A-1-1} 和 $X$ 的完备性，可知 $x_\nu$ 有收敛子序列。
+设其极限为 $x$，则 $y=Dx$。
+\end{proof}
+
+\begin{corollary}\label{cor:A-1-2}
+设 $X,Y$ 是巴拿赫空间，$D:X\to Y$ 是像闭且核有限维的有界线性算子。
+\begin{enumerate}[label=(\roman*)]
+\item 对每个紧算子 $K:X\to Y$，算子 $D+K$ 的像也闭，核也有限维。
+\item 存在 $\varepsilon>0$，使得若有界线性算子 $P:X\to Y$ 满足
+$\|P\|<\varepsilon$，则 $D+P$ 的像闭，核有限维。
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+设 $\dim\ker D=n$，并选取有界线性算子 $K_0:X\to\mathbb R^n$，使
+$K_0$ 在 $\ker D$ 上的限制是向量空间同构。于是算子
+$X\to Y\oplus\mathbb R^n:x\mapsto(Dx,K_0x)$ 为单射且像闭。
+因此，由开映射定理，存在常数 $c>0$，使
+\[
+  \|x\|_X\le c\bigl(\|Dx\|_Y+\|K_0x\|_{\mathbb R^n}\bigr).
+\]
+于是对任意紧算子 $K:X\to Y$，有
+\[
+  \|x\|_X\le c\bigl(\|(D+K)x\|_Y+\|Kx\|_Y
+  +\|K_0x\|_{\mathbb R^n}\bigr).
+\]
+同样，若 $\|P\|<1/c$，则
+\[
+  \|x\|_X\le\frac{c}{1-c\|P\|}
+  \bigl(\|(D+P)x\|_Y+\|K_0x\|_{\mathbb R^n}\bigr).
+\]
+因此，结论由引理~\ref{lem:A-1-1} 得到。
+\end{proof}
+
+\begin{corollary}\label{cor:A-1-3}
+设 $X,Y$ 是巴拿赫空间，$D:X\to Y$ 是像闭且余核有限维的有界线性算子。
+\begin{enumerate}[label=(\roman*)]
+\item 对每个紧算子 $K:X\to Y$，算子 $D+K$ 的像也闭，余核也有限维。
+\item 存在 $\varepsilon>0$，使得若有界线性算子 $P:X\to Y$ 满足
+$\|P\|<\varepsilon$，则 $D+P$ 的像闭，余核有限维。
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+$D$ 的像闭当且仅当对偶算子 $D^*$ 的像闭；$D$ 的余核有限维当且仅当
+$D^*$ 的核有限维。因此结论由推论~\ref{cor:A-1-2} 得到。
+\end{proof}
+
+\begin{exercise}\label{ex:A-1-4}
+\begin{enumerate}[label=(\roman*)]
+\item 证明：有界线性算子 $D:X\to Y$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，当且仅当存在有界线性算子
+$T:Y\to X$，使 $DT-\operatorname{id}$ 与 $TD-\operatorname{id}$ 都是紧算子。
+提示：证明“若”时使用引理~\ref{lem:A-1-1}。
+\item 若 $D:X\to Y$ 与 $T:Y\to Z$ 都是\BookRecordIndex{T0128}弗雷德霍姆算子，证明
+$TD:X\to Z$ 也是\BookRecordIndex{T0128}弗雷德霍姆算子，且
+\begin{equation}\label{eq:A-1-2}
+  \operatorname{index}TD=\operatorname{index}D+\operatorname{index}T.
+\end{equation}
+\item 证明：有界线性算子 $D:X\to Y$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，当且仅当它的对偶算子
+$D^*:Y^*\to X^*$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，且二者的指标满足
+\[
+  \operatorname{index}D^*=-\operatorname{index}D.
+\]
+\end{enumerate}
+\end{exercise}
+
+\BookRecordIndex{T0128}弗雷德霍姆算子最重要的性质与它们在扰动下的稳定性有关。这正是下面定理的内容。
+特别地，定理~\ref{thm:A-1-5} 断言：\BookRecordIndex{T0128}弗雷德霍姆算子集在范数拓扑下是开集，
+指标在每个连通分支上恒定。
+
+\begin{theorem}\label{thm:A-1-5}
+设 $D:X\to Y$ 是\BookRecordIndex{T0128}弗雷德霍姆算子。
+\begin{enumerate}[label=(\roman*)]
+\item 若 $K:X\to Y$ 是紧算子，则 $D+K$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，且
+$\operatorname{index}(D+K)=\operatorname{index}D$。
+\item 存在 $\varepsilon>0$，使得若有界线性算子 $P:X\to Y$ 满足
+$\|P\|<\varepsilon$，则 $D+P$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，且
+$\operatorname{index}(D+P)=\operatorname{index}D$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+关于弗雷德霍姆性质的断言直接由推论~\ref{cor:A-1-2} 和~\ref{cor:A-1-3} 得到。
+关于指标的断言留作附提示的习题。选取分解 $X=X_0\oplus X_1$、
+$Y=Y_0\oplus Y_1$，使 $X_0:=\ker D$、$Y_1:=\operatorname{im}D$。
+证明 $D+P$ 的指标等于如下有限维算子的指标：
+\[
+  P_{00}-P_{01}(D_{11}+P_{11})^{-1}P_{10}:X_0\longrightarrow Y_0,
+\]
+其中 $P_{ji}:X_i\to Y_j$ 表示先把 $P$ 限制在 $X_i$ 上，再投影到 $Y_j$；
+$D_{ji}$ 的含义类似。
+\end{proof}

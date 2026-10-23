@@ -1,0 +1,678 @@
+\section{霍费尔范数的非退化性}
+\label{sec:nondegeneracy-hofer-norm}
+
+回忆第 5.4 节中哈密顿微分同胚 $\phi$ 的霍费尔范数
+$\lVert\phi\rVert$ 的定义。根据第 5.4 节末尾的注，只要证明辛流形中任意闭拉格朗日子流形的位移能为正，就能证明该辛流形上这个范数的非退化性。
+
+回忆定义~\ref{def:displacement-energy} 中的位移能定义，并把它专门用于紧拉格朗日子流形的集合。
+
+\begin{definition}\label{def:ch11-lagrangian-displacement-energy}
+给定紧拉格朗日子流形 $L\subset(M,\omega)$，其位移能定义为
+\[
+ e(L;M,\omega)=\inf_H
+ \{\lVert H\rVert\mid L\cap\phi_H^1(L)=\varnothing\}.
+\]
+\end{definition}
+
+波尔捷罗维奇在 (Po93) 中证明，对任意\emph{有理}拉格朗日子流形，
+\begin{equation}
+ e(L;M,\omega)\geq\frac12\Gamma_{(L;M,\omega)}>0,
+ \label{eq:ch11-polterovich-displacement-lower-bound}
+\end{equation}
+其中 $\Gamma_{(L;M,\omega)}$ 是子群
+\[
+ \{\omega(\beta)\mid\beta\in\pi_2(M,L)\}\subset\mathbb R
+\]
+的（正）生成元。由此容易推出\emph{驯服}有理辛流形上霍费尔范数的非退化性。切卡诺夫在 (Che94) 中借助一个弗洛尔同调理论版本改进了这个结果：他先去掉式~\eqref{eq:ch11-polterovich-displacement-lower-bound} 中的因子 $1/2$，再把结果推广到任意\emph{驯服}的非有理辛流形；同时，他还联系阿诺尔德猜想，给出了交点数
+$L\cap\phi_H^1(L)$ 的估计。
+
+本节先引入共形对称性被破坏的一类伪全纯曲线变体。格罗莫夫在证明
+$\mathbb C^n$ 中不存在任何闭正合拉格朗日嵌入时，最早使用了这种变体 (Gr85)。他考虑 $\mathbb C^n$ 上非齐次方程
+$\overline\partial u=\lambda g$ 的单参数族，其中 $g\in\mathbb C^n$ 是常向量且 $0\leq\lambda<\infty$，并比较 $\lambda=0$ 与 $\lambda\to\infty$ 时相应的模空间。在 (Gr85) 的证明中，格罗莫夫利用了这个扰动模空间对所有充分大的 $\lambda$ 都为空这一事实；他本人还巧妙地应用柯西积分公式证明了这一点。
+
+不久，弗洛尔给出了由哈密顿向量场扰动的一个更自然的方程变体，并用它构造哈密顿不动点的弗洛尔同调 (Fl89b)。本节紧随 (Oh97c) 针对驯服辛流形提出的思路，以下列方式使用弗洛尔扰动柯西--黎曼方程的截断版本：
+\begin{enumerate}[label=(\arabic*)]
+ \item 首先，把两个拉格朗日子流形 $L$ 与 $\phi_H^1(L)$ 的交集为空，识别为某个扰动柯西--黎曼方程参数化模空间之紧性的障碍；
+ \item 然后，结合若干简单却基本的计算，把本质上属于\emph{动力学}的位移能与 $L$ 的\emph{几何}不变量 $A(L;M,\omega)$ 联系起来。
+\end{enumerate}
+
+这种计算的粗略形式最早出现于 (H85) 和 (Oh93a)，而切卡诺夫在 (Che94) 中把它作成最优形式。此后，本书作者在一系列关于谱不变量及其应用的论文 (Oh97b, Oh05d) 中系统使用了这个计算。如今，它已成为把弗洛尔同调技术应用于哈密顿动力学和辛拓扑中各种问题的基本要素之一。
+
+本节还会让读者初步看到弗洛尔同调编码了底层辛流形上的何种信息；这些内容将在后面几部分中详细研究。
+
+\subsection{哈密顿扰动伪全纯曲线}
+\label{subsec:hamiltonian-perturbed-pseudoholomorphic-curves}
+
+令 $\phi$ 为 $(M,\omega)$ 的哈密顿微分同胚。以 $H$ 表示紧支含时哈密顿函数，且 $H\mapsto\phi$。令 $L$ 为紧拉格朗日子流形。$L\cap\phi(L)$ 与下列方程的解
+$z:[0,1]\to M$ 之间有一一对应：
+\begin{equation}
+ \dot z=X_H(t,z),\qquad z(0),z(1)\in L.
+ \label{eq:ch11-hamiltonian-chord}
+\end{equation}
+精确的对应为
+\begin{equation}
+ p\in L\cap\phi(L)
+ \quad\Longleftrightarrow\quad
+ z=z_p^H,
+ \qquad z_p^H(t):=\phi_H^t\bigl((\phi_H^1)^{-1}(p)\bigr).
+ \label{eq:ch11-intersection-hamiltonian-chord-correspondence}
+\end{equation}
+
+我们将看到，作用量泛函 $\mathcal A_H$ 的 $L^2$-梯度方程由满足下式的映射
+$u:\mathbb R\times[0,1]\to M$ 给出：
+\begin{equation}
+ \begin{cases}
+  \displaystyle\frac{\partial u}{\partial\tau}
+  +J_t\left(\frac{\partial u}{\partial t}-X_H(u)\right)=0,\\[5pt]
+  u(\tau,0)\in L,\quad u(\tau,1)\in L.
+ \end{cases}
+ \label{eq:ch11-floer-strip-equation}
+\end{equation}
+本节不强调这个方程的上述来源，而把它看成如下形式的扰动柯西--黎曼方程：
+\[
+ u\longmapsto\overline\partial_Ju+P^{(0,1)}(u)
+ =(du+P(u))^{0,1},
+\]
+其中 $P$ 是丛
+\[
+ \mathcal H\longrightarrow\mathcal F,
+ \qquad \mathcal H_u=\Omega^1(u^*TM)
+\]
+的截面，且 $(\mathord\cdot)^{(0,1)}$ 是
+$(\mathord\cdot)\in\Omega^1(u^*TM)$ 的 $(0,1)$-部分。用坐标
+$z=(\tau,t)$，可写成
+\[
+ P(z,u)=X(z,u)\,d\tau+Y(z,u)\,dt,
+\]
+其中 $X(z,u),Y(z,u)\in\Omega^0(u^*M)$。于是
+\[
+ 2(du+P(u))^{0,1}\left(\frac{\partial}{\partial\tau}\right)
+ =\frac{\partial u}{\partial\tau}
+ +J_t\frac{\partial u}{\partial t}
+ +(X(z,u)+J_tY(z,u)).
+\]
+例如，方程~\eqref{eq:ch11-floer-strip-equation} 对应于 $P=P_H$，其中
+\[
+ P_H(z,u)=-X_H(t,u)\,dt.
+\]
+注意
+\[
+ P_H^{(0,1)}(z,u)
+ =\frac12\bigl(-JX_H(t,u)\,d\tau-X_H(t,u)\,dt\bigr).
+\]
+
+下面的引理说明，对上述扰动柯西--黎曼方程的分析研究如何给出拉格朗日交点的存在性结果。
+
+\begin{lemma}\label{lem:ch11-finite-energy-implies-intersection}
+假设方程~\eqref{eq:ch11-floer-strip-equation} 有一个有限能量解
+$u:\mathbb R\times[0,1]\to M$，即
+\begin{equation}
+ E_J(u)=\int_{-\infty}^{\infty}\int_0^1
+ \left|\frac{\partial u}{\partial\tau}\right|_{J_t}^2
+ \,dt\,d\tau<\infty.
+ \label{eq:ch11-finite-strip-energy}
+\end{equation}
+则存在序列 $\tau_n\to\infty$（或 $\tau_n\to-\infty$），使道路
+$z_n:=u(\tau_n,\mathord\cdot)$ 在 $C^\infty$ 拓扑中收敛到满足
+\eqref{eq:ch11-hamiltonian-chord} 的哈密顿路径
+\[
+ z:([0,1],\{0,1\})\longrightarrow(M,L).
+\]
+特别地，$L\cap\phi(L)\ne\varnothing$。
+\end{lemma}
+
+\begin{proof}
+由式~\eqref{eq:ch11-finite-strip-energy} 的有限性及被积函数非负，存在序列
+$\tau_n\nearrow\infty$，使
+\[
+ \int_0^1
+ \left|\frac{\partial u}{\partial\tau}(\tau_n,\mathord\cdot)\right|_{J_t}^2
+ \,dt\longrightarrow0.
+\]
+因为 $u$ 满足式~\eqref{eq:ch11-floer-strip-equation}，这等价于
+\begin{equation}
+ \int_0^1
+ \left|\frac{\partial u}{\partial t}-X_H(u)\right|_{J_t}^2
+ \,dt\longrightarrow0.
+ \label{eq:ch11-strip-slices-approximate-chords}
+\end{equation}
+令 $z_n=u(\tau_n,\mathord\cdot)$，则
+\begin{equation}
+ \int_0^1|\dot z_n-X_H(z_n)|_{J_t}^2\,dt\longrightarrow0.
+ \label{eq:ch11-paths-approximate-hamiltonian}
+\end{equation}
+由于 $H$ 紧支，对某个 $C>0$ 有
+$\max_{(t,x)}|X_H(t,x)|_{J_t}<C$。因此，对所有充分大的 $n$，
+\begin{equation}
+ \frac12\int_0^1|\dot z_n|_{J_t}^2\,dt<C^2+1<\infty.
+ \label{eq:ch11-uniform-w12-path-bound}
+\end{equation}
+由索伯列夫嵌入
+\[
+ W^{1,2}([0,1],M)\hookrightarrow C^0([0,1],M)
+\]
+的紧性，可以取一个仍记作 $z_n$ 的子列，使 $z_n\to z$ 于 $C^0$。
+
+现在断言 $z$ 可微且满足 $\dot z=X_H(z)$。这是局部问题。取坐标后可设
+$M=\mathbb R^{2n}$。为证明 $z$ 可微，写成
+\[
+ \begin{aligned}
+ &z_n(t+h)-z_n(t)-X_H(t,z_n(t))h\\
+ &\quad=\int_0^1
+ \left(\frac{d}{du}z_n(t+uh)-X_H(t,z_n(t))\right)h\,du\\
+ &\quad=\int_0^1
+ \bigl(hX_H(t+uh,z_n(t+uh))-hX_H(t,z_n(t))\bigr)\,du\\
+ &\quad=h\int_0^1
+ \bigl(X_H(t+uh,z_n(t+uh))-X_H(t,z_n(t))\bigr)\,du.
+ \end{aligned}
+\]
+由 $X_H$ 的连续性以及 $z_n\to z$ 的一致收敛，当 $n\to\infty$ 时，
+\[
+ \begin{aligned}
+ X_H(t+uh,z_n(t+uh))&\longrightarrow X_H(t+uh,z(t+uh)),\\
+ X_H(t,z_n(t))&\longrightarrow X_H(t,z(t))
+ \end{aligned}
+\]
+关于 $t,u$ 一致成立。这证明
+\[
+ z(t+h)-z(t)-X_H(t,z(t))h
+ =h\int_0^1
+ \bigl(X_H(t+uh,z(t+uh))-X_H(t,z(t))\bigr)\,du.
+\]
+此外，由连续性，当 $|h|\to0$ 时，
+\[
+ \left|\int_0^1
+ \bigl(X_H(t+uh,z(t+uh))-X_H(t,z(t))\bigr)\,du\right|
+ \longrightarrow0.
+\]
+所以得到
+\[
+ |z(t+h)-z(t)-X_H(t,z(t))h|=o(|h|),
+\]
+这证明 $z$ 在 $t$ 处可微，其导数为 $\dot z(t)=X_H(t,z(t))$。类似的自举论证表明 $z$ 是 $H$ 的哈密顿方程的光滑解。
+
+最后，对方程 $\dot z_n=X_H(t,z_n)$ 求导并再次使用自举方法，得到
+$z_n\to z$ 于 $C^\infty$；这就完成了收敛陈述的证明。
+\end{proof}
+
+上一陈述的如下改述，将作为一个重要工具，阻碍弗洛尔轨线方程适当截断版本之解模空间的紧性。
+
+\begin{corollary}\label{cor:ch11-disjoint-no-finite-energy-strip}
+假设 $L\cap\phi_H^1(L)$ 为空。则方程~\eqref{eq:ch11-floer-strip-equation} 没有有限能量解。
+\end{corollary}
+
+先考虑特殊情形 $J\equiv J_0$ 且 $H\equiv0$。此时，
+\eqref{eq:ch11-floer-strip-equation} 化为
+\begin{equation}
+ \begin{cases}
+  \displaystyle\frac{\partial u}{\partial\tau}
+  +J_0\frac{\partial u}{\partial t}=0,\\[5pt]
+  u(\tau,0)\in L,\quad u(\tau,1)\in L.
+ \end{cases}
+ \label{eq:ch11-unperturbed-strip-equation}
+\end{equation}
+假设
+\[
+ \iint\left|\frac{\partial u}{\partial\tau}\right|_{J_0}^2<\infty.
+\]
+复合一个共形微分同胚
+\[
+ \varphi:D^2\setminus\{1,-1\}\longrightarrow\mathbb R\times[0,1]
+\]
+后，得到映射 $\widetilde u:=u\circ\varphi$，即
+\[
+ \widetilde u:
+ \bigl(D^2\setminus\{1,-1\},
+ \partial D^2\setminus\{1,-1\}\bigr)\longrightarrow(M,L),
+\]
+它是 $J_0$-全纯的，且 $\int|d\widetilde u|_{J_0}^2<\infty$。由可去奇点定理，$\widetilde u$ 光滑延拓成 $J$-全纯圆盘
+\[
+ \widetilde u:(D^2,\partial D^2)\longrightarrow(M,L).
+\]
+特别地，可以自然地相伴同伦类
+$[u]=[\widetilde u]\in\pi_2(M,L)$。
+
+事实上，只要偶对 $(J,H)$ 在 $\tau=\pm\infty$ 附近满足
+$J\equiv J_0$、$H\equiv0$，上述讨论同样成立。这促使我们考虑方程~\eqref{eq:ch11-floer-strip-equation} 的\emph{非自治}版本，即依赖于 $\tau$ 的版本。考虑殆复结构和哈密顿函数的二参数族
+\[
+ J=\{J_{(s,t)}\},
+ \qquad H=sH_t,
+ \qquad(s,t)\in[0,1]^2.
+\]
+注意 $[0,1]^2$ 是紧集，所以 $J,H$ 是紧族。我们特别关注
+\[
+ J(s,t,x)=J_0
+ \qquad\text{在 }\partial[0,1]^2\text{ 的一个邻域中}
+\]
+的情形。还可假设 $J_{(s,t)}$ 在 $C^\infty$ 拓扑中任意接近 $J_0$。把给定哈密顿流 $\phi_H^t$ 重参数化，使它在 $t=0,1$ 附近恒定，还可假设
+$H_t\equiv0$ 于 $t=0,1$ 附近。对每个
+$K\in\mathbb R_+=[0,\infty)$，定义一族截断函数
+$\rho_K:\mathbb R\to[0,1]$；当 $K\geq1$ 时，它们满足
+\begin{equation}
+ \rho_K(\tau)=
+ \begin{cases}
+  0,&|\tau|\geq K+1,\\
+  1,&|\tau|\leq K.
+ \end{cases}
+ \label{eq:ch11-cutoff-values}
+\end{equation}
+还要求
+\begin{equation}
+ \begin{aligned}
+  \rho_K'&\geq0&&\text{在 }[-K-1,-K]\text{ 上},\\
+  \rho_K'&\leq0&&\text{在 }[K,K+1]\text{ 上}.
+ \end{aligned}
+ \label{eq:ch11-cutoff-derivative-signs}
+\end{equation}
+对 $0\leq K\leq1$，定义 $\rho_K=K\rho_1$。注意 $\rho_0\equiv0$。
+
+然后考虑下面这个单参数 $K$-方程族：
+\begin{equation}
+ \begin{cases}
+  \displaystyle\frac{\partial u}{\partial\tau}
+  +J_{(\rho_K^1(\tau),t)}
+   \left(\frac{\partial u}{\partial t}-\rho_K(\tau)X_H(u)\right)=0,\\[5pt]
+  u(\tau,0)\in L,\quad u(\tau,1)\in L,
+ \end{cases}
+ \label{eq:ch11-cutoff-floer-equation}
+\end{equation}
+并要求有限能量
+\[
+ \int|d\widetilde u|_{J_{(\rho_K(\tau),t)}}^2<\infty.
+\]
+注意，当 $|\tau|\geq K+1$ 时，方程变成
+\[
+ \frac{\partial u}{\partial\tau}+J_0\frac{\partial u}{\partial t}=0.
+\]
+特别地，有限能量条件使我们能把 $u\circ\varphi$ 光滑延拓到整个圆盘。因此它定义同伦类
+$[u]\in\pi_2(M,L)$。
+
+\begin{definition}\label{def:ch11-cutoff-moduli-space}
+对 $K>0$，定义
+\[
+ \mathcal M_K(J,H;A)
+ =\left\{u:\mathbb R\times[0,1]\to M\mathrel{\Big|}
+ \begin{array}{l}
+ u\text{ 满足式~\eqref{eq:ch11-cutoff-floer-equation}},\\
+ \displaystyle\int\left|\frac{\partial u}{\partial\tau}\right|_J^2<\infty,
+ \quad[u]=A
+ \end{array}\right\}.
+\]
+\end{definition}
+
+下面是 $\mathcal M_K(J,H;A)$ 的基本结构定理。它的证明是通有横截性定理的一个小变体，留给读者。
+
+\begin{theorem}\label{thm:ch11-cutoff-moduli-structure}
+\begin{enumerate}[label=(\arabic*)]
+ \item 对每个固定的 $K>0$，存在 $(J,H)$ 的通有选择，使非空的
+ $\mathcal M_K(J,H;A)$ 成为维数
+ $n+\mu_L(A)$ 的光滑流形。特别地，如果 $A=0$，则非空时
+ $\dim\mathcal M_K(J,H;A)=n$。
+ \item 当 $A=0,K=0$ 时，所有解都是常值且弗雷德霍姆正则，所以
+ $\mathcal M_K(J,H;A)\cong L$。此外，评价映射
+ \[
+  \operatorname{ev}:\mathcal M_0(J,H;0)\longrightarrow L,
+  \qquad u\longmapsto u(0,0)
+ \]
+ 是微分同胚。
+ \item 令 $K_0\gg0$，并假设 $\mathcal M_{K_0}(J,H;A)$ 正则且
+ $\operatorname{ev}:\mathcal M_{K_0}(J,H;A)\to L$ 光滑。则参数化模空间
+ \[
+  \mathcal M_{[0,K_0]}^{\mathrm{para}}(J,H;A)
+  :=\bigcup_{K\in[0,K_0]}\{K\}\times\mathcal M_K(J,H;A)
+  \longrightarrow[0,K_0]
+ \]
+ 是光滑带边流形，其边界为
+ \[
+  \{0\}\times\mathcal M_0(J,H;A)
+  \amalg
+  \{K_0\}\times\mathcal M_{K_0}(J,H;A),
+ \]
+ 并且评价映射
+ \[
+  \begin{aligned}
+  \operatorname{Ev}:&
+  \mathcal M_{[0,K_0]}^{\mathrm{para}}(J,H;A)\times\mathbb R
+  \longrightarrow L\times\mathbb R_+\times\mathbb R,\\
+  &((K,u),\tau)\longmapsto(K,u(\tau),\tau)
+  \end{aligned}
+ \]
+ 是光滑的。
+\end{enumerate}
+\end{theorem}
+
+下面的先验能量界是联系位移能下界的关键要素。
+
+\begin{lemma}\label{lem:ch11-cutoff-energy-bound}
+设 $u$ 是式~\eqref{eq:ch11-cutoff-floer-equation} 的任意有限能量解，且固定
+$[u]=A\in\pi_2(M,L)$。则
+\begin{equation}
+ \begin{aligned}
+ E_{J_K}(u)
+ &: =\int_{-\infty}^{\infty}\int_0^1
+ \left|\frac{\partial u}{\partial\tau}\right|_J^2\,dt\,d\tau\\
+ &=\omega(A)
+ -\int_{-K-1}^{-K}\rho_K'(\tau)
+      \int_0^1(H_t\circ u)\,dt\,d\tau
+ -\int_K^{K+1}\rho_K'(\tau)
+      \int_0^1(H_t\circ u)\,dt\,d\tau.
+ \end{aligned}
+ \label{eq:ch11-cutoff-energy-identity}
+\end{equation}
+特别地，
+\begin{equation}
+ E_{J_K}(u)\leq\omega(A)+\lVert H\rVert,
+ \label{eq:ch11-cutoff-energy-upper-bound}
+\end{equation}
+其中
+\[
+ \lVert H\rVert:=\int_0^1(\max H_t-\min H_t)\,dt.
+\]
+当 $A=0$ 时，$E_{J_K}(u)\leq\lVert H\rVert$。此外，只要 $u$ 有限能量，这个上界就不依赖于 $K$、$\rho_K$ 或 $u$。
+\end{lemma}
+
+\begin{proof}
+证明通过显式计算完成。这个计算联系了能量与霍费尔范数，是我们从 (Oh97c) 中抽取出的关键计算。计算如下：
+\[
+ \begin{aligned}
+ &\int_{-\infty}^{\infty}\int_0^1
+ \left|\frac{\partial u}{\partial\tau}\right|_J^2\,dt\,d\tau\\
+ &=\int_{-\infty}^{\infty}\int_0^1
+ \omega\left(\frac{\partial u}{\partial\tau},
+ J_K\frac{\partial u}{\partial\tau}\right)dt\,d\tau\\
+ &=\int_{-\infty}^{\infty}\int_0^1
+ \omega\left(\frac{\partial u}{\partial\tau},
+ \frac{\partial u}{\partial t}-\rho_K(\tau)X_H(u)\right)dt\,d\tau\\
+ &=\int_{-\infty}^{\infty}\int_0^1
+ \omega\left(\frac{\partial u}{\partial\tau},
+ \frac{\partial u}{\partial t}\right)dt\,d\tau
+ -\int_{-\infty}^{\infty}\rho_K(\tau)\int_0^1
+ \omega\left(\frac{\partial u}{\partial\tau},X_{H_t}(u)\right)dt\,d\tau\\
+ &=\omega(A)-\int_{-\infty}^{\infty}\rho_K(\tau)\int_0^1
+ \left\langle-dH_t(u),\frac{\partial u}{\partial\tau}\right\rangle dt\,d\tau\\
+ &=\omega(A)+\int_{-\infty}^{\infty}\rho_K(\tau)\int_0^1
+ \frac{\partial}{\partial\tau}(H_t\circ u)\,dt\,d\tau\\
+ &=\omega(A)-\int_{-\infty}^{\infty}\rho_K'(\tau)
+ \int_0^1(H_t\circ u)\,dt\,d\tau\\
+ &=\omega(A)-\int_{-K-1}^{-K}\rho_K'(\tau)
+ \int_0^1(H_t\circ u)\,dt\,d\tau
+ -\int_K^{K+1}\rho_K'(\tau)
+ \int_0^1(H_t\circ u)\,dt\,d\tau.
+ \end{aligned}
+\]
+这证明了式~\eqref{eq:ch11-cutoff-energy-identity}。又因为
+\[
+ \int_{-K-1}^{-K}\rho_K'(\tau)\,d\tau=1,
+ \qquad
+ \int_K^{K+1}\rho_K'(\tau)\,d\tau=-1,
+\]
+式~\eqref{eq:ch11-cutoff-energy-upper-bound} 立即随之得到。
+\end{proof}
+
+\begin{proposition}\label{prop:ch11-large-cutoff-moduli-empty}
+令 $H_t$ 为满足 $L\cap\phi_H^1(L)$ 为空的哈密顿量，并令
+$H=sH_t$、$J$ 如前。固定 $A\in\pi_2(M,L)$。则存在充分大的
+$K_0>0$，使对所有 $K\geq K_0$，$\mathcal M_K(J,H;A)$ 都为空。
+\end{proposition}
+
+\begin{proof}
+我们将利用先验界应用下面这个紧性定理的版本。它的证明是格罗莫夫收敛定理的一个变体，将推迟到第三部分。
+
+\begin{theorem}[格罗莫夫--弗洛尔紧性定理]\label{thm:ch11-gromov-floer-compactness}
+\stfhIndex{I146}{ge^luo^mo^fu^fu^luo^er^jin^xing^ding^li}{格罗莫夫--弗洛尔紧性定理（Gromov–Floer compactness theorem）}
+假设 $K_\alpha\to K_\infty\in\mathbb R_+\cup\{\infty\}$，令 $u_\alpha$ 是
+$K=K_\alpha$ 时方程~\eqref{eq:ch11-cutoff-floer-equation} 的解，并具有一致界
+\[
+ E_{J_{K_\alpha}}(u_\alpha)<C<\infty,
+\]
+其中 $C$ 与 $\alpha$ 无关。则存在一个仍以 $u_\alpha$ 编号的子列及尖点流线
+$(u,\mathbf v,\mathbf w)$，使得：
+\begin{enumerate}[label=(\arabic*)]
+ \item $u$ 是 $K=K_\infty$ 时方程~\eqref{eq:ch11-cutoff-floer-equation} 的解；
+ \item $\mathbf v=\{v_i\}_{i=1}^k$，其中每个 $v_i$ 都是
+ $J_{(s_i,t_i)}$-全纯球面，而每个 $w_j$ 都是边界落在 $L$ 上的
+ $J_0$-全纯圆盘；
+ \item
+ \[
+  \lim_{\alpha\to\infty}E_{J_{K_\alpha}}(u_\alpha)
+  =E_{J_{K_\infty}}(u)+\sum_i\omega(v_i)+\sum_j\omega(w_j),
+ \]
+ 其中
+ \[
+  \omega(v_i)=\int v_i^*\omega
+  =\frac12\int|dv_i|_J^2
+  =E_{J_{(s_i,t_i)}}(v_i);
+ \]
+ \item $u_\alpha$ 在豪斯多夫拓扑中收敛到 $(u,\mathbf v,\mathbf w)$，并在远离节点的紧集上以 $C^\infty$ 拓扑收敛。
+\end{enumerate}
+此外，如果 $\mathbf v=\mathbf w=\phi$，则
+$u_\alpha\to u$ 在 $\mathbb R\times[0,1]$ 上光滑收敛。
+\end{theorem}
+
+现在可以完成命题~\ref{prop:ch11-large-cutoff-moduli-empty} 的证明。用反证法。假设存在序列
+$K_\alpha\nearrow\infty$ 及解
+$u_\alpha\in\mathcal M_{K_\alpha}(J,H;A)$。由
+$\mathcal M_{K_\alpha}(J,H;A)$ 的先验能量界，可以应用
+格罗莫夫--弗洛尔紧性定理。换言之，存在 $(u,\mathbf v,\mathbf w)$，使
+$u_\alpha\to(u,\mathbf v,\mathbf w)$ 于该紧性定理的意义下。
+
+特别地，我们得到方程~\eqref{eq:ch11-cutoff-floer-equation} 的一个解 $u$。但此时该方程无非是
+\[
+ \begin{cases}
+  \displaystyle\frac{\partial u}{\partial\tau}
+  +J_t\left(\frac{\partial u}{\partial t}-X_{H_t}(u)\right)=0,\\[5pt]
+  u(\tau,0),u(\tau,1)\in L,
+ \end{cases}
+\]
+且
+\[
+ E_J(u)\leq\lim E_K(u_\alpha)<\omega(A)+\lVert H\rVert<\infty.
+\]
+由引理~\ref{lem:ch11-finite-energy-implies-intersection}，得到
+$L\cap\phi(L)\ne\varnothing$，与假设矛盾，命题得证。
+\end{proof}
+
+\begin{corollary}\label{cor:ch11-bubble-energy-below-hofer}
+考虑一列映射
+\[
+ u_\alpha\in\mathcal M_{K_\alpha}(J,H;A=0),
+ \qquad u_\alpha\longrightarrow(u,\mathbf v,\mathbf w).
+\]
+则任何气泡（若有）的辛面积都小于 $\lVert H\rVert$。
+\end{corollary}
+
+\begin{proof}
+这是 $A=0$ 的情形。此时
+\[
+ E_{J_K}(u_\alpha)
+ =\iint\left|\frac{\partial u_\alpha}{\partial\tau}\right|_{J_K}^2
+ \leq\lVert H\rVert.
+\]
+因此
+\[
+ E_{J_\infty}(u)+\sum_i\omega(v_i)+\sum_j\omega(w_j)
+ \leq\lVert H\rVert.
+\]
+\emph{所有项都为正}，所以推论得证。
+\end{proof}
+
+\subsection{非退化性的证明}
+\label{subsec:proof-hofer-nondegeneracy}
+
+回忆定义~\ref{def:ch8-lagrangian-epsilon-invariant} 中的几何不变量
+$A(L;M,\omega)$。它在研究一般紧拉格朗日子流形、尤其是\emph{无理}拉格朗日子流形的位移能时起重要作用。
+
+令 $J_0$ 为任意与 $\omega$ 相容的复结构。考虑
+\stfhIndex{I004}{00-symbol-004}{$A_S(J_0;\omega)$}
+\[
+ A_S(J_0,\omega)
+ =\inf_v\{\omega(v)\mid v:s^2\to M\text{ 非常值},\
+ \overline\partial_{J_0}v=0\},
+\]
+\stfhIndex{I003}{00-symbol-003}{$A_D(J_0,\omega;L)$}
+\[
+ A_D(J_0,\omega:L)
+ =\inf_w\{\omega(w)\mid
+ w:(D^2,\partial D^2)\to(M,L)\text{ 非常值},\
+ \overline\partial_{J_0}w=0\}.
+\]
+我们已经证明 $A_S(J_0,\omega),A_D(J_0,\omega;L)>0$。记
+\[
+ A(J_0,\omega;L)
+ =\min\{A_D(J_0,\omega;L),A_S(J_0,\omega)\}.
+\]
+再对 $J_0\in\mathcal J_\omega$ 取上确界：
+\stfhIndex{I001}{00-symbol-001}{$A(L;M,\omega)$}
+\[
+ A(L;M,\omega)=\sup_{J_0}A(J_0,\omega;L).
+\]
+
+\begin{remark}\label{rem:ch11-lagrangian-area-invariant}
+\stfhIndex{I074}{qie^ka^nuo^fu}{切卡诺夫（Chekanov）}
+不变量 $A(L;M,\omega)$ 在切卡诺夫关于一般紧拉格朗日子流形、尤其是\emph{无理}拉格朗日子流形之位移能正性的证明 (Che98) 中起重要作用。如果 $\omega$ 弱正合，即
+$\omega|_{\pi_2(M)}=0$，则对任意 $J_0$ 置
+$A(J_0,\omega)=\infty$。如果不存在 $J_0$-全纯球面或圆盘，也定义
+$A_S=A_D=\infty$。此外，如果 $L\subset(M,\omega)$ 是有理的，则
+\[
+ A(L;M,\omega)\geq\Gamma_{(L;M,\omega)},
+\]
+其中 $\Gamma_{(L;M,\omega)}$ 是 $L$ 的周期群
+\[
+ \{\omega(\beta)\mid\beta\in\pi_2(M,L)\}
+\]
+的正生成元。注意，对无理的 $L\subset(M,\omega)$，周期群在 $\mathbb R$ 中稠密，所以位移能没有这种拓扑下界。
+\end{remark}
+
+下面的证明借自 (Oh97c)。为得到位移能的正性，它从切卡诺夫的证明中抽取出关键部分。切卡诺夫的证明还估计 $L$ 与 $\phi(L)$ 相交时的交点数，因而给出了更强的结果。
+
+\begin{theorem}[切卡诺夫]\label{thm:ch11-chekanov-displacement-energy}
+令 $(M,\omega)$ 为驯服辛流形，且
+$L\subset(M,\omega)$ 为紧拉格朗日嵌入。则
+\[
+ e(L;M,\omega)\geq A(L;M,\omega).
+\]
+\end{theorem}
+
+\begin{proof}
+如果 $L$ 不可位移，依定义有 $e(L;M,\omega)=\infty$，无需证明。
+
+现在假设存在哈密顿量 $H$，使 $\phi_H^1(L)\cap L=\varnothing$；任取这样的 $H$。回到参数化模空间
+\[
+ \mathcal M_{[0,K_0]}^{\mathrm{para}}(J,H;0)
+ =\bigcup_{K\in[0,K_0]}\{K\}\times\mathcal M_K(J,H;0),
+\]
+它纤维化在 $[0,K_0]$ 上。考虑评价映射
+\[
+ \operatorname{Ev}^{\mathrm{para}}:
+ \mathcal M_{[0,K_0]}^{\mathrm{para}}(J,H;0)
+ \longrightarrow L\times[0,K_0],
+ \qquad u\longmapsto(u(0,0),K).
+\]
+横截性定理蕴含：当 $J$ 通有选取时，
+$\mathcal M_{[0,K_0]}^{\mathrm{para}}(J,H;0)$ 是维数
+$\dim L+1$ 的光滑流形，其边界为
+\[
+ \mathcal M_0(J,H,0)\amalg
+ \mathcal M_{K_0}(J,H,0).
+\]
+我们还知道
+\[
+ \operatorname{ev}_0:\mathcal M_0(J,H;0)\longrightarrow L
+\]
+是微分同胚。特别地，这里的 $\operatorname{ev}_0$ 之 $\mathbb Z_2$-度数为 $1$。另一方面，由命题~\ref{prop:ch11-large-cutoff-moduli-empty}，
+\[
+ \mathcal M_{K_0}(J,H;0)=\phi,
+\]
+所以映射 $\operatorname{ev}_{K_0}$ 的 $\mathbb Z_2$-度数为零。然而，$\mathbb Z_2$-度数在紧配边下不变。因此
+$\mathcal M_{[0,K_0]}^{\mathrm{para}}(J,H;0)$ 不可能紧！由格罗莫夫--弗洛尔紧性定理，必定产生气泡。也就是说，存在 $K_\alpha$ 的一个仍用相同符号表示的子列，使
+\[
+ K_\alpha\longrightarrow K_\infty\in[0,K_0],
+\]
+并存在序列
+\[
+ u_\alpha\in\mathcal M_{K_\alpha}(J,H;0),
+\]
+收敛到某条尖点曲线 $(u,\mathbf v,\mathbf w)$，其中
+$\mathbf v\ne\varnothing$ 或 $\mathbf w\ne\varnothing$。回忆推论~\ref{cor:ch11-bubble-energy-below-hofer} 蕴含气泡的辛能量总小于
+$\lVert H\rVert$，所以
+\[
+ \min\{A_S(J_{(s_i,t_i)},\omega),A_D(J_0,\omega;L)\}
+ \leq\lVert H\rVert.
+\]
+
+现在只需比较 $A_S(J_{(s_i,t_i)},\omega)$ 与 $A_S(J_0,\omega)$。这可以通过下面的上半连续性结果完成。
+
+\begin{proposition}\label{prop:ch11-upper-semicontinuity-sphere-area}
+假设 $J_0$ 被 $(M,\omega)$ 驯服。令
+$J=\{J_{(s,t)}\}_{(s,t)\in[0,1]^2}$ 为一族殆复结构，满足
+$J|_{\partial[0,1]^2}\equiv J_0$，且在 $M$ 的某个紧集外
+$J_0\equiv J$。则对所有
+$0<\epsilon<A_S(J_0,\omega)$，可以选择
+$J:[0,1]^2\to\mathcal J_\omega$，使之接近 $J_0$ 且
+\[
+ A_S(J_{(s,t)},\omega)
+ \geq A_S(J_0,\omega)-\epsilon
+ \qquad\text{对所有 }(s,t)\in[0,1]^2.
+\]
+\end{proposition}
+
+\begin{exercise}\label{ex:ch11-tameness-upper-semicontinuity}
+证明这个命题，并说明 $J_0$ 的驯服性如何进入证明。
+\end{exercise}
+
+由该命题得到
+\[
+ \forall\epsilon>0,\qquad
+ \min\{A_S(J_0,\omega)-\epsilon,A_D(J_0,\omega,L)\}
+ \leq\lVert H\rVert.
+\]
+因为这对所有 $\epsilon>0$ 都成立，所以
+\[
+ A(J_0,\omega;L)\leq\lVert H\rVert.
+\]
+对 $J_0$ 取 $A(J_0,\omega;L)$ 的上确界，得到
+$A(\omega,L)\leq\lVert H\rVert$，其中
+$L\cap\phi_H^1(L)=\phi$。现在，对所有满足
+$L\cap\phi_H^1(L)=\phi$ 的 $H$，取 $\lVert H\rVert$ 的下确界，得到
+\[
+ 0<A(L;M,\omega)
+ \leq\inf_H\{\lVert H\rVert\mid L\cap\phi_H^1(L)=\phi\}.
+\]
+该不等式右端正是 $L$ 的位移能 $e(L;M,\omega)$，定理得证。
+\end{proof}
+
+现在可以证明霍费尔范数的非退化性。
+
+\begin{theorem}\label{thm:ch11-hofer-norm-nondegenerate}
+令 $(M,\omega)$ 为驯服辛流形，并令 $\phi\in\Ham(M,\omega)$。则
+$\phi=\operatorname{id}$ 当且仅当 $\lVert\phi\rVert=0$。
+\end{theorem}
+
+\begin{proof}
+显然，零哈密顿量 $H=0$ 生成恒等映射，所以“仅当”部分平凡。现在证明“如果”部分。设 $\phi\ne\operatorname{id}$，则存在 $x\in M$ 使
+$\phi(x)\ne x$。由连续性，可以找到以 $x$ 为中心的小辛球
+$B_\delta(x)\cong B^{2n}(\delta)$，使
+\[
+ \phi(B_\delta(x))\cap B_\delta(x)=\varnothing.
+\]
+因此，$\phi$ 位移一个紧拉格朗日环面
+$L\subset B_\delta(x)$，其中 $L=\phi(T_\epsilon^n)$，且
+\[
+ T_\epsilon^n
+ =S^1(\epsilon)\times\cdots\times S^1(\epsilon)
+ \subset B^{2n}(\delta)\subset\mathbb C^n,
+\]
+$\epsilon$ 充分小于 $\delta$（事实上，取
+$\epsilon<\delta/\sqrt n$ 即可）。显然
+\[
+ e(B_\delta(x))\geq e(L)\geq A(L;M,\omega)>0.
+\]
+但由于 $\phi(B_\delta(x))\cap B_\delta(x)=\varnothing$，由
+$e(B_\delta(x))$ 的定义，必有
+$\lVert\phi\rVert\geq e(B_\delta(x))$。合并两个不等式得到
+$\lVert\phi\rVert>0$，证明完成。
+\end{proof}
+
+\begin{remark}\label{rem:ch11-lalonde-mcduff-arbitrary-symplectic}
+需要提到，拉隆德与麦克达夫在 (LM95b) 中用另一种方法，在\emph{任意}辛流形上证明了上述非退化性。本节证明所需的驯服性条件，是对扰动柯西--黎曼方程~\eqref{eq:ch11-cutoff-floer-equation} 作分析研究所产生的附带条件；这种研究要求环境流形是驯服的。
+\end{remark}

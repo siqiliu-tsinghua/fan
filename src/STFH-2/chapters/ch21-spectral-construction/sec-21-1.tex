@@ -1,0 +1,395 @@
+\section{能量估计与霍费尔几何}
+\label{sec:energy-estimates-hofer-geometry}
+
+本节考察各种弗洛尔算子，以及它们如何改变复形 $CF^\lambda$ 的滤过层级。
+
+固定哈密顿量 $H_\alpha,H_\beta$ 以及二者之间的同伦
+$\mathcal H$。要强调的是，本节讨论中 $H_\alpha,H_\beta$ \emph{未必}非退化。选取相容殆复
+结构的同伦 $j=\{J(\eta)\}_{0\leq\eta\leq1}$ 及截断函数
+$\rho:\mathbb R\to[0,1]$，考虑相应弗洛尔方程
+\begin{equation}
+ \begin{cases}
+ \partial u/\partial\tau+J^\rho
+ (\partial u/\partial t-X_{H^\rho}(u))=0,\\
+ u(-\infty)=z^-,\quad u(\infty)=z^+.
+ \end{cases}
+ \label{eq:21-floer-homotopy}
+\end{equation}
+下面的能量估计是联系作用量积分、弗洛尔连接流线的能量以及相应哈密顿量的霍费尔
+范数的关键估计。它是命题~\ref{prop:20-energy-curvature-identity} 的特殊情形。这里给出一个
+直接证明；在此特殊情形中它也颇具启发性，是引理 14.4.5 证明的一个变形。
+
+\begin{proposition}
+\label{prop:21-basic-energy-estimate}
+设 $H_\alpha,H_\beta$ 是任意哈密顿量，不要求非退化；令
+$\mathcal H=\{H^s\}_{0\leq s\leq1}$ 是二者之间的同伦。考虑对子
+$(\mathcal H,j)$，并令 $\rho$ 是如前的任意截断函数。设 $u$ 满足
+\eqref{eq:21-floer-homotopy}、$w^-\#u\sim w^+$（见 (19.4.16)），具有有限能量，
+且对某些满足 $\tau_j^-\to-\infty,\tau_j^+\to\infty$ 的序列 $\tau_j^\pm$ 有
+\[
+ \lim_{j\to\infty}u(\tau_j^-)=z^-,\qquad
+ \lim_{j\to\infty}u(\tau_j^+)=z^+.
+\]
+则\footnote{译者注：本命题只引入了端点哈密顿量 $H_\alpha,H_\beta$，原式却改用
+$H,F$ 而未显式说明对应关系；译文照录原式记号。}
+\begin{align}
+ \mathcal A_F([z^+,w^+])-\mathcal A_H([z^-,w^-])
+ &=-\int_{-\infty}^{\infty}\!\int_0^1
+ \left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J^{\rho(\tau)}}^2
+ \,dt\,d\tau \notag\\
+ &\quad-\int_{-\infty}^{\infty}\rho'(\tau)\int_0^1
+ \left.\frac{\partial H^s}{\partial s}\right|_{s=\rho(\tau)}
+ (t,u(\tau,t))\,dt\,d\tau.
+ \label{eq:21-action-energy-identity}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+由同伦条件 $w^-\#u\sim w^+$，有
+\[
+ \int u^*\omega=\int(w^+)^*\omega-\int(w^-)^*\omega.
+\]
+更一般地，
+\[
+ \int_{w^-\#(u|_{-\infty<\tau'\leq\tau})}\omega
+ =\int(w^-)^*\omega-\int_{-\infty}^{\tau}\!\int_0^1u^*\omega\,d\tau.
+\]
+为简化记号，以 $u(\tau)$ 表示环路 $t\mapsto u(\tau,t)$。若记
+\[
+ \widetilde u(\tau)=
+ [u(\tau),w^-\#(u|_{-\infty<\tau'\leq\tau})],
+\]
+则
+\[
+ \mathcal A_F([z^+,w^+])-\mathcal A_H([z^-,w^-])
+ =\int_{-\infty}^{\infty}\frac d{d\tau}
+ \bigl(\mathcal A_{H^{\rho(\tau)}}(\widetilde u(\tau))\bigr)\,d\tau.
+\]
+计算得
+\[
+ \frac d{d\tau}\mathcal A_{H^{\rho(\tau)}}(\widetilde u(\tau))
+ =d\mathcal A_{H^{\rho(\tau)}}(u(\tau))
+ \left(\frac{\partial u}{\partial\tau}\right)
+ -\int_0^1\frac{\partial H^{\rho(\tau)}}{\partial\tau}
+ (\widetilde u(\tau,t))\,dt.
+\]
+这里 $d\mathcal A_{H^{\rho(\tau)}}(\widetilde u(\tau))$ 是固定 $\tau$ 后，哈密顿量
+$H^{\rho(\tau)}=H^{\rho(\tau)}(t,x)$ 的作用量泛函在 $\widetilde u(\tau)$ 处的微分。
+方程~\eqref{eq:21-floer-homotopy} 也是该含 $\tau$ 作用量泛函的负梯度流方程，故右端为
+\[
+ -\int_0^1\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J_t^{\rho(\tau)}}^2dt
+ -\rho'(\tau)\int_0^1
+ \left.\frac{\partial H^s}{\partial s}\right|_{s=\rho(\tau)}
+ (u(\tau,t))\,dt.
+\]
+在 $\tau\in\mathbb R$ 上积分即得~\eqref{eq:21-action-energy-identity}，证明完毕。
+\end{proof}
+
+现在从~\eqref{eq:21-action-energy-identity} 推出两条渐近轨道之间作用量差的各种结论。
+先考察边界映射方程 (18.5.41)，即 $H_\alpha=H_\beta$ 且对所有
+$s\in[0,1]$ 都有 $H^s\equiv H_\alpha$ 的情形。
+
+\begin{corollary}
+\label{cor:21-boundary-filtration}
+对 (18.5.41) 满足 (19.4.16) 的任意有限能量解 $u$，有
+\begin{equation}
+ \mathcal A_H([z^+,w^+])-\mathcal A_H([z^-,w^-])
+ \leq-\iint\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_J^2\leq0.
+ \label{eq:21-boundary-action-drop}
+\end{equation}
+特别地，当 $(H,J)$ 弗洛尔正则时，相应边界映射满足
+\[
+ \partial_{(H,J)}(CF_*^\lambda(H))\subset CF_*^\lambda(H),
+\]
+因而对任意 $\lambda\in\mathbb R$ 典范地限制为边界映射
+\[
+ \partial_{(H,J)}:(CF_*^\lambda(H),\partial_{(H,J)})
+ \longrightarrow(CF_*^\lambda(H),\partial_{(H,J)}).
+\]
+\end{corollary}
+
+接着考察链映射。下述结论立即来自~\eqref{eq:21-action-energy-identity}。
+
+\begin{corollary}
+\label{cor:21-continuation-energy}
+设 $(\mathcal H,j;\rho)$ 与 $u$ 如命题~\ref{prop:21-basic-energy-estimate}，并设 $\rho$
+单调。则
+\begin{align}
+ \mathcal A_F([z^+,w^+])-\mathcal A_H([z^-,w^-])
+ &\leq-\iint\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J^{\rho(\tau)}}^2
+ +\int_0^1-\min_{x,s}\left(\frac{\partial H_t^s}{\partial s}\right)dt,
+ \label{eq:21-continuation-action-bound}\\
+ &\leq\int_0^1-\min_{x,s}\left(\frac{\partial H_t^s}{\partial s}\right)dt.
+ \label{eq:21-continuation-action-bound-simple}
+\end{align}
+此外，\eqref{eq:21-continuation-action-bound} 可改写为能量上界
+\footnote{译者注：原式第二项保留 $\tau\in(-\infty,\infty)$ 的积分，但被积式中既无
+$\rho'(\tau)$ 也无 $\tau$ 依赖，并且末尾只排出 $dt$；此外，按
+\eqref{eq:21-continuation-action-bound} 移项所得的作用量差应涉及
+$\mathcal A_H([z^-,w^-])-\mathcal A_F([z^+,w^+])$，原式却把两组渐近端点对调。
+译文均照录。}
+\begin{equation}
+ \iint\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J^{\rho(\tau)}}^2
+ \leq\mathcal A_H([z^+,w^+])-\mathcal A_F([z^-,w^-])
+ +\int_{-\infty}^{\infty}\!\int_0^1
+ -\min_{x,s}\left(\frac{\partial H_t^s}{\partial s}\right)dt.
+ \label{eq:21-continuation-energy-bound}
+\end{equation}
+\end{corollary}
+
+要强调的是，\emph{上述能量上界均不依赖于 $u$，也不依赖于 $j,\rho,J$ 的选取；它们只
+依赖于同伦 $\mathcal H$ 本身}及 $u$ 的渐近条件。受~\eqref{eq:21-continuation-action-bound-simple}
+启发，引入如下定义。
+
+\begin{definition}
+\label{def:21-homotopy-variation}
+设 $\mathcal H=\{H(s)\}_{0\leq s\leq1}$ 是哈密顿量的同伦。定义其变分的\emph{负部}与\emph{正部}为
+\[
+ E^-(\mathcal H):=\int_0^1-\min_{x,s}\left(\frac{\partial H_t^s}{\partial s}\right)dt,
+ \qquad
+ E^+(\mathcal H):=\int_0^1\max_{x,s}\left(\frac{\partial H_t^s}{\partial s}\right)dt,
+\]
+并定义\emph{总变分}
+\[
+ E(\mathcal H)=E^-(\mathcal H)+E^+(\mathcal H).
+\]
+\end{definition}
+
+若以 $\mathcal H^{-1}$ 表示 $\mathcal H$ 的时间反演，即
+\[
+ \mathcal H^{-1}:s\in[0,1]\longmapsto H^{1-s},
+\]
+则
+\[
+ E^\pm(\mathcal H^{-1})=E^\mp(\mathcal H),\qquad
+ E(\mathcal H^{-1})=E(\mathcal H).
+\]
+把这些定义用于端点 $H(0),H(1)$ 非退化的对子 $(\mathcal H,j)$，当 $\rho$ 单调时，
+先验能量估计~\eqref{eq:21-continuation-action-bound-simple} 写成
+\[
+ \iint\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J^{\rho(\tau)}}^2
+ \leq-\mathcal A_F(u(\infty))+\mathcal A_H(u(-\infty))+E^-(\mathcal H).
+\]
+这里回忆：哈密顿量非退化时，命题 18.5.3 保证任意有限能量解在
+$\tau\to\pm\infty$ 时都有良定义的渐近极限。
+
+记相应滤过同调为 $HF_*^\lambda(H,J)$，称之为滤过弗洛尔同调群。
+
+\begin{corollary}
+\label{cor:21-filtered-continuation-map}
+设 $(H^0,J^0)$、$(H^1,J^1)$ 弗洛尔正则，$(\mathcal H,j)$ 是连接二者的弗洛尔
+正则道路，且 $\rho$ 如前。则链映射 $h_{(\mathcal H,j;\rho)}$ 满足
+\[
+ h_{(\mathcal H,j;\rho)}(CF_*^\lambda(H^0))
+ \subset CF_*^{\lambda+E^-(\mathcal H)}(H^1),
+\]
+因而典范地限制为链映射
+\[
+ h_{(\mathcal H,j;\rho)}:
+ (CF_*^\lambda(H^0),\partial_{(H^0,J^0)})\longrightarrow
+ (CF_*^{\lambda+E^-(\mathcal H)}(H^1),\partial_{(H^1,J^1)}).
+\]
+\end{corollary}
+
+下面单独指出推论~\ref{cor:21-continuation-energy}、\ref{cor:21-filtered-continuation-map}
+的一个特殊情形；稍后构造谱不变量 $\rho(H;a)$ 时会用到它。回忆在 12.5.2 节构造
+余切丛上拉格朗日子流形的谱不变量时，也曾使用同一结果。
+
+\begin{corollary}
+\label{cor:21-change-almost-complex-structure}
+给定 $H$。考虑两个 $J^0,J^1$、一个\termElongationFunction{}~$\rho$，以及连接
+$(H,J^0)$ 与 $(H,J^1)$ 且满足 $\mathcal H\equiv H$ 的同伦 $(\mathcal H,j)$。
+对 (18.5.42) 满足 (19.4.16) 的任意有限能量解 $u$，有
+\begin{equation}
+ \mathcal A_H([z^+,w^+])-\mathcal A_H([z^-,w^-])
+ \leq-\iint\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J^{\rho(\tau)}}^2
+ \leq0.
+ \label{eq:21-fixed-hamiltonian-energy}
+\end{equation}
+特别地，若 $H$ 非退化，$J^0,J^1$ 是 $H$-正则的且 $(H,j)$ 通有，则相应链映射满足
+\[
+ h_{(H,j;\rho)}(CF_*^\lambda(H))\subset CF_*^\lambda(H),
+\]
+并典范地限制为链映射
+\[
+ h^\lambda_{(H,j;\rho)}:
+ (CF_*^\lambda(H),\partial_{(H,J^0)})\longrightarrow
+ (CF_*^\lambda(H),\partial_{(H,J^1)}),
+\]
+且对任意 $\lambda\in\mathbb R$ 都在同调上诱导同构。
+\end{corollary}
+
+\begin{proof}
+只须证明 $h^\lambda_{(H,j;\rho)}$ 在同调上诱导同构。选取从 $J^1$ 连接到 $J^0$
+且弗洛尔正则的同伦 $j'$ 及截断函数 $\rho$。
+\footnote{译者注：原文此处选取 $j'$，却写“使 $(H,j)$ \personFloer{}正则”；译文按语境
+改为 $j'$。}
+同伦 $j\#j'$ 从 $J^0$ 连接到
+$J^0$。把它形变到常同伦 $j_{\mathrm{const}}\equiv J^0$，并以 $\overline j$ 表示
+从 $j_{\mathrm{const}}$ 连接到 $j\#j'$ 的同伦的同伦。由
+\eqref{eq:21-fixed-hamiltonian-energy}，$(H,\overline j)$ 给出
+$h_{(H,j_{\mathrm{const}};\rho)}$ 与 $h_{(H,j)\#(\rho;R)(H,j')}$ 之间的链同伦。
+因 $j_{\mathrm{const}}\equiv J^0$，$(H^\rho,j_{\mathrm{const}}^\rho)$ 是常同伦
+$(H,J^0)$；由 $(H,J^0)$ \emph{作为族}的弗洛尔正则性，
+$h_{(H,j_{\mathrm{const}};\rho)}=\mathrm{id}$。另一方面，取充分大的 $R>0$，粘合恒等式为
+\[
+ h_{(H,j)\#(\rho;R)(H,j')}=h_{(H,j';\rho)}\circ h_{(H,j;\rho)}.
+\]
+故在 $HF_*^\lambda(H,J^0)$ 上该复合等于恒等。交换 $j,j'$ 同理证明另一复合在
+$HF_*^\lambda(H,J^1)$ 上等于恒等。
+\end{proof}
+
+\begin{remark}
+\label{rem:21-filtered-local-system}
+此推论也可表述为：对每个给定哈密顿量 $H$ 和层级 $\lambda\in\mathbb R$，赋值
+$J\in\mathcal J_\omega\mapsto HF_*^\lambda(H,J)$ 在 $\mathcal J_\omega$ 上定义一个
+局部系统。
+\end{remark}
+
+现在把上述滤过变化同哈密顿道路的霍费尔范数联系起来。在霍费尔几何中定义
+\[
+ E^-(H)=\int_0^1-\min_xH_t\,dt,\qquad
+ E^+(H)=\int_0^1\max_xH_t\,dt,
+\]
+以及
+\[
+ \lVert H\rVert=E^+(H)+E^-(H)
+ =\int_0^1(\max_xH_t-\min_xH_t)\,dt.
+\]
+例如参见 (Po01)、(Oh05d)。当 $\mathcal H$ 是连接 $H_1,H_2$ 的线性同伦
+\[
+ \mathcal H^{\mathrm{lin}}:s\longmapsto(1-s)H_1+sH_2,
+\]
+$E^\pm(\mathcal H^{\mathrm{lin}})$ 与 $E(\mathcal H^{\mathrm{lin}})$ 分别成为
+$E^\pm(H_2-H_1)$ 与 $\lVert H_2-H_1\rVert$。事实上，$E^\pm(H)$ 或 $E(H)$ 可视为
+\emph{线性道路} $s\mapsto sH$ 在定义~\ref{def:21-homotopy-variation} 意义下的变分。不过，
+当 $H$ 非自治时，这条线性道路从 $\operatorname{Ham}(M,\omega)$ 本身的几何来看
+并没有多少内蕴意义。
+
+\begin{remark}
+\label{rem:21-hofer-norm-universal-cover}
+即使 $H\sim F$，也可能
+\[
+ \lVert H\rVert\neq\lVert F\rVert.
+\]
+因此 $H\mapsto\lVert H\rVert$ 不能下降到万有覆盖
+$\pi:\widetilde{\operatorname{Ham}}(M,\omega)\to\operatorname{Ham}(M,\omega)$。
+定义 $h\in\widetilde{\operatorname{Ham}}(M,\omega)$ 的不变量的一种标准方式是取下确界
+\begin{equation}
+ \lVert h\rVert:=\inf_{[H]=h}\lVert H\rVert
+ =\inf_{[H]=h}\operatorname{leng}(\phi_H).
+ \label{eq:21-hofer-norm-cover}
+\end{equation}
+函数 $h\mapsto\lVert h\rVert\in\mathbb R_+$ 先验地\emph{未必}关于
+$\widetilde{\operatorname{Ham}}(M,\omega)$ 上的自然拓扑连续。
+\end{remark}
+
+对端点固定为 $H(0)=H^0,H(1)=H^1$ 的所有 $\mathcal H$，取 $E(\mathcal H)$ 的下确界，
+得到
+\[
+ \inf_{\mathcal H}\{E(\mathcal H)\mid H(0)=H^0,H(1)=H^1\}
+ \leq\lVert H^1-H^0\rVert,
+\]
+一般而言这是严格不等式。左端量的几何意义恰是定义 4.3.3 所引入的哈密顿纤维化
+之大小；其渐近和乐为
+\[
+ ([\phi_{H^0}],[\phi_{H^1}]).
+\]
+
+\stfhIndex{I081}{Fuluoerliantonglunyingshe}{弗洛尔链同伦映射（Floer chain homotopy map）}
+下面研究弗洛尔链同伦映射。考虑非退化哈密顿量 $H$、弗洛尔正则对子 $(H,J)$，
+以及连接这些对子且弗洛尔正则的同伦 $(\mathcal H,j)$。还考虑同伦的同伦
+$(\overline{\mathcal H},\overline j)$，其中
+$\overline{\mathcal H}=\{\mathcal H_\kappa\}_{0\leq\kappa\leq1}$、
+$\overline j=\{j_\kappa\}_{0\leq\kappa\leq1}$，并记诱导的链同伦映射为
+$\Upsilon_{\overline{\mathcal H}}=H(\overline{\mathcal H},\overline j;\rho)$。
+下述命题描述弗洛尔链 $\alpha$ 的层级在各种弗洛尔算子下如何变化。
+
+\begin{proposition}
+\label{prop:21-floer-operator-levels}
+设 $\rho$ 是（正向）单调截断函数。\footnote{译者注：命题开头假设 $\rho$ 为正向单调截断函数，而第 (2) 项又声称
+“对任意 $\rho$”；两处照录。}
+\begin{enumerate}[label=(\arabic*)]
+ \item 对任意弗洛尔链 $\alpha$，
+ $\lambda_H(\partial_{(H,J)}\alpha)<\lambda_H(\alpha)$。
+ \item 对任意 $\rho$，
+ $\lambda_{H^1}(h_{(\mathcal H,j;\rho)}(\alpha))
+ \leq\lambda_{H^0}(\alpha)+E^-(\mathcal H)$。
+ \item $\lambda_{H^1}(\Upsilon_{\overline{\mathcal H}}(\alpha))
+ \leq\lambda_{H^0}(\alpha)+\max_{\kappa\in[0,1]}E^-(\mathcal H_\kappa)$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+前两项立即来自推论~\ref{cor:21-continuation-energy}。证明第 (3) 项时，令
+$[z',w']\in\operatorname{Crit}\mathcal A_{H^1}$ 是该链的峰。按
+$\Upsilon_{\overline{\mathcal H}}(\alpha)$ 的定义，存在 $\alpha$ 的生成元
+$[z,w]\in\operatorname{Crit}\mathcal A_{H^0}$ 与某个 $\kappa\in(0,1)$，使方程
+\begin{equation}
+ \frac{\partial u}{\partial\tau}
+ +J^{\kappa,\rho}\left(\frac{\partial u}{\partial t}-X_{H^{\kappa,\rho}}(u)\right)=0
+ \label{eq:21-chain-homotopy-equation}
+\end{equation}
+在渐近条件
+\[
+ u(-\infty)=[z,w],\qquad u(\infty)=[z',w']
+\]
+下有解。由~\eqref{eq:21-continuation-action-bound-simple}，
+\begin{equation}
+ \mathcal A_{H^1}([z',w'])
+ \leq\mathcal A_{H^0}([z,w])+E^-(\mathcal H_\kappa).
+ \label{eq:21-chain-homotopy-action}
+\end{equation}
+因 $[z',w']$ 是峰，对对子 $(\mathcal H_\kappa,j_\kappa)$ 使用同样论证与层级定义即得
+\[
+ \lambda_{H^1}(\Upsilon_{\overline{\mathcal H}}(\alpha))
+ \leq\lambda_{H^0}(\alpha)+E^-(\mathcal H_\kappa).
+\]
+对 $\kappa\in(0,1)$ 取上确界即证。
+\footnote{译者注：原文在此把此前定义的链同伦映射
+$H_{\overline{\mathcal H}}$ 称为 ``chain map''；译文按其实际角色写作
+$\Upsilon_{\overline{\mathcal H}}$。}
+\end{proof}
+
+记
+\[
+ E^-(\overline{\mathcal H}):=
+ \max_{\kappa\in[0,1]}E^-(\mathcal H_\kappa).
+\]
+命题~\ref{prop:21-floer-operator-levels}(3) 给出：
+
+\begin{corollary}
+\label{cor:21-chain-homotopy-filtration}
+设 $(H^0,J^0)$ 与 $(H^1,J^1)$ 是两个弗洛尔正则对子，并考虑同伦的通有同伦
+$(\overline{\mathcal H},\overline j)$，其中每个 $\mathcal H_\kappa$ 都连接二者。
+则诱导的链同伦映射满足
+\[
+ \Upsilon_{\overline{\mathcal H}}(CF^\lambda(H^0))
+ \subset CF^{\lambda+E^-(\overline{\mathcal H})}(H^1).
+\]
+\end{corollary}
+
+最后把滤过变化同扰动柯西--黎曼方程所伴随的 $\epsilon$-正则性型不变量联系
+起来。先注意，$\mathcal J=\{J_t\}_{0\leq t\leq1}$ 是紧族，因为 $[0,1]$ 紧。
+给定非退化哈密顿函数 $H$，对每个 $H$-正则的 $J$ 考虑
+\[
+ \frac{\partial u}{\partial\tau}
+ +J\left(\frac{\partial u}{\partial t}-X_H(u)\right)=0.
+\]
+若解 $u$ 与 $\tau$ 无关，称它是\emph{定常}的。定义
+\[
+ A_{(H,J)}:=\inf\left\{\int\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_J^2
+ \ \middle|\ u\text{ 满足 (18.5.41) 且\termNonStationary{}}\right\}>0
+\]
+及
+\[
+ A^\mu_{(H,J)}:=\inf\left\{\int\left\lVert\frac{\partial u}{\partial\tau}\right\rVert_J^2
+ \ \middle|\ u\text{ 满足 (18.5.41) 且 }\mu_H(u)=1\right\}.
+\]
+显然 $A^\mu_{(H,J)}\geq A_{(H,J)}>0$。于是命题~\ref{prop:21-floer-operator-levels}(1)
+可加强为：对任意弗洛尔链 $\alpha$，
+\begin{equation}
+ \lambda_H(\partial_{(H,J)}\alpha)
+ \leq\lambda_H(\alpha)-A^\mu_{(H,J)}.
+ \label{eq:21-boundary-uniform-drop}
+\end{equation}

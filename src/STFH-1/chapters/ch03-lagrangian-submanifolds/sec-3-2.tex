@@ -1,0 +1,472 @@
+\section{辛线性代数}
+\label{sec:symplectic-linear-algebra}
+
+本节紧随温斯坦 (Wn87) 的叙述。
+
+设 $(S,\Omega)$ 是有限维辛向量空间。由
+\[
+ \widetilde\Omega(v)(w):=\Omega(v,w)
+\]
+定义的线性映射 $\widetilde\Omega:S\to S^*$ 是斜对称同构。设 $C\subset S$ 是子空间。定义 $C$ 的 $\Omega$-正交补为
+\[
+ C^\Omega:=\{v\in S\mid \Omega(v,w)=0\quad\forall w\in C\}.
+\]
+
+\begin{definition}\label{def:isotropic-coisotropic-lagrangian}
+\stfhIndex{I076}{yu^mi^xiang}{余迷向（coisotropic）}
+\stfhIndex{I176}{mi^xiang}{迷向（isotropic）}
+设 $C\subset S$ 是子空间。
+\begin{enumerate}[label=(\arabic*)]
+\item 若 $C\subset C^\Omega$，则称 $C$ 为\emph{迷向的}；
+\item 若 $C\supset C^\Omega$，则称 $C$ 为\emph{余迷向的}；
+\item 若 $C=C^\Omega$，则称 $C$ 为\emph{拉格朗日的}。
+\end{enumerate}
+\end{definition}
+
+现在说明：当 $C$ 余迷向时，商空间 $C/C^\Omega$ 带有由 $\Omega$ 典范诱导的辛内积。下面这个基本引理是所谓\emph{辛约化}的线性版本。
+\stfhIndex{I282}{xin^yue^hua}{辛约化（symplectic reduction）}
+
+\begin{lemma}\label{lem:linear-symplectic-reduction}
+设 $(V,\Omega)$ 是辛向量空间，$C\subset V$ 是余迷向子空间，并以 $C^\Omega\subset C$ 表示其零子空间。记 $\iota_C:C\hookrightarrow V$ 与
+$\pi_C:C\to C/C^\Omega$ 分别为自然包含与投影。则 $\Omega$ 在商空间 $C/C^\Omega$ 上诱导典范辛双线性形式 $\omega_C$；它由关系
+\begin{equation}
+ \iota_C^*\Omega=\pi^*\omega_C
+ \label{eq:linear-reduction-form}
+\end{equation}
+所刻画。
+\end{lemma}
+
+\begin{proof}
+由 $C^\Omega$ 的定义，
+\[
+ \iota_C^*\Omega|_{C^\Omega}\equiv0,
+\]
+所以 $\iota_C^*\Omega$ 下降为商空间 $C/C^\Omega$ 上的斜对称 $2$-形式。
+
+还须证明它非退化。设 $v\in C$ 且 $\pi_C(v)\ne0$，即 $v\notin C^\Omega$。我们应找到 $w\in C$ 使 $\Omega(v,w)\ne0$；这由 $C^\Omega$ 的定义立即得到。这就完成了证明。
+\end{proof}
+
+\subsection{拉格朗日--格拉斯曼流形}
+\label{subsec:lagrangian-grassmannian}
+\stfhIndexRangeStart{I182}{la^ge^lang^ri^ge^la^si^man^liu^xing}{拉格朗日--格拉斯曼流形（Lagrangian Grassmannian）}
+
+\begin{definition}\label{def:lagrangian-grassmannian}
+以 $\mathcal L(S)$ 表示 $(S,\Omega)$ 的所有拉格朗日子空间组成的集合，以
+$\operatorname{Sp}(S,\Omega)\subset GL(S)$ 表示 $(S,\Omega)$ 的自同构所成的子群。
+\end{definition}
+
+\begin{proposition}\label{prop:lagrangian-linear-basics}
+\begin{enumerate}[label=(\arabic*)]
+\item 每个迷向子空间都包含在某个拉格朗日子空间中；
+\item $\operatorname{Sp}(S,\Omega)$ 在 $\mathcal L(S)$ 上传递地作用；
+\item 每个拉格朗日子空间都有一个拉格朗日补空间。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+把 (1) 与 (2) 留作练习（其证明也可参见 (Ar67)）。这里只证明 (3)。任选 $L$ 的两个补空间 $U_1,U_2$，它们未必是拉格朗日的；亦即
+\[
+ S=U_1\oplus L=U_2\oplus L.
+\]
+注意到 $L$ 的补空间集合（记作 $\operatorname{Comp}_L(S)$）是一个以
+$\operatorname{Hom}(S/L,L)$ 为模型的仿射空间，我们可以取 $U_1$ 与 $U_2$ 的“差”，记为
+\[
+ \delta_L(U_1,U_2):S/L\longrightarrow L.
+\]
+更确切地说，把 $q\in S/L$ 写成 $q=L+v$（其中 $v\in S$）。对 $j=1,2$，$q\cap U_j$ 各有唯一交点 $p_j$。定义
+\begin{equation}
+ \delta_L(U_1,U_2)(q)=p_2-p_1.
+ \label{eq:complement-difference}
+\end{equation}
+下面把 $\delta_L$ 的若干性质留作练习。
+\end{proof}
+
+\begin{exercise}\label{ex:complement-difference-properties}
+证明下列各点。
+\begin{enumerate}[label=(\arabic*)]
+\item $\delta_L(U,U)=0$。
+\item $\delta_L$ 满足“余圈条件”
+\begin{equation}
+ \delta_L(U_1,U_2)+\delta_L(U_2,U_3)=\delta_L(U_1,U_3),
+ \label{eq:complement-cocycle}
+\end{equation}
+特别地，$\delta_L(U_1,U_2)=-\delta_L(U_2,U_1)$。
+\item 给定一个补空间 $U_1$ 及映射 $\delta\in\operatorname{Hom}(S/L,L)$，存在唯一补空间 $U_\delta$ 使
+$\delta_L(U_1,U_\delta)=\delta$。此时记
+\begin{equation}
+ U_\delta=U_1+\delta.
+ \label{eq:affine-complement-notation}
+\end{equation}
+\item $U$ 是拉格朗日的，当且仅当 $\delta_L(U,U^\Omega)=0$。
+\end{enumerate}
+\end{exercise}
+
+下面的一般引理将完成\cref{prop:lagrangian-linear-basics}中陈述 (3) 的证明。
+
+\begin{lemma}\label{lem:lagrangian-complement-average}
+设 $L\subset S$ 是 $(S,\Omega)$ 的拉格朗日子空间，$C$ 是任意补空间，未必拉格朗日。则有：
+\begin{enumerate}[label=(\arabic*)]
+\item $\Omega$-正交补 $C^\Omega$ 也是补空间，并且 $C$ 是拉格朗日的，当且仅当 $C=C^\Omega$。
+\item 以 $\iota_L:\operatorname{Comp}_L(S)\to\operatorname{Comp}_L(S)$ 表示由
+$\iota_L(C)=C^\Omega$ 定义的对合，则
+\[
+ \operatorname{Fix}\iota_L=\mathcal L_L(S),
+\]
+其中 $\mathcal L_L(S)$ 是 $\mathcal L(S)$ 中由 $L$ 的拉格朗日补空间组成的子集。
+\item 设 $U_1,U_2\in\operatorname{Comp}_L(S)$，并以
+$\delta_L(U_1,U_2)\in\operatorname{Hom}(S/L,L)$ 表示它们的差，则
+\begin{equation}
+ \delta_L(U_1^\Omega,U_2^\Omega)=\delta_L(U_1,U_2).
+ \label{eq:orthogonal-complement-difference}
+\end{equation}
+\item “平均”$(C+C^\Omega)/2$ 是拉格朗日的。此外，映射
+\[
+ C\longmapsto\frac{C+C^\Omega}{2};\qquad
+ \operatorname{Comp}_L(S)\longrightarrow\mathcal L_L(S)
+\]
+定义了到拉格朗日补空间的典范投影；而且将其视作
+$\operatorname{Comp}_L(S)\to\operatorname{Comp}_L(S)$ 的映射时，这个投影是光滑的。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+因为 $C$ 是 $L$ 的补空间，$C\oplus L=S$，故
+\[
+ 0=(C\oplus L)^\Omega=C^\Omega\cap L^\Omega.
+\]
+又因 $L$ 是拉格朗日的，$L=L^\Omega$，所以 $C^\Omega\cap L=0$。由
+$\dim L=\dim C^\Omega=n$，可知 $C^\Omega\oplus L=S$，这证明了第一项。第二项由此立见。
+
+为证明 (3)，注意：对任意拉格朗日子空间 $L\subset S$ 及每个给定的
+$\ell\in L$，内乘 $\ell\mathbin{\lrcorner}\Omega$ 定义了 $S$ 上的线性泛函，其在 $L$ 上的限制为零。因此它定义线性映射
+$I_L:L\to(S/L)^*$，并且该映射是同构。这个同构诱导自然等同
+\[
+ \delta\longmapsto I_L\circ\delta;\qquad
+ \operatorname{Hom}(S/L,L)\cong\operatorname{Hom}(S/L,(S/L)^*).
+\]
+后一个空间恰是 $S/L$ 上二次型组成的空间。
+
+有了这些准备，由 $\Omega$ 的非退化性，陈述 (3) 等价于对所有 $v\in S$ 成立的等式
+\begin{equation}
+ \Omega(\delta_L(U_1,U_2)v,v)
+ =-\Omega(\delta_L(U_1^\Omega,U_2^\Omega)v,v).
+ \label{eq:complement-quadratic-sign}
+\end{equation}
+任取 $v\in S$。对 $i=1,2$，分别以
+$p_i\in U_i\cap(L+v)$ 和 $p_i^\Omega\in U_i^\Omega\cap(L+v)$ 表示唯一交点。由定义，
+\[
+ \delta_L(U_1,U_2)=p_2-p_1,
+ \qquad
+ \delta_L(U_1^\Omega,U_2^\Omega)=p_2^\Omega-p_1^\Omega.
+\]
+因此我们需要证明
+\begin{equation}
+ \Omega(p_2-p_1,v)\,\Omega(p_2^\Omega-p_1^\Omega,v)=0.
+ \label{eq:source-complement-product}
+\end{equation}
+由 $p_i\in U_i$ 和 $p_i^\Omega\in U_i^\Omega$ 的选取，$\Omega(p_i^\Omega,p_i)=0$。又因对所有 $i,j=1,2$ 都有 $p_i,p_j^\Omega\in L+v$，而 $L$ 是拉格朗日的，故
+\begin{equation}
+ \Omega(p_i^\Omega-v,p_j-v)=0
+ \label{eq:lagrangian-affine-coset}
+\end{equation}
+对所有 $i,j=1,2$ 成立。该式给出
+\begin{equation}
+ \Omega(p_i^\Omega-p_j,v)=\Omega(p_i^\Omega,p_j)
+ \label{eq:orthogonal-intersection-identity}
+\end{equation}
+对所有 $i,j=1,2$ 成立。现在利用\eqref{eq:orthogonal-intersection-identity}计算
+\[
+\begin{aligned}
+ &\Omega(p_2^\Omega-p_1^\Omega,v)-\Omega(p_2-p_1,v)\\
+ &\quad=\Omega(p_2^\Omega-p_1^\Omega-p_2+p_1,v)\\
+ &\quad=\Omega(p_2^\Omega-p_2,v)-\Omega(p_1^\Omega-p_1,v)\\
+ &\quad=\Omega(p_2^\Omega,p_2)-\Omega(p_1^\Omega,p_1).
+\end{aligned}
+\]
+第三个等号使用了\eqref{eq:orthogonal-intersection-identity}。最后两项消失，因为
+$p_i\in U_i$、$p_i^\Omega\in U_i^\Omega$（$i=1,2$）。这证明了\eqref{eq:source-complement-product}，从而证明了陈述 (3)。
+
+最后证明末项。由第一步，$C$ 与 $C^\Omega$ 都在仿射空间
+$\operatorname{Comp}_L(S)$ 中，所以平均 $M:=(C+C^\Omega)/2$ 作为
+$\operatorname{Comp}_L(S)$ 的元素是有意义的。更确切地说，$C$ 与 $C^\Omega$ 在
+$\operatorname{Comp}_L(S)$ 中的平均 $M$ 由方程
+\[
+ \delta_L(M,C)+\delta_L(M,C^\Omega)=0
+\]
+唯一确定。现在只须证明 $M$ 是对合
+$\iota_L:\operatorname{Comp}_L(S)\to\operatorname{Comp}_L(S)$ 的不动点。另一方面，陈述 (3) 给出
+\[
+ \delta_L(M^\Omega,C)+\delta_L(M^\Omega,C^\Omega)
+ =\delta_L(M,C^\Omega)+\delta_L(M,C)=0.
+\]
+故 $M^\Omega$ 也是 $C$ 与 $C^\Omega$ 的平均。由平均的唯一性，$M=M^\Omega$；因此由\cref{ex:complement-difference-properties}的陈述 (4)，$M$ 必为拉格朗日的。这就完成了证明。
+\end{proof}
+
+这个引理的陈述 (4) 随即证明了\cref{prop:lagrangian-linear-basics}的陈述 (3)。
+
+以上证明立即给出如下推论。
+
+\begin{corollary}\label{cor:symmetric-lagrangian-complement}
+设 $L\subset S$ 是拉格朗日子空间，$\delta$ 与 $I_L$ 如上。设 $C\subset S$ 是 $L$ 的一个拉格朗日补空间，$U\in\operatorname{Comp}_L(S)$ 是一个补空间。写
+$U=C+\delta$，其中
+\[
+ \delta\in\operatorname{Hom}(S/L,L)
+ \cong\operatorname{Hom}(S/L,(S/L)^*).
+\]
+则 $U$ 是拉格朗日的，当且仅当 $\delta$ 对称，即 $\delta=\delta^*$。
+\end{corollary}
+
+\begin{proof}
+在上面的证明中，与 $U$ 相伴的二次型无非是
+\[
+ \Omega(\delta_L(C,U)v,v),\qquad [v]\in S/L.
+\]
+式\eqref{eq:complement-quadratic-sign}以及 $C$ 的拉格朗日性蕴含
+\[
+ \Omega(\delta_L(C,U)v,v)+\Omega(\delta_L(C,U^\Omega)v,v)=0.
+\]
+利用 $\Omega$ 的斜对称性，可把它改写成
+\[
+ \Omega(\delta_L(C,U)v,v)=\Omega(v,\delta_L(C,U^\Omega)v).
+\]
+换言之，作为 $\operatorname{Hom}(S/L,(S/L)^*)$ 中的二次型，
+\[
+ \delta_L(C,U)^*=\delta_L(C,U^\Omega).
+\]
+因此，若 $U$ 是拉格朗日的，即 $U=U^\Omega$，则
+$\delta_L(C,U)^*=\delta_L(C,U)$，即 $\delta_L(C,U)^*$ 对称。反过来，假设
+$\delta_L(C,U)^*$ 对称，则上一等式蕴含
+\[
+ 0=-\delta_L(C,U)+\delta_L(C,U^\Omega)
+   =\delta_L(U,C)+\delta_L(C,U^\Omega)
+   =\delta_L(U,U^\Omega).
+\]
+这里后两个等式使用了\cref{ex:complement-difference-properties}中的余圈条件。由该练习的 (3)，方程 $\delta_L(U,U^\Omega)=0$ 蕴含 $U$ 是拉格朗日的。这就完成了证明。
+\end{proof}
+
+由此得到下面这个基本定理，它描述了辛向量空间中拉格朗日子空间集合的结构。用
+$\mathcal L(S)=\mathcal L(S,\Omega)$ 表示拉格朗日子空间的集合；它通常称为\emph{拉格朗日--格拉斯曼流形}。
+
+\begin{theorem}\label{thm:lagrangian-grassmannian-manifold}
+设 $\dim S=2n$。$\mathcal L(S;\Omega)$ 是一个非空的 $n(n+1)/2$ 维流形，以秩为 $n$ 的对称矩阵空间为模型。事实上，对任意给定拉格朗日子空间 $L\subset S$，其拉格朗日补空间的集合典范地成为一个以 $S/L$ 上的对称二次型集合 $S^2(S/L)$ 为模型的仿射空间；特别地，这个集合可缩。
+\end{theorem}
+
+\subsection{阿诺尔德分层}
+\label{subsec:arnold-stratification}
+\stfhSubIndex{I183}{la^ge^lang^ri^ge^la^si^man^liu^xing}{拉格朗日--格拉斯曼流形（Lagrangian Grassmannian）}{a^nuo^er^de^fen^ceng}{阿诺尔德分层（Arnold stratification）}
+
+为此，我们需要对拉格朗日--格拉斯曼流形 $\mathcal L(S,\Omega)$ 的结构作些准备。给定拉格朗日子空间 $L\subset S$，考虑 $\mathcal L(S,\Omega)$ 的分层
+\[
+ \mathcal L(S,\Omega)\supset\mathcal L_1(S,\Omega;L)\supset\cdots
+ \supset\mathcal L_n(S,\Omega;L)=\{L\},
+\]
+其中，对 $k=1,\ldots,n$，
+\[
+ \mathcal L_k(S,\Omega;L)
+ =\{V\in\mathcal L(S,\Omega)\mid\dim(V\cap L)\ge k\}.
+\]
+这一分层由阿诺尔德 (Ar67) 引入，是分析拉格朗日--格拉斯曼流形
+$\mathcal L(S,\Omega)$ 的基础。我们称它为\emph{关于 $L$ 的阿诺尔德分层}。
+
+由\cref{thm:lagrangian-grassmannian-manifold}，每个
+$\mathcal L_k(S,\Omega;L)$ 都是 $\mathcal L(S,\Omega)$ 的闭子集，其开层在
+$\mathcal L(S,\Omega)$ 中的余维为 $k(k+1)/2$。特别地，对 $k=1$，阿诺尔德 (Ar67) 证明了关于 $\mathcal L_1(S,\Omega;L)$ 的如下基本事实；我们称之为与 $L\subset S$ 相伴的\emph{马斯洛夫闭链}。
+\stfhIndex{I202}{ma^si^luo^fu^bi^lian}{马斯洛夫闭链（Maslov cycle）}
+
+\begin{proposition}\label{prop:maslov-cycle-properties}
+设 $L\in\mathcal L(S,\Omega)$，则 $\mathcal L_1(S,\Omega;L)$ 具有如下性质。
+\begin{enumerate}[label=(\arabic*)]
+\item 它在 $\mathcal L(S,\Omega)$ 中的余维为 $1$。
+\item 它具有余定向：存在沿 $\mathcal L_1(S,\Omega;L)$ 的向量场 $\xi$，横截于 $\mathcal L_1(S,\Omega;L)$。
+\item 子集 $\mathcal L_1(S,\Omega;L)\setminus\mathcal L_2(S,\Omega;L)$ 是光滑流形，而 $\mathcal L_2(S,\Omega;L)$ 在 $\mathcal L_1(S,\Omega;L)$ 中的余维为 $2$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+性质 (1) 与 (3) 立即来自维数公式
+\[
+ \operatorname{codim}\mathcal L_k(S,\Omega;L)=\frac{k(k+1)}2.
+\]
+为证明 (2)，选取达布基
+\[
+ \{e_1,\ldots,e_n,f_1,\ldots,f_n\}
+\]
+使 $\operatorname{span}\{f_1,\ldots,f_n\}=L$，并借辛线性变换
+\[
+ \Phi:(S,\Omega)\longrightarrow\mathbb C^n;\qquad
+ e_j\longmapsto\frac{\partial}{\partial x_j},\quad
+ f_k\longmapsto\frac{\partial}{\partial y_k}
+\]
+把 $L\subset(S,\Omega)$ 等同于 $\sqrt{-1}\mathbb R^n\subset\mathbb C^n$，把
+$\operatorname{span}\{e_1,\ldots,e_n\}$ 等同于 $\mathbb R^n$；这里
+$z_j=x_j+\sqrt{-1}y_j$ 是 $\mathbb C^n$ 的标准复坐标。
+
+对每个拉格朗日子空间 $\lambda\subset\mathbb C^n$，考虑由
+$\theta\mapsto e^{i\theta}\cdot\lambda$ 定义的光滑拉格朗日路径。它在
+$\Lambda(n):=\mathcal L(\mathbb R^{2n},\omega_0)$ 上诱导向量场 $\xi$：
+\[
+ \xi(\lambda)=\left.\frac d{d\theta}\right|_{\theta=0}e^{i\theta}\cdot\lambda.
+\]
+把 $\xi$ 限制到与 $i\mathbb R^n$ 相伴的马斯洛夫闭链
+\[
+ \Lambda_1(n)=\mathcal L_1(\mathbb R^{2n},\omega_0;i\mathbb R^n)
+ :=\{\lambda\in\Lambda(n)\mid\dim(\lambda\cap i\mathbb R^n)\ge1\}.
+\]
+
+设 $\lambda=A\cdot\mathbb R^n\in\Lambda_1(n)\setminus\Lambda_2(n)$，其中 $A$ 是酉矩阵。则 $A\cdot\mathbb R^n\cap i\mathbb R^n$ 的维数为 $1$。取
+$0\ne v\in\mathbb R^n$ 使 $Av\in i\mathbb R^n$。将 $A$ 分解为
+$A=A_{\mathrm{re}}+iA_{\mathrm{im}}$，关系 $Av\in i\mathbb R^n$ 等价于
+\begin{equation}
+ A_{\mathrm{re}}v=0,
+ \label{eq:real-part-kernel}
+\end{equation}
+也即 $v\in\ker A_{\mathrm{re}}$。现在考虑
+$e^{i\theta}\cdot\lambda=e^{i\theta}A\cdot\mathbb R^n$。
+
+\begin{lemma}\label{lem:rotated-real-part-kernel}
+对任意充分小的 $\epsilon>0$，当 $0<|\theta|\le\epsilon$ 时，
+\[
+ \ker(e^{i\theta}A)_{\mathrm{re}}=\{0\}.
+\]
+\end{lemma}
+
+\begin{proof}
+矩阵的零度是上半连续的，亦即对连续矩阵族而言它不会下降；因此只须证明：对任意满足\eqref{eq:real-part-kernel}的非零向量 $v$，只要 $0<|\theta|$ 充分小，就有
+$v\notin\ker(e^{i\theta}A)_{\mathrm{re}}$。注意
+\[
+ (e^{i\theta}A)_{\mathrm{re}}
+ =\cos\theta A_{\mathrm{re}}-\sin\theta A_{\mathrm{im}},\qquad
+ (e^{i\theta}A)_{\mathrm{im}}
+ =\sin\theta A_{\mathrm{re}}+\cos\theta A_{\mathrm{im}}.
+\]
+对任意满足\eqref{eq:real-part-kernel}的 $v$，
+\[
+ (e^{i\theta}A)_{\mathrm{re}}v
+ =\cos\theta A_{\mathrm{re}}v-\sin\theta A_{\mathrm{im}}v
+ =-\sin\theta A_{\mathrm{im}}v\ne0
+\]
+对所有 $0<|\theta|<\pi$ 成立。这就完成了证明。
+\end{proof}
+
+该引理说明，对所有这样的 $\theta\ne0$，
+$e^{i\theta}\cdot\lambda=(e^{i\theta}A)\cdot\mathbb R^n$ 都位于
+$\Lambda^0(n):=\Lambda(n)\setminus\Lambda_1(n)$ 中。
+
+特别地，把拉格朗日子空间
+$\lambda(\theta):=e^{i\theta}\cdot\lambda=U(\theta)\cdot\mathbb R^n$（其中
+$U(\theta)=e^{i\theta}A$）写成
+\[
+ \lambda(\theta)=\mathbb R^n+iS(\theta)\cdot\mathbb R^n
+ =(I+iS(\theta))\cdot\mathbb R^n,
+\]
+这里 $S(\theta)$ 是某个对称 $n\times n$ 矩阵。此外，
+\cref{cor:symmetric-lagrangian-complement}说明，$\lambda'(0)$ 横截于
+$\Lambda_1(n)$，当且仅当 $S'(\theta)$ 可逆。
+
+下面计算 $S'(\theta)$。因为
+$(U(\theta))_{\mathrm{re}}=(e^{i\theta}A)_{\mathrm{re}}$ 可逆，而且当
+$0<|\theta|<\pi$ 时 $U(\theta)_{\mathrm{im}}$ 没有特征值 $-1$，可把 $S(\theta)$ 写成
+\[
+\begin{aligned}
+ S
+ &=U_{\mathrm{re}}^{-1}U_{\mathrm{im}}
+ =-i(U+\overline U)^{-1}(U-\overline U)\\
+ &=-i(I+U^{-1}\overline U)^{-1}(I-U^{-1}\overline U)\\
+ &=-i(I+\overline U^{,t}\overline U)^{-1}
+          (I-\overline U^{,t}\overline U).
+\end{aligned}
+\]
+令 $D(\theta)=\overline U^{,t}\overline U$，则
+\[
+ S=-i(I+D)^{-1}(I-D).
+\]
+注意 $D$ 是只依赖拉格朗日子空间 $\lambda(\theta)$ 的酉对称矩阵。只要
+$\theta\ne0$，这个表达式就有定义且光滑依赖于 $\theta$。因为
+$D(\theta)=e^{-2i\theta}\overline A^{,t}\overline A$，故
+$D'(\theta)=-2iD(\theta)$。由此计算得
+\[
+ S'(\theta)=-4D(\theta)^2(I+D(\theta))^{-1}
+ =-(I+S(\theta)^2).
+\]
+这是负定矩阵，其特征值均不大于 $-1$。这就证明了
+\cref{prop:maslov-cycle-properties}的陈述 (2)。
+\end{proof}
+
+特别地，马斯洛夫闭链 $\mathcal L_1(S,\Omega;L)$ 定义了典范上同调类
+\[
+ \mu=\mu(S,\Omega;L)\in H^1(\mathcal L(S,\Omega),\mathbb Z),
+\]
+并且它与参考拉格朗日子空间 $L$ 的选取无关。
+
+\begin{exercise}\label{ex:maslov-class-reference-independent}
+证明上同调类 $\mu(S,\Omega;L)$ 与 $L$ 的选取无关。
+\end{exercise}
+
+上面的证明也说明，切空间 $T_L\mathcal L(S,\Omega)$ 典范同构于
+$S/L$ 上对称二次型组成的集合 $S^2(L)$。事实上有如下引理。
+
+\begin{lemma}\label{lem:maslov-tangent-cones}
+切锥 $T_L\mathcal L_1(S,\Omega)\subset T_L\mathcal L(S,\Omega)$ 把切空间
+$T_L\mathcal L(S,\Omega)\setminus\{0\}$ 分解成 $n+1$ 个互不相交的开锥。
+\end{lemma}
+
+\begin{proof}
+由\cref{cor:symmetric-lagrangian-complement}，切空间
+$T_L\mathcal L(S,\Omega)$ 典范同构于对称二次型集合 $S^2(L)$，而
+$T_L\mathcal L(S,\Omega)\setminus T_L\mathcal L_1(S,\Omega)$ 对应于非退化二次型。再者，具有固定符号差的两个非退化二次型可以在相应锥中由连续路径连接。这就完成了证明。
+\end{proof}
+
+在同构
+$\xi\in T_L\mathcal L(S,\Omega)\longmapsto Q_\xi\in S^2(L)$ 下，有分解
+\[
+ T_L\mathcal L(S,\Omega)\setminus T_L\mathcal L_1(S,\Omega)
+ =\bigsqcup_{k=0}^n C_k(L),
+\]
+其中 $C_k(L)$ 是开锥
+\[
+ C_k(L)=\{\xi\in T_L\mathcal L(S,\Omega)\mid Q_\xi\text{ 的指标为 }k\}.
+\]
+该引理立即给出如下推论。
+
+\begin{corollary}\label{cor:maslov-complement-components}
+存在 $L\in\mathcal L(S,\Omega)$ 的邻域 $U$，使得集合
+$U\setminus\mathcal L_1(S,\Omega;L)$ 恰有 $n+1$ 个连通分支，并且每个分支的闭包都含 $L$。
+\end{corollary}
+
+以 $U_k(L)=U\cap C_k(L)$ 表示与上面的 $C_k(L)$ 相伴的分支。利用这个推论，我们证明如下命题。
+
+\begin{proposition}\label{prop:positive-lagrangian-path-homotopy}
+设 $(S,\Omega)$ 是辛向量空间，$L,V_1\subset(S,\Omega)$ 是 $S$ 的两个拉格朗日子空间，且
+$L\cap V_1=\{0\}$。考虑满足如下条件的光滑路径
+$\alpha:[0,1]\to\mathcal L(S,\Omega)$：
+\begin{enumerate}[label=(\arabic*)]
+\item $\alpha(0)=L$，$\alpha(1)=V_1$；
+\item 对所有 $0<t\le1$，
+$\alpha(t)\in\mathcal L_0(S,\Omega;L):=\mathcal L(S,\Omega)\setminus\mathcal L_1(S,\Omega;L)$；
+\item $\alpha'(0)\in C_0(L)\subset T_L\mathcal L(S,\Omega)$。
+\end{enumerate}
+则任意两条这样的路径 $\alpha_1,\alpha_2$ 都相对于端点同伦。
+\end{proposition}
+
+\begin{proof}
+设 $\alpha_1,\alpha_2:[0,1]\to\mathcal L(S,\Omega)$ 是两条这样的路径。考虑拼接环路
+$\alpha:=\alpha_1*\alpha_2^{-1}$：
+\[
+ \alpha_1*\alpha_2^{-1}=
+ \begin{cases}
+  \alpha_1(2t),&t\in[0,\tfrac12],\\
+  \alpha_2(2(1-t)),&t\in[\tfrac12,1].
+ \end{cases}
+\]
+由条件 (1) 和 (2)，该环路除 $t=0\equiv1$ 外不与马斯洛夫闭链
+$\mathcal L_1(S,\Omega;L)$ 相交。另一方面，条件 (3) 蕴含存在某个
+$\epsilon_0>0$，使
+$\alpha([ -\epsilon_0,0)\cup(0,\epsilon_0])$ 包含于锥形邻域 $U_n(L)$。因此可在
+$[-\epsilon,\epsilon]$ 上把 $\alpha$ 从 $L$ 推开并推入
+$U_n(L)\subset\mathcal L(S,\Omega)$，同时不改变它在
+$S^1\setminus[-2\epsilon,2\epsilon]$ 上的部分。形变后的环路完全不与马斯洛夫闭链
+$\mathcal L_1(S,\Omega;L)$ 相交，故可以相对于 $V_1$ 收缩成常值路径 $V_1$。这证明
+$\alpha_1$ 与 $\alpha_2$ 相对于端点同伦\footnote{译者注：原书此处误作 $\alpha_0$ 与 $\alpha_1$。}，从而完成证明。
+\end{proof}
+
+关于 $\mathcal L(S,\Omega)$ 的拓扑以及 $\mathcal L(S,\Omega)$ 上马斯洛夫指标的描述，可参见 (Ar67)、(GS77) 或 (RS93) 中的进一步优美讨论。后续各章讨论伪全纯圆盘与拉格朗日交弗洛尔理论时，我们还会论及拉格朗日--格拉斯曼流形上的马斯洛夫指标。眼下先回到达布--温斯坦定理的证明。

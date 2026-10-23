@@ -1,0 +1,354 @@
+\section{阿贝尔范畴引介}
+
+\epigraph
+  {你那篇同调代数的论文已被仔细读过，它把所有人都争取到了你的观点上来
+   （连\trDieudonne{}也在内——他看上去已被彻底函子化了！）。}
+  {——J.-P.~\trSerre，致 A.~\trGrothendieck{}的信，1955 年 7 月 13 日，
+   [GrS, pp.~17--18]}
+
+自学习线性代数以来，你早已熟稔\trKernel、\trCokernel{}等概念及其行为；此后你在\trAbelianGroups{}的范畴中重遇它们，再后来又在 $A$-\trModule{}的范畴中重遇。
+
+我们即将定义一些新的范畴（某些\trSheaf），它们的行为看上去眼熟，令人想起环上之模的行为。\trKernel、\trCokernel、\trImage{}等观念届时都会有意义，并且会按我们从模的经验中所「预期的那样」表现。这件事可以借助\trAbelianCategory{}的观念弄严格。阿贝尔范畴是做「\trHomologicalAlgebra」的恰当一般框架——在同调代数中，核、余核等观念被使用，人们也同\trComplexes{}与\trExactSequence{}打交道。
+
+对于下文将在一般情形给出定义的诸观念——\trMonomorphism（及\trSubobject）、\trEpimorphism、\trKernel、\trCokernel{}与\trImage——我们只会讲到足以说明其动机的程度。但在本书中，我们不去证明它们在一般\trAbelianCategory{}中也「按预期的那样」表现，因为我们将会看到的例子，都可以直接用环上的模来解释。尤其是：\trAbelianCategory{}的定义并不值得背。
+
+\trAbelianCategory{}的两个中心例子是\trAbelianGroups{}范畴 $\catAb$ 与 $A$-模范畴 $\catMod{A}$。前者是后者的特例（取 $A=\mathbb{Z}$ 即可）。在给出诸定义的过程中，你应当验证 $\catMod{A}$ 是\trAbelianCategory。
+
+我们先定义\trAdditiveCategory{}的观念。它只是通往\trAbelianCategory{}观念的一块踏脚石。读这个定义时可以放在心里的两个例子：自由 $A$-模（$A$ 为环）构成的范畴，以及实（或复）\trBanachSpace。
+
+\textbf{1.5.1. 定义。}\quad 范畴 $\scr{C}$ 称为\trAdditiveCategory，若它满足如下性质。
+\begin{itemize}[leftmargin=2.6em,itemsep=2pt,topsep=3pt]
+\item[\textbf{Ad1.}] 对每对 $A,B\in\scr{C}$，$\Mor(A,B)$ 是\trAbelianGroups，且态射的\trComposition{}对加法满足分配律。（你应当想一想这意味着什么——它可以拆成两个不同的命题。）
+\item[\textbf{Ad2.}] $\scr{C}$ 有\trZeroObject，记作 $0$。（这是同时为\trInitialObject{}与\trFinalObject{}的对象，见定义~1.2.2。）
+\item[\textbf{Ad3.}] 它有两个对象的积（任意一对对象都有 $A\times B$），从而由归纳法，有任意有限多个对象的积。
+\end{itemize}
+在\trAdditiveCategory{}中，态射常被称为\trHomomorphism，而 $\Mor$ 记作 $\Hom$。事实上，见到 $\Hom$ 这个记号，便大抵表明你正身处一个\trAdditiveCategory。\trAdditiveCategory{}之间保持 $\Hom$ 的加性结构的函子称为\trAdditiveFunctor。
+
+\textbf{1.5.2. 注记。}\quad 由\trAdditiveCategory{}的定义可以推出：有限积同时也是有限余积（即和）——细节与我们无关。这一观念使用记号 $\oplus$。此外，可以很快证明：\trAdditiveFunctor{}把\trZeroObject{}送到\trZeroObject{}（试证 $Z$ 是零对象当且仅当 $\id_Z=0_Z$；\trAdditiveFunctor{}同时保持 $\id$ 与 $0$），并且保持积。
+
+「零对象」这一名称的一个动机是：阿贝尔群 $\Hom(A,B)$ 中的\trZeroMorphism{}恰是复合 $A\to 0\to B$。（我们也指出：由此，\trZeroMorphism{}的观念在任何有\trZeroObject{}的范畴中都有意义。）
+
+（有一个更干净的公理化，能显出 $\Mor(A,B)$ 的阿贝尔群结构是范畴自身所内在的，如下 [Lur, pp.~21--22]。A0. $\scr{C}$ 有零对象。A1. $\scr{C}$ 有任意两个对象的积，以及任意两个对象的余积。由积与余积的泛性质，我们有自然态射 $\phi_{AB}\colon A\amalg B\to A\times B$。A2. $\phi_{AB}$ 是\trIsomorphism。这使我们能在 $\Mor(A,B)$ 上定义一个二元运算：对 $f,g\in\Mor(A,B)$，把 $f+g$ 定义为复合
+\[
+A \mathrel{\xrightarrow{\ (f,g)\ }} B\times B \mathrel{\xrightarrow{\ \phi_{BB}^{-1}\ }} B\amalg B \longrightarrow B,
+\]
+其中最后一个映射是由余积的泛性质给出的「\trCodiagonal」。稍加功夫即可验证：这赋予 $\Mor(A,B)$ 一个\trCommutativeMonoid{}结构，即带\trUnit{}的\trAbelianSemigroup；这个单位元就是复合 $A\to 0\to B$。A3. 这个\trCommutativeMonoid{} $\Mor(A,B)$ 是\trAbelianGroups。）
+
+\textbf{1.5.3.}\quad $A$-模范畴 $\catMod{A}$ 显然是\trAdditiveCategory，但它还有更多的结构。我们现在把这种结构的若干本质方面，正式化为\trAbelianCategory{}的观念。
+
+\textbf{1.5.4. 定义。}\quad 设 $\scr{C}$ 是有\trZeroObject（从而有\trZeroMorphism）的范畴。态射 $f\colon B\to C$ 的一个\trKernel{}定义为映射 $i\colon A\to B$，它使 $f\circ i=0$，并且关于这条性质是泛的。画成图即：
+\begin{equation*}\tag{1.5.4.1}\label{eq:kernel-universal-property-diagram}
+\begin{tikzcd}[row sep=1.55em, column sep=3.6em]
+Z \ar[dd,dotted,"\exists!"] \ar[ddr] \ar[ddrr,"0"] & & \\
+ & & \\
+A \ar[r,"i"] \ar[rr,bend right=30,"0"'] & B \ar[r,"f"] & C
+\end{tikzcd}
+\end{equation*}
+（注意：\trKernel{}不只是一个对象；它是一个对象到 $B$ 的态射。实践中，这个词常被径直用于指那个对象，所欲何指由上下文自明。）于是，由泛性质的那套惯用论证，它在相差唯一同构的意义下唯一。\trKernel{}记作 $\ker f\to B$。\trCokernel{}（记作 $\coker f$）由反转全部箭头对偶地定义——这留给你自己去做。$f\colon B\to C$ 的\trKernel{}是图
+\begin{equation*}\tag{1.5.4.2}\label{eq:kernel-as-limit-square}
+\begin{tikzcd}[row sep=1.7em, column sep=3.2em]
+ & 0 \ar[d] \\
+B \ar[r,"f"] & C,
+\end{tikzcd}
+\end{equation*}
+的极限（\S1.3）；类似地，\trCokernel{}是一个余极限（见 (2.6.0.1)）。
+
+若 $i\colon A\to B$ 是\trMonomorphism，则称 $A$ 是 $B$ 的\trSubobject，此时映射 $i$ 隐而不写。还有\trQuotientObject{}的观念，由\trSubobject{}对偶地定义。
+
+\trAbelianCategory{}是满足如下三条附加性质的\trAdditiveCategory。
+（1）每个映射都有\trKernel{}与\trCokernel。
+（2）每个\trMonomorphism{}都是其余核的\trKernel。
+（3）每个\trEpimorphism{}都是其\trKernel{}的\trCokernel。
+
+有一个并不显然（而且表述得并不精确）的事实：关于核、余核等，你所希望成立的一切性质都可由这三条推出。（警告：在文献的一部分中，定义里还附加了别的假设。）
+
+态射 $f\colon A\to B$ 的\trImage{}定义为 $\im(f)=\ker(\coker f)$，只要它存在（例如，在每个\trAbelianCategory{}中都存在）。只要 $\im f$ 存在，态射 $f\colon A\to B$ 便唯一地穿过 $\im f\to B$ 分解，并且在每个\trAbelianCategory{}中，$A\to\im f$ 都是\trEpimorphism，也是 $\ker f\to A$ 的一个余核。读者不妨把它当作一道（颇难的！）练习来验证。
+
+\trMonomorphism{}的余核称为\trQuotient。\trMonomorphism{} $A\to B$ 的\trQuotient{}常记作 $B/A$（从 $B$ 出发的映射隐而不写）。
+
+\trAbelianCategory{}的基础问题，我们将完全置之不理。要记住的关键是：若你懂得在给定环的模范畴中操作核、余核、像等，你就能操作任何\trAbelianCategory{}中的对象。这件事由\trFreydMitchellEmbeddingTheorem{}（注记~1.5.5）给出精确含义。
+
+不过，我们将遇到的\trAbelianCategory{}显然都与模有渊源，我们的直觉显然可以照搬过去，因此无须去援引一条我们未曾读过其证明的定理。例如，我们将证明拓扑空间 $X$ 上的阿贝尔群\trSheaf{}构成一个\trAbelianCategory{}（\S2.6），而「相容芽」的解释会把阿贝尔群层的核、余核等观念，与阿贝尔群的相应观念联系起来。
+
+\textbf{1.5.5. 关于追图的小注记。}\quad 用追元素的办法来证明关于\trAbelianCategory{}的事实（并解练习）是有用的。遗憾的是，一些常用的\trAbelianCategory——比如\trComplexes{}的范畴（将在\cref{ex:complexes-form-abelian-category}中定义）——并没有「元素」：它们在任何显然的意义下都不是「带附加结构的集合」。尽管如此，逐元素追图的证明可以由\trFreydMitchellEmbeddingTheorem{}来辩护：若 $\scr{C}$ 是对象构成一个集合的\trAbelianCategory，则存在环 $A$ 与一个从 $\scr{C}$ 到 $\catMod{A}$ 的正合、完全忠实函子，它把 $\scr{C}$ 嵌为一个\trFullSubcategory。（遗憾的是，环 $A$ 未必是\trCommutative{}的。）[Weib, \S1.6] 给出了证明概要，并在那里给出了完整证明的文献出处；[KS2, \S9.6] 也给出了一个证明。归结起来：要证明关于某个\trAbelianCategory{}中某个图的命题，我们可以假定它是某个环上的模的图，然后对元素作「追图」。此外，任何在 $\catMod{A}$ 中成立的关于核、余核等的事实，在任何\trAbelianCategory{}中都成立。
+
+若援引一条你未曾读过其证明的定理让你不安，一个简短的替代品是\trMacLane{}的「追图基本法则」[Mac, Thm.~3, p.~204]；[Mac, Lem.~4, p.~205] 以五引理（练习~1.6.6）的证明为例。
+
+但无论如何，请去做任何能让你的心安定下来的事，好继续向前。在你的良心允许的范围内，做得越少越好。
+
+\textbf{1.5.6. \trComplexes、正合性与\trHomology。}\quad （在以下整个讨论中，我们都假定自己身处一个\trAbelianCategory。）称序列
+\begin{equation*}\tag{1.5.6.1}\label{eq:definition-of-chain-complex}
+\cdots\longrightarrow A \mathrel{\xrightarrow{\ f\ }} B \mathrel{\xrightarrow{\ g\ }} C\longrightarrow\cdots
+\end{equation*}
+在 $B$ 处是\trComplexN，若 $g\circ f=0$；称它在 $B$ 处正合，若 $\ker g=\im f$。（更确切地说：$g$ 有一个\trKernel，而该核是 $f$ 的一个\trImage。在 $B$ 处正合蕴涵在 $B$ 处是\trComplexN{}——你看出为什么了吗？）序列称为\trComplexN（相应地，正合），若它在每个（内部）项处都是\trComplexN（相应地，正合）。\trShortExactSequence{}是有五项的\trExactSequence，其中首末两项为零——换言之，形如
+\[
+0\longrightarrow A\longrightarrow B\longrightarrow C\longrightarrow 0
+\]
+的\trExactSequence。
+
+例如，
+\[
+0\longrightarrow A\longrightarrow 0
+\]
+正合当且仅当 $A=0$；
+\[
+0\longrightarrow A\mathrel{\xrightarrow{\ f\ }}B
+\]
+正合当且仅当 $f$ 是\trMonomorphism（对 $A\mathrel{\xrightarrow{\ f\ }}B\to 0$ 有类似的陈述）；
+\[
+0\longrightarrow A\mathrel{\xrightarrow{\ f\ }}B\longrightarrow 0
+\]
+正合当且仅当 $f$ 是\trIsomorphism；而
+\[
+0\longrightarrow A\mathrel{\xrightarrow{\ f\ }}B\mathrel{\xrightarrow{\ g\ }}C
+\]
+正合当且仅当 $f$ 是 $g$ 的一个\trKernel（对 $A\mathrel{\xrightarrow{\ f\ }}B\mathrel{\xrightarrow{\ g\ }}C\to 0$ 有类似的陈述）。要证明其中的某些事实，先证明「\eqref{eq:definition-of-chain-complex}在 $B$ 处正合，当且仅当 $f$ 的余核是 $g$ 的核的一个余核」或许有帮助。
+
+若想先行把玩这些观念再进入\trHomology，可以证明蛇形引理（陈述于例~1.6.5，更强的版本见练习~1.6.B），或五引理（陈述于例~1.6.6，更强的版本见练习~1.6.C）。（我会在 $A$-模范畴里做这件事；至于一般的证明，见 [KS2, Lem.~12.1.1, Lem.~8.3.13]。）
+
+若\eqref{eq:definition-of-chain-complex}在 $B$ 处是\trComplexN，则它在 $B$ 处的\trHomology（常记作 $\mathrm{H}$）是 $\ker g/\im f$。（更精确地说：存在某个\trMonomorphism{} $\im f\hookrightarrow\ker g$，而 $\mathrm{H}$ 是这个单态射的余核。）于是，\eqref{eq:definition-of-chain-complex}在 $B$ 处正合，当且仅当它在 $B$ 处的\trHomology{}为 $0$。我们称 $\ker g$ 的元素（假定范畴的对象是带某种附加结构的集合）为\trCycles，称 $\im f$ 的元素为\trBoundaries（于是\trHomology{}就是「模去边缘的闭链」）。若\trComplexN{}按递减次序编号，指标常写作下标，$\mathrm{H}_i$ 是 $A_{i+1}\to A_i\to A_{i-1}$ 处的\trHomology；若\trComplexN{}按递增次序编号，指标常写作上标，$A^{i-1}\to A^{i}\to A^{i+1}$ 处的\trHomology{} $\mathrm{H}^i$ 常称为\trCohomology。
+
+一个正合列
+\begin{equation*}\tag{1.5.6.2}\label{eq:unbounded-cochain-complex}
+A^{\bullet}\colon\quad\cdots\longrightarrow A^{i-1}\mathrel{\xrightarrow{\ f^{i-1}\ }}A^{i}\mathrel{\xrightarrow{\ f^{i}\ }}A^{i+1}\mathrel{\xrightarrow{\ f^{i+1}\ }}\cdots
+\end{equation*}
+可以「分解」为短正合列
+\[
+0\longrightarrow\ker f^{i}\longrightarrow A^{i}\longrightarrow\ker f^{i+1}\longrightarrow 0,
+\]
+这有助于把关于\trLongExactSequence{}的事实化归为关于\trShortExactSequence{}的事实。
+
+更一般地，若只假定\eqref{eq:unbounded-cochain-complex}是\trComplexN，则它可以「分解」为短正合列
+\begin{equation*}\tag{1.5.6.3}\label{eq:decompose-via-kernels-images}
+\begin{gathered}
+0\longrightarrow\ker f^{i}\longrightarrow A^{i}\longrightarrow\im f^{i}\longrightarrow 0,\\
+0\longrightarrow\im f^{i-1}\longrightarrow\ker f^{i}\longrightarrow\mathrm{H}^{i}(A^{\bullet})\longrightarrow 0.
+\end{gathered}
+\end{equation*}
+
+\begin{exercise}\label{ex:splitting-into-short-exact-sequences}
+请描述正合列
+\begin{equation*}\tag{1.5.6.4}\label{eq:dual-splitting-sequences}
+\begin{gathered}
+0\longrightarrow\im f^{i}\longrightarrow A^{i+1}\longrightarrow\coker f^{i}\longrightarrow 0,\\
+0\longrightarrow\mathrm{H}^{i}(A^{\bullet})\longrightarrow\coker f^{i-1}\longrightarrow\im f^{i}\longrightarrow 0.
+\end{gathered}
+\end{equation*}
+（它们与\eqref{eq:decompose-via-kernels-images}多少互为对偶。事实上，在某个镜中宇宙里，这或许本来会被当作\trHomology{}的标准定义。）为方便起见，假定范畴是某个取定环上的模范畴；但请注意，结论对任何\trAbelianCategory{}都成立。
+\end{exercise}
+
+\begin{exercise}[兼重要定义]\label{ex:euler-characteristic-finite-complexes}
+设有\trComplexN
+\[
+0\mathrel{\xrightarrow{\ d^{0}\ }}A^{1}\mathrel{\xrightarrow{\ d^{1}\ }}\cdots\mathrel{\xrightarrow{\ d^{n-1}\ }}A^{n}\mathrel{\xrightarrow{\ d^{n}\ }}0
+\]
+（由有限维 $k$-向量空间组成，常简记作 $A^{\bullet}$）。定义 $h^{i}(A^{\bullet}):=\dim\mathrm{H}^{i}(A^{\bullet})$。证明 $\sum_i(-1)^{i}\dim A^{i}=\sum_i(-1)^{i}h^{i}(A^{\bullet})$。特别地，若 $A^{\bullet}$ 正合，则 $\sum_i(-1)^{i}\dim A^{i}=0$。（若你此前没怎么跟\trCohomology{}打过交道，本练习可以给你一些练习机会。）
+\end{exercise}
+
+\begin{exercise}[重要练习]\label{ex:complexes-form-abelian-category}
+设 $\scr{C}$ 是\trAbelianCategory。定义\trComplexes{}的范畴 $\mathrm{Com}_{\scr{C}}$ 如下。对象是 $\scr{C}$ 中的无穷\trComplexN
+\[
+A^{\bullet}\colon\quad\cdots\longrightarrow A^{i-1}\mathrel{\xrightarrow{\ f^{i-1}\ }}A^{i}\mathrel{\xrightarrow{\ f^{i}\ }}A^{i+1}\mathrel{\xrightarrow{\ f^{i+1}\ }}\cdots,
+\]
+而态射 $A^{\bullet}\to B^{\bullet}$ 是交换图
+\begin{equation*}\tag{1.5.6.5}\label{eq:morphism-of-complexes-diagram}
+\begin{tikzcd}[row sep=2.3em, column sep=3.2em]
+\cdots \ar[r] & A^{i-1} \ar[r,"f^{i-1}"] \ar[d,"g^{i-1}"] & A^{i} \ar[r,"f^{i}"] \ar[d,"g^{i}"] & A^{i+1} \ar[r,"f^{i+1}"] \ar[d,"g^{i+1}"] & \cdots \\
+\cdots \ar[r] & B^{i-1} \ar[r,"g^{i-1}"'] & B^{i} \ar[r,"g^{i}"'] & B^{i+1} \ar[r,"g^{i+1}"'] & \cdots
+\end{tikzcd}
+\end{equation*}
+证明 $\mathrm{Com}_{\scr{C}}$ 是\trAbelianCategory。
+
+不妨只处理某个取定环上的模这一特殊情形。（行家按语：本质上相同的论证表明，对任何\trSmallCategory{} $\scr{I}$ 与任何\trAbelianCategory{} $\scr{C}$，$\scr{C}^{\scr{I}}$ 都是\trAbelianCategory。这立刻蕴涵：拓扑空间 $X$ 上取值于\trAbelianCategory{} $\scr{C}$ 的\trPresheaf{}范畴自动是\trAbelianCategory；参看 \S2.3.5。）
+\end{exercise}
+
+\begin{exercise}[重要练习]\label{ex:cohomology-functor-on-complexes}
+证明\eqref{eq:morphism-of-complexes-diagram}诱导\trHomology{}的映射 $\mathrm{H}^{i}(A^{\bullet})\to\mathrm{H}^{i}(B^{\bullet})$。进而证明 $\mathrm{H}^{i}$ 是协变函子 $\mathrm{Com}_{\scr{C}}\to\scr{C}$。（同样，不妨只处理 $\catMod{A}$ 这一特殊情形。）
+\end{exercise}
+
+\textbf{1.5.7. \trHomotopic{}映射在\trHomology{}上诱导相同的映射。}\quad 称\trComplexes{}的两个映射 $f\colon C^{\bullet}\to D^{\bullet}$ 与 $g\colon C^{\bullet}\to D^{\bullet}$ 为\trHomotopic，若存在一列映射 $w\colon C^{i}\to D^{i-1}$，使得 $f-g=dw+wd$。
+
+\begin{exercise}\label{ex:homotopic-maps-same-homology}
+证明：两个\trHomotopic{}映射在\trHomology{}上给出相同的映射。
+\end{exercise}
+
+\textbf{1.5.8. 定理（\trLongExactSequence）。}\quad \emph{复形的\trShortExactSequence}
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=2.6em]
+0^{\bullet}\colon\cdots \ar[r] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
+A^{\bullet}\colon\cdots \ar[r] & A^{i-1} \ar[r,"f^{i-1}"] \ar[d,"g^{i-1}"] & A^{i} \ar[r,"f^{i}"] \ar[d,"g^{i}"] & A^{i+1} \ar[r,"f^{i+1}"] \ar[d,"g^{i+1}"] & \cdots \\
+B^{\bullet}\colon\cdots \ar[r] & B^{i-1} \ar[r,"g^{i-1}"] \ar[d,"h^{i-1}"] & B^{i} \ar[r,"g^{i}"] \ar[d,"h^{i}"] & B^{i+1} \ar[r,"g^{i+1}"] \ar[d,"h^{i+1}"] & \cdots \\
+C^{\bullet}\colon\cdots \ar[r] & C^{i-1} \ar[r,"h^{i-1}"] \ar[d] & C^{i} \ar[r,"h^{i}"] \ar[d] & C^{i+1} \ar[r,"h^{i+1}"] \ar[d] & \cdots \\
+0^{\bullet}\colon\cdots \ar[r] & 0 \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots
+\end{tikzcd}
+\]
+\emph{诱导}\textbf{上同调的\trLongExactSequence}
+\[
+\begin{gathered}
+\cdots\longrightarrow\mathrm{H}^{i-1}(C^{\bullet})\longrightarrow\\
+\mathrm{H}^{i}(A^{\bullet})\longrightarrow\mathrm{H}^{i}(B^{\bullet})\longrightarrow\mathrm{H}^{i}(C^{\bullet})\longrightarrow\\
+\mathrm{H}^{i+1}(A^{\bullet})\longrightarrow\cdots
+\end{gathered}
+\]
+（这需要对\textbf{\trConnectingHomomorphism}{} $\mathrm{H}^{i-1}(C^{\bullet})\to\mathrm{H}^{i}(A^{\bullet})$ 给出定义，它在适当的意义下是「\trNatural」的。）在环上的模范畴中，定理~1.5.8 将从我们对\trSpectralSequence{}的讨论中得出——见练习~1.6.F——但这是一种略显故作高深（perverse）的证法。一般的证明见 [KS2, Theorem~12.3.3]。你不妨自己把它证出来：先证蛇形引理的一个较弱版本（例~1.6.5），其中假设 (1.6.5.1) 里左下角与右上角的 $0$ 被去掉，而结论 (1.6.5.2) 里首末两个 $0$ 被去掉。
+
+\textbf{1.5.9. 函子的正合性。}\quad 设 $F\colon\scr{A}\to\scr{B}$ 是从一个\trAbelianCategory{}到另一个\trAbelianCategory{}的\trAdditive{}协变函子。若 $\scr{A}$ 中
+\[
+A'\longrightarrow A\longrightarrow A''\longrightarrow 0
+\]
+的\trExactSequence{}性蕴涵
+\[
+F(A')\longrightarrow F(A)\longrightarrow F(A'')\longrightarrow 0
+\]
+也正合，则称 $F$ 是\trRightExact{}的。对偶地，若
+\[
+0\longrightarrow A'\longrightarrow A\longrightarrow A''
+\]
+的正合性蕴涵
+\[
+0\longrightarrow F(A')\longrightarrow F(A)\longrightarrow F(A'')
+\]
+正合，则称 $F$ 是\trLeftExact{}的。\trAdditive{}反变函子称为\trLeftExact{}的，若
+\[
+A'\longrightarrow A\longrightarrow A''\longrightarrow 0
+\]
+的正合性蕴涵
+\[
+0\longrightarrow F(A'')\longrightarrow F(A)\longrightarrow F(A')
+\]
+正合。至于反变函子的\trRightExact{}性意谓什么，读者应能自行推知。
+
+\trAdditive{}的协变或反变函子称为\trExact{}的，若它既\trLeftExact{}又\trRightExact。
+
+\begin{exercise}\label{ex:exact-functors-preserve-exactness}
+设 $F$ 是\trExact{}函子。证明：把 $F$ 作用到\trExactSequence{}上保持正合性。例如，若 $F$ 协变，且 $A'\to A\to A''$ 正合，则 $FA'\to FA\to FA''$ 正合。（这将在\cref{ex:fhhf-theorem-functor-cohomology}(c) 中得到推广。）
+\end{exercise}
+
+\begin{exercise}\label{ex:localization-tensor-hom-exactness}
+设 $A$ 是环，$S\subset A$ 是\trMultiplicativeSubset，$M$ 是 $A$-\trModule。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $A$-模的\trLocalization{} $\catMod{A}\to\catMod{S^{-1}A}$ 是\trExact{}协变函子。
+\item 证明 $(\cdot)\otimes_A M$ 是\trRightExact{}协变函子 $\catMod{A}\to\catMod{A}$。（这是\cref{ex:tensor-right-exactness}的重演。）
+\item 证明 $\Hom(M,\cdot)$ 是\trLeftExact{}协变函子 $\catMod{A}\to\catMod{A}$。若 $\scr{C}$ 是任何\trAbelianCategory{}且 $C\in\scr{C}$，证明 $\Hom(C,\cdot)$ 是\trLeftExact{}协变函子 $\scr{C}\to\catAb$。
+\item 证明 $\Hom(\cdot,M)$ 是\trLeftExact{}反变函子 $\catMod{A}\to\catMod{A}$。若 $\scr{C}$ 是任何\trAbelianCategory{}且 $C\in\scr{C}$，证明 $\Hom(\cdot,C)$ 是\trLeftExact{}反变函子 $\scr{C}\to\catAb$。
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:finitely-presented-hom-localization}
+设 $M$ 是\trFinitelyPresented{} $A$-模：$M$ 有有限多个\trGenerators，而取这组生成元后，它有有限多个\trRelation；或者等价地——而且这一表述有用——$M$ 装入一个\trExactSequence
+\begin{equation*}\tag{1.5.9.1}\label{eq:finite-free-presentation}
+A^{\oplus q}\longrightarrow A^{\oplus p}\longrightarrow M\longrightarrow 0.
+\end{equation*}
+用\eqref{eq:finite-free-presentation}与 $\Hom$ 的\trLeftExact{}性描述一个同构
+\[
+S^{-1}\Hom_A(M,N)\mathrel{\overset{\sim}{\leftarrow\joinrel\rightarrow}}\Hom_{S^{-1}A}(S^{-1}M,S^{-1}N).
+\]
+（你或许能在\cref{ex:fhhf-theorem-functor-cohomology}的一个变体——针对\trLeftExact{}反变函子而非\trRightExact{}协变函子的版本——的光照下解释此事。）
+\end{exercise}
+
+\textbf{1.5.10. 例：$\Hom$ 并不总与\trLocalization{}交换。}\quad 用\cref{ex:finitely-presented-hom-localization}的语言，取 $\Lambda=N=\mathbb{Z}$，$M=\mathbb{Q}$，$S=\mathbb{Z}\smallsetminus\{0\}$。
+
+\textbf{1.5.11. \hard\ \trHomologicalAlgebra{}中的两个有用事实。}\quad 我们现在来到两组（各自成套的）事实面前——但愿我孩提时就学会了它们，那会省去我许多烦恼。它们浓缩了\trAbstractNonsense{}的最好一面与最坏一面。这些陈述一般到让人无从建立直觉的地步；而证明又极短。它们把一些临时验证起来很容易的具体行为一般化。一旦它们成为你的第二天性，许多微妙的事实都会作为特例而变得显然。你还会看到，它们将被（含蓄地或明确地）反复用到。
+
+\textbf{1.5.12. \hard\ \trHomology{}与（右/左）正合函子的相互作用。}\quad 你不妨等到在第 18 章学到\trCohomology{}时再来证明它，届时它将第一次被严肃地使用。
+
+\begin{exercise}[重要练习：FHHF 定理]\label{ex:fhhf-theorem-functor-cohomology}
+这个结果能带你走得很远；或许正因如此，它有时被称为 Fernbahnhof（FernbaHnHoF）定理%
+\footnote{译注：Fernbahnhof 是德语「远途火车站」；混排大小写写成 FernbaHnHoF，恰拼出缩写 FHHF。}，
+名目见 [Vak1, Exer.~1.5.I]。设 $F\colon\scr{A}\to\scr{B}$ 是\trAbelianCategory{}之间的协变函子，$C^{\bullet}$ 是 $\scr{A}$ 中的一个\trComplexN。
+\begin{enumerate}[label=(\alph*)]
+\item （$F$ \emph{右正合给出} $\mathrm{FH}^{\bullet}\to\mathrm{H}^{\bullet}F$）若 $F$ 是\trRightExact{}的，请描述一个自然态射 $\mathrm{FH}^{\bullet}\to\mathrm{H}^{\bullet}F$。（更精确地说：对每个 $i$，左边是 $F$ 作用到 $C^{\bullet}$ 在第 $i$ 个位置的上同调上的结果，而右边是 $\mathrm{F}C^{\bullet}$ 在第 $i$ 个位置的上同调。）
+\item （$F$ \emph{左正合给出} $\mathrm{FH}^{\bullet}\leftarrow\mathrm{H}^{\bullet}F$）若 $F$ 是\trLeftExact{}的，请描述一个自然态射 $\mathrm{H}^{\bullet}F\to\mathrm{FH}^{\bullet}$。
+\item （$F$ \emph{正合给出} $\mathrm{FH}^{\bullet}\mathrel{\overset{\sim}{\leftarrow\joinrel\rightarrow}}\mathrm{H}^{\bullet}F$）若 $F$ 是\trExact{}的，证明 (a) 与 (b) 的态射互逆，从而是\trIsomorphism。
+\end{enumerate}
+(a) 的提示：用
+\[
+C^{i}\mathrel{\xrightarrow{\ d^{i}\ }}C^{i+1}\longrightarrow\coker d^{i}\longrightarrow 0
+\]
+给出一个同构 $F\coker d^{i}\mathrel{\overset{\sim}{\leftarrow\joinrel\rightarrow}}\coker Fd^{i}$。然后用\eqref{eq:dual-splitting-sequences}的第一行给出一个满态射 $F\im d^{i}\twoheadrightarrow\im Fd^{i}$。再用\eqref{eq:dual-splitting-sequences}的第二行给出想要的映射 $\mathrm{FH}^{i}C^{\bullet}\to\mathrm{H}^{i}\mathrm{F}C^{\bullet}$。既然做到这里，不妨顺手为四重奏 $\{\coker,\im,\mathrm{H},\ker\}$ 的第四个成员也描述一个映射：$F\ker d^{i}\to\ker Fd^{i}$。
+\end{exercise}
+
+\textbf{1.5.13.}\quad 若这让你头晕，你也许更愿意在如下的具体情形中思考它：$\scr{A}$ 与 $\scr{B}$ 都是 $A$-模范畴，而 $F$ 是 $(\cdot)\otimes_A N$（$N$ 为某个取定的 $A$-模）。你在这个情形中的论证将原封不动地翻译过去，给出\cref{ex:fhhf-theorem-functor-cohomology}(a) 与 (c) 在一般情形的解。若 $\otimes N$ 正合，则称 $N$ 是\trFlat{}（flat）的 $A$-\trModule。（\trFlatness{}这一观念将被证明非常重要，第 24 章将详加讨论。）
+
+例如，\trLocalization{}是正合的（\cref{ex:localization-tensor-hom-exactness}(a)），故对一切\trMultiplicativeSubset{} $S$，$S^{-1}A$ 都是平坦的 $A$-代数。于是，取 $A$-\trComplexes{}的\trCohomology{}与\trLocalization{}交换——这件事你本可以直接验证。
+
+\textbf{1.5.14. 伴随、（余）极限与（左、右）正合性的相互作用。}\quad 数目惊人的论证最终都归结为如下的陈述：
+\begin{quote}\itshape
+极限与极限及右伴随交换。特别地，在\trAbelianCategory{}中，由于\trKernel{}是极限，极限与右伴随都是\trLeftExact{}的。
+\end{quote}
+以及它的对偶：
+\begin{quote}\itshape
+余极限与余极限及左伴随交换。特别地，由于余核是余极限，余极限与左伴随都是\trRightExact{}的。
+\end{quote}
+这些陈述已在 \S1.4.4 中许诺，并将在下文得到证明。后者有一个有用的扩充：
+\begin{quote}\itshape
+在 $\catMod{A}$ 中，\trFiltered{}\trIndexCategory{}上的余极限是正合的。「\trFiltered」定义于 \S1.3.8。
+\end{quote}
+
+\textbf{1.5.15. \extrahard\ 警示。}\quad 在一般的\trAbelianCategory{}中，\trFiltered{}\trIndexCategory{}上的余极限未必正合。（\trGrothendieck{}意识到这种余极限正合之可取，并将其形式化为他的「AB5」公理；例如见 [Stacks, tag~079A]。）这里给出一个反例。（由于\trAbelianCategory{}的诸公理自对偶，只需给出一个\trCofiltered{}极限不正合的例子即可（其中「\trCofiltered」有着与「\trFiltered」显然对偶的定义），我们也正是这样做的。取定素数 $p$。在阿贝尔群范畴 $\catAb$ 中，对每个正整数 $n$，我们有正合列 $\mathbb{Z}\to\mathbb{Z}/(p^{n})\to 0$。按显然的方式对所有 $n$ 取极限，便得到 $\mathbb{Z}\to\mathbb{Z}_p\to 0$，它当然不正合。）
+
+注记~1.5.18 还会打碎你可能怀有的另一个希望。
+
+\textbf{1.5.16.}\quad 若你想使用这些陈述（例如在本书后面），你就必须亲自证明它们。现在我们就把它们说精确。
+
+\begin{exercise}[核与极限交换]\label{ex:kernels-commute-with-limits}
+设 $\scr{C}$ 是\trAbelianCategory，$a\colon\scr{J}\to\scr{C}$ 与 $b\colon\scr{J}\to\scr{C}$ 是 $\scr{C}$ 中以 $\scr{J}$ 为指标的两个\trDiagram。为方便起见，令 $A_i=a(i)$ 与 $B_i=b(i)$ 表示这两个\trDiagram{}中的对象。设 $h_i\colon A_i\to B_i$ 是与诸\trDiagram{}中的映射相交换的一些映射。（翻译：$h$ 是函子 $a\to b$ 的一个\trNaturalTransformation；见 \S1.1.21。）于是诸 $\ker h_i$ 构成 $\scr{C}$ 中以 $\scr{J}$ 为指标的另一个\trDiagram。在极限存在的前提下，请描述一个典范同构
+$\lim\ker h_i\mathrel{\overset{\sim}{\leftarrow\joinrel\rightarrow}}\ker(\lim A_i\to\lim B_i)$。
+\end{exercise}
+
+上一个练习中隐含的想法是：极限应当以某种方式被理解为函子。
+
+\begin{exercise}\label{ex:limits-commute-with-limits}
+把「极限与极限交换」这句话在一般范畴中的含义说清楚，并证明它。（提示：回忆\trKernel{}是极限。上一个练习应当是本题的推论。）
+\end{exercise}
+
+\textbf{1.5.17. 命题（右伴随与极限交换）。}\quad \emph{设有\trAdjointPair{} $(F\colon\scr{C}\to\scr{D},\,G\colon\scr{D}\to\scr{C})$。若 $A=\lim A_i$ 是 $\scr{D}$ 中一个以 $\scr{J}$ 为指标的\trDiagram{}的极限，则 $GA=\lim GA_i$（连同相应的映射 $GA\to GA_i$）是 $\scr{C}$ 中的一个极限。}
+
+\emph{证明。}\ 必须证明 $GA\to GA_i$ 满足极限的\trUniversalProperty。设有映射 $W\to GA_i$ 与 $\scr{J}$ 中的映射相交换。我们希望证明：存在唯一的 $W\to GA$ 扩张诸 $W\to GA_i$。由 $F$ 与 $G$ 的伴随性，可以把它重新陈述为：设有映射 $FW\to A_i$ 与 $\scr{J}$ 中的映射相交换。我们希望证明：存在唯一的 $FW\to A$ 扩张诸 $FW\to A_i$。而这恰恰就是极限的\trUniversalProperty。\hfill$\square$
+
+当然，\cref{ex:limits-commute-with-limits}与命题~1.5.17 的对偶命题，由对偶的论证成立。
+
+若 $F$ 与 $G$ 是\trAbelianCategory{}之间的\trAdditiveFunctor，且 $(F,G)$ 是一个\trAdjointPair，则（由于核是极限而余核是余极限）$G$ 是\trLeftExact{}的，$F$ 是\trRightExact{}的。
+
+\begin{exercise}\label{ex:filtered-colimits-exactness}
+证明：在 $\catMod{A}$ 中，\trFiltered{}\trIndexCategory{}上的余极限是正合的。（你的论证可以原封不动地适用于任何这样的\trAbelianCategory：其对象可以解释成「带附加结构的集合」。）右正合性由上面的讨论得出，所以问题只在左正合性。（可能的提示：当你以动手的方式证明了\trLocalization{}正合（\cref{ex:localization-tensor-hom-exactness}(a)）或\trStalkification{}正合（练习~2.6.E）之后，你将能轻松证明本题。反之，若你做出了本题，那两件事也会变容易。）
+\end{exercise}
+
+\begin{exercise}\label{ex:homology-commutes-filtered-colimits}
+证明：在 $\catMod{A}$ 中，\trFiltered{}余极限与\trHomology{}交换。提示：用 FHHF 定理（\cref{ex:fhhf-theorem-functor-cohomology}）与上一个练习。
+\end{exercise}
+
+鉴于\cref{ex:homology-commutes-filtered-colimits}，你也许愿意思考一下：一般而言，极限（与余极限）如何与\trHomology{}交换，映射又朝哪个方向走。FHHF 定理的陈述应当能提示答案。（极限类似于\trLeftExact{}函子，还是\trRightExact{}函子？）我们不会直接使用这一洞见，但例子见 \S18.1(vii)。
+
+正如余极限在特别良好的情形中是正合的（不只是\trRightExact），极限在良好的情形中也是正合的（不只是\trLeftExact）。下面这件事在第 28 章将用到两次。
+
+\begin{exercise}\label{ex:exactness-of-inverse-limits}
+设有\trModule{}的\trExactSequence{}构成的一个\trInverseSystem
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=2.6em]
+ & \vdots \ar[d,two heads] & \vdots \ar[d] & \vdots \ar[d] & \\
+0 \ar[r] & A_{n+1} \ar[d,two heads] \ar[r] & B_{n+1} \ar[d] \ar[r] & C_{n+1} \ar[d] \ar[r] & 0 \\
+0 \ar[r] & A_{n} \ar[d,two heads] \ar[r] & B_{n} \ar[d] \ar[r] & C_{n} \ar[d] \ar[r] & 0 \\
+ & \vdots \ar[d,two heads] & \vdots \ar[d] & \vdots \ar[d] & \\
+0 \ar[r] & A_{0} \ar[r] & B_{0} \ar[r] & C_{0} \ar[r] & 0
+\end{tikzcd}
+\]
+其中映射 $A_{n+1}\to A_n$ 都是满射。（我们说：「左项的\trTransitionMap{}是满射的」。）证明极限
+\begin{equation*}\tag{1.5.17.1}\label{eq:limit-short-exact-sequence}
+0\longrightarrow\lim A_{n}\longrightarrow\lim B_{n}\longrightarrow\lim C_{n}\longrightarrow 0
+\end{equation*}
+也正合。（你需要先定义\eqref{eq:limit-short-exact-sequence}中的映射。）
+\end{exercise}
+
+\textbf{1.5.18. 不重要的注记。}\quad 基于这些想法，你也许会怀疑：\trRightExact{}函子总与余极限交换。张量积与无穷\trDirectSum{}交换（\cref{ex:tensor-commutes-direct-sums}）这一事实，或许会强化这个想法。遗憾的是，事情并非如此——「双重对偶」$(\cdot)^{\vee\vee}\colon\catVec{k}\to\catVec{k}$ 是协变的\trRightExact{}函子（实际上是\trExact{}的），但它与无穷\trDirectSum{}不交换：$\bigoplus_{i=1}^{\infty}(k^{\vee\vee})$ 不同构于 $(\bigoplus_{i=1}^{\infty}k)^{\vee\vee}$。
+
+\textbf{1.5.19. \hard\ 导出函子之梦。}\quad 见到一个\trLeftExact{}函子时，你应当永远梦想：你看到的是一个\trLongExactSequence{}的末端。若
+\[
+0\longrightarrow M'\longrightarrow M\longrightarrow M''\longrightarrow 0
+\]
+是阿贝尔范畴 $\scr{A}$ 中的一个\trExactSequence，而 $F\colon\scr{A}\to\scr{B}$ 是一个\trLeftExact{}函子，则
+\[
+0\longrightarrow FM'\longrightarrow FM\longrightarrow FM''
+\]
+正合，而你应当永远梦想：它会以某种自然的方式继续下去。例如，下一项应当只依赖于 $M'$——姑且称之为 $\mathrm{R}^{1}FM'$——并且若它为零，则 $FM\to FM''$ 是\trEpimorphism。这番议论对左正合与反变的函子同样成立。在良好的情形中，这样的续列确实存在，而且极其有用。我们将在第 23 章讨论此事。
+

@@ -1,0 +1,183 @@
+
+\section{上同调与基变换定理的证明}
+
+证明\mbox{\trSemicontinuity{}定理~25.1.1}、\mbox{\trGrauert{}定理~25.1.5} 与\mbox{上同调与基变换定理~25.1.6} 的关键，是\trMumford{}的下述绝妙想法（见 [Mu3, p.~47 Lem.~1]）。它把关于\trHigherPushforward{}的问题（以及它们在任意\trBaseChange{}下如何表现的问题）变成某种可以用\trVectorBundle{}计算的东西（从而变成线性代数中的问题）。在陈述这个想法之后，我们将对它加以解读。
+
+\textbf{25.2.1. 关键定理。}\ ——\ \emph{设 $\pi\colon X\to\Spec B$ 是一个\trProper{}\trMorphism，而 $\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf，在 $\Spec B$ 上\trFlat，其中 $B$ \trNoether。则存在一个由有限生成的自由 $B$-\trModule{}组成的\trComplexN}
+\begin{equation*}
+\tag{25.2.1.1}\label{eq:mumford-complex}
+\cdots\xrightarrow{\ \delta^{-2}\ }K^{-1}\xrightarrow{\ \delta^{-1}\ }K^{0}\xrightarrow{\ \delta^{0}\ }K^{1}\xrightarrow{\ \delta^{1}\ }\cdots\longrightarrow K^{n}\xrightarrow{\ \delta^{n}\ }0
+\end{equation*}
+\emph{以及诸函子之间的一个\trIsomorphism}
+\begin{equation*}
+\tag{25.2.1.2}\label{eq:mumford-functorial-iso}
+\mathrm{H}^p\bigl(X\times_B A,\ \mathscr{F}\otimes_B A\bigr)\xmapsto{\ \sim\ }\mathrm{H}^p\bigl(K^{\bullet}\otimes_B A\bigr)
+\end{equation*}
+\emph{对一切 $p$、一切环映射 $B\to A$ 成立。（这里 $A$ 不必\trNoether。）}
+
+\eqref{eq:mumford-complex} 这个\trComplexN{}有时被称为\textbf{\trMumford\trComplexN}（Mumford complex）。
+
+由于 \eqref{eq:mumford-complex} 是自由 $B$-\trModule{}的\trComplexN，全部信息都蕴含在那些映射之中，而它们正是元素取在 $B$ 中的矩阵。这会把关于\trCohomology{}（与\trBaseChange）的问题变成线性代数中的问题。例如，\trSemicontinuity{}将变成「以函数为元素的矩阵，其秩在\trClosedSubset{}上下降」这一事实（\S12.2.16(ii)）。
+
+尽管 \eqref{eq:mumford-complex} 是无穷的，但由 \eqref{eq:mumford-functorial-iso}，它在负次数处没有\trCohomology——即便经任何环扩张 $B\to A$ 之后也是如此（因为 \eqref{eq:mumford-functorial-iso} 的左边当 $p<0$ 时为 $0$）。
+
+证明背后的想法如下：取\trCech\trComplexN，造出一个由有限秩自由模组成的\trComplexN{}映到它，「带着相同的\trCohomology」（一个\trQuasiisomorphism{}的\trComplexN，\S18.2.3）。我们先在下一条引理中把\trComplexN{}构造得使 \eqref{eq:mumford-functorial-iso} 在 $B=A$ 时成立，然后在紧接着的\mbox{引理~25.2.3} 中证明同一个\trComplexN{}对一般的 $A$ 也适用。
+
+\textbf{25.2.2. \trhLemma。}\ ——\ \emph{设 $B$ 是\trNoether{}环。设 $C^{\bullet}$ 是 $B$-\trModule{}的一个\trComplexN，使得诸 $\mathrm{H}^i(C^{\bullet})$ 是有限生成的 $B$-\trModule，且当 $p>n$ 时 $C^p=0$。则存在一个由有限秩自由 $B$-\trModule{}组成的\trComplexN{} $K^{\bullet}$，使得当 $p>n$ 时 $K^p=0$，以及\trComplexes{}的一个\trHomomorphism{} $\alpha\colon K^{\bullet}\to C^{\bullet}$，使得 $\alpha$ 对一切 $i$ 都诱导\trIsomorphism{} $\mathrm{H}^i(K^{\bullet})\to\mathrm{H}^i(C^{\bullet})$。}
+
+\emph{证明。}\quad 我们归纳地搭建这个\trComplexN。（这可能会让你想起 \S23.3.3。）假设我们已对 $p\ge m+1$ 定义了 $(K^p,\alpha^p,\delta^p)$（如 \eqref{eq:inductive-diagram} 中那样），使得诸方格交换、上行为一个\trComplexN，并且 $\alpha^q$ 对 $q\ge m+2$ 定义\trCohomology{}的\trIsomorphism{} $\mathrm{H}^q(K^{\bullet})\to\mathrm{H}^q(C^{\bullet})$，而 $\ker(\delta^{m+1})\to\mathrm{H}^{m+1}(C^{\bullet})$ 是\trSurjectiveMap，诸 $K^p$ 是有限秩自由 $B$-\trModule。（我们的基底情形是 $m=n$：当 $p>n$ 时取 $K^p=0$。）\footnote{译注：原书此处作「Our base case is m = p: take K\textsuperscript{n} = 0 for n > p」，其中两处 $p$ 与 $n$ 互误，当为「Our base case is m = n: take K\textsuperscript{p} = 0 for p > n」（基底情形 $m=n$：当 $p>n$ 时取 $K^p=0$），径改。——译者注}
+
+\begin{equation*}
+\tag{25.2.2.1}\label{eq:inductive-diagram}
+\begin{tikzcd}[row sep=2.6em, column sep=2.4em]
+ & & & K^{m+1} \ar[r, "\delta^{m+1}"] \ar[d, "\alpha^{m+1}"] & K^{m+2} \ar[r, "\delta^{m+2}"] \ar[d, "\alpha^{m+2}"] & \cdots \\
+\cdots \ar[r] & C^{m-1} \ar[r, "\epsilon^{m-1}"'] & C^{m} \ar[r, "\epsilon^{m}"'] & C^{m+1} \ar[r, "\epsilon^{m+1}"'] & C^{m+2} \ar[r] & \cdots.
+\end{tikzcd}
+\end{equation*}
+
+我们构造 $(K^m,\delta^m,\alpha^m)$。选取 $\mathrm{H}^m(C^{\bullet})$ 的一组生成元，比如说 $c_1,\dots,c_M$。令
+\[
+D^{m+1}:=\ker\Bigl(\ker(\delta^{m+1})\xrightarrow{\ \alpha^{m+1}\ }\mathrm{H}^{m+1}(C^{\bullet})\Bigr).
+\]
+选取 $D^{m+1}$ 的一组生成元，比如说 $d_1,\dots,d_N$。（这正是我们用到\trNoether{}假设的地方——为了保证这个\trKernel{} $D^{m+1}$ 是有限生成的。）令 $K^m=B^{\oplus(M+N)}$。定义 $\delta^m\colon K^m\to K^{m+1}$ 为：把最后 $N$ 个生成元送到 $d_1,\dots,d_N$，而把前 $M$ 个生成元送到 $0$。定义 $\alpha^m$ 为：把 $B^{\oplus(M+N)}$ 的前 $M$ 个生成元送到 $c_1,\dots,c_M$ 的各提升，而把最后 $N$ 个生成元送到 $\alpha^{m+1}(d_i)$ 的任意选定的提升（因为诸 $\alpha^{m+1}(d_i)$ 在 $\mathrm{H}^{m+1}(C^{\bullet})$ 中为零，从而落在 $\epsilon^m$ 的像中），于是这个左上角为 $K^m$ 的方格交换。如此，由构造，我们便完成了归纳步骤：
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=2.4em]
+ & & K^{m} \ar[r, "\delta^{m}"] \ar[d, "\alpha^{m}"] & K^{m+1} \ar[r, "\delta^{m+1}"] \ar[d, "\alpha^{m+1}"] & K^{m+2} \ar[r] \ar[d, "\alpha^{m+2}"] & \cdots \\
+\cdots \ar[r] & C^{m-1} \ar[r, "\epsilon^{m-1}"'] & C^{m} \ar[r, "\epsilon^{m}"'] & C^{m+1} \ar[r, "\epsilon^{m+1}"'] & C^{m+2} \ar[r] & \cdots.
+\end{tikzcd}
+\]
+\hfill$\square$
+
+\textbf{25.2.3. \trhLemma。}\ ——\ \emph{设 $\alpha\colon K^{\bullet}\to C^{\bullet}$ 是诸\textbf{\trFlat} $B$-\trModule{}的\trComplexN{}之间的一个态射，右侧有界（即当 $n\gg 0$ 时 $K^n=C^n=0$），且诱导\trCohomology{}的\trIsomorphism（一个\trQuasiisomorphism，\S18.2.3）。则「这一拟同构与基环的任意变换交换」：对每个 $B$-\trAlgebra{} $A$，映射 $\mathrm{H}^p(K^{\bullet}\otimes_B A)\to\mathrm{H}^p(C^{\bullet}\otimes_B A)$ 都是\trIsomorphism。}
+
+\emph{证明。}\quad $\alpha\colon K^{\bullet}\to C^{\bullet}$ 的\trMappingCone{} $M^{\bullet}$ 由\mbox{练习~1.6.E} 是正合的。于是 $M^{\bullet}\otimes_B A$ 仍然正合，由\mbox{练习~24.2.F}。但 $M^{\bullet}\otimes_B A$ 正是
+\[
+\alpha\otimes_B A\colon K^{\bullet}\otimes_B A\longrightarrow C^{\bullet}\otimes_B A
+\]
+的\trMappingCone，故由\mbox{练习~1.6.E}，$\alpha\otimes_B A$ 也诱导\trCohomology{}的\trIsomorphism（也就是说，它也是一个\trQuasiisomorphism）。\hfill$\square$
+
+\emph{\mbox{关键定理~25.2.1} 的证明。}\quad 选取 $X$ 的一个有限仿射覆盖，取 $\mathscr{F}$ 关于这个覆盖的\trCech\trComplexN{} $C^{\bullet}$。由\trGrothendieck{}凝聚定理（\mbox{定理~18.9.1}，它带有\trNoether{}假设），$\mathscr{F}$ 的\trCohomology{}是\trCoh{}的。（\mbox{定理~18.9.1} 当年颇费了一番严肃功夫。如果你只需要\trProjective{}情形的\mbox{定理~25.2.1}，那么带\trProjective{}假设的类似陈述——\mbox{定理~18.7.1}(d)——要容易得多。）对同一个\trComplexN{} $C^{\bullet}$ 应用\mbox{引理~25.2.2}，得到其更好的变体 $K^{\bullet}$。由\mbox{引理~25.2.3}，与 $A$ 作张量再取\trCohomology{}时，无论用 $K^{\bullet}$ 还是用 $C^{\bullet}$，得到的答案都相同。\hfill$\square$
+
+现在我们用\mbox{定理~25.2.1} 来证明前面陈述过的若干基本结果：\mbox{\trSemicontinuity{}定理~25.1.1}、\mbox{\trGrauert{}定理~25.1.5} 与\mbox{上同调与基变换定理~25.1.6}。我们还将给出\mbox{定理~24.7.1}——\trEulerCharacteristic{}在\trFlat\trFamily{}中是\trLocallyConstant{}的——的一个新证明（\S25.2.5；这一证明在更一般的\trProper{}情形下也适用）。
+
+\textbf{25.2.4. \mbox{\trSemicontinuity{}定理~25.1.1} 的证明。}\quad 此结果在 $Y$ 上是局部的，故不妨设 $Y$ 仿射。设 $K^{\bullet}$ 是\mbox{关键定理~25.2.1} 中那样的一个\trComplexN。
+
+于是对 $q\in Y$，
+\begin{align*}
+\dim_{\kappa(q)}\mathrm{H}^p(X_q,\mathscr{F}|_{X_q})&=\dim_{\kappa(q)}\ker(\delta^p\otimes_B\kappa(q))-\dim_{\kappa(q)}\im(\delta^{p-1}\otimes_B\kappa(q))\\
+&=\dim_{\kappa(q)}(K^p\otimes_B\kappa(q))-\dim_{\kappa(q)}\im(\delta^p\otimes_B\kappa(q))\\
+&\qquad-\dim_{\kappa(q)}\im(\delta^{p-1}\otimes_B\kappa(q))
+\tag{25.2.4.1}\label{eq:semicontinuity-dimensions}
+\end{align*}
+
+现在 $\dim_{\kappa(q)}\im(\delta^p\otimes_B\kappa(q))$ 是 $Y$ 上的一个\trLowerSemicontinuous{}函数。（理由：维数小于某个数 $N$ 的\trLocus，由令矩阵 $K^p\to K^{p+1}$ 的全部 $N\times N$ \trMinor{}为零而得到；参看 \S12.2.16(ii)。）对 $\dim_{\kappa(q)}\im(\delta^{p-1}\otimes_B\kappa(q))$ 亦然。结论随之而得。\hfill$\square$
+
+\textbf{25.2.5. \mbox{定理~24.7.1}——\trFlat\trSheaf{}的\trEulerCharacteristic{}是\trLocallyConstant{}的——的一个新证明（并推广到\trProper{}情形）。}
+
+若 $K^{\bullet}$ 在「左侧」也有限——即当 $p\ll 0$ 时 $K^p=0$——那么我们就会有\mbox{定理~24.7.1} 的一个简短证明。对 \eqref{eq:semicontinuity-dimensions} 取（对 $p$ 的）交错和，就会得到
+\[
+\chi(X_q,\mathscr{F}|_{X_q})=\sum_p(-1)^p\, h^p(X_q,\mathscr{F}|_{X_q})=\sum_p(-1)^p\,\operatorname{rank}K^p,
+\]
+而它是\trLocallyConstant{}的。唯一的问题在于这些和是无穷的。我们按下述办法补救：把\trComplexN{} $K^{\bullet}$ 在存在\trCohomology{}之处以下截断。定义 $J^{\bullet}$ 如下：当 $p\ge 0$ 时 $J^p=K^p$，当 $p<-1$ 时 $J^p=0$，且令 $J^{-1}:=\ker(K^{-1}\to K^{0})$。于是 $J^{\bullet}$ 显然是一个\trComplexN，而且诸\trComplexes{}之间的映射 $K^{\bullet}\to C^{\bullet}$ 显然经由 $J^{\bullet}$ 分解：
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=1.7em]
+\cdots \ar[r] & J^{-3} \ar[r] \ar[d, equals] & J^{-2} \ar[r] \ar[d, equals] & J^{-1} \ar[r] \ar[d, equals] & J^{0} \ar[r] \ar[d, equals] & J^{1} \ar[r] \ar[d, equals] & J^{2} \ar[r] \ar[d, equals] & \cdots \\
+\cdots \ar[r] & 0 \ar[r] \ar[d, "\sim"] & 0 \ar[r] \ar[d, "\sim"] & \ker(K^{-1}\to K^{0}) \ar[r] \ar[d] & K^{0} \ar[r] \ar[d] & K^{1} \ar[r] \ar[d] & K^{2} \ar[r] \ar[d] & \cdots \\
+\cdots \ar[r] & 0 \ar[r] & 0 \ar[r] & 0 \ar[r] & C^{0} \ar[r] & C^{1} \ar[r] & C^{2} \ar[r] & \cdots
+\end{tikzcd}
+\]
+显然，$J^{\bullet}\to C^{\bullet}$ 在\trCohomology{}上诱导\trIsomorphism（回忆：二者在 $p<0$ 处的\trCohomology{}均为 $0$）。
+
+现在 $J^{-1}$（\trCoh{}\trModule{}之间一个映射的\trKernel）是\trCoh{}的。考虑 $\beta\colon J^{\bullet}\to C^{\bullet}$ 的\trMappingCone{} $M^{\bullet}$：
+\[
+0\longrightarrow J^{-1}\longrightarrow C^{-1}\oplus J^{0}\longrightarrow C^{0}\oplus J^{1}\longrightarrow\cdots\longrightarrow C^{n-1}\oplus J^{n}\longrightarrow C^{n}\longrightarrow 0.
+\]
+由\mbox{练习~1.6.E}，由于 $J^{\bullet}\to C^{\bullet}$ 在\trCohomology{}上诱导\trIsomorphism，这个\trMappingCone{}没有\trCohomology——它是正合的。其中各项除或许存在的 $J^{-1}$ 外都是\trFlat{}的（诸 $C^p$ 由假设\trFlat，而 $J^i$ 当 $i\ne -1$ 时自由）。于是由\mbox{练习~24.2.G}，$J^{-1}$ 也是\trFlat{}的。而\trFlat\trCoherentSheaf{}是\trLocallyFree{}的（\mbox{推论~24.3.7}）。于是\mbox{定理~24.7.1} 便由
+\[
+\chi(X_q,\mathscr{F}|_{X_q})=\sum_p(-1)^p\, h^p(X_q,\mathscr{F}|_{X_q})=\sum_p(-1)^p\,\operatorname{rank}J^p
+\]
+得证。\hfill$\square$
+
+\textbf{25.2.6. \mbox{\trGrauert{}定理~25.1.5} 与\mbox{上同调与基变换定理~25.1.6} 的证明（循 E.~Larson）。}
+
+（\extrahard\ 行家：你或许会在证明中看出，使第 $p$ 个\trCohomology{}与\trBaseChange{}交换的原因在于：\mbox{关键定理~25.2.1} 的\trComplexN{}可以在第 $p$ 步处「打断」成两个\trComplexN。你甚至可能想用「把\trCech\trComplexN{}当作 $B$-\trModule{}\trDerivedCategory{}中的一个对象」来解读这件事。）
+
+多亏了\mbox{定理~25.2.1}，\mbox{定理~25.1.5} 与\mbox{定理~25.1.6} 现在成了关于\trNoether{}环上自由模\trComplexN{}的陈述。
+
+\textbf{25.2.7. \mbox{\trGrauert{}定理~25.1.5} 的证明。}\quad 由假设，$h^p(X_q,\mathscr{F}|_{X_q})$ 是 $q\in Y$ 的\trLocallyConstant{}函数。由 \eqref{eq:semicontinuity-dimensions}，$h^p(X_q,\mathscr{F}|_{X_q})=\operatorname{rank}K^p-\operatorname{rank}\im(\delta^p|_q)-\operatorname{rank}\im(\delta^{p-1}|_q)$。但 $\operatorname{rank}K^p$ 是常值，而 $\operatorname{rank}\im(\delta^p|_q)$ 与 $\operatorname{rank}\im(\delta^{p-1}|_q)$ 是\trLowerSemicontinuous{}的，所以事实上 $\operatorname{rank}\im(\delta^p|_q)$ 与 $\operatorname{rank}\im(\delta^{p-1}|_q)$ 必为\trLocallyConstant。由\mbox{练习~14.3.L}，$\delta^{p-1}$ 与 $\delta^p$ 二者都是\trVectorBundle{}之间的映射（\mbox{定义~14.2.4} 意义下）。于是由\mbox{观察~14.2.5}(ii)，$\coker\delta^{p-1}$ 与 $\im\delta^p$ 都是局部自由的（有限秩）。在短正合列
+\begin{equation*}
+\tag{25.2.7.1}\label{eq:grauert-ses}
+0\longrightarrow \mathrm{H}^p(K^{\bullet})\longrightarrow \coker\delta^{p-1}\longrightarrow \im\delta^p\longrightarrow 0
+\end{equation*}
+（\mbox{练习~1.5.6.4}，\trCohomology{}的「对偶」定义）中，$\coker\delta^{p-1}$ 与 $\im\delta^p$ 都对应于有限秩的\trLocallyFreeSheaf。于是由\mbox{练习~14.2.H}(a)，$\mathrm{H}^p(K^{\bullet})$ 亦然。
+
+\textbf{25.2.A.（练习）}\quad 证明（或许用 \eqref{eq:grauert-ses}）：$\mathrm{H}^p(K^{\bullet})$ 的构造与任何\trBaseChange{}交换，从而完成\mbox{\trGrauert{}定理~25.1.5} 的证明。\hfill$\square$
+
+为了证明\mbox{上同调与基变换定理~25.1.6}，我们需要一个预备结果。
+
+\textbf{25.2.8. \trhLemma。}\ ——\ \emph{设}
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=2.8em]
+K^{p-1} \ar[r, "\delta^{p-1}_K"] \ar[d, two heads] & K^{p} \ar[r, "\delta^{p}_K"] \ar[d] & K^{p+1} \ar[d] \\
+J^{p-1} \ar[r, "\delta^{p-1}_J"'] & J^{p} \ar[r, "\delta^{p}_J"'] & J^{p+1}
+\end{tikzcd}
+\]
+\emph{是诸\trComplexN{}之间的一个映射，其中左边的竖直箭头是\trEpimorphism。则 $\mathrm{H}^p(K^{\bullet})\to\mathrm{H}^p(J^{\bullet})$ 是\trSurjectiveMap，当且仅当 $\ker\delta^p_K\to\ker\delta^p_J$ 是\trSurjectiveMap。}
+
+\emph{证明。}\quad 映射 $\im\delta^{p-1}_K\to\im\delta^{p-1}_J$ 是满的：$\im\delta^{p-1}_J$ 中的任一元素 $\alpha$ 先提升到 $J^{p-1}$，继而可以提升到 $K^{p-1}$，后者可以映到 $K^p$，再映到 $\alpha$。然后将蛇形引理（\mbox{蛇形引理~1.6.5}）应用于
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=2.2em]
+0 \ar[r] & \im\delta^{p-1}_K \ar[r] \ar[d, two heads] & \ker\delta^{p}_K \ar[r] \ar[d] & \mathrm{H}^p(K^{\bullet}) \ar[r] \ar[d] & 0 \\
+0 \ar[r] & \im\delta^{p-1}_J \ar[r] & \ker\delta^{p}_J \ar[r] & \mathrm{H}^p(J^{\bullet}) \ar[r] & 0.
+\end{tikzcd}
+\]
+\hfill$\square$
+
+\textbf{25.2.9. \mbox{上同调与基变换定理~25.1.6} 的证明。}\quad 我们聚焦于第 $p$ 步附近的\trComplexN，以及它在点 $q\in Y$ 处的限制：\footnote{译注：原书此处作「\(q\in X\)」，当为「\(q\in Y\)」之误——所论\trComplexN{}是 $B$-\trComplexN，取剩余域 $\kappa(q)$ 的 $q$ 是基 $Y=\Spec B$ 上的点，径改。——译者注}
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=2.4em]
+K^{p-1} \ar[r] \ar[d] & K^{p} \ar[r, "\delta^{p}"] \ar[d] & K^{p+1} \ar[d] & \text{自由 $B$-\trModule} \\
+K^{p-1}\otimes_B \kappa(q) \ar[r] & K^{p}\otimes_B \kappa(q) \ar[r, "\delta^{p}\otimes\kappa(q)"'] & K^{p+1}\otimes_B \kappa(q) &
+\end{tikzcd}
+\]
+\begin{itemize}
+\item 由假设，$\phi^p_q\colon (\mathrm{R}^p\pi_*\mathscr{F})|_q\to\mathrm{H}^p(X_q,\mathscr{F}|_{X_q})$ 是\trSurjectiveMap。
+\item 由\mbox{引理~25.2.8}，这等价于 $(\ker\delta^p)\otimes\kappa(q)\to\ker(\delta^p\otimes\kappa(q))$ 是\trSurjectiveMap。
+\item 由\mbox{练习~14.2.K}，这等价于 $\delta^p$ 在 $q$ 附近是\trVectorBundle{}之间的映射。
+\item 这意味着（由\mbox{观察~14.2.5}(ii)）：$\ker\delta^p$ 是有限秩且\trLocallyFree{}的，并且 $\ker\delta^p$ 的构造在 $q$ 的一个邻域内与任何\trBaseChange{}交换。
+\end{itemize}
+
+现在 $\mathrm{H}^p(K^{\bullet})=\coker(K^{p-1}\to\ker\delta^p)$，也就是说，我们有正合列
+\[
+K^{p-1}\longrightarrow \ker\delta^p\longrightarrow \mathrm{H}^p(K^{\bullet})\longrightarrow 0.
+\]
+于是 $\mathrm{H}^p(K^{\bullet})$ 与任何\trBaseChange{}交换（因为\trTensorProduct{}是\trRightExact{}的）。这就完成了定理部分 (i) 的证明。
+
+对于部分 (ii)，再次考虑有限秩\trLocallyFreeSheaf{}之间的映射 $K^{p-1}\to\ker\delta^p$，其\trCokernel{}为 $\mathrm{H}^p(K^{\bullet})$。现在，$\mathrm{H}^p(K^{\bullet})$ 是\trLocallyFree{}的，当且仅当 $K^{p-1}\to\ker\delta^p$ 是\trVectorBundle{}之间的映射；由于 $\delta^p$ 是\trVectorBundle{}之间的映射，这又等价于 $\delta^{p-1}$ 是\trVectorBundle{}之间的映射；而这又等价于 $\mathrm{H}^{p-1}(K^{\bullet})\to\mathrm{H}^{p-1}(K^{\bullet}|_q)$ 是\trSurjectiveMap。这就完成了部分 (ii) 的证明。\hfill$\square$
+
+\textbf{25.2.10.}\ \hard\ \textbf{去掉\trNoether{}条件。}\quad 拥有 \S25.1 中诸定理的不设\trNoether{}条件的版本会很有用；重要的例子来自模理论，将在下一节讨论。\trNoether{}条件往往可以换成\trFinitelyPresented{}条件。我们从\mbox{练习~10.3.H} 的一个推广开始。
+
+\textbf{25.2.B.（练习）}\quad 设 $\pi\colon X\to\Spec B$ 是一个\trFinitelyPresented{}\trMorphism，而 $\mathscr{F}$ 是 $X$ 上一个\trFinitelyPresented{}的层。证明：存在形如下式的\trBaseChangeDiagram
+\begin{equation*}
+\tag{25.2.10.1}\label{eq:fp-base-change-diagram}
+\begin{tikzcd}[row sep=2.2em, column sep=4.2em]
+\mathscr{F} && \mathscr{F}' \\
+X \ar[rr, "\sigma"] \ar[dd, "\pi"'] \ar[u, no head] && X' \ar[dd, "\pi'"'] \ar[u, no head] \\
+\\
+\Spec B \ar[rr, "\rho"] && \Spec \mathbb{Z}[x_1,\dots,x_N]/I
+\end{tikzcd}
+\end{equation*}
+其中 $N$ 是某个整数，$I\subset\mathbb{Z}[x_1,\dots,x_N]$，$\pi'$ 是\trFinitelyPresented{}的（＝\trFiniteType{}的，因为靶是\trNoether{}的；见 \S8.3.13），以及 $X'$ 上一个\trFinitelyPresented{}（＝\trCoh）的\trQCSheaf{} $\mathscr{F}'$，满足 $\mathscr{F}\cong\sigma^*\mathscr{F}'$。
+
+\textbf{25.2.11.}\ \emph{$\pi'$ 的性质。}\quad （理想 $I$ 之所以出现在\mbox{练习~25.2.B} 的陈述中，并不是因为那里需要它，而是为了让本注记的陈述正确。）若 $\pi$ 是\trProper{}的，则可以把图 \eqref{eq:fp-base-change-diagram} 构造得使 $\pi'$ 也是\trProper{}的（利用 [Gr-EGA, IV$_3$.8.10.5]）。此外，若 $\mathscr{F}$ 在 $\Spec B$ 上\trFlat，则可以把 \eqref{eq:fp-base-change-diagram} 构造得使 $\mathscr{F}'$ 在 $\Spec\mathbb{Z}[x_1,\dots,x_N]/I$ 上\trFlat（利用 [Gr-EGA, IV$_3$.11.2.6]）。这需要多得多的功夫。
+
+\textbf{25.2.C.（练习）}\quad \emph{假定} \S25.2.11 中所述的结果，证明下列各条——此时「\trLocally\trNoether」假设被去掉，而添入「\trFinitelyPresented」假设：
+\begin{itemize}
+\item[(a)] \trFlat\trFamily{}中\trEulerCharacteristic{}的恒常性（\mbox{定理~24.7.1}，按 \S25.2.5 推广到\trProper{}情形）；
+\item[(b)] \mbox{\trSemicontinuity{}定理~25.1.1}；
+\item[(c)] \mbox{\trGrauert{}定理~25.1.5}（你还得自行证明：\eqref{eq:fp-base-change-diagram} 中的 $\mathbb{Z}[x_1,\dots,x_N]/I$ 可以取成既约的）；以及
+\item[(d)] \mbox{上同调与基变换定理~25.1.6}。
+\end{itemize}
+
+\textbf{25.2.12.}\ \emph{\trFinitelyPresented{}条件的必要性。}\quad \trFinitelyPresented{}条件是必要的。存在到连通靶上的\trProjective\trFlat{}态射，其纤维维数会跳变；存在\trFinite\trFlat{}态射，其纤维的次数不是\trLocallyConstant{}的；存在到连通靶上的\trProjective\trFlat{}态射，其纤维是\trCurve，而\trArithmeticGenus{}不是常值的。第一个例子见 [Stacks, tag 05LB]；另外两个例子用的是同一个想法。
+

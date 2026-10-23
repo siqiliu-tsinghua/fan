@@ -1,0 +1,163 @@
+\section{非退化性与辛位移能}
+\label{sec:nondegeneracy-displacement-energy}
+
+本节先说明霍费尔 (H90) 所采用的伪范数非退化性证明思路。
+
+下面是霍费尔在 $\mathbb C^n$ 上证明非退化性时使用的关键概念。
+
+\begin{definition}[位移能]\label{def:displacement-energy}
+\stfhIndex{I102}{wei^yin^eng}{位移能（displacement energy）}
+设 $A\subset M$ 是 $M$ 的任意子集。定义
+\begin{equation}
+ e(A)=\inf_H\{\|H\|\mid
+   \overline A\cap\phi_H^1(A)=\varnothing\},
+ \label{eq:displacement-energy}
+\end{equation}
+并称 $e(A)$ 为 $A$ 的\emph{位移能}。
+\end{definition}
+
+显然，位移能在 $\Symp(M,\omega)$ 的作用下不变。
+
+假设 $\phi:M\to M$ 不是恒等映射。则存在一点 $x\in M$，使得
+$\phi(x)\ne x$。由 $\phi$ 的连续性，确实可以找到 $x$ 的一个开邻域
+$U$，使得
+\[
+ \phi(U)\cap\overline U=\varnothing.
+\]
+由达布定理，可选取 $\overline U$，使它是某个辛嵌入
+\[
+ g:B^{2n}(r)\subset\mathbb C^n\longrightarrow(M,\omega);
+ \qquad g(0)=x
+\]
+\stfhIndex{I142}{ge^luo^mo^fu^mian^ji}{格罗莫夫面积（Gromov area）}
+的像。一般地，把任意这类辛嵌入的像称为格罗莫夫面积
+$\lambda=\pi r^2$ 的\emph{辛球}。以 $B(\lambda)$ 表示任意这类格罗莫夫面积为 $\lambda$ 的\emph{辛球}。
+\stfhIndex{I271}{xin^qiu}{辛球（symplectic ball）}
+
+注意，所有满足 $\|\phi\|=0$ 的“零”哈密顿微分同胚 $\phi$ 组成一个正规子群。因此，巴尼亚加定理蕴含零哈密顿微分同胚的集合或者是
+$\{\operatorname{id}\}$，或者是整个群 $\Ham(M,\omega)$。所以只需证明：对
+$\lambda>0$ 的辛球 $B(\lambda)\subset M$，有 $e(B(\lambda))>0$；因为根据位移能的定义，这随即蕴含存在一个哈密顿微分同胚
+$\operatorname{id}\ne\phi$，满足
+$\|\phi\|\geq e(B(\lambda))>0$。
+
+为了表明 $e(B(\lambda))>0$ 的正性证明并非平凡，我们陈述一个命题；它说明把 $M$ 中的一点移到任意另一点只需“零能量”。
+
+\begin{proposition}\label{prop:point-zero-displacement-energy}
+设 $x_0,x_1$ 是 $M$ 中任意两点。则对任意给定的 $\delta>0$，存在
+$H$，使得 $\phi_H^1(x_0)=x_1$ 且 $\|H\|\leq\delta$。换言之，一点的位移能为零。
+\end{proposition}
+
+\begin{proof}
+先从 $M=\mathbb R^{2n}$ 且带典范辛形式的情形开始。注意辛群
+$Sp(2n,\mathbb R)$ 在 $\mathbb R^{2n}$ 上传递作用，因而可以假设
+$x_0=0$ 为原点，而对某个 $s\in\mathbb R$，
+$x_1=(s,0,\ldots,0)$。
+
+其次，考虑自治哈密顿量 $h=sp_1$。则
+$X_{sp_1}=s\,\partial/\partial q^1$，其流由
+\[
+ \phi_{sp_1}^t(x)=x+t(s,\ldots,0),
+ \qquad x\in\mathbb R^{2n}
+\]
+给出。特别地，$\phi_h^1(x_0)=x_1$。注意，对所有 $t$，都有
+$p_1(\phi_h^t(x_0))=0$。
+
+最后，考虑线段 $I:=\overline{x_0x_1}$，并以 $N_\delta(I)$ 表示其
+$\delta$-邻域。选取截断函数 $\rho:\mathbb R^{2n}\to\mathbb R$，满足
+\[
+ \rho(x)=
+ \begin{cases}
+  1,&x\in N_{\delta/3}(I),\\
+  0,&x\notin N_{\delta/2}(I),
+ \end{cases}
+ \qquad 0\leq\rho(x)\leq1.
+\]
+然后选取哈密顿量 $H=\rho\cdot h$。因为在
+$N_{\delta/2}(I)\supset I$ 上有 $H\equiv h$，所以
+$\phi_H^1(x_0)=\phi_h^1(0)=x_1$。此外，由 $H$ 的构造可得
+\[
+ \max H\leq\frac\delta2,
+ \qquad
+ \min H\geq-\frac\delta2,
+\]
+从而 $\|H\|\leq\delta$。由于 $\delta>0$ 可任意小，这就完成了
+$\mathbb R^{2n}$ 情形的证明。
+
+现在考虑一般的 $(M,\omega)$。任选嵌入曲线
+$\alpha:[0,1]\to M$，满足 $\alpha(0)=x_0$、$\alpha(1)=x_1$。选取网格为
+$1/N$ 的有限分割
+\[
+ 0=t_0<t_1<\cdots<t_N=1.
+\]
+通过把 $N$ 取得充分大，可以选取 $\alpha([0,1])$ 的一个由一致大小的有限多个辛球
+\[
+ g_i:B^{2n}(r)\to M,
+ \qquad i=0,\ldots,N-1
+\]
+组成的覆盖，使得每段 $\alpha([t_i,t_{i+1}])$ 都包含在该覆盖中的一个球内。只需证明，对每个 $i=0,\ldots,N-1$，把点
+$\alpha(t_i)$ 移到 $\alpha(t_{i+1})$ 只需“零能量”。然而，这来自证明第一部分中 $\mathbb R^{2n}$ 上的结果：把第一部分应用于
+$B^{2n}(r)\subset\mathbb R^{2n}$，再把相应哈密顿量乘以适当截断函数后推前。这就完成证明。
+\end{proof}
+
+\begin{exercise}\label{ex:point-displacement-proof-details}
+补全上述证明论证最后一部分的细节。更准确地说，证明可以选取
+$\alpha([0,1])$ 的一个由有限多个一致大小的辛球组成的覆盖，并详细说明如何通过 $g_i$ 把 $B^{2n}(r)$ 上的结果转移到 $(M,\omega)$。
+\end{exercise}
+
+另一方面，下面这个非平凡定理说明，任意 $\lambda>0$ 的辛球
+$B(\lambda)$ 的位移能为正。
+
+\begin{theorem}\label{thm:energy-capacity-basic}
+设 $B(\lambda)$ 是任意辛球，$\lambda>0$。
+\begin{enumerate}[label=(\arabic*)]
+ \item \textup{\bfseries（霍费尔 (H90)）}设 $B^{2n}(r)$ 是 $\mathbb R^{2n}$ 中的标准球。则
+ $e(B^{2n}(r))=\pi r^2$。
+ \item \textup{\bfseries（拉隆德--麦克达夫 (LM95a)）}设 $B(\lambda)\subset M$ 是任意格罗莫夫面积为 $\lambda>0$ 的辛球，则
+ $e(B(\lambda))\geq\lambda/2$。
+\end{enumerate}
+\end{theorem}
+
+这个定理有时称为\emph{能量--容量不等式}。厄舍 (Ush10a) 证明了下面这个能量--容量不等式的最优版本。我们将在第 22.3 节给出其证明。
+
+\begin{theorem}[最优能量--容量不等式，(Ush10a)]
+\stfhIndex{I221}{zui^you^neng^liang^rong^liang^bu^deng^shi}{最优能量--容量不等式（optimal energy–capacity inequality）}
+\stfhIndex{I297}{e^she}{厄舍（Usher）}
+\label{thm:optimal-energy-capacity}
+设 $(M,\omega)$ 是任意辛流形，且 $B(\lambda)\subset M$ 是一个辛球。则
+\[
+ e(B(\lambda))\geq\lambda.
+\]
+\end{theorem}
+
+$\lambda>0$ 时 $e(B(\lambda))>0$ 的正性结论立即给出如下推论。
+
+\begin{corollary}\label{cor:hofer-norm-nondegenerate}
+$\Ham(M,\omega)$ 上的霍费尔范数是非退化的；即
+$\|\phi\|=0$ 当且仅当 $\phi=\operatorname{id}$。
+\end{corollary}
+
+需要提到，霍费尔距离
+$d(\phi,\phi'):=\|\phi^{-1}\phi'\|$ 是内蕴的，因为它正是由
+$C_0^\infty(M)$ 上定义的伴随不变范数
+\[
+ \|h\|=\operatorname{osc}(h)=\max h-\min h
+\]
+诱导的芬斯勒度量之距离。显然，$\Ham(M,\omega)$ 上的这个霍费尔范数是双不变的，并且关于
+$\Ham(M,\omega)\subset\Diff(M)$ 的 $C^\infty$ 拓扑连续。在这一方面，布霍夫斯基与奥斯特罗弗结合定理 5.2.4 与定理 5.2.3，证明了如下唯一性结果。
+
+\begin{theorem}[布霍夫斯基--奥斯特罗弗]\label{thm:hofer-finsler-uniqueness}
+设 $(M,\omega)$ 是闭的。则 $\Ham(M,\omega)$ 上任何由
+$C_0^\infty(M)$ 上一个在 $C^\infty$ 拓扑中连续的伪范数
+$|\mathord\cdot|$ 得到的双不变芬斯勒伪度量，或者恒等于零，或者等价于霍费尔的芬斯勒度量。特别地，任何非退化双不变芬斯勒度量都等价于霍费尔度量。
+\end{theorem}
+
+结束本节之前，我们想重新审视本小节开头概述的非退化性证明方案。从证明容易看出，除了辛球 $B(\lambda)$ 的集合以外，只要 $M$ 的子集族
+$C$ 满足以下两个性质，也完全可以使用它：
+\begin{itemize}
+ \item 对任意开子集 $U\subset M$，存在 $A\in C$，使得
+ $A\subset U$；
+ \item 对任意 $A\in C$，都能证明 $e(A)>0$。
+\end{itemize}
+\stfhIndex{I144}{ge^luo^mo^fu^de^8^zi^xing^ji^qiao}{格罗莫夫的 8 字形技巧（Gromov’s figure-8 trick）}
+\stfhIndex{I228}{bo^er^jie^luo^wei^qi}{波尔捷罗维奇（Polterovich）}
+波尔捷罗维奇 (Po93) 观察到，拉格朗日子流形的集合（甚至拉格朗日环面的集合）满足这两个性质。使用拉格朗日子流形非常适合格罗莫夫的伪全纯曲线方法。我们将给出 (Oh97c) 中的一种简单证明：把对弗洛尔扰动柯西--黎曼方程的研究作一个容易的应用，证明驯服辛流形中任意紧拉格朗日子流形的位移能为正。这个正性首先由波尔捷罗维奇 (Po93) 对\emph{有理}拉格朗日子流形证明，由切卡诺夫 (Che98) 对一般拉格朗日子流形证明。波尔捷罗维奇在证明中使用了格罗莫夫的 8 字形技巧 (Gr85)，而切卡诺夫在证明中使用了相当复杂的弗洛尔同调理论。

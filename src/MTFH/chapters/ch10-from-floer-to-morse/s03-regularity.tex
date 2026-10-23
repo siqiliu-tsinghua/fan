@@ -1,0 +1,200 @@
+
+\section{定理~10.1.2~的证明（\trRegularity）}
+\label{sec:regularity-proof}
+
+\trHamiltonian{}量 $H$ 现已取定，我们考虑两个\trCriticalPoint{} $x$ 与 $y$。令 $\scr{Z}(x,y,H)$ 为
+\[
+\bigl\{(u,J)\ \bigm|\ J\in\scr{J}_{c}(\omega)\ \text{且}\ u\ \text{是}\ -JX_{H}\ \text{的、把 } x\ \text{连接到 } y\ \text{的一条\trTrajectory}\bigr\}\text{。}
+\]
+
+\subsection{\trAlmostComplex{}结构的无穷小变分}
+\label{subsec:infinitesimal-variations}
+
+被 $\omega$ \trCalibrated{}的\trAlmostComplex{}结构所成的空间 $\scr{J}_{c}(\omega)$，是 $TW$ 的\trEndomorphism{}所成之\trFiberBundle{}的\trSection{}的\trVectorSpace{}的一个子集。我们已经指出过（\cref{thm:tangent-space-calibrated}），其\trTangentSpace{}为
+\[
+T_{J}\scr{J}_{c}(\omega)=\bigl\{S\in\operatorname{End}(TW)\mid JS+SJ=0\ \text{且}\ \omega(S\xi,\eta)+\omega(\xi,S\eta)=0\bigr\}\text{。}
+\]
+我们取定这样一个 $S$，并令 $J_{t}=J\exp(-tJS)$。
+
+\begin{lemma}\label{thm:jt-calibrated}
+对充分小的 $t$，\trEndomorphism{} $J_{t}$ 是一个被 $\omega$ \trCalibrated{}的\trAlmostComplex{}结构。
+\end{lemma}
+
+\begin{proof}
+首先，$J_{t}$ 是一个\trAlmostComplex{}结构：由于 $J$ 与 $S$ “反交换”，故 $J_{t}=\exp(tJS)J$，从而
+\[
+J_{t}^{2}=\exp(tJS)JJ\exp(-tJS)=J^{2}=-\mathrm{Id}\text{。}
+\]
+其次，$J_{t}$ 是 $\omega$ 的一个\trIsometry，这是因为
+\[
+\begin{aligned}
+\frac{d}{dt}\,\omega(J_{t}\xi,J_{t}\eta)
+&=\frac{d}{dt}\,\omega\bigl(\exp(-tJS)\xi,\ \exp(-tJS)\eta\bigr)\\
+&=\omega\bigl(-JS\exp(-tJS)\xi,\ \exp(-tJS)\eta\bigr)\\
+&\qquad+\omega\bigl(\exp(-tJS)\xi,\ -JS\exp(-tJS)\eta\bigr)\\
+&=\omega\bigl(SJ\exp(-tJS)\xi,\ \exp(-tJS)\eta\bigr)\\
+&\qquad+\omega\bigl(\exp(-tJS)\xi,\ SJ\exp(-tJS)\eta\bigr)\\
+&=\omega\bigl(SJ\Xi,H\bigr)+\omega\bigl(\Xi,SJH\bigr)=0
+\end{aligned}
+\]
+（其中我们已令 $\Xi=\exp(-tJS)\xi$ 与 $H=\exp(-tJS)\eta$（大写的 $\eta$）），于是 $\omega(J_{t}\xi,J_{t}\eta)$ 是常值的，并且等于 $\omega(J\xi,J\eta)=\omega(\xi,\eta)$。这一计算还给出
+\[
+\omega(J_{t}\xi,\eta)=\omega\bigl(J_{t}^{2}\xi,J_{t}\eta\bigr)=-\omega(\xi,J_{t}\eta)=\omega(J_{t}\eta,\xi)\text{，}
+\]
+从而 $\omega(\cdot,J_{t}\cdot)$ 是一个\trSymmetricBilinearForm。再有，
+\[
+\omega(\xi,J_{t}\eta)=\omega(\xi,J\eta)+O(t)\text{，}
+\]
+故至少对充分小的 $t$ 而言，$\omega(\cdot,J_{t}\cdot)$ 确实是一个\trRiemann\trMetric。
+\end{proof}
+
+\subsection{定理~10.1.2~的证明}
+\label{subsec:proof-theorem-regularity}
+
+正如\cref{sec:perturbations-h}中那样，我们在 $J$ 的\trPerturbation{}的这个空间上使用 $\cC^{\infty}_{\varepsilon}$ 范数
+\[
+\|S\|_{\varepsilon}=\sum_{k=0}^{\infty}\varepsilon_{k}\,\|S\|_{\cC^{k}}
+\]
+（对一个充分递减的序列 $\varepsilon=(\varepsilon_{k})$）。与\cref{sec:perturbations-h}中一样，我们有下面的结果。
+
+\begin{proposition}\label{thm:ceps-banach}
+对一个选取恰当的序列 $\varepsilon$，由满足
+\[
+\left\{
+\begin{array}{l}
+JS+SJ=0\\
+\omega(S\xi,\eta)+\omega(\xi,S\eta)=0
+\end{array}
+\right.
+\qquad\text{并且}\qquad \|S\|_{\varepsilon}<+\infty
+\]
+的 $\operatorname{End}(TW)$ 的\trSection{}所成的空间 $\cC^{\infty}_{\varepsilon}(J)$，是一个\trSeparable{}的\trBanachSpace{}，它在\trFiberBundle{} $T\scr{J}_{c}(\omega)$ 的 $L^{2}$ \trSection{}的空间中是\trDense{}的。\noqed
+\end{proposition}
+
+我们取定一个属于 $\scr{J}_{c}(\omega)$ 的\trAlmostComplex{}结构 $J_{0}$ 与一个实数 $\delta>0$。我们定义单位球的像：
+\[
+\scr{J}_{0}(\delta)=\bigl\{J_{0}\exp(-J_{0}S)\ \bigm|\ S\in\cC^{\infty}_{\varepsilon}(J_{0})\ \text{且}\ \|S\|_{\varepsilon}<\delta\bigr\}
+\]
+以及
+\[
+\scr{Z}_{0}(x,y)=\bigl\{(u,J)\in\scr{Z}(x,y,H)\ \bigm|\ J\in\scr{J}_{0}(\delta)\bigr\}
+\]
+（这个空间依赖于半径 $\delta$ 的选取；为了简化记号，我们把它省去了）。
+
+\begin{proposition}\label{thm:z0-banach-manifold}
+子空间 $\scr{Z}_{0}(x,y)$ 是一个\trBanachManifold。
+\end{proposition}
+
+本节其余的部分就用于证明这个命题。正如\cref{sec:transversality}中那样，我们将证明 $\scr{Z}_{0}$ 是某个\trFiberBundle{}的某个\trSection{}的零点所成之集。这里的分析要容易些，因为我们只有一个变量，并且可以停留在 $L^{2}$ 与 $W^{1,2}$ 之中。于是我们考虑
+\[
+\scr{P}^{1,2}(x,y)=\bigl\{u\in W^{1,2}(\RR;W)\ \bigm|\ \lim_{s\to-\infty}u(s)=x\ \text{且}\ \lim_{s\to+\infty}u(s)=y\bigr\}
+\]
+（这个极限是有意义的，因为 $W^{1,2}$ 的元素都是连续映射），以及
+\[
+\scr{E}=\bigl\{(u,J,Y)\ \bigm|\ u\in\scr{P}^{1,2}(x,y),\ J\in\scr{J}_{0}(\delta),\ Y\ \text{是沿 } u\ \text{的一个 } L^{2}\ \text{类的\trVectorField}\bigr\}\text{，}
+\]
+这是 $\scr{P}^{1,2}(x,y)\times\scr{J}_{0}(\delta)$ 上的一个\trFiberBundle，它在 $(u,J)$ 处的\trFiber{}是沿 $u$ 的 $L^{2}$ 类\trVectorField{}所成的空间。利用 $TW$ 的一个\trTrivialization{} $Z_{t}$（类似于我们在第~8~章中所取定的那一个），我们看到这个空间不是别的，正是 $L^{2}(\RR;\RR^{2n})$。映射
+\[
+\begin{aligned}
+\scr{G}\colon\scr{P}^{1,2}(x,y)\times\scr{J}_{0}(\delta)&\longrightarrow\scr{E}\\
+(u,J)&\longmapsto\Bigl(u,\ \frac{du}{ds}+\operatorname{grad}_{u}H\Bigr)=\Bigl(u,\ \frac{du}{ds}-JX_{H}\Bigr)
+\end{aligned}
+\]
+是 $\scr{E}$ 的一个在 $\scr{Z}_{0}(x,y)$ 上为零的\trSection。让我们证明它与\trZeroSection\trTransverse。我们需要计算它的\trDifferential\footnote{译注：原书此式下标印作 $(u,J_{0})$，定义域的第二因子亦印作 $\scr{J}_{0}(\delta)$；按 $\scr{G}$ 的定义域为 $\scr{P}^{1,2}(x,y)\times\scr{J}_{0}(\delta)$，其\trTangentSpace{}的第二因子应为 $T_{J}\scr{J}_{0}(\delta)$，且下文（\cref{thm:jreg-lu-surjective} 的证明）均作 $(d\pi)_{(u,J)}$ 与 $T_{(u,J)}\scr{Z}_{0}(x,y)$，疑应分别读作 $(u,J)$ 与 $T_{J}\scr{J}_{0}(\delta)$。此处照原书排印，存疑备案。——译者注}
+\[
+(d\scr{G})_{(u,J_{0})}\colon W^{1,2}(\RR;\RR^{2n})\times\scr{J}_{0}(\delta)\longrightarrow L^{2}(\RR;\RR^{2n})\text{。}
+\]
+我们已经在\cref{subsec:linearization-equation}中把 $\scr{G}$ 在一个常值\trMetric{}下（从而在一个常值的 $J$ 下）\trLinearization{}过，并且在\cref{sec:linearization-floer}中把 $\scr{F}$（带附加变量 $t$）\trLinearization{}过。在与到\trFiber{}上的投影取复合之后，同样的计算给出
+\[
+\begin{aligned}
+\Gamma=\pi\circ(d\scr{G})_{(u,J_{0})}(Y,S)&=\Bigl(\frac{dY}{ds}-J_{0}\bigl[(X_{H})_{u},\,Y\bigr]\Bigr)-S(X_{H})_{u}\\
+&=L_{u}(Y)-S(X_{H})_{u}\text{，}
+\end{aligned}
+\]
+其中 $L_{u}\colon W^{1,2}(\RR;\RR^{2n})\to L^{2}(\RR;\RR^{2n})$ 是\cref{subsec:linearization-equation}中定义的那个\trLinearOperator。我们已经说过，$L_{u}$ 是一个\trFredholmOperator{}（因为 $H$ 是一个\trMorseFunction），从而它的像是闭的，并且它的余维数是有限的。与\cref{thm:z-pairing-vanish}的证明中同样的推理告诉我们：$\Gamma$ 的像是一个余维数为有限的闭子空间。\footnote{译注：原书此处印作“$\Gamma$ 的像是一个有限维的闭子空间”；按前句，$L_{u}$ 的像闭且余维数有限，而由 $\Gamma(Y,0)=L_{u}Y$ 可知 $\Gamma$ 的像包含 $L_{u}$ 的像，故只能说余维数有限——“有限维”应系“余维数有限”之误（紧随其后的\cref{thm:gamma-orthogonal-zero}恰要证明 $\Gamma$ 的像的\trOrthogonal{}补为零，也就是说 $\Gamma$ 的像等于无限维的 $L^{2}(\RR;\RR^{2n})$ 全空间，两读必有一误）。此处径改。——译者注}为了证明 $\Gamma$ 在 $\scr{Z}_{0}$ 的各点处的\trSurjective{}性，只需证明下面的结果（$L^{2}$ 的对偶是 $L^{2}$）。
+
+\begin{lemma}\label{thm:gamma-orthogonal-zero}
+$\Gamma$ 的像在 $L^{2}(\RR;\RR^{2n})$ 中的\trOrthogonal{}补约化为 $0$。
+\end{lemma}
+
+\begin{proof}
+设 $Z$ 属于这个\trOrthogonal{}补，也就是说：对一切 $Y$ 与 $S$，我们有
+\[
+\int_{-\infty}^{+\infty}\bigl\langle Z(s),\,\Gamma(Y,S)\bigr\rangle\,ds=0\text{，}
+\]
+或者等价地，
+\[
+\int_{-\infty}^{+\infty}\Bigl\langle Z(s),\,\frac{dY}{ds}-J_{0}[X_{H},Y]\Bigr\rangle\,ds-\int_{-\infty}^{+\infty}\bigl\langle Z(s),\,S(X_{H})\bigr\rangle\,ds=0
+\]
+对每个 $Y$ 与 $S$ 成立；也就是说，
+\[
+\int_{-\infty}^{+\infty}\Bigl\langle Z(s),\,\frac{dY}{ds}-J_{0}[X_{H},Y]\Bigr\rangle\,ds=0
+\qquad\text{对沿 } u\ \text{的每个场 } Y
+\]
+以及
+\[
+\int_{-\infty}^{+\infty}\bigl\langle Z(s),\,S(X_{H})\bigr\rangle\,ds=0
+\qquad\text{对每个\trSection{} } S\text{。}
+\]
+这些等式中的第一条，$\langle Z,L_{u}(Y)\rangle=0$，可以化成：对每个 $Y$，$\langle L_{u}^{\star}Z,Y\rangle=0$，也就是说 $L_{u}^{\star}Z=0$，这是一个形如
+\[
+-\frac{dZ}{ds}+B(s)Z=0
+\]
+的\trDifferential{}方程。这就保证了：这个我们起初只假定属于 $L^{2}$ 的解 $Z$ 属于 $W^{1,2}$，从而是 $\cC^{\infty}$ 的。
+第二条等式是
+\[
+\bigl\langle Z,\,S(X_{H})\bigr\rangle=\Bigl\langle Z,\,-SJ\frac{du}{ds}\Bigr\rangle=-\Bigl\langle SZ,\,J\frac{du}{ds}\Bigr\rangle
+\]
+因为 $S$ 是对称的。我们想要证明 $Z$ 为零。我们假定情形并非如此，并选取一个使得 $Z(s_{0})\neq0$ 的 $s_{0}$。我们在 $x_{0}=u(s_{0})\in W$ 的邻域内使用一个\trUnitary{}\trTrivialization，使得 $J_{0}$ 在其中是标准的。于是 $S$ 就简单地是一个\trSymmetricMatrix{}（它依赖于所选取的点），满足 $S=J_{0}SJ_{0}$。我们考虑向量 $J_{0}\frac{du}{ds}(s_{0})$，并构造一个矩阵 $S_{0}$，使得
+\[
+\Bigl\langle Z(s_{0}),\,S_{0}J_{0}\frac{du}{ds}(s_{0})\Bigr\rangle\neq0\text{。}
+\]
+至于 $S_{0}$ 的存在性，我们利用下面这个来自线性代数的简单结果。
+
+\begin{lemma}\label{thm:sv-pairing-nonzero}
+设 $U$ 与 $V$ 是 $\CC^{n}=\RR^{2n}$ 中的两个非零向量。那么存在一个实\trSymmetricMatrix{} $S$，它是反 $\CC$-线性的，并且使得\trEuclidean{}\trInnerProduct{} $\langle U,SV\rangle$ 非零。
+\end{lemma}
+
+暂且承认这条引理，那么就存在一个 $\cC^{\infty}_{\varepsilon}$ 映射，其\trSupport{}含于 $x_{0}$ 的一个邻域中，并且在 $x_{0}$ 处取值 $S_{0}$。这就给出了所期望的矛盾。
+\end{proof}
+
+为了完整起见，这里给出\cref{thm:sv-pairing-nonzero}的一个证明。由这两个向量 $U$ 与 $V$ 生成的复向量子空间的维数（至多）是 $2$，因此只需在 $\CC^{2}$ 中证明这条引理。由于 $U$ 非零，我们可以——而且我们也确实如此——假定它是我们下面即将使用的一个基的第一个向量。矩阵 $S$ 必须形如\footnote{译注：原书此块形不确。$S$ 反 $\CC$-线性（即与标准\trComplexStructure{}反交换：$SJ_{0}=-J_{0}S$，书中写作 $S=J_{0}SJ_{0}$）且实对称，两者联立恰给出 $S=\begin{pmatrix} A & B\\ B & -A \end{pmatrix}$，其中 $A$ 与 $B$ 皆对称；书中印形 $\begin{pmatrix} A & B\\ -B & A \end{pmatrix}$（$A$ 对称、$B$ \trAntisymmetric）实为与 $J_{0}$ 交换（复线性）的矩阵之形，与“反 $\CC$-线性”相抵。按正确块形，书中随后“第一列不受约束、令 $S(U)=V$”的论证即可畅通（$S$ 实对称保证 $\langle U,SV\rangle=\langle SU,V\rangle$），本引理本身成立。此处照原书排印，载此更正。——译者注}
+\[
+S=\begin{pmatrix} A & B\\ -B & A \end{pmatrix}\text{，}
+\qquad\text{其中 } A\ \text{是对称的，}\ B\ \text{是\trAntisymmetric{}的。}
+\]
+于是 $S$ 的第一列不受任何约束，我们可以为它选取向量 $V$。但这样一来就有 $S(U)=V$，并且
+\[
+\langle U,SV\rangle=\langle SU,V\rangle=\langle V,V\rangle=\|V\|^{2}\neq0\text{，}
+\]
+这正是所要证明的。\noqed
+
+这就蕴含了\cref{thm:z0-banach-manifold}，因为按\cref{thm:continuous-right-inverse}，$\Gamma$ 具有一个连续的右逆。
+
+为了结束\cref{thm:calibrated-dense-morse-smale}的证明，我们考虑投影
+\[
+\pi\colon\scr{Z}_{0}(x,y)\longrightarrow\scr{J}_{0}(\delta)
+\]
+它由 $\pi(u,J)=J$ 定义。容易验证：$\pi$ 是一个\trFredholm{}映射（如同\cref{subsec:tangent-space-z}中那样）。\trSard--\trSmale{}定理（\cref{thm:sard-smale}）断言了由 $\pi$ 的\trRegularValue{}所组成的一个\trDense\trOpen{}子集 $\scr{J}_{\mathrm{reg}}\subset\scr{J}_{0}(\delta)$ 的存在性。
+
+\begin{lemma}\label{thm:jreg-lu-surjective}
+若 $J\in\scr{J}_{\mathrm{reg}}$，那么对\trVectorField{} $-JX_{H}$ 的、把 $x$ 连接到 $y$ 的每一条\trTrajectory{} $u$，\trLinearization{}算子 $L_{u}$ 都是\trSurjective{}的。
+\end{lemma}
+
+\begin{proof}
+如果 $L_{u}\colon W^{1,2}(\RR;\RR^{2n})\to L^{2}(\RR;\RR^{2n})$ 不是\trSurjective{}的，那么就存在一个非零的 $Z\in L^{2}(\RR;\RR^{2n})$，它与 $L_{u}$ 的像\trOrthogonal。另一方面，该假设保证了 $(d\pi)_{(u,J)}$ 是\trSurjective{}的。\cref{thm:ceps-banach}的证明把\trTangentSpace{} $T_{(u,J)}\scr{Z}_{0}(x,y)$ 描述成 $\Gamma$ 的\trKernel；也就是说，
+\[
+\begin{aligned}
+T_{(u,J)}\scr{Z}_{0}(x,y)
+=\bigl\{(Y,S)\in W^{1,2}&(\RR;\RR^{2n})\times T_{J}\scr{J}_{0}(\delta)\\
+&\bigm|\ L_{u}(Y)-S(X_{H})_{u}=0\bigr\}\text{。}
+\end{aligned}
+\]
+由于对每个 $Y\in W^{1,2}(\RR;\RR^{2n})$ 都有 $\langle L_{u}Y,Z\rangle=0$，$(d\pi)_{(u,J)}$ 的\trSurjective{}性就蕴含
+\[
+\text{对每个 } S\in T_{J}\scr{J}_{0}(\delta)\text{，}\quad\bigl\langle S(X_{H})_{u},\,Z\bigr\rangle=0\text{。}
+\]
+在\cref{thm:gamma-orthogonal-zero}的证明中，我们已经看到这就蕴含 $Z=0$，这既与假设相矛盾，又证明了这条引理。
+\end{proof}
+
+通过对针对 $H$ 的各个不同的\trCriticalPoint{}偶对所得到的那些不同的集 $\scr{J}_{\mathrm{reg}}$ 取交，我们就得到了\cref{thm:calibrated-dense-morse-smale}的陈述中所宣布的那个集 $\scr{J}_{\mathrm{reg}}(H)$（我们还用到了\cref{thm:smale-iff-lu-surjective}）。\nolinebreak\noqed

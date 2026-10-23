@@ -1,0 +1,128 @@
+
+\section{\trDistribution{}空间、\trWeakSolution}
+\label{sec:distribution-spaces-weak-solutions}
+
+\subsection{\trDistribution}
+\label{subsec:distributions}
+
+我们在此快速回顾一下\trDistribution{}理论的基本定义。读者可参考自己所喜爱的书，至于我们，我们用的是 [13]。
+
+对 $\RR^{n}$ 的每个\trOpen{}子集 $U$，我们考虑由 $\cC^{\infty}$ 类的、在 $U$ 内具有紧\trSupport{}的函数所组成的空间 $\cC^{\infty}_{0}(U)$。$U$ 上的\trDistribution{}所成的空间 $\scr{D}'(U)$ 是 $\cC^{\infty}_{0}(U)$ 的一个对偶；更精确地说，它是 $\cC^{\infty}_{0}(U)$ 上那些在下述意义下连续的线性泛函所成的空间：对每个\trCompact{}子集 $K\subset U$，都存在一个整数 $p$ 与一个常数 $C$，使得
+\[
+\text{对每个\trSupport{}含于 $K$ 的 }\varphi\in\cC^{\infty}_{0}(U)\text{，}\quad
+|\langle u,\varphi\rangle|\le C\,\sup_{\substack{x\in K\\ |\alpha|\le p}}
+\left|\frac{\partial^{\alpha}\varphi}{\partial x^{\alpha}}(x)\right|\text{。}
+\]
+我们说一个由\trDistribution{}组成的序列 $u_{n}$\trConvergence{}到一个线性泛函 $u$，如果我们有
+\[
+\text{对每个 }\varphi\in\cC^{\infty}_{0}(U)\text{，}\quad
+\lim_{n\to+\infty}\langle u_{n},\varphi\rangle=\langle u,\varphi\rangle\text{。}
+\]
+这并非全然显然，不过极限 $u$ 这时也是一个\trDistribution。
+
+我们以一种显见的方式定义一个\trDistribution{}的\trSupport（即取使这个\trDistribution{}在其上为零的最大的\trOpen{}集的补集），并记 $\scr{E}'(U)$ 为在 $U$ 内具有紧\trSupport{}的\trDistribution{}所成的空间。
+
+\noindent\textbf{例。}
+\begin{enumerate}[label=(\arabic*)]
+\item 在 $U$ 的一个给定点处取函数值，这定义了 $\cC^{\infty}_{0}(U)$ 上的一个线性泛函，它是一个\trDistribution，即
+\[
+\langle\delta_{a},\varphi\rangle=\varphi(a)\text{，}
+\]
+也就是在 $a$ 处的狄拉克 $\delta$ 函数（Dirac delta function）（我们记 $\delta=\delta_{0}$）。
+\item 更一般地，在一个点 $a$ 处取值的偏导数的线性组合（诸如 $\bar{\partial}$、$\Delta$）也都是\trDistribution。
+\item 如果 $f$ 是 $U$ 上的一个局部可积函数，那么对每个 $\varphi\in\cC^{\infty}_{0}(U)$，我们都可以定义线性泛函
+\[
+\langle f,\varphi\rangle=\int f\varphi\,dx\text{，}
+\]
+它是一个\trDistribution。如果两个局部可积函数 $f$ 与 $g$ 在 $U$ 上几乎处处相等，那么它们便定义同一个线性泛函。此外，如果序列 $(f_{n})$ 在 $U$ 的诸\trCompact{}子集上按 $L^{1}$ 范数\trConvergence{}到 $f$，那么它按\trDistribution{}的意义趋于 $f$，因此 $L^{1}_{\mathrm{loc}}$ 由此便是 $\scr{D}'(U)$ 的一个子空间。对 $L^{p}_{\mathrm{loc}}$ 也是如此（借助\trHoelder{}不等式）。
+\end{enumerate}
+
+\subsection{导数}
+\label{subsec:derivatives-distributions}
+
+我们如下定义一个\trDistribution{} $u$ 的诸导数（心中记着分部积分公式）：令
+\[
+\left\langle \frac{\partial u}{\partial x_{i}},\varphi\right\rangle
+=-\left\langle u,\frac{\partial\varphi}{\partial x_{i}}\right\rangle\text{。}
+\]
+我们可以容易地验证，这样得到的线性泛函确实是一个\trDistribution。因此我们可以迭代这一过程。
+
+例如，$\delta$ 就是 Heaviside 阶跃函数（Heaviside step function）$H$（它在 $x<0$ 时取值 $0$、在 $x\ge0$ 时取值 $1$）的导数：$H$ 是局部可积的，因而是一个\trDistribution，而计算规则给出
+\[
+\langle H',\varphi\rangle=-\int H(x)\varphi'(x)\,dx
+=-\int_{0}^{+\infty}\varphi'(x)\,dx=\varphi(0)\text{。}
+\]
+
+\subsection{\trConvolution}
+\label{subsec:convolution}
+
+通过照搬两个函数的\trConvolution{}的定义（让我们取 $u$ 可积，而 $\varphi$ 属于 $\cC^{\infty}$ 类）
+\[
+(u\star\varphi)(x)=\int\varphi(x-y)\,u(y)\,dy=\langle u(y),\varphi(x-y)\rangle\text{，}
+\]
+我们可以对一个具有紧\trSupport{}的\trDistribution{}与一个具有紧\trSupport{}的 $\cC^{\infty}$ 函数如下作\trConvolution：对 $u\in\scr{E}'(\RR^{n})$、对每个 $\varphi\in\cC^{\infty}_{0}(\RR^{n})$%
+\footnote{译注：原书此处印作粗正体 $\mathbf{C}^{\infty}_{0}$；同页上下两处及 p.570 的通例均作花体 $\cC^{\infty}_{0}$，疑为排印之误。此处径改。——译者注}
+以及在每个点 $x$ 处，令
+\[
+(u\star\varphi)(x)=\langle u(y),\varphi(x-y)\rangle\text{。}
+\]
+\trConvolution{}的一切性质、特别是下面要用的那些，可参见例如教程 [13]。这样定义的函数 $u\star\varphi$ 属于 $\cC^{\infty}_{0}(\RR^{n})$，其\trSupport{}满足
+\[
+\operatorname{Supp}(u\star\varphi)\subset\operatorname{Supp}u+\operatorname{Supp}\varphi\text{，}
+\]
+而它的诸导数满足
+\[
+\frac{\partial^{\alpha}}{\partial x^{\alpha}}(u\star\varphi)
+=u\star\left(\frac{\partial^{\alpha}\varphi}{\partial x^{\alpha}}\right)
+=\left(\frac{\partial^{\alpha}u}{\partial x^{\alpha}}\right)\star\varphi\text{。}
+\]
+如果 $u$ 是一个具有紧\trSupport{}的\trDistribution，而 $\varphi$ 与 $\psi$ 是两个具有紧\trSupport{}的 $\cC^{\infty}$ 函数，那么我们有下述结合性质：
+\[
+(u\star\varphi)\star\psi=u\star(\varphi\star\psi)\text{。}
+\]
+更一般地，我们可以对\trDistribution{}作\trConvolution，例如两个属于 $L^{1}_{\mathrm{loc}}$ 的函数，只要它们的\trSupport{} $A$ 与 $B$ 是“可\trConvolution{}的”（convolutive），也就是说，满足
+\[
+\begin{aligned}
+&\forall R>0,\ \exists\rho(R)>0\ \text{使得}\\
+&\quad\bigl(x\in A,\ y\in B,\ \|x+y\|\le R\bigr)
+\Longrightarrow\bigl(\|x\|\le\rho(R),\ \|y\|\le\rho(R)\bigr)\text{。}
+\end{aligned}
+\]
+这是一个交换的（而且也是结合的）乘积。
+
+这样，我们可以定义 $\scr{E}'(U)$ 中的一个\trDistribution{}与一个 $\cC^{\infty}$ 函数的\trConvolution，或者一个任意的\trDistribution{}与一个具有紧\trSupport{}的 $\cC^{\infty}$ 函数的\trConvolution。在这两种情形，结果都是一个 $\cC^{\infty}$ 函数。
+
+另一个有用的注记是这样一个事实：$\delta$，即在 $0$ 处的狄拉克 $\delta$ 函数，是这个“乘积”的单位元：
+\[
+\delta\star\varphi=\varphi
+\]
+（这由\trConvolution{}的定义即得）。
+
+\subsection{\trFundamentalSolution、\trWeakSolution}
+\label{subsec:fundamental-solution-weak-solutions}
+
+设 $L$ 是一个\trDifferential{}算子。如果 $f$ 是一个属于 $L^{p}_{\mathrm{loc}}$ 的函数（或更一般地是一个\trDistribution），那么我们把方程 $Lu=f$ 的\trWeakSolution{}理解为\trDistribution{}空间中的一个解。如果 $L$ 具有常系数，那么上面给出的\trConvolution{}性质便蕴含 $Lu=\delta\star Lu=L\delta\star u$，于是该方程也可以写成 $L\delta\star u=f$。我们把方程 $Lu=\delta$ 的\trFundamentalSolution（fundamental solution）、或者说是“$L$ 的\trFundamentalSolution”，理解为一个满足
+\[
+L\delta\star E=L(E)=\delta
+\]
+的\trDistribution{} $E$，其中 $L\delta$ 被视为一个\trDistribution。%
+\footnote{译注：原书此处印作“方程 $Lu=0$ 的\trFundamentalSolution”；由紧随其后的定义式 $L\delta\star E=L(E)=\delta$ 可知，$E$ 满足的是 $L(E)=\delta$ 而非 $Lu=0$，疑应为 $Lu=\delta$。此处径改。——译者注}
+例如，由\trCauchy{}公式，当 $L$ 是算子 $\bar{\partial}$ 时，函数 $1/\pi z$ 正是这种情形，这一点我们将在\cref{sec:cauchy-riemann-equation}中证明。
+
+形式上，如果 $E$ 是 $L$ 的一个\trFundamentalSolution，那么我们可以指望：对每个函数 $f$ 都有
+\[
+L\delta\star(E\star f)=(L\delta\star E)\star f=\delta\star f=f\text{，}
+\]
+从而能够通过与一个\trFundamentalSolution{}作\trConvolution{}来表达 $Lu=f$ 的诸解。事实确实如此。更精确地说，我们有下述结果。
+
+\begin{theorem}[{[13,~Theorem~8.1.2]}]\label{thm:weak-solution-compact-support}
+如果 $L$ 是一个具有常系数并且拥有一个\trFundamentalSolution $E$ 的\trDifferential{}算子，而且如果 $f$ 是一个具有紧\trSupport{}的\trDistribution，那么方程 $Lu=f$ 拥有唯一的具有紧\trSupport{}的\trWeakSolution，即 $u=E\star f$。\footnote{译注：此处陈述照原书排印，存疑备案：具有紧\trSupport{}的\trWeakSolution{}未必存在。反例：取 $L=\frac{d}{dx}$、$E$ 为 Heaviside 阶跃函数（由 $E'=\delta$ 可知 $E$ 确为 $L$ 的一个\trFundamentalSolution）、$f=\delta$，则 $E\star f=E$ 不具有紧\trSupport{}；且不存在满足 $u'=\delta$ 的具有紧\trSupport{}的 $u$——否则取在 $\operatorname{Supp}u$ 的一个邻域内恒等于 $1$ 的 $\varphi\in\cC^{\infty}_{0}(\RR^{n})$，便有 $\langle u',\varphi\rangle=-\langle u,\varphi'\rangle=0$，而 $\langle\delta,\varphi\rangle=\varphi(0)=1$，矛盾。正确的说法是：$E\star f$ 总是方程 $Lu=f$ 在\trDistribution{}意义下的一个解；具有紧\trSupport{}的解若存在，则必唯一且等于 $E\star f$。下面的证明恰只证了这后一半（条件唯一性），而未证存在性。——译者注}
+\end{theorem}
+
+\begin{proof}
+上面的论证表明 $u=E\star f$ 的确是一个解。这个解的唯一性来自它具有紧\trSupport{}这一事实：如果 $u$ 是一个具有紧\trSupport{}的解，那么 $u$、$L\delta$ 与 $E$ 的诸\trSupport{}便满足“可\trConvolution{}性”条件，而由此得到的结合性给出
+\[
+u=\delta\star u=\bigl(E\star(L\delta)\bigr)\star u
+=E\star\bigl((L\delta)\star u\bigr)=E\star f\text{。}\qedhere
+\]
+\end{proof}

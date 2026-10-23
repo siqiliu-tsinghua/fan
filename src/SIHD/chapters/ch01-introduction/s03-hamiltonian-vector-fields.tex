@@ -1,0 +1,451 @@
+
+\section{\trHamiltonianVectorField{}与\trSymplecticManifold}
+\label{sec:hamiltonian-vector-fields-manifolds}
+
+为了在\textbf{\trManifold}（manifold）上引入\trHamiltonianVectorField，%
+我们必须首先把\textbf{\trSymplecticStructure}（symplectic structure）
+\[
+\omega_0=\sum_{j=1}^{n}dy_j\wedge dx_j\qquad\text{于}\qquad\R^{2n}
+\]
+扩充到偶数维\trManifold{}上。
+
+\begin{definition}\label{def:symplectic-structure}
+偶数维\textbf{\trManifold}（manifold） $M$ 上的\trSymplecticStructure{}是 $M$ 上满足如下条件的一个\textbf{\trTwoForm}（2-form） $\omega$：
+\begin{enumerate}[label=(\roman*)]
+\item $d\omega=0$，即 $\omega$ 是\trClosed{}形式。
+\item $\omega$ 是\trNondegenerate{}的。
+\end{enumerate}
+\end{definition}
+
+第二个条件要求：对每个\textbf{\trTangentSpace}（tangent space）$T_xM$，%
+若 $\omega_x(u,v)=0$ 对一切 $v\in T_xM$ 成立，则 $u=0$。%
+这时便把偶对 $(M,\omega)$ 称为\trSymplecticManifold。%
+于是，\trSymplecticManifold{}的每个\trTangentSpace{} $T_xM$ 借助在 $x$ 处特定的%
+\trAntisymmetric{}且\trNondegenerate{}的\trBilinear{}形式 $\omega_x$，%
+便成为一个\trSymplecticVectorSpace。因此，$M$ 的维数为偶数。
+
+一个例子便是\trSymplecticManifold{} $(\R^{2n},\omega_0)$；事实上，%
+由于 $\omega_0$ 是常值形式，我们有 $d\omega_0=0$。%
+既然假定\trSymplecticForm{} $\omega$ 是\trClosed{}的，每个\trSymplecticManifold{}局部地看来%
+都如同 $(\R^{2n},\omega_0)$；我们现在就来证明：总存在局部坐标，%
+使\trSymplecticForm{}在其中由常值形式 $\omega_0$ 表示。
+
+\begin{theorem}[\trDarboux]\label{thm:darboux}
+设 $\omega$ 是 $\dim M=2n$ 的\trManifold{}上的一个\trNondegenerate\trTwoForm。%
+则 $d\omega=0$ 当且仅当在每个点 $p\in M$ 处都存在坐标 $(U,\varphi)$，%
+其中 $\varphi:(x_1,\dots,x_n,y_1,\dots,y_n)\mapsto q\in U\subset M$%
+满足 $\varphi(0)=p$，并且
+\[
+\varphi^{*}\omega=\omega_0=\sum_{j=1}^{n}dy_j\wedge dx_j.
+\]
+\end{theorem}
+
+这样的坐标有时称为\trSymplecticCoordinates。它们显然不是唯一确定的；%
+这一类中最一般的坐标，通过前面引入的 $\R^{2n}$ 中满足 $u^{*}\omega_0=\omega_0$ 的%
+\trSymplectic{}变换而与 $(x,y)$ 相联系。我们看到，\trSymplecticManifold{}%
+也可以等价地定义如下：它是 $\dim M=2n$ 的\trManifold，使得存在局部坐标 $\varphi_j$，%
+把\textbf{\trOpenSet}（open set） $U_j\subset M$ 映到固定的\trSymplecticVectorSpace{} $(\R^{2n},\omega_0)$ 的\trOpenSet{}上，%
+并且定义在 $\varphi_j(U_i\cap U_j)$ 上的坐标变换 $\varphi_i\circ\varphi_j^{-1}$%
+是 $(\R^{2n},\omega_0)$ 中的\trSymplectic{}局部\trDiffeomorphism。
+
+\begin{proof}
+任取局部坐标，我们便可假定 $\omega$ 是 $\R^{2n}$ 上依赖于 $z\in\R^{2n}$ 的一个\trTwoForm，%
+且 $p$ 对应于 $z=0$。经过\trLinear{}坐标变换，可以使该形式在原点处呈\trNormalForm，即
+\[
+\omega(0)=\sum_{j=1}^{n}dy_j\wedge dx_j\qquad\text{于}\quad z=0.
+\]
+这恰恰等同于下述断言：任何\trNondegenerate{}的\trAntisymmetric\trBilinear{}形式%
+都可化为\trNormalForm{}（\cref{prop:symplectic-basis}）。%
+我们用 $\omega_0$ 表示 $\R^{2n}$ 上的常值形式 $\sum dy_j\wedge dx_j$。%
+目标是找到 $0$ 的某\textbf{\trNeighborhood}（neighborhood）内保持原点不动的局部\trDiffeomorphism{} $\varphi$，使其求解
+\[
+\varphi^{*}\omega=\omega_0.
+\]
+我们将用\textbf{\trDeformation}（deformation）论证来求解这个方程。%
+我们用一族形式 $\omega_t$ 在 $\omega$ 与 $\omega_0$ 之间内插，定义为
+\[
+\omega_t=\omega_0+t(\omega-\omega_0),\qquad 0\le t\le1,
+\]
+即 $t=0$ 时 $\omega_t=\omega_0$，而 $\omega_1=\omega$；%
+并寻找满足 $\varphi^{0}=id$ 与
+\begin{equation}\label{eq:deformation-target}
+\bigl(\varphi^{t}\bigr)^{*}\omega_t=\omega_0,\qquad 0\le t\le1
+\end{equation}
+的整族\trDiffeomorphism{} $\varphi^{t}$。%
+于是，$t=1$ 时的那个\trDiffeomorphism{} $\varphi^{t}$ 将是我们问题的解。%
+为了求出 $\varphi^{t}$，我们将构造一个依赖于 $t$ 的\trVectorField{} $X_t$，%
+它把 $\varphi^{t}$ 作为自己的\trFlow{}生成出来。%
+对 \eqref{eq:deformation-target} 求导可知，这样的\trVectorField{} $X_t$ 必须满足恒等式
+\begin{equation}\label{eq:lie-identity-omegat}
+0=\frac{d}{dt}\bigl(\varphi^{t}\bigr)^{*}\omega_t
+ =\bigl(\varphi^{t}\bigr)^{*}\Bigl\{L_{X_t}\omega_t+\frac{d}{dt}\omega_t\Bigr\}.
+\end{equation}
+这里 $L_Y$ 表示\trVectorField{} $Y$ 的\textbf{\trLie{}导数}（Lie derivative）。%
+现在利用\trCartan{}恒等式
+\begin{equation}\label{eq:cartan-identity}
+L_X=i_X\circ d+d\circ i_X
+\end{equation}
+以及 $d\omega_t=0$ 这一假设，便得到
+\[
+0=\bigl(\varphi^{t}\bigr)^{*}\Bigl\{d\bigl(i_{X_t}\omega_t\bigr)+\omega-\omega_0\Bigr\}.
+\]
+因此，$X_t$ 必须满足\trLinear{}方程
+\begin{equation}\label{eq:xt-linear}
+d\bigl(i_{X_t}\omega_t\bigr)+\omega-\omega_0=0.
+\end{equation}
+为了解这个方程，我们注意到 $\omega-\omega_0$ 是\trClosed{}的，%
+从而由\trPoincare{}引理它在局部是\trExact{}的，%
+于是存在\trOneForm{} $\lambda$ 满足
+\[
+\omega-\omega_0=d\lambda\qquad\text{且}\qquad\lambda(0)=0.
+\]
+由于 $\omega_t(0)=\omega_0$，诸\trTwoForm{} $\omega_t$ 在原点的一个开\trNeighborhood{}内%
+对 $0\le t\le1$ 均\trNondegenerate，于是由
+\[
+i_{X_t}\omega_t=\omega_t(X_t,\cdot)=-\lambda
+\]
+（$0\le t\le1$）唯一确定了一个\trVectorField{} $X_t$，而它随即求解方程 \eqref{eq:xt-linear}。%
+由于我们已把 $\lambda(0)$ 规范化为 $0$，故 $X_t(0)=0$，%
+并且存在原点的一个开\trNeighborhood，使得 $X_t$ 的\trFlow{} $\varphi^{t}$ 在其上对一切 $0\le t\le1$ 存在。%
+它满足 $\varphi^{0}=id$ 与 $\varphi^{t}(0)=0$。%
+我们可以把上述论证反过来走一遍：按构造，这一族\trDiffeomorphism{} $\varphi^{t}$ 满足
+\[
+\frac{d}{dt}\bigl(\varphi^{t}\bigr)^{*}\omega_t=0,\qquad 0\le t\le1,
+\]
+从而对一切 $0\le t\le1$ 都有
+$\bigl(\varphi^{t}\bigr)^{*}\omega_t=\bigl(\varphi^{0}\bigr)^{*}\omega_0=\omega_0$，%
+这正是所要证明的。
+\end{proof}
+
+上面证明中所用的方法，便是 J.~\trMoser{}的所谓\trDeformation{}方法。%
+其不同寻常之处在于：人们要去寻找一个待求解的\trDifferentialEquation。%
+J.~\trMoser{}在 [160] 中引入了这一方法，%
+特别是为了证明：只要两个形式能在积分周期保持不变的\trSymplecticForm{}类内彼此\trDeformation，%
+\textbf{\trCompact\trManifold}（compact manifold）$M$ 上的两个\trSymplecticStructure{}%
+$\omega_0$ 与 $\omega_1$ 便是等价的，即存在 $M$ 的一个\trDiffeomorphism{} $\varphi$%
+使 $\varphi^{*}\omega_1=\omega_0$。%
+顺带指出，\trSymplecticForm{}在等价意义下的分类问题至今仍未解决。
+
+由\trDarboux{}的\trNormalForm{}我们得出：凡同维数的任何两个\trSymplecticManifold{}%
+都是局部无法分辨的：\trSymplecticManifold{}除维数外不具有任何局部\trSymplecticInvariant。%
+这与\textbf{\trRiemann{}流形}（Riemannian manifold）形成鲜明对照：%
+两个不同的\textbf{\trMetric}（metric）一般并非局部等距，%
+例如\textbf{\trGauss{}曲率}（Gaussian curvature）就是一个\trInvariant{}量。%
+我们在后文的目标，便是构造整体的\trSymplecticInvariant。
+
+每个\trManifold{} $M$ 都带有\textbf{\trRiemann{}结构}（Riemannian structure）。%
+与此相反，并非每个偶数维\trManifold{}都容有一个\trSymplecticStructure。%
+例如，\textbf{\trSphere}（sphere）$S^{2n}$ 当 $n\ge2$ 时便不容有\trSymplecticStructure。%
+事实上，用反证法，假定 $\omega$ 是一个\trSymplecticStructure。%
+那么 $\Omega=\omega\wedge\omega\wedge\dots\wedge\omega$（$n$ 次）是一个\trVolumeForm，%
+因为 $\omega$ 是\trNondegenerate{}的。但由于第二个%
+\textbf{\trDeRham\trCohomology{}群}（de Rham cohomology group）为零，%
+即 $H^{2}(S^{2n})=0$，故存在 $S^{2n}$ 上的一个\trOneForm{} $\alpha$ 使 $\omega=d\alpha$。%
+于是 $\Omega=d\beta$，其中 $\beta=\omega\wedge\omega\wedge\dots\wedge\omega\wedge\alpha$，%
+从而由\trStokes{}定理
+\[
+\int_{S^{2n}}\Omega=\int_{\partial S^{2n}}\beta=0,
+\]
+这对一个\trVolumeForm{}来说当然是不可能的。%
+这个论证显然适用于任何无\textbf{\trBoundary}（boundary）的\trCompact\trManifold，%
+只要对某个 $1\le j\le n-1$ 有 $H^{2j}(M)=0$。
+
+接下来，我们引入 $(\R^{2n},\omega_0)$ 中\trSymplecticMapping{}的类似物。%
+两个\trSymplecticManifold{} $(M_1,\omega_1)$ 与 $(M_2,\omega_2)$ 之间的%
+可微\trMapping{} $f:M_1\to M_2$ 称为\trSymplectic{}的，若
+\[
+f^{*}\omega_2=\omega_1,
+\]
+其中按\trTwoForm{} $\omega$ 的\trPullback{}之定义，
+\[
+\bigl(f^{*}\omega\bigr)_x(u,v)=\omega_{f(x)}\bigl(df(x)u,\ df(x)v\bigr)
+\]
+对一切 $u$, $v\in T_xM$ 成立。由于 $\omega_1$ 是\trNondegenerate{}的，%
+切映射 $df(x)$ 在每一点都必须是\trInjective{}的，从而 $\dim M_1\le\dim M_2$。%
+若 $\dim M_1=\dim M_2$，则 $f$ 是局部\trDiffeomorphism。%
+当 $f$ 把\trSymplecticManifold{} $(M,\omega)$ 映入其自身时，%
+$f$ 为\trSymplectic{}的条件便成为
+\[
+f^{*}\omega=\omega,
+\]
+即 $f$ 保持\trSymplecticStructure。%
+用\trDarboux{}定理所定义的那些特定的局部\trSymplecticCoordinates{}来表达，%
+$f$ 的这个条件与我们先前在 $(\R^{2n},\omega_0)$ 中给\trMapping{}为\trSymplectic{}%
+所设的条件相一致。值得指出，局部地，这样的\trSymplecticMapping%
+可以用 $\R^{2n}$ 上的单个函数，即所谓的\textbf{\trGeneratingFunction}%
+（generating function），来表出；细节请参见附录。
+
+\trSymplecticStructure{}由于是\trNondegenerate{}的，%
+便在\trVectorField{} $X$ 与 $M$ 上的\trOneForm{}之间定义了一个\trIsomorphism：%
+$X\mapsto\omega(X,\cdot)$。特别地，若 $H:M\to\R$ 是 $M$ 上的一个\trSmooth{}函数，%
+则 $dH$ 是 $M$ 上的一个\trOneForm，于是它与 $\omega$ 一起按
+\begin{equation}\label{eq:hamiltonian-def-manifold}
+\bigl(i_{X_H}\omega\bigr)(x)=\omega\bigl(X_H(x),\,\cdot\,\bigr)=-dH(x)
+\end{equation}
+确定了\trVectorField{} $X_H$，其中 $x\in M$。%
+这个特定的\trVectorField{} $X_H$ 称为属于函数 $H$ 的\trHamiltonianVectorField。%
+由于 $d\omega=0$，利用\trCartan{}公式 $L_X=di_X+i_Xd$ 与 $ddH=0$，%
+我们从 \eqref{eq:hamiltonian-def-manifold} 推得
+\begin{equation}\label{eq:lxh-vanishes}
+L_{X_H}\omega=0.
+\end{equation}
+我们于是得出：属于\trHamiltonianVectorField{} $X_H$ 之\trFlow{}的那些\trMapping{} $\varphi^{t}$%
+使\trSymplecticForm{}保持\trInvariant，
+\begin{equation}\label{eq:flow-leaves-omega}
+\bigl(\varphi^{t}\bigr)^{*}\omega=\omega,
+\end{equation}
+从而是\trSymplectic{}的。事实上，由 \eqref{eq:lxh-vanishes}，%
+导数 $\frac{d}{dt}\bigl(\varphi^{t}\bigr)^{*}\omega=\bigl(\varphi^{t}\bigr)^{*}L_X\omega=0$\footnote{原书印作「$L_{X}\omega$」，其 $X$ 即上文 \eqref{eq:lxh-vanishes} 所证之 $X_{H}$，此处照录原书面貌。——译者注}为零，%
+又因 $\bigl(\varphi^{0}\bigr)^{*}\omega=\omega$，断言得证。%
+\trHamiltonianVectorField{}的全体在\trSymplectic{}变换下是\trInvariant{}的，%
+我们接下来验证这一点。回忆：对\trVectorField{} $X$ 与\trDiffeomorphism{} $u$%
+有 $u^{*}X=(du)^{-1}X\circ u$；等价地，$X$ 相伴随的\trFlow{} $\varphi^{t}$%
+与 $u^{*}X$ 的\trFlow{} $\psi^{t}$ 满足 $\varphi^{t}\circ u=u\circ\psi^{t}$。
+
+\begin{proposition}\label{prop:sympl-preserves-hamiltonian-fields}
+若 $u:M\to M$ 满足 $u^{*}\omega=\omega$，则对每个函数 $H:M\to\R$，
+\[
+u^{*}X_H=X_K\qquad\text{且}\qquad K=H\circ u.
+\]
+\end{proposition}
+\begin{proof}
+由\trHamiltonianVectorField{}的定义，
+\begin{align*}
+i_{X_{H\circ u}}\omega &= -d(H\circ u) = -u^{*}(dH)\\
+&= u^{*}\bigl(i_{X_H}\omega\bigr) = i_{u^{*}X_H}\bigl(u^{*}\omega\bigr)\\
+&= i_{u^{*}X_H}\omega
+\end{align*}
+而由于 $\omega$ 是\trNondegenerate{}的，\trVectorField{} $X_{H\circ u}$ 与 $u^{*}X_H$%
+必须相等。
+\end{proof}
+
+我们将从\trSymplecticStructure{}导出一个辅助结构，它在后文用起来很方便。%
+回忆：\trManifold{} $M$ 上的\textbf{\trAlmostComplexStructure}%
+（almost complex structure）指的是如下结构：它\trSmooth{}地把每个 $x\in M$%
+对应到一个满足 $J^{2}=-1$ 的\trLinear\trMapping{} $J=J_x:T_xM\to T_xM$。
+
+\begin{proposition}\label{prop:almost-complex-structure}
+若 $(M,\omega)$ 是\trSymplecticManifold，%
+则存在 $M$ 上的一个\trAlmostComplexStructure{} $J$ 与 $M$ 上的一个%
+\textbf{\trRiemann{}度量}（Riemannian metric）$\langle\cdot,\cdot\rangle$，满足
+\begin{equation}\label{eq:compatible-metric}
+\omega_x(v,Ju)=\langle v,u\rangle_x
+\end{equation}
+对 $v$, $u\in T_xM$ 成立。由\trBilinear{}形式 $\langle\cdot,\cdot\rangle$ 的对称性可知
+\begin{equation}\label{eq:j-symplectic-map}
+\omega_x(Jv,Ju)=\omega_x(v,u),
+\end{equation}
+即 $J$ 是\trSymplecticVectorSpace{} $(T_xM,\omega_x)$ 的\trSymplecticMapping。%
+此外，
+\begin{equation}\label{eq:j-adjoint}
+J^{*}=J^{-1}=-J,
+\end{equation}
+其中 $J^{*}$ 是 $J$ 在\textbf{\trInnerProduct{}空间}（inner product space）%
+$(T_xM,\langle\cdot,\cdot\rangle_x)$ 中的\textbf{\trAdjoint}（adjoint）。
+\end{proposition}
+\begin{proof}
+我们在 $M$ 上任取一个\trRiemann{}度量 $g$。固定一点 $x\in M$，%
+我们将在 $T_xM$ 中构造 $J=J_x$。所有这些构造都\trSmooth{}地依赖于 $x$，%
+且为记号简便起见，对 $x$ 的依赖将不再显式提及。%
+由于 $\omega$ 是\trNondegenerate{}的，存在唯一的\trLinear\trIsomorphism{}%
+$A:T_xM\to T_xM$ 满足
+\[
+\omega(u,v)=g(Au,v),\qquad u,\ v\in T_xM.
+\]
+由于 $\omega$ 是\trAntisymmetric{}的，我们推得
+$g(Au,v)=\omega(u,v)=-\omega(v,u)=-g(Av,u)=-g(v,A^{*}u)=g(-A^{*}u,v)$，%
+其中 $A^{*}$ 是 $A$ 的 $g$-\trAdjoint{}映射。于是
+\[
+A^{*}=-A.
+\]
+从而 $A^{*}A=AA^{*}=-A^{2}$ 是\trPositiveDefinite{}的 $g$-\trSelfAdjoint{}映射，%
+我们记 $Q=\sqrt{-A^{2}}$ 为 $-A^{2}$ 的正平方根。令
+\[
+J=AQ^{-1}.
+\]
+由于 $A$ 与 $A^{*}$ 确实相互交换，$A$ 是\textbf{\trNormalOperator}（normal operator），%
+从而 $A$ 与 $Q^{-1}$ 交换，于是可算出
+\[
+J^{2}=AQ^{-1}AQ^{-1}=A^{2}(-A^{2})^{-1}=-id.
+\]
+最后，
+\begin{align*}
+\omega(u,Jv) &= g(Au,Jv) = g\bigl(Au,AQ^{-1}v\bigr)\\
+&= g\bigl(A^{*}Au,Q^{-1}v\bigr) = g\bigl(Q^{2}u,Q^{-1}v\bigr)\\
+&= g(Qu,v).
+\end{align*}
+由于 $Q$ 是\trSymmetric{}且\trPositiveDefinite{}的，我们得出：%
+$\langle u,v\rangle:=g(Qu,v)$ 定义了 $M$ 上的一个\trRiemann{}度量，%
+它一般不同于 $g$，而它正是所要求的\trMetric。%
+命题的其余部分现在即可顺手验证，只需利用\trMetric{} $\langle u,v\rangle=\langle v,u\rangle$%
+是\trSymmetric{}的这一事实。由于构造\trSmooth{}地依赖于 $x$，证明便告完成。
+\end{proof}
+
+这个与 $\omega$ \trCompatible{}的\trAlmostComplexStructure{}%
+推广了上文考虑过的 $(\R^{2n},\omega_0)$ 中的\trComplexStructure。%
+此外，若 $\nabla H$ 表示函数 $H$ 相对于\cref{prop:almost-complex-structure}%
+的\trRiemann{}度量 $\langle\cdot,\cdot\rangle$ 所取的\trGradient，%
+即 $\langle\nabla H(x),v\rangle=dH(x)v$ 对一切 $v\in T_xM$ 成立，%
+那么利用 $J^{2}=-1$，对\trHamiltonianVectorField{} $X_H$ 便得到表示
+\begin{equation}\label{eq:xh-representation-manifold}
+X_H(x)=J\nabla H(x)\in T_xM.
+\end{equation}
+这与 $X_H$ 在 $(\R^{2n},\omega_0)$ 中的表示相一致。
+
+应当指出，\trAlmostComplexStructure{}并不是唯一的。%
+若把在 \eqref{eq:compatible-metric} 的意义下与 $\omega$ \trCompatible{}的%
+\trAlmostComplexStructure{}全体记作 $\mathcal{J}_\omega$，%
+则容易证明这个集合是\trContractible{}的。%
+事实上，对每个 $J\in\mathcal{J}_\omega$，按定义都存在唯一的\trRiemann{}度量 $g_J$%
+满足 $\omega(u,Jv)=g_J(u,v)$。从任一个\trRiemann{}度量 $g$ 出发，%
+我们在该命题的证明中构造了一个\trAlmostComplexStructure{} $J=J_g$%
+以及一个\trMetric{} $g_J$，使得 $J_{g_J}=J$。%
+于是，固定 $M$ 上任一个\trMetric{} $g^{*}$，便可在 $\mathcal{J}_\omega$ 中定义收缩
+\[
+(t,J)\mapsto J_{(1-t)g_J+tg^{*}}
+\]
+（$0\le t\le1$，$J\in\mathcal{J}_\omega$）。
+
+由\trDarboux{}定理可知，局部地除维数外没有任何\trSymplecticInvariant。%
+另一方面，总\trVolume{}是整体\trSymplecticInvariant{}的一个平凡例子。%
+事实上，若 $u:(M_1,\omega_1)\to(M_2,\omega_2)$ 是 $M_1$ 到 $M_2$ 上的%
+\trSymplecticDiffeomorphism，则由 $u^{*}\omega_2=\omega_1$ 可知，%
+$M_1$ 上相伴随的\trVolumeForm{} $\Omega_1=\omega_1\wedge\dots\wedge\omega_1$（$n$ 次）%
+与 $M_2$ 上类似定义的 $\Omega_2$ 由
+\begin{equation}\label{eq:pullback-volume}
+u^{*}\Omega_2=\Omega_1
+\end{equation}
+相联系。由于\trDiffeomorphism{} $u:M_1\to M_2$ 保持\textbf{\trOrientation}（orientation），%
+我们有
+\[
+\int_{M_1}u^{*}\Omega_2=\int_{M_2}\Omega_2
+\]
+从而由 \eqref{eq:pullback-volume} 得
+\[
+\int_{M_1}\Omega_1=\int_{M_2}\Omega_2,
+\]
+所以 $\Omega_1$ 与 $\Omega_2$ 的总\trVolume{}必须一致。%
+现在考虑\trCompact、\trConnected{}且\trOriented{}的二维\trManifold{}即\textbf{\trSurface}（surface）的特殊情形。%
+这个\trOrientation{}将由一个记作 $\omega$ 的\trVolumeForm{}给出。%
+它显然是\trClosed{}形式，因为\trSurface{}上的每个 $3$-形式都是零。%
+于是，$(M,\omega)$ 是以该\trVolumeForm{}作为\trSymplecticStructure{}的\trSymplecticManifold。
+
+现设 $(M_1,\omega_1)$ 与 $(M_2,\omega_2)$ 是两个这样的\trSurface，%
+并设 $u:M_1\to M_2$ 是满足 $u^{*}\omega_2=\omega_1$ 的\trSymplecticDiffeomorphism，%
+这在二维时与\textbf{\trVolumePreserving\trDiffeomorphism}%
+（volume-preserving diffeomorphism）是一回事，那么
+\begin{equation}\label{eq:equal-total-volumes}
+\int_{M_1}\omega_1=\int_{M_2}\omega_2,
+\end{equation}
+于是二者的\trVolume{}一致。我们的目标是证明其逆命题。我们将证明：%
+若两个\trCompact、\trConnected{}且\trOriented{}的\trSurface{} $(M_1,\omega_1)$ 与 $(M_2,\omega_2)$ 彼此\trDiffeomorphism%
+（当二者的\textbf{\trEulerCharacteristic}（Euler characteristic）相等时即是这种情形），%
+并且此外二者的总\trVolume{}一致，则存在\trDiffeomorphism{} $u:M_1\to M_2$%
+满足 $u^{*}\omega_2=\omega_1$。%
+这便按\trEulerCharacteristic{}与总\trVolume{}给出了\trCompact\trConnected{}的二维\trSymplecticManifold{}%
+的一个分类。更一般地，我们将对\trVolumePreserving\trDiffeomorphism{}证明下述断言。
+
+\begin{theorem}[\trMoser]\label{thm:moser}
+设 $M$ 是一个 $m$ 维无\trBoundary{}的\trCompact、\trConnected{}且\trOriented{}的\trManifold。%
+若 $\alpha$ 与 $\beta$ 是两个\trVolumeForm，其总\trVolume{}相等，即
+\begin{equation}\label{eq:moser-volume-assumption}
+\int_{M}\alpha=\int_{M}\beta,
+\end{equation}
+则存在 $M$ 的一个\trDiffeomorphism{} $u$ 满足 $u^{*}\beta=\alpha$。
+\end{theorem}
+
+从而，总\trVolume{}是\trVolumePreserving\trDiffeomorphism{}的唯一\trInvariant{}量。
+
+\begin{proof}
+我们按照\trDarboux{}定理的证明进行，把\trVolumeForm{} $\alpha$ \trDeformation{}为 $\beta$，%
+即定义
+\[
+\alpha_t=(1-t)\alpha+t\beta,\qquad 0\le t\le1.
+\]
+这些形式 $\alpha_t$ 都是\trVolumeForm，因为在局部，$\alpha$ 与 $\beta$%
+可写成 $\alpha=a(x)dx_1\wedge\dots\wedge dx_m$ 与 $\beta=b(x)dx_1\wedge\dots\wedge dx_m$，%
+其中 $a$ 与 $b$ 是处处非零的\trSmooth{}函数，并且由假设 \eqref{eq:moser-volume-assumption}，%
+二者必定同号。我们将构造一族\trDiffeomorphism{} $\varphi^{t}$，使之满足
+\begin{equation}\label{eq:moser-family}
+\bigl(\varphi^{t}\bigr)^{*}\alpha_t=\alpha,\qquad \varphi^{0}=id
+\end{equation}
+（$0\le t\le1$），于是\trDiffeomorphism{} $u=\varphi^{1}$ 就会解决我们的问题。%
+由于 $M$ 是\trCompact、\trConnected{}且\trOriented{}的，%
+从 $\int_{M}(\beta-\alpha)=0$ 我们得出
+\begin{equation}\label{eq:beta-alpha-exact}
+\beta-\alpha=d\gamma,
+\end{equation}
+其中 $\gamma$ 是 $M$ 上的某个 $(m-1)$-形式。这是\trDeRham{}定理的一个特例。%
+由于 $\alpha_t$ 是\trVolumeForm，我们可以找到 $M$ 上唯一的\trTimeDependent\trVectorField{} $X_t$%
+求解\trLinear{}方程
+\[
+i_{X_t}\alpha_t=-\gamma
+\]
+（$0\le t\le1$）。把这个\trVectorField{} $X_t$ 的满足 $\varphi^{0}=id$ 的\trFlow{}记作 $\varphi^{t}$。%
+由于 $M$ 是\trCompact{}的，它对一切 $t$ 都存在。%
+由于\trVolumeForm{}满足 $d\alpha_t=0$，再次利用\trCartan{}公式便得到
+\begin{align*}
+\frac{d}{dt}\bigl(\varphi^{t}\bigr)^{*}\alpha_t
+ &= \bigl(\varphi^{t}\bigr)^{*}\Bigl(L_{X_t}\alpha_t+\frac{d}{dt}\alpha_t\Bigr)\\
+ &= \bigl(\varphi^{t}\bigr)^{*}\Bigl(d\bigl(i_{X_t}\alpha_t\bigr)+\beta-\alpha\Bigr),
+\end{align*}
+而由\trVectorField{} $X_t$ 的取法，
+$d\bigl(i_{X_t}\alpha_t\bigr)+\beta-\alpha=d\bigl(i_{X_t}\alpha_t+\gamma\bigr)=0$，%
+故上式为零。因此 \eqref{eq:moser-family} 成立，证明即告完成。
+\end{proof}
+
+我们已经看到，\trSymplecticDiffeomorphism{}是\trVolumePreserving\trDiffeomorphism，%
+因此总\trVolume{}是一个（平凡的）整体\trSymplecticInvariant。%
+此外，对\trVolumePreserving\trDiffeomorphism{}而言，这是唯一的\trInvariant{}量。%
+我们后面的目标之一，是建立\trVolume{}之外的\trSymplecticInvariant，%
+从而证明\trSymplecticDiffeomorphism{}与\trVolumePreserving\trDiffeomorphism{}%
+在性质上有所不同。这样一个整体\trSymplecticInvariant{}的例子便由\trDarboux{}定理引出。%
+回忆：该定理断言，在\trSymplecticManifold{} $(M,\omega)$ 的每一点附近，%
+局部地都存在一个从 $\R^{2n}$ 中的小\textbf{\trBall}（ball）到 $M$ 内的%
+局部\trDiffeomorphism{} $\varphi$，满足 $\varphi^{*}\omega=\omega_0$。%
+这特别意味着，总存在小开球 $B(r)$ 到 $M$ 内的一个%
+\textbf{\trSymplecticEmbedding}（symplectic embedding）
+\[
+\varphi:\bigl(B(r),\omega_0\bigr)\to(M,\omega),
+\]
+其中 $B(r)=\bigl\{x\in\R^{2n}\bigm||x|^{2}<r^{2}\bigr\}$。
+
+应当指出，这当然只是一个局部结果；%
+即使在 $n\ge2$ 的 $\R^{2n}$ 上，也存在无穷\trVolume{}的\trSymplecticStructure{} $\omega$，%
+对它们不存在求解 $\varphi^{*}\omega=\omega_0$ 的 $\R^{2n}$ 的\trDiffeomorphism{} $\varphi$。%
+这种\trExotic\trSymplecticStructure{}的存在性是 M.~\trGromov{}的一个深刻结果 [107]。
+
+现在我们要寻找可\trSymplecticEmbedding{}到给定的 $\dim M=2n$ 的\trSymplecticManifold{} $(M,\omega)$%
+中的最大\trBall{} $B(r)\subset\R^{2n}$，并定义
+\[
+D(M,\omega)=\sup\Bigl\{\pi r^{2}\ \Bigm|\ \text{存在\trSymplecticEmbedding{}}\
+\varphi:\bigl(B(r),\omega_0\bigr)\to(M,\omega)\Bigr\}.
+\]
+这是一个正数或 $\infty$，我们称之为 $(M,\omega)$ 的\textbf{\trGromovWidth}（Gromov width）。%
+此刻我们还无法解释，为什么在定义中选取 $\pi r^{2}$ 而不是例如 $B(r)$ 的\trVolume。%
+不过我们要提及，$\pi r^{2}$ 恰等于 $\R^{2n}$ 中半径 $r$ 的\textbf{\trStandard\trSphere}（standard sphere）之\trBoundary{}%
+$\partial B(r)$ 上每条\textbf{\trClosedCharacteristic}（closed characteristic）$\gamma$%
+的\trAction{} $|A(\gamma)|$。这将在后文得到解释。
+
+容易看出，$D(M,\omega)$ 是一个\trSymplecticInvariant。我们首先证明，%
+$D(M,\omega)$ 具有如下意义上的\textbf{\trMonotonicity}（monotonicity）：%
+若存在\trSymplecticEmbedding{} $\psi:M\to N$，则
+\begin{equation}\label{eq:width-monotonicity}
+D(M,\omega)\le D(N,\tau),
+\end{equation}
+这是因为，对每个\trSymplecticEmbedding{} $\varphi:B(r)\to M$，%
+经由 $\psi\circ\varphi$ 定义了一个 $B(r)\to N$ 的\trSymplecticEmbedding。%
+因此，$D(N,\tau)$ 定义中的上确界是在一个可能更大的集合上取得的，%
+于是正如所断言的，确有 $D(N,\tau)\ge D(M,\omega)$。%
+若 $f:M\to N$ 是 $M$ 到 $N$ 上的\trSymplecticDiffeomorphism，%
+我们便可把\trMonotonicity{}应用于 $f$，也可应用于 $f^{-1}$，从而得出：
+
+\begin{proposition}\label{prop:gromov-width-invariant}
+若 $(M,\omega)$ 与 $(N,\tau)$ 是\textbf{\trSymplecticIsomorphism}%
+（symplectic isomorphism）的，则 $D(M,\omega)=D(N,\tau)$。
+\end{proposition}
+
+我们看到，\trGromovWidth{}是一个\trSymplecticInvariant。%
+将会看到，这个\trInvariant{}量与总\trVolume{}颇为不同，而这在 $n\ge2$ 时绝非显然。%
+\trGromovWidth{}只不过是称为\textbf{\trSymplecticCapacity}（symplectic capacity）%
+的\trSymplecticInvariant{}之类中的一个例子；这一类不变量将在第 2 章中引入。

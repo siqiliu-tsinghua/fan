@@ -1,0 +1,212 @@
+
+\section{\trHamiltonianMap{}的\trActionSpectrum}
+\label{sec:action-spectrum}
+
+\hzsync{proposition}{7}%
+\hzsync{equation}{15}%
+
+对 $H\in\mathcal{H}$，我们把与之相伴的\trHamiltonianMap{} $\varphi_{H}$ 的%
+\trFixedPoint{}之集记为
+\begin{equation*}
+\operatorname{Fix}(\varphi_{H})=\bigl\{x\in\R^{2n}\ \bigm|\ \varphi_{H}(x)=x\bigr\}.
+\end{equation*}
+若 $x_{0}\in\operatorname{Fix}(\varphi_{H})$，则\trHamiltonianEquation{}%
+$\dot{x}=X_{H}(x)$ 的解 $x(t)=\varphi_{H}^{t}(x_{0})$（$0\leq t\leq1$）满足%
+$x(1)=x(0)$，从而是 $\R^{2n}$ 中的一条\trLoop。它的\trAction{}是由
+\begin{equation*}
+A(x_{0},H)=\int_{0}^{1}\frac{1}{2}\bigl\langle-J\dot{x}(t),x(t)\bigr\rangle\,dt\footnote{原书首式右端第一积分缺 $dt$，此处径补。——译者注}%
+-\int_{0}^{1}H\bigl(t,x(t)\bigr)\,dt.
+\end{equation*}
+所定义的实数 $A(x_{0},H)$。事实证明，$A(x_{0},H)$ 只依赖于\trFixedPoint{}%
+$x_{0}$ 与\trMapping{} $\varphi_{H}$ 本身，而与生成该\trMapping{}的函数 $H$ 的%
+选取无关。
+
+\begin{lemma}\label{lem:action-well-defined}
+若 $\mathcal{H}$ 中的 $H$ 与 $K$ 生成同一个\trMapping，即%
+$\varphi_{H}=\varphi_{K}$，则
+\begin{equation*}
+A(x_{0},H)=A(x_{0},K)
+\end{equation*}
+对每一个 $x_{0}\in\operatorname{Fix}(\varphi_{H})=\operatorname{Fix}(\varphi_{K})$ 成立。
+\end{lemma}
+
+\begin{proof}
+定义分段\trSmooth{}的弧 $t\mapsto\psi^{t}$ 如下：
+\begin{align*}
+\psi^{t}\ &=\ \varphi_{H}^{t},\qquad\text{对}\quad t\in[0,1]\\
+\psi^{t}\ &=\ \varphi_{K}^{2-t},\qquad\text{对}\quad t\in[1,2].
+\end{align*}
+于是对每个 $x\in\R^{2n}$，由 $[0,2]$ 到 $\R^{2n}$ 的\trMapping{}%
+$t\mapsto\psi^{t}(x)$ 都是一条\trLoop，我们令
+\begin{equation*}
+\Delta(x)=\int_{0}^{2}\frac{1}{2}\bigl\langle-J\dot{x}(t),x(t)\bigr\rangle\,dt%
+-\int_{0}^{1}H\bigl(t,x(t)\bigr)\,dt+\int_{1}^{2}K\bigl(2-t,x(t)\bigr)\,dt
+\end{equation*}
+其中 $x(t)=\psi^{t}(x)$。此\trMapping{} $x\mapsto\Delta(x)$ 显然是\trSmooth{}的，%
+对 $x$ 求微分便得
+\begin{align*}
+\Delta'(x)h\ &={}\ \int_{0}^{2}\bigl\langle-J\dot{x}(t),d\psi^{t}(x)h\bigr\rangle\,dt\\
+&-\ \int_{0}^{1}\bigl\langle\nabla H\bigl(t,x(t)\bigr),d\psi^{t}(x)h\bigr\rangle\,dt\\
+&+\ \int_{1}^{2}\bigl\langle\nabla K\bigl(2-t,x(t)\bigr),d\psi^{t}(x)h\bigr\rangle\,dt,
+\end{align*}
+它等于 $0$，因为 $t\mapsto\psi^{t}(x)$ 在 $[0,1]$ 上是与 $H$ 相伴的%
+\trHamiltonianSystem{}的解，而在 $[1,2]$ 上是与 $-K(2-t,\cdot)$ 相伴的%
+\trHamiltonianSystem{}的解。当 $|x|$ 很大时 $\Delta(x)=0$，因为 $H$ 与 $K$ 都%
+具有\trCompactSupport，从而 $x(t)\equiv x$（$t\in[0,2]$）。这表明%
+$\Delta\equiv0$。于是，若 $x_{0}\in\operatorname{Fix}(\varphi_{H})$，则%
+$A(x_{0},H)-A(x_{0},K)=\Delta(x_{0})=0$，正是所要证明的。
+\end{proof}
+
+鉴于该\trhLemma，我们可以为\trMapping{} $\psi\in\mathcal{D}$ 的一个%
+\trFixedPoint{} $x_{0}$ 配上\trAction{} $A(x_{0},\psi)$，其定义为
+\begin{equation*}
+A(x_{0},\psi)=A(x_{0},H),\qquad\text{若}\ \ \psi=\varphi_{H}.
+\end{equation*}
+
+\begin{definition}\label{def:action-spectrum}
+$\varphi\in\mathcal{D}$ 的\trActionSpectrum{}是由
+\begin{equation*}
+\sigma(\varphi)=\bigl\{\,A(x,\varphi)\ \bigm|\ x\in\operatorname{Fix}(\varphi)\,\bigr\}.
+\end{equation*}
+所定义的集合 $\sigma(\varphi)\subset\R$。
+\end{definition}
+
+由于诸\trHamiltonianFunction{}都具有\trCompactSupport，显然%
+$0\in\sigma(\varphi)$。我们将证明，\trActionSpectrum{}在\trSymplectic\trConjugate{}%
+之下不变。更一般地，用 $\mathcal{G}$ 表示\textbf{\trConformal\trSymplecticDiffeomorphism}%
+（conformally symplectic diffeomorphism）的群。按定义，$\vartheta\in\mathcal{G}$ 满足
+\begin{equation}\label{eq:conformal-pullback}
+\vartheta^{*}\omega=\alpha\omega
+\end{equation}
+其中 $\alpha=\alpha(\vartheta)\in(0,\infty)$ 为某一常数。注意，若%
+$\varphi=\varphi_{H}$，则
+\begin{equation}\label{eq:conjugated-flow}
+\vartheta\circ\varphi_{H}^{t}\circ\vartheta^{-1}=\varphi_{\alpha H_{\vartheta}}^{t},%
+\qquad\text{其中}\ \ H_{\vartheta}(t,x)=H\bigl(t,\vartheta^{-1}(x)\bigr).
+\end{equation}
+
+\begin{proposition}\label{prop:spectrum-conjugation}
+若 $\varphi\in\mathcal{D}$ 且 $\vartheta\in\mathcal{G}$ 满足%
+$\vartheta^{*}\omega=\alpha\omega$，则
+\begin{equation*}
+A\bigl(\vartheta(x),\vartheta\varphi\vartheta^{-1}\bigr)\ =\ \alpha A(x,\varphi).
+\end{equation*}
+特别地，
+\begin{equation*}
+\sigma\bigl(\vartheta\varphi\vartheta^{-1}\bigr)\ =\ \alpha\sigma(\varphi).
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+设 $\varphi=\varphi_{H}$ 并取 $x\in\operatorname{Fix}(\varphi)$。依据%
+\cref{lem:action-well-defined}与 \eqref{eq:conjugated-flow}，只需证明%
+$A(\vartheta(x),\alpha H_{\vartheta})=\alpha A(x,H)$。我们令
+\begin{align*}
+x(t)\ &=\ \varphi_{H}^{t}(x)\\
+y(t)\ &=\ \vartheta\bigl(x(t)\bigr)=\vartheta\circ\varphi_{H}^{t}\circ\vartheta^{-1}\bigl(\vartheta(x)\bigr)=\varphi_{\alpha H_{\vartheta}}^{t}\bigl(\vartheta(x)\bigr).
+\end{align*}
+设 $\lambda$ 是 $\omega$ 的一个\textbf{\trPrimitive}（primitive），即%
+$d\lambda=\omega$，则 $\vartheta^{*}\lambda-\alpha\lambda=dF$，$F$ 为某一函数。%
+由于\trClosedForm{}沿\trLoop{}的积分为零，并按 $y(t)=\vartheta\bigl(x(t)\bigr)$%
+逐项换元，我们得到\footnote{原书此换元链第二、三行印作「$=\int_{y}\vartheta^{*}\lambda-\int_{0}^{1}\alpha H_{\vartheta}\bigl(t,y(t)\bigr)\,dt$」与「$=\alpha\int_{x}\vartheta^{*}\lambda-\alpha\int_{0}^{1}H\bigl(t,x(t)\bigr)\,dt$」，两处换元均有误：由 $y(t)=\vartheta\bigl(x(t)\bigr)$ 应为 $\int_{y}\lambda=\int_{x}\vartheta^{*}\lambda$，再由 $\vartheta^{*}\lambda-\alpha\lambda=dF$ 沿闭路积分为零得 $\int_{x}\vartheta^{*}\lambda=\alpha\int_{x}\lambda$，此处径改。——译者注}
+\begin{align*}
+A\bigl(\vartheta(x),\alpha H_{\vartheta}\bigr)\ &=\ \int_{0}^{1}\frac{1}{2}\bigl\langle-J\dot{y}(t),y(t)\bigr\rangle\,dt-\int_{0}^{1}\alpha H_{\vartheta}\bigl(t,y(t)\bigr)\,dt\\
+&=\ \int_{y}\lambda-\int_{0}^{1}\alpha H_{\vartheta}\bigl(t,y(t)\bigr)\,dt\\
+&=\ \int_{x}\vartheta^{*}\lambda-\alpha\int_{0}^{1}H\bigl(t,x(t)\bigr)\,dt\\
+&=\ \alpha\int_{x}\lambda-\alpha\int_{0}^{1}H\bigl(t,x(t)\bigr)\,dt=\alpha A(x,H). \qedhere
+\end{align*}
+\end{proof}
+
+\trActionSpectrum{}的下述性质在往后将是至关重要的。
+
+\begin{proposition}\label{prop:spectrum-compact}
+\trActionSpectrum{} $\sigma(\varphi)$ 是\trCompact{}且\trNowhereDense{}的。
+\end{proposition}
+
+\begin{proof}
+我们先证明 $\sigma(\varphi)$ 是\trCompact{}的。设 $\varphi=\varphi_{H}$，并回忆：%
+对 $x_{0}\in\operatorname{Fix}(\varphi)$，\trLoop{} $x(t)=\varphi_{H}^{t}(x_{0})$ 是
+\begin{equation*}
+\dot{x}(t)=X_{H}\bigl(x(t)\bigr),\qquad\text{且}\quad x(1)=x(0)=x_{0}.
+\end{equation*}
+的解。由于 $H$ 具有\trCompactSupport，可以找到 $R>0$，使得当%
+$|x_{0}|\geq R$ 时 $x(t)=x_{0}$ 为常值，从而 $A(x_{0},\varphi)=0$。因此，只需%
+考虑那些使 $|x(t)|\leq R$ 的\trFixedPoint{} $x_{0}$。于是，对一切%
+$x_{0}\in\operatorname{Fix}(\varphi)$ 都有 $A(x_{0},\varphi)\leq M$，从而%
+$\sigma(\varphi)$ 有界。为证\trCompactness，我们考虑对应于诸\trFixedPoint{}%
+$x_{j}=x_{j}(0)$ 且满足 $|x_{j}(t)|\leq R$ 的一列解 $x_{j}(t)$。借助%
+\trArzela-\trAscoli{}定理，可以找到一个子序列，使得 $x_{j}(t)$ 在%
+$C^{\infty}\bigl([0,1],\R^{2n}\bigr)$ 中\trConverge{}于 $x^{*}(t)$，且%
+$x^{*}(0)=x^{*}\in\operatorname{Fix}(\varphi)$。于是%
+$A(x_{j},\varphi)\to A(x^{*},\varphi)$，这就蕴含了 $\sigma(\varphi)$ 的%
+\trCompactness。
+
+剩下要证明 $\sigma(\varphi)$ 是\trNowhereDense{}的。我们首先注意，满足%
+$x(1)=x(0)=x_{0}$ 的\trLoop
+\begin{equation*}
+x(t)=\varphi_{H}^{t}(x_{0})\in C^{\infty}\bigl([0,1],\R^{2n}\bigr)
+\end{equation*}
+是第 3 章中引入的\trSobolev{}空间 $E=\Hh{1}{2}\bigl(S^{1},\R^{2n}\bigr)$ 的%
+一个元素。事实上，其诸\trFourier{}系数 $x_{k}\in\R^{2n}$ 在经两次%
+\textbf{\trIntegrationByParts}（integration by parts）后可估计为
+\begin{equation*}
+|x_{k}|\ \leq\ \Bigl(\frac{1}{2\pi|k|}\Bigr)^{2}\bigl(|\dot{x}(1)-\dot{x}(0)|+|\ddot{x}|_{C^{0}}\bigr),
+\end{equation*}
+其中 $k\in\Z$。此外，正如第 3 章中那样，可以验证这些特殊的\trLoop{}恰好是%
+\trVariational\trFunctional
+\begin{equation*}
+a_{H}(x)=a(x)-b_{H}(x),\qquad x\in E,
+\end{equation*}
+的\trCriticalPoint，这里 $H\in\mathcal{H}$，而
+\begin{equation*}
+b_{H}(x)=\int_{0}^{1}H\bigl(t,x(t)\bigr)\,dt.
+\end{equation*}
+于是，$A(x_{0},\varphi)=a_{H}(x)$（其中 $x(t)=\varphi_{H}^{t}(x_{0})$）是%
+$a_{H}$ 的一个\trCritical{}水平。为了证明由\trCritical{}水平组成的集合%
+$\sigma(\varphi)$ 是\trNowhereDense{}的，我们循着 J.C.~\trSikorav{}的文献%
+[198] 中的一个想法，在 $\R^{2n}$ 上构造一个\trSmooth{}函数，使其诸%
+\trCritical{}水平包含 $\sigma(\varphi)$。我们把函数%
+$(t,x_{0})\mapsto\varphi_{H}^{t}(x_{0}):[0,1]\times\operatorname{Fix}(\varphi)\to\R^{2n}$%
+延拓为一个满足
+\begin{align*}
+\psi(t,x_{0})\ &=\ \varphi^{t}(x_{0}),\qquad\text{若}\ \ x_{0}\in\operatorname{Fix}(\varphi)\\
+\psi(1,x)\ &=\ \psi(0,x)\qquad\text{对一切}\ \ x\in\R^{2n}.
+\end{align*}
+的\trSmooth{}函数 $\psi:[0,1]\times\R^{2n}\to\R^{2n}$。为此只需取一个在%
+$0$ 附近等于 $1$、在 $1$ 附近等于 $0$ 的\trSmooth{}函数%
+$f:[0,1]\to[0,1]$，并令
+\begin{equation*}
+\psi(t,x)=f(t)\varphi^{t}(x)+\bigl[1-f(t)\bigr]\varphi^{t}\bigl((\varphi^{1})^{-1}(x)\bigr),
+\end{equation*}
+其中 $\varphi^{t}=\varphi_{H}^{t}$。对每个 $x\in\R^{2n}$，\trMapping{}%
+$t\mapsto\psi(t,x)$ 表示一条属于 $E$ 的\trLoop，于是我们可以通过令%
+$\Psi(x)(t)=\psi(t,x)$ 来定义\trSmooth{}函数 $\Psi:\R^{2n}\to E$。利用%
+$a_{H}\in C^{\infty}(E,\R)$ 这一事实（在附录 3 中证明），我们便有一个由
+\begin{equation*}
+a_{H}\circ\Psi:\R^{2n}\to\R.
+\end{equation*}
+给出的\trSmooth{}函数。它具有如下性质：每个%
+$x_{0}\in\operatorname{Fix}(\varphi)$ 都是 $a_{H}\circ\Psi$ 的%
+\trCriticalPoint。此外，$A(x_{0},\varphi)=a_{H}\circ\Psi(x_{0})$ 是一个%
+\trCritical{}水平。既然依据\trSard{}定理，$a_{H}\circ\Psi$ 的诸%
+\trCritical{}水平之集是\trNowhereDense{}的，我们便得出 $\sigma(\varphi)$ 也是%
+\trNowhereDense{}的。这就完成了该\trhProposition{}的证明。
+\end{proof}
+
+在群 $\mathcal{D}$ 之上可以定义\trActionSpectrum{}\trBundle{}%
+$\mathcal{A}\to\mathcal{D}$：
+\begin{equation*}
+\mathcal{A}\ =\ \bigcup_{\varphi\in\mathcal{D}}\{\varphi\}\times\sigma(\varphi)\ ,
+\end{equation*}
+并配备从 $(\mathcal{D},d)\times\R$ 诱导的\trMetric。每条\trFiber{}都是一个%
+\trCompact{}且\trNowhereDense{}的集合；\trGeneric{}的\trFiber{}由孤立点组成，%
+唯点 $0$ 可能例外。由于对每个 $\varphi\in\mathcal{D}$ 都有%
+$0\in\sigma(\varphi)$，$\mathcal{A}$ 存在一个平凡的连续\trSection。%
+\trActionSpectrum{} $\sigma(\varphi)$ 并不连续地依赖于 $\varphi\in\mathcal{D}$。%
+在下面两节中，我们将构造一个非平凡的连续\trSection
+\begin{equation*}
+\gamma\ :\ \mathcal{D}\longrightarrow\mathcal{A}\ ,
+\end{equation*}
+即 $\gamma(\varphi)\in\sigma(\varphi)$ 且 $\gamma\not\equiv0$。此外，它还是%
+单调的，并且在\trSymplectic\trConjugate{}下不变。这一特定的连续\trSection{}的%
+存在性，将通过\trActionFunctional{}的\trMinimax{}论证来建立。

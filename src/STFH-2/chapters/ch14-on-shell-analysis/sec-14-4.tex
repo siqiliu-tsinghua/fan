@@ -1,0 +1,1241 @@
+\section{\termChainMapModuliSpace{}与\termEnergyEstimate{}}
+\label{sec:chain-map-moduli-energy-estimates}
+
+下面考虑一个同痕 $\overline J=\{J^s\}$，以及对 $i=0,1$ 和
+$0\leq s\leq1$ 给出的哈密顿同痕
+$\phi_{(i)}^s(L_i)$。\footnote{译者注：原书把两族哈密顿同痕都写成
+$\phi_{(i)}^s(L_0)$，但本节所构造映射的目标端分别为
+$\phi_{(0)}^1(L_0)$ 与 $\phi_{(1)}^1(L_1)$，紧随其后的移动边界方程也分别移动
+$L_0,L_1$。译文据此将通式补正为 $\phi_{(i)}^s(L_i)$。}本节的主要目的是构造一个
+（预）链映射
+\begin{equation}
+  h_{(\overline J,\phi_{(i)};\rho)}:
+  CF(L_0,L_1)
+  \longrightarrow
+  CF\bigl(\phi_{(0)}^1(L_0),\phi_{(1)}^1(L_1)\bigr).
+\label{eq:chain-map-under-isotopy}
+\end{equation}
+
+我们先简要概述 (Oh93a, FOOO09) 中利用所谓“\termMovingBoundaryCondition{}”给出的
+构造。不过，(FOOO13) 指出，从研究\termFiltrationChange{}的角度看，这一构造并非
+最优。因此，为了得到研究滤过变化时的最优构造，我们将采用 (FOOO13) 中给出的
+修正版。
+
+考虑单调函数 $\rho:\mathbb R\to[0,1]$，以此拉长上述同痕；它满足
+\begin{equation}
+  \rho(\tau)
+  =
+  \begin{cases}
+    0,&\tau\leq0,\\
+    1,&\tau\geq1.
+  \end{cases}
+\label{eq:continuation-cutoff-function}
+\end{equation}
+给定两条哈密顿同痕 $\phi_{H(i)}$（$i=0,1$）、族
+$J^s=\{J_t^s\}$ 以及如上的光滑函数 $\rho$，考虑移动拉格朗日边值问题
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +J^\rho\dfrac{\partial u}{\partial t}=0,\\[6pt]
+    u(\tau,0)\in\phi_{H(0)}^{\rho(\tau)}(L_0),
+    \qquad
+    u(\tau,1)\in\phi_{H(1)}^{\rho(\tau)}(L_1),
+  \end{cases}
+\label{eq:moving-lagrangian-boundary-value}
+\end{equation}
+其中
+\[
+  J^\rho(\tau,t)=J_t^{\rho(\tau)}.
+\]
+令
+\[
+  [\ell_p,w]\in\widetilde\Omega(L_0,L_1;\ell_a),
+  \qquad
+  [\ell_{q'},w']
+  \in\widetilde\Omega(L_0',L_1';\ell_a').
+\]
+这里令\footnote{译者注：原书在此直接使用 $L_0',L_1'$，却没有定义这两个记号；
+由公式 (14.4.42) 的目标复形、方程 (14.4.44) 的正端边界以及紧随的基准道路公式
+可唯一确定 $L_i'=\phi_{H(i)}^1(L_i)$。译文补明该定义。}
+\[
+  L_i'=\phi_{H(i)}^1(L_i),
+  \qquad i=0,1.
+\]
+这里选取
+\begin{equation}
+  \ell_a'(t)
+  :=
+  \phi_{H(1)}^1
+  \circ\bigl(\phi_{H(1)}^{1-t}\bigr)^{-1}
+  \circ\phi_{H(0)}^1
+  \circ\bigl(\phi_{H(0)}^t\bigr)^{-1}
+  \bigl(\ell_a(t)\bigr)
+\label{eq:transported-base-path-two-boundaries}
+\end{equation}
+作为 $\Omega(L_0',L_1')$ 的\termBasePath{}。以
+\begin{equation}
+  \mathcal M^\rho
+  \left(
+    (L_1,\phi_{H(1)}^1),(L_0,\phi_{H(0)}^1);
+    [\ell_p,w],[\ell_{q'},w']
+  \right)
+\label{eq:moving-boundary-moduli-space}
+\end{equation}
+表示方程~\eqref{eq:moving-lagrangian-boundary-value} 中满足
+\[
+  \left[
+    \ell_{q'},
+    I_{\phi_{H(0)}^1,\phi_{H(1)}^1}^{\rho}(w\#u)
+  \right]
+  =
+  [\ell_{q'},w']
+\]
+的解集；这里 $w\#u:[0,1]\times[0,1]\to M$ 是 $w$ 与 $u$ 沿
+$\tau$-方向的拼接，\footnote{译者注：原书在此把 $w\#u$ 的值域写成 $X$；
+实体页 125 的 $w'$、实体页 132 的 $v$ 也同样写成 $X$，实体页 127 的归一化积分
+又写作 $\int_X$。本章始终固定的环境辛流形是 $M$，译文将这四处统一为 $M$。}
+并且
+\[
+  \begin{aligned}
+  &I_{\phi_{H(0)}^1,\phi_{H(1)}^1}^{\rho}v(\tau,t)\\
+  &\quad=
+  \left(
+    \phi_{H(1)}^1
+    \circ\bigl(\phi_{H(1)}^{\rho(\tau)(1-t)}\bigr)^{-1}
+    \circ\phi_{H(0)}^1
+    \circ\bigl(\phi_{H(0)}^{\rho(\tau)t}\bigr)^{-1}
+  \right)
+  \bigl(v(\tau,t)\bigr).
+  \end{aligned}
+\]
+（参见 (FOOO09) 第 308 页。）
+
+现在应当说明流线 $u$ 所满足的拓扑条件。选取一个哈密顿微分同胚的二参数族
+\[
+  \phi:[0,1]^2\longrightarrow\Ham(M,\omega),
+\]
+使得\footnote{译者注：原书公式 (14.4.47) 的第二项写成
+$\phi(s,t)=\phi_{(1)}^s$，这与同一公式第一项在一般 $t$ 时矛盾；它所要指定的是
+正方形另一条边界。译文补正为 $\phi(s,1)=\phi_{(1)}^s$。}
+\begin{equation}
+  \phi(s,0)=\phi_{(0)}^s,
+  \qquad
+  \phi(s,1)=\phi_{(1)}^s,
+  \qquad
+  \phi(0,t)\equiv\operatorname{id}.
+\label{eq:two-parameter-hamiltonian-family}
+\end{equation}
+总可以选到这样的族，但即使在同伦意义下，其选择也不唯一。对每个给定的解 $u$，
+考虑映射 $\widetilde u:\mathbb R\times[0,1]\to M$，定义为
+\[
+  \widetilde u(\tau,t)
+  =
+  \phi(\rho(\tau),t)^{-1}\bigl(u(\tau,t)\bigr).
+\]
+这个映射满足固定的拉格朗日边界条件
+\[
+  \widetilde u(\tau,0)\in L_0,
+  \qquad
+  \widetilde u(\tau,1)\in L_1.
+\]
+于是，我们施加在方程~\eqref{eq:moving-lagrangian-boundary-value} 上的拓扑条件为
+\footnote{译者注：原书称此条件施加在公式 (13.9.28) 上；但当前对象 $u$ 是
+方程 (14.4.44) 的解，而公式 (13.9.28) 是前章的固定边界方程。译文改引当前方程。}
+\begin{equation}
+  \left[
+    \phi(1,t)^{-1}(q'),
+    \phi_\rho^{-1}(w')
+  \right]
+  =
+  \left[
+    \phi(1,t)^{-1}(q'),
+    w\#\widetilde u
+  \right].
+\label{eq:moving-boundary-topological-condition}
+\end{equation}
+以 $\pi_2(p,q';\phi)$ 表示这类映射 $u$ 的同伦类集合。下面的引理说明
+$\pi_2(p,q';\phi)$ 对 $\phi$ 的依赖方式。
+
+\begin{lemma}
+\label{lem:moving-boundary-homotopy-class-independence}
+设 $\phi$ 与 $\psi$ 是两个满足~\eqref{eq:two-parameter-hamiltonian-family} 的
+二参数族。则映射
+\[
+  \psi^{-1}\phi:
+  \phi_\rho^{-1}(u)
+  \longmapsto
+  \psi_\rho^{-1}(u)
+\]
+诱导一一对应
+\[
+  \pi_2(p,q';\phi)
+  \cong
+  \pi_2(p,q';\psi).
+\]
+\end{lemma}
+
+对每个给定的 $C\in\pi_2(p,q';\phi)$，以 $\mathcal M(p,q';C)$ 表示
+方程~\eqref{eq:moving-lagrangian-boundary-value} 中满足
+$[u]=C\in\pi_2(p,q';\phi)$ 的解集。
+
+方程~\eqref{eq:moving-lagrangian-boundary-value} 与方程 (13.9.28) 的一个主要区别
+在于，前者不再具有 $\mathbb R$-平移对称性。因此，在计数流线数目时，我们直接
+考虑解的模空间 $\mathcal M(p,q';C)$，而不再取平移商。特别地，相应映射的次数
+为 $0$。
+
+为研究 $\mathcal M(p,q';C)$ 的紧性，还需要核验解的\termEnergyEstimate{}。对此，
+我们采用 (FOOO13) 中的方法。
+
+为使叙述简洁，先假设
+\[
+  L_0'=\phi_H^1(L_0),
+  \qquad
+  L_1'=L_1.
+\]
+引入中间链复形 $CF(L_0,L_1;H)$ 后，我们将分两步构造链映射
+\eqref{eq:chain-map-under-isotopy}：
+\begin{equation}
+  \begin{array}{ccccc}
+    CF(L_0,L_1)
+      &&\longrightarrow&&
+    CF\bigl(\phi_H^1(L_0),L_1\bigr)
+    \\[-2pt]
+    &\underset{\text{\rm (I)}}{\searrow}
+      &&\overset{\text{\rm (II)}}{\nearrow}&
+    \\[-2pt]
+    &&CF(L_0,L_1;H)&&
+  \end{array}
+\label{eq:two-stage-chain-map}
+\end{equation}
+
+\subsection{\termGeometricVersion{}与\termDynamicalVersion{}}
+\label{subsec:geometric-versus-dynamical}
+
+先构造映射 (II)。这个映射本质上是与 (Oh97b) 中所用变换类似的一类\emph{\termCoordinateChange{}}（另见第 11.2 节）。特别地，它由双射
+\[
+  \mathfrak g_{H;0}^+:
+  \widetilde\Omega\bigl(\phi_H^1(L_0),L_1;\ell_a'\bigr)
+  \longrightarrow
+  \widetilde\Omega(L_0,L_1;\ell_a),
+  \qquad
+  [\ell',w']\longmapsto[\ell,w]
+\]
+诱导；其含义将在下文说明。特别地，映射 (II) 保持相关作用量值的层级，只容许
+相差一个全局常数平移。
+
+对给定的一对紧拉格朗日子流形 $(L_0,L_1)$ 和一个哈密顿量 $H$，再考虑
+$\omega$-相容殆复结构族
+\[
+  J^s=\{J_t^s\}_{0\leq t\leq1}.
+\]
+我们要比较\personFloer{}理论的\emph{几何}版本与\emph{动力学}版本。
+
+对子
+\[
+  L_0'=\phi_H^1(L_0),
+  \qquad
+  L_1'=L_1,
+\]
+\personFloer{}复形的几何版本由交点
+\[
+  \phi_H^1(L_0)\cap L_1
+\]
+生成，其\personFloer{}边界映射由与 $J'=\{J_t'\}$ 相伴的真正\personCauchy{}--\personRiemann{}方程的模空间构造：
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u'}{\partial\tau}
+    +J'\dfrac{\partial u'}{\partial t}=0,\\[6pt]
+    u'(\tau,0)\in\phi_H^1(L_0),
+    \qquad
+    u'(\tau,1)\in L_1.
+  \end{cases}
+\label{eq:geometric-moving-lzero-equation}
+\end{equation}
+这里
+\[
+  J_t'
+  =
+  \bigl(\phi_H^1(\phi_H^t)^{-1}\bigr)_*J_t.
+\]
+以 $\mathcal M(\phi_H^1(L_0),L_1;J')$ 表示这个方程的有限能量解的模空间。
+由于相伴作用量泛函具有多值性，需要在某个指定连通分支的\termNovikovCovering{}上考虑这些方程，即
+\footnote{译者注：原书先说这里要取\personNovikov{}覆盖，却在紧随的陈列式中漏掉
+$\Omega$ 上的波浪号；本页底部对 $[\ell',w']$ 的归属以及下一页
+$\mathfrak g_{H;0}^+$ 的定义域均明确使用
+$\widetilde\Omega(\phi_H^1(L_0),L_1;\ell_a')$。译文据此补回波浪号。}
+\[
+  \widetilde\Omega\bigl(\phi_H^1(L_0),L_1;\ell_a'\bigr).
+\]
+其\termBasePath{} $\ell_a'\in\Omega(\phi_H^1(L_0),L_1)$ 取为
+\begin{equation}
+  \ell_a'(t)
+  =
+  \phi_H^1(\phi_H^t)^{-1}\bigl(\ell_a(t)\bigr).
+\label{eq:geometric-moving-lzero-base-path}
+\end{equation}
+并考虑作用量泛函（它是第 13.9 节所定义作用量泛函的负值，与 (FOOO09)
+的符号约定一致）
+\begin{equation}
+  \mathcal A_{\ell_a'}([\ell',w'])
+  =
+  \int (w')^*\omega,
+\label{eq:geometric-action-functional}
+\end{equation}
+其中
+\[
+  [\ell',w']
+  \in
+  \widetilde\Omega\bigl(\phi_H^1(L_0),L_1;\ell_a'\bigr),
+\]
+而 $w':[0,1]^2\to M$ 满足
+\[
+  \begin{gathered}
+    w'(0,t)=\ell_a'(t),
+    \qquad
+    w'(1,t)=\ell'(t),\\
+    w'(s,0)\in\phi_H^1(L_0),
+    \qquad
+    w'(s,1)\in L_1.
+  \end{gathered}
+\]
+
+另一方面，\personFloer{}复形的动力学版本由\personHamilton{}方程
+\begin{equation}
+  \dot x=X_H(t,x),
+  \qquad
+  x(0)\in L_0,
+  \quad
+  x(1)\in L_1
+\label{eq:hamiltonian-chord-equation}
+\end{equation}
+的解生成，其边界映射由扰动\personCauchy{}--\personRiemann{}方程
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +J\left(
+      \dfrac{\partial u}{\partial t}-X_H(u)
+    \right)=0,\\[6pt]
+    u(\tau,0)\in L_0,
+    \qquad
+    u(\tau,1)\in L_1
+  \end{cases}
+\label{eq:dynamical-floer-equation}
+\end{equation}
+的模空间构造。以 $\mathcal M(L_0,L_1;H;J)$ 表示这个方程的有限能量解的
+模空间。\footnote{译者注：原书此处写成
+$\mathcal M(L_1,L_0;H;J)$，但紧邻的边界条件是
+$u(\tau,0)\in L_0$、$u(\tau,1)\in L_1$，而本页稍后的坐标变换目标也写作
+$\mathcal M(L_0,L_1;H;J)$。译文据此调正指标顺序。}作用量泛函
+$\mathcal A_{H,\ell_a}$ 定义为
+\begin{equation}
+  \mathcal A_{H,\ell_a}([\ell,w])
+  =
+  \int w^*\omega
+  +
+  \int_0^1H\bigl(t,\ell(t)\bigr)\,dt
+\label{eq:dynamical-action-functional}
+\end{equation}
+并定义在 $\widetilde\Omega(L_0,L_1;\ell_a)$ 上。
+
+这两种\personFloer{}理论由下面的双射联系起来：
+\[
+  \mathfrak g_{H;0}^+:
+  \widetilde\Omega\bigl(\phi_H^1(L_0),L_1;\ell_a'\bigr)
+  \longrightarrow
+  \widetilde\Omega(L_0,L_1;\ell_a),
+  \qquad
+  [\ell',w']\longmapsto[\ell,w],
+\]
+其中对应关系为
+\begin{equation}
+  \ell(t)
+  =
+  \phi_H^t(\phi_H^1)^{-1}\bigl(\ell'(t)\bigr),
+  \qquad
+  w(s,t)
+  =
+  \phi_H^t(\phi_H^1)^{-1}\bigl(w'(s,t)\bigr).
+\label{eq:coordinate-change-moving-lzero}
+\end{equation}
+（类似的坐标变换映射见引理 12.7.1。）这给出临界点之间的双射
+\begin{equation}
+  \operatorname{Crit}\mathcal A_{\ell_a'}
+  \longleftrightarrow
+  \operatorname{Crit}\mathcal A_{H,\ell_a},
+  \qquad
+  [p',w']
+  \longmapsto
+  [z_{p'}^H,w],
+\label{eq:coordinate-change-critical-points}
+\end{equation}
+其中
+\[
+  p'\in\phi_H^1(L_0)\cap L_1,
+  \qquad
+  z_{p'}^H(t):=\phi_H^t(\phi_H^1)^{-1}(p'),
+  \qquad
+  w=\phi_H^t(\phi_H^1)^{-1}\bigl(w'(s,t)\bigr),
+\]
+并给出模空间之间的双射
+\[
+  \mathcal M\bigl(\phi_H^1(L_0),L_1;J'\bigr)
+  \longrightarrow
+  \mathcal M(L_0,L_1;H;J).
+\]
+这里
+\[
+  J_t
+  =
+  \bigl(\phi_H^t(\phi_H^1)^{-1}\bigr)_*J_t',
+\]
+且该映射定义为
+\[
+  u(\tau,t)
+  =
+  \phi_H^t(\phi_H^1)^{-1}\bigl(u'(\tau,t)\bigr).
+\]
+映射 $\mathfrak g_{H;0}^+$ 还在如下意义下保持作用量至多相差一个常数。
+
+\begin{lemma}
+\label{lem:coordinate-change-action-shift-lzero}
+记
+\[
+  c(H;\ell_a)
+  :=
+  \int_0^1H\bigl(t,\ell_a(t)\bigr)\,dt,
+\]
+这是只依赖于 $H$ 和连通分支 $\Omega(L_0,L_1;\ell_a)$ 的基准道路 $\ell_a$
+的常数。则
+\begin{equation}
+  \mathcal A_{H,\ell_a}
+  \circ\mathfrak g_{H;0}^+([\ell',w'])
+  =
+  \mathcal A_{\ell_a'}([\ell',w'])
+  +
+  c(H;\ell_a)
+\label{eq:coordinate-change-action-shift-lzero}
+\end{equation}
+在
+$\widetilde\Omega(\phi_H^1(L_0),L_1;\ell_a')$
+上成立。\footnote{译者注：原书把该等式成立的空间写成目标覆盖
+$\widetilde\Omega(L_0,L_1;\ell_a)$，但等式的自变量 $[\ell',w']$ 与复合映射的
+定义域都是移动后的覆盖空间。原书证明中还把已经定义为
+$\mathcal A_{H,\ell_a}$ 的下标分隔符改成分号。译文依映射类型改正定义域，并统一
+使用逗号。}
+\end{lemma}
+
+\begin{proof}
+直接计算即可。令
+\[
+  [\ell',w']
+  \in
+  \widetilde\Omega\bigl(\phi_H^1(L_0),L_1;\ell_a'\bigr).
+\]
+则
+\[
+  \mathcal A_{H,\ell_a}
+  \bigl(\mathfrak g_{H;0}^+([\ell',w'])\bigr)
+  =
+  \int w^*\omega
+  +
+  \int_0^1H\bigl(t,\ell(t)\bigr)\,dt,
+\]
+并且
+\[
+  w^*\omega
+  =
+  \omega\left(
+    \frac{\partial w}{\partial s},
+    \frac{\partial w}{\partial t}
+  \right)
+  ds\wedge dt.
+\]
+计算得到
+\[
+  \frac{\partial w}{\partial s}
+  =
+  d\bigl(\phi_H^t(\phi_H^1)^{-1}\bigr)
+  \left(\frac{\partial w'}{\partial s}\right),
+\]
+以及
+\[
+  \frac{\partial w}{\partial t}
+  =
+  d\bigl(\phi_H^t(\phi_H^1)^{-1}\bigr)
+  \left(\frac{\partial w'}{\partial t}\right)
+  +
+  X_{H_t}\bigl(w(s,t)\bigr).
+\]
+代入上式可得
+\begin{align*}
+  \int w^*\omega
+  &=
+  \int_0^1\int_0^1
+  \omega\left(
+    \frac{\partial w}{\partial s},
+    \frac{\partial w}{\partial t}
+  \right)\,ds\,dt\\
+  &=
+  \int_0^1\int_0^1
+  \omega\left(
+    \frac{\partial w'}{\partial s},
+    \frac{\partial w'}{\partial t}
+  \right)\,ds\,dt\\
+  &\quad+
+  \int_0^1\int_0^1
+  \omega\left(
+    d\bigl(\phi_H^t(\phi_H^1)^{-1}\bigr)
+    \left(\frac{\partial w'}{\partial s}\right),
+    X_{H_t}\bigl(w(s,t)\bigr)
+  \right)\,ds\,dt\\
+  &=
+  \int(w')^*\omega
+  -
+  \int_0^1\int_0^1
+  dH_t\bigl(w(s,t)\bigr)
+  \left(
+    d\bigl(\phi_H^t(\phi_H^1)^{-1}\bigr)
+    \left(\frac{\partial w'}{\partial s}\right)
+  \right)\,ds\,dt\\
+  &=
+  \int(w')^*\omega
+  -
+  \int_0^1\int_0^1
+  \frac{\partial}{\partial s}
+  H_t\bigl(w(s,t)\bigr)\,ds\,dt\\
+  &=
+  \int(w')^*\omega
+  -
+  \int_0^1H_t\bigl(w(1,t)\bigr)\,dt
+  +
+  \int_0^1H_t\bigl(w(0,t)\bigr)\,dt.
+\end{align*}
+把它代入上面对
+$\mathcal A_{H,\ell_a}(\mathfrak g_{H;0}^+([\ell',w']))$
+的定义，就完成了证明。
+\end{proof}
+
+\begin{remark}
+\label{rem:normalized-hamiltonian-base-path}
+如果把哈密顿量归一化，使每个 $t$ 都满足
+\[
+  \int_MH_t\,\omega^n=0,
+\]
+那么在 $\Omega(L_0,L_1)$ 的每个连通分支中，可以选取 $\ell_a$，使得
+\footnote{译者注：原书由哈密顿量在每个时刻的空间均值为零，直接断言可在道路空间的
+每个连通分支中选到使沿道路积分为零的基准道路，却没有给出连接这两个条件的补充论证。
+该结论不由本段文字直接推出；译文照录这一断言并明示论证缺口。}
+\[
+  c(H;\ell_a)
+  =
+  \int_0^1H\bigl(t,\ell_a(t)\bigr)\,dt
+  =
+  0.
+\]
+没有必要按上述方式选取 $\ell_a$。事实上，若所取基准道路满足
+$c(H;\ell_a)\neq0$，那么在 $\Omega(L_0,L_1;\ell_a)$ 上应用坐标变换
+$\mathfrak g_{H;0}^+$ 或其逆映射时，只需在能量估计中加入一项
+$c(H;\ell_a)$。由于我们将考虑 $\Omega(L_0,L_1)$ 的所有连通分支
+（见 (FOOO09)），必须对每个连通分支 $\Omega(L_0,L_1;\ell_a)$ 加入相应常数
+$c(H;\ell_a)$。
+\end{remark}
+
+以
+\[
+  \mathfrak g_{H;0}^-
+  =
+  \bigl(\mathfrak g_{H;0}^+\bigr)^{-1}
+\]
+表示逆映射。上述讨论的结论是，相伴的两个\personFloer{}上同调彼此同构，并且保持滤过。
+
+迄今我们移动的是对子 $(L_0,L_1)$ 的第一个分量 $L_0$。也可以改为移动第二个
+分量 $L_1$。在这种情形下，定义坐标变换
+\[
+  \mathfrak g_{\widetilde H;1}^+:
+  \widetilde\Omega\bigl(L_0,\phi_H^1(L_1);\ell_a'\bigr)
+  \longrightarrow
+  \widetilde\Omega(L_0,L_1;\ell_a),
+  \qquad
+  [\ell',w']\longmapsto[\ell,w]
+\]
+如下：
+\begin{equation}
+  \ell(t)
+  =
+  \phi_H^{1-t}(\phi_H^1)^{-1}\bigl(\ell'(t)\bigr),
+  \qquad
+  w(s,t)
+  =
+  \phi_H^{1-t}(\phi_H^1)^{-1}\bigl(w'(s,t)\bigr),
+\label{eq:coordinate-change-moving-lone}
+\end{equation}
+其中
+\[
+  \widetilde H(t,x):=-H(1-t,x)
+\]
+是生成后一条哈密顿路径
+\[
+  t\longmapsto\phi_H^{1-t}(\phi_H^1)^{-1}
+\]
+的哈密顿量。它给出双射
+\[
+  \operatorname{Crit}\mathcal A_{\ell_a'}
+  \longleftrightarrow
+  \operatorname{Crit}\mathcal A_{\widetilde H,\ell_a},
+\]
+以及模空间之间的双射
+\[
+  \mathcal M\bigl(\phi_H^1(L_1),L_0;J'\bigr)
+  \longrightarrow
+  \mathcal M(\widetilde H;L_1,L_0;\widetilde J),
+\]
+其中
+\[
+  \widetilde J_t
+  =
+  \bigl(\phi_H^{1-t}(\phi_H^1)^{-1}\bigr)_*J_t'.
+\]
+这里 $\mathcal M(\widetilde H;L_1,L_0;\widetilde J)$ 是下列方程的解的模空间
+\footnote{译者注：原书公式 (14.4.60) 的第一项印成
+$\partial u/\partial t$，与括号内的第二项重复；本节所有\personFloer{}方程以及该式所对应
+的坐标变换都要求第一项为 $\partial u/\partial\tau$。译文据此补正。}：
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +
+    \widetilde J
+    \left(
+      \dfrac{\partial u}{\partial t}
+      -
+      X_{\widetilde H}(u)
+    \right)=0,\\[6pt]
+    u(\tau,0)\in L_0,
+    \qquad
+    u(\tau,1)\in L_1.
+  \end{cases}
+\label{eq:moving-lone-dynamical-equation}
+\end{equation}
+作用量泛函 $\mathcal A_{\widetilde H,\ell_a}$ 为
+\footnote{译者注：原书公式 (14.4.61) 在面积项中使用未定义的
+$\widetilde w$，而该泛函的自变量是 $[\ell,w]$，本段也没有引入对 $w$ 的任何
+波浪号变换。译文补正为 $w$。}
+\begin{equation}
+  \mathcal A_{\widetilde H,\ell_a}([\ell,w])
+  =
+  \int w^*\omega
+  +
+  \int_0^1\widetilde H\bigl(t,\ell(t)\bigr)\,dt.
+\label{eq:moving-lone-action-functional}
+\end{equation}
+后一对应的显式公式为
+\[
+  u(\tau,t)
+  =
+  \phi_H^{1-t}(\phi_H^1)^{-1}\bigl(u'(\tau,t)\bigr).
+\]
+同理可证下面的引理。
+
+\begin{lemma}
+\label{lem:coordinate-change-action-shift-lone}
+有
+\begin{equation}
+  \mathcal A_{\widetilde H,\ell_a}
+  \circ\mathfrak g_{\widetilde H;1}^+([\ell',w'])
+  =
+  \mathcal A_{\ell_a'}([\ell',w'])
+  +
+  c(\widetilde H;\ell_a),
+\label{eq:coordinate-change-action-shift-lone}
+\end{equation}
+其中
+\[
+  c(\widetilde H;\ell_a)
+  :=
+  \int_0^1\widetilde H\bigl(t,\ell_a(t)\bigr)\,dt
+\]
+是只依赖于 $H$ 和基准道路 $\ell_a$ 的常数。
+\end{lemma}
+
+以 $\mathfrak g_{\widetilde H;1}^-$ 表示
+$\mathfrak g_{\widetilde H;1}^+$ 的逆映射。至此完成了对图
+\eqref{eq:two-stage-chain-map} 中映射 (II) 的描述。
+
+\subsection{\termDeformationOfHamiltonians{}}
+\label{subsec:deformation-of-hamiltonians}
+
+下面构造图~\eqref{eq:two-stage-chain-map} 中的映射 (I)。它就是在拉格朗日边界
+固定时，由哈密顿量从 $0$ 到给定哈密顿量 $H$ 的同伦所诱导的标准\termFloerContinuationMap{}。
+
+考虑扰动\personCauchy{}--\personRiemann{}方程
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial u}{\partial\tau}
+    +
+    J\left(
+      \dfrac{\partial u}{\partial t}
+      -
+      \rho(\tau)X_H(u)
+    \right)=0,\\[6pt]
+    u(\tau,0)\in L_0,
+    \qquad
+    u(\tau,1)\in L_1
+  \end{cases}
+\label{eq:hamiltonian-continuation-equation}
+\end{equation}
+以及有限能量条件
+\[
+  E_{(J,H,\rho)}(u)<\infty.
+\]
+下面的\termAprioriEnergyBound{}是研究位移能下界时的关键要素。
+
+\begin{lemma}
+\label{lem:continuation-energy-identity}
+令 $\rho=\rho_+$ 如~\eqref{eq:continuation-cutoff-function} 所示，并令 $u$ 是
+方程~\eqref{eq:hamiltonian-continuation-equation} 的任意有限能量解。则
+\begin{equation}
+  \begin{aligned}
+  E_{(J,H,\rho)}(u)
+  &=
+  \int u^*\omega
+  +
+  \int_0^1H\bigl(t,u(\infty,t)\bigr)\,dt\\
+  &\quad-
+  \int_{-\infty}^{\infty}
+  \rho'(\tau)
+  \int_0^1(H_t\circ u)\,dt\,d\tau.
+  \end{aligned}
+\label{eq:continuation-energy-identity}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+作显式计算；它与引理~\ref{lem:coordinate-change-action-shift-lzero} 的计算略为相似。
+有
+\begin{align*}
+  E_{(J,H,\rho)}(u)
+  &=
+  \int_{-\infty}^{\infty}\int_0^1
+  \left|
+    \frac{\partial u}{\partial\tau}
+  \right|_J^2
+  \,dt\,d\tau\\
+  &=
+  \int_{-\infty}^{\infty}\int_0^1
+  \omega\left(
+    \frac{\partial u}{\partial\tau},
+    J\frac{\partial u}{\partial\tau}
+  \right)\,dt\,d\tau\\
+  &=
+  \int_{-\infty}^{\infty}\int_0^1
+  \omega\left(
+    \frac{\partial u}{\partial\tau},
+    \frac{\partial u}{\partial t}
+    -
+    \rho(\tau)X_{H_t}(u)
+  \right)\,dt\,d\tau\\
+  &=
+  \int_{-\infty}^{\infty}\int_0^1
+  \omega\left(
+    \frac{\partial u}{\partial\tau},
+    \frac{\partial u}{\partial t}
+  \right)\,dt\,d\tau\\
+  &\quad-
+  \int_{-\infty}^{\infty}
+  \rho(\tau)
+  \int_0^1
+  \omega\left(
+    \frac{\partial u}{\partial\tau},
+    X_{H_t}(u)
+  \right)\,dt\,d\tau\\
+  &=
+  \int u^*\omega
+  -
+  \int_{-\infty}^{\infty}
+  \rho(\tau)
+  \int_0^1
+  \left(
+    -dH_t(u)
+    \left(\frac{\partial u}{\partial\tau}\right)
+  \right)\,dt\,d\tau\\
+  &=
+  \int u^*\omega
+  +
+  \int_{-\infty}^{\infty}
+  \rho(\tau)
+  \int_0^1
+  \frac{\partial}{\partial\tau}(H_t\circ u)
+  \,dt\,d\tau\\
+  &=
+  \int u^*\omega
+  +
+  \int_0^1H\bigl(t,u(\infty,t)\bigr)\,dt\\
+  &\quad-
+  \int_{-\infty}^{\infty}
+  \rho'(\tau)
+  \int_0^1(H_t\circ u)\,dt\,d\tau.
+\end{align*}
+最后一个等号中使用了分部积分，以及
+\[
+  \rho(\infty)=1,
+  \qquad
+  \rho(-\infty)=0.
+\]
+这就证明了~\eqref{eq:continuation-energy-identity}。
+\end{proof}
+
+这个引理给出下面关于作用量之差的关键公式：
+\[
+  \mathcal A_{H,\ell_a}\bigl(u(\infty)\bigr)
+  -
+  \mathcal A_{\ell_a}\bigl(u(-\infty)\bigr).
+\]
+
+\begin{proposition}
+\label{prop:forward-continuation-action-difference}
+设
+\[
+  p\in L_0\cap L_1,
+  \qquad
+  q'\in\phi_H^1(L_0)\cap L_1.
+\]
+如前，以 $z_{q'}^H\in\Omega(L_0,L_1;\ell_a)$ 表示哈密顿轨道
+\[
+  z_{q'}^H(t)
+  =
+  \phi_H^t\bigl((\phi_H^1)^{-1}(q')\bigr),
+\]
+并考虑
+\[
+  [\ell_p,w]\in\operatorname{Crit}\mathcal A_{\ell_a},
+  \qquad
+  [z_{q'}^H,w']
+  \in\operatorname{Crit}\mathcal A_{H,\ell_a}.
+\]
+假设 $u$ 是方程~\eqref{eq:hamiltonian-continuation-equation} 在
+$\rho=\rho_+$（如~\eqref{eq:continuation-cutoff-function}）时的有限能量解，并满足\termAsymptoticCondition{}与\termHomotopyCondition{}
+\begin{equation}
+  u(-\infty)=\ell_p,
+  \qquad
+  u(\infty)=z_{q'}^H,
+  \qquad
+  w\#u\sim w'.
+\label{eq:continuation-asymptotic-homotopy}
+\end{equation}
+则\footnote{译者注：原书公式 (14.4.66) 把第二个作用量泛函的自变量写成
+$[w,\ell_p]$，颠倒了本节乃至第 13 章一贯采用的 $[\ell,w]$ 次序；命题假设与紧随
+其后的公式 (14.4.67)--(14.4.68) 也都使用 $[\ell_p,w]$。译文据此补正。}
+\begin{equation}
+  \begin{aligned}
+  &\mathcal A_{H,\ell_a}([z_{q'}^H,w'])
+  -
+  \mathcal A_{\ell_a}([\ell_p,w])\\
+  &\qquad=
+  E_{(J,H,\rho)}(u)
+  +
+  \int_{-\infty}^{\infty}\int_0^1
+  \rho'(\tau)H\bigl(t,u(\tau,t)\bigr)\,dt\,d\tau.
+  \end{aligned}
+\label{eq:continuation-action-difference}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+由~\eqref{eq:continuation-asymptotic-homotopy} 得
+\[
+  \int u^*\omega
+  =
+  \int(w')^*\omega
+  -
+  \int w^*\omega.
+\]
+把它代入~\eqref{eq:continuation-energy-identity} 并整理，再利用
+作用量泛函 $\mathcal A_{\ell_a}$ 与 $\mathcal A_{H,\ell_a}$ 的定义
+\footnote{译者注：原书把前者称作公式 (14.4.52) 中
+$\mathcal A_{\ell_a}$ 的定义，但该式实际定义的是移动后分支上的
+$\mathcal A_{\ell_a'}$。未扰动作用量的同一面积公式已经在第 13.9 节给出；译文
+据此按对象表述，不沿用错误的公式引用。}
+，即得~\eqref{eq:continuation-action-difference}。
+\end{proof}
+
+立即得到如下推论。
+
+\begin{corollary}
+\label{cor:continuation-energy-and-level-bounds}
+令 $\rho=\rho_+$ 如~\eqref{eq:continuation-cutoff-function} 所示。
+\footnote{译者注：原书此处写“如命题 20.2.9”，但 $\rho_+$ 正是在本节公式
+(14.4.43) 中定义并用于命题 14.4.6 的；译文改引该公式。}
+\begin{enumerate}[label=(\arabic*)]
+  \item 对方程~\eqref{eq:hamiltonian-continuation-equation} 的任意解 $u$，有能量界
+  \footnote{译者注：原书公式 (14.4.67) 把正向能量上界的末项印成
+  $\int_0^1\max H_t\,dt$；但由公式 (14.4.66) 直接整理所得的是
+  $-\int\rho_+'H(u)$，其上界为 $\int_0^1(-\min H_t)\,dt$。原书随后对
+  $\rho_-$ 给出的无编号能量界又沿用正向作用量差与端点，却放入
+  $-\min H_t$；其紧随的公式 (14.4.69) 已明确采用反向端点和
+  $\max H_t$。译文依 (14.4.66)、$\rho_\pm$ 的方向及
+  (14.4.68)--(14.4.69)，同时补正这两条能量界。}
+  \begin{equation}
+    E_{(J,H,\rho)}(u)
+    \leq
+    \mathcal A_{H,\ell_a}([z_{q'}^H,w'])
+    -
+    \mathcal A_{\ell_a}([\ell_p,w])
+    +
+    \int_0^1(-\min H_t)\,dt.
+  \label{eq:forward-continuation-energy-bound}
+  \end{equation}
+
+  \item 假设方程~\eqref{eq:hamiltonian-continuation-equation} 存在解 $u$。则有\termLevelChange{}估计
+  \begin{equation}
+    \mathcal A_{H,\ell_a}([z_{q'}^H,w'])
+    -
+    \mathcal A_{\ell_a}([\ell_p,w])
+    \geq
+    \int_0^1\min H_t\,dt
+    =
+    -E^-(H).
+  \label{eq:forward-continuation-level-change}
+  \end{equation}
+\end{enumerate}
+
+类似地，当 $\rho=\rho_-=1-\rho_+$ 时，对方程
+\eqref{eq:hamiltonian-continuation-equation} 的任意解 $u$，有
+\[
+  E_{(J,H,\rho)}(u)
+  \leq
+  \mathcal A_{\ell_a}([\ell_q,w])
+  -
+  \mathcal A_{H,\ell_a}([z_{p'}^H,w'])
+  +
+  \int_0^1\max H_t\,dt.
+\]
+只要这样的解 $u$ 存在，就还有层级变化估计
+\begin{equation}
+  \mathcal A_{\ell_a}([\ell_q,w])
+  -
+  \mathcal A_{H,\ell_a}([z_{p'}^H,w'])
+  \geq
+  \int_0^1(-\max H_t)\,dt
+  =
+  -E^+(H).
+\label{eq:reverse-continuation-level-change}
+\end{equation}
+\end{corollary}
+
+接着，把 $\rho_+$（如~\eqref{eq:continuation-cutoff-function}）与
+$\rho_-=1-\rho_+$ 所对应的两个方程~\eqref{eq:hamiltonian-continuation-equation}
+拼接起来。为此，考虑如下类型的单参数\termElongationFunction{}族
+（它与公式 (11.2.15) 中的函数属于同一类型）：
+\begin{equation}
+  \rho_K
+  =
+  \begin{cases}
+    \rho_+(\mathord\cdot+K),
+      &\tau\leq-K+1,\\
+    \rho_-(\mathord\cdot-K+1),
+      &\tau\geq K-1,\\
+    1,
+      &|\tau|\leq K-1,
+  \end{cases}
+\label{eq:concatenated-elongation-family}
+\end{equation}
+其中 $1\leq K\leq\infty$；进而把 $\rho_{K=1}$ 继续向下形变到
+$\rho_{K=0}\equiv0$。
+
+\begin{proposition}
+\label{prop:concatenated-continuation-bounds}
+设 $u$ 是方程~\eqref{eq:hamiltonian-continuation-equation} 关于拉长函数
+$\rho_K$ 的有限能量解，并满足渐近条件
+\[
+  u(-\infty)=\ell_p,
+  \qquad
+  u(\infty)=\ell_q,
+  \qquad
+  w_-\#u\sim w_+.
+\]
+则
+\begin{equation}
+  \mathcal A_{\ell_a}([\ell_q,w_+])
+  -
+  \mathcal A_{\ell_a}([\ell_p,w_-])
+  \geq
+  -\bigl(E^-(H)+E^+(H)\bigr)
+  =
+  -\lVert H\rVert,
+\label{eq:concatenated-continuation-level-bound}
+\end{equation}
+并且
+\begin{equation}
+  E_{(J,H,\rho_K)}(u)
+  \leq
+  \int u^*\omega
+  +
+  \lVert H\rVert.
+\label{eq:concatenated-continuation-energy-bound}
+\end{equation}
+\end{proposition}
+
+迄今我们移动的是对子 $(L_0,L_1)$ 的第一个分量 $L_0$。如果改为移动第二个分量
+$L_1$，上述讨论中唯一的差别是作如下互换：
+\[
+  -\min H
+  \longleftrightarrow
+  \max H.
+\]
+
+\subsection{\texorpdfstring{$(L_0,L_1)$ 的\termSimultaneousHamiltonianIsotopy{}}
+{(L0,L1) 的同时哈密顿同痕}}
+\label{subsec:simultaneous-hamiltonian-isotopy}
+
+现在分别用哈密顿同痕 $\phi_{H(0)}^t$ 与 $\phi_{H(1)}^t$ 同时移动
+$L_0$ 与 $L_1$：
+\[
+  (L_0,L_1)
+  \longmapsto
+  \bigl(
+    L_0'=\phi_{H(0)}^1(L_0),
+    L_1'=\phi_{H(1)}^1(L_1)
+  \bigr).
+\]
+于是有双射
+\[
+  \mathfrak g_{H(0),H(1)}^+:
+  (\ell'',w'')
+  \in\widetilde\Omega(L_0',L_1')
+  \longmapsto
+  (\ell,w)
+  \in\widetilde\Omega(L_0,L_1),
+\]
+其中
+\[
+  \ell(t)
+  =
+  \left(
+    \phi_{H(1)}^{1-t}
+    \circ(\phi_{H(1)}^1)^{-1}
+    \circ\phi_{H(0)}^t
+    \circ(\phi_{H(0)}^1)^{-1}
+  \right)
+  \bigl(\ell''(t)\bigr)
+\]
+且
+\[
+  w(s,t)
+  =
+  \left(
+    \phi_{H(1)}^{1-t}
+    \circ(\phi_{H(1)}^1)^{-1}
+    \circ\phi_{H(0)}^t
+    \circ(\phi_{H(0)}^1)^{-1}
+  \right)
+  \bigl(w''(s,t)\bigr).
+\]
+记
+\[
+  \mathfrak g_{H(0),H(1)}^-
+  =
+  \bigl(\mathfrak g_{H(0),H(1)}^+\bigr)^{-1}.
+\]
+略用记号，也以 $\mathfrak g_{H(0),H(1)}^\pm$ 表示道路空间
+$\Omega(L_0,L_1)$ 与 $\Omega(L_0',L_1')$ 之间的双射。由此得到下面改进的
+能量估计。这里依照注~\ref{rem:normalized-hamiltonian-base-path} 选取基准道路
+$\ell_a$，使得
+\begin{equation}
+  c(\widehat H;\ell_a)
+  =
+  \int_0^1\widehat H\bigl(t,\ell_a(t)\bigr)\,dt
+  =
+  0.
+\label{eq:normalized-simultaneous-action-shift}
+\end{equation}
+其中 $\widehat H$ 是生成哈密顿路径
+\[
+  \phi_{H(1)}^{1-t}
+  \circ(\phi_{H(1)}^1)^{-1}
+  \circ\phi_{H(0)}^t
+\]
+的均值归一化哈密顿量。显式地，
+\begin{equation}
+  \widehat H(t,x)
+  =
+  -H^{(1)}(1-t,x)
+  +
+  H^{(0)}
+  \left(
+    t,
+    \left(
+      \phi_{H(1)}^{1-t}
+      \circ(\phi_{H(1)}^1)^{-1}
+    \right)^{-1}(x)
+  \right).
+\label{eq:simultaneous-normalized-hamiltonian}
+\end{equation}
+对 $v:[0,1]\times[0,1]\to M$，置
+\[
+  \begin{aligned}
+  (\Phi_{H(0),H(1)}v)(s,t)
+  &=
+  \left(
+    \phi_{H(0)}^1
+    \circ(\phi_{H(0)}^t)^{-1}
+    \circ\phi_{H(1)}^1
+    \circ(\phi_{H(1)}^{1-t})^{-1}
+  \right)\\
+  &\qquad\bigl(v(s,t)\bigr).
+  \end{aligned}
+\]
+利用~\eqref{eq:simultaneous-normalized-hamiltonian} 中 $\widehat H$ 的表达式，得到
+\begin{equation}
+  E^-(\widehat H)
+  \leq
+  E^-(H^{(0)})+E^+(H^{(1)}),
+  \qquad
+  E^+(\widehat H)
+  \leq
+  E^+(H^{(0)})+E^-(H^{(1)}).
+\label{eq:simultaneous-hofer-parts}
+\end{equation}
+回忆已经选取满足~\eqref{eq:normalized-simultaneous-action-shift} 的 $\ell_a$，并置
+\[
+  \ell_a''
+  =
+  \mathfrak g_{H(0),H(1)}^-(\ell_a).
+\]
+
+\begin{proposition}
+\label{prop:simultaneous-forward-reverse-level-bounds}
+设 $(L_0,L_1)$ 是一对紧拉格朗日子流形，另有一对子流形
+$(L^{(0)\prime},L^{(1)\prime})$，满足
+\[
+  L^{(0)\prime}
+  =
+  \phi_{H(0)}^1(L_0),
+  \qquad
+  L^{(1)\prime}
+  =
+  \phi_{H(1)}^1(L_1).
+\]
+设 $H^{(0)}$ 与 $H^{(1)}$ 分别是生成 $\phi_{H(0)}^1$ 与
+$\phi_{H(1)}^1$ 的均值归一化哈密顿量。考虑
+\[
+  [\ell_p,w]\in\widetilde\Omega(L_0,L_1;\ell_a),
+  \qquad
+  [\ell_{q''},w'']
+  \in
+  \widetilde\Omega
+  \bigl(L^{(0)\prime},L^{(1)\prime};\ell_a''\bigr).
+\]
+假设方程~\eqref{eq:hamiltonian-continuation-equation} 中取
+$H=\widehat H$、$\rho=\rho_+$（如~\eqref{eq:continuation-cutoff-function}），
+且存在一个解 $u$ 满足\footnote{译者注：原书在命题 14.4.9 与 14.4.10 中只说
+$u$ 是公式 (14.4.63) 的解，没有指明该式中的哈密顿量；但本小节的坐标变换、
+公式 (14.4.75) 以及命题 14.4.10 的能量记号都要求取本节刚定义的
+$\widehat H$。译文在两个命题中补明这一代入。}
+\[
+  \lim_{\tau\to-\infty}u(\tau,\mathord\cdot)
+  =
+  \ell_p,
+  \qquad
+  \lim_{\tau\to+\infty}u(\tau,\mathord\cdot)
+  =
+  \mathfrak g_{H(0),H(1)}^+(\ell_{q''}),
+  \qquad
+  \Phi_{H(0),H(1)}(w\#u)\sim w''.
+\]
+则
+\begin{equation}
+  \begin{aligned}
+  &\mathcal A_{\ell_a''}([\ell_{q''},w''])
+  -
+  \mathcal A_{\ell_a}([\ell_p,w])\\
+  &\qquad\geq
+  -\bigl(
+    E^-(H^{(0)})+E^+(H^{(1)})
+  \bigr).
+  \end{aligned}
+\label{eq:simultaneous-forward-level-change}
+\end{equation}
+类似地，设
+\[
+  [\ell_{p''},w'']
+  \in
+  \widetilde\Omega
+  \bigl(L^{(0)\prime},L^{(1)\prime};\ell_a''\bigr),
+  \qquad
+  [\ell_q,w]\in\widetilde\Omega(L_0,L_1;\ell_a).
+\]
+如果方程~\eqref{eq:hamiltonian-continuation-equation} 在
+$H=\widehat H$、$\rho=\rho_-=1-\rho_+$ 时存在解 $u$，满足
+\[
+  \lim_{\tau\to-\infty}u(\tau,\mathord\cdot)
+  =
+  \mathfrak g_{H(0),H(1)}^+(\ell_{p''}),
+  \qquad
+  \lim_{\tau\to+\infty}u(\tau,\mathord\cdot)
+  =
+  \ell_q,
+  \qquad
+  \Phi_{H(0),H(1)}^{-1}(w'')\#u\sim w,
+\]
+则
+\begin{equation}
+  \begin{aligned}
+  &\mathcal A_{\ell_a}([\ell_q,w])
+  -
+  \mathcal A_{\ell_a''}([\ell_{p''},w''])\\
+  &\qquad\geq
+  -\bigl(
+    E^+(H^{(0)})+E^-(H^{(1)})
+  \bigr).
+  \end{aligned}
+\label{eq:simultaneous-reverse-level-change}
+\end{equation}
+\end{proposition}
+
+下面的命题与命题~\ref{prop:concatenated-continuation-bounds} 平行。
+
+\begin{proposition}
+\label{prop:simultaneous-concatenated-bounds}
+设 $(L_0,L_1)$ 是一对紧拉格朗日子流形。假设方程
+\eqref{eq:hamiltonian-continuation-equation} 在 $H=\widehat H$ 且
+$\rho=\rho_K$（如~\eqref{eq:concatenated-elongation-family}）时存在解 $u$，满足
+\[
+  \lim_{\tau\to-\infty}u(\tau,\mathord\cdot)
+  =
+  \ell_p,
+  \qquad
+  \lim_{\tau\to+\infty}u(\tau,\mathord\cdot)
+  =
+  \ell_q,
+  \qquad
+  w_-\#u\sim w_+.
+\]
+则
+\begin{equation}
+  \mathcal A_{\ell_a}([\ell_q,w_+])
+  -
+  \mathcal A_{\ell_a}([\ell_p,w_-])
+  \geq
+  -\bigl(
+    \lVert H^{(0)}\rVert+\lVert H^{(1)}\rVert
+  \bigr),
+\label{eq:simultaneous-concatenated-level-bound}
+\end{equation}
+并且
+\begin{equation}
+  E_{(J,\widehat H,\rho_K)}(u)
+  \leq
+  \int u^*\omega
+  +
+  \lVert H^{(0)}\rVert
+  +
+  \lVert H^{(1)}\rVert.
+\label{eq:simultaneous-concatenated-energy-bound}
+\end{equation}
+\end{proposition}
+
+\begin{remark}
+\label{rem:displacement-energy-role}
+形如~\eqref{eq:simultaneous-concatenated-energy-bound} 的估计，在研究拉格朗日子流形
+位移能的最优估计时起着重要作用。（参见 (Che94), (Che98), (Oh97c),
+(FOOO13)。）
+\end{remark}

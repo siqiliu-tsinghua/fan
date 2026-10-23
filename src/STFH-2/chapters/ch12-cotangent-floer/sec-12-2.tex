@@ -1,0 +1,227 @@
+\stfhIndex{I005}{00-l2-tiduliu}{$L^2$-梯度流（$L^2$-gradient flow）}
+\section{作用量泛函的 \texorpdfstring{$L^2$}{L²}-梯度流}
+\label{sec:l2-gradient-flow-action-functional}
+
+我们首先注意，如果在 $N$ 上给定一个\personRiemann{}度量 $g$，则与之相伴的\personLeviCivita{}联络会在 $T^*N$ 上诱导一个自然的殆复结构。我们把它记为 $J_g$，并称为（相对于 $N$ 上的度量 $g$）\emph{\termCanonicalAlmostComplexStructure{}}。
+
+\begin{definition}
+\label{def:canonical-almost-complex-cotangent}
+设 $g$ 是 $N$ 上的\personRiemann{}度量。$T^*N$ 上的\termCanonicalAlmostComplexStructure{} $J_g$ 定义如下。考虑关于 $g$ 的\personLeviCivita{}联络的分解
+\[
+  T_{(q,p)}(T^*N)
+  =T_{(q,p)}^h(T^*N)\oplus T_{(q,p)}^v(T^*N).
+\]
+对每个 $(q,p)\in T^*N$，$J_g$ 把水平单位切向量映为竖直单位切向量。
+\end{definition}
+
+此后我们固定 $N$ 上的\personRiemann{}度量 $g$，不再改变。下面命题的证明留作习题。
+
+\begin{proposition}
+\label{prop:canonical-almost-complex-properties}
+我们有下列结论。
+\begin{enumerate}[label=(\arabic*)]
+  \item $J_g$ 与 $T^*N$ 的典范辛结构 $\omega_0$ 相容。
+  \item 在\termZeroSection{} $o_N\subset T^*N$ 上，利用如下等同\footnote{译者注：原书此项开头写作 $o_N\subset T^*N\cong T_{(q,0)}o_N$，在类型与维数上均不成立；结合本项后文，译文补正为 $T_qN\cong T_{(q,0)}o_N$。} $T_qN\cong T_{(q,0)}o_N$，$J_g$ 把每个
+  \[
+    v\in T_qN\subset T_{(q,0)}(T^*N)
+  \]
+  映为余切向量
+  \[
+    J_g(v)=g(v,\mathord\cdot)\in T_q^*N\subset T_{(q,0)}(T^*N).
+  \]
+  这里使用了典范分解
+  \[
+    T_{(q,0)}(T^*N)\cong T_qN\oplus T_q^*N.
+  \]
+  \item $T^*N$ 上的度量
+  \[
+    g_{J_g}:=\omega_0(\mathord\cdot,J_g\mathord\cdot)
+  \]
+  定义了一个曲率有界且\termInjectivityRadius{}有正下界的\personRiemann{}度量。
+  \item $J_g$ 在\termAntiSymplecticReflection{}
+  \[
+    r:T^*N\longrightarrow T^*N,
+    \qquad (q,p)\longmapsto(q,-p)
+  \]
+  下不变。
+\end{enumerate}
+\end{proposition}
+
+我们考虑 $T^*N$ 上所有满足
+\[
+  J\equiv J_g\qquad\text{在 $T^*N$ 的某个紧集之外}
+\]
+的相容殆复结构 $J$ 所成的类，并把该类记为
+\[
+  \mathcal J^c
+  :=\{J\mid J\text{ 与 $\omega$ 相容，且在 $T^*N$ 的某个紧子集之外 }J\equiv J_g\}.
+\]
+我们把 $J$ 的\emph{支集}定义为集合 $\{x\in T^*N\mid J(x)\ne J_g(x)\}$ 的闭包，并记为
+\[
+  \operatorname{supp}J
+  :=\overline{\{x\in T^*N\mid J(x)\ne J_g(x)\}}.
+\]
+定义
+\[
+  \mathcal P(\mathcal J^c)
+  :=C^\infty([0,1],\mathcal J^c)
+  =\{J:[0,1]\to\mathcal J^c\mid J=\{J_t\}_{0\le t\le1}\}.
+\]
+
+对每个给定的 $J=\{J_t\}_{0\le t\le1}$，我们考虑相应的相容度量族 $g_{J_t}$。该度量族在 $T^*N$ 的道路空间上诱导一个 $L^2$-度量，定义为
+\begin{equation}
+\begin{split}
+  \langle\!\langle\xi_1,\xi_2\rangle\!\rangle_J
+  &=\int_0^1 g_{J_t}(\xi_1(t),\xi_2(t))\,dt\\
+  &=\int_0^1\omega(\xi_1(t),J_t\xi_2(t))\,dt.
+\end{split}
+\label{eq:path-space-l2-metric}
+\end{equation}
+从现在起，除非另有说明，$J$ 总表示一个定义在 $[0,1]$ 上的相容殆复结构\emph{族}。
+
+接下来考虑 $H=H(t,x)$，使得 $H_t$ 渐近为常值；也就是说，它的哈密顿向量场 $X_H$ 是紧支的。我们定义
+\[
+  \operatorname{supp}_{\mathrm{asc}}H
+  =\operatorname{supp}X_H
+  :=\bigcup_{t\in[0,1]}\operatorname{supp}X_{H_t}.
+\]
+对每个给定的紧集 $K\subset T^*N$ 以及 $R\in\mathbb R_+$，定义如下：
+\begin{equation}
+  \mathcal H_R
+  =\mathcal P C_R^\infty(T^*N,\mathbb R)
+  =\{H\in C^\infty([0,1]\times T^*N,\mathbb R)
+      \mid\operatorname{supp}_{\mathrm{asc}}H\subset D^R(T^*N)\}.
+  \label{eq:filtered-hamiltonian-space}
+\end{equation}
+这给出了空间 $\mathcal H$ 的一个自然\termFiltration{}。于是有
+\[
+  \mathcal H
+  :=C^\infty([0,1]\times T^*N,\mathbb R)
+  =\bigcup_R\mathcal H_R,
+\]
+并在并集 $\bigcup_R\mathcal H_R$ 上赋予 $\{\mathcal H_R\}_{R>0}$ 的\termDirectLimitTopology{}。
+
+若把相应的 $L^2$-梯度向量场记为 $\operatorname{grad}_J\mathcal A_H$，则 $d\mathcal A_H(\gamma)$ 的公式与式~\eqref{eq:conormal-action-first-variation} 表明，$\operatorname{grad}_J\mathcal A_H$ 具有形式
+\begin{equation}
+  \operatorname{grad}_J\mathcal A_H(\gamma)(t)
+  =J_t\bigl(\dot\gamma(t)-X_H(t,\gamma(t))\bigr),
+  \label{eq:action-l2-gradient}
+\end{equation}
+我们将它简写为 $J(\dot\gamma-X_H(\gamma))$。因此，道路 $u:\mathbb R\to\Omega_{S_0S_1}$ 的\emph{负}梯度流方程具有形式
+\begin{equation}
+\left\{
+\begin{aligned}
+  &\frac{\partial u}{\partial\tau}
+    +J\left(\frac{\partial u}{\partial t}-X_H(u)\right)=0,\\
+  &u(\tau,0)\in\nu^*S_0,
+    \qquad u(\tau,1)\in\nu^*S_1,
+\end{aligned}
+\right.
+\label{eq:perturbed-cauchy-riemann-conormal}
+\end{equation}
+这里我们把 $u$ 看成映射 $u:\mathbb R\times[0,1]\to M$。我们称该方程为\personFloer{}的\emph{\termPerturbedCauchyRiemannEquation{}}，或简称与四元组 $(H,J;S_0,S_1)$ 相伴的\termPerturbedCauchyRiemannEquation{}。
+
+一般\personFloer{}理论在很大程度上依赖于研究式~\eqref{eq:perturbed-cauchy-riemann-conormal} 这一类\termPerturbedCauchyRiemannEquation{}的解 $u:\mathbb R\times[0,1]\to T^*N$ 的\termModuliSpace{}，这些解具有\emph{\termFiniteEnergy{}}和\emph{\termBoundedImage{}}。相关的能量函数由下面的定义给出。
+
+\begin{definition}
+\label{def:floer-energy}
+对给定的光滑映射 $u:\mathbb R\times[0,1]\to M$，定义 $u$ 的能量（记为 $E_{(H,J)}(u)$）为
+\[
+  E_{(H,J)}(u)
+  =\frac12\int\left(
+      \left\lVert\frac{\partial u}{\partial\tau}\right\rVert_{J_t}^2
+      +\left\lVert\frac{\partial u}{\partial t}-X_H(u)\right\rVert_{J_t}^2
+    \right)dt\,d\tau.
+\]
+\end{definition}
+
+我们用
+\[
+  \widetilde{\mathcal M}(H,J;S_0,S_1)
+\]
+表示式~\eqref{eq:perturbed-cauchy-riemann-conormal} 的像有界的有限能量解所成的集合，其中 $H$ 是一般的，不一定非退化。下面的引理是有限能量与有界像这两个条件的一个简单结论。
+
+\begin{lemma}
+\label{lem:finite-energy-subsequence-convergence}
+设 $J\in\mathcal P(\mathcal J^c)$，$H$ 是任意光滑哈密顿量。若 $u$ 满足
+\[
+  \frac{\partial u}{\partial\tau}
+  +J\left(\frac{\partial u}{\partial t}-X_H(u)\right)=0,
+\]
+且像有界、能量有限，则存在序列 $\tau_k\to\infty$（分别地，$\tau_k\to-\infty$），使得道路
+\[
+  z_k:=u(\tau_k)=u(\tau_k,\mathord\cdot)
+\]
+在 $C^\infty$ 中收敛到\personHamilton{}方程 $\dot x=X_H(x)$ 的一个解 $z:[0,1]\to T^*N$。
+\end{lemma}
+
+\begin{proof}
+该引理的证明与引理 11.2.2 的证明类似，因而只作简述。由于 $u$ 满足式~\eqref{eq:perturbed-cauchy-riemann-conormal}，我们有
+\[
+  E_{(H,J)}(u)
+  =\int\left\lVert\frac{\partial u}{\partial t}-X_H(u)\right\rVert_{J_t}^2
+    dt\,d\tau
+  <\infty.
+\]
+因此存在序列 $\tau_k\to\infty$，使得\footnote{译者注：原书式~(12.2.11) 在\personHamilton{}项中写作 $X_H(u(\tau))$，与固定切片 $\tau_k$ 不一致；译文改为 $X_H(u(\tau_k,\mathord\cdot))$。}
+\begin{equation}
+  \int_0^1
+  \left\lVert
+    \frac{\partial u}{\partial t}(\tau_k,\mathord\cdot)
+    -X_H\bigl(u(\tau_k,\mathord\cdot)\bigr)
+  \right\rVert_{J_t}^2dt
+  \longrightarrow0.
+  \label{eq:hamiltonian-slice-error}
+\end{equation}
+记 $z_k:=u(\tau_k,\mathord\cdot)$。由假设 $u$ 的像有界，$|X_H(t,z_k(t))|$ 关于 $k$ 一致有界。这一有界性与式~\eqref{eq:hamiltonian-slice-error} 推出
+\[
+  \lVert z_k\rVert_{W^{1,2}}\le C,
+\]
+其中 $C$ 与 $k$ 无关。由\personSobolev{}嵌入 $W^{1,2}\hookrightarrow C^\epsilon$（$0<\epsilon<\frac12$），$z_k$ 在 $C^\epsilon$ 中预紧，故有一个子列在 $C^\epsilon$ 中收敛到 $z_\infty$。由方程
+\[
+  \dot z_k(t)=X_H(t,z_k(t)),
+\]
+可知 $\dot z_k(t)$ 在 $C^\epsilon$ 中收敛到 $X_H(t,z_\infty(t))$。\footnote{译者注：原书在此把 $z_k=u(\tau_k,\mathord\cdot)$ 写成精确满足该\personHamilton{}方程；对一般\personFloer{}流线，前文式~(12.2.11) 只直接给出方程误差趋于零。}现在使用与引理 11.2.2 相同的\termBootstrapArgument{}，推得 $z_k$ 在 $C^\infty$ 中收敛到 $z_\infty$。证明完毕。
+\end{proof}
+
+要使 $\widetilde{\mathcal M}(H,J;S_0,S_1)$ 在参数 $(H,J;S_0,S_1)$ 变化时具有良好性质，需要对满足式~\eqref{eq:perturbed-cauchy-riemann-conormal} 的映射 $u$ 建立\termAprioriEnergyBound{}和\termCzeroBound{}。为此，需要对 $(H,J)$ 施加某种\termTamenessAtInfinity{}。（前面已经提到过 $J$ 的驯服性条件。）
+
+\begin{definition}
+\label{def:conic-at-infinity}
+若函数 $h:T^*N\to\mathbb R$ 在 $T^*N$ 的某个紧子集之外满足
+\[
+  R_\lambda^*dh=\lambda\,dh,
+  \qquad \lambda>0
+\]
+\stfhIndex{I061}{Zaiwuqiongyuanchuweizhuixing}{在无穷远处为锥形（conic at infinity）}
+（也就是说，它是 1 阶齐次的），则称 $h$\termConicAtInfinity{}。这里
+\[
+  R_\lambda:T^*N\longrightarrow T^*N,
+  \qquad(q,p)\longmapsto(q,\lambda p)
+\]
+是\termFiberMultiplicationMap{}。若存在一个\termConicAtInfinity{}的函数 $h$，使得在某个紧集之外，对所有 $t\in[0,1]$ 都有
+\[
+  H_t\equiv h,
+\]
+则称依时哈密顿量 $H$\termConicAtInfinity{}。
+\end{definition}
+
+注意
+\[
+  \nu^*S_0\cap\nu^*S_1
+  =\bigcup_{q\in S_0\cap S_1}\nu_q^*S_0\cap\nu_q^*S_1.
+\]
+这是 $T^*N$ 的一个锥形子集，但未必是孤立子集。特别地，除非 $S_0$ 和 $S_1$ 的维数互补，它总是非紧的。从现在起，我们只考虑
+\[
+  S_0=N,
+\]
+从而 $\nu^*S_0=o_N$ 是紧的。\footnote{译者注：原书此处写作 $S_0=o_N$，但 $S_0$ 是 $N$ 的子流形，而 $o_N$ 是 $T^*N$ 的子流形；结合下一引理，应为 $S_0=N$，即 $\nu^*S_0=o_N$。}
+
+\begin{lemma}
+\label{lem:dense-conic-hamiltonians-transverse}
+设 $S\subset N$ 是紧子流形。在所有在无穷远处为锥形的哈密顿量中，存在一个稠密子集，使得对该子集中的 $H$，
+\[
+  \phi_H^1(o_N)\cap\nu^*S
+\]
+是横截且紧的。
+\end{lemma}

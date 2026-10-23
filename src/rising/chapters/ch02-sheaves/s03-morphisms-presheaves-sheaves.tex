@@ -1,0 +1,113 @@
+
+\section{预层与层的态射}
+
+\textbf{2.3.1.\ 定义。}\quad 每当我们定义一种新的数学对象，范畴论都会教导我们：要设法理解这类对象之间的映射。现在我们来定义\trPresheaf{}之间的\trMorphism，\trSheaf{}亦如法炮制。换言之，我们将刻画\textbf{\trPresheaf\trCategory}（category of presheaves）与\textbf{\trSheaf\trCategory}（category of sheaves）——集合的、\trAbelianGroups{}的，等等。
+
+$X$ 上集合的一个\textbf{\trPresheaf{}的\trMorphism}（morphism of presheaves）$\varphi\colon\scr{F}\to\scr{G}$——其实，对取值于任一\trCategory{}的\trPresheaf{}也可照样定义——是指这样一份数据：对每个 $U$ 给定一个映射 $\varphi(U)\colon\scr{F}(U)\to\scr{G}(U)$，并且这份数据与\trRestrictionMap{}良好相容：若 $U\subset V$，则图
+\begin{tikzcd}[row sep=2.6em, column sep=3.6em]
+\scr{F}(V) \ar[r, "\varphi(V)"] \ar[d, "\mathrm{res}_{V,U}"'] & \scr{G}(V) \ar[d, "\mathrm{res}_{V,U}"'] \\
+\scr{F}(U) \ar[r, "\varphi(U)"] & \scr{G}(U)
+\end{tikzcd}
+交换。（注意：$\scr{F}$ 与 $\scr{G}$ 的底空间同为 $X$。）
+
+\textbf{\trSheaf{}的\trMorphism}（morphisms of sheaves）按完全相同的方式定义：从\trSheaf{} $\scr{F}$ 到\trSheaf{} $\scr{G}$ 的\trMorphism，恰好就是视 $\scr{F}$ 与 $\scr{G}$ 为\trPresheaf{}时的\trMorphism{}。（翻译：$X$ 上的\trSheaf\trCategory{}是 $X$ 上的\trPresheaf\trCategory{}的\trFullSubcategory{}。）若 $(X,\OO_X)$ 是一个\trRingedSpace，则 $\OO_X$-\trModule{}的\trMorphism{}有其显而易见的定义。（你能把它写下来吗？）
+
+\trSheaf{}之间\trMorphism{}的一个例子：从 $\mathbb{R}$ 上\trSmooth{}函数的\trSheaf{}到\trContinuous{}函数的\trSheaf{}的那个映射。这是一张「\trForgetful{}映射」：我们忘掉了这些函数是可微的，只记得它们是\trContinuous{}的。
+
+\textbf{2.3.2.\ 记号。}\quad 我们不妨顺手固定一批记号：令 $\catSetsX{X}$、$\catAbX{X}$ 等表示\trTopologicalSpace{} $X$ 上的集合的\trSheaf、\trAbelianGroups{}的\trSheaf{}等等所构成的\trCategory；令 $\catModOX$ 表示\trRingedSpace{} $(X,\OO_X)$ 上 $\OO_X$-\trModule{}的\trCategory；令 $\catSetsPreX{X}$ 等表示 $X$ 上的集合的\trPresheaf{}等等所构成的\trCategory。
+
+\textbf{2.3.3.\ 给范畴爱好者的题外话。}\quad 若你把 $X$ 上的\trPresheaf{}解读为一个\trContravariantFunctor{}（从开集的\trCategory{}出发），那么 $X$ 上\trPresheaf{}之间的\trMorphism{}无非是\trFunctor{}之间的\trNaturalTransformation{}（\S1.1.21）。
+
+\begin{exercise}[（预）层的态射诱导茎间的态射]\label{ex:morphisms-induce-stalk-maps}
+设 $\varphi\colon\scr{F}\to\scr{G}$ 是 $X$ 上\trPresheaf{}之间的\trMorphism，且 $p\in X$。请描述由此诱导的\textbf{\trStalk{}之间的\trMorphism}（morphism of stalks）$\varphi_p\colon\scr{F}_p\to\scr{G}_p$。（翻译：在 $p$ 处取\trStalk{}这一操作，本身诱导出一个\textbf{\trStalkification\trFunctor}（stalkification functor）$\catSetsX{X}\to\textsc{Sets}$。你的证明会以显然的方式推广。例如，若 $\varphi$ 是 $\OO_X$-\trModule{}之间的\trMorphism，则 $\varphi_p$ 是 $\OO_{X,p}$-\trModule{}之间的映射。）
+\end{exercise}
+
+\begin{exercise}\label{ex:pushforward-induces-functor}
+设 $\pi\colon X\to Y$ 是\trTopologicalSpace{}之间的\trContinuousMap{}（也就是说，是\trTopologicalSpace{}的\trCategory{}中的一个\trMorphism）。证明：\trPushforward{}给出一个\trFunctor{} $\pi_*\colon\catSetsX{X}\to\catSetsX{Y}$；这里的 $\textsc{Sets}$ 换成其他\trCategory{}亦然。（当心一种可能出现的混淆：\trPresheaf{}是\trFunctor，而\trPresheaf{}又构成一个\trCategory{}。眼下你顶好把「\trPresheaf{}是\trFunctor{}」这件事给忘了。）
+\end{exercise}
+
+\begin{exercise}[重要练习兼定义：「层 $\scr{H}om$」]\label{ex:sheaf-hom-definition}
+设 $\scr{F}$ 与 $\scr{G}$ 是 $X$ 上两个集合的\trSheaf{}（其实，只需 $\scr{F}$ 是\trPresheaf{}便已足够）。令 $\scr{H}om(\scr{F},\scr{G})$ 为如下数据
+\[
+\scr{H}om(\scr{F},\scr{G})(U)\coloneqq\Mor(\scr{F}|_U,\ \scr{G}|_U).
+\]
+（回忆记号 $\scr{F}|_U$，即把\trSheaf{}限制到\trOpenSet{} $U$ 上所得之物，见\mbox{例~2.2.8}。）证明：这是 $X$ 上的一个集合的\trSheaf{}。（以免落入一个常见的混淆：右端说的\emph{并非} $\Mor(\scr{F}(U),\scr{G}(U))$。）这个\trSheaf{}称为\textbf{层 $\scr{H}om$}（sheaf $\mathscr{H}om$）。（严格说来，$\Hom$ 一词应当留给出\trAdditiveCategory{}的场合，所以这东西或许本该叫「层 $\Mor$」；但「层 $\scr{H}om$」这一称谓积习已深，拔不动了。）由你的构造应当一望即知：与 $\Hom$ 一样，$\scr{H}om$ 在第一个变元上是\trContravariantFunctor，在第二个变元上是\trCovariantFunctor。
+
+\emph{警示：}$\scr{H}om$ 与取\trStalk{}并不交换。更精确地说：断言 $\scr{H}om(\scr{F},\scr{G})_p$ 与 $\Hom(\scr{F}_p,\scr{G}_p)$ \trIsomorphic，并不成立。（你能想出一个反例吗？这两者之间至少存在一个映射——朝哪个方向？）
+\end{exercise}
+
+\textbf{2.3.4.}\quad $\scr{H}om$ 的定义有许多变体，我们都会用到。例如，若 $\scr{F}$ 与 $\scr{G}$ 是 $X$ 上\trAbelianGroups{}的\trSheaf，则 $\scr{H}om_{\catAbX{X}}(\scr{F},\scr{G})$ 定义为：取 $\scr{H}om_{\catAbX{X}}(\scr{F},\scr{G})(U)$ 为「作为\trAbelianGroups{}的\trSheaf{}」的映射 $\scr{F}|_U\to\scr{G}|_U$ 全体。（注意：$\scr{H}om_{\catAbX{X}}(\scr{F},\scr{G})$ 以自然的方式带有\trAbelianGroups{}的\trSheaf{}这一结构。）类似地，若 $\scr{F}$ 与 $\scr{G}$ 是 $\OO_X$-\trModule，我们便以完全类似的方式定义 $\scr{H}om_{\catModOX}(\scr{F},\scr{G})$（它是一个 $\OO_X$-\trModule）。显然，下标 $\catAbX{X}$ 与 $\catModOX$ 常被省去——无论此地还是文献之中皆然——所以务必当心自己正在哪个\trCategory{}里工作！我们称 $\scr{H}om_{\catModOX}(\scr{F},\OO_X)$ 为 $\OO_X$-\trModule{} $\scr{F}$ 的\textbf{\trDual}（dual），并记作 $\scr{F}^{\vee}$。
+
+\begin{exercise}[不重要练习·现实检验]\label{ex:sheaf-hom-reality-check}
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $\scr{H}om(\underline{\{p\}},\scr{F})$ 同构于 $\scr{F}$，其中 $\scr{F}$ 是 $X$ 上集合的\trSheaf，而 $\underline{\{p\}}$ 是「取值于单元素集 $\{p\}$」的\trConstantSheaf。
+\item 若 $\scr{F}$ 是 $X$ 上\trAbelianGroups{}的\trSheaf，证明 $\scr{H}om_{\catAbX{X}}(\underline{\mathbb{Z}},\scr{F})\cong\scr{F}$（作为\trAbelianGroups{}的\trSheaf{}的\trIsomorphism）。
+\item 若 $\scr{F}$ 是一个 $\OO_X$-\trModule，证明 $\scr{H}om_{\catModOX}(\OO_X,\scr{F})\cong\scr{F}$（作为 $\OO_X$-\trModule{}的\trIsomorphism）。
+\end{enumerate}
+\end{exercise}
+
+(b) 与 (c) 中的一个关键想法是：$1$ 以某种意义「生成」了 $\mathbb{Z}$（就 (b) 而言）与 $\OO_X$（就 (c) 而言）。
+
+\textbf{2.3.5.\ \trAbelianGroups{}的\trPresheaf{}（乃至「\trPresheaf{} $\OO_X$-\trModule」）构成一个\trAbelianCategory。}
+
+我们可以在\trTopologicalSpace{} $X$ 上，用\trAbelianGroups{}的\trPresheaf{}做各种类似\trModule{}的构造。（自本段起直至节末，一切（预）层都是\trAbelianGroups{}的（预）层。）例如，显然可以把\trPresheaf{}之间的\trMorphism{}相加，而仍得一条\trPresheaf{}之间的\trMorphism：若 $\varphi$ 与 $\psi$ 都是\trPresheaf{} $\scr{F}\to\scr{G}$ 之间的\trMorphism，则把映射 $\varphi+\psi$ 定义为 $(\varphi+\psi)(V)=\varphi(V)+\psi(V)$。（这里有一件小事需要核验：其结果确实是一条\trPresheaf{}之间的\trMorphism。）如此一来，\trAbelianGroups{}的\trPresheaf{}构成一个\trAdditiveCategory{}（\mbox{定义~1.5.1}：任何两个\trAbelianGroups{}的\trPresheaf{}之间的\trMorphisms{}构成一个\trAbelianGroups；存在一个\trZeroObject；并且可以取有限积）。
+
+出于完全相同的理由，\trAbelianGroups{}的\trSheaf{}也构成一个\trAdditiveCategory。
+
+设 $\varphi\colon\scr{F}\to\scr{G}$ 是\trPresheaf{}之间的\trMorphism。定义\textbf{\trPresheaf\trKernel}（presheaf kernel）$\ker_{\mathrm{pre}}\varphi$ 如下：$(\ker_{\mathrm{pre}}\varphi)(U)\coloneqq\ker\varphi(U)$。
+
+\begin{exercise}\label{ex:presheaf-kernel-is-presheaf}
+证明 $\ker_{\mathrm{pre}}\varphi$ 是一个\trPresheaf{}。（提示：若 $U\subset V$，按追下面这张图的方式来定义\trRestrictionMap{}：
+\begin{tikzcd}[row sep=3em, column sep=3.2em]
+0 \ar[r] & \ker_{\mathrm{pre}}\varphi(V) \ar[r] \ar[d, dotted, "\exists!"] & \scr{F}(V) \ar[r] \ar[d, "\mathrm{res}_{V,U}"'] & \scr{G}(V) \ar[d, "\mathrm{res}_{V,U}"'] \\
+0 \ar[r] & \ker_{\mathrm{pre}}\varphi(U) \ar[r] & \scr{F}(U) \ar[r] & \scr{G}(U).
+\end{tikzcd}
+另请核验：诸\trRestrictionMap{}按所要求的方式复合。）
+\end{exercise}
+
+同样地，定义\textbf{\trPresheaf\trCokernel}（presheaf cokernel）$\coker_{\mathrm{pre}}\varphi$。由本质上相同的（对偶的）论证可知，它是一个\trPresheaf{}。
+
+\begin{exercise}[余核名副其实]\label{ex:cokernel-deserves-name}
+证明：\trPresheaf\trCokernel{}在\trPresheaf\trCategory{}中满足\trCokernel{}的\trUniversalProperty{}（定义~1.5.4）。
+\end{exercise}
+
+类似地，$\ker_{\mathrm{pre}}\varphi\to\scr{F}$ 在\trPresheaf\trCategory{}中满足\trKernel{}的\trUniversalProperty。
+
+验证\trAbelianGroups{}的\trPresheaf{}构成一个\trAbelianCategory{}并不算太繁琐，读者尽可自行验证。关键想法是：一切\trAbelianCategory{}意义下的概念，都可以「逐开集」地定义并验证；\trRestrictionMap{}无须我们操心——它们会「顺车一道跟来」。于是我们可以定义\textbf{\trSubpresheaf}（subpresheaf）、\textbf{\trImage\trPresheaf}（image presheaf，或 presheaf image）与\textbf{\trQuotient\trPresheaf}（quotient presheaf，或 presheaf quotient）之类的术语，而它们的行为正不出你所料。\trKernel、\trQuotient、\trCokernel{}与\trImage，统统可以逐开集地构造。\trHomologicalAlgebra{}（\trExactSequence{}之类）照样管用，而且同样「逐开集地」管用。特别地：
+
+\begin{exercise}[容易的练习]\label{ex:evaluation-functor-exact}
+证明（或者说：观察到）：给定\trTopologicalSpace{} $X$ 及其一个\trOpenSet{} $U$，$\scr{F}\mapsto\scr{F}(U)$ 给出一个从 $X$ 上\trAbelianGroups{}的\trPresheaf\trCategory{} $\catAbPreX{X}$ 到\trAbelianGroups\trCategory{} $\catAb$ 的\trFunctor。再证明：这个\trFunctor{}是\trExact{}的。
+\end{exercise}
+
+\begin{exercise}\label{ex:presheaf-exactness-termwise}
+证明：\trPresheaf{}的序列 $0\to\scr{F}_1\to\scr{F}_2\to\dotsb\to\scr{F}_n\to 0$ 是\trExactSequence，当且仅当对一切 $U$，序列 $0\to\scr{F}_1(U)\to\scr{F}_2(U)\to\dotsb\to\scr{F}_n(U)\to 0$ 是\trExactSequence。
+\end{exercise}
+
+以上的讨论基本上原封不动地适用于取值于任一\trAbelianCategory{}的\trPresheaf{}。（愿意的话，不妨把这件事想透。）
+
+然而，我们感兴趣的是更为几何的对象——\trSheaves{}：拜\trIdentityAxiom{}与\trGluingAxiom{}所赐，在\trSheaf{}这里，事物可以就其局部行为来把握。我们很快会看到，\trAbelianGroups{}的\trSheaf{}也构成一个\trAbelianCategory，但届时将冒出一个麻烦，逼得我们接受\emph{\trSheafification}这一观念。\trSheafification{}将应验我们的许多祈愿——只是我们还没有意识到自己该祈求的是什么。
+
+首先，正如 \S2.3.5 首段所述，\trAbelianGroups{}的\trSheaves{}——即\trCategory{} $\catAbX{X}$——构成一个\trAdditiveCategory。
+
+\trKernel{}的情形，与\trPresheaf{}时如出一辙：
+
+\begin{exercise}[重要练习]\label{ex:sheaf-kernel-is-sheaf}
+设 $\varphi\colon\scr{F}\to\scr{G}$ 是\emph{\trSheaf}之间的\trMorphism。证明：\trPresheaf\trKernel{} $\ker_{\mathrm{pre}}\varphi$ 其实是一个\trSheaf{}。再证明：它满足\trKernel{}的\trUniversalProperty{}（\mbox{定义~1.5.4}）。（提示：第二个问题可以立刻由「$\ker_{\mathrm{pre}}\varphi$ 在\emph{\trPresheaf}的\trCategory{}中满足\trUniversalProperty{}」这一事实推出。）
+\end{exercise}
+
+于是，若 $\varphi$ 是\trSheaf{}之间的\trMorphism，我们就定义
+\[
+\ker\varphi\coloneqq\ker_{\mathrm{pre}}\varphi.
+\]
+
+麻烦出在\trCokernel{}身上。
+
+\begin{exercise}[重要练习]\label{ex:holomorphic-logarithm-sequence}
+设 $X$ 为带\trClassicalTopology{}的 $\mathbb{C}$，令 $\OO_X$ 为\trHolomorphic{}函数的\trSheaf，并令 $\scr{F}$ 为由容许\trHolomorphic{}对数的函数组成的\emph{\trPresheaf}。请描述 $X$ 上\trPresheaf{}的一个\trExactSequence{}：
+\[
+0\longrightarrow\underline{\mathbb{Z}}\longrightarrow\OO_X\longrightarrow\scr{F}\longrightarrow 0,
+\]
+其中 $\underline{\mathbb{Z}}\to\OO_X$ 是自然的包含映射，而 $\OO_X\to\scr{F}$ 由 $f\mapsto\exp(2\pi i f)$ 给出。（务必核验\trExact{}性。）证明：$\scr{F}$ \emph{并不}是\trSheaf{}。（提示：$\scr{F}$ 不满足\trGluability{}。问题在于：存在这样一些函数——它们并没有对数，但在局部却有对数。）这件事在\mbox{例~2.4.9}中还会再度登场。
+\end{exercise}
+
+至于理解\trSheaf{}的\trCokernel{}的希望，我们不得不把它暂且搁置一阵子。我们要先学会用\trStalk{}来理解\trSheaf。

@@ -1,0 +1,77 @@
+
+\section{\trSmooth{}（与\trEtale{}）\trMorphism：第一定义}
+
+在 \S13.2.3 中，我们定义了域上的\trSmoothness。如今我们已经懂得足够多，足以在一般情形下定义\emph{光滑\trMorphism}（以及作为其特殊情形的\emph{平展\trMorphism}）了。我们的定义将在好几个方面都不完美。例如，它看上去会有些出人意料。又如另一个迹象：它究竟是否真的推广了域上的\trSmoothness，这一点将并不显然。第三个缺陷是：由于它取的是「存在满足某性质的开覆盖」这种形式，它天生笨拙，不适宜用来证明某个\trMorphism{}\emph{不}\trSmooth。但它有一个重大优点：我们此刻就能给出这个定义，而且光滑\trMorphism{}的基本性质将直截了当、易于证明。
+
+\textbf{13.6.1.}\ \emph{微分几何动机（见\mbox{图~24.6}）。}\quad 光滑\trMorphism{}这个观念，是由微分几何中的下述想法所驱动的（想温习微分几何，可参看，比如，[Tu] 或 [Var, \S1.1--1.2]）。为着眼于眼下的讨论，我们称流形（或实解析空间，或其任何变种）之间的一个映射 $\pi\colon X\to Y$ 是\emph{相对维数 $n$ 光滑}的（smooth of relative dimension $n$），若它在局部上（在 $X$ 上）看上去形如 $Y'\times\mathbb{R}^n\to Y'$。（在微分几何中，这通常称为一个\trSubmersion。）翻译一下：它是「在\trSource{}上局部地一个光滑纤维化」。（如果你此前没听说过纤维化这个词，别担心。非正式地说，某个「几何对象的\trCategory」中的一个\emph{纤维化}是一个映射 $\pi\colon X\to Y$，它在\trSource{}上局部地是一个乘积 $V\times W\to V$；在某种流形的范畴中，所谓纤维化即「在\trSource{}上局部地一个光滑纤维化」，只要局部描述中的那个 $W$ 可以取成某个 $\mathbb{R}^a$。）
+
+特别地，「相对维数 $0$ 光滑」与一个重要观念——「局部同构」（local isomorphism；即「在\trSource{}上局部地同构」——与「覆盖空间」并非完全是同一回事）——说的是同一回事。把这个想法过分朴素地搬进代数几何，会导致「错误」的定义（见\mbox{练习~13.6.F}）。我们此刻就给出一个更好的定义，而在 \S24.8 中还会给出一些等价定义。
+
+\textbf{13.6.2.\ \trhDefinition{}。}\quad 一个\trMorphism $\pi\colon X\to Y$ 称为\textbf{相对维数 $n$ 光滑}的（smooth of relative dimension $n$），若存在 $X$ 的\trOpenCover{} $\{U_i\}$ 与 $Y$ 的\trOpenCover{} $\{V_i\}$，其中 $\pi(U_i)\subset V_i$，使得对每个 $i$ 我们都有一张\trCommutativeDiagram
+\[
+\begin{tikzcd}[row sep=3.2em, column sep=2.6em]
+U_i \ar[d, "\pi|_{U_i}"'] & W \ar[l, "\sim"'] \ar[r, hook, "\text{open}"] \ar[d, "\rho|_W"] & \Spec B[x_1,\dots,x_{n+r}]/(f_1,\dots,f_r) \ar[dl, "\rho"'] \\
+V_i & \Spec B, \ar[l, "\sim"'] &
+\end{tikzcd}
+\]
+其中 $\rho$ 由相反方向的显然环映射所诱导，而 $W$ 是 $\Spec B[x_1,\dots,x_{n+r}]/(f_1,\dots,f_r)$ 的一个\trOpenSubscheme，使得诸 $f_j$ 关于\emph{前} $r$ 个 $x_i$ 的\trJacobianMatrix{}之行列式
+\begin{equation*}\tag{13.6.2.1}\label{eq:jacobian-det}
+\det\left(\frac{\partial f_j}{\partial x_i}\right)_{i,j\le r},
+\end{equation*}
+是 $W$ 上的一个可逆（$=$ 处处非零）函数。\textbf{\trEtale}意味着\emph{相对维数 $0$ 光滑}。
+
+\textbf{13.6.3.}\ \emph{几条快速的观察。}\quad 请务必注意到：若 $B$ 是一个域，那么我们的方程数目恰好「合适」（共 $r$ 条），从而有希望在 $\mathbb{A}^{n+r}_k$ 中切出某个维数为 $n$ 的东西。更一般地，凭直观而不甚精确地说：我们恰好有「数目正好的方程」在 $\mathbb{A}^{n+r}_B$ 中切出 $W$，没有一条方程是多余的。
+
+由定义可见，光滑\trMorphism{}都是\trLocally\trFinitelyPresented{}的（从而是\trLocally\trFiniteType{}的）。此外，一眼即可看出 $\mathbb{A}^n_B\to\Spec B$ 是相对维数 $n$ 光滑的。由定义可见，$X$ 上使 $\pi$ 相对维数 $n$ 光滑的\trLocus{}是一个开集。特别地，使 $\pi$ 平展的\trLocus{}是开集。
+
+作为容易的例子：\trOpenEmbedding{}都是平展的，而\trProjection $\mathbb{A}^n\times Y\to Y$ 是相对维数 $n$ 光滑的。对于这个定义的不完美之处，你或许已经有某种感觉了。比如说：倘若一个\trMorphism{}并未以「正确的」变量 $x_i$ 与「正确的」方程都一目了然的形式摆在你面前，你怎么知道它是光滑的？
+
+\textbf{13.6.A.（激励性练习，面向有微分几何背景者）}\quad 证明：定义~13.6.2 如何给出微分几何中的那个定义，亦即 \S13.6.1 中所描述者。（你的论证可能会用到隐函数定理，而它在代数几何中「不顶用」；见\mbox{练习~13.6.F}。）证明：对复\trVariety{}而言，\trAnalytification{}把平展\trMorphism{}变成「局部双全纯映射」。
+
+\textbf{13.6.B.（练习）}\quad 证明：相对维数 $n$ 光滑性这个观念（特别地，平展性这个观念）在\trSource{}与\trTarget{}上都是局部的。
+
+由此我们便可以理解「$\pi\colon X\to Y$ 在 $p\in X$ 处相对维数 $n$ 光滑」这句话的含义：它是指存在 $p$ 的一个开\trNeighborhood{} $U$，使得 $\pi|_U$ 相对维数 $n$ 光滑。
+
+\textbf{光滑\trMorphism}（不指明相对维数 $n$）这一说法，在非正式场合通常指「某个相对维数 $n$ 的光滑\trMorphism」，但有时也可能指「在每一点的邻域内都具有某个相对维数的光滑」。
+
+\textbf{13.6.C.（容易的练习）}\quad 证明：相对维数 $n$ 光滑性这个观念（从而平展性这个观念）在\trBaseChange{}下保持。
+
+\textbf{13.6.D.（练习）}\quad 设 $\pi\colon X\to Y$ 相对维数 $m$ 光滑，$\rho\colon Y\to Z$ 相对维数 $n$ 光滑。证明：$\rho\circ\pi$ 相对维数 $m+n$ 光滑。（特别地，平展\trMorphism{}的复合仍是平展的。此外，由\mbox{练习~8.1.A}，这也蕴涵光滑\trMorphism{}对乘积封闭。）
+
+\mbox{练习~13.6.B--13.6.D} 蕴涵：光滑\trMorphism{}（与平展\trMorphism）在 \S8.1 的意义下构成一个「\trReasonable」的类。
+
+\textbf{13.6.4.}\ \emph{观察。}\quad 设 $\pi\colon X\to Y$ 相对维数 $n$ 光滑。那么在 $X$ 上局部地看，$\pi$ 可以描述为到 $\mathbb{A}^n_Y$ 的一个\trEtale{}\trCover。更精确地说，对每个 $p\in X$，都存在 $p$ 的一个开\trNeighborhood{} $U$，使得 $\pi|_U$ 可以分解为
+\[
+U \xrightarrow{\ \alpha\ } \mathbb{A}^n_Y \xrightarrow{\ \beta\ } Y,
+\]
+其中 $\alpha$ 是平展的，而 $\beta$ 是显然的\trProjection。
+
+\textbf{13.6.E.（练习）}\quad 证明：$\Spec k\to\Spec k[\epsilon]/(\epsilon^2)$ 不是平展\trMorphism。（你心中关于平展\trMorphism{}的图像已经捕捉到这个事实了吗？）一种可行的进路：倘若它是平展的，证明它将诱导「切空间上的同构」。
+
+\textbf{13.6.5.}\quad 用更精致的办法处理\mbox{练习~13.6.E}，或许会引导你考虑下面这几道练习：把到 $\Spec k$ 的平展映射分类。把到 $\Spec\overline{k}[x_1,\dots,x_n]/I$ 的平展映射分类。若 $A=\overline{k}[x_1,\dots,x_n]/I$ 使得 $\Spec A$ 只有一个点（这是\trArtinian{}局部\trScheme{}的一个例子，定义~6.5.9，而 $A$ 是一个\trArtinian\trLocalRing，\S12.1.8），把到 $\Spec A$ 的平展映射分类。这些问题将把你引向不同的重要方向：形变理论、\trWitt{}向量，等等。
+
+\textbf{13.6.F.（练习）}\quad 设 $k$ 是特征不为 $2$ 的域。令 $Y=\Spec k[t]$，而 $X=\Spec k[u,1/u]$。证明：由 $t\mapsto u^2$ 诱导的\trMorphism $\pi\colon X\to Y$ 是平展的。（把 $\pi$ 画出来！）证明：不存在非空开子集 $U\subset X$ 使得 $\pi$ 在其上是同构。（这表明平展不能定义为「局部同构」，即「在\trSource{}上局部地同构」。特别地，\S13.6.1 的微分几何直观的朴素延伸并不给出代数几何中平展性的正确定义。）
+
+现在我们来证明：当\trTarget{}是一个域时，我们新的定义~13.6.2 特化为定义~13.2.4。
+
+\textbf{13.6.6.\ \trhTheorem{}。}\ ——\ \emph{设 $X$ 是一个 $k$-\trScheme。则下列诸条彼此等价。}
+\begin{enumerate}[label=(\roman*)]
+\item \emph{$X$ 在 $\Spec k$ 上相对维数 $n$ 光滑（定义~13.6.2）。}
+\item \emph{$X$ 具有\trPureDimension $n$，并且在 $k$ 上\trSmooth{}（依定义~13.2.4 的意义）。}
+\end{enumerate}
+
+这使得我们可以把「在 $k$ 上光滑」与「在 $\Spec k$ 上光滑」这两个说法互换着使用，正如我们所期望的那样。更一般地，\textbf{「在环 $A$ 上光滑」}意即「在 $\Spec A$ 上光滑」。
+
+\emph{证明。}\ \emph{(i) 蕴涵 (ii)}。设 $X$ 在 $\Spec k$ 上相对维数 $n$ 光滑（定义~13.6.2）。我们将证明 $X$ 具有\trPureDimension $n$，并且在 $k$ 上\trSmooth{}（定义~13.2.4）。我们的目标是一个扎里斯基局部性的陈述，故不妨设 $X$ 是一个开子集
+\[
+W\subset\Spec k[x_1,\dots,x_{n+r}]/(f_1,\dots,f_r),
+\]
+如定义~13.6.2 中所描述者。
+
+论证的关键在于证明 $X$ 具有「\trPureDimension $n$」，因为一旦如此，陈述的后一半便随之而来：此时\trJacobianMatrix{}的\trCorank{}为 $n$。
+
+令 $X_{\overline{k}}:=X\times_k\overline{k}$。由\mbox{练习~12.1.H}，$X_{\overline{k}}$ 具有\trPureDimension $n$ 当且仅当 $X$ 具有\trPureDimension $n$。设 $p$ 是（有限型概形）$X_{\overline{k}}$ 的一个\trClosedPoint。那么，由\trKrull{}高度定理~12.3.10 结合定理~12.2.9（对\trVariety{}而言，余维数是维数之差），$X_{\overline{k}}$ 在 $p$ 处的维数至少为 $n$。但 $\overline{k}$ 上有限型概形在\trClosedPoint{}处的\trZariski{}\trTangentSpace{}是由\trJacobianMatrix{}切出的（\mbox{练习~13.1.I}），故其维数恰为 $n$（由 $k$-光滑定义中的雅可比条件）。既然\trZariski{}\trTangentSpace{}的维数是概形维数的下界（定理~12.3.12），$X_{\overline{k}}$ 便具有\trPureDimension $n$，正如所愿。
+
+\emph{(ii) 蕴涵 (i)}。只需在 $X$ 的任一给定\trClosedPoint{} $p$ 的某个邻域内证明这条结果。（这里我们用到：诸\trClosedPoint{}的开邻域之并就是整个 $X$，见\mbox{练习~5.3.F}。）于是我们考虑下面这个问题。设给定 $X:=\Spec k[x_1,\dots,x_{n+r}]/(f_1,\dots,f_N)$、一点 $p\in X$，以及 $p$ 在 $X$ 内的一个开\trNeighborhood{} $U$，使得 $U$ 具有\trPureDimension $n$，且诸 $f_j$ 关于诸 $x_i$ 的\trJacobianMatrix{}在 $U$ 上处处有\trCorank $n$。我们要证明：\trStructureMorphism $\pi\colon X\to\Spec k$ 在 $p$ 处相对维数 $n$ 光滑（定义~13.6.2）。通过置换诸 $f_i$（并缩小 $U$），不妨设\emph{前} $f_1,\dots,f_r$ 的\trJacobianMatrix{}已有\trCorank $n$（即秩为 $r$）。那么 $Y:=\Spec k[x_1,\dots,x_{n+r}]/(f_1,\dots,f_r)$ 在 $p$ 处是相对维数 $n$ 光滑的（在 $\Spec k$ 上）（定义~13.6.2），于是\trLocalRing{} $\OO_{Y,p}$ 由\mbox{练习~13.2.O}是一个\trIntegralDomain，并且由上面 (i) 蕴涵 (ii) 的证明，它具有\trPureDimension $n$。
+
+出于同样的理由，$\OO_{X,p}$ 也是一个具有\trPureDimension $n$ 的\trIntegralDomain。我们有\trIntegralDomain{}之间的一个满同态 $\OO_{Y,p}\to\OO_{Y,p}/(f_{r+1},\dots,f_N)=\OO_{X,p}$，且二者维数相同，于是由\mbox{容易的练习~12.1.D}，$\OO_{Y,p}=\OO_{X,p}$，也就是说，在 $\OO_{Y,p}$ 中 $f_{r+1}=\cdots=f_N=0$。于是在 $p$ 附近，$X$ 同构于 $Y$，从而 $X$ 的确在 $k$ 上相对维数 $n$ 光滑（定义~13.6.2），正如所愿。\hfill$\square$

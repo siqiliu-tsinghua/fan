@@ -1,0 +1,100 @@
+
+\section{射影空间上的一些线丛}
+
+我们现在来描述\trField{} $k$ 上的\trProjectiveSpace{}中一族重要的\trInvertibleSheaf。
+
+作为热身，我们从 $\mathbb{P}^1_k=\Proj k[x_0,x_1]$ 上的\trInvertibleSheaf{} $\OO_{\mathbb{P}^1_k}(1)$ 开始。下标 $\mathbb{P}^1_k$ 指明的是该\trSheaf{}所栖身的空间，当上下文已足够清楚时，它常被省去。我们用\trTransitionFunction{}来描述\trInvertibleSheaf{} $\OO(1)$。它在通常的\trAffine\trOpenSet{} $U_0=\mathrm{D}(x_0)=\Spec k[x_{1/0}]$ 与 $U_1=\mathrm{D}(x_1)=\Spec k[x_{0/1}]$ 上是\trTrivial{}的。（我们继续沿用 $x_{i/j}$ 这一约定来描述\trProjectiveSpace{}各小块上的坐标；见 \S4.4.9。）于是，$U_0$ 上一个\trSection{}的数据就是 $x_{1/0}$ 的一个多项式。从 $U_0$ 到 $U_1$ 的\trTransitionFunction{}是乘以 $x_{0/1}=x_{1/0}^{-1}$。而从 $U_1$ 到 $U_0$ 的\trTransitionFunction{}于是便是乘以 $x_{1/0}=x_{0/1}^{-1}$。
+
+这一信息总结如下：
+\begin{center}
+\begin{tikzcd}[column sep=4.5em, row sep=3.2em]
+\text{\trOpenCover} & U_0=\Spec k[x_{1/0}] & U_1=\Spec k[x_{0/1}] \\
+\text{\trTrivialization{}与\trTransitionFunction} & k[x_{1/0}] \ar[r, bend left=14, "\times x_{0/1}=x_{1/0}^{-1}"] & k[x_{0/1}] \ar[l, bend left=14, "\times x_{1/0}=x_{0/1}^{-1}"']
+\end{tikzcd}
+\end{center}
+
+为检验我们的理解，让我们来算一算 $\OO(1)$ 的\trGlobalSections。这将推广我们亲手做过的那个计算 $\Gamma(\mathbb{P}^1_k,\OO_{\mathbb{P}^1_k})\cong k$（\mbox{例~4.4.6}）。一个整体截面就是一个多项式 $f(x_{1/0})\in k[x_{1/0}]$ 连同一个多项式 $g(x_{0/1})\in k[x_{0/1}]$，使得 $f(1/x_{0/1})x_{0/1}=g(x_{0/1})$。稍加思索便会发现，$f$ 必为线性：$f(x_{1/0})=ax_{1/0}+b$，从而 $g(x_{0/1})=a+bx_{0/1}$。于是
+\[
+\dim\Gamma(\mathbb{P}^1_k,\OO(1))=2\ne 1=\dim\Gamma(\mathbb{P}^1_k,\OO).
+\]
+于是，$\OO(1)$ 并不同构于 $\OO$——我们构造出了第一个（得到证明的）非平凡\trLineBundle{}例子！
+
+我们接下来更一般地定义 $\mathbb{P}^1_k$ 上的 $\OO_{\mathbb{P}^1_k}(m)$。其定义方式与前完全相同，只是诸\trTransitionFunction{}取为 $\OO(1)$ 的那些\trTransitionFunction{}的 $m$ 次幂。
+\begin{center}
+\begin{tikzcd}[column sep=4.5em, row sep=3.2em]
+\text{\trOpenCover} & U_0=\Spec k[x_{1/0}] & U_1=\Spec k[x_{0/1}] \\
+\text{\trTrivialization{}与\trTransitionFunction} & k[x_{1/0}] \ar[r, bend left=14, "\times x_{0/1}^m=x_{1/0}^{-m}"] & k[x_{0/1}] \ar[l, bend left=14, "\times x_{1/0}^m=x_{0/1}^{-m}"']
+\end{tikzcd}
+\end{center}
+
+特别地，多亏这些显式的\trTransitionFunction，我们看到 $\OO(m)=\OO(1)^{\otimes m}$（若 $m$ 为负，其含义也是显然的：$(\OO(1)^{\otimes(-m)})^{\vee}$）。同样显然地还有 $\OO(m)\otimes\OO(m')=\OO(m+m')$。
+
+\textbf{15.1.A.（重要练习）}\quad 证明：当 $m\ge 0$ 时 $\dim\Gamma(\mathbb{P}^1,\OO(m))=m+1$，否则为 $0$。
+
+\textbf{15.1.1.}\ \emph{\trhExample{}。}\quad 很久以前（在\cref{ex:ox-module-tensor-product}(a) 中），我们曾警告过：对 $\OO_X$-\trModule{}作张量时需要\trSheafification——若 $\mathscr{F}$ 与 $\mathscr{G}$ 是某个\trRingedSpace{}上的两个 $\OO_X$-\trModule，那么 $\mathscr{F}(X)\otimes_{\OO_X(X)}\mathscr{G}(X)\cong(\mathscr{F}\otimes\mathscr{G})(X)$ 未必成立。如今我们便有了一个例子：令 $X=\mathbb{P}^1_k$、$\mathscr{F}=\OO(1)$、$\mathscr{G}=\OO(-1)$，并利用 $\OO(-1)$ 没有非零整体截面这一事实。
+
+\textbf{15.1.B.（练习）}\quad 证明：若 $m\ne m'$，则 $\OO(m)\ncong\OO(m')$。由此推得：我们有群的单射 $\mathbb{Z}\hookrightarrow\operatorname{Pic}\mathbb{P}^1_k$，由 $m\mapsto\OO(m)$ 给出。
+
+把 $\OO(m)$ 的\trGlobalSections{}等同于 $x_0$、$x_1$ 的次数为 $m$ 的\trHomogeneous{}多项式——也就是说，等同于 $k[x_0,x_1]$ 的次数 $m$ 部分——是很有用的（向 $\mathbb{P}^n$ 的推广见 \S15.1.2）。你能从\mbox{练习~15.1.A}的解答中看出这一点吗？我们将会看到，这一等同在许多方面都是\trNatural{}的。比如说，你可以证明 $\OO(m)$ 的定义不依赖于\trAffine\trCover{}的选取，而这个多项式描述同样不依赖于覆盖。（为此，见\mbox{例~4.5.13}；日后你可以把它与\mbox{练习~25.1.N}相比较。）作为对这一观点之有用性的一个立竿见影的检验，问问你自己：$\OO(3)$ 的\trSection{} $x_0^3-x_0x_1^2$ 在何处消失？$\OO(1)$ 的\trSection{} $x_0+x_1$ 可以乘上 $\OO(2)$ 的\trSection{} $x_0^2$，得到 $\OO(3)$ 的一个\trSection。是哪一个？$\OO(-2)$ 的有理\trSection{} $x_0^4(x_1+x_0)/x_1^7$ 在何处有\trZeros、在何处有\trPole，阶数各是多少？（\trZeros{}与\trPole{}的概念我们曾在\mbox{定义~13.5.7}见过，日后还将在 \S15.4 中与它们重逢；但你凭直觉此刻便应能回答这些问题。）
+
+现在我们在\trProjectiveSpace{} $\mathbb{P}^n_k$ 上定义\trInvertibleSheaf{} $\OO_{\mathbb{P}^n_k}(m)$。在通常的\trAffine\trOpenSet{} $U_i=\Spec k[x_{0/i},\dots,x_{n/i}]/(x_{i/i}-1)=\Spec A_i$ 上，它是\trTrivial{}的，于是诸\trSection{}（作为 $A_i$-\trModule）同构于 $A_i$。从 $U_i$ 到 $U_j$ 的\trTransitionFunction{}是乘以 $x_{i/j}^m=x_{j/i}^{-m}$。
+\begin{center}
+\begin{tikzcd}[column sep=3.4em, row sep=3.2em]
+U_i=\Spec k[x_{0/i},\dots,x_{n/i}]/(x_{i/i}-1) & U_j=\Spec k[x_{0/j},\dots,x_{n/j}]/(x_{j/j}-1) \\
+k[x_{0/i},\dots,x_{n/i}]/(x_{i/i}-1) \ar[r, bend left=14, "\times x_{i/j}^m=x_{j/i}^{-m}"] & k[x_{0/j},\dots,x_{n/j}]/(x_{j/j}-1) \ar[l, bend left=14, "\times x_{j/i}^m=x_{i/j}^{-m}"']
+\end{tikzcd}
+\end{center}
+请注意：这些\trTransitionFunction{}显然满足\trCocycleCondition。
+
+\textbf{15.1.C.（必要练习；参看\mbox{练习~9.3.J}、\mbox{定理~18.1.2}）}\quad 证明：$\dim_k\Gamma(\mathbb{P}^n_k,\OO_{\mathbb{P}^n_k}(m))=\binom{n+m}{n}$。
+
+\textbf{15.1.2.}\quad 如同 $\mathbb{P}^1$ 的情形，$\mathbb{P}^n_k$ 上 $\OO(m)$ 的诸\trSection{}会被\trNatural{}地等同于我们这 $n+1$ 个变元的次数为 $m$ 的\trHomogeneous{}多项式。（这一与\trHomogeneous{}多项式的联系将在下一道练习中被置于更精确的立足点上。）于是 $x+y+2z$ 是 $\mathbb{P}^2$ 上 $\OO(1)$ 的一个\trSection。它不是一个函数，但我们知道这个\trSection{}在哪里消失——恰好就在 $x+y+2z=0$ 之处。
+
+此外，请注意：对固定的 $n$，$\binom{n+m}{n}$ 是变元 $m$ 的一个 $n$ 次多项式，但只在 $m\ge 0$ 时如此（更好的说法：当 $m\ge -n$ 时）。这应当是在向你暗示：这个函数「想当一个多项式」，但若无襄助便不会成功。我们日后将定义 $h^0(\mathbb{P}^n_k,\OO(m)):=\dim_k\Gamma(\mathbb{P}^n_k,\OO(m))$，再往后我们还将定义更高次的上同调群，并且我们将定义 \emph{欧拉示性数}（Euler characteristic）$\chi(\mathbb{P}^n_k,\OO(m)):=\sum_{i=0}^{\infty}(-1)^i h^i(\mathbb{P}^n_k,\OO(m))$（上同调在高于 $n$ 的次数上都将消失）。我们将会发现这样一条道理：欧拉示性数比 $h^0$ 表现得更规矩，因此我们现在就应当怀疑（并在日后证明；见\mbox{定理~18.1.2}、\mbox{注记~18.3.5}与\mbox{练习~18.3.C}）：这个多项式其实就是欧拉示性数，而它之所以在 $m\ge 0$ 时与 $h^0$ 相合，是因为其余的上同调群全都消失。
+
+最后我们指出：对任意的\trRing{} $A$，我们都可以在 $\mathbb{P}^n_A$ 上定义 $\OO(m)$：上述定义原封不动地适用，而且\mbox{练习~15.1.C}立即推广，表明 $\Gamma(\mathbb{P}^n_A,\OO_{\mathbb{P}^n_A}(m))$ 是一个秩为 $\binom{n+m}{n}$ 的自由 $A$-\trModule，并且可以用\trHomogeneous{}多项式作出同样的解读。
+
+\textbf{15.1.D.（练习；发人深省的例子，也是好的锻炼）}\quad 设 $n>0$。设 $\pi\colon\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n)\to\mathbb{P}^n_A$ 是态射 $(x_0,\dots,x_n)\mapsto[x_0,\dots,x_n]$（描述见练习~7.3.F 与例~7.3.12）。对任意 $m\in\mathbb{Z}$，描述一个同构
+\[
+\pi^*\OO_{\mathbb{P}^n_A}(m)\overset{\sim}{\longleftrightarrow}\OO_{\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n)}.
+\]
+这诱导出一个映射 $\pi^*\colon\Gamma(\mathbb{P}^n_A,\OO_{\mathbb{P}^n_A}(m))\to\Gamma(\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n),\OO_{\mathbb{A}^{n+1}_A})$。证明（如 \S4.4.1 中那样）：拉回
+\[
+\alpha\colon A[x_0,\dots,x_n]=\Gamma(\mathbb{A}^{n+1}_A,\OO_{\mathbb{A}^{n+1}_A})\longrightarrow\Gamma(\mathbb{A}^{n+1}_A\setminus V(x_0,\dots,x_n),\OO_{\mathbb{A}^{n+1}_A})
+\]
+是一个同构，并解释复合
+\[
+\alpha^{-1}\circ\pi^*\colon\Gamma(\mathbb{P}^n_A,\OO_{\mathbb{P}^n_A}(m))\longrightarrow A[x_0,\dots,x_n]
+\]
+如何把 $\Gamma(\mathbb{P}^n_A,\OO_{\mathbb{P}^n_A}(m))$ 解读为 $A[x_0,\dots,x_n]$ 中次数为 $m$ 的\trHomogeneous{}多项式。
+
+\textbf{15.1.3.\ 这些是 $\mathbb{P}^n_k$ 上仅有的\trLineBundle。}
+
+设 $k$ 是一个\trField。我们将在 \S15.4.15 中见到：这些 $\OO(m)$ 正是 $\mathbb{P}^n_k$ 上仅有的\trInvertibleSheaf。下一道练习便在 $n=1$ 时证明了这一点。
+
+\textbf{15.1.E.（练习）}\quad 证明：$\mathbb{P}^1_k$ 上的每个\trInvertibleSheaf{}都形如 $\OO(m)$，其中 $m$ 为某个整数。提示：利用主理想整环上\trFinitelyGenerated{}\trModule{}的分类（\mbox{注记~6.4.4}）来证明 $\mathbb{A}^1_k$ 上的一切\trInvertibleSheaf{}都是\trTrivial{}的（\mbox{练习~14.2.C} 的特例）。然后把问题归结为确定 $\mathbb{P}^1_k$ 的标准覆盖中那两个\trOpenSubset{}之间可能的\trTransitionFunction。
+
+警示：$\mathbb{P}^1_A$ 上可以存在不具 $\OO(m)$ 形式的\trInvertibleSheaf。日后你或许能想出例子。（为你懂得更多之时备下的寻例提示：若 $\Spec A$ 不连通会怎样？抑或，若那引出的例子傻得可以，那么若 $\Spec A$ 带有非平凡的\trInvertibleSheaf{}又会怎样？）
+
+\textbf{15.1.4.\ 射影 $A$-\trScheme{}上的\trLineBundle。}
+
+设 $M_\bullet$ 是一个分次 $S_\bullet$-\trModule。定义\trGradedModule{} $M(m)_\bullet$ 如下：$M(m)_d:=M_{m+d}$。于是，\trQCSheaf{} $\widetilde{M(m)_\bullet}$ 满足
+\[
+\Gamma(\mathrm{D}_+(\mathrm{f}),\widetilde{M(m)_\bullet})=((M_\bullet)_f)_m,
+\]
+这里的下标意指我们取的是次数 $m$ 的分次分片。（无可否认，这些下标容易让人犯晕！）
+
+\textbf{15.1.F.（练习）}\quad 若 $S_\bullet=A[x_0,\dots,x_n]$，从而 $\Proj S_\bullet=\mathbb{P}^n_A$，证明 $\widetilde{S(m)_\bullet}\cong\OO(m)$，此时要用到\trTransitionFunction（参看 \S15.1）。（回想\mbox{练习~15.1.D}：$\OO(m)$ 的诸\trGlobalSections{}应当等同于 $x_0,\dots,x_n$ 中次数为 $m$ 的\trHomogeneous{}多项式。你能在本题的情境中看出这一点吗？）
+
+\textbf{15.1.5.}\ \emph{\trhDefinition{}。}\quad 受此启发，若 $S_\bullet$ 是一个在次数 $1$ 处生成的\trGradedRing，我们便定义 $\OO_{\Proj S_\bullet}(m)$（或简单地记作 $\OO(m)$，此时 $S_\bullet$ 是隐含的）为 $\widetilde{S(m)_\bullet}$。
+
+\textbf{15.1.G.（重要练习）}\quad 若 $S_\bullet$ 在次数 $1$ 处生成，证明 $\OO_{\Proj S_\bullet}(m)$ 是一个\trInvertibleSheaf。
+
+若 $S_\bullet$ 在次数 $1$ 处生成，而 $\mathscr{F}$ 是 $\Proj S_\bullet$ 上的一个\trQCSheaf，则定义 $\mathscr{F}(m):=\mathscr{F}\otimes\OO(m)$。这常称为\textbf{用 $\OO(m)$ 扭转 $\mathscr{F}$}，或\textbf{用 $m$ 扭转 $\mathscr{F}$}。更一般地，若 $\mathscr{L}$ 是一个\trInvertibleSheaf，则 $\mathscr{F}\otimes\mathscr{L}$ 常称为\textbf{用 $\mathscr{L}$ 扭转 $\mathscr{F}$}。
+
+\textbf{15.1.H.（练习）}\quad 若 $S_\bullet$ 在次数 $1$ 处生成，证明 $\widetilde{M_\bullet}(m)\cong\widetilde{M(m)_\bullet}$。（此后，在这类情形里，我们对那个「点」摆在何处便可以满不在乎了。）
+
+\textbf{15.1.I.（练习）}\quad 若 $S_\bullet$ 在次数 $1$ 处生成，证明 $\OO(m_1+m_2)\cong\OO(m_1)\otimes\OO(m_2)$。
+
+\textbf{15.1.6.}\ \hard\ \emph{不重要的注记。}\quad 即便 $S_\bullet$ 不在次数 $1$ 处生成，那么（若 $S_\bullet$ 是\trFinitelyGenerated{}的）由\mbox{练习~7.4.G}，对某个 $d$，$S_{d\bullet}$ 便在次数 $1$ 处生成。此时我们可以定义\trInvertibleSheaf{} $\OO(dm)$，其中 $m\in\mathbb{Z}$。这并\emph{不}意味着我们\emph{不能}定义 $\OO(1)$；这取决于 $S_\bullet$。例如，若 $S_\bullet$ 是\trPolynomialRing{} $k[x,y]$，带有通常的分次、只是去掉了诸一次项（于是 $S_\bullet=k[x^2,xy,y^2,x^3,x^2y,xy^2,y^3]$），那么 $S_{2\bullet}$ 与 $S_{3\bullet}$ 都在次数 $1$ 处生成，也就是说我们可以定义 $\OO(2)$ 与 $\OO(3)$。有充分的理由把二者的「差」称作 $\OO(1)$。（这套代数或许会让你想起\trPinchedPlane，见\mbox{练习~13.5.H}。\footnote{原书此处作（may remind of you of），当系「remind you of」之误，径改。——译者注}）
+

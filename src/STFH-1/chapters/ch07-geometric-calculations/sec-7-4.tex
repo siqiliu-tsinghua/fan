@@ -1,0 +1,128 @@
+\section{边界条件}
+\stfhIndex{I211}{nuo^yi^man^bian^jie^tiao^jian}{诺伊曼边界条件（Neumann boundary condition）}
+\label{sec:boundary-conditions-geometric-calculations}
+
+当 $\partial\Sigma\ne\varnothing$ 时，在 $\Sigma$ 上积分\eqref{eq:nabla-du-energy-density}，得到
+\begin{equation}
+\begin{split}
+ \int_\Sigma|\nabla du|^2
+ ={}&-\int_{\partial\Sigma}\frac12\frac\partial{\partial\nu}
+       \langle du,du\rangle
+ -2\int_\Sigma\langle K\partial u,\partial u\rangle\\
+ &-2\int_\Sigma\langle R(du,du)\partial u,\partial u\rangle.
+\end{split}
+ \label{eq:boundary-integrated-bochner}
+\end{equation}
+因此，我们需要处理边界贡献。
+
+假设 $Y\subset M$ 是子流形，并把典范联络 $\nabla$ 的第二基本形式记为
+\[
+ B^\nabla:\operatorname{Sym}^2(TY)\longrightarrow NY.
+\]
+由于我们没有使用列维--奇维塔联络，下面引入黎曼联络的第二基本形式之定义；一般而言，该联络不必无挠。
+
+\begin{definition}\label{def:second-fundamental-form-metric-connection}
+设 $\nabla$ 是任意黎曼联络，不必无挠。第二基本形式
+$B^\nabla:TR\times TR\to NR$ 由等式
+\[
+ \langle B^\nabla(X,Y),\nu\rangle
+ =-\frac12\langle\nabla_XY+\nabla_YX,\nu\rangle
+\]
+刻画，其中 $X,Y\in TR$，$\nu\in NR$ 是法向量。
+\end{definition}
+
+\begin{exercise}\label{ex:second-fundamental-form-symmetric}
+证明上述定义给出一个取值于 $NR$ 的对称 $2$-张量 $B^\nabla$。
+\end{exercise}
+
+由 $Y$ 的第二基本形式 $B^\nabla$ 的定义，当
+$\partial u/\partial\nu\perp TY$ 时，可以改写为
+\[
+ \frac12\frac\partial{\partial\nu}\langle du,du\rangle
+ =\left\langle du,\frac D{\partial\nu}(du)\right\rangle
+ =-\left\langle B^\nabla(du,du),\frac{\partial u}{\partial\nu}\right\rangle
+ +\left\langle T\left(\frac\partial{\partial\nu},du\right),du\right\rangle.
+\]
+不过，在 $\partial\Sigma$ 上，计算得
+\[
+ T\left(\frac\partial{\partial\nu},du\right)
+ =T\left(\frac{\partial u}{\partial\nu},
+          \frac{\partial u}{\partial t}\right)dt
+ =-T\left(J\frac{\partial u}{\partial t},
+          \frac{\partial u}{\partial t}\right)dt=0,
+\]
+其中，消失再次来自定理 7.1.5 中陈述的典范联络之一般性质。
+
+结合上述计算，得到下面这个有边界情形的先验不等式；它立即来自\eqref{eq:nabla-du-energy-density}。
+
+\begin{proposition}\label{prop:neumann-j-holomorphic-integral-bound}
+对任意满足诺伊曼边界条件，即满足
+$\partial u/\partial\nu\in NY$ 的 $J$-全纯映射 $u$，都有不等式
+\begin{equation}
+ \int_\Sigma|\nabla du|^2
+ \leq\int_{\partial\Sigma}\max_{y\in Y}|B^\nabla|\,|du|^3
+ +\int_\Sigma\max_{z\in\Sigma}(-K)(z)|du|^2
+ +\frac12\int_\Sigma\max_{x\in M}|R|(x)|du|^4.
+ \label{eq:neumann-j-holomorphic-integral-bound}
+\end{equation}
+\end{proposition}
+
+这类先验强制估计的存在，是人们把诺伊曼边界条件研究为有边界极小曲面或有边界调和映射之自然边界条件的原因之一。
+
+事实表明，当子流形 $Y\subset(M,\omega,J)$ 是拉格朗日子流形时，$J$-全纯映射的这个诺伊曼边界条件等价于狄利克雷边界条件或自由边界条件
+\[
+ u(\partial\Sigma)\subset L\text{。}
+\]
+
+\begin{lemma}\label{lem:lagrangian-boundary-neumann-condition}
+令 $g=\omega(\cdot,J\cdot)$，并以 $NL=N^JL$ 表示 $L$ 关于 $g$ 的法丛。假设 $u$ 是 $J$-全纯的且 $u(\partial\Sigma)\subset L$。则 $u$ 满足
+\[
+ \frac{\partial u}{\partial\nu}\in N^JL.
+\]
+\end{lemma}
+
+\begin{proof}
+设 $S\subset\partial\Sigma$ 是一个连通分支，并设 $(r,\theta)$ 是 $S$ 附近的柱坐标，使埃尔米特度量 $h$ 具有形式
+\[
+ h=\lambda(dr^2+d\theta^2).
+\]
+于是 $u$ 满足
+\begin{equation}
+ \frac{\partial u}{\partial r}
+ +J\frac{\partial u}{\partial\theta}=0
+ \qquad\text{于 }S
+ \label{eq:j-holomorphic-cylindrical-boundary}
+\end{equation}
+以及
+\[
+ \frac{\partial u}{\partial\theta}
+ =du\left(\frac\partial{\partial\theta}\right)\subset TL.
+\]
+另一方面，$L$ 的拉格朗日性质以及 $J$ 与 $\omega$ 的相容性蕴含
+\[
+ JTL=NL.
+\]
+所以，\eqref{eq:j-holomorphic-cylindrical-boundary}蕴含法向导数
+$\partial u/\partial r$ 位于 $NL$ 中。证明完毕。
+\end{proof}
+
+把这些结果纳入上一节所作的计算，并专门考虑满足拉格朗日边界条件的 $J$-全纯映射 $u$，便得到下面的先验积分界。
+
+\begin{proposition}\label{prop:lagrangian-boundary-w22-estimate}
+设 $L\subset(M,\omega,J)$ 是拉格朗日子流形。假设 $\Sigma$ 是具有边界 $\partial\Sigma$ 的紧曲面，且 $u:\Sigma\to M$ 是满足
+$u(\partial\Sigma)\subset L$ 的 $J$-全纯映射。则
+\[
+ \int_\Sigma|\nabla du|^2
+ \leq\int_{\partial\Sigma}\max_{y\in Y}|B^\nabla|\,|du|^3
+ +\int_\Sigma\max_{z\in\Sigma}(-K)|du|^2
+ +\frac12\int_\Sigma\max_{x\in M}|R|\,|du|^4.
+\]
+\end{proposition}
+
+这个先验 $W^{2,2}$ 估计使我们可以导出 $J$-全纯曲线方程
+$\overline\partial_Ju=0$ 的弱解之下述先验估计。关于弱解的定义，请读者参阅定义 8.5.1。
+
+\begin{corollary}\label{cor:weak-j-holomorphic-w22-regularity}
+设 $u$ 是 $\overline\partial_Ju=0$ 的弱解。若 $du\in L^4$ 且
+$du|_{\partial\Sigma}\in L^3$，则 $du\in W^{1,2}$，即 $u\in W^{2,2}$。
+\end{corollary}

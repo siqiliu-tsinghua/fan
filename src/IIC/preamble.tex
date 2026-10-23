@@ -1,0 +1,169 @@
+\begin{filecontents*}[overwrite]{\jobname.ist}
+headings_flag 1
+numhead_positive "数字"
+symhead_positive "符号"
+heading_prefix "{\\bfseries\\hfil "
+heading_suffix "\\hfil}\\nopagebreak\\par\\vskip 5pt "
+\end{filecontents*}
+
+\setCJKmainfont[
+  ItalicFont     = KaiTi,
+  BoldFont       = SimHei,
+  BoldItalicFont = FangSong,
+]{SimSun}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{tikz}              %
+\usepackage{etoolbox}          %
+\usepackage[a4paper,margin=2.8cm]{geometry}
+\usepackage{enumitem}
+\usepackage{longtable}  %
+\usepackage{caption}    %
+\captionsetup{labelsep=quad}
+\setlist{itemsep=2pt,topsep=4pt}
+\emergencystretch=1.5em %
+\vfuzz=3pt              %
+\hbadness=2500          %
+\xeCJKsetup{PunctStyle=quanjiao}%
+
+\input{terms}
+
+\newcounter{icitem}[section]
+\renewcommand{\theicitem}{\thesection.\arabic{icitem}}
+\newcounter{icex}   %
+\renewcommand{\theicex}{\arabic{icex}}
+
+\newtheoremstyle{icplain}{\topsep}{\topsep}{\itshape}{}
+  {\bfseries}{}{.5em}{#1~#2\ifstrempty{#3}{}{（{\kaishu #3}）}}
+\newtheoremstyle{icdefinition}{\topsep}{\topsep}{}{}
+  {\bfseries}{}{.5em}{#1~#2\ifstrempty{#3}{}{（{\kaishu #3}）}}
+\newtheoremstyle{icremark}{\topsep}{\topsep}{\upshape}{}
+  {\itshape}{}{.5em}{#1~#2\ifstrempty{#3}{}{（{\kaishu #3}）}}
+
+\theoremstyle{icplain}
+\newtheorem{theorem}[icitem]{\trhTheorem}
+\newtheorem{proposition}[icitem]{\trhProposition}
+\newtheorem{lemma}[icitem]{\trhLemma}
+\newtheorem{corollary}[icitem]{\trhCorollary}
+\newtheorem{fact}[icitem]{\trhFact}
+\theoremstyle{icdefinition}
+\newtheorem{definition}[icitem]{\trhDefinition}
+\newtheorem{example}[icitem]{\trhExample}
+\newtheorem{notation}[icitem]{\trhNotation}
+\newtheorem{convention}[icitem]{\trhConvention}
+\newtheorem{construction}[icitem]{\trhConstruction}
+\theoremstyle{icremark}
+\newtheorem{remark}[icitem]{\trhRemark}
+\newtheorem{observation}[icitem]{\trhObservation}
+\newtheorem{warning}[icitem]{\trhWarning}
+\newtheorem*{warning*}{\trhWarning}
+
+\theoremstyle{icdefinition}
+\newtheorem*{example*}{\trhExample}
+\theoremstyle{icplain}
+\newtheorem*{axiom*}{\trhAxiom}
+
+\newtheorem{exercise}[icex]{\trhExercise}
+
+\newcommand{\icsync}[1]{\setcounter{icitem}{\numexpr(#1)-1\relax}}
+\newcommand{\icsyncex}[1]{\setcounter{icex}{\numexpr(#1)-1\relax}}
+
+\newenvironment{iceq}{\begin{equation*}\refstepcounter{icitem}\tag{\theicitem}}{\end{equation*}}
+
+\renewcommand{\proofname}{\trhProof}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+\ctexset{
+  chapter = {
+    name       = {第,章},
+    number     = {\arabic{chapter}},
+    format     = {\huge\bfseries\raggedright},
+    nameformat = {\large\bfseries},
+    numberformat= {\large\bfseries},
+    aftername  = {\par\vspace{14pt}},
+    beforeskip = 24pt,
+    afterskip  = 40pt,
+  },
+}
+
+\AtBeginEnvironment{theorem}{\crefalias{icitem}{theorem}}
+\AtBeginEnvironment{proposition}{\crefalias{icitem}{proposition}}
+\AtBeginEnvironment{lemma}{\crefalias{icitem}{lemma}}
+\AtBeginEnvironment{corollary}{\crefalias{icitem}{corollary}}
+\AtBeginEnvironment{fact}{\crefalias{icitem}{fact}}
+\AtBeginEnvironment{definition}{\crefalias{icitem}{definition}}
+\AtBeginEnvironment{example}{\crefalias{icitem}{example}}
+\AtBeginEnvironment{notation}{\crefalias{icitem}{notation}}
+\AtBeginEnvironment{convention}{\crefalias{icitem}{convention}}
+\AtBeginEnvironment{construction}{\crefalias{icitem}{construction}}
+\AtBeginEnvironment{remark}{\crefalias{icitem}{remark}}
+\AtBeginEnvironment{observation}{\crefalias{icitem}{observation}}
+\AtBeginEnvironment{warning}{\crefalias{icitem}{warning}}
+\AtBeginEnvironment{exercise}{\crefalias{icex}{exercise}}
+
+\makeatletter
+\patchcmd{\@oddhead}{\slshape}{}{}{}
+\patchcmd{\@evenhead}{\slshape}{}{}{}
+\makeatother
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathcal{C}}   %
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\oo}{\ensuremath{\infty}}  %
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=teal,
+  urlcolor=violet,
+  bookmarksnumbered=true,
+  pdflang={zh-CN},
+  pdftitle={无穷范畴导论（中文译本）},
+  pdfauthor={Markus Land（原著）},
+}
+
+\usepackage{imakeidx}
+\makeindex[title={译本术语索引},intoc,noautomatic]
+\pdfstringdefDisableCommands{\def\index#1{}}
+\makeatletter
+\let\ic@tableofcontents\tableofcontents
+\def\tableofcontents{\begingroup\def\index##1{}\ic@tableofcontents\endgroup}
+\makeatother
+
+\usepackage[capitalise,noabbrev]{cleveref}
+\crefname{theorem}     {\trhTheorem}     {\trhTheorem}
+\crefname{proposition} {\trhProposition} {\trhProposition}
+\crefname{lemma}       {\trhLemma}       {\trhLemma}
+\crefname{corollary}   {\trhCorollary}   {\trhCorollary}
+\crefname{fact}        {\trhFact}        {\trhFact}
+\crefname{definition}  {\trhDefinition}  {\trhDefinition}
+\crefname{example}     {\trhExample}     {\trhExample}
+\crefname{notation}    {\trhNotation}    {\trhNotation}
+\crefname{convention}  {\trhConvention}  {\trhConvention}
+\crefname{construction}{\trhConstruction}{\trhConstruction}
+\crefname{remark}      {\trhRemark}      {\trhRemark}
+\crefname{observation} {\trhObservation} {\trhObservation}
+\crefname{warning}     {\trhWarning}     {\trhWarning}
+\crefname{exercise}    {\trhExercise}    {\trhExercise}
+\crefname{figure}      {图}{图}
+\crefname{table}       {表}{表}
+\crefname{equation}    {}{}  %
+\crefformat{equation}{#2(#1)#3}
+
+\usepackage{booktabs,longtable,multicol}
+\newcommand{\BookGlossEntry}[2]{%
+  \par\noindent\hangindent=1em\hangafter=1 #1\quad #2\par}
+\newcommand{\BookSourceIndexEntry}[2]{%
+  \par\begingroup\leftskip=#1em\relax\hangindent=1em\relax
+  \noindent #2\par\endgroup}
+\input{backmatter/index-hooks}

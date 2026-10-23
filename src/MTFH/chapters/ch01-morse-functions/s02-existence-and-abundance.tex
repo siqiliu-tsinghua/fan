@@ -1,0 +1,153 @@
+\section{\trMorseFunction{}的存在性与丰富性}\label{mtfh:section:ch01-morse-functions:s02}
+
+要证明一切\trManifold{}上都存在\trMorseFunction，就没有那么容易了——但事实的确如此。在本节中（本节改述自 [54]），我们将证明：在一个\trCompact\trManifold{}上存在许多（在某种确切意义下的）\trMorseFunction（事实上，我们将对任何能作为\trSubmanifold\trEmbedding{}到某个 $\RR^n$ 中的\trManifold{}证明这一点）。
+
+\subsection{\trMorseFunction{}的存在性}
+\label{subsec:existence-of-morse-functions}
+
+让我们使用\trEmbedding{}定理（\cref{thm:whitney-embedding-theorem}），来证明 $\RR^n$ 的各\trSubmanifold{}上\trMorseFunction{}的存在性。
+
+\begin{proposition}\label{thm:fp-almost-every}
+设 $V\subset\RR^n$ 是一个\trSubmanifold。对 $\RR^n$ 中几乎每一点 $p$，函数
+\[
+\begin{array}{rcl}
+f_p\colon V & \longrightarrow & \RR\\
+x & \longmapsto & \|x-p\|^2
+\end{array}
+\]
+是一个\trMorseFunction。
+\end{proposition}
+
+\begin{proof}
+\renewcommand{\qedsymbol}{}%
+$f_p$ 的\trDifferential{}为
+\[
+T_xf_p(\xi)=2(x-p)\cdot\xi,
+\]
+于是 $x$ 是\trCriticalPoint{}当且仅当 $(x-p)$ 与 $T_xV$ \trOrthogonal。正如\trSubmanifold{}定理（即\cref{thm:submanifolds-characterization}）所允许的那样，我们为 $V$ 选取一个局部\textbf{\trParametrization}（parametrization）：
+\[
+(u_1,\dotsc,u_d)\longmapsto x(u_1,\dotsc,u_d)\text{。}
+\]
+在这些坐标下，我们有
+\[
+\frac{\partial f_p}{\partial u_i}=2(x-p)\cdot\frac{\partial x}{\partial u_i}
+\]
+以及
+\[
+\frac{\partial^2 f_p}{\partial u_i\partial u_j}
+  =2\Bigl(\frac{\partial x}{\partial u_j}\cdot\frac{\partial x}{\partial u_i}
+  +(x-p)\cdot\frac{\partial^2 x}{\partial u_i\partial u_j}\Bigr)\text{。}
+\]
+因此，点 $x$ 是一个\trNondegenerate\trCriticalPoint{}当且仅当向量 $x-p$ 与 $T_xV$ \trOrthogonal、且上述矩阵的\trRank{}为 $d$。于是，要证明 $f_p$ 对几乎所有 $p$ 都是\trMorseFunction，只需证明不满足这一条件的那些 $p$ 是某个 $\cC^\infty$ 映射的\trCriticalValue，再应用\trSardTheorem{}（\cref{thm:sard-theorem}）。为此，我们考察 $V$ 在 $\RR^n$ 中的\textbf{\trNormalBundle}（normal fiber bundle），即空间
+\[
+N=\bigl\{(x,v)\in V\times\RR^n \bigm| v\perp T_xV\bigr\}\subset V\times\RR^n\text{，}
+\]
+以及映射
+\[
+\begin{array}{rcl}
+E\colon N & \longrightarrow & \RR^n\\
+(x,v) & \longmapsto & x+v\text{。}
+\end{array}
+\]
+于是，本命题就是下述引理的推论。
+\end{proof}
+
+\begin{lemma}\label{thm:normal-bundle-critical-values}
+\trNormalBundle{} $N$ 是 $V\times\RR^n$ 的一个\trSubmanifold。点 $p=x+v\in\RR^n$ 是 $E$ 的\trCriticalValue{}当且仅当矩阵
+\[
+\frac{\partial^2 f}{\partial u_i\partial u_j}
+  =2\Bigl(\frac{\partial x}{\partial u_j}\cdot\frac{\partial x}{\partial u_i}
+  -v\cdot\frac{\partial^2 x}{\partial u_i\partial u_j}\Bigr)
+\]
+不\textbf{\trInvertible}（invertible）。
+\end{lemma}
+
+\begin{proof}
+由于 $V$ 是 $\RR^n$ 的\trSubmanifold，故存在一个（局部）\trChart，它把 $\RR^n$ 映到 $\RR^n$ 的一个\trOpen{}子集上，并把 $\RR^d$ 映到 $V$ 的一个\trOpen{}子集上。这个\trChart{}的\textbf{\trTangentMap}（tangent map）把 $\RR^n$ 的\textbf{\trCanonical{}基}（canonical basis）映为一组基：先是若干切于 $V$ 的向量，紧随其后的是生成某个\trComplement{}的一些向量。于是，只需再把这组基化为\textbf{\trOrthonormal}（orthonormal）的，即可得到 $n-d$ 个向量 $v_1$，……，$v_{n-d}$，它们在 $V$ 的每一点处都构成 $(T_xV)^\perp$ 的一个\trOrthonormal{}基。映射
+\[
+(u_1,\dotsc,u_d,\,t_1,\dotsc,t_{n-d})
+  \longmapsto\Bigl(x(u_1,\dotsc,u_d),\ \sum_{i=1}^{n-d}t_i\,v_i(u_1,\dotsc,u_d)\Bigr)
+\]
+便是 $N$ 的一个局部\trParametrization，从而 $N$ 是 $V\times\RR^n$ 的一个\trSubmanifold。\footnote{译注：原书此处印作 $v_i(u_1,\dotsc,u_{n-d})$；疑应为 $v_i(u_1,\dotsc,u_d)$（诸 $v_i$ 随基点坐标而变，$i=1,\dotsc,n-d$ 只是编号）；此处径改。——译者注}在这些坐标下，$E$ 的偏导数为
+\[
+\left\{
+\begin{array}{l}
+\dfrac{\partial E}{\partial u_i}
+  =\dfrac{\partial x}{\partial u_i}
+  +\displaystyle\sum_{k=1}^{n-d}t_k\,\dfrac{\partial v_k}{\partial u_i}\\[3ex]
+\dfrac{\partial E}{\partial t_j}=v_j\text{。}
+\end{array}
+\right.
+\]
+把这 $n$ 个向量同 $n$ 个线性无关的向量
+\[
+\frac{\partial x}{\partial u_1},\dotsc,\frac{\partial x}{\partial u_d},\ v_1,\dotsc,v_{n-d}
+\]
+作\textbf{\trInnerProduct}（inner product），便得到一个矩阵，\footnote{译注：原书右上块印作 $\Bigl(\sum_{k}\frac{\partial v_k}{\partial u_i}\cdot v_\ell\Bigr)$；对照左上块同源的含 $t_k$ 项，疑漏排因子 $t_k$；此处径补。——译者注}它与 $E$ 的\textbf{\trJacobi{}矩阵}（Jacobian）有相同的\trRank，且形如
+\[
+\left(
+\begin{array}{cc}
+\Bigl(\dfrac{\partial x}{\partial u_i}\cdot\dfrac{\partial x}{\partial u_j}
+  +\displaystyle\sum_{k}t_k\,\dfrac{\partial v_k}{\partial u_i}\cdot\dfrac{\partial x}{\partial u_j}\Bigr) &
+\Bigl(\displaystyle\sum_{k}t_k\,\dfrac{\partial v_k}{\partial u_i}\cdot v_\ell\Bigr)\\[4ex]
+0 & \mathrm{Id}
+\end{array}
+\right)\text{。}
+\]
+由于 $v_k$ 与 $\partial x/\partial u_j$ \trOrthogonal，故
+\[
+\frac{\partial}{\partial u_i}\Bigl(v_k\cdot\frac{\partial x}{\partial u_j}\Bigr)
+  =\frac{\partial v_k}{\partial u_i}\cdot\frac{\partial x}{\partial u_j}
+  +v_k\cdot\frac{\partial^2 x}{\partial u_i\partial u_j}=0\text{。}
+\]
+这就完成了引理的证明……\noqed
+\noindent 从而也完成了命题的证明。
+\end{proof}
+
+至于那些使 $f_p$ 不成为\trMorseFunction{}的点 $p$，我们将在注记~1.4.1 中再回来讨论。
+
+\begin{remark}\label{thm:sard-nontrivial-part}
+请注意，这个证明用到了\trSardTheorem{}的一个非平凡的部分（尽管并非其中最困难的部分——那应当是源\trManifold{}维数大于目标维数的情形：这里的两个\trManifold，$N$ 与 $\RR^n$，具有相同的维数）。
+\end{remark}
+
+\subsection{\trMorseFunction{}的\trGenericity}
+
+\cref{thm:fp-almost-every}表明，$\RR^n$ 的任何\trSubmanifold{}上都存在许多\trMorseFunction。使用同样的工具，并且继续沿用 [54]，我们现在来证明：每一个 $\cC^\infty$ 函数都可以被一个\trMorseFunction{}所逼近。
+
+\begin{proposition}\label{thm:uniform-approximation-morse}
+设 $V$ 是一个能作为\trSubmanifold\trEmbedding{}到某个\trEuclidean{}空间中的\trManifold，并设 $f\colon V\to\RR$ 是一个 $\cC^\infty$ 函数。设 $k$ 是一个整数。那么，$f$ 及其一切阶数 $\leq k$ 的导数，都可以在每个\trCompact{}子集上被\trMorseFunction\textbf{\trUniform{}逼近}（uniformly approximate）。
+\end{proposition}
+
+\begin{proof}
+我们固定一个实数 $c$（其用意是要它充分大）。然后，为 $V$ 选取一个到 $\RR^n$ 中的\trEmbedding，其中 $n$ 充分大，且第一个坐标恰为函数 $f$（只需把这个坐标添加到一个到 $n-1$ 维空间中的\trEmbedding{}上即可）：
+\[
+h(x)=(f(x),h_2(x),\dotsc,h_n(x))\text{。}
+\]
+由\cref{thm:fp-almost-every}，在 $(-c,0,\dotsc,0)$ 的附近，对几乎每一个形如
+\[
+p=(-c+\varepsilon_1,\varepsilon_2,\dotsc,\varepsilon_n)
+\]
+的点 $p$，函数 $f_p$ 都是一个\trMorseFunction。于是，
+\[
+g(x)=\frac{f_p(x)-c^2}{2c}
+\]
+显然也是一个\trMorseFunction。此外，
+\[
+\begin{aligned}
+g(x)&=\frac{1}{2c}\bigl((f(x)+c-\varepsilon_1)^2
+  +(h_2(x)-\varepsilon_2)^2+\dotsb+(h_n(x)-\varepsilon_n)^2-c^2\bigr)\\
+&=f(x)+\frac{f(x)^2+\sum h_i(x)^2}{2c}
+  -\frac{\varepsilon_1 f(x)+\sum\varepsilon_i h_i(x)}{c}
+  +\frac{1}{2c}\sum\varepsilon_i^2-\varepsilon_1\text{，}
+\end{aligned}
+\]
+这便表明（当 $c$ 充分大而诸 $\varepsilon_i$ 充分小时），在任何\trCompact{}子集上 $g$ 都是 $f$ 的一个\trUniform{}逼近，正如所宣布的那样。\footnote{译注：原书此式末项印作 $\sum\varepsilon_i^2$；据首行展开，该项应为 $\frac{1}{2c}\sum\varepsilon_i^2$，疑漏排因子 $1/(2c)$；此处径补。——译者注}
+\end{proof}
+
+无需对\trManifold{} $V$ 作\trEmbedding，而借助\textbf{\trTransversality}（transversality），则可以证明下述结果。
+
+\begin{theorem}\label{thm:morse-dense-open}
+设 $V$ 是一个\trCompact\trManifold。$V$ 上\trMorseFunction{}的集合是 $\cC^\infty(V;\RR)$ 的一个\textbf{\trDense}（dense）\trOpen{}子集。
+\end{theorem}
+
+其证明可在\cref{ex:ch01-09}中找到（其中要用到“带约束的\trTransversality”）；如有必要，$\cC^\infty(V;\RR)$ 的定义可在\cref{subsec:ck-topology}中找到。

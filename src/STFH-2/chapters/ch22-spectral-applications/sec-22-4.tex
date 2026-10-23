@@ -1,0 +1,546 @@
+\section{恩托夫和波尔捷罗维奇的部分辛拟态}
+
+本节从谱不变量 $\rho(\,\cdot\,;1)$（其中 $1=PD[M]$）中提取若干辛拓扑性质。
+\stfhIndex{I074}{Entuofu-Boerjieluoweiqi}{恩托夫--波尔捷罗维奇（Entov--Polterovich）}
+为此，我们紧随恩托夫和波尔捷罗维奇 (EnP06) 所采用的步骤。
+
+考虑渐近平均
+\begin{equation}
+ \mu_1^{\mathrm{path}}(\phi_H)
+ =\lim_{k\to\infty}\frac{\rho(\phi_H^k;1)}{k}.
+ \label{eq:22-path-asymptotic-average}
+\end{equation}
+\emph{一旦}证明该定义良定，依定义便有
+\begin{equation}
+ \mu_1^{\mathrm{path}}(\phi_H^m)=m\mu_1^{\mathrm{path}}(\phi_H).
+ \label{eq:22-path-homogeneity}
+\end{equation}
+我们将在下文命题~\ref{prop:22-path-quasimorphism} 中证明其良定性。
+
+令 $F\in C^\infty(M)$ 为任意自治函数，不要求归一化。考虑它的归一化
+\[
+ \underline F=F-\frac{1}{\operatorname{vol}_\omega(M)}\int_M F\,d\mu_\omega.
+\]
+于是恩托夫和波尔捷罗维奇考虑极限
+\begin{equation}
+ \zeta_{\mathrm{sp}}(F):=\lim_{k\to\infty}\frac{\rho(k\underline F;1)}{k},
+ \label{eq:22-spectral-quasi-state}
+\end{equation}
+其中下标 ``sp'' 代表 ``spectral''。回忆定义 21.3.9 中
+$\rho(\phi_{\underline H};1):=\rho(\underline H;1)$ 的定义。由于
+\[
+ F=\underline F+\frac{1}{\operatorname{vol}(M)}\int_M F\,d\mu_\omega,
+\]
+定义~\eqref{eq:22-spectral-quasi-state} 可改写为
+\begin{align*}
+ \zeta_{\mathrm{sp}}(F)
+ &=\lim_{k\to\infty}\frac{\rho(k\underline F;1)}{k}
+   +\frac{\int_M F\,d\mu_\omega}{\operatorname{vol}(M)}\\
+ &=\lim_{k\to\infty}\frac{\rho(\phi_F^k;1)}{k}
+   +\frac{\int_M F\,d\mu_\omega}{\operatorname{vol}(M)},
+\end{align*}
+第二个等号成立是因为 $F$ 自治。\footnote{译者注：按
+\eqref{eq:22-spectral-quasi-state} 的定义
+$\zeta_{\mathrm{sp}}(F)=\lim_{k\to\infty}\rho(k\underline F;1)/k$，上式第一个
+等号右端不应含加项 $\frac{\int_MF\,d\mu_\omega}{\operatorname{vol}(M)}$，即第一个
+等号按定义不成立；源书本意应为
+$\zeta_{\mathrm{sp}}(F)=\lim_{k\to\infty}\frac{\rho(k\underline F;1)}{k}
+=\lim_{k\to\infty}\frac{\rho(\phi_F^k;1)}{k}
++\frac{\int_MF\,d\mu_\omega}{\operatorname{vol}(M)}$。此外，本节末尾命题
+22.4.10 证明的收尾（以卡拉比性质代入）只在平移规则 $\rho(H+c)=\rho(H)+c$ 下
+闭合，而在该约定下本式的两个加号应改为负号；反之按 $\rho(H+c)=\rho(H)-c$ 则
+收尾残留 $+2\frac{\int_MH\,d\mu_\omega}{\operatorname{vol}(M)}$ 而不能闭合。
+即源书的重排式符号、卡拉比值符号与收尾结论在任一自洽平移约定下无法同时成立。
+结论 $\zeta_{\mathrm{sp}}(F+H)=\zeta_{\mathrm{sp}}(F)$ 本身是标准真命题（等价于
+$\zeta_{\mathrm{sp}}$ 在支集可移的函数上恒为零）。译文照录原书符号，特此披露。}
+
+可以把 $\zeta_{\mathrm{sp}}$ 看作 $\mu_1^{\mathrm{path}}$ 的“无穷小”版本。回忆
+$\Ham(M,\omega)$ 在恒等元处的曲线芽对应其在恒等元处的切空间，后者同构于归一化
+自治哈密顿量的集合。由 $\rho$ 的 $C^0$-连续性，$\zeta_{\mathrm{sp}}$ 连续延拓到
+$C^0(M)$。
+
+恩托夫和波尔捷罗维奇在 (EnP06) 中观察到，$\zeta_{\mathrm{sp}}$ 的行为类似阿尔内斯
+(Aa91) 引入的\emph{拟态}，并提出了上述 $\zeta_{\mathrm{sp}}$ 的定义。按 (EnP06) 的术语，
+$\zeta_{\mathrm{sp}}$ 是\emph{部分辛拟态}的一个例子。
+
+先从阿尔内斯的一般拟态概念开始。
+
+\stfhIndex{I025}{Aerneisi}{阿尔内斯（Aarnes）}
+\begin{definition}[阿尔内斯]
+\label{def:22-aarnes-quasi-state}
+令 $M$ 为拓扑空间，以 $C^0(M)$ 表示 $M$ 上连续实值函数的集合。若（非线性）泛函
+\stfhIndex{I161}{Nitai}{拟态（quasi-state）}
+$\zeta:C^0(M)\to\mathbb R$ 满足下列性质，则称它为一个拟态：
+\begin{enumerate}[label=\arabic*.]
+\item （线性）$\zeta$ 在 $\mathcal A_F$ 上线性，其中 $\mathcal A_F$ 是由
+      $F\in C(M)$ 生成的 $\mathbb R$-代数；
+\item （单调性）若逐点有 $F\leq G$，则 $\zeta(F)\leq\zeta(G)$；
+\item （归一化）$\zeta(1)=1$。
+\end{enumerate}
+\end{definition}
+
+下面是 (EnP06) 引入的辛版本。
+
+\begin{definition}[恩托夫和波尔捷罗维奇]
+\label{def:22-symplectic-quasi-state}
+令 $(M,\omega)$ 为辛流形。若（非线性）泛函
+$\zeta:C^0(M)\to\mathbb R$ 是定义~\ref{def:22-aarnes-quasi-state}
+\stfhIndex{I187}{Xinnitai}{辛拟态（symplectic quasi-state）}
+意义下 $M$ 上的拟态，并满足下列附加辛性质，则称它为\emph{辛拟态}：
+\begin{enumerate}[label=\arabic*.,start=4]
+\item （强拟可加性）设 $F_1,F_2$ 光滑且 $\{F_1,F_2\}=0$，其中
+      $\{F_1,F_2\}$ 是与 $\omega$ 相伴的泊松括号，则
+      $\zeta(F_1+F_2)=\zeta(F_1)+\zeta(F_2)$；
+\item （消失性）若 $\operatorname{supp}F$ 可移，则 $\zeta(F)=0$；
+\item （辛不变性）对任意 $\psi\in\Symp_0(M,\omega)$，
+      $\zeta(F)=\zeta(F\circ\psi)$，其中 $\Symp_0(M,\omega)$ 是
+      $\Symp(M,\omega)$ 的恒等分支。
+\end{enumerate}
+\end{definition}
+
+事实表明，对一般的 $(M,\omega)$，上述 $\zeta_{\mathrm{sp}}$ 并不完全满足此定义中
+（辛）拟态的全部性质，但满足比（辛）拟态较弱的性质。
+
+\begin{definition}[恩托夫--波尔捷罗维奇]
+\label{def:22-partial-symplectic-quasi-state}
+\emph{部分辛拟态}是指具有下列性质的函数
+\[
+ \zeta:C^0(M)\longrightarrow\mathbb R.
+\]
+\begin{enumerate}[label=\arabic*.]
+\item （利普希茨连续性）
+      $|\zeta(F)-\zeta(H)|\leq\lVert F-H\rVert_{C^0}$；
+\item （半齐次性）对任意 $F\in C^0(M)$ 与 $\lambda\in\mathbb R_{\geq0}$，
+      $\zeta(\lambda F)=\lambda\zeta(F)$；
+\item （单调性）若 $F\leq G$，则 $\zeta(F)\leq\zeta(G)$；
+\item （归一化）$\zeta(1)=1$；
+\item （部分可加性）若 $F_1,F_2\in C^\infty(M)$ 满足
+      $\{F_1,F_2\}=0$ 且 $\operatorname{supp}F_2$ 可移，则
+      $\zeta(F_1+F_2)=\zeta(F_1)$；
+\item （辛不变性）对所有 $\psi\in\Symp_0(M,\omega)$，
+      $\zeta(F)=\zeta(F\circ\psi)$。
+\end{enumerate}
+\end{definition}
+
+需要指出，定义~\ref{def:22-symplectic-quasi-state} 中的消失性公理是部分可加性公理的
+直接推论。有了这个定义，可陈述如下定理。
+
+\begin{theorem}[恩托夫和波尔捷罗维奇 (EnP03)]
+\label{thm:22-spectral-partial-quasi-state}
+令 $(M,\omega)$ 为任意紧辛流形。函数
+$\zeta_{\mathrm{sp}}:C^\infty(M)\to\mathbb R$ 可延拓为函数（仍记作）
+\stfhIndex{I150}{Bufenxinnitai}{部分辛拟态（partial symplectic quasi-states）}
+$\zeta_{\mathrm{sp}}:C^0(M)\to\mathbb R$，且后者为部分辛拟态。称
+\stfhIndex{I177}{Pubufennitai}{谱部分拟态（spectral partial quasi-state）}
+$\zeta_{\mathrm{sp}}$ 为谱部分拟态。
+\end{theorem}
+
+恩托夫和波尔捷罗维奇陈述该定理时假设 $(M,\omega)$ 强半正且\emph{有理}。不过，一旦证明
+非退化谱性公理成立，这些限制便无必要；(Oh09a) 与 (Ush08) 基于用仓西结构
+构造虚基本类，在完全一般的情形下证明了这一点。本节末将按照恩托夫和波尔捷罗维奇
+借自 (EnP06) 的论证给出证明。
+
+先说明仅凭部分辛拟态的存在便能推出的一些引人注目的辛交性质；这些结果由恩托夫和
+波尔捷罗维奇 (EnP06) 证明。
+
+\begin{definition}[恩托夫--波尔捷罗维奇]
+\label{def:22-poisson-commutative}
+若线性子空间 $\mathcal A\subset C^\infty(M)$ 对所有 $F,G\in\mathcal A$ 都满足
+$\{F,G\}=0$，则称 $\mathcal A$ 为泊松可交换的（或对合的）。给定有限维
+泊松可交换子空间 $\mathcal A\subset C^\infty(M)$，由方程
+\[
+ \langle\Phi_{\mathcal A}(x),F\rangle=F(x)
+\]
+\stfhIndex{I095}{Guangyidongliangyingshe}{广义动量映射（generalized moment map）}
+定义广义动量映射 $\Phi_{\mathcal A}:M\to\mathcal A^*$。形如
+$\Phi_{\mathcal A}^{-1}(p)$（$p\in\mathcal A^*$）的非空子集称为 $\mathcal A$ 的\emph{纤维}。
+\end{definition}
+
+与环面李群作用相伴的标准动量映射是这个定义的特例。因此，只要动量映射
+$\Phi_{\mathcal A}$ 的纤维光滑，它便是\emph{余迷向}的。
+
+\begin{theorem}[恩托夫和波尔捷罗维奇 (EnP06)]
+\label{thm:22-nondisplaceable-fiber}
+$C^\infty(M)$ 的任意有限维泊松可交换子空间至少有一个不可移纤维。此外，若每个
+纤维都只有有限多个连通分支，则存在一个不可移的纤维连通分支。
+\end{theorem}
+
+\begin{proof}
+反设 $\mathcal A$ 的所有纤维均可移。由于 $M$ 紧，$\Phi_{\mathcal A}$ 的像
+$\Delta$ 紧。因而可选取 $\Delta$ 的有限开覆盖
+$\mathcal U=\{U_1,\ldots,U_d\}$，使 $\Phi_{\mathcal A}^{-1}(U_i)$ 对
+$i=1,\ldots,d$ 均可移。选取从属于 $\mathcal U$ 的单位分解
+$\{\chi_i\}_{1\leq i\leq d}$。于是
+$\Phi_{\mathcal A}^*\chi_i=\chi_i\circ\Phi_{\mathcal A}$ 的支集可移，故由消失性公理
+$\zeta(\Phi_{\mathcal A}^*\chi_i)=0$。又有
+$\{\Phi_{\mathcal A}^*\chi_i,\Phi_{\mathcal A}^*\chi_j\}=0$。应用归一化与部分可加性，
+得到
+\[
+ 1=\zeta(1)=\zeta\!\left(\sum_{i=1}^d\Phi_{\mathcal A}^*\chi_i\right)
+ =\sum_{i=1}^d\zeta(\Phi_{\mathcal A}^*\chi_i)=0,
+\]
+矛盾。这证明了第一条陈述，证明完毕。
+
+对第二条，只需进一步细化开集 $\Phi_{\mathcal A}^{-1}(U_i)$，分别覆盖纤维的各个连通
+分支。细节留作习题。
+\end{proof}
+
+该定理也给出了获得具有辛交性质的余迷向对象的一种简单方法，因为只要
+$\Phi_{\mathcal A}^{-1}(p)$ 光滑，它就是\emph{余迷向}子流形。
+
+\begin{theorem}[恩托夫--波尔捷罗维奇]
+\label{thm:22-nondisplaceable-skeleton}
+考虑 $M$ 的一个三角剖分 $\Sigma$。若三角剖分 $\Sigma$ 的网格充分小，则 $M$ 的
+$(2n-1)$-骨架 $\Sigma^{2n-1}$ 不可移。
+\end{theorem}
+
+\begin{proof}
+先把 $\Sigma^{2n-1}$ 表成某个连续函数 $F$ 的水平集。如下定义 $F$：先在
+$\Sigma^{2n-1}$ 上令 $F\equiv0$；然后在每个单形 $\Delta$ 上令
+\[
+ F=1-\operatorname{dist}(\,\cdot\,,x_\Delta)\geq0,
+\]
+其中 $x_\Delta$ 是 $\Delta$ 的重心，$\operatorname{dist}(\,\cdot\,,x_\Delta)$ 是
+$\Delta$ 上从 $x_\Delta$ 出发的仿射距离函数。可选取 $\Delta$ 的分片线性坐标，使
+所有重心都满足 $F(x_\Delta)=1$。依定义，$F^{-1}(0)=\Sigma^{2n-1}$。把 $\Sigma$
+的网格取得充分小，可使 $\Sigma$ 中每个单形都可移。于是，对每个
+$0<\epsilon\leq1$，$F^{-1}(\epsilon)$ 是“小”单形边界的不交并，故其每个连通分支
+都包含在 $\Sigma$ 的某个单形中，从而可移。
+
+现反设 $F^{-1}(0)=\Sigma^{2n-1}$ 可移，即存在 $\phi\in\Ham(M,\omega)$，使
+\[
+ \phi(F^{-1}(0))\cap F^{-1}(0)=\varnothing.
+\]
+\footnote{译者注：原书此式只印出
+$\phi(F^{-1}(0))\cap F^{-1}(0)$，缺少表示“不相交”的 $=\varnothing$；译文按
+“可移”的定义及下一句补出。}
+由于 $F^{-1}(0)$ 紧，存在 $\epsilon_0>0$，使
+\[
+ \phi(F^{-1}(0))\subset F^{-1}((\epsilon_0,\infty)).
+\]
+由连续性，只要 $0<\epsilon_1<\epsilon_0$ 充分小，$F^{-1}([0,\epsilon_1])$ 就可移。
+现用光滑函数 $G$ 在 $C^0$ 意义下逼近 $F$。若
+$\lVert G-F\rVert_{C^0}$ 充分小，则存在
+$\delta=\delta(\lVert G-F\rVert_{C^0})>0$ 及 $0<\epsilon_2<\epsilon_1$，使
+\begin{enumerate}[label=(\arabic*)]
+\item $\min G\geq-\delta$；
+\item $G^{-1}([-\delta,\delta])\subset F^{-1}([0,\epsilon_0])$
+      （特别地，$G^{-1}([-\delta,\delta])$ 可移）；
+\item $G^{-1}((-\delta,\delta))\supset F^{-1}([0,\epsilon_2])$。
+\end{enumerate}
+
+考虑 $\epsilon>\delta$ 时的 $G^{-1}(\epsilon)$。若
+$\lVert G-F\rVert_{C^0}$ 充分小，则 $F^{-1}(\epsilon)$ 与 $G^{-1}(\epsilon)$ 的
+豪斯多夫距离可任意小，故 $G^{-1}(\epsilon)$ 的每个连通分支都必包含在
+$\Sigma$ 的一个单形中，因而对所有 $\epsilon>\delta$ 都可移。另一方面，对任意
+$\epsilon\leq\delta$，有
+$G^{-1}(\epsilon)\subset G^{-1}([-\delta,\delta])$，故同样可移。显然，这与把
+定理~\ref{thm:22-nondisplaceable-fiber} 应用于光滑函数 $G$ 的
+$\mathcal A=\{G\}$ 相矛盾。
+\end{proof}
+
+本节余下部分用于证明定理~\ref{thm:22-spectral-partial-quasi-state}。为简化记号，仍记
+\[
+ \mathcal P_U^{\mathrm{ham}}
+ =\mathcal P^{\mathrm{ham}}(\Symp_U(M,\omega),id).
+\]
+从 (22.3.25) 和\personBanyaga{} (Ba78) 的下述碎裂引理出发。
+
+\begin{lemma}[碎裂引理 (Ba78)]
+\label{lem:22-fragmentation}
+令 $(M,\omega)$ 为闭辛流形。设 $\{U_1,\ldots,U_m\}$ 是一个开覆盖，其中每个
+$U_i$ 上的 $\omega|_{U_i}$ 都正合。则任意
+$\lambda\in\mathcal P^{\mathrm{ham}}(\Symp_0(M,\omega),id)$ 均可写成
+\[
+ \lambda=\prod_{i=1}^m\lambda_i,
+ \qquad \lambda_i\in\mathcal P_{U_i}^{\mathrm{ham}},
+ \qquad \operatorname{Cal}_{U_i}^{\mathrm{path}}(\lambda_i)=0.
+\]
+\end{lemma}
+
+\begin{proof}
+由显然的归纳论证，只需考虑 $N=2$，即 $U=U_1\cup U_2$。令道路
+\[
+ \lambda=\phi_H\in\mathcal P^{\mathrm{ham}}(\Symp_0(M,\omega),id).
+\]
+把单位区间分成
+有限多个子区间并重新参数化到单位区间，可不失一般性地假设
+$\lVert H\rVert_{C^1}<\epsilon$，其中充分小的正数 $\epsilon$ 只依赖于
+$U_1,U_2,U$，其小量程度稍后确定。
+
+取一对开子集 $V_1''\subset V_1'$，使
+$V_1''\subset V_1'\subset U_1$、$\overline V_1''\subset V_1'\subset
+\overline V_1'\subset U_1$，且 $V_1''\cup U_2\supset\operatorname{supp}H$。
+令 $\chi:M\to[0,1]$ 为光滑截断函数，满足
+$\operatorname{supp}\chi\subset U_1$ 且 $\chi=1$ 于 $V_1'$；考虑道路
+$\lambda_1=\phi_{\chi H}$。容易看出，若 $\epsilon$ 充分小，则
+$\lambda_1=\lambda$ 于 $V_1''$。此外，利用这些道路在 $C^1$ 意义下接近恒等道路，可
+假设对所有 $t\in[0,1]$ 及 $x\notin V_1''\cup U_2$ 都有 $\lambda(t,x)\equiv x$。
+
+特别地，$\lambda_2:=\lambda_1^{-1}\lambda$ 的支集包含在 $U_2$ 中，而
+$\lambda_1$ 的支集包含在 $U_1$ 中。依定义 $\lambda=\lambda_1\lambda_2$，这便证明了
+$m=2$ 的情形，从而完成证明。
+\end{proof}
+
+该引理引出如下定义。
+
+\begin{definition}
+\label{def:22-fragmentation-length}
+给定开子集 $U\subset M$ 与 $\lambda\in\mathcal P_U^{\mathrm{ham}}$，定义
+\stfhIndex{I090}{Suiliechangdu}{碎裂长度（fragmentation length）}
+$\lambda$ 在 $U$ 上的\emph{碎裂长度}为把引理~\ref{lem:22-fragmentation} 应用于
+$(U,\omega)$ 时乘积中因子的最小可能数目，记作 $\lVert\lambda\rVert_U$。
+\end{definition}
+
+下述命题正是 (EnP06) 定理 7.1 的道路版本。
+
+\begin{proposition}
+\label{prop:22-path-quasimorphism}
+函数 $\mu_1^{\mathrm{path}}$（式~\eqref{eq:22-path-asymptotic-average}）良定，并满足：
+\begin{enumerate}[label=\arabic*.]
+\item （受控拟可加性）给定 $M$ 的可移开子集 $U$，存在只依赖于 $U$ 的常数 $K$，使
+\begin{equation}
+ \bigl|\mu_1^{\mathrm{path}}(\lambda\delta)
+ -\mu_1^{\mathrm{path}}(\lambda)-\mu_1^{\mathrm{path}}(\delta)\bigr|
+ \leq K\min\{\lVert\lambda\rVert_U,\lVert\delta\rVert_U\}
+ \label{eq:22-controlled-quasi-additivity}
+\end{equation}
+对任意 $\lambda,\delta\in\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),id)$ 成立；
+\item （卡拉比性质）对任意 $\lambda\in\mathcal P_U^{\mathrm{ham}}$，
+$\mu_1^{\mathrm{path}}(\lambda)=\operatorname{Cal}_U^{\mathrm{path}}(\lambda)$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+由命题 22.3.3，对任意 $\lambda\in\mathcal P_U^{\mathrm{ham}}$ 有
+\begin{equation}
+ \rho(\lambda;1)+\rho(\lambda^{-1};1)\leq2e_\rho(U;M).
+ \label{eq:22-path-inverse-bound}
+\end{equation}
+记 $C=2e_\rho(U;M)$。令 $\delta$ 为 $M$ 上任意哈密顿道路。由三角不等式，
+\begin{align}
+ \rho(\lambda\delta;1)
+ &\geq\rho(\delta;1)-\rho(\lambda^{-1};1)\notag\\
+ &\geq\rho(\delta;1)-(C-\rho(\lambda;1))\notag\\
+ &\geq\rho(\delta;1)+\rho(\lambda;1)-C.
+ \label{eq:22-path-lower-triangle}
+\end{align}
+三角不等式还给出
+$\rho(\lambda\delta;1)\leq\rho(\lambda;1)+\rho(\delta;1)$。
+
+从~\eqref{eq:22-path-lower-triangle} 出发，对
+$\lambda_1,\ldots,\lambda_m\in\mathcal P_U^{\mathrm{ham}}$ 作归纳，得到
+\begin{equation}
+ \left|\rho(\lambda_1\cdots\lambda_m\delta;1)
+ -\sum_{i=1}^m\rho(\lambda_i;1)-\rho(\delta;1)\right|\leq mC.
+ \label{eq:22-fragment-product-bound}
+\end{equation}
+特别地，取 $\delta\equiv id$ 并取第 $\ell$ 次幂，有
+\begin{equation}
+ \left|\rho((\lambda_1\cdots\lambda_m)^\ell;1)
+ -\ell\sum_{i=1}^m\rho(\lambda_i;1)\right|\leq\ell mC.
+ \label{eq:22-fragment-power-bound}
+\end{equation}
+
+现任取哈密顿道路 $\lambda$，由碎裂引理把它写成
+$\lambda=\lambda_1\cdots\lambda_m$，且每个 $i$ 都有
+$\lVert\lambda_i\rVert=1$。于是
+\[
+ \rho(\lambda^\ell;1)
+ \geq\ell\sum_{i=1}^m\rho(\lambda_i;1)-\ell mC
+ =\ell\left(\sum_{i=1}^m\rho(\lambda_i;1)-mC\right),
+\]
+从而
+\[
+ \frac{\rho(\lambda^\ell;1)}{\ell}
+ \geq\sum_{i=1}^m\rho(\lambda_i;1)-mC=:E.
+\]
+$m$ 及该分解只依赖于 $\lambda$，故不等式右端只依赖于 $\lambda$。因此对所有
+$\ell$，
+\begin{equation}
+ E\leq\frac{\rho(\lambda^\ell;1)}{\ell}\leq\rho(\lambda;1),
+ \label{eq:22-asymptotic-bounds}
+\end{equation}
+其中第二个不等式来自三角不等式。下述引理将完成极限良定性的证明，从而证明
+$\mu_1^{\mathrm{path}}(\lambda)$ 良定。
+
+\begin{lemma}
+\label{lem:22-asymptotic-limit}
+当 $\ell\to\infty$ 时，极限
+\[
+ \lim_{\ell\to\infty}\frac{\rho(\lambda^\ell;1)}{\ell}
+\]
+存在。
+\end{lemma}
+
+\begin{proof}
+仿照 (C09) 引理 2.21 的证明。由~\eqref{eq:22-asymptotic-bounds}，
+\[
+ 0\leq\rho(\lambda^\ell;1)-E\ell.
+\]
+把 $\ell$ 取为正整数 $i$ 的二进数 $\ell=2^i$，再应用三角不等式，得到
+\[
+ 0\leq\rho(\lambda^{2^i};1)-2^iE
+ \leq2\rho(\lambda^{2^{i-1}};1)-2^iE.
+\]
+除以 $2^i$，得到
+\[
+ 0\leq\frac{\rho(\lambda^{2^i};1)-2^iE}{2^i}
+ \leq\frac{\rho(\lambda^{2^{i-1}};1)-2^{i-1}E}{2^{i-1}}.
+\]
+所以序列 $(\rho(\lambda^{2^i};1)-2^iE)/2^i$ 非负，并随 $i\to\infty$ 单调递减，
+因而收敛。显然，这蕴含 $i\to\infty$ 时 $\rho(\lambda^{2^i};1)/2^i$ 收敛，继而
+蕴含 $\ell\to\infty$ 时 $\rho(\lambda^\ell;1)/\ell$ 收敛。
+\end{proof}
+
+接着证明受控拟可加性~\eqref{eq:22-controlled-quasi-additivity}。考虑不为恒等道路的任意
+$\lambda,\delta$，其中
+\[
+ \lambda,\delta\in\mathcal P^{\mathrm{ham}}(\Symp_0(M,\omega),id).
+\]
+此时
+$\lVert\lambda\rVert_U,\lVert\delta\rVert_U\geq1$。我们断言
+\begin{equation}
+ \bigl|\mu_1^{\mathrm{path}}(\lambda\delta)
+ -\mu_1^{\mathrm{path}}(\lambda)-\mu_1^{\mathrm{path}}(\delta)\bigr|
+ \leq2C\min\{2\lVert\lambda\rVert_U-1,2\lVert\delta\rVert_U-1\}.
+ \label{eq:22-controlled-induction}
+\end{equation}
+\footnote{译者注：原书式 (22.4.40) 的右端印作
+$2C(2\lVert\lambda\rVert_U-1,2\lVert\delta\rVert_U-1)$，两个量之间只有逗号，
+没有运算符。下文明确以
+$m=\min\{\lVert\lambda\rVert_U,\lVert\delta\rVert_U\}$ 归纳，故译文补出
+$\min$。}
+对 $m:=\min\{\lVert\lambda\rVert_U,\lVert\delta\rVert_U\}$ 作归纳。$m=0$，即
+$\lambda$ 或 $\delta$ 为恒等道路时，结论平凡。因此从 $m=1$ 开始；即
+$\lVert\lambda\rVert_U=1$ 或 $\lVert\delta\rVert_U=1$。不失一般性，设
+$\lVert\lambda\rVert_U=1$。写成
+\begin{equation}
+ (\lambda\delta)^k
+ =\left(\prod_{i=0}^{k-1}\delta^i\lambda\delta^{-i}\right)\delta^k.
+ \label{eq:22-conjugate-product}
+\end{equation}
+由 $\lVert\,\cdot\,\rVert_U$ 的共轭不变性，
+$\lVert\delta^i\lambda\delta^{-i}\rVert_U=\lVert\lambda\rVert_U=1$。应用
+\eqref{eq:22-fragment-product-bound} 及 $\rho(\,\cdot\,;1)$ 的共轭不变性，得到
+\[
+ |\rho((\lambda\delta)^k;1)-k\rho(\lambda;1)-\rho(\delta^k;1)|\leq Ck.
+\]
+将它与不等式
+\[
+ |\rho(\lambda^k;1)-k\rho(\lambda;1)|\leq Ck
+\]
+结合；原书称后者对应于式 (22.4.36) 的 $m=1,\ell=k$ 情形。
+\footnote{译者注：这里的 $m,\ell$ 只出现在式 (22.4.38)，而式 (22.4.36) 并无这两个
+参数；原书交叉引用疑应为 (22.4.38)。译文保留原指称并说明疑点。}
+于是
+\[
+ \frac1k\left|
+ (\rho((\lambda\delta)^k;1)-k\rho(\lambda;1)-\rho(\delta^k;1))
+ -(\rho(\lambda^k;1)-k\rho(\lambda;1))\right|\leq2C,
+\]
+即
+\[
+ \frac1k\left|\bigl(\rho((\lambda\delta)^k;1)-\rho(\delta^k;1)\bigr)
+ -\rho(\lambda^k;1)\right|\leq2C.
+\]
+令 $k\to\infty$，得到
+\[
+ |\mu_1^{\mathrm{path}}(\lambda\delta)-\mu_1^{\mathrm{path}}(\lambda)
+ -\mu_1^{\mathrm{path}}(\delta)|\leq2C,
+\]
+这就以 $K=2C$ 完成 $m=1$ 的证明。
+
+现设~\eqref{eq:22-controlled-induction} 对所有 $m\leq N$ 成立，并考虑 $m=N+1$。
+仍可设 $\lVert\lambda\rVert_U=N+1$。把 $\lambda$ 分解为
+$\lambda=\lambda'\lambda_1$，其中 $\lVert\lambda_1\rVert_U=1$、
+$\lVert\lambda'\rVert_U=N$。由归纳假设，
+\begin{align*}
+ |\mu_1^{\mathrm{path}}(\lambda'\lambda_1\delta)
+ -\mu_1^{\mathrm{path}}(\lambda')-\mu_1^{\mathrm{path}}(\lambda_1\delta)|
+ &\leq2C(2m-1),\\
+ |\mu_1^{\mathrm{path}}(\lambda_1\delta)-\mu_1^{\mathrm{path}}(\lambda_1)
+ -\mu_1^{\mathrm{path}}(\delta)|&\leq2C,\\
+ |\mu_1^{\mathrm{path}}(\lambda_1)+\mu_1^{\mathrm{path}}(\lambda')
+ -\mu_1^{\mathrm{path}}(\lambda'\lambda_1)|&\leq2C.
+\end{align*}
+将这些不等式相加，得到
+\[
+ |\mu_1^{\mathrm{path}}(\lambda\delta)-\mu_1^{\mathrm{path}}(\lambda)
+ -\mu_1^{\mathrm{path}}(\delta)|\leq2C(2m+1).
+\]
+取 $K=4C=8e_\rho(U;M)$，便完成受控拟可加性的证明。
+
+最后证明 $\mu_1^{\mathrm{path}}$ 的卡拉比性质。令
+$\lambda=\phi_F\in\mathcal P_U^{\mathrm{ham}}$，并选取哈密顿道路
+$\delta=\phi_H$，使 $\phi_H^1(U)\cap\overline U=\varnothing$。命题 22.3.3 给出
+\[
+ \rho(\phi_H\phi_F^m;1)=\rho(\phi_H;1)
+ +\operatorname{Cal}_U^{\mathrm{path}}(\phi_F^m)
+ =\rho(\phi_H;1)+m\operatorname{Cal}_U^{\mathrm{path}}(\phi_F)
+\]
+对所有 $m$ 成立。另一方面，由~\eqref{eq:22-path-lower-triangle} 还有
+\footnote{译者注：原书在此处第一项卡拉比不变量中印作
+$\operatorname{Cal}_U^{\mathrm{path}}(\phi_F^m;1)$；卡拉比不变量并无第二个参数，且
+紧接着的等式也按单参数使用，故译文删去多出的 ``$;1$''。}
+\[
+ |\rho(\phi_H\phi_F^m;1)-\rho(\phi_H;1)-\rho(\phi_F^m;1)|
+ \leq2e_\rho(U;M).
+\]
+除以 $m$ 并令 $m\to\infty$，得到
+\begin{align*}
+ \lim_{m\to\infty}\frac{\rho(\phi_F^m;1)}m
+ &=\lim_{m\to\infty}\frac{\rho(\phi_H\phi_F^m;1)}m\\
+ &=\lim_{m\to\infty}\frac{\rho(\phi_H;1)}m
+ +\operatorname{Cal}_U^{\mathrm{path}}(\phi_F)
+ =\operatorname{Cal}_U^{\mathrm{path}}(\phi_F).
+\end{align*}
+因此由 $\mu_1^{\mathrm{path}}$ 的定义，
+\[
+ \mu_1^{\mathrm{path}}(\phi_F)
+ =\lim_{m\to\infty}\frac{\rho(\phi_F^m;1)}m
+ =\operatorname{Cal}_U^{\mathrm{path}}(\phi_F).
+\]
+这完成证明。
+\end{proof}
+
+现在可以完成定理~\ref{thm:22-spectral-partial-quasi-state} 的证明。
+
+单调性、归一化、利普希茨连续性及辛不变性直接来自
+$\rho(\,\cdot\,;1)$ 的公理，其证明留给读者。半齐次性直接来自
+$\mu_1^{\mathrm{path}}$ 的齐次性与利普希茨连续性。
+
+只需再证部分可加性与消失性。令 $F,H\in C^\infty(M)$ 满足
+$\{F,H\}=0$ 且 $\operatorname{supp}H\subset U$。
+\footnote{译者注：原书此处印作 $\operatorname{supp}H\in U$；支集是子集而非点，故译文
+依本段语义及卡拉比性质的适用条件改为 $\operatorname{supp}H\subset U$。}
+注意对所有 $k\in\mathbb N$ 都有
+$\lVert\phi_H^k\rVert_U=1$。由于 $\{F,H\}=0$，流 $\phi_H$ 与 $\phi_F$ 可交换，故
+\[
+ \mu_1^{\mathrm{path}}(\phi_F\phi_H)
+ =\frac1k\mu_1^{\mathrm{path}}((\phi_F\phi_H)^k)
+ =\frac1k\mu_1^{\mathrm{path}}(\phi_F^k\phi_H^k).
+\]
+而由~\eqref{eq:22-controlled-quasi-additivity}，对所有 $k$ 有
+\[
+ |\mu_1^{\mathrm{path}}(\phi_F^k\phi_H^k)
+ -\mu_1^{\mathrm{path}}(\phi_F^k)-\mu_1^{\mathrm{path}}(\phi_H^k)|\leq K.
+\]
+结合两式并除以 $k$，得到
+\[
+ |\mu_1^{\mathrm{path}}(\phi_F\phi_H)-\mu_1^{\mathrm{path}}(\phi_F)
+ -\mu_1^{\mathrm{path}}(\phi_H)|\leq\frac Kk.
+\]
+这对所有 $k$ 成立，因而
+\[
+ \mu_1^{\mathrm{path}}(\phi_F\phi_H)
+ =\mu_1^{\mathrm{path}}(\phi_F)+\mu_1^{\mathrm{path}}(\phi_H).
+\]
+由卡拉比性质，
+\[
+ \mu_1^{\mathrm{path}}(\phi_H)
+ =\operatorname{Cal}_U^{\mathrm{path}}(\phi_H)
+ =\operatorname{vol}_\omega(M)^{-1}\int_M H\,d\mu_\omega.
+\]
+把它代入 $\zeta_{\mathrm{sp}}$ 的定义，得到
+$\zeta_{\mathrm{sp}}(F+H)=\zeta_{\mathrm{sp}}(F)$。

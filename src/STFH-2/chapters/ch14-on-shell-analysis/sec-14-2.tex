@@ -1,0 +1,949 @@
+\section{\texorpdfstring{$\mathcal M(x,y;B)$ 的\termSplittingEnd{}}{M(x,y;B) 的分裂端}}
+\label{sec:splitting-ends}
+
+本节将精确描述紧拉格朗日子流形对 $(L_0,L_1)$ 的\personFloer{}流线模空间
+$\mathcal M(x,y;B)$ 的\termSplittingEnd{}。另一类端，即\termBubblingEnd{}，将在下一节
+描述。
+
+对 $i=0,1$，以
+\[
+  e_i:\mathfrak j_\omega\longrightarrow\mathcal J_\omega
+\]
+表示取值映射 $J\mapsto J(i)$。定义
+\stfhIndex{I011}{00-j-j0-j1}{$\mathfrak j_{(J_0,J_1)}$}
+\[
+  \mathfrak j_{(J_0,J_1)}
+  =
+  \left\{
+    J\in\mathcal P([0,1],\mathcal J_\omega)
+    \ \middle|\
+    e_i(J)=J_i,\quad i=0,1
+  \right\},
+\]
+也就是 $\mathcal J_\omega$ 中分别以 $J_0,J_1$ 为固定端点的道路集合。与之相伴的\personFloer{}模空间为\footnote{译者注：原书所列集合没有写出任何含 $p,q$ 的条件，因而右端实际不依赖
+$p,q$。译文依第 13.9 节已经给出的 $\widetilde{\mathcal M}(p,q;J)$ 定义，补出
+$u(-\infty)=p$ 与 $u(+\infty)=q$，使当前记号有定义。}
+\[
+  \begin{aligned}
+  \widetilde{\mathcal M}(p,q;J;B)
+  =\bigl\{
+    u:\Theta\to M\ \bigm|\ &\overline\partial_Ju=0,\quad
+    u(\tau,0)\in L_0,\quad u(\tau,1)\in L_1,\\
+  &u(-\infty)=p,\quad u(+\infty)=q,\quad
+    E_J(u)<\infty,\quad [u]=B
+  \bigr\}.
+  \end{aligned}
+\]
+当 $p\neq q$，或者 $p=q$ 且 $0\neq B\in\pi_2(p,p)$ 时，还定义其商
+\[
+  \mathcal M(p,q;J;B)
+  =
+  \widetilde{\mathcal M}(p,q;J;B)/\mathbb R.
+\]
+（其余情形并不稳定，故予以省略。）除非为避免混淆而必须指明 $J$，下文将在
+$\widetilde{\mathcal M}(p,q;J;B)$ 与 $\mathcal M(p,q;J;B)$ 的记号中省略 $J$。
+
+一般说来，商空间 $\mathcal M(p,q;B)$ 并不紧。先注意，$\mathbb R$-作用保持同伦类，
+因而也保持辛面积。我们将在模去 $\tau$-平移的意义下，分析给定序列
+$u_i\in\widetilde{\mathcal M}(p,q;B)$ 紧性失效的方式。
+
+从下面的引理开始。
+
+\begin{lemma}
+\label{lem:positive-energy-gap}
+设 $L_0,L_1$ 横截相交。则存在只依赖于对子 $(L_0,L_1)$ 与 $J$ 的常数
+\[
+  \sigma=\sigma_{(L_0,L_1;J)}>0,
+\]
+使得对方程
+\[
+  \frac{\partial u}{\partial\tau}
+  +J_t\frac{\partial u}{\partial t}=0,
+  \qquad
+  u(\tau,0)\in L_0,
+  \quad
+  u(\tau,1)\in L_1
+\]
+的任意\termNonStationary{}解 $u$，都有
+\begin{equation}
+  E_J(u)\geq\sigma.
+\label{eq:positive-energy-gap}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+用反证法。假设存在一列\termNonStationary{}解 $u_i$，使得
+$E_J(u_i)\to0$（$i\to\infty$）。这尤其排除了冒泡，故得到一致导数界
+\[
+  |du_i|_\infty<C.
+\]
+采用引理 14.1.4 证明中的同一论证并抽取子列，仍将其记为 $u_i$，使得
+\begin{equation}
+  \lim_{i\to\infty}|du_i|_\infty=0.
+\label{eq:vanishing-derivative-sequence}
+\end{equation}
+
+我们断言，存在邻域 $U\supset L_0\cap L_1$，使得对所有充分大的 $i$ 都有
+$\operatorname{Image}u_i\subset U$。
+
+否则，可以找到子列和点 $(\tau_i,t_i)$，使得
+\[
+  u_i(\tau_i,t_i)\in M\setminus U.
+\]
+沿 $\tau$-方向平移 $u_i$ 后可设 $\tau_i=0$，并可设
+\[
+  t_i\longrightarrow t_\infty\in[0,1],
+  \qquad
+  u_i(0,t_i)\longrightarrow x_\infty\in M\setminus U.
+\]
+利用~\eqref{eq:vanishing-derivative-sequence}可证 $u_i$ 收敛到一条\personFloer{}流线
+$u_\infty$，且 $E_J(u_\infty)=0$。于是 $u_\infty$ 必为常值映射，其像必包含于
+$L_0\cap L_1$。另一方面，该收敛又蕴含
+$u_\infty(0,t_\infty)=x_\infty\in M\setminus U$。二者显然矛盾，故引理得证。
+\end{proof}
+
+接着回忆，引理 14.1.3 蕴含：当 $\tau\to\pm\infty$ 时，$u(\tau)$ 分别收敛到
+某个 $p_\pm\in L_0\cap L_1$。\footnote{译者注：严格说，引理 14.1.3 只给出两端各有
+一列趋于无穷的平移参数，使相应道路收敛到交点，并未单独证明整个端部
+收敛。此处还需结合引理 14.1.4 的导数衰减、横截性给出的交点离散性及标准
+紧性论证；原书将这些省略而全部归于引理 14.1.3。}特别地，可将 $u$ 写成
+\[
+  u(\tau,t)=\exp_{p_\pm}\bigl(\xi_\pm(\tau,t)\bigr),
+\]
+其中
+\begin{align}
+  \xi_+:(R_+,\infty)\times[0,1]&\longrightarrow T_{p_+}M,
+  \label{eq:positive-end-exponential-coordinate}\\
+  \xi_-:(-\infty,R_-)\times[0,1]&\longrightarrow T_{p_-}M.
+  \label{eq:negative-end-exponential-coordinate}
+\end{align}
+这里的指数映射 $\exp_{p_\pm}$ 是相对于任意使 $L_0,L_1$ 在 $p_\pm$ 附近成为\emph{\termTotallyGeodesic{}}子流形的\personRiemann{}度量而言的。$R_\pm$ \emph{依赖于 $u$，并可随
+$u$ 变化}。
+
+引理 14.1.3 与命题 14.1.5 于是蕴含：
+
+\begin{proposition}
+\label{prop:asymptotic-coordinate-decay}
+设 $L_0,L_1$ 横截，并令 $\xi_\pm$ 与 $R_\pm>0$ 如上。\footnote{译者注：原书一方面声明 $R_\pm>0$，另一方面把负端坐标域和估计范围写成
+$(-\infty,R_-)$，而通常以正数 $R_-$ 记负端截断时应写 $(-\infty,-R_-)$。
+也可能原意是允许 $R_-<0$。两种补法无法由本段唯一裁定，译文保留原式。}则对每个
+$k\in\mathbb N$，存在 $C_k>0$ 和只分别依赖于 $p_\pm$ 的
+$\delta_\pm=\delta_{p_\pm}>0$，使得对每个给定的 $k\geq0$，
+\begin{align}
+  |\nabla^k\xi_+|(\tau,t)
+  &\leq C_ke^{-\delta_+|\tau|},
+  &&R_+<\tau<\infty,
+  \label{eq:positive-end-coordinate-decay}\\
+  |\nabla^k\xi_-|(\tau,t)
+  &\leq C_ke^{-\delta_-|\tau|},
+  &&-\infty<\tau<R_-.
+  \label{eq:negative-end-coordinate-decay}
+\end{align}
+\end{proposition}
+
+现在定义 $\widetilde{\mathcal M}(p,q;B)$ 上的一个拓扑；
+$\mathcal M(p,q;B)$ 上的拓扑则定义为由此前者诱导的\termQuotientTopology{}。
+\stfhIndex{I119}{Jubunengliang}{局部能量（local energy）}
+为在实际使用中更有效地研究这种收敛，引入如下\emph{\termLocalEnergy{}}会很有帮助。
+
+\begin{definition}[\termLocalEnergy{}]
+\label{def:local-energy}
+定义 $u$ 在 $[R_1,R_2]\times[0,1]$ 上的\termLocalEnergy{}为
+\[
+  E_{J,[R_1,R_2]}(u)
+  =
+  \int_{R_1}^{R_2}\int_0^1|du|_J^2\,dt\,d\tau.
+\]
+\end{definition}
+
+由命题 14.2.2 和\termBootstrapArgument{}，得到下面这个更实用的收敛命题。
+
+\begin{proposition}
+\label{prop:fine-convergence-criterion}
+设序列 $u_i\in\widetilde{\mathcal M}(p,q;B)$ 满足以下条件：
+\begin{enumerate}
+  \item $u_i$ 在紧集上一致地依 $C^1$ 拓扑收敛到某个映射
+  $u\in\widetilde{\mathcal M}(L_0,L_1;J)$；
+  \item 局部能量收敛到 $E(u_i)=\omega(B)$，即\footnote{译者注：原书的陈列式只有
+  $\lim_{R\to\infty}E_{J,[-R,R]}(u_i)=\omega(B)$，留下自由指标 $i$；而这对每个
+  固定的有限能量 $u_i$ 都自动成立，不能排除能量随 $i$ 逃向无穷远。译文依本命题
+  的结论及命题 14.2.7 所用的极限次序补入 $i\to\infty$ 的极限。}
+  \[
+    \lim_{R\to\infty}\lim_{i\to\infty}
+    E_{J,[-R,R]}(u_i)=\omega(B).
+  \]
+\end{enumerate}
+则局部极限 $u$ 属于 $\widetilde{\mathcal M}(p,q;B)$，且 $u_i$ 在\termFineCinfinityTopology{}中收敛到 $u$。
+\end{proposition}
+
+\begin{exercise}
+\label{ex:fine-convergence-criterion}
+证明这个命题。
+\end{exercise}
+
+依\termQuotientTopology{}的定义，序列 $u_j$（更准确地说是它们的等价类 $[u_j]$）
+在 $\mathcal M(p,q;B)$ 中收敛，当且仅当存在序列 $\tau_j\in\mathbb R$，使平移序列
+\[
+  u_j\circ\tau_j
+  :=u_j(\mathord\cdot-\tau_j,\mathord\cdot)
+\]
+满足上面的两个性质。
+\footnote{译者注：原书在此只写未定义的复合 $u_j\circ\tau_j$；译文依本节稍后的
+命题 14.2.6，把它明确定义为定义域的 $\tau$-平移。}
+
+这个命题揭示了给定序列何以会收敛失效。受它启发，我们依照\personFloer{} (Fl88b)
+引入\emph{\termCuspTrajectory{}}与\emph{\termBrokenCuspTrajectory{}}；它们将用来紧化
+$\mathcal M(p,q;B)$。
+
+由于我们已经说明局部拓扑中的收敛失效来自已研究过的冒泡，以下假设已有一致界
+\begin{equation}
+  |du_i(\tau,t)|<C
+\label{eq:uniform-derivative-bound-splitting}
+\end{equation}
+对所有 $(\tau,t)\in\mathbb R\times[0,1]$ 与 $i\in\mathbb N$ 成立。一般以
+$I\subset\mathbb N$ 表示 $\mathbb N$ 的一个子列。下面的命题是\termAscoliArzelaTheorem{}的直接推论。
+
+\begin{proposition}
+\label{prop:translated-local-subsequence}
+设序列 $u_i\in\widetilde{\mathcal M}(p,q;B)$ 对某个 $C>0$ 满足
+\eqref{eq:uniform-derivative-bound-splitting}。则对任意给定序列
+$\{\tau_i\}\subset\mathbb R$，都存在 $\mathbb N$ 的一个子列
+$I=\{i_j\}_{j\in\mathbb N}$ 和映射
+$u\in\widetilde{\mathcal M}(L_0,L_1;J)$，使得平移序列
+\[
+  u_{i_j}\circ\tau_{i_j}
+  =u_{i_j}(\mathord\cdot-\tau_{i_j},\mathord\cdot)
+\]
+在 $\mathbb R\times[0,1]$ 上局部一致收敛到 $u$。
+\end{proposition}
+
+把此命题中与 $I$ 相伴的序列记为\footnote{译者注：原书把右端写成
+$\{\tau_{i_j}\}_{j\in I}$，但 $j$ 是枚举子列
+$I=\{i_j\}_{j\in\mathbb N}$ 的指标，并不是 $I$ 的元素。译文补正为
+$j\in\mathbb N$。}
+\[
+  \tau_I=\{\tau_{i_j}\}_{j\in\mathbb N}
+\]
+并把相应的局部极限记为 $u=u_{(I,\tau_I)}$。下面给出局部能量的收敛结论。
+
+\begin{proposition}
+\label{prop:local-energy-of-recovered-limit}
+设 $u_{i_j}$ 是如上选取的子列，$u_{(I,\tau_I)}$ 是其局部极限。则\footnote{译者注：原书在公式 (14.2.25) 及证明第一行中都对未平移的 $u_{i_j}$
+取局部能量，但命题 14.2.6 的局部收敛对象是
+$u_{i_j}\circ\tau_{i_j}$。译文补回平移；否则证明中的第一步并不由局部收敛推出。}
+\begin{equation}
+  \limsup_{R\to\infty}\lim_{j\to\infty}
+  \left|
+    E_{J,[-R,R]}(u_{i_j}\circ\tau_{i_j})
+    -E_J\bigl(u_{(I,\tau_I)}\bigr)
+  \right|
+  =0.
+\label{eq:recovered-local-energy-convergence}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+由局部收敛，对每个 $R>0$，当 $j\to\infty$ 时有
+\[
+  E_{J,[-R,R]}(u_{i_j}\circ\tau_{i_j})
+  \longrightarrow
+  E_{J,[-R,R]}\bigl(u_{(I,\tau_I)}\bigr).
+\]
+由 $E_J(u_{(I,\tau_I)})<\infty$\footnote{译者注：原书把这里的有限性条件排成
+$E_J(u_{(I,\tau_I)})<0$，与能量非负性矛盾。译文补正为 $<\infty$。}，\termLebesgueDominatedConvergenceTheorem{}显然蕴含
+\[
+  \lim_{R\to\infty}
+  E_{J,[-R,R]}\bigl(u_{(I,\tau_I)}\bigr)
+  =E_J\bigl(u_{(I,\tau_I)}\bigr).
+\]
+合并二式即得~\eqref{eq:recovered-local-energy-convergence}。
+\end{proof}
+
+下面这个定义会很有用。
+
+\stfhIndex{I121}{Jubujixian}{局部极限（local limit）}
+\stfhIndex{I166}{Huifudui}{恢复对（recovering pair）}
+\begin{definition}
+\label{def:recovering-pair}
+设 $\{u_i\}_{i\in\mathbb N}$ 是 $\widetilde{\mathcal M}(p,q;B)$ 中的序列。
+把命题 14.2.6 所给的对子 $(I,\tau_I)$ 称为 $\{u_i\}$ 的一个\termRecoveringPair{}。若相应的局部极限 $u_{(I,\tau_I)}$ 不是定常的，则称这个\termRecoveringPair{}是\termNonStationary{}的。也把任何这样的极限
+\[
+  u_{(I,\tau_I)}\in\widetilde{\mathcal M}(L_0,L_1;J)
+\]
+称为序列 $u_i$ 的一个\termLocalLimit{}（与\termRecoveringPair{}
+$(I,\tau_I)$ 相伴）。
+\end{definition}
+
+对给定序列 $\{u_i\}$，收集其所有\termNonStationary{}的\termRecoveringPair{}与\termLocalLimit{}，并分别记为\footnote{译者注：原书第一个集合的竖线后缺少主语，只写
+“is a non-stationary recovering pair”；第二个集合又把已经带参数的
+$\operatorname{Rcov}(\{u_i\})$ 简写成 $\operatorname{Rcov}$。译文补齐主语并统一
+参数。}
+\[
+  \begin{aligned}
+  \operatorname{Rcov}(\{u_i\})
+  &=\left\{
+      (I,\tau_I)
+      \ \middle|\
+      (I,\tau_I)\text{ 是 }\{u_i\}\text{ 的非定常恢复对}
+    \right\},\\
+  \widetilde{\operatorname{Loc}}(\{u_i\})
+  &=\left\{
+      u\in\widetilde{\mathcal M}(L_0,L_1)
+      \ \middle|\
+      \begin{gathered}
+      u=u_{(I,\tau_I)}\text{ 对某个}\vphantom{\big|}\\
+      (I,\tau_I)\in\operatorname{Rcov}(\{u_i\})
+      \end{gathered}
+    \right\}.
+  \end{aligned}
+\]
+\begin{definition}
+\label{def:translation-equivalent-local-limits}
+设 $v,v'\in\widetilde{\operatorname{Loc}}(\{u_i\})$ 是 $\{u_i\}$ 的两个\termNonStationary{}的\termLocalLimit{}。若存在 $\tau_0\in\mathbb R$ 使
+\[
+  v'=v\circ\tau_0,
+\]
+则称 $v\sim v'$。
+\end{definition}
+
+以
+\[
+  \operatorname{Loc}(\{u_i\})
+  =
+  \widetilde{\operatorname{Loc}}(\{u_i\})/\mathord\sim
+\]
+表示等价类集合，并以 $[v]$ 表示与
+$v\in\widetilde{\operatorname{Loc}}(\{u_i\})$ 相伴的等价类。
+\footnote{译者注：原书在这里写 $v\in\operatorname{Loc}(\{u_i\})$，但 $[v]$
+应由商映射作用于商前集合的元素得到。译文补正为
+$v\in\widetilde{\operatorname{Loc}}(\{u_i\})$。}
+只要含义清楚，下文也把 $[v]$ 本身称为\termLocalLimit{}，并将它记为 $v$。
+
+还需要下面的定义。
+
+\stfhIndex{I052}{Jubujixianlian}{局部极限链（chain of local limits）}
+\begin{definition}
+\label{def:chain-of-local-limits}
+设 $\{u_i\}\subset\widetilde{\mathcal M}(p,q;B)$。所谓 $\{u_i\}$ 的一条\termLocalLimitChain{}，是一列\termLocalLimit{}
+\[
+  ([v_1],[v_2],\ldots,[v_n])
+\]
+满足：存在一个子列 $I$ 以及序列
+\[
+  \tau_j^1<\cdots<\tau_j^n,
+  \qquad j\in I,
+\]
+使得
+\[
+  v_\ell=u_{(I,\tau_I^\ell)}.
+\]
+记
+\[
+  \vec\tau_I
+  =
+  \left\{(\tau_j^1,\ldots,\tau_j^n)\right\}_{j\in I}.
+\]
+\end{definition}
+
+以 $\widetilde{\operatorname{Ch}}(\{u_i\})$ 表示 $\{u_i\}$ 的所有\termLocalLimitChain{}组成的集合。若链 $(v_1,\ldots,v_n)$ 与定义 14.2.10
+所述子列 $(I,\vec\tau_I)$ 相伴，则记
+\[
+  C_{(I,\vec\tau_I)}=(v_1,\ldots,v_n).
+\]
+
+\stfhIndex{I183}{Zilian}{子链（subchain）}
+\begin{definition}
+\label{def:subchain-equivalence}
+设 $C,C'$ 是 $\{u_i\}$ 的\termLocalLimitChain{}。若
+\[
+  C=C_{(I,\vec\tau_I)}=(v_1,\ldots,v_n),
+\]
+且 $I$ 有一个子列 $I'$，使得
+\[
+  C'=C_{(I',\vec\tau_{I'})}=(v'_1,\ldots,v'_{n'})
+\]
+并且
+\[
+  \{v_1,\ldots,v_n\}\subset\{v'_1,\ldots,v'_{n'}\},
+\]
+则称 $C$ 是 $C'$ 的一条\termSubchain{}。若 $C$ 是 $C'$ 的\termSubchain{}，且
+$C'$ 也是 $C$ 的\termSubchain{}，则称两条链等价。
+\end{definition}
+
+以 $\operatorname{Ch}(\{u_i\})$ 表示链的等价类集合，并以 $[C]$ 表示 $C$ 的
+等价类。现在定义偏序 $[C]\leq[C']$：当且仅当 $C$ 是 $C'$ 的\termSubchain{}。
+
+\begin{lemma}
+\label{lem:local-limit-chain-energy-bound}
+设 $C=(v_1,\ldots,v_n)$ 是一条长度有限的\termLocalLimitChain{}。则
+\begin{equation}
+  \sum_{\ell=1}^n\omega([v_\ell])\leq\omega(B).
+\label{eq:local-limit-chain-area-bound}
+\end{equation}
+特别地，链长 $n$ 满足
+\begin{equation}
+  n\leq
+  \left[\frac{\omega(B)}{\sigma}\right]+1.
+\label{eq:local-limit-chain-length-bound}
+\end{equation}
+\end{lemma}
+
+利用这个引理，下面证明\termMaximalChain{}的存在性。
+
+\begin{proposition}
+\label{prop:existence-maximal-local-limit-chain}
+假设 $p\neq q$，或者 $p=q$ 且 $B\neq0$。设
+$u_i\in\widetilde{\mathcal M}(p,q;B)$ 是满足一致估计
+\[
+  \|du_i\|_\infty<C
+\]
+的序列。则 $\operatorname{Ch}(\{u_i\})$ 中存在一条\termMaximalChain{}，其长度不
+超过 $[\omega(B)/\sigma]+1$。
+\footnote{译者注：原书在本命题、命题 14.2.16 和定理 14.2.17 中都把 $u_i$
+写成商空间 $\mathcal M(p,q;B)$ 的元素，却同时对 $u_i$ 求导、平移并取逐点值；这些
+操作作用于参数化映射而非其平移等价类。译文三处统一补回波浪号，写成
+$u_i\in\widetilde{\mathcal M}(p,q;B)$。}
+\end{proposition}
+
+\begin{proof}
+在给定假设下，$u_i$ 的一致 $C^1$ 界蕴含
+$\operatorname{Rcov}(\{u_i\})$ 非空。取一个\termRecoveringPair{}
+$(I,\tau_I)$，并令 $u_{(I,\tau_I)}$ 为其\termLocalLimit{}。若
+\[
+  \omega\bigl(u_{(I,\tau_I)}\bigr)=\omega(B),
+\]
+则命题 14.2.4 蕴含单元素链
+$([u_{(I,\tau_I)}])$ 已经是\termMaximalChain{}。
+\footnote{译者注：原书把这条单元素链写成 $\{(I,\tau_I)\}$，其元素是恢复对，
+而定义 14.2.10 要求链的元素是局部极限类。译文改写为
+$([u_{(I,\tau_I)}])$。}
+因此，以下假设
+\begin{equation}
+  \omega\bigl(u_{(I,\tau_I)}\bigr)<\omega(B).
+\label{eq:recovered-energy-deficit}
+\end{equation}
+
+由~\eqref{eq:recovered-local-energy-convergence}，对任意 $\epsilon>0$，存在
+$R_\epsilon>0$\footnote{译者注：原书在公式 (14.2.29) 的能量区间中固定写
+$R_\epsilon$，式后却声称该式对所有 $R\geq R_\epsilon$ 成立，而且没有量化 $j$。
+译文依公式 (14.2.25) 把区间变量统一为 $R$，并补明 $j$ 充分大。}，使得当
+$R\geq R_\epsilon$ 且 $j$ 充分大时，
+\begin{equation}
+  \left|
+    \omega\bigl(u_{(I,\tau_I)}\bigr)
+    -E_{J,[-R,R]}
+      \bigl(u_{i_j}(\mathord\cdot-\tau_{i_j},\mathord\cdot)\bigr)
+  \right|
+  \leq\epsilon.
+\label{eq:recovered-energy-window}
+\end{equation}
+固定 $\epsilon>0$，使得
+\[
+  \epsilon<
+  \frac{\omega(B)-\omega(u_{(I,\tau_I)})}{3}.
+\]
+
+记
+\[
+  u_{i_j,\tau_{i_j}}(\tau,t)
+  :=u_{i_j}(\tau-\tau_{i_j},t).
+\]
+定义 $\mu_{\pm,j}>R$ 为分别落在
+$-\infty<-\mu_{-,j}<-R$ 与 $R<\mu_{+,j}<\infty$ 中的唯一数，使得
+\begin{equation}
+  \begin{aligned}
+  E_{J,(-\infty,-\mu_{-,j}]}
+    (u_{i_j,\tau_{i_j}})
+  &=\frac12E_{J,(-\infty,-R]}
+    (u_{i_j,\tau_{i_j}}),\\
+  E_{J,[\mu_{+,j},\infty)}
+    (u_{i_j,\tau_{i_j}})
+  &=\frac12E_{J,[R,\infty)}
+    (u_{i_j,\tau_{i_j}}).
+  \end{aligned}
+\label{eq:half-tail-energy-cutoffs}
+\end{equation}
+
+\begin{lemma}
+\label{lem:tail-cutoff-divergence}
+有
+\[
+  \max\{\mu_{+,j}-R,\mu_{-,j}-R\}\longrightarrow\infty.
+\]
+\end{lemma}
+
+\begin{proof}
+否则可再取一个仍记为 $j$ 的子列，使得对某个 $C>0$ 和所有 $j$ 都有
+\[
+  \mu_{\pm,j}\leq R+C.
+\]
+一方面，\eqref{eq:recovered-energy-window} 蕴含
+\[
+  \begin{aligned}
+  &E_{J,(-\infty,-R-C]}(u_{i_j,\tau_{i_j}})
+   +E_{J,[R+C,\infty)}(u_{i_j,\tau_{i_j}})\\
+  &\qquad
+   =E_J(u_{i_j,\tau_{i_j}})
+    -E_{J,[-R-C,R+C]}(u_{i_j,\tau_{i_j}})\\
+  &\qquad
+   \geq\omega(B)-\omega(u_{(I,\tau_I)})-\epsilon.
+  \end{aligned}
+\]
+另一方面\footnote{译者注：原书在这两串估计中突然改用未平移的 $u_{i_j}$，又把由
+公式 (14.2.30) 定义的截点 $-\mu_{-,j}$、$\mu_{+,j}$ 写成
+$-\mu_{-,j}-R$、$\mu_{+,j}+R$。这些写法与 (14.2.30) 不能相接。译文统一回
+$u_{i_j,\tau_{i_j}}$，并依集合包含关系和 (14.2.30) 使用原截点。}，
+由~\eqref{eq:half-tail-energy-cutoffs}，
+\[
+  \begin{aligned}
+  &E_{J,(-\infty,-R-C]}(u_{i_j,\tau_{i_j}})
+   +E_{J,[R+C,\infty)}(u_{i_j,\tau_{i_j}})\\
+  &\quad\leq
+   E_{J,(-\infty,-\mu_{-,j}]}(u_{i_j,\tau_{i_j}})
+   +E_{J,[\mu_{+,j},\infty)}(u_{i_j,\tau_{i_j}})\\
+  &\quad=
+   \frac12\left(
+     E_{J,(-\infty,-R]}(u_{i_j,\tau_{i_j}})
+     +E_{J,[R,\infty)}(u_{i_j,\tau_{i_j}})
+   \right)\\
+  &\quad\leq
+   \frac12\left(
+     \omega(B)-\omega(u_{(I,\tau_I)})+\epsilon
+   \right).
+  \end{aligned}
+\]
+合并二式，得到
+\[
+  \omega(B)-\omega(u_{(I,\tau_I)})-\epsilon
+  \leq
+  \frac12\left(
+    \omega(B)-\omega(u_{(I,\tau_I)})+\epsilon
+  \right),
+\]
+从而
+\[
+  \omega(B)-\omega(u_{(I,\tau_I)})\leq3\epsilon.
+\]
+这与 $\epsilon<[\omega(B)-\omega(u_{(I,\tau_I)})]/3$ 矛盾，故引理得证。
+\end{proof}
+
+进一步，由~\eqref{eq:recovered-energy-window} 得\footnote{译者注：原书先由
+公式 (14.2.30) 把两个远尾的能量之和写成两端总尾能量的一半，继而却断言这个
+“一半”仍不小于
+$\omega(B)-\omega(u_{(I,\tau_I)})-\epsilon$；公式 (14.2.29) 只能给出两端总尾能量
+本身的这一估计。下一句又据此断言某一端不小于能量差的 $2/3$，同样不能推出。
+译文先用 (14.2.29) 估计两端总尾能量，再选取至少承载其一半的一端，最后用
+(14.2.30) 二分该端；后文所需的正下界相应为能量差的 $1/6$。}
+\[
+  \begin{aligned}
+  &E_{J,(-\infty,-R]}(u_{i_j,\tau_{i_j}})
+    +E_{J,[R,\infty)}(u_{i_j,\tau_{i_j}})\\
+  &\quad=
+    \omega(B)-E_{J,[-R,R]}(u_{i_j,\tau_{i_j}})\\
+  &\quad\geq
+    \omega(B)-\omega(u_{(I,\tau_I)})-\epsilon\\
+  &\quad>
+    \frac23\left(
+      \omega(B)-\omega(u_{(I,\tau_I)})
+    \right).
+  \end{aligned}
+\]
+因而，在必要时再取 $j$ 的子列后，两个量
+\[
+  E_{J,(-\infty,-R]}(u_{i_j,\tau_{i_j}}),
+  \qquad
+  E_{J,[R,\infty)}(u_{i_j,\tau_{i_j}})
+\]
+中至少有一个不小于
+\[
+  \frac12\left(
+    \omega(B)-\omega(u_{(I,\tau_I)})-\epsilon
+  \right)
+  >
+  \frac13\left(
+    \omega(B)-\omega(u_{(I,\tau_I)})
+  \right)>0.
+\]
+由 $u_{i_j,\tau_{i_j}}$ 的局部收敛容易看出，这必发生在满足
+$\mu_{*,j}-R\to\infty$ 的某个 $*=\pm$ 上。令 $\mu_j$ 为相应的
+$\mu_{*,j}$ 之一，使 $\lim_{j\to\infty}\mu_{*,j}=\infty$。不失一般性，可设
+$*=-$，因而 $\mu_j=\mu_{-,j}$。
+
+现在取一个子列 $\{i_k\}$，考虑平移序列\footnote{译者注：原书在紧邻的尾能量式中
+交替使用 $u_{i_j,\tau_j}$、$u_{i_j,\tau_{+,j}}$ 与 $u_{i_j,\tau_{i_j}}$；随后又把
+这一轮新平移称为“序列 $v_k$”，却紧接着定义 $w_k$。选定
+$w_k(\nu_k,t_k)$ 后，原书写 $\widetilde w_k=w_k\circ\nu_k$，这不能把该点移至
+$0$；继而又把复合平移写成 $u_{i_k}\circ(-\mu_k+\nu_k)$，并遗漏原恢复平移
+$\tau_{i_k}$。译文统一使用 $u_{i_j,\tau_{i_j}}$ 与 $w_k$，并依本节约定
+$u\circ a=u(\mathord\cdot-a,\mathord\cdot)$ 改用 $w_k\circ(-\nu_k)$，再合并
+三次平移。}
+\[
+  w_k:=u_{i_k,\tau_{i_k}}\circ\mu_k,
+  \qquad
+  w_k(\tau,t)=u_{i_k,\tau_{i_k}}(\tau-\mu_k,t).
+\]
+由定义及~\eqref{eq:half-tail-energy-cutoffs}，对所有 $k$ 都有
+\[
+  E_{J,(-\infty,0]}(w_k)
+  >\frac16\left(
+    \omega(B)-\omega(u_{(I,\tau_I)})
+  \right).
+\]
+因此，可选择 $(\nu_k,t_k)\in(-\infty,0]\times[0,1]$，使得
+\begin{equation}
+  w_k(\nu_k,t_k)
+  =u_{i_k,\tau_{i_k}}(\nu_k-\mu_k,t_k)
+  \in M\setminus U,
+\label{eq:new-recovery-point-outside-intersection}
+\end{equation}
+其中 $U$ 是 $L_0\cap L_1$ 的一个充分小邻域。考虑映射
+\[
+  \widetilde w_k
+  :=w_k\circ(-\nu_k)
+  =u_{i_k}\circ(\tau_{i_k}+\mu_k-\nu_k)
+\]
+在
+\[
+  (-\infty,\mu_k-R-\nu_k]\times[0,1]
+\]
+上的限制。依定义，$\widetilde w_k(0,t_k)\in M\setminus U$。注意，由于
+$\nu_k\leq0$，仍有
+\[
+  \mu_k-R-\nu_k\longrightarrow\infty.
+\]
+由 $[0,1]$ 与 $M$ 的紧性，可在子列 $I'\subset\{i_k\}_{k\in\mathbb N}$ 上
+同时假设
+\[
+  t_k\to t_\infty,
+  \qquad
+  \widetilde w_k(0,t_k)\to x.
+\]
+于是 $\widetilde w_k$ 有一个局部极限 $\widetilde w_\infty$，满足
+\[
+  \widetilde w_\infty(0,t_\infty)=x
+  \in M\setminus(L_0\cap L_1).
+\]
+由于已知 $\widetilde w_\infty(\pm\infty)\in L_0\cap L_1$，它不可能是定常的。
+相应的\termRecoveringPair{}记为\footnote{译者注：原书在这几行把
+$\widetilde w_k$ 漏写下标为 $\widetilde w$，把局部极限先记为 $v'_\infty$、随后
+又记为 $\widetilde w_\infty$，并把新恢复参数写成
+$\tau'_\ell=\mu_\ell+\tau_\ell$，没有交代 $\tau_\ell$ 指原恢复平移还是 $\nu_k$。
+译文统一映射字母，并依上面三次平移的实际复合写出新参数。}
+$(I',\tau'_{I'})$，其中
+\[
+  \tau'_{i_k}=\tau_{i_k}+\mu_k-\nu_k,
+  \qquad i_k\in I'.
+\]
+由构造，
+\[
+  [\widetilde w_\infty]
+  <
+  [(\widetilde w_\infty,u_{(I,\tau_I)})].
+\]
+如果
+\[
+  \omega([\widetilde w_\infty])
+  +\omega([u_{(I,\tau_I)}])
+  =\omega(B),
+\]
+那么 $(\widetilde w_\infty,u_{(I,\tau_I)})$ 又构成一条\termMaximalChain{}；否则可
+重复上述过程，得到一条更大的链。由引理 14.2.12，这个过程必在有限步后停止，
+命题得证。
+\end{proof}
+
+\begin{definition}
+\label{def:gluable-floer-chain}
+若\personFloer{}流线链 $(v_1,\ldots,v_N)$ 满足
+\[
+  v_i(\infty)=v_{i+1}(-\infty),
+  \qquad i=1,\ldots,N-1,
+\]
+则称它是\termGluable{}的。
+\footnote{译者注：原书把指标范围写成 $i=1,\ldots,N$，会在 $i=N$ 时引入
+未定义的 $v_{N+1}$。译文补正为 $i=1,\ldots,N-1$。}
+\end{definition}
+
+下面陈述\termRecoveringSequence{}的\termMaximalChain{}及其相应\termLocalLimit{}的一个
+基本性质。
+
+\begin{proposition}
+\label{prop:maximal-chain-consecutively-gluable}
+设 $u_i\in\widetilde{\mathcal M}(p,q;B)$ 满足一致估计
+\[
+  \|du_i\|_\infty<C.
+\]
+对每条\termMaximalChain{}\footnote{译者注：原书在同一陈述中先把链长记为 $\ell$，
+端点式却改用 $N$；端点处还把局部极限改写成未定义的 $u_{I_1},u_{I_N}$。译文
+统一以 $N$ 表示链长，并写回首末两个局部极限。}
+\[
+  C_{(I,\vec\tau_I)}
+  =
+  \bigl(
+    u_{(I,\tau_I^1)},\ldots,u_{(I,\tau_I^N)}
+  \bigr)
+\]
+相应\termLocalLimit{}
+\[
+  \bigl(
+    u_{(I,\tau_I^1)},\ldots,u_{(I,\tau_I^N)}
+  \bigr)
+\]
+依次可粘合，并满足
+\[
+  u_{(I,\tau_I^1)}(-\infty)=x,
+  \qquad
+  u_{(I,\tau_I^N)}(\infty)=y.
+\]
+\end{proposition}
+
+\begin{proof}
+由命题 14.2.4，只需证明相邻的两个\termLocalLimit{}可粘合。把与它们相伴的\termRecoveringPair{}记为
+\[
+  \begin{aligned}
+  I_i&=\{n_\ell^i\}_{\ell\in\mathbb N},
+  &\tau_{I_i}&=\{\tau_\ell^i\}_{\ell\in\mathbb N},\\
+  I_{i+1}&=\{n_\ell^{i+1}\}_{\ell\in\mathbb N},
+  &\tau_{I_{i+1}}&=\{\tau_\ell^{i+1}\}_{\ell\in\mathbb N}.
+  \end{aligned}
+\]
+反设存在 $i_0$，使相应的两个局部极限不可粘合。依定义，存在
+$I''\subset I$，使得
+\begin{equation}
+  \tau_{\ell_k}^{i+1}-\tau_{\ell_k}^{i}
+  \nearrow\infty
+  \qquad(k\to\infty),
+\label{eq:separating-recovery-parameters}
+\end{equation}
+其中 $I''=\{\ell_k\}_{k\in\mathbb N}$。现在考虑子列 $u_{\ell_k}$，记平均值
+\begin{equation}
+  \mu'_k
+  =
+  \frac{\tau_{\ell_k}^{i+1}+\tau_{\ell_k}^{i}}2,
+\label{eq:midpoint-recovery-parameter}
+\end{equation}
+并考虑平移序列
+\[
+  u''_k=u_{\ell_k}\circ\mu'_k.
+\]
+可从中抽取一个有局部极限 $u''_\infty$ 的子列。把相应的\termRecoveringPair{}记为
+$(I^{(3)},\tau_{I^{(3)}})$，其中 $I^{(3)}\subset I''$。由
+\eqref{eq:separating-recovery-parameters}、\eqref{eq:midpoint-recovery-parameter}
+中 $\mu'_k$ 的选取，有
+\[
+  (I_{i_0},\tau_{I_{i_0}})
+  <(I^{(3)},\tau_{I^{(3)}})
+  <(I_{i_0+1},\tau_{I_{i_0+1}}).
+\]
+这里的次序按相应局部极限所给出的链次序理解。
+\footnote{译者注：原书在证明开头把只对\personFloer{}流线链定义的“可粘合”直接用于
+恢复对；译文写回相邻局部极限。这里又把定义 14.2.11 只对链等价类定义的符号
+$<$ 直接用于恢复对；译文保留所示比较式，并明示它经由相应局部极限的链次序
+理解。}
+
+这说明，除非 $(I^{(3)},\tau_{I^{(3)}})$ 对应的局部极限 $u^{(3)}$ 是定常的，否则
+将与 $C=C_{(I,\vec\tau_I)}$ 为\termMaximalChain{}的假设矛盾。这便证明相邻局部
+极限可粘合。类似的证明同时给出
+$v_1(-\infty)=x$ 与 $v_N(\infty)=y$，从而完成证明。
+\footnote{译者注：原书最后一句在两个都属于命题结论的端点等式之间使用 “or”。
+译文依命题陈述补正为“与”。}
+\end{proof}
+
+下面证明，任意\termMaximalChain{}都恢复原同伦类。
+
+\begin{theorem}
+\label{thm:maximal-chain-recovers-homotopy-class}
+设 $u_i\in\widetilde{\mathcal M}(p,q;B)$ 是任意满足
+\[
+  \|du_i\|_\infty<C
+\]
+的序列，并设
+\[
+  (v^1,\ldots,v^N)
+\]
+是 $\{u_i\}$ 的一条\termLocalLimitChain{}，对应于\termRecoveringSequence{}的一条\termMaximalChain{}。则
+\begin{equation}
+  B=[v^1]\#\cdots\#[v^N].
+\label{eq:maximal-chain-homotopy-class}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+在证明引理 14.2.12 与命题 14.2.13 的过程中，我们已经得到
+\[
+  \omega(B)
+  =
+  \sum_{n=1}^N\int(v^n)^*\omega.
+\]
+这蕴含存在序列
+\[
+  \tau_{1,i}<\tau_{2,i}<\cdots<\tau_{N,i},
+\]
+使得
+\begin{enumerate}
+  \item $\tau_{\ell+1,i}-\tau_{\ell,i}\to\infty$（$i\to\infty$）；
+  \item 对 $\ell=1,\ldots,N$，存在 $R_{\ell,i}>0$，满足
+  $R_{\ell,i}\to\infty$，并且对 $\ell=1,\ldots,N-1$ 有
+  \[
+    R_{\ell,i}+R_{\ell+1,i}
+    <\tau_{\ell+1,i}-\tau_{\ell,i},
+  \]
+  而且\footnote{译者注：原书先把 $R_{\ell,i}$ 的指标范围写成无上界的
+  “$i=1,\ldots$”，译文依当前链长补正为 $\ell=1,\ldots,N$。公式 (14.2.35)
+  又对每个局部极限中心附近的区间
+  $[-R_{\ell,i},R_{\ell,i}]$ 积分并声称趋于零；这与 $u_i\circ\tau_{\ell,i}$
+  收敛到非定常的 $v^\ell$ 直接矛盾。紧接着的句子实际把 $\epsilon$-正则性用于各
+  局部极限之间的颈区。译文依该句把 (14.2.35) 的积分域补正为颈区之并。原书所列
+  并集又把 $\ell$ 取到 $N$，引入未定义的 $\tau_{N+1,i}$，并在右端重复使用
+  $R_{\ell,i}$；译文相应补正为 $\ell=1,\ldots,N-1$ 与 $R_{\ell+1,i}$。}
+  \begin{equation}
+    \int_{\displaystyle
+      \bigcup_{\ell=1}^{N-1}
+      [\tau_{\ell,i}+R_{\ell,i},
+       \tau_{\ell+1,i}-R_{\ell+1,i}]\times[0,1]}
+      u_i^*\omega
+    \longrightarrow0
+    \qquad(i\to\infty).
+  \label{eq:vanishing-neck-area}
+  \end{equation}
+\end{enumerate}
+一旦有~\eqref{eq:vanishing-neck-area}，\termEpsilonRegularityTheorem{}就蕴含 $u_i$
+在区域
+\[
+  \bigcup_{\ell=1}^{N-1}
+  [\tau_{\ell,i}+R_{\ell,i},
+   \tau_{\ell+1,i}-R_{\ell+1,i}]\times[0,1]
+\]
+上的像包含于 $L_0\cap L_1$ 的一个小邻域中。利用 $L_0\cap L_1$ 的孤立性作一个
+简单的拓扑论证，便得到
+$B=[v^1]\#\cdots\#[v^N]$，证明完成。
+\end{proof}
+
+考虑从 $x$ 出发并在 $y$ 终止的可粘合链之等价类集合。我们将在
+$\mathcal M(x,y;B)$ 的这个\termSplittingEnd{}中每一点处给出一个\termNeighborhoodBasis{}。
+回忆
+\[
+  \mathcal M(x,y;B)
+  =\widetilde{\mathcal M}(x,y;B)/\mathbb R
+\]
+是商空间。对 $\mathcal M(x,y;B)$ 中的每个元素，取其等价类中唯一满足\termEnergyNormalization{}
+\begin{equation}
+  E_J\bigl(u|_{(-\infty,0]\times[0,1]}\bigr)
+  =
+  E_J\bigl(u|_{[0,\infty)\times[0,1]}\bigr)
+\label{eq:energy-normalized-slice}
+\end{equation}
+的映射 $u$ 作为代表。沿 $\tau$-方向平移任意给定的 $u$，总能唯一实现这个
+归一化条件。以 $\widetilde{\mathcal M}_0$ 表示
+$\widetilde{\mathcal M}$ 中由满足该归一化条件的 $u$ 组成的子集，并称它为一个\termSlice{}。商映射在 $\widetilde{\mathcal M}_0$ 上的限制于是给出到
+$\mathcal M$ 上的微分同胚。为在\termSplittingEnd{}的每一点处给出上述\termNeighborhoodBasis{}，我们把这个\termSlice{}的构造推广到可粘合链。
+
+\begin{definition}
+\label{def:convergence-to-gluable-chain}
+考虑一条映射的可粘合链
+\[
+  v^\ell\in
+  \widetilde{\mathcal M}_0(x_{\ell-1},x_\ell;B_\ell),
+\]
+即
+\[
+  (v^1,\ldots,v^N),
+  \qquad
+  v^1(-\infty)=x,
+  \quad
+  v^N(\infty)=y,
+\]
+且 $B_1\#\cdots\#B_N=B$。若存在序列
+$(\tau_{1,i},\ldots,\tau_{N,i})$，满足
+\[
+  \tau_{1,i}<\cdots<\tau_{N,i},
+\]
+并使
+\[
+  (v^1,\ldots,v^N)
+  =C_{(\mathbb N,\vec\tau_{\mathbb N})}
+\]
+是序列 $u_i$ 的一条\termMaximalChain{}，则称序列
+$\{[u_i]\}\subset\mathcal M(x,y;B)$ 收敛到
+$[v^1]\#\cdots\#[v^N]$。等价地，向量
+\[
+  \vec\tau_{\mathbb N,i}
+  =(\tau_{1,i},\ldots,\tau_{N,i})
+\]
+满足定理 14.2.17 的证明中所述性质 (1)、(2)。
+\end{definition}
+
+也可以在 $(v^1,\ldots,v^N)$ 处，为 $\mathcal M(x,y;B)$ 构造如下无穷远\termNeighborhoodBasis{}。取充分大的正数 $R_1,\ldots,R_N$，考虑
+\[
+  \widetilde{\mathcal V}^{\epsilon}_{\delta}
+  \bigl((v^1,\ldots,v^N)\bigr)
+\]
+这一族 $\mathcal F(x,y;B)$ 的开子集\footnote{译者注：原书没有量化 $R_\ell$，并在
+定义一个由映射 $u$ 组成的开集时突然改用 $u_i,\tau_{\ell,i}$。公式 (14.2.37) 又在
+已经平移的 $u_i\circ\tau_{\ell,i}$ 上使用仍以 $\tau_\ell$ 为中心的区间；
+公式 (14.2.38) 同样混合平移前后的坐标，并声称对 $\ell=1,\ldots,N$ 成立，从而
+引入未定义的 $\tau_{N+1}$。译文按前述链收敛定义统一为单个映射 $u$：在平移后的
+固定窗口上量 $W^{1,p}$ 距离，在未平移的相邻中心之间量颈能量，并把后者的范围
+补正为 $\ell=1,\ldots,N-1$。原书本节没有定义 $\mathcal F(x,y;B)$，译文保留
+该环境空间记号。}；其中每个子集由满足以下条件的映射 $u$
+组成：存在 $\tau_1<\cdots<\tau_N$，使
+\begin{align}
+  d_{W^{1,p}([-R_\ell,R_\ell]\times[0,1])}
+  (u\circ\tau_\ell,v^\ell)
+  &<\epsilon,
+  &&\ell=1,\ldots,N,
+  \label{eq:gluable-chain-neighborhood-distance}\\
+  E_J\bigl(
+    u|_{[\tau_\ell+R_\ell,
+           \tau_{\ell+1}-R_{\ell+1}]\times[0,1]}
+  \bigr)
+  &<\delta,
+  &&\ell=1,\ldots,N-1.
+  \label{eq:gluable-chain-neighborhood-neck-energy}
+\end{align}
+注意，$\widetilde{\mathcal V}^{\epsilon}_{\delta}
+((v^1,\ldots,v^N))$ 在定义域的 $\tau$-平移下不变。
+
+由上述\termNeighborhoodBasis{}的定义与\termExponentialDecay{}，立即得到下面的
+引理。
+
+\begin{lemma}
+\label{lem:neighborhood-characterization-chain-convergence}
+序列 $[u_i]$ 依定义 14.2.18 的意义收敛到
+$[v^1]\#\cdots\#[v^N]$，当且仅当\footnote{译者注：原书把“对每个
+$\epsilon,\delta>0$”写成“存在某些 $\epsilon,\delta>0$”。最终落入某一个固定
+邻域并不刻画拓扑收敛；依\termNeighborhoodBasis{}的定义，必须最终落入每一个
+这样的邻域。译文补正量词。}对每个 $\epsilon,\delta>0$，都存在
+$N_0\in\mathbb N$，使得对所有 $i\geq N_0$，都有
+\[
+  u_i\in
+  \widetilde{\mathcal V}^{\epsilon}_{\delta}
+  \bigl((v^1,\ldots,v^N)\bigr).
+\]
+\end{lemma}
+
+\begin{exercise}
+\label{ex:neighborhood-characterization-chain-convergence}
+证明这个引理。
+\end{exercise}
+
+因此，集合族
+\begin{equation}
+  \widetilde{\mathcal V}^{\epsilon}_{\delta}
+  \bigl((v^1,\ldots,v^N)\bigr)
+  \cap
+  \widetilde{\mathcal M}(x,y;B)/\mathbb R
+  =:
+  \mathcal V^{\epsilon}_{\delta}
+  \bigl((v^1,\ldots,v^N)\bigr)
+\label{eq:splitting-end-neighborhood-basis}
+\end{equation}
+在 $[v^1]\#\cdots\#[v^N]$ 处给出 $\mathcal M(x,y;B)$ 的一个无穷远\termNeighborhoodBasis{}。
+
+到目前为止，我们一直假设序列 $u_i\in\mathcal M(p,q;B)$ 具有 $C^1$ 界。一般说来，
+当一对拉格朗日子流形 $(L_0,L_1)$ 周围存在非平凡全纯圆盘或球面时，这个 $C^1$
+界并不成立。不过，仍可应用\termSacksUhlenbeckBubblingArgument{}，并证明在收敛过程
+中移去气泡后，同一类收敛依然成立。
+\footnote{译者注：原书把同一论证的作者姓氏印成 “Sachs--Uhlenbeck”；第一卷及
+文献 (SU81) 均为 “Sacks--Uhlenbeck”。译文依跨卷既有裁决采用正确拼法。}
+
+下一节将精确描述为紧化 $\mathcal M(p,q;B)$ 所要加入的对象。

@@ -1,0 +1,176 @@
+\begin{filecontents*}[overwrite]{\jobname.ist}
+headings_flag 1
+numhead_positive "数字"
+symhead_positive "符号"
+heading_prefix "{\\bfseries\\hfil "
+heading_suffix "\\hfil}\\nopagebreak\\par\\vskip 5pt "
+\end{filecontents*}
+
+
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}          %
+\usepackage{tikz}              %
+\usepackage{tikz-cd}           %
+\usepackage{etoolbox}          %
+\usepackage[a4paper,margin=2.8cm]{geometry}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt}
+\usepackage[font=small,labelsep=quad]{caption}  %
+\emergencystretch=1.5em %
+\vfuzz=3pt              %
+\hbadness=2500          %
+\xeCJKsetup{PunctStyle=quanjiao}%
+\usepackage{array}
+
+\newcommand{\fcpltParagraphNumber}[1]{(#1)}
+\ctexset{
+  chapter = {
+    name       = {,},
+    number     = {\arabic{chapter}},
+    format     = {\huge\bfseries\raggedright},
+    nameformat = {},
+    numberformat={\huge\bfseries},
+    aftername  = {\enspace},
+    beforeskip = 30pt,
+    afterskip  = 30pt,
+  },
+  section = {
+    format   = {\Large\bfseries},
+    aftername= {\quad},
+  },
+  subsection = {
+    format   = {\bfseries},
+    aftername= {\quad},
+  },
+  paragraph = {
+    format       = {\normalfont\normalsize\bfseries},
+    numberformat = {\fcpltParagraphNumber},
+    aftername    = {\enspace},
+    aftertitle   = {},
+    beforeskip   = {3.25ex plus 1ex minus .2ex},
+    afterskip    = 1em,
+    indent       = 0pt,
+    runin        = true,
+  },
+  part = {
+    name       = {,},
+    number     = {\Roman{part}},
+    format     = {\centering},
+    nameformat = {\Huge\bfseries},
+    numberformat={\Huge\bfseries},
+    titleformat= {\huge\bfseries},
+    aftername  = {\par\vspace{10pt}},
+    beforeskip = 30pt,
+    afterskip  = 30pt,
+  },
+}
+\setcounter{secnumdepth}{4}
+\renewcommand{\theparagraph}{\thechapter\alph{paragraph}}
+
+\renewcommand{\chaptermark}[1]{}
+
+\input{terms}
+
+\newcounter{secthm}[chapter]
+\renewcommand{\thesecthm}{\thechapter.\arabic{secthm}}
+\newcommand{\vkthmsync}[1]{\setcounter{secthm}{\numexpr(#1)-1\relax}}
+
+\newtheoremstyle{sdup}{\topsep}{\topsep}{}{}
+  {\bfseries}{}{.5em}{#1~#2\ifstrempty{#3}{}{（{\kaishu #3}）}}
+
+\theoremstyle{sdup}
+\newtheorem{theorem}    [secthm]{\trhTheorem}
+\newtheorem{proposition}[secthm]{\trhProposition}
+\newtheorem{lemma}      [secthm]{\trhLemma}
+\newtheorem{corollary}  [secthm]{\trhCorollary}
+\newtheorem{definition} [secthm]{\trhDefinition}
+\newtheorem{example}    [secthm]{\trhExample}
+\newtheorem{remark}     [secthm]{\trhRemark}
+\newtheorem{assumption} [secthm]{\trhAssumption}
+
+\renewcommand{\proofname}{证明}
+\renewcommand{\qedsymbol}{$\square$}
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}\normalfont
+  \trivlist
+  \item[\hskip\labelsep{\kaishu #1。}]\ignorespaces
+}
+  {\popQED\endtrivlist\@endpefalse}
+\makeatother
+\newcommand{\noqed}{\hfill$\square$\par}
+
+\counterwithin{equation}{chapter}
+
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+\newcommand{\RR}{\mathbb{R}}      %
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\KK}{\mathbb{K}}     %
+\newcommand{\cC}{\mathcal{C}}     %
+\newcommand{\CP}{\mathbb{C}P}     %
+\newcommand{\RP}{\mathbb{R}P}     %
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Diff}{\operatorname{Diff}}
+\newcommand{\scr}[1]{\mathscr{#1}}%
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=teal,
+  urlcolor=violet,
+  bookmarksnumbered=true,
+  pdflang={zh-CN},
+  pdftitle={深谷范畴与皮卡--莱夫谢茨理论（中文译本）},
+  pdfauthor={Paul Seidel（原著）},
+}
+
+\usepackage[capitalise,noabbrev]{cleveref}
+\makeatletter
+\let\fcplt@cref@linked\cref
+\renewcommand{\cref}[1]{\fcplt@cref@linked*{#1}}
+\makeatother
+\crefname{theorem}    {\trhTheorem}    {\trhTheorem}
+\crefname{proposition}{\trhProposition}{\trhProposition}
+\crefname{lemma}      {\trhLemma}      {\trhLemma}
+\crefname{corollary}  {\trhCorollary}  {\trhCorollary}
+\crefname{definition} {\trhDefinition} {\trhDefinition}
+\crefname{example}    {\trhExample}    {\trhExample}
+\crefname{remark}     {\trhRemark}     {\trhRemark}
+\crefname{assumption}{\trhAssumption}{\trhAssumption}
+\crefalias{secthm}{assumption}
+\crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\crefformat{equation}{#2(#1)#3}
+\crefformat{paragraph}{#2(#1)#3}
+\crefname{secthm}{\trhTheorem}{\trhTheorem}
+\AtBeginEnvironment{theorem}    {\crefalias{secthm}{theorem}}
+\AtBeginEnvironment{proposition}{\crefalias{secthm}{proposition}}
+\AtBeginEnvironment{lemma}      {\crefalias{secthm}{lemma}}
+\AtBeginEnvironment{corollary}  {\crefalias{secthm}{corollary}}
+\AtBeginEnvironment{definition} {\crefalias{secthm}{definition}}
+\AtBeginEnvironment{example}    {\crefalias{secthm}{example}}
+\AtBeginEnvironment{remark}     {\crefalias{secthm}{remark}}
+\AtBeginEnvironment{assumption} {\crefalias{secthm}{assumption}}
+
+\usepackage{booktabs,longtable,multicol}
+\usepackage{imakeidx}
+\makeindex[title={译本术语索引},intoc,noautomatic]
+\indexsetup{othercode=\footnotesize\raggedright}
+\newcommand{\BookGlossEntry}[2]{%
+  \par\noindent\hangindent=1em\hangafter=1 #1\quad #2\par}
+\newcommand{\BookSourceIndexEntry}[2]{%
+  \par\begingroup\leftskip=#1em\relax\hangindent=1em\relax
+  \noindent #2\par\endgroup}
+\input{backmatter/index-hooks}

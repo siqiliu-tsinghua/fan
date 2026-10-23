@@ -1,0 +1,505 @@
+\section{稳定曲线的定义}
+\label{sec:definition-stable-curves}
+\stfhIndex{I133}{shen^gu^xiao^ye}{深谷--小野（Fukaya–Ono）}
+\stfhIndex{I179}{kong^cai^wei^qi}{孔采维奇（Kontsevich）}
+\stfhIndex{I256}{wen^ding^qu^xian}{稳定曲线（stable curve）}
+\stfhIndex{I257}{wen^ding^ying^she}{稳定映射（stable map）}
+
+本节紧随深谷贤治与小野薫 (FOn99) 的论述。特别地，我们将解释其中定义的\emph{稳定映射拓扑}，并紧随他们的方案给出\emph{紧性与豪斯多夫性}的详细证明，同时作出一些进一步澄清。
+
+\subsection{稳定曲线的光滑描述}
+\label{subsec:smooth-description-stable-curves}
+
+先引入闭曲线之稳定映射的定义域。考虑由给定有限指标集 $V$ 标号的紧黎曼曲面 $(\Sigma_v,j_v)$，指标集的元素记为 $v$。形成有限不交并
+$\coprod_{v\in V}\Sigma_v$。接着考虑由无序偶对
+$e=\{x_e,y_e\}$ 构成的有限集
+\[
+ E=\left\{\{x_e,y_e\}\mathrel{\Big|}
+ x_e\ne y_e\in\coprod_{v\in V}\Sigma_v\right\},
+\]
+满足
+\begin{equation}
+ \{x_e,y_e\}\cap\{x_{e'},y_{e'}\}=\varnothing
+ \qquad\text{若 }e\ne e'.
+ \label{eq:nodal-pairwise-disjoint}
+\end{equation}
+在 $\coprod_{v\in V}\Sigma_v$ 上定义等价关系 $\sim$：对任意
+$x\in\coprod_{v\in V}\Sigma_v$ 令 $x\sim x$，并且当
+$\{x_e,y_e\}\in E$ 时令 $x_e\sim y_e$；取带商拓扑的商空间
+\[
+ \Sigma=\coprod_{v\in V}\Sigma_v/\sim.
+\]
+称点 $[x_e]=[y_e]$ 为 $\Sigma$ 的\emph{二重点}，并以
+\stfhIndex{I105}{er^chong^dian}{二重点（double point）}
+$\operatorname{Sing}(\Sigma)$ 表示二重点集合。
+
+为了把 $\Sigma$ 作为（奇异）复簇而赋予复结构，对每个二重点
+$[x_e]=[y_e]$ 的一个邻域，给出到 $\mathbb C^2$ 中原点附近局部图形 $xy=0$ 的同胚，并把 $[x_e]$ 映到原点。然后拉回由
+$\mathbb C^2$ 诱导在图形
+\[
+ \{(x,y)\in\mathbb C^2\mid xy=0\}
+\]
+上的标准复结构。把 $\Sigma$ 上这个复结构记为 $j=j_\Sigma$，并称其为诸 $j_v$ 的\emph{粘合复结构}。由此得到一条奇异复代数曲线。
+
+\begin{definition}\label{def:nodal-riemann-surface}
+\stfhIndex{I213}{jie^dian^li^man^qu^mian}{节点黎曼曲面（nodal Riemann surface）}
+按上述方式定义的偶对 $(\Sigma,j)$ 称为\emph{节点黎曼曲面}。称每个分支
+$(\Sigma_v,j_v)\hookrightarrow(\Sigma,j)$ 为一个\emph{不可约分支}。
+\end{definition}
+
+从现在起，在不会混淆时，只用 $\Sigma$ 表示偶对 $(\Sigma,j)$。依构造，$\Sigma$ 具有下列性质：
+\begin{enumerate}[label=(\alph*)]
+ \item $\pi_v:\Sigma_v\to\Sigma$ 是连续映射（正规化）；
+ \item 在每个二重点附近，$\Sigma$ 局部形如 $\mathbb C^2$ 中方程
+ $xy=0$ 的图形；
+ \item $\Sigma$ 只允许具有 (b) 中给出的奇点类型。
+\end{enumerate}
+注意，性质 (c) 来自条件\eqref{eq:nodal-pairwise-disjoint}与性质 (b)。
+
+\begin{definition}\label{def:pre-stable-curve}
+\stfhIndex{I201}{dai^biao^ji^yu^wen^ding^qu^xian}{带标记预稳定曲线（marked pre-stable curve）}
+\stfhIndex{I229}{yu^wen^ding^qu^xian}{预稳定曲线（pre-stable curve）}
+\emph{预稳定曲线}是偶对 $(\Sigma,\mathbf z)$，其中
+$\Sigma=(\Sigma,j)$ 是节点黎曼曲面，而
+$\mathbf z=\{z_1,\ldots,z_m\}\subset\Sigma$ 是满足
+\begin{enumerate}[label=(\alph*),start=4]
+ \item 当 $i\ne j$ 时 $z_i\ne z_j$；
+ \item $z_i\in\Sigma\setminus\operatorname{Sing}(\Sigma)$
+\end{enumerate}
+的有限集。称 $\mathbf z=\{z_1,\ldots,z_m\}$ 中的点为\emph{标记点}。
+\end{definition}
+
+接着在预稳定曲线集合上引入等价关系。
+
+\begin{definition}\label{def:isomorphism-pre-stable-curves}
+\stfhIndex{I171}{tong^gou}{同构（isomorphism）}
+设 $(\Sigma,\mathbf z)$ 与 $(\Sigma',\mathbf z')$ 是两条（带标记的）预稳定曲线。若连续映射 $\phi:\Sigma\to\Sigma'$ 是同胚，并且 $\phi$ 在每个 $\Sigma_v$ 上的限制可提升为到 $\Sigma'$ 某个不可约分支 $\Sigma_w'$ 上的双全纯映射，则称 $\phi$ 为同构。若还满足 $\phi(z_i)=z_i'$，则称
+$\phi:(\Sigma,\mathbf z)\to(\Sigma',\mathbf z')$ 为预稳定曲线的同构。
+\end{definition}
+
+自同构 $\phi:(\Sigma,\mathbf z)\to(\Sigma,\mathbf z)$ 称为
+\stfhIndex{I057}{zi^tong^gou}{自同构（automorphism）}
+$(\Sigma,\mathbf z)$ 的自同构。以 $\operatorname{Aut}(\Sigma,\mathbf z)$ 表示其自同构集合。
+
+\begin{definition}\label{def:stable-curve-finite-automorphisms}
+\stfhIndex{I255}{wen^ding}{稳定（stable）}
+若预稳定曲线 $(\Sigma,\mathbf z)$ 的
+$\#\operatorname{Aut}(\Sigma,\mathbf z)$ 有限，则称它\emph{稳定}；否则称它\emph{不稳定}。
+\end{definition}
+
+从几何上看，$(\Sigma,\mathbf z)$ 的稳定性等价于
+$\Sigma\setminus\{z_1,\ldots,z_m\}$ 上存在双曲度量。
+
+下面的例子给出稳定性判据的几何描述。回忆一致化定理蕴含
+$\Sigma=\mathbb{CP}^1$ 具有唯一的共形结构（或复结构）。
+
+\begin{example}\label{ex:stability-automorphism-dimensions}
+\begin{enumerate}[label=(\arabic*)]
+ \item 对 $\Sigma=\mathbb{CP}^1$，由于
+ $\operatorname{Aut}(\mathbb{CP}^1)=PSL(2,\mathbb C)$，有
+ $\dim_{\mathbb C}\operatorname{Aut}(\mathbb{CP}^1)=3$。此外，
+ \[
+ \dim_{\mathbb C}\operatorname{Aut}(\Sigma,z_1)=2,
+ \quad
+ \dim_{\mathbb C}\operatorname{Aut}(\Sigma,z_1,z_2)=1,
+ \quad
+ \dim_{\mathbb C}\operatorname{Aut}(\Sigma,z_1,z_2,z_3)=0.
+ \]
+ \item 对 $\Sigma=T^2=\mathbb C/\mathbb Z+i\mathbb Z$，有
+ $\dim_{\mathbb C}\operatorname{Aut}(T^2)=1$，所以没有标记点的
+ $T^2$ 不稳定。对 $z\in T^2$，
+ $\operatorname{Aut}_{\mathbb C}(\Sigma,\{z\})$ 有限（它是什么？），因此 $(\Sigma,z)$ 稳定。
+ \item 对亏格 $g(\Sigma)\geq2$ 的黎曼曲面 $\Sigma$，有
+ $\dim_{\mathbb C}(\operatorname{Aut}(\Sigma))=0$。否则，从一族连续自同构可得到一个非零全纯向量场 $X$。把 $X$ 看作切丛的截面，并回忆
+ $c_1(T\Sigma)=\chi(\Sigma)=2-2g$，计入重数后有
+ \[
+  \#(\sigma_{T\Sigma}\cap\operatorname{graph}(X))=2-2g,
+ \]
+ 其中 $\sigma_{T\Sigma}$ 是全纯线丛 $T\Sigma\to\Sigma$ 的零截面。因此，当 $g\geq2$ 时，$2-2g<0$。但这导致矛盾，因为 $T\Sigma$ 的任意非零全纯截面 $X$ 与零截面 $\sigma_{T\Sigma}$ 的局部交数总是非负的。
+\end{enumerate}
+\end{example}
+
+\begin{exercise}\label{ex:automorphisms-three-points-mobius}
+证明 $\operatorname{Aut}(\mathbb{CP}^1,z_1,z_2,z_3)=\{id\}$，并写出保持
+$\{0\}\subset\mathbb C\subset\mathbb{CP}^1$、
+$\{0,\infty\}\subset\mathbb{CP}^1$ 的所有可能分式线性变换。
+\end{exercise}
+
+\begin{definition}\label{def:deligne-mumford-stable-curves}
+\stfhIndex{I029}{00-symbol-029}{$\overline{\mathcal M}_{g,m}$}
+以 $\overline{\mathcal M}_{g,m}$ 表示带 $m$ 个标记点、（算术）亏格为 $g$ 的稳定曲线之同构类集合，即
+$g=\operatorname{rank}H^{(1,0)}(\Sigma,\mathbb C)$。以
+$\mathcal M_{g,m}$ 表示 $\overline{\mathcal M}_{g,m}$ 中由没有节点的光滑曲线构成的子集。
+\end{definition}
+
+空间 $\overline{\mathcal M}_{g,m}$ 由许多层构成，可以借助某类带装饰平面图来分类。现在描述这类图，称为\emph{对偶图}。
+\stfhIndex{I029}{00-symbol-029}{$\overline{\mathcal M}_{g,m}$}
+
+\subsection{对偶图}
+\label{subsec:dual-graphs-stable-curves}
+
+考虑有限拓扑型的平面图 $T$，即它只有有限条边和有限个顶点。分别以 $V_T,E_T$ 表示顶点集和（无序）边集。注意，边 $e$ 的两个端点 $v_1,v_2$ 可以相同；这对应曲线的一个自交点。
+
+\begin{definition}\label{def:edge-incidence-valence}
+\stfhIndex{I048}{00-symbol-048}{$\operatorname{val}(v)$}
+\stfhIndex{I298}{jia}{价（valence）}
+对 $v\in V_T$，记
+\[
+ E(v)=\text{与 }v\text{ 关联的边集},
+\]
+并定义 $V$ 的价为
+\[
+ \operatorname{val}(v)=\#(E(v)).
+\]
+当 $e$ 的两个端点都是同一个 $v\in V(T)$ 时，把 $v$ 计数两次。
+\end{definition}
+
+\begin{definition}\label{def:decorated-dual-graph}
+\stfhIndex{I106}{dui^ou^tu}{对偶图（dual graph）}
+\stfhSubIndex{I107}{dui^ou^tu}{对偶图（dual graph）}{qi}{旗（flag）}
+\stfhSubIndex{I108}{dui^ou^tu}{对偶图（dual graph）}{qi^jie}{旗阶（flag order）}
+\stfhSubIndex{I109}{dui^ou^tu}{对偶图（dual graph）}{kui^ge}{亏格（genus）}
+\stfhIndex{I018}{00-symbol-018}{$\operatorname{flag}(v)$}
+\stfhIndex{I017}{00-symbol-017}{$\operatorname{flag}(D)$}
+定义与三元组 $(T,(g_v),o)$ 相伴的\emph{对偶图} $D$，使下列陈述成立：
+\begin{enumerate}[label=(\arabic*)]
+ \item $T$ 是满足 $\#(V_T),\#(E_T)<\infty$ 的平面图；
+ \item 有函数 $V_T\to\mathbb Z_+$，$v\mapsto g_v$；
+ \item 有函数 $o:\{1,\ldots,m\}\to V_T$。
+\end{enumerate}
+称 $g_v$ 为 $v$ 的\emph{亏格}，称 $o^{-1}(v)$ 为 $v$ 的\emph{旗}。记
+$\operatorname{flag}(v):=\#(o^{-1}(v))$，称它为 $v$ 的\emph{旗阶}；称 $m$ 为 $D$ 的旗阶，并记为 $\operatorname{flag}(D)$。
+\end{definition}
+
+以 $V_T^{int}\subset V_T$ 表示内部顶点集。提醒读者：我们把没有任何旗附着的顶点看作内部顶点，把旗的末端看作外部顶点。外部边是与一面旗相伴的边。
+
+定义非负整数
+\begin{equation}
+ g:=\sum_{v\in V_T^{int}}g_v+b_1(T),
+ \qquad b_1(T):=\operatorname{rank}H_1(T;\mathbb Z),
+ \label{eq:dual-graph-genus}
+\end{equation}
+称为对偶图 $D$ 的亏格。依定义，
+\[
+ \operatorname{flag}(D)=\sum_{v\in V_T^{int}}\operatorname{flag}(v).
+\]
+
+现在引入两个对偶图之间的同构概念。给出同构定义的最佳方式是采用范畴观点。为此，把 $T$ 中从顶点 $v_1$ 到 $v_2$ 的\emph{边道路}定义为一条从 $v_1$ 出发、到 $v_2$ 结束的定向边线性链。由每个平面图 $T$ 形成一个范畴，其中对象是顶点，态射是边道路。
+
+\begin{exercise}\label{ex:graph-edge-path-category}
+证明上述定义使 $T$ 成为一个范畴。
+\end{exercise}
+
+以 $\mathcal T$ 表示相应范畴。
+
+\begin{definition}\label{def:dual-graph-isomorphism-combinatorial-type}
+如果范畴 $\mathcal T$ 与 $\mathcal T'$ 之间存在一个等价 $\phi$，满足
+\[
+ g'_{\phi(v)}=g_v\quad\text{对所有 }v\in V_T,
+ \qquad \phi\circ o=o',
+\]
+则称两个对偶图 $D,D'$ 具有相同的组合型，并记为 $D\sim D'$。称函子 $\phi$ 为对偶图之间的同构，称其同构类为图的组合型。
+\end{definition}
+
+对每个 $v\in V_T$，定义
+\[
+ m_v:=\operatorname{val}(v)+\operatorname{flag}(v).
+\]
+
+\begin{definition}[稳定性判据]\label{def:stable-dual-graph}
+\stfhIndex{I254}{wen^ding^xing^pan^ju}{稳定性判据（stability criterion）}
+如果对所有顶点 $v\in V_T$ 都有 $m_v+2g_v\geq3$，则称对偶图
+$D=(T,(g_v),o)$ \emph{稳定}。
+\end{definition}
+
+现在给出本节的主要定义。
+
+\begin{definition}\label{def:comb-stable-dual-graphs}
+\stfhIndex{I008}{00-symbol-008}{$\operatorname{Comb}(g,m)$}
+定义 $\operatorname{Comb}(g,m)$ 为亏格为 $g$、旗阶为 $m$ 的稳定对偶图 $D$ 之同构类集合。
+\end{definition}
+
+下面的组合结果是一个重要成分，它为固定拓扑型伪全纯映射的不同退化类型数目给出上界。
+
+\begin{theorem}\label{thm:finiteness-stable-dual-graphs}
+假设 $T$ 稳定且连通。则有不等式
+\[
+ \#(V_T)\leq2m+5g-2,
+ \qquad \#(E_T)\leq2m+6g-3,
+\]
+特别地，固定 $g,m$ 时 $D$ 只有有限多个组合型，即
+$\#\operatorname{Comb}(g,m)<\infty$。
+\end{theorem}
+
+\begin{proof}
+先注意
+\[
+ \#(E_T)=\frac12\sum_{v\in V_T}\operatorname{val}(v).
+\]
+$T$ 的连通性与欧拉恒等式给出
+\stfhIndex{I119}{ou^la^heng^deng^shi}{欧拉恒等式（Euler’s identity）}
+\begin{equation}
+ \chi(T)=1-b_1(T)=\#V_T-\#E_T
+ =\frac12\sum_{v\in V_T}(2-\operatorname{val}(v)),
+ \label{eq:euler-identity-dual-graph}
+\end{equation}
+其中 $\chi(T)$ 是 $T$ 的欧拉示性数。其次，
+\begin{equation}
+ \sum_vg_v\leq g,
+ \qquad b_1(T)\leq g.
+ \label{eq:dual-graph-genus-bounds}
+\end{equation}
+显然，
+\[
+ \#\{v\in V_T\mid g_v\geq1\}\leq g,
+ \qquad
+ \#\{v\in V_T\mid\exists e=\{v,v\}\}\leq g,
+\]
+因为这样的 $e$ 对 $b_1(T)$、从而对 $g$ 有贡献。还有
+\[
+ \#\{v\in V_T\mid\operatorname{flag}(v)\geq1\}\leq m.
+\]
+所有其他顶点都满足 $g_v=0$ 且 $\operatorname{flag}(v)=0$，所以稳定性条件蕴含
+\[
+ 3\leq2g_v+m_v
+ =2g_v+\operatorname{val}(v)+\operatorname{flag}(v)
+ \Longrightarrow\operatorname{val}(v)\geq3.
+\]
+合起来，已经证明
+\begin{equation}
+ \#(V_T)\leq m+2g
+ +\#\{v\in V_T\mid\operatorname{val}(v)\geq3\}.
+ \label{eq:vertex-bound-reduction}
+\end{equation}
+还需估计 $\#\{v\mid\operatorname{val}(v)\geq3\}$。由\eqref{eq:euler-identity-dual-graph}得到
+\[
+ \chi(T)\leq\frac12\#\{v\in V_T\mid\operatorname{val}(v)=1\}
+ -\frac12\#\{v\in V_T\mid\operatorname{val}(v)\geq3\}.
+\]
+因此
+\begin{equation}
+ 2\chi(T)+\#\{v\mid\operatorname{val}(v)\geq3\}
+ \leq\{v\mid\operatorname{val}(v)=1\}.
+ \label{eq:valence-three-versus-one}
+\end{equation}
+但稳定性条件蕴含
+\begin{equation}
+ \#\{v\mid\operatorname{val}(v)=1\}
+ \leq\#\{v\mid g_v>0\}
+ +\#\{v\mid\operatorname{flag}(v)>1\},
+ \label{eq:valence-one-stability-bound}
+\end{equation}
+并且有上界
+\begin{equation}
+ \#\{v\mid g_v>0\}\leq g,
+ \qquad\#\{v\mid\operatorname{flag}(v)>1\}\leq m.
+ \label{eq:positive-genus-flag-bounds}
+\end{equation}
+结合\eqref{eq:dual-graph-genus-bounds}、\eqref{eq:valence-three-versus-one}、\eqref{eq:valence-one-stability-bound}与\eqref{eq:positive-genus-flag-bounds}，得到
+\[
+ \#\{v\mid\operatorname{val}(v)\geq3\}
+ \leq m+g-2\chi(T)
+ =m+g-2(1-b_1(T))\leq m+3g-2.
+\]
+将其代入\eqref{eq:vertex-bound-reduction}，得到
+\[
+ \#(V_T)\leq2m+5g-2.
+\]
+再导出
+\[
+ \#(E_T)=\#(V_T)-(1-b_1(T))\leq2m+6g-3.
+\]
+有限性断言随即成立，因为旗 $o$ 至多有
+\[
+ \Pi_m^{\#(V_T)}
+ =\binom{\#(V_T)+m-1}{m}
+\]
+种可能选择。总之，对某个只依赖于 $(g,m)$ 的整数 $N(g,m)$，有上界
+\[
+ \#(\operatorname{Comb}(g,m))\leq N(g,m).
+\]
+证明完毕。
+\end{proof}
+
+\begin{exercise}\label{ex:estimate-number-combinatorial-types}
+用 $g,m$ 估计上述整数 $N(g,m)$。
+\end{exercise}
+
+接着在 $\operatorname{Comb}(g,m)$ 上引入偏序。以
+$D:=[T,(g_v),o]$ 表示由对偶图 $(T,(g_v),o)$ 代表的同构类。稍微滥用记号，在不会混淆时，偶尔也简写为 $D=(T,(g_v),o)$。
+
+\begin{definition}\label{def:partial-order-dual-graphs}
+设 $D,\overline D$ 是 $\operatorname{Comb}(g,m)$ 的两个元素。若
+$\overline D=(\overline T,(\overline g_{\overline v}),\overline o)$ 可由
+$D:=(T,(g_v),o)$ 经过有限次如下操作得到：把 $T$ 的一个顶点 $v$ 替换为图
+$T_v\in\operatorname{Comb}(g_v,m_v)$，并保持图的其余部分不变；则定义
+$D>\overline D$。见图 9.2。
+\end{definition}
+
+现在按如下方式把每条稳定曲线 $(\Sigma,\mathbf z)$ 与上述带装饰图之一 $D$ 相联系（见图 9.3）：
+\begin{itemize}
+ \item $T_\Sigma$ 的每个顶点 $v$ 对应 $\Sigma$ 的一个分支 $\{\Sigma_v\}$；
+ \item 每条边对应 $\Sigma$ 的一个二重点，每面旗对应一个标记点；
+ \stfhIndex{I140}{ji^he^kui^ge}{几何亏格（geometric genus）}
+ \item 每个顶点用 $g_v$ 装饰，其中 $g_v$ 是 $\Sigma_v$ 的几何亏格。
+\end{itemize}
+
+\begin{figure}[htbp]
+ \centering
+ \input{chapters/ch09-gromov-compactification/figures/fig-9-2}
+ \caption{图的偏序。}
+ \label{fig:partial-order-graphs}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering
+ \input{chapters/ch09-gromov-compactification/figures/fig-9-3}
+ \caption{图与曲面之间的对应。}
+ \label{fig:graphs-surfaces-correspondence}
+\end{figure}
+
+于是整数
+\[
+ g:=\sum_\nu g_v+\operatorname{rank}H_1(T_\Sigma,\mathbb Z)
+\]
+对应于相伴稳定曲线 $\Sigma$ 的算术亏格（即
+$g=\dim H^1(\Sigma,\mathcal O)$，其中 $\mathcal O$ 是 $\Sigma$ 上全纯函数层）。定义
+$D_\Sigma=[T_\Sigma,(g_v),o_\Sigma]$，并称 $D_\Sigma$ 或
+$(T_\Sigma,(g_v),o_\Sigma)$ 为 $(\Sigma,\mathbf z)$ 的对偶图。在这个对应下，有
+\stfhSubIndex{I110}{dui^ou^tu}{对偶图（dual graph）}{z^de}{$(\Sigma,z)$ 的（of $(\Sigma,z)$）}
+\[
+ \operatorname{val}(v)\longleftrightarrow\operatorname{sing}(v),
+ \qquad
+ \operatorname{flag}(v)\longleftrightarrow\operatorname{mark}(v),
+\]
+其中把 $\operatorname{sing}(v)$ 定义为 $\Sigma_v$ 的二重点数，把
+$\operatorname{mark}(v)$ 定义为 $\Sigma_v$ 上的标记点数。
+
+反过来，可以把一条稳定曲线 $(\Sigma,\mathbf z)$ 与每个稳定对偶图相联系。
+
+\begin{definition}\label{def:stable-curve-strata-dual-graph}
+\stfhIndex{I028}{00-symbol-028}{$\mathcal M^D_{g,m}$}
+\stfhIndex{I029}{00-symbol-029}{$\overline{\mathcal M}_{g,m}$}
+以 $\mathcal M_{g,m}^D$ 表示对偶图为 $D$ 的稳定曲线之同构类集合，并作并集
+\[
+ \overline{\mathcal M}_{g,m}
+ :=\coprod_{D\in\operatorname{Comb}(g,m)}\mathcal M_{g,m}^D.
+\]
+\end{definition}
+
+\begin{exercise}\label{ex:stable-curves-second-countable-locally-compact}
+证明关于稳定曲线等价类上自然诱导的拓扑，$\mathcal M_{g,m}$ 是第二可数且局部紧的。
+\end{exercise}
+
+于是可以把 $\mathcal M_{g,m}$ 表示为可数并
+\[
+ \mathcal M_{g,m}=\bigcup_{\ell=1}^\infty\mathcal U_\ell,
+ \qquad \mathcal U_\ell\subset\overline{\mathcal U}_\ell
+ \subset\mathcal U_{\ell+1},
+\]
+且每个 $\overline{\mathcal U}_\ell$ 都紧。称由真映射
+$\ell\longmapsto[\Sigma_\ell,j_\ell]$（$\ell\in\mathbb N$）给出的
+$\mathcal M_{g,m}$ 中任意序列为\emph{退化序列}。
+
+下面命题的证明留作习题。
+
+\begin{proposition}\label{prop:two-kinds-stable-curve-degeneration}
+假设 $[\Sigma_\ell,j_\ell]\in\mathcal M_{g,m}$ 是退化序列。则有两类退化：
+\begin{enumerate}[label=(\roman*)]
+ \item 两个特殊点的碰撞；
+ \item 共形结构的退化。
+\end{enumerate}
+\end{proposition}
+
+\begin{exercise}\label{ex:two-kinds-degeneration-proof}
+证明这个命题（细节也可见 (DM69)）。（提示：证明其逆否命题。先用庞加莱度量，即唯一双曲度量，表示相伴带孔黎曼曲面的一个共形结构；再证明，若共形结构不发生退化，则单射半径一致地远离零。注意稳定性蕴含相伴庞加莱度量是双曲的。）
+\end{exercise}
+
+更几何地说，就 $\Sigma\setminus\{z_1,\ldots,z_m\}$ 上的庞加莱度量而言，带标记黎曼曲面的退化对应于夹断庞加莱度量的一条短测地线。因此，除非所得曲线所围圆盘的内部至少包含两个标记点，否则不能夹断一条同调平凡环路。这是因为，不然的话，由短测地线围成的这种区域不能带有常曲率 $-1$ 的度量。
+
+现在希望在带标记稳定曲线集合 $\overline{\mathcal M}_{g,m}$ 上赋予一个反映带标记黎曼曲面这些退化的拓扑。更准确地说，将给出满足下列条件的拓扑：
+\begin{enumerate}[label=(\arabic*)]
+ \item 它在 $\mathcal M_{g,m}\subset\overline{\mathcal M}_{g,m}$ 上的子空间拓扑等价于原商拓扑
+ $\mathcal M_{g,m}=\widetilde{\mathcal M}_{g,m}/\sim$；
+ \item 每个退化序列都导致在定义 9.3.16 的偏序中下降到一个对偶图。
+\end{enumerate}
+
+\begin{figure}[htbp]
+ \centering
+ \input{chapters/ch09-gromov-compactification/figures/fig-9-4}
+ \caption{归纳过程。}
+ \label{fig:inductive-procedure-orbifold-charts}
+\end{figure}
+
+$\overline{\mathcal M}_{g,m}$ 上这种拓扑的基本要求如下：
+\begin{enumerate}[label=(\arabic*)]
+ \item 它是紧且豪斯多夫的；
+ \item 若以 $\overline{\mathcal M}_{g,m}^D$ 表示
+ $\mathcal M_{g,m}^D$ 在 $\overline{\mathcal M}_{g,m}$ 中的闭包，则
+ \[
+  \overline{\mathcal M}_{g,m}^D
+  =\coprod_{D'\leq D}\mathcal M_{g,m}^{D'};
+ \]
+ \item 它具有坐标卡，使坐标邻域同胚于 orbifold $V/\Gamma$，其中
+ $V\subset\mathbb R^N$ 是子空间，$\Gamma$ 是
+ $GL(\mathbb R^N)$ 的有限子群（见图 9.4）；
+ \item 存在普适丛
+ $\mathcal U_{g,m}\to\overline{\mathcal M}_{g,m}$，其在
+ $[\Sigma,\mathbf z]\in\overline{\mathcal M}_{g,m}$ 上的纤维同构于稳定曲线自身 $(\Sigma,\mathbf z)$。
+\end{enumerate}
+
+事实上，有构成局部平凡纤维化（在 orbifold 意义下）的自然遗忘映射
+\begin{equation}
+\begin{split}
+ \operatorname{forget}_i:\mathcal M_{g,m+1}&\longrightarrow\mathcal M_{g,m},\\
+ [j,(z_1,\ldots,z_{m+1})]&\longmapsto
+ [j,(z_1,\ldots,\widehat z_i,\ldots,z_{m+1})].
+\end{split}
+ \label{eq:forgetful-map-smooth-marked-curves}
+\end{equation}
+它的纤维
+$\operatorname{forget}_i^{-1}([j,(z_1,\ldots,z_m)])$ 可等同于
+\[
+ \bigl\{(j',(z_1',\ldots,z,\ldots,z_m'))\mathrel{\big|}
+ z\in\Sigma\setminus\{z_1',\ldots,z_m'\}\bigr\}/
+ \operatorname{Aut}(\Sigma,\mathbf z'),
+\]
+它同构于
+\[
+ \{z\in\Sigma\setminus\{z_1,\ldots,z_m\}\}/
+ \operatorname{Aut}(j,(z_1,\ldots,z_m)).
+\]
+
+这个遗忘映射连续延拓到普适纤维化
+$\mathcal U_{g,m}\to\overline{\mathcal M}_{g,m}$；后者本身由遗忘映射
+\begin{equation}
+ \operatorname{forget}_{m+1}:
+ \overline{\mathcal M}_{g,m+1}\longrightarrow
+ \overline{\mathcal M}_{g,m}
+ \label{eq:forgetful-map-stable-curves}
+\end{equation}
+表示。
+
+\begin{remark}\label{rem:stabilization-after-forgetting-mark}
+与\eqref{eq:forgetful-map-smooth-marked-curves}不同，遗忘映射
+\eqref{eq:forgetful-map-stable-curves}的定义需要一些解释。遗忘最后一个，即第 $(m+1)$ 个标记点后，包含该标记点的不可约分支可能变得不稳定。这只可能发生在该分支亏格为零且恰有三个特殊点时。有两种情形。一种情形是三个特殊点由两个节点和一个标记点组成；另一种情形是它们由一个节点和一个标记点组成。
+
+在第一种情形，只需压缩不稳定分支。容易看出，所有其他分支都不受这个过程影响，因此所得预稳定曲线是稳定的。在第二种情形，压缩该分支，并在相邻分支上被压缩分支扎根的位置留下一个剩余标记点。所得预稳定曲线同样稳定。此外，标记点总数不变，亏格也保持不变，因为压缩的是亏格 $0$ 分支。这就是遗忘映射\eqref{eq:forgetful-map-stable-curves}的含义。
+\end{remark}
+
+还有下面的一般引理，其证明留作习题。
+
+\begin{lemma}\label{lem:forgetful-map-compositions}
+在 $\overline{\mathcal M}_{g,m+n+n'}$ 中，
+\[
+ \operatorname{forget}_{m+n;m}\circ
+ \operatorname{forget}_{m+n+n';m+n}
+ =\operatorname{forget}_{m+n+n';m}
+ =\operatorname{forget}_{m+n';m}\circ
+ \operatorname{forget}_{m+n+n';m+n'}.
+\]
+\end{lemma}
+
+\begin{exercise}\label{ex:forgetful-map-compositions}
+证明这个引理。
+\end{exercise}

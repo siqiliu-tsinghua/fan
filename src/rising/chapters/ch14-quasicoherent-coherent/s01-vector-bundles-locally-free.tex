@@ -1,0 +1,146 @@
+
+\section{向量丛「＝」局部自由层}
+
+我们把\trManifold{}上的\trVectorBundle{}这一观念召回得稍稍更精确一些。惯于算术思维的读者先别急着走神：例如，\trNumberField{}的\trRingOfIntegers{}的\trFractionalIdeal（定义见 \S10.7.1）结果正是「\trSmooth{}\trCurve{}上的一个\trLineBundle」的一个例子（\mbox{练习~14.1.K}）。
+
+$M$ 上\trRank{}为 $n$ 的\trVectorBundle{}是一个映射 $\pi\colon V\to M$：对每一点 $\mathrm{p}\in M$，$\pi^{-1}(\mathrm{p})$ 上都带有 $n$ 维\trReal{}\trVectorSpace{}的结构，并且对每一点 $\mathrm{p}\in M$，都存在一个\trOpen{}\trNeighborhood{} $\mathscr{U}$ 和一个 $\mathscr{U}$ 上的\trHomeomorphism
+\[
+\phi\colon\mathscr{U}\times\mathbb{R}^n\to\pi^{-1}(\mathscr{U})
+\]
+（也就是说，下图
+\begin{equation*}\tag{14.1.0.1}\label{eq:trivialization-diagram}
+\begin{tikzcd}[column sep=2.6cm, row sep=1.5cm]
+\mathscr{U}\times\mathbb{R}^n
+  \ar[rr,"\phi","\sim"]
+  \ar[dr,"\text{对第一因子的\trProjection}"']
+&& \pi^{-1}(\mathscr{U})
+  \ar[dl,"\pi\vert_{\pi^{-1}(\mathscr{U})}"] \\
+& \mathscr{U}
+\end{tikzcd}
+\end{equation*}
+交换），而且它在每一点 $\mathrm{q}\in\mathscr{U}$ 上都是\trVectorSpace{}之间的\trIsomorphism。同构 \eqref{eq:trivialization-diagram} 称为\textbf{在 $\mathscr{U}$ 上的\trTrivialization}（trivialization over $\mathscr{U}$）。若 $\mathscr{U}=M$，我们便说 $V$ 是一个\trTrivialBundle。
+
+我们称 $n$ 为这个\trVectorBundle{}的\trRank。秩为 $1$ 的\trVectorBundle{}称为\trLineBundle。（对\trVectorBundle{}的\trRank{}持一种不在乎的态度有时也很方便，这样它在不同的\trConnectedComponent{}上便可以带有不同的\trRank。有时，考虑无限\trRank{}的\trVectorBundle{}也照样方便。）
+
+\textbf{14.1.1.\ \trTransitionFunction。}\quad 给定 $\mathscr{U}_1$ 与 $\mathscr{U}_2$ 上的两个\trTrivialization，那么在二者的交之上，这两个\trTrivialization{}必须由 $\mathrm{GL}_n$ 的一个元素 $T_{12}$ 联系起来，它的元素由 $\mathscr{U}_1\cap\mathscr{U}_2$ 上的函数组成。（关于约定有一个议题：$T_{12}$ 是否应当被换成 $T_{12}^{-1}$。我们的选择：我们希望这是一个从左边相乘的矩阵，把 $\mathscr{U}_1$-坐标送到 $\mathscr{U}_2$-坐标。这可以转述为：$T_{ij}=\phi_j\circ\phi_i^{-1}$，其中 $\phi_i$ 与 $\phi_j$ 分别是 $\mathscr{U}_i$ 与 $\mathscr{U}_j$ 的\trTrivialization{}。）若 $\{\mathscr{U}_i\}$ 是 $M$ 的一个\trCover，而且我们在每个 $\mathscr{U}_i$ 上都给定了\trTrivialization，那么诸 $T_{ij}$ 必须满足\trCocycleCondition：
+\begin{equation*}\tag{14.1.1.1}\label{eq:cocycle-condition-vb}
+T_{jk}\vert_{\mathscr{U}_i\cap\mathscr{U}_j\cap\mathscr{U}_k}\circ T_{ij}\vert_{\mathscr{U}_i\cap\mathscr{U}_j\cap\mathscr{U}_k}
+=T_{ik}\vert_{\mathscr{U}_i\cap\mathscr{U}_j\cap\mathscr{U}_k}.
+\end{equation*}
+（这蕴含 $T_{ij}=T_{ji}^{-1}$。）诸 $T_{ij}$ 的数据称为该\trTrivialization{}的\textbf{\trTransitionFunction}（transition functions）（或\textbf{\trTransitionFunction{}矩阵}（transition matrices））。
+
+这件事是\trInvertible{}的：给定一个\trCover{} $\{\mathscr{U}_i\}$ 与\trTransitionFunction $T_{ij}$ 的数据，我们便可以「用 $T_{ij}$ 把各个 $\mathscr{U}_i\times\mathbb{R}^n$ 沿着 $\mathscr{U}_i\cap\mathscr{U}_j$ 粘合起来」，从而复原这个\trVectorBundle（在相差唯一\trIsomorphism{}的意义下）。
+
+\textbf{14.1.2.\ \trSection{}层。}\quad 固定一个\trRank{}为 $n$ 的\trVectorBundle{} $V\to M$。$V$ 的\trSection{}层 $\mathscr{F}$（\mbox{练习~2.2.G}）是一个 $\OO_M$-\trModule——给定任意一个\trOpenSet{} $\mathscr{U}$，我们可以把 $\mathscr{U}$ 上的一个\trSection{}乘以 $\mathscr{U}$ 上的一个函数，而得到另一个\trSection。
+
+此外，给定 $\mathscr{U}$ 上的一个\trTrivialization，$\mathscr{U}$ 上的诸\trSection{}便\trNatural{}地等同于 $\mathscr{U}$ 上的 $n$ 元函数组。
+\begin{center}
+\begin{tikzcd}[row sep=3.2em]
+\mathscr{U}\times\mathbb{R}^n \ar[d, shift right=1.5, "\pi"'] \\
+\mathscr{U} \ar[u, shift right=1.5, "\text{$n$ 元函数组}"']
+\end{tikzcd}
+\end{center}
+于是，给定一个\trTrivialization，在每个\trOpenSet{} $\mathscr{U}_i$ 上，我们都有一个\trIsomorphism{} $\mathscr{F}\vert_{\mathscr{U}_i}\overset{\sim}{\hookrightarrow}\OO_{\mathscr{U}_i}^{\oplus n}$。如 \S14.0.1 所述，我们把这样的一个 $\mathscr{F}$ 称为\trRank{}为 $n$ 的\trLocallyFreeSheaf。
+
+\textbf{14.1.3.\ \trSection{}层的\trTransitionFunction。}\quad 设我们在 $M$ 上有一个\trVectorBundle，连同它在某个\trOpenCover{} $\mathscr{U}_i$ 上的\trTrivialization。设我们有这个\trVectorBundle{}在 $M$ 上的一个\trSection。（这一番讨论在把 $M$ 换成任何\trOpenSubset{}时也照样适用。）于是在每个 $\mathscr{U}_i$ 上，该\trSection{}对应于 $\mathscr{U}_i$ 上的一个 $n$ 元函数组，记作 $s^i$。
+
+\textbf{14.1.A.（练习）}\quad 证明：在 $\mathscr{U}_i\cap\mathscr{U}_j$ 上，向量值函数 $s^i$ 由（同一批）\trTransitionFunction{}与 $s^j$ 相联系：$T_{ij}s^i=s^j$。（别做得太快——务必确认你的 $i$ 和 $j$ 站在了正确的一侧。）
+
+给定一个\trRank{}为 $n$ 的\trLocallyFreeSheaf{} $\mathscr{F}$，以及 $\mathscr{F}$ 的一个\trTrivialization{}开邻域（一个\trOpenCover{} $\{\mathscr{U}_i\}$，使得在每个 $\mathscr{U}_i$ 上，作为 $\OO$-\trModule{}有 $\mathscr{F}\vert_{\mathscr{U}_i}\cong\OO_{\mathscr{U}_i}^{\oplus n}$），我们便有满足\trCocycleCondition{} \eqref{eq:cocycle-condition-vb} 的\trTransitionFunction $T_{ij}\in\mathrm{GL}_n\bigl(\OO(\mathscr{U}_i\cap\mathscr{U}_j)\bigr)$。于是，\trRank{}为 $n$ 的\trLocallyFreeSheaf{}的数据与\trRank{}为 $n$ 的\trVectorBundle{}的数据是\emph{等价}的。这一视角的转换是有用的，而且它类似于我们引入\trRingedSpace{}时早先的那次视角转换：理解空间，等同于理解空间上的（\trSheaf{}的）函数；而理解\trVectorBundle（一种「$M$ 上方的空间」），则等同于理解（\trSheaf{}的）\trSection。
+
+\textbf{14.1.4.}\ \emph{\trhDefinition{}。}\quad \trRank{}为 $1$ 的\trLocallyFreeSheaf{}称为\textbf{\trInvertibleSheaf}（invertible sheaf）。（不甚重要的旁注：对某种本质上就是\trLineBundle{}的东西来说，「\trInvertibleSheaf」是个可憎的名称。这样称呼的动机是：若 $X$ 是一个\trLocallyRingedSpace，而 $\mathscr{F}$ 与 $\mathscr{G}$ 是满足 $\mathscr{F}\otimes_{\OO_X}\mathscr{G}\cong\OO_X$ 的 $\OO_X$-\trModule，那么 $\mathscr{F}$ 与 $\mathscr{G}$ 都是\trInvertibleSheaf{} [MO33489]。%
+\footnote{译注：[MO33489] 指 MathOverflow 问答第 33489 号。}于是，在带\trTensorProduct{}的 $\OO_X$-\trModule{}幺半群中，\trInvertibleSheaf{}正是那些\trInvertible{}的元素。这个事实我们永远也不会用到。人们常在非正式的场合用「\trLineBundle」一词来指「\trInvertibleSheaf」。也曾有人提议使用 \emph{line sheaf} 一词，但它始终未能流行开来。）
+
+\textbf{14.1.5.}\ \emph{\trhNotation{}。}\quad 回想（定义~6.2.6）：给定 $\mathscr{F}$ 的一个\trSection{} $s$ 与 $\mathscr{G}$ 的一个\trSection{} $t$，我们有 $\mathscr{F}\otimes\mathscr{G}$ 的一个\trSection{} $s\otimes t$。若 $\mathscr{F}$ 是\trInvertibleSheaf，则这个\trSection{}常被记作 $st$。
+
+\textbf{14.1.6.\ 更一般的\trLocallyFreeSheaf。}
+
+我们可以不作任何改变地把\trLocallyFreeSheaf{}的观念推广到\trScheme（或者更一般地，\trRingedSpace）上。\trScheme{} $X$ 上\trRank{}为 $n$ 的\trLocallyFreeSheaf{}定义为这样一个 $\OO_X$-\trModule{} $\mathscr{F}$：它在\trLocally{}上是\trRank{}为 $n$ 的\trFreeSheaf。确切地说，存在 $X$ 的一个\trOpenCover{} $\{\mathscr{U}_i\}$，使得对每个 $\mathscr{U}_i$，都有 $\mathscr{F}\vert_{\mathscr{U}_i}\cong\OO_{\mathscr{U}_i}^{\oplus n}$。这个\trOpenCover{}确定出\trTransitionFunction——即 $X$ 的一个\trCover{} $\{\mathscr{U}_i\}$ 的数据，以及满足\trCocycleCondition{} \eqref{eq:cocycle-condition-vb} 的函数 $T_{ij}\in\mathrm{GL}_n\bigl(\OO(\mathscr{U}_i\cap\mathscr{U}_j)\bigr)$——而这些数据又反过来确定这个\trLocallyFreeSheaf。如前，给定这些数据，我们便能求出任意\trOpenSet{} $\mathscr{U}$ 上的诸\trSection。非正式地说，它们是各个 $\mathscr{U}\cap\mathscr{U}_i$ 上的\trFreeSheaf{}的那些在重叠处相互吻合的\trSection。更正式地，对每个 $i$，它们是
+\[
+s^i=\begin{pmatrix}s^i_1\\ \vdots\\ s^i_n\end{pmatrix}\in\Gamma(\mathscr{U}\cap\mathscr{U}_i,\OO_X)^{\oplus n},
+\]
+并在 $\mathscr{U}\cap\mathscr{U}_i\cap\mathscr{U}_j$ 上满足 $T_{ij}s^i=s^j$。
+
+你应当把它们当作\trVectorBundle{}来思考，但只要记住：二者并不「相同」，只是等价的观念。我们日后（定义~17.1.5）将借助 Spec 的层论版本，定义\trVectorBundle{} $V\to X$（$X$ 上的一个\trScheme）的「全空间」（total space）。但\trLocallyFreeSheaf{}这一视角将被证明更为有用。举一个例子：\trLocallyFreeSheaf{}的定义要比\trVectorBundle{}的定义短得多。
+
+正如在我们作动机的那番讨论中一样，有时让\trRank{}在不同的\trConnectedComponent{}之间变动会更方便，或者考虑无限\trRank{}的\trLocallyFreeSheaf。
+
+\textbf{14.1.7.\ 拉回\trVectorBundle。}
+
+\textbf{14.1.B.（必要练习：拉回\trVectorBundle）}\quad 设 $\pi\colon X\to Y$ 是\trRingedSpace{}之间的一个\trMorphism。回想 $\pi^*\colon\mathit{Mod}_{\OO_Y}\to\mathit{Mod}_{\OO_X}$、即拉回 $\OO$-\trModule{}的定义。（若你此前还没做过\mbox{练习~7.2.D}，现在正是个好时机。）设 $n\in\mathbb{Z}^{+}$。
+\begin{enumerate}[label=(\alph*)]
+\item 证明：（\trCanonically{}）$\pi^*\bigl(\OO_Y^{\oplus n}\bigr)\cong\OO_X^{\oplus n}$。
+\item 若 $\mathscr{G}$ 是 $Y$ 上\trRank{}为 $n$ 的\trLocallyFreeSheaf，证明 $\pi^*\mathscr{G}$ 是 $X$ 上\trRank{}为 $n$ 的\trLocallyFreeSheaf。
+\item 若 $\mathscr{G}$ 是 $Y$ 上\trRank{}为 $n$ 的\trLocallyFreeSheaf，而 $\{\mathscr{U}_i\}$ 是 $\mathscr{G}$ 在 $Y$ 上的一族\trTrivialization{}邻域，其\trTransitionFunction{}矩阵为 $T_{ij}$，证明 $\{\pi^{-1}\mathscr{U}_i\}$ 是 $\pi^*\mathscr{G}$ 在 $X$ 上的一族\trTrivialization{}邻域，其\trTransitionFunction{}矩阵为 $\pi^*T_{ij}$。（你看得出这话是什么意思吗？）
+\end{enumerate}
+
+\textbf{14.1.8.\ \trLocallyFreeSheaf{}（或等价地，\trVectorBundle）相对于\trVectorSpace{}而言的问题。}
+
+回想 $\OO_X$-\trModule{}构成一个\trAbelianCategory：我们可以谈论\trKernel、\trCokernel{}等等，并且可以做\trHomologicalAlgebra。类似地，\trVectorSpace{}也构成一个\trAbelianCategory。但\trLocallyFreeSheaf（即\trVectorBundle），连同它们之间那些相当自然的映射（即作为 $\OO_X$-\trModule{}的映射而出现的那类映射），并不构成一个\trAbelianCategory。作为\trManifold{}的\trCategory{}中的一个动机性例子，考虑 $\mathbb{R}$ 上（以 $t$ 为坐标）的平凡\trLineBundle{}到其自身的映射，它对应于乘以坐标 $t$。这个映射会跳\trRank，而若你试图去定义\trKernel{}或\trCokernel，你会被搞得晕头转向。
+
+这个问题可以这样化解：以一种自然的方式扩大我们关于「好的 $\OO_X$-\trModule」的观念，把它扩大到\trQCSheaf。
+\[
+\begin{array}{ccccc}
+\text{$\OO_X$-\trModule} & \supset & \text{\trQCSheaf} & \supset & \text{\trLocallyFreeSheaf}\\[0.35em]
+\text{（\trAbelianCategory）} & & \text{（\trAbelianCategory）} & & \text{（非\trAbelianCategory）}
+\end{array}
+\]
+
+你可以把这件事变成\trQCSheaf{}的一个\emph{定义}，它与我们在 \S6.1 中给出的那些定义等价。当然，我们要的是一个在 $X$ 上是局部的观念。于是我们要求 $\mathit{Mod}_{\OO_X}$ 的、既「\trLocally」又包含\trVectorBundle{}的最小\trAbelianCategory{}子范畴。事实表明，\trVectorBundle{}之不成其为\trAbelianCategory{}的主要障碍，在于\trLocallyFreeSheaf{}的映射的余核——作为 $\OO_X$-\trModule{}——未必是局部自由的；我们本可以把\trQCSheaf{}定义为那些\trLocally{}上都是余核的 $\OO_X$-\trModule，这样便得到一个在更一般的\trRingedSpace{}上也行之有效的描述，如\mbox{练习~6.3.B}所述。你或许愿意日后核验一下：我们的定义与这些定义是等价的。
+
+类似地，在\trLocally\trNoetherian{}的设定下，有限\trRank{}的\trLocallyFreeSheaf{}将坐落于一个更小的、表现良好的\trAbelianCategory{}之中，即\emph{\trCoherentSheaf}的范畴。
+\[
+\begin{array}{ccccc}
+\text{\trQCSheaf} & \supset & \text{\trCoherentSheaf} & \supset & \text{有限\trRank{}的\trLocallyFreeSheaf}\\[0.35em]
+\text{（\trAbelianCategory）} & & \text{（\trAbelianCategory）} & & \text{（非\trAbelianCategory）}
+\end{array}
+\]
+
+\textbf{14.1.9.\ \trLocallyFreeSheaf{}上的有用构造：$\mathscr{H}om$、\trDual{}与 $\otimes$。}
+
+我们现在以一系列关于\trScheme{}上\trLocallyFreeSheaf{}的练习的形式，给出一些有用的构造。它们有用、重要，而且出人意料地不平凡！两条提示：\mbox{练习~14.1.C--14.1.I} 对一般的\trRingedSpace{}也适用，所以你不应当用到\trScheme{}的特殊性质。此外，它们在 $X$ 上都是\trLocally{}的，因此你可以化归到所论的\trLocallyFreeSheaf{}实为\trFreeSheaf{}的情形。
+
+\textbf{14.1.C.（练习）}\quad 设 $\mathscr{F}$ 与 $\mathscr{G}$ 分别是 $X$ 上\trRank{}为 $m$ 与 $n$ 的\trLocallyFreeSheaf。证明：$\mathscr{H}om_{\OO_X}(\mathscr{F},\mathscr{G})$ 是一个\trRank{}为 $mn$ 的\trLocallyFreeSheaf。
+
+\textbf{14.1.D.（练习）}\quad 若 $\mathscr{E}$ 是 $X$ 上（有限）\trRank{}为 $n$ 的\trLocallyFreeSheaf，则由\mbox{练习~14.1.C}可知，$\mathscr{E}^{\vee}:=\mathscr{H}om(\mathscr{E},\OO_X)$ 也是一个\trRank{}为 $n$ 的\trLocallyFreeSheaf。它称为 $\mathscr{E}$ 的\trDual（对照 \S2.3.4）。给定 $\mathscr{E}$ 的\trTransitionFunction{}，请描述 $\mathscr{E}^{\vee}$ 的\trTransitionFunction。（注意：若 $\mathscr{E}$ 的\trRank{}为 $1$，即\trInvertible，则对偶的\trTransitionFunction{}就是原先的\trTransitionFunction{}的逆。）证明：$\mathscr{E}\cong\mathscr{E}^{\vee\vee}$。（警示：你那套证明「存在\trCanonical{}\trIsomorphism{} $\mathscr{F}\overset{\sim}{\hookrightarrow}(\mathscr{F}^{\vee})^{\vee}$」的论证，最好别顺带证明了还存在\trIsomorphism{} $\mathscr{F}\overset{\sim}{\hookrightarrow}\mathscr{F}^{\vee}$！我们将在 \S15.1 中见到一个局部自由的 $\mathscr{F}$ 不同构于其对偶的例子：$\mathbb{P}^n$ 上的\trInvertibleSheaf{} $\OO(1)$。）
+
+\textbf{14.1.E.（练习）}\quad 若 $\mathscr{F}$ 与 $\mathscr{G}$ 是\trLocallyFreeSheaf，证明 $\mathscr{F}\otimes\mathscr{G}$ 是\trLocallyFreeSheaf。（此处的 $\otimes$ 指 $\OO_X$-\trModule{}的\trTensorProduct，定义见\mbox{练习~2.6.K}。）若 $\mathscr{F}$ 是\trInvertibleSheaf，证明 $\mathscr{F}\otimes\mathscr{F}^{\vee}\cong\OO_X$。
+
+\textbf{14.1.F.（练习）}\quad 回想：一般而言，\trTensorProduct{}往往只是\trRightExact{}的（\mbox{练习~1.2.H}）。证明：用\trLocallyFreeSheaf{}作张量是\trExact{}的。更精确地说，若 $\mathscr{F}$ 是\trLocallyFreeSheaf，而 $\mathscr{G}'\to\mathscr{G}\to\mathscr{G}''$ 是 $\OO_X$-\trModule{}的一个\trExactSequence，那么 $\mathscr{G}'\otimes\mathscr{F}\to\mathscr{G}\otimes\mathscr{F}\to\mathscr{G}''\otimes\mathscr{F}$ 也是。（可能的提示：通过在\trStalk{}上检验\trExactness{}来检验正合性可能有所帮助。回想：诸\trStalk{}的\trTensorProduct{}可以等同于\trTensorProduct{}的\trStalk，于是，比方说，存在一个「\trNatural」同构 $(\mathscr{G}\otimes_{\OO_X}\mathscr{F})_{\mathrm{p}}\overset{\sim}{\hookrightarrow}\mathscr{G}_{\mathrm{p}}\otimes_{\OO_{X,\mathrm{p}}}\mathscr{F}_{\mathrm{p}}$，\mbox{练习~2.6.K}(b)。）
+
+\textbf{14.1.G.（练习）}\quad 若 $\mathscr{E}$ 是一个有限\trRank{}的\trLocallyFreeSheaf，而 $\mathscr{F}$ 与 $\mathscr{G}$ 是 $\OO_X$-\trModule，证明：
+\[
+\mathscr{H}om(\mathscr{F},\mathscr{G}\otimes\mathscr{E})
+\cong\mathscr{H}om(\mathscr{F}\otimes\mathscr{E}^{\vee},\mathscr{G})
+\cong\mathscr{H}om(\mathscr{F},\mathscr{G})\otimes\mathscr{E}.
+\]
+特别地，若 $\mathscr{D}$ 是一个有限\trRank{}的\trLocallyFreeSheaf，则 $\mathscr{H}om(\mathscr{D},\mathscr{G})\cong\mathscr{D}^{\vee}\otimes\mathscr{G}$。（可能的提示：先考虑 $\mathscr{E}$ 为\trFreeSheaf{}的情形。）
+
+\textbf{14.1.10.\ \trPicardGroup。}
+
+\textbf{14.1.H.（练习与重要定义）}\quad 证明：$X$ 上的\trInvertibleSheaf{}在相差\trIsomorphism{}的意义下，于\trTensorProduct{}之下构成一个\trAbelianGroups。它称为 $X$ 的\textbf{\trPicardGroup}（Picard group），记作 $\operatorname{Pic} X$。
+
+\textbf{14.1.I.（容易的练习；参看\mbox{练习~14.1.B}）}\quad 证明：$\operatorname{Pic}$ 是从\trRingedSpace{}的\trCategory{}到\trAbelianGroups{}的\trCategory{} $Ab$ 的一个\trContravariantFunctor。
+
+\textbf{14.1.J.}\ \hard\ \textbf{（练习：为具备足够复分析背景的读者而设）}\quad 回想\trAnalytification{}函子（\mbox{练习~7.3.P}、\mbox{练习~7.3.Q}与\mbox{练习~11.2.K}），它取一个\trComplex{}的\trFiniteType{}既约\trScheme{}，产出一个\trComplexAnalyticSpace。
+\begin{enumerate}[label=(\alph*)]
+\item 若 $\mathscr{L}$ 是一个\trComplex{}（\trAlgebraic）\trVariety{} $X$ 上的\trInvertibleSheaf，请定义\trComplex{}\trVariety{} $X_{\mathrm{an}}$ 上相应的\trInvertibleSheaf（在相差唯一\trIsomorphism{}的意义下）。
+\item 证明：所诱导出的映射 $\operatorname{Pic}X\to\operatorname{Pic}X_{\mathrm{an}}$ 是一个\trGroupHom。
+\item 证明：这一构造是\trFunctoriality{}的，也就是说，若 $\pi\colon X\to Y$ 是\trComplex{}\trVariety{}之间的一个\trMorphism，那么下图交换：
+\begin{center}
+\begin{tikzcd}
+\operatorname{Pic}Y \ar[r,"\pi^*"] \ar[d] & \operatorname{Pic}X \ar[d] \\
+\operatorname{Pic}Y_{\mathrm{an}} \ar[r,"\pi^{*}_{\mathrm{an}}"] & \operatorname{Pic}X_{\mathrm{an}}
+\end{tikzcd}
+\end{center}
+其中竖直的映射就是你所定义的那些。
+\end{enumerate}
+
+\textbf{14.1.K.}\ \hard\ \textbf{（练习：为具备足够算术背景的读者而设；另见命题~15.4.16 与 \S15.5.5）}\quad 回想\trNumberField{} $K$ 中\trRingOfIntegers{} $\OO_K$ 的定义，见注记~10.7.1。$\OO_K$ 的一个\textbf{\trFractionalIdeal}（fractional ideal）$\mathfrak{a}$ 是指 $K$ 的一个非零 $\OO_K$-\trSubmodule，并且存在一个非零的 $a\in\OO_K$ 使得 $\mathfrak{a}a\subset\OO_K$。\trFractionalIdeal{}的乘积仿照环中理想的乘积（定义见\mbox{练习~3.4.O}）来定义：$\mathfrak{a}\mathfrak{b}$ 由「取 $\mathfrak{a}$ 的元素与 $\mathfrak{b}$ 的元素的乘积所作的（有限）$\OO_K$-线性组合」组成。于是，\trFractionalIdeal{}在乘法之下构成一个\trAbelianSemigroup，以 $\OO_K$ 为\trUnit。事实上，$\OO_K$ 的\trFractionalIdeal{}构成一个群。
+\begin{enumerate}[label=(\alph*)]
+\item 请解释：一个\trNumberField{}的\trRingOfIntegers{}上的\trFractionalIdeal{}如何给出一个\trInvertibleSheaf。（尽管我们用不到这一点，但值得留意：一个\trFractionalIdeal{}与一个\emph{在\trGenericPoint{}处带有\trTrivialization}的\trInvertibleSheaf{}是同一回事。）
+\item 若一个\trFractionalIdeal{}形如 $r\OO_K$（其中 $r\in K^{\times}$），则称它是\textbf{主}的（principal）。证明：任何两个相差一个主\trFractionalIdeal{}的\trFractionalIdeal{}都给出同一个\trInvertibleSheaf。
+\item 证明：给出同一个\trInvertibleSheaf{}的两个\trFractionalIdeal{}必相差一个主理想。
+\item \textbf{\trClassGroup}（class group）定义为\trFractionalIdeal{}模掉诸主理想所成的群（也就是说，模掉 $K^{\times}$）。请给出\trClassGroup{}与 $\OO_K$ 的\trPicardGroup{}之间的一个\trIsomorphism。
+\end{enumerate}
+（这一番讨论适用于任何\trDedekindDomain。后续讨论见\mbox{练习~15.5.O}。）

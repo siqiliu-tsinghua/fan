@@ -1,0 +1,91 @@
+
+\section{实际计算纤维积}
+
+在给出一些例子之前，我们先来看看在实践中如何计算\trFiberProduct。有四类\trMorphism{}，即 (1)--(4)，与它们作\trFiberProduct{}格外容易，而一切\trMorphism{}都可以由这些原子构件搭建出来。更确切地说，(1) 将蕴含：我们可以在源与目标上局部地计算\trFiberProduct。于是，要理解一般的\trFiberProduct，只需在仿射对象的层面上理解它们即可，也就是说，要能在给定\trRingMorphism{} $B\to A$ 与 $B\to C$ 时计算 $A\otimes_B C$。任何映射 $B\to A$（$B\to C$ 同理）都可以写成 $B\to B[t_1,\dots]/I$ 的形式，因此，只要知道如何经由「添加变量」(2) 与「取商」(3) 作\trBaseChange，我们就能「计算」任何\trFiberProduct（至少在理论上）。第四类\trMorphism{} (4) 对应于局部化，把它显式地弄清楚也大有用处。
+
+\textbf{(1)~经\trOpenEmbedding{}作\trBaseChange。}
+
+这件事我们已经做过（\cref{ex:open-embeddings-base-change}），并且在证明概形的\trFiberProduct{}存在时用到了它。
+
+\textbf{(2)~添加一个额外的变量。}
+
+\textbf{10.2.A.（容易的代数练习）}\quad 证明：$A\otimes_B B[t]\cong A[t]$，从而下面的图是一个\trCartesianDiagram。（你的论证或许可以自然而然地推广到允许添加无穷多个变量，但我们用不到这种一般性。）提示：证明 $A[t]$ 满足某个适当的\trUniversalProperty。
+\[
+\begin{tikzcd}[row sep=2em, column sep=3.6em]
+\Spec A[t] \ar[r] \ar[d] & \Spec B[t] \ar[d] \\
+\Spec A \ar[r] & \Spec B
+\end{tikzcd}
+\]
+
+\textbf{10.2.1.}\ \emph{\trhDefinition{}（任意概形上的仿射空间）。}\quad 若 $X$ 是任何一个\trScheme，我们就定义 $\mathbb{A}^n_X$ 为 $X\times_{\mathbb{Z}}\Spec\mathbb{Z}[x_1,\dots,x_n]$。显然，$\mathbb{A}^n_{\Spec A}$ 与 \S3.2.4 中例~8 所定义的 $\mathbb{A}^n_A$ 典范地是同一个东西。
+
+\textbf{(3)~经\trClosedEmbedding{}作\trBaseChange。}
+
+\textbf{10.2.B.（练习）}\quad 设 $\phi\colon B\to A$ 是一个\trRingMorphism，而 $I\subset B$ 是一个\trIdeal。令 $I^e:=\langle\phi(i)\rangle_{i\in I}\subset A$，称之为 $I$ 到 $A$ 的\textbf{扩张}（extension）。请描述一个\trNatural{}的\trIsomorphism{} $A/I^e\overset{\sim}{\longleftrightarrow}A\otimes_B(B/I)$。（提示：考虑 $I\to B\to B/I\to 0$，并用 $\otimes_B A$ 的\trRightExact{}性，\cref{ex:tensor-right-exactness}。）
+
+\textbf{10.2.2.}\quad 作为一个直接的推论：与一个\trClosedSubscheme{}作\trFiberProduct，所得结果以显而易见的方式成为该\trFiberProduct{}的一个\trClosedSubscheme。我们说「\trClosedEmbedding{}在\trBaseChange{}下被保持」。
+
+\vkexsync{C}
+\begin{exercise}\label{ex:intersection-locally-closed-embeddings}
+\begin{enumerate}[label=(\alph*)]
+  \item 把射入 $X$ 的两个\trClosedEmbedding{}的交（参看\cref{ex:scheme-theoretic-union-intersection}）解释为它们在 $X$ 上的\trFiberProduct。
+  \item 证明「\trLocally\trClosedEmbedding」在\trBaseChange{}下被保持。
+  \item 把 $n$ 个\trLocally\trClosedEmbedding{} $X_i\hookrightarrow Z$（$1\leq i\leq n$）的\textbf{交}定义为诸 $X_i$ 在 $Z$ 上的\trFiberProduct（映入 $Z$）。证明：（有限多个）\trLocally\trClosedEmbedding{}的交仍是一个\trLocally\trClosedEmbedding。
+\end{enumerate}
+\end{exercise}
+
+\textbf{10.2.D.（练习）}\quad 设 $I\subset A[x_1,\dots,x_m]$ 与 $J\subset A[y_1,\dots,y_n]$ 是\trIdeal。证明\trIsomorphism
+\[
+A[x_1,\dots,x_m]/I\otimes_A A[y_1,\dots,y_n]/J\ \overset{\sim}{\longleftrightarrow}\ A[x_1,\dots,x_m,y_1,\dots,y_n]/(I,J).
+\]
+提示：\mbox{练习~10.2.A} 与\mbox{练习~10.2.B}。
+
+作为一个应用，我们可以计算 $k$ 上有限生成 $k$-\trAlgebra{}的张量积。例如，我们有
+\[
+k[x_1,x_2]/(x_1^2-x_2)\otimes_k k[y_1,y_2]/(y_1^3+y_2^3)\cong k[x_1,x_2,y_1,y_2]/(x_1^2-x_2,\,y_1^3+y_2^3).
+\]
+
+\textbf{10.2.E.（练习）}\quad 设 $X$ 与 $Y$ 都是\trLocally\trFiniteType{}的 $A$-\trScheme。证明：$X\times_A Y$ 在 $A$ 上也是\trLocally\trFiniteType{}的。把假设与结论中的「局部」都去掉，再证明同样的事。
+
+\textbf{10.2.3.}\ \emph{\trhExample{}。}\quad 我们可以用这些想法来计算 $\mathbb{C}\otimes_{\mathbb{R}}\mathbb{C}$：
+\[
+\begin{aligned}
+\mathbb{C}\otimes_{\mathbb{R}}\mathbb{C}&\cong\mathbb{C}\otimes_{\mathbb{R}}\bigl(\mathbb{R}[x]/(x^2+1)\bigr)\\
+&\cong\bigl(\mathbb{C}\otimes_{\mathbb{R}}\mathbb{R}[x]\bigr)/(x^2+1)\qquad\text{由 \S10.2(3)}\\
+&\cong\mathbb{C}[x]/(x^2+1)\qquad\qquad\text{由 \S10.2(2)}\\
+&\cong\mathbb{C}[x]/\bigl((x-i)(x+i)\bigr)\\
+&\cong\mathbb{C}[x]/(x-i)\times\mathbb{C}[x]/(x+i)\qquad\text{由\trChineseRemainderTheorem}\\
+&\cong\mathbb{C}\times\mathbb{C}
+\end{aligned}
+\]
+于是 $\Spec\mathbb{C}\times_{\mathbb{R}}\Spec\mathbb{C}\cong\Spec\mathbb{C}\amalg\Spec\mathbb{C}$。这个例子是往后一大堆千姿百态的行为中的第一例。比如，请注意那两个点以某种方式对应于 $\mathbb{C}$ 在 $\mathbb{R}$ 上的\trGalois{}群：在其中一个点处，$x$（一份 $\mathbb{C}$ 里的那个「$i$」）等于 $i$（另一份 $\mathbb{C}$ 里的那个「$i$」），而在另一个点处，$x=-i$。
+
+\textbf{10.2.4.}\ \hard\ \emph{\trhRemark{}。}\quad 这里有一条线索，表明例~10.2.3 的背后有深刻的事情在发生。若 $L/K$ 是一个（有限）\trGalois{}扩张，其\trGalois{}群为 $G$，则 $L\otimes_K L$ \trIsomorphic{}于 $L^G$（即 $|G|$ 份 $L$ 的乘积）。这事后被证明正是「特征标（character）的线性无关性」的经典形式的又一次陈述！用概形的语言说：$\Spec L\times_K\Spec L$ 是若干份 $\Spec L$ 拷贝之并，它们天然地构成\trGalois{}群 $G$ 之上的一个\textbf{\trTorsor{}}（torsor）；但我们不打算在此定义\trTorsor{}。
+
+\textbf{10.2.F.}\ \hard\ \textbf{（难而迷人的练习：为熟悉 $\Gal(\overline{\mathbb{Q}}/\mathbb{Q})$ 的读者而设）}\quad 证明：$\Spec\bigl(\overline{\mathbb{Q}}\otimes_{\mathbb{Q}}\overline{\mathbb{Q}}\bigr)$ 的诸点与 $\Gal(\overline{\mathbb{Q}}/\mathbb{Q})$ 之间有一个自然的\trBijection，并且前者的\trZariskiTopology{}与后者的\trProfiniteTopology{}（profinite topology）相一致。（若干提示：先做有限\trGalois{}扩张的情形。把诸环的\trDirectLimit{}之 Spec 上的拓扑，与诸 Spec 的\trInverseLimit{}的拓扑联系起来。你能看出哪个点对应于\trGalois{}群的\trUnit{}吗？）
+
+至此，我们已经能够计算任何 $A\otimes_B C$（其中 $A$ 与 $C$ 都是 $B$-\trAlgebra）：环的任何映射 $\phi\colon B\to A$ 都可以这样来解读——先往 $B$ 里添加变量（可能有无穷多个），再施加关系。但在实践中，(4) 很有用，我们将会在例子中看到这一点。
+
+\textbf{(4)~经局部化作\trAffine\trScheme{}的\trBaseChange。}
+
+\textbf{10.2.G.（练习）}\quad 设 $\phi\colon B\to A$ 是一个\trRingMorphism，而 $S\subset B$ 是 $B$ 的一个\trMultiplicativeSubset——这意味着 $\phi(S)$ 是 $A$ 的一个\trMultiplicativeSubset。请描述一个\trNatural{}的\trIsomorphism{} $\phi(S)^{-1}A\overset{\sim}{\longleftrightarrow}A\otimes_B(S^{-1}B)$。
+
+非正式的翻译是：「与局部化作\trFiberProduct，便是以显而易见的方式对\trFiberProduct{}作局部化。」我们说「局部化在\trBaseChange{}下被保持」。当这个局部化形如 $B\hookrightarrow B_f$（对应于取\trDistinguishedOpen），或者（若 $B$ 是\trIntegralDomain）形如 $B\hookrightarrow K(B)$（对应于取\trGenericPoint），或者介于其间的种种情形时，这条性质都很趁手。
+
+\textbf{10.2.5.}\ \emph{诸\trhExample{}。}\quad 这四条事实让你在实践中能计算大量的东西，我们将放开手脚使用它们。
+
+\textbf{10.2.H.（练习：概形\trMonomorphism{}的三种重要类型）}\quad 证明：以下都是\trMonomorphism（定义~1.2.10）：\trOpenEmbedding、\trClosedEmbedding，以及\trAffine\trScheme{}的局部化。由于\trMonomorphism{}对复合封闭（\cref{ex:composite-of-monomorphisms}），上述态射的复合也是\trMonomorphism——例如局部闭嵌入，或者从「$X$ 的各点处的茎之 Spec」到 $X$ 的映射。（\trhCaveat{}：若 $p$ 是概形 $X$ 的一点，自然\trMorphism{} $\Spec\OO_{X,p}\to X$——参看\mbox{练习~7.3.M}——是一个\trMonomorphism，但一般并非\trOpenEmbedding。）
+
+\textbf{10.2.I.（练习）}\quad 回想：$\mathbb{A}^n_A\cong\mathbb{A}^n_{\mathbb{Z}}\times_{\Spec\mathbb{Z}}\Spec A$（\S10.2.1）。仿此证明：$\mathbb{P}^n_A\cong\mathbb{P}^n_{\mathbb{Z}}\times_{\Spec\mathbb{Z}}\Spec A$。于是，仿射空间与射影空间都是经由\trPullback{}从它们在\trFinalObject{} $\Spec\mathbb{Z}$ 上的「普遍化身」得到的。
+
+\textbf{10.2.6.}\ \emph{\trBaseField{}的扩张。}\quad \trBaseChange{}的一个特殊情形称为\textbf{扩张基域}（extending the base field）：若 $X$ 是一个 $k$-\trScheme，而 $\ell$ 是一个\trFieldExtension（$\ell$ 常取为 $k$ 的\trAlgebraicClosure），则 $X\times_{\Spec k}\Spec\ell$（有时非正式地写作 $X\times_k\ell$ 或 $X_\ell$）是一个 $\ell$-\trScheme。$X$ 的许多性质，都可以改为在 $X_\ell$ 上验证它们来加以检验。这就是\emph{\trDescent}这一主题——某些性质会从 $X_\ell$ 「下降」到 $X$。我们已经见过：「是正规\trIntegralDomain{}之 Spec」这条性质就可以这样下降（\mbox{练习~5.4.M}）。\mbox{练习~10.2.J} 与\mbox{练习~10.2.K}给出了另外一些可下降的性质：「两个\trMorphism{}相等」这条性质，以及「（仿射）\trMorphism{}是\trClosedEmbedding」这条性质，都会这样下降。凡是对非代数闭域上的概形感兴趣的人，都会反复使用这套哲学，把结论化归到代数闭的情形。
+
+\textbf{10.2.J.（练习）}\quad 设 $\pi\colon X\to Y$ 与 $\rho\colon X\to Y$ 是 $k$-概形之间的\trMorphism，$\ell/k$ 是一个\trFieldExtension，而 $\pi_\ell\colon X\times_{\Spec k}\Spec\ell\to Y\times_{\Spec k}\Spec\ell$ 与 $\rho_\ell\colon X\times_{\Spec k}\Spec\ell\to Y\times_{\Spec k}\Spec\ell$ 是由此诱导的 $\ell$-概形之间的映射。（你务必弄懂这句话是什么意思！）证明：若 $\pi_\ell=\rho_\ell$，则 $\pi=\rho$。（提示：证明 $\pi$ 与 $\rho$ 在集合的层面上相同。为此，你可以使用「$X\times_{\Spec k}\Spec\ell\to X$ 是满射」这一事实——我们很快就会在\mbox{练习~10.4.G}中证明它。然后化归到 $X$ 与 $Y$ 都是仿射的情形。）
+
+\textbf{10.2.K.（容易的练习）}\quad 设 $\pi\colon X\to Y$ 是 $k$ 上的一个\trAffine{}的\trMorphism，而 $\ell/k$ 是一个\trFieldExtension。证明：$\pi$ 是\trClosedEmbedding，当且仅当 $\pi\times_k\ell\colon X\times_k\ell\to Y\times_k\ell$ 是\trClosedEmbedding。（\trAffine{}假设对本结论并非必需，但它使证明更容易，而且我们日后最需要它的也正是这个情形。）
+
+\textbf{10.2.L.（练习：非病态情境中的貌似病态行为）}\quad 设 $k$ 是一个\trField，而 $A=k(x)\otimes_k k(y)$。证明：$A$ 是 $k[x,y]$ 的一个（非零的）局部化，因而是一个\trIntegralDomain。于是 $(0)$ 是 $A$ 唯一的\trMinimalPrimeIdeal。证明：$A$ 其余的\trPrimeIdeal{}对应于诸\trIdeal{} $(f(x,y))\subset k[x,y]$，其中 $f(x,y)$ 是 $k[x,y]$ 中的一条\trIrreducible{}多项式，且同时含有 $x$ 与 $y$ 这两个变量。（提示：上面的 (2) 与 (4)。）
+
+这个例子日后还将在注记~12.2.17 与~24.5.9 中再次出现。解\mbox{练习~10.2.L}的那个想法还能顺带给出下面这道题。
+
+\textbf{10.2.M.（不重要但好玩的练习）}\quad 证明：$\Spec\bigl(\mathbb{Q}(t)\otimes_{\mathbb{Q}}\mathbb{C}\bigr)$ 的诸\trClosedPoint{}与诸超越复数之间有一个自然的对应。这个概形在自然界里从不露面，但它确实相当漂亮！

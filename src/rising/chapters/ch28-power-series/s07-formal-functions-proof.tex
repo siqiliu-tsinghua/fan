@@ -1,0 +1,112 @@
+
+\section{\extrahard\ 形式函数定理~28.3.2 的证明}
+
+本节中，我们将证明如下结论。
+
+\textbf{28.7.1. \trhTheorem。}\ ——\ \emph{设 $X\to\Spec B$ 是一个\trProper\trMorphism，其中 $B$ 是\trNoether{}环，而 $\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf。设 $I$ 是 $B$ 的一个\trIdeal，而 $\hat{B}=\lim B/I^n$ 是 $B$ 的 $I$-进\trCompletion。令 $X_n:=X\times_B(B/I^{n+1})$（即\trFiber{} $X_0$ 的 $n$ 阶形式邻域），并令 $\mathscr{F}_n$ 为 $\mathscr{F}$ 到 $X_n$ 上的\trPullback。则对一切 $i$，自然映射
+\begin{equation*}
+\tag{28.7.1.1}\label{eq:formal-fn-main-map}
+\mathrm{H}^i(X,\mathscr{F})\otimes_B\hat{B}=\widehat{\mathrm{H}^i(X,\mathscr{F})}\longrightarrow\lim\ \mathrm{H}^i(X_n,\mathscr{F}_n)
+\end{equation*}
+是\trIsomorphism。}
+
+这个证明要归功于\trSerre，是经 B.~\trConrad{}之手传来的。
+
+\textbf{28.7.A.（练习）}\quad 证明：\mbox{定理~28.7.1} 蕴含\mbox{形式函数定理~28.3.2}。（若 $q$ 是\trClosedPoint，这本质上立得；若 $q$ 不闭，则可能需要稍作思考；对照\mbox{练习~28.3.A}。）
+
+在 \eqref{eq:formal-fn-main-map} 的右边，我们有态射 $X_1\hookrightarrow X_2\hookrightarrow\cdots\hookrightarrow X$，由此得到限制映射 $\mathrm{H}^i(X_1,\mathscr{F}_1)\leftarrow\mathrm{H}^i(X_2,\mathscr{F}_2)\leftarrow\cdots\leftarrow\mathrm{H}^i(X,\mathscr{F})$。但请注意：诸 $X_i$ 都\trSupport{}在同一个\trUnderlyingSet{}上。记住诸 $\mathscr{F}_i$ 全是同一个\trTopologicalSpace{}上的\trSheaf，会很有帮助。
+
+我们的证明将只通过如下事实用到\trProperness：\trCoherentSheaf{}在\trProper\trMorphism{}下的\trPushforward{}仍是凝聚的（\mbox{\trGrothendieck{}凝聚定理~18.9.1}），而证明这一点需要下苦功。你大可退守到\trProjective{}情形，几乎没有什么损失。
+
+我们用 $I^n\mathscr{F}$ 表示 $X$ 上那个\trCoherentSheaf，其定义正如你所期待：若 $\mathscr{I}$ 是 $\tilde{I}$ 自 $\Spec B$ 到 $X$ 的\trPullback，则 $I^n\mathscr{F}$ 就是 $\mathscr{I}^n\otimes\mathscr{F}\to\mathscr{F}$ 的像。于是 $\mathrm{H}^i(X_n,\mathscr{F}_n)$ 可以被解读为 $\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})$（据 \S18.1 的性质~(v)），从而 \eqref{eq:formal-fn-main-map} 右边极限中的各项都住在同一个空间 $X$ 之上。从现在起我们就在 $X$ 上工作。
+
+\textbf{28.7.2.} \emph{思路.}\quad 定理陈述中的映射 \eqref{eq:formal-fn-main-map} 来自限制映射 $\mathrm{H}^i(X,\mathscr{F})\to\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})$。我们由此被引向考虑与
+\[
+0\longrightarrow I^n\mathscr{F}\longrightarrow\mathscr{F}\longrightarrow\mathscr{F}/I^n\mathscr{F}\longrightarrow 0,
+\]
+相伴的\trLongExactSequence，特别是其中的如下一段：
+\begin{equation*}
+\tag{28.7.2.1}\label{eq:long-exact-portion}
+\mathrm{H}^i(X,I^n\mathscr{F})\xrightarrow{a_n}\mathrm{H}^i(X,\mathscr{F})\xrightarrow{b_n}\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})\xrightarrow{c_n}\mathrm{H}^{i+1}(X,I^n\mathscr{F})\xrightarrow{\ d_n\ }\mathrm{H}^{i+1}(X,\mathscr{F}).
+\end{equation*}
+映射
+\begin{equation*}
+\tag{28.7.2.2}\label{eq:beta-n-map}
+\mathrm{H}^i(X,\mathscr{F})/\im(a_n)\xrightarrow{\ \beta_n\ }\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})
+\end{equation*}
+看起来与定理陈述中的映射 \eqref{eq:formal-fn-main-map} 相仿，于是我们理应希望：\eqref{eq:beta-n-map} 的极限（当 $n\to\infty$ 时）
+\begin{equation*}
+\tag{28.7.2.3}\label{eq:beta-limit-map}
+\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})/\im(a_n)\xrightarrow{\ \beta\ }\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F}),
+\end{equation*}
+就应当是 \eqref{eq:formal-fn-main-map}。事实上，两者的右边确实相同：$\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})=\lim_{n\to\infty}\mathrm{H}^i(X_n,\mathscr{F}_n)$。
+
+\textbf{28.7.3.} \emph{计划.}\quad 于是，为了证明这个结果，我们希望证得两件事。
+
+(i) 我们有如下等同：
+\[
+\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})/\im(a_n)=\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})\otimes_B\hat{B}.
+\]
+
+(ii) \eqref{eq:beta-limit-map} 中的映射 $\beta$ 是\trIsomorphism。
+
+\textbf{28.7.4.} \emph{第 (i) 步.}\quad 由\mbox{定理~28.1.6}(b)，我们有\trIsomorphism
+\[
+\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})\otimes_B\hat{B}\stackrel{\sim}{\longrightarrow}\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})/I^n\mathrm{H}^i(X,\mathscr{F}).
+\]
+于是我们希望证明
+\[
+\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})/\im(a_n)=\lim_{n\to\infty}\mathrm{H}^i(X,\mathscr{F})/I^n\mathrm{H}^i(X,\mathscr{F}).
+\]
+为此，我们将证明：$(\im(a_n))$ 与 $(I^n\mathrm{H}^i(X,\mathscr{F}))$ 是 $\mathrm{H}^i(X,\mathscr{F})$ 中\trSubgroup{}的共尾序列（\mbox{练习~28.1.A}）。
+
+首先，我们必须证明：对任意 $m$，存在某个 $N(m)$，使得 $I^{N(m)}\mathrm{H}^i(X,\mathscr{F})\subset\im(a_m)$。这很直接：我们可以取 $N(m)=m$，因为对任意 $x\in I^m$，下图
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4.5em]
+\mathrm{H}^i(X,\mathscr{F}) \ar[rr, "\times x"] \ar[dr, "\times x"'] && \mathrm{H}^i(X,\mathscr{F}) \\
+& \mathrm{H}^i(X,I^m\mathscr{F}) \ar[ur, "a_m"'] &
+\end{tikzcd}
+\]
+交换。
+
+其次，我们必须证明：对任意 $m$，存在某个 $N(m)$，使得 $\im(a_{N(m)})\subset I^m\mathrm{H}^i(X,\mathscr{F})$。为此，我们要用一个别出心裁的构造。回想\trRees{}代数 $B(I)_\bullet=B\oplus I\oplus I^2\oplus\cdots$（\S13.9.1）。考虑\trCartesianDiagram
+\begin{equation*}
+\tag{28.7.4.1}\label{eq:rees-cartesian-diagram}
+\begin{tikzcd}[row sep=2.8em, column sep=4.5em]
+X \ar[d, "\text{固有}"'] & \mathit{Spec}_X(\OO_X(I)_\bullet) \ar[l, "\text{仿射}"'] \ar[r, equals] \ar[d, "\text{固有}"] & X' \\
+\Spec B & \Spec B(I)_\bullet, \ar[l, "\text{仿射}"'] &
+\end{tikzcd}
+\end{equation*}
+其中为了方便起见我们定义 $X':=\mathit{Spec}_X(\OO_X(I)_\bullet)$。$X$ 上的\trQCSheaf{} $\mathscr{F}\oplus I\mathscr{F}\oplus I^2\mathscr{F}\oplus\cdots$ 是 $\OO_X(I)_\bullet$ 上的一个有限生成的模层，从而（据\mbox{练习~17.1.E}）对应于 $X'$ 上的一个\trCoherentSheaf{} $\mathscr{F}'$。由于 $X'\to X$ 是\trAffine{}的（再配上性质 \S18.1(v)），我们有
+\begin{equation*}
+\tag{28.7.4.2}\label{eq:rees-direct-sum}
+\mathrm{H}^i(X',\mathscr{F}')=\mathrm{H}^i(X,\mathscr{F}\oplus I\mathscr{F}\oplus I^2\mathscr{F}\oplus\cdots)=\mathrm{H}^i(X,\mathscr{F})\oplus\mathrm{H}^i(X,I\mathscr{F})\oplus\cdots.
+\end{equation*}
+由\mbox{\trGrothendieck{}凝聚定理~18.9.1}，$\mathrm{H}^i(X',\mathscr{F}')$ 是一个有限生成的 $B(I)_\bullet$-\trModule。由\mbox{命题~13.9.2}，存在某个 $k_0$，使得对一切 $k\ge k_0$ 都有 $I\,\mathrm{H}^i(X,I^k\mathscr{F})=\mathrm{H}^i(X,I^{k+1}\mathscr{F})$。于是
+\[
+\mathrm{H}^i(X,I^{k_0+m}\mathscr{F})=I^m\mathrm{H}^i(X,I^{k_0}\mathscr{F})\subset I^m\mathrm{H}^i(X,\mathscr{F}),
+\]
+从而我们可以取 $N(m)=k_0+m$，第 (i) 步至此完成。
+
+\textbf{28.7.5.} \emph{第 (ii) 步.}\quad 由 \eqref{eq:long-exact-portion} 我们有一个\trShortExactSequence
+\begin{equation*}
+\tag{28.7.5.1}\label{eq:ses-im-an}
+0\longrightarrow\mathrm{H}^i(X,\mathscr{F})/\im(a_n)\longrightarrow\mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})\longrightarrow\ker(d_n)\longrightarrow 0.
+\end{equation*}
+对两边施加 $\lim_{n\to\infty}$。极限是\trLeftExact{}的（\S1.5.14），故所得结果左正合。更妙的是，我们这一列正合列的左端项的\trTransitionMap
+\[
+\mathrm{H}^i(X,\mathscr{F})/\im(a_{n+1})\longrightarrow\mathrm{H}^i(X,\mathscr{F})/\im(a_n)
+\]
+显然是满射，于是由\mbox{练习~1.5.N}，我们得到一个\emph{正合}列
+\begin{equation*}
+\tag{28.7.5.2}\label{eq:limit-ses-kernel}
+0\longrightarrow\lim\ \mathrm{H}^i(X,\mathscr{F})/\im(a_n)\xrightarrow{\ \beta\ }\lim\ \mathrm{H}^i(X,\mathscr{F}/I^n\mathscr{F})\longrightarrow\lim\ \ker(d_n)\longrightarrow 0.
+\end{equation*}
+为完成第 (ii) 步，还须证明 $\lim\ \ker(d_n)=0$。我们再次动用 \eqref{eq:rees-cartesian-diagram} 中 $X'$ 的构造。首先注意：我们有映射 $I\times\ker(d_n)\to\ker(d_{n+1})$，从而 $Q:=\bigoplus_n\ker(d_n)$ 是 $B(I)_\bullet$ 上的一个\trModule。此外，$Q$ 是 $B(I)_\bullet$-\trModule{} $\bigoplus_n\mathrm{H}^i(X,I^{n+1}\mathscr{F})$ 的一个\trSubmodule，而我们已证明后者是有限生成的（在\trNoether{}环 $B(I)_\bullet$ 之上；见 \eqref{eq:rees-direct-sum}）。于是 $Q$ 也是一个有限生成的分次 $B(I)_\bullet$-\trModule。选取 $Q$ 的有限多个\trHomogeneous{}生成元，并令 $N$ 为诸生成元中最大的次数。另外，由于 $\ker d_n=\im(c_n)$（由 \eqref{eq:long-exact-portion} 的正合性），我们看到 $\ker d_n$ 被 $I^n$ \trAnnihilate，因为 $\mathscr{F}/I^n\mathscr{F}$ 就是如此被 $I^n$ 零化的。于是，理想 $I^N\oplus I^{N+1}\oplus\cdots\subset B(I)_\bullet$ 零化 $Q$。
+
+考虑复合
+\[
+I^r\otimes\ker d_n\longrightarrow\ker d_{n+r}\longrightarrow\ker d_n,
+\]
+其中第一个映射来自乘法，而第二个是由 $\mathrm{H}^i(X,I^{n+r}\mathscr{F})\to\mathrm{H}^i(X,I^n\mathscr{F})$ 诱导的通常映射。第一个映射在 $r\ge 0$ 且 $n\ge N$ 时是满射（因为 $B(I)_\bullet$ 生成于 $1$ 次，而 $Q$ 是一个由次数至多 $N$ 的元素生成的有限生成 $B(I)_\bullet$-\trModule），且该复合在 $r\ge n$ 时为零。于是，映射 $\ker d_{n+r}\to\ker d_n$ 在 $r,n\ge N$ 时均为零\footnote{原书此处作「Thus map」，当为「Thus the map」之误（脱漏定冠词 the），径改。——译者注}。特别地，$\ker d_{N+r}\to\ker d_N$ 在 $r\ge N$ 时为零，从而 $\lim\ \ker(d_n)=0$，正如所愿。\hfill$\square$
+

@@ -1,0 +1,176 @@
+
+\section{较容易的事实}
+
+\epigraph{幸福的家庭彼此相似；每个不幸福的家庭各有其不幸福。（例如参看图~\ref{fig:not-flat-morphisms}，以及\mbox{练习~24.1.G}(d)、\mbox{练习~24.1.L} 与 \mbox{练习~24.3.H}。）}{——L.~\trTolstoy，《安娜·卡列尼娜》，[To, l.~1]}
+
+关于平坦性的许多事实是容易的、或是随即可得的，虽然其中也有一些颇为棘手。一如既往，我会尽力分清何者为何，以帮助你记住容易的事实，以及较难事实的证明之关键想法。我们先摘低垂的果实。
+
+我们回想一下平坦 $A$-\trModule{}的定义（\S1.5.13）。若 $M\in\mathit{Mod}_A$，则 $M\otimes_A\cdot$ 总是\trRightExact{}的（\mbox{练习~1.2.H}）。我们说 $M$ 是一个\textbf{平坦 $A$-\trModule}（或\emph{在 $A$ 上平坦}，或\emph{$A$-平坦}），如果 $M\otimes_A\cdot$ 是一个\trExact{}函子。我们说\trRingMorphism{} $B\to A$ 是\textbf{平坦}的，如果 $A$ 作为 $B$-\trModule{}是平坦的。（特别地，这与 $A$ 的代数结构无关。）
+
+\textbf{24.1.1.}\ \emph{两个关键例子。}\quad
+（i）自由 $A$-\trModule{}（哪怕是无限秩的）显然是平坦的。更一般地，\trProjectiveObj{}\trModule{}是平坦的（\mbox{练习~23.2.B}）。
+
+（ii）局部化是平坦的：设 $S$ 是 $B$ 的一个\trMultiplicativeSubset。则 $B\to S^{-1}B$ 是平坦的\trRingMorphism，因为局部化是正合的（\mbox{练习~1.5.G}(a)）。
+
+\textbf{24.1.A.（容易练习：最初的例子）}\quad
+（a）（\emph{陷阱问题}）对\trField{} $k$ 上的平坦\trModule{}进行分类。
+（b）证明 $A[x_1,\dots,x_n]$ 是平坦的 $A$-\trModule。
+（c）证明\trRingMorphism{} $\mathbb{Q}[x]\to\mathbb{Q}[y]$（$x\mapsto y^{2}$）是平坦的。（这将帮助我们更好地理解\mbox{例~10.3.4}；见 \S24.3.12。）
+
+我们来作几条快速而重要的观察。
+
+\textbf{24.1.2.}\ \emph{重要观察。}\quad 若 $x$ 是 $A$ 的一个\trNonZerodivisor，而 $M$ 是平坦的 $A$-\trModule，则
+\[
+M \xrightarrow{\ \times x\ } M
+\]
+是\trInjectiveMap{}的。（把\trExact{}函子 $M\otimes_A\cdot$ 作用到正合列 $0\longrightarrow A\xrightarrow{\ \times x\ }A$ 上。）特别地，\emph{平坦\trModule{}都\trTorsionFree}。（\trTorsionFree{}性定义于 \S6.1.4。）这条观察给出了一个简便的办法，让我们能识别出一个\trModule{}何时不\trFlat；我们将会多次用到它。
+
+\textbf{24.1.B.（练习：另一个例子）}\quad 证明：\trPID{}上\trFinitelyGenerated{}的\trModule{}是平坦的，当且仅当它\trTorsionFree，当且仅当它是自由的。提示：\mbox{注记~6.4.4} 对\trPID{}上有限生成的\trModule{}作了分类。（\mbox{练习~24.3.B} 将进一步阐明\trPID{}上的平坦性。\mbox{命题~14.3.2} 亦与之相关。）
+
+\textbf{24.1.C.（练习：平坦性在更换基环下保持）}\quad 证明：若 $M$ 是平坦的 $B$-\trModule，而 $B\to A$ 是一个\trHomomorphism，则 $M\otimes_B A$ 是平坦的 $A$-\trModule。
+
+\textbf{24.1.D.（练习：平坦性在复合下保持）}\quad 证明：若 $A$ 是平坦的 $B$-\trAlgebra，而 $M$ 是 $A$-平坦的，则 $M$ 也是 $B$-平坦的。
+
+\textbf{24.1.3. \trhProposition{}（平坦性是茎／素局部性质）。}\ ——\ \emph{一个 $A$-\trModule{} $M$ 是\trFlat{}的，当且仅当对一切\trPrimeIdeal{} $\mathfrak{p}\subset A$，$M_{\mathfrak{p}}$ 都是平坦的 $A_{\mathfrak{p}}$-\trModule。}
+
+欢迎你去证明其实只须检验\emph{极大}理想即可，但我们并不需要这一扩展。
+
+\emph{证明。}\quad 先设 $M$ 是平坦的 $A$-\trModule。给定任意一个 $A_{\mathfrak{p}}$-\trModule{}的正合列
+\[
+\tag{24.1.3.1}\label{eq:flat-stalk-ses}
+0 \longrightarrow N' \longrightarrow N \longrightarrow N'' \longrightarrow 0,
+\]
+我们希望证明
+\[
+\tag{24.1.3.2}\label{eq:flat-stalk-tensor}
+0 \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N' \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N'' \longrightarrow 0
+\]
+也正合。而 \eqref{eq:flat-stalk-ses} \emph{同时}也是 $A$-\trModule{}的正合列，故
+\[
+\tag{24.1.3.3}\label{eq:flat-global-tensor}
+0 \longrightarrow M\otimes_A N' \longrightarrow M\otimes_A N \longrightarrow M\otimes_A N'' \longrightarrow 0
+\]
+是正合的（由 $M$ 的 $A$-平坦性）。但 $M\otimes_A N$ \trCanonical{}同构于 $M\otimes_A A_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}}N=M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}}N$（$N'$ 与 $N''$ 同理），于是我们可以把 \eqref{eq:flat-global-tensor} 改写成 \eqref{eq:flat-stalk-tensor}（务必看清 \eqref{eq:flat-global-tensor} 与 \eqref{eq:flat-stalk-tensor} 中的映射为何是相同的），此即所欲证。
+
+再设对一切 $\mathfrak{p}$，$M_{\mathfrak{p}}$ 都是平坦的 $A_{\mathfrak{p}}$-\trModule。给定任意\trShortExactSequence{} \eqref{eq:flat-stalk-ses}，我们要证 \eqref{eq:flat-global-tensor} 正合。由张量积的\trRightExact{}性（\mbox{练习~1.2.H}），除了可能在左端失准之外，\eqref{eq:flat-global-tensor} 是正合的。令 $K$ 为 $\ker(M\otimes_A N'\to M\otimes_A N)$，于是
+\[
+\tag{24.1.3.4}\label{eq:flat-kernel-ses}
+0 \longrightarrow K \longrightarrow M\otimes_A N' \longrightarrow M\otimes_A N \longrightarrow M\otimes_A N'' \longrightarrow 0
+\]
+正合；我们希望证明 $K=0$。任取 $\mathfrak{p}$，把 \eqref{eq:flat-stalk-ses} 在 $\mathfrak{p}$ 处局部化，再与正合的 $A_{\mathfrak{p}}$-\trModule{} $M_{\mathfrak{p}}$ 作张量，便得
+\[
+\tag{24.1.3.5}\label{eq:flat-local-tensor}
+0 \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N'_{\mathfrak{p}} \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N_{\mathfrak{p}} \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N''_{\mathfrak{p}} \longrightarrow 0.
+\]
+把 \eqref{eq:flat-kernel-ses} 在 $\mathfrak{p}$ 处局部化，并利用诸同构 $M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}}N_{\mathfrak{p}}\overset{\sim}{\longleftrightarrow}(M\otimes_A N)_{\mathfrak{p}}$，我们得到正合列
+\[
+0 \longrightarrow K_{\mathfrak{p}} \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N'_{\mathfrak{p}} \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N_{\mathfrak{p}} \longrightarrow M_{\mathfrak{p}}\otimes_{A_{\mathfrak{p}}} N''_{\mathfrak{p}} \longrightarrow 0,
+\]
+它与正合列 \eqref{eq:flat-local-tensor} 完全相同，只是多出了 $K_{\mathfrak{p}}$。于是对一切素理想 $\mathfrak{p}\subset A$ 都有 $K_{\mathfrak{p}}=0$，从而 $K=0$（由\mbox{练习~4.1.F}），此即所欲证。\hfill$\square$
+
+\textbf{24.1.4. 概形上的平坦性。}\quad 受\mbox{命题~24.1.3} 的推动，把平坦性的概念推广到概形上是直截了当的。
+
+\textbf{24.1.5. \trhDefinition{}：平坦拟凝聚层。}\quad 我们说概形 $X$ 上的一个\trQCSheaf{} $\mathscr{F}$ \textbf{在 $\mathfrak{p}\in X$ 处平坦}，如果 $\mathscr{F}_{\mathfrak{p}}$ 是平坦的 $\OO_{X,\mathfrak{p}}$-\trModule。我们说概形 $X$ 上的一个\trQCSheaf{} $\mathscr{F}$ 是\textbf{平坦}的（于 $X$ 上），如果它在所有 $\mathfrak{p}\in X$ 处都平坦。鉴于\mbox{命题~24.1.3}，我们可以在 $X$ 的一个\trAffine\trOpenCover{}上检验这个概念。
+
+\textbf{24.1.6. \trhDefinition{}：平坦\trMorphism。}\quad 类似地，我们说概形之间的\trMorphism{} $\pi\colon X\to Y$ \textbf{在 $\mathfrak{p}\in X$ 处平坦}，如果 $\OO_{X,\mathfrak{p}}$ 是平坦的 $\OO_{Y,\pi(\mathfrak{p})}$-\trModule。我们说概形之间的\trMorphism{} $\pi\colon X\to Y$ 是\textbf{平坦}的，如果它在所有 $\mathfrak{p}\in X$ 处都平坦。我们可以在源与靶上局部地检验平坦性。
+
+我们可以把这两条定义合并成单条花哨的定义。
+
+\textbf{24.1.7. \trhDefinition{}：基上的平坦拟凝聚层。}\quad 设 $\pi\colon X\to Y$ 是概形之间的一个\trMorphism，而 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf。我们说 $\mathscr{F}$ \textbf{在 $\mathfrak{p}\in X$ 处平坦（于 $Y$ 上）}，如果 $\mathscr{F}_{\mathfrak{p}}$ 是平坦的 $\OO_{Y,\pi(\mathfrak{p})}$-\trModule。我们说 $\mathscr{F}$ \textbf{是平坦的（于 $Y$ 上）}，如果它在所有 $\mathfrak{p}\in X$ 处都平坦。
+
+\mbox{定义~24.1.5} 与 \mbox{定义~24.1.6} 分别对应于 $X=Y$ 与 $\mathscr{F}=\OO_X$ 的情形。（\mbox{定义~24.1.7} 可不加改动地适用于\trRingedSpace{}的范畴，但我们不会用到这一点。）
+
+\textbf{24.1.E.（容易练习（现实检验））}\quad 证明：\trOpenEmbedding{}都是平坦的。
+
+我们上文关于环上平坦性的诸结果可以轻易地搬到概形上。
+
+\textbf{24.1.F.（练习）}\quad 证明：环映射 $B\to A$ 是平坦的，当且仅当相应的概形\trMorphism{} $\Spec A\to\Spec B$ 是平坦的。更一般地，若 $B\to A$ 是一个环映射，而 $M$ 是一个 $A$-\trModule，证明 $M$ 是 $B$-平坦的，当且仅当 $\widetilde{M}$ 在 $\Spec B$ 上平坦。（要当心：这需要的可不只是简单地援引\mbox{命题~24.1.3}。）提示：在两个方向上都用间接的方式入手是一条好路子。「假设 $M_{\mathfrak{p}}$ 不是 $B_{\mathfrak{p}}$-平坦的。\footnote{译注：原书此处作「$M_{\mathfrak{p}}$ 不是 $B_{\mathfrak{q}}$-平坦的」，当为「$B_{\mathfrak{p}}$」之误，径改。——译者注}那么存在 $B_{\mathfrak{p}}$-\trModule{}（从而也是 $B$-\trModule{}）的一个正合列 $0\to N'\to N\to N''\to 0$，使得……。」「假设 $\widetilde{M}$ 不是 $B$-平坦的。那么存在 $B$-\trModule{}的一个正合列……。」
+
+于是，若 $\pi\colon X\to Y$ 是\trAffine\trMorphism，而 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf，则 $\mathscr{F}$ 在 $Y$ 上平坦，当且仅当 $\pi_\ast\mathscr{F}$ 在 $Y$ 上平坦。
+
+\textbf{24.1.G.（容易练习（例子与现实检验））}\quad
+（a）设 $X$ 是概形，而 $\mathfrak{p}\in X$，证明自然\trMorphism{} $\Spec\OO_{X,\mathfrak{p}}\to X$ 是平坦的。（提示：局部化是平坦的，\S24.1.1。）
+（b）证明 $\mathbb{A}^{n}_A\to\Spec A$ 是平坦的。
+（c）若 $\mathscr{F}$ 是概形 $X$ 上的一个\trLocallyFreeSheaf，证明 $\mathbb{P}\mathscr{F}\to X$（\mbox{定义~17.2.4}）是平坦的。
+（d）证明 $\Spec k\to\Spec k[t]/(t^{2})$ 不平坦。（画一张图，试着看出这个\trMorphism{}有什么地方不「好」。关于\trDualNumbers{}之平坦性的更多洞见，将在\mbox{练习~24.3.D} 的判别法中给出。）
+
+\textbf{24.1.H.（练习）}\quad 证明：若 $\pi\colon X\to Y$ 是平坦\trMorphism，则 $\pi^{*}\colon\mathit{QCoh}_Y\to\mathit{QCoh}_X$ 是一个\trExact{}函子。
+
+\textbf{24.1.I.（练习：平坦性在复合下保持）}\quad 设 $\pi\colon X\to Y$，而 $\mathscr{F}$ 是 $X$ 上的一个在 $Y$ 上平坦的\trQCSheaf。再设 $\psi\colon Y\to Z$ 是平坦\trMorphism。证明 $\mathscr{F}$ 在 $Z$ 上平坦。
+
+\textbf{24.1.J.（练习：平坦性在基变换下保持）}\quad 设 $\pi\colon X\to Y$ 是一个\trMorphism，而 $\mathscr{F}$ 是 $X$ 上的一个在 $Y$ 上平坦的\trQCSheaf。若 $\rho\colon Y'\to Y$ 是任意\trMorphism，而 $\rho'\colon X\times_Y Y'\to X$ 是由此诱导的\trMorphism，证明 $(\rho')^{*}\mathscr{F}$ 在 $Y'$ 上平坦。
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=2.6em]
+(\rho')^{*}\mathscr{F} \ar[d] & \mathscr{F} \ar[d] \\
+X\times_Y Y' \ar[r, "\rho'"] \ar[d] & X \ar[d, "\pi"] \\
+Y' \ar[r, "\rho"] & Y
+\end{tikzcd}
+\]
+特别地，利用\mbox{练习~24.1.A}(a)，若 $Y=\Spec k$（而 $X$ 与 $Y'$ 是\emph{任意}的 $k$-概形，$\mathscr{F}$ 是 $X$ 上\emph{任意}的\trQCSheaf），则 $(\rho')^{*}\mathscr{F}$ 在 $Y'$ 上平坦。例如，$X\times_k Y'$ 总是在 $Y'$ 上平坦的——「域上的乘积平坦于其各因子」。（欢迎立刻把它进一步推广；例如，$\mathscr{F}$ 可以是概形 $Z\to X$ 上的一个\trQCSheaf，在 $Y$ 上平坦。）
+
+\textbf{24.1.8.}\ \emph{平坦\trMorphism{}表现合理。}\quad 由定义，平坦性显然在靶上是局部的，于是前两道练习表明：平坦\trMorphism{}这个类在 \S8.1 的意义下是「\trReasonable」的。
+
+下面这道练习对于将平坦与非平坦可视化极为有用（例如参看图~\ref{fig:not-flat-morphisms}）。
+
+\textbf{24.1.K.（练习：平坦映射把相伴点送到相伴点）}\quad 设 $\pi\colon X\to Y$ 是\trLocally\trNoether{}概形之间的一个平坦\trMorphism。证明 $X$ 的任何\trAssociatedPoint{}都必定被映到 $Y$ 的一个\trAssociatedPoint。（欢迎立刻把它推广到 $X$ 上一个在 $Y$ 上平坦的凝聚层 $\mathscr{F}$，而 $\pi$ 本身不必平坦。）提示：设 $\pi^{\sharp}\colon(B,\mathfrak{n})\to(A,\mathfrak{m})$ 是\trNoether{}局部环之间的一个局部态射（即 $\pi^{\sharp}(\mathfrak{n})\subset\mathfrak{m}$，\S7.3.1）。设 $\mathfrak{n}$ 不是 $B$ 的\trAssociatedPrimeIdeal。证明存在一个元素 $f\in\mathfrak{n}$ 不属于 $B$ 的任何\trAssociatedPrimeIdeal（或许可以借助\trPrimeIdeal{}回避，\mbox{命题~12.2.13}），从而它是\trNonZerodivisor。利用\mbox{观察~24.1.2} 证明 $\pi^{\sharp}f\in\mathfrak{m}$ 是 $A$ 的\trNonZerodivisor，从而证明 $\mathfrak{m}$ 不是 $A$ 的\trAssociatedPrimeIdeal。
+
+\textbf{24.1.L.（练习）}\quad 利用\mbox{练习~24.1.K} 证明：以下诸\trMorphism{}都不平坦（参看图~\ref{fig:not-flat-morphisms}）：
+（a）$\Spec k[x,y]/(xy)\to\Spec k[x]$；
+（b）$\Spec k[x,y]/(y^{2},xy)\to\Spec k[x]$；
+（c）$\mathrm{Bl}_{(0,0)}\mathbb{A}^{2}_k\to\mathbb{A}^{2}_k$。
+（c）的提示：先拉回到过原点的一条直线上，得到一个与 (a) 相仿的东西。\footnote{译注：原书此处作「to obtain a something akin to (a)」，当为「to obtain something akin to (a)」之误，径改。——译者注}（这预示了\mbox{命题~24.5.6} 的陈述与证明，该命题断言：对于平坦\trMorphism{}，「纤维维数不会跳变」。）
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85, line width=0.8pt]
+  \draw (0.2,0) -- (1.8,0);
+  \draw (1.0,-0.75) -- (1.0,0.75);
+  \draw[gray!70,->] (1.0,-1.15) -- (1.0,-2.05);
+  \draw (0.2,-2.55) -- (1.8,-2.55);
+  \node at (1.0,-3.25) {(a)};
+  \draw (2.7,0) -- (4.3,0);
+  \fill[gray!80] (3.25,0) circle (2.6pt);
+  \draw[gray!70,->] (3.5,-1.15) -- (3.5,-2.05);
+  \draw (2.7,-2.55) -- (4.3,-2.55);
+  \node at (3.5,-3.25) {(b)};
+  \begin{scope}[shift={(5.4,0)}]
+    \draw (0.35,0.55) -- (2.2,0.55) -- (1.55,-0.65) -- (-0.3,-0.65) -- cycle;
+    \draw (1.15,-0.3) -- (1.15,0.3);
+    \node at (1.4,0.05) {$\mathrm{E}$};
+    \draw[gray!70,->] (0.85,-1.05) -- (0.85,-2.0);
+    \node at (1.9,-1.55) {胀开};
+    \draw (0.35,-3.15) -- (2.2,-3.15) -- (1.55,-4.35) -- (-0.3,-4.35) -- cycle;
+    \fill (0.95,-3.75) circle (1.8pt);
+    \node at (0.95,-5.0) {(c)};
+  \end{scope}
+\end{tikzpicture}
+\caption{不平坦的\trMorphism{}（\mbox{练习~24.1.L}）。（依原书手绘图重绘。）}\label{fig:not-flat-morphisms}
+\end{figure}
+
+\textbf{24.1.9. \trhTheorem{}（上同调与平坦基变换交换）。}\ ——\ \emph{设}
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=2.6em]
+X' \ar[r, "\rho'"] \ar[d, "\pi'"] & X \ar[d, "\pi"] \\
+Y' \ar[r, "\rho"] & Y
+\end{tikzcd}
+\]
+\emph{是一个\trCartesianDiagram，且 $\pi$（从而 $\pi'$）\trQuasicompact{}且\trSeparated（于是 $\pi$ 与 $\pi'$ 对\trQCSheaf{}的\trHigherPushforward{}存在，如 \S18.7 中所述）。再设 $\rho$ 是平坦的，而 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf。那么，自然「推拉」态射（\mbox{练习~18.7.B}(a)）$\rho_{*}(\mathrm{R}^{i}\pi_\ast\mathscr{F})\to\mathrm{R}^{i}\pi'_\ast(\rho'^{*}\mathscr{F})$ 都是\trIsomorphism。}
+
+\textbf{24.1.M.（练习）}\quad 证明\mbox{定理~24.1.9}。提示：\mbox{练习~18.7.B}(b) 是 $\rho$ 为\trAffine{}时的特例。利用与\mbox{练习~14.4.C} 的解答（其中用到了\mbox{练习~6.2.G}）相同的想法，把它推广到\trQuasicompact{}且\trSeparated{}的情形。你对 $i=0$ 情形的证明只须将「分离」假设换成「拟分离」假设即可。
+
+一个有用的特例：取 $Y'$ 为 $Y$ 某个\trReduced{}分量的\trGenericPoint。换句话说，由\mbox{练习~24.1.G}(a)，$\mathscr{F}$ 的\trHigherPushforward{}在\trGenericPoint{}处的\trStalk，就是 $\mathscr{F}$ 在\trGenericPoint{}之上纤维上的上同调。这是某件重要事情的第一例：用\trHigherPushforward{}来理解纤维上（的\trQCSheaf）的上同调。（我们当然希望\trHigherPushforward{}能告诉我们一些关于纤维高阶上同调的事情，但这先验地绝不显然！）这条结果表明\emph{任何}\trQCSheaf{}的上同调都与\emph{平坦}基变换交换；与之相比，\S24.7 与第 25 章讨论的则是：\emph{平坦}\trQCSheaf{}的上同调何时以及如何与\emph{任何}基变换交换。
+
+\textbf{24.1.10. 用平坦\trMorphism{}拉回\trClosedSubscheme{}（与\trIdealSheaf）。}\quad \trClosedSubscheme{}在平坦\trMorphism{}下拉回得格外好，这一点值得记在心里。正如\mbox{注记~14.5.9} 所指出的，在平坦\trMorphism{}的情形，把\trIdealSheaf{}当作\trQCSheaf{}来拉回，与经由相应\trClosedSubscheme{}之拉回的表述是一致的。换句话说，闭子概形正合列在平坦拉回下被拉回（保持正合）。事实上，这不只是平坦性的一个必要条件；它也是充分的，这可以用平坦性的理想论判别法（\mbox{定理~24.3.1}）来证明。还有一个类似的事实，是关于用\emph{任意}拉回来拉回\emph{平坦}子概形的\trIdealSheaf{}的；见 \S24.2.2。
+
+\textbf{24.1.N.（练习）}\quad
+（a）设 $D$ 是 $Y$ 上的一个\trEffectiveCartierDivisor，而 $\pi\colon X\to Y$ 是平坦\trMorphism。证明 $D$ 到 $X$ 的拉回（经由 $\pi$）也是\trEffectiveCartierDivisor。
+（b）利用 (a) 证明：在平坦\trMorphism{}下，\trRegularEmbedding{}拉回为\trRegularEmbedding。
+
+\textbf{24.1.O.（练习）}\quad
+（a）设 $\pi\colon X\to Y$ 是一个\trMorphism，而 $Z\hookrightarrow Y$ 是由一个\trIdealSheaf{} $\mathscr{I}\subset\OO_Y$ 切出的\trClosedEmbedding。仅限本练习：对任意对应于\trClosedSubscheme{} $W\subset Y$ 的\trIdealSheaf{} $\mathscr{J}\subset\OO_Y$，令 $\pi^{\flat}\mathscr{J}\subset\OO_X$ 记对应于 $W\times_Y X\subset X$ 的\trIdealSheaf（于是 $\pi^{*}\mathscr{J}\to\pi^{\flat}\mathscr{J}$ 是满射，但正如\mbox{注记~14.5.9} 所讨论的，它并不总是\trIsomorphism）。证明 $(\pi^{\flat}\mathscr{I})^{n}=\pi^{\flat}(\mathscr{I}^{n})$。（拟凝聚理想层的乘积定义于\mbox{练习~15.6.E}。）
+（b）进而设 $\pi$ 是平坦的，$Y=\mathbb{A}^{n}_k$，而 $Z$ 是原点。令 $\mathscr{J}=\pi^{*}\mathscr{I}$ 为 $X$ 上切出 $Z$ 之拉回 $W$ 的\trQC{}\trSheafOfAlgebras。证明分次代数层 $\bigoplus_{n\ge 0}\mathscr{J}^{n}/\mathscr{J}^{n+1}$（你理解其中的乘法吗？）\trIsomorphic{}于 $\OO_W[x_1,\dots,x_n]$（解释为\trSheafOfGradedAlgebras）。（提示：先证明 $\mathscr{J}^{n}/\mathscr{J}^{n+1}\cong\Sym^{n}(\mathscr{J}/\mathscr{J}^{2})$，\mbox{推论~22.3.9}。这一思路将在\mbox{练习~24.6.E} 中得到重访。）
+
+\textbf{24.1.P.（练习）}\quad
+（a）证明：胀开与平坦基变换交换。更精确地说，若 $\pi\colon X\to Y$ 是任意平坦\trMorphism，而 $Z\hookrightarrow Y$ 是任意\trClosedEmbedding，给出典范\trIsomorphism{} $(\mathrm{Bl}_{Z}\,Y)\times_Y X\overset{\sim}{\longleftrightarrow}\mathrm{Bl}_{Z\times_Y X}\,X$。（你可以经由\trUniversalProperty、利用\mbox{练习~24.1.N}(a) 来做；或者利用胀开的 $\Proj$ 构造与\mbox{练习~24.1.O} 来做。）
+（b）举出一个例子，说明胀开一般不与基变换交换。
+

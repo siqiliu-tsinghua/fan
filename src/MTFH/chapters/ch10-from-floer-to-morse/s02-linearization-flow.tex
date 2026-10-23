@@ -1,0 +1,295 @@
+
+\section{\trPseudogradient{}场之\trFlow{}的\trLinearization：定理 10.1.3 的证明}
+\label{sec:linearization-pseudogradient}
+
+设 $f$ 是一个\trManifold{} $V$ 上的\trMorseFunction，并设 $X$ 是一个\trAdapted{}于 $f$ 的\trPseudogradient{}场。这个\trVectorField{}的诸\trTrajectory{}就是
+\[ \frac{du}{ds}+X(u(s))=0 \]
+的诸解。为了简化，我们假定\trManifold{} $V$ \trEmbedding{}在一个空间 $\RR^{m}$（$m$ 充分大）之中，从而我们可以把 $u\mapsto X(u)$ 看成一个取值于 $\RR^{m}$ 的映射。我们取定 $V$ 上的一个\trMetric{} $g$，使得 $X$ 是 $f$ 对于 $g$ 的\trGradient。
+
+有限\trEnergy{}的解所成的空间
+\[ \scr{M}=\Bigl\{u\colon\RR\to V\ \Bigm|\ \frac{\partial u}{\partial s}+\operatorname{grad}f=0\ \text{且}\ \int_{\RR}\Bigl\|\frac{\partial u}{\partial s}\Bigr\|^{2}\,ds<+\infty\Bigr\} \]
+是\trCompact{}的\footnote{我们回顾一下：若 $V$ 是\trCompact{}的，那么一切\trTrajectory{}都具有有限的\trEnergy。（译注：这句\trCompact{}断言当以 $V$ \trCompact{}为语境（本脚注正是如此）、并赋以 $\cC^{\infty}_{\mathrm{loc}}$ \trTopology{}来读——此时它成立：每条\trTrajectory{}连同诸\trCriticalPoint{}处的常值解都是有限\trEnergy{}的解，且由其出发点唯一决定，故评价映射 $u\mapsto u(0)$ 把 $\scr{M}$ 与 $V$ 等同起来（按 $\cC^{\infty}_{\mathrm{loc}}$ \trTopology{}这是一个\trHomeomorphic），$\scr{M}$ 由此\trCompact；而一条解的平移 $u(\cdot+s_{0})$ 当 $s_{0}\to\pm\infty$ 时在 $\cC^{\infty}_{\mathrm{loc}}$ 中恰\trConvergence{}到其极限\trCriticalPoint{}处的常值解，极限并未落在 $\scr{M}$ 之外。又，此处的 $\scr{M}$ 不固定端点，勿与固定端点的 $\scr{M}(x,y)$ 或对平移取商的空间混淆。——译者注）}，并且我们有
+\[ \scr{M}=\bigcup_{x,y\in\operatorname{Crit}(f)}\scr{M}(x,y)\text{。} \]
+
+\subsection{方程的\trLinearization}
+\label{subsec:linearization-equation}
+
+我们取定一个把\trCriticalPoint{} $x$ 连接到\trCriticalPoint{} $y$ 的解 $u$，并在 $u$ 的像的邻域内取定 $TV$ 的一个\trTrivialization{} $(Z_{1},\dots,Z_{n})$（它对于\trMetric{} $g$ 是\trOrthonormal{}的）。借助\trMorseChart，我们如此选取诸 $Z_{i}$，使得 $Z_{i}(s)$ 在\trCriticalPoint{} $x$ 与 $y$ 的邻域内不依赖于 $s$。对于 $Y=(y_{1},\dots,y_{n})\in\RR^{n}$，我们令
+\[ \widetilde{Y}(s)=\sum_{i=1}^{n}y_{i}(s)Z_{i}(u(s))\text{。} \]
+沿解 $u$ 对\trFlow{}的方程作\trLinearization，便给出一个线性\trDifferential{}方程
+\[ \frac{d\widetilde{Y}}{ds}+(dX)_{u(s)}\bigl(\widetilde{Y}\bigr)=0 \qquad\text{或}\qquad \widetilde{L}_{u}\widetilde{Y}=0\text{，} \]
+其未知函数 $s\mapsto\widetilde{Y}(s)$ 是沿解 $u$ 切于 $V$ 的一个向量。在所给的\trTrivialization{}之下，我们可以写出
+\[
+\begin{aligned}
+\widetilde{L}_{u}\bigl(\widetilde{Y}\bigr)
+&=\frac{d}{ds}\Bigl(\sum y_{i}Z_{i}\Bigr)+S_{u}(s)\Bigl(\sum y_{i}Z_{i}\Bigr)\\[4pt]
+&=\sum_{i=1}^{n}\Bigl(\frac{dy_{i}}{ds}+\sum_{j=1}^{n}(a_{ji}+S_{ji})y_{j}\Bigr)Z_{i}\text{，}
+\end{aligned}
+\]
+其中 $S_{u}(s)=(dX)_{u(s)}$，而矩阵 $a_{ij}$ 与 $S_{ij}$ 由
+\[ \frac{dZ_{i}}{ds}=\sum a_{ij}Z_{j} \qquad\text{与}\qquad S_{u}(s)\cdot Z_{i}=\sum S_{ij}Z_{j} \]
+所定义。令 $A_{ij}=a_{ij}+S_{ij}$\footnote{译注：原书此处印作 $A_{ij}=a_{ij}+S_{ij}$；但按上式分量 $\sum_{j=1}^{n}(a_{ji}+S_{ji})y_{j}$ 与\trFrame{}系数的定义 $\frac{dZ_{i}}{ds}=\sum a_{ij}Z_{j}$、$S_{u}(s)\cdot Z_{i}=\sum S_{ij}Z_{j}$ 逐项展开，第 $i$ 个分量中 $y_{j}$ 的系数是 $a_{ji}+S_{ji}$，故与 $L_{u}Y=\frac{dY}{ds}+AY$（按 $(AY)_{i}=\sum_{j}A_{ij}y_{j}$ 的通例）相配的定义应为 $A_{ij}=a_{ji}+S_{ji}$（若欲保留 $A_{ij}=a_{ij}+S_{ij}$，则须把\trFrame{}系数的定义与分量式一并转置，即改作 $\frac{dZ_{i}}{ds}=\sum_{j}a_{ji}Z_{j}$、$S_{u}(s)\cdot Z_{i}=\sum_{j}S_{ji}Z_{j}$，此时分量式作 $\sum_{j}(a_{ij}+S_{ij})y_{j}$）。严格而言，尚应先对 $\RR^{m}$ 中的 $(dX)_{u(s)}$ 与 $\frac{dZ_{i}}{ds}$ 作到\trTangentSpace{}上的投影（或取沿 $u$ 的\trCovariantDerivative）再提取切向系数。由于 $A$ 当 $s\to\pm\infty$ 的极限 $\operatorname{Hess}_{x}(f)$、$\operatorname{Hess}_{y}(f)$ 是\trSymmetricMatrix，转置与否不碍其极限性态，下游论证不受影响。此处照原书排印，载此更正。——译者注}，并设 $L_{u}$ 为\trLinearOperator
+\[
+\begin{array}{c}
+L_{u}\colon W^{1,2}(\RR;\RR^{n})\longrightarrow L^{2}(\RR;\RR^{n})\\[4pt]
+Y\longmapsto\dfrac{dY}{ds}+A(s)Y\text{。}
+\end{array}
+\]
+对于向量 $Y(s)\in\RR^{n}$，我们现在便有\trDifferential{}方程
+\[ L_{u}Y=\frac{dY}{ds}+AY=0\text{。} \]
+由于我们对诸 $Z_{i}$ 的假设，$a_{ij}(s)$ 当 $s\to\pm\infty$ 时为零；而当 $s\to\pm\infty$ 时，$A$ 趋于 $f$ 在\trCriticalPoint{} $x$ 或 $y$ 处的\trHessian{}（它是一个\trSymmetricMatrix）：
+\[ \lim_{s\to-\infty}A(s)=\operatorname{Hess}_{x}(f) \qquad\text{与}\qquad \lim_{s\to+\infty}A(s)=\operatorname{Hess}_{y}(f)\text{。} \]
+
+\begin{remark}\label{thm:solution-space-tangent-space}
+解所成的空间可以视为\trTrajectory{}空间 $\scr{M}(x,y)$ 在点 $u$ 处的\trTangentSpace。
+\end{remark}
+
+\subsection{诸解的\trExponentialDecay}
+\label{subsec:exponential-decay-solutions}
+
+首先注意：若 $Y$ 是 $W^{1,2}(\RR;\RR^{n})$ 中 $L_{u}Y=0$ 的一个解，那么它是连续的；进而，由于它满足\trDifferential{}方程，它是 $\cC^{1}$ 类的，如此等等，从而 $W^{1,2}$ 中的解都是 $\cC^{\infty}$ 类的（初等的自举论证）。特别地，这些解构成一个有限维的\trVectorSpace。
+
+让我们来研究 $W^{1,2}$ 中的包含关系加在诸解之上的无穷远行为。在一个\trCriticalPoint（比如说 $x$）的邻域内，我们使用 $V$ 的一张\trMorseChart。在这张\trChart{}中，我们可以以标准的方式选取 $TV$ 的\trTrivialization，而\trDifferential{}方程 $L_{u}Y=0$ 就可以简单地写成
+\[ \frac{dY}{ds}=-AY\text{，} \]
+其中 $A$ 是一个常数矩阵，我们可以——而且我们也确实如此——假定它是对角的，于是方程组便是
+\[ \frac{dy_{i}}{ds}=-\lambda_{i}y_{i}\text{，}\qquad 1\le i\le n\text{，} \]
+而它的解形如
+\[ y_{i}(s)=y_{i}e^{-\lambda_{i}s}\text{。} \]
+显然，这样一个向量要在 $W^{1,2}(\RR;\RR^{n})$ 之中，它就必须在 $s\to-\infty$ 时趋于 $0$，而这唯有指数式地进行才行（在 $+\infty$ 处亦然）。
+
+对于我们在构造\trMorseComplex{}时所利用的函数 $f$ 与\trVectorField{} $X$ 的那些性质，让我们用算子 $L_{u}$ 的语言给出一种解释。
+
+\subsection{\trFredholm{}性质}
+\label{subsec:fredholm-property-lu}
+
+更确切地说，我们将证明下面的结果。
+
+\begin{proposition}\label{thm:lu-fredholm-gradient-trajectory}
+若 $u$ 是\trGradient{}的一条连接两个\trNondegenerate{}的\trCriticalPoint{} $x$ 与 $y$ 的\trTrajectory，那么算子 $L_{u}$ 是一个\trFredholmOperator。
+\end{proposition}
+
+我们须要证明：$L_{u}$ 的\trImage{}是 $L^{2}(\RR;\RR^{n})$ 的一个\trClosed{}子空间，并且它的\trKernel{}与\trCokernel{}都是有限维的。如同\cref{subsec:proof-prop-871}中那样，我们想要利用\cref{thm:semi-fredholm-kernel}，为此我们首先需要下面这个结果。
+
+\begin{proposition}\label{thm:lu-w12-estimate}
+对于充分大的 $T>0$，存在一个常数 $C$，使得对 $L_{u}Y=0$ 的每一个解，
+\[ \|Y\|_{W^{1,2}}\le C\bigl(\|L_{u}Y\|_{L^{2}}+\|Y\|_{L^{2}([-T,T])}\bigr)\text{。} \]
+\end{proposition}
+
+这将恰好给出\cref{thm:semi-fredholm-kernel}的条件，因为复合
+\[ W^{1,2}(\RR;\RR^{n})\subset L^{2}(\RR;\RR^{n})\longrightarrow L^{2}([-T,T];\RR^{n}) \]
+是\trCompact{}的。这条命题的证明依赖于下面两条引理。
+
+\begin{lemma}\label{thm:constant-b-inequality}
+设 $B$ 是一个\trInvertible{}的\trSymmetricMatrix。那么存在一个常数 $C_{1}>0$，使得每一个 $Y\in W^{1,2}(\RR;\RR^{n})$ 都满足不等式
+\[ \|Y\|_{W^{1,2}}\le C_{1}\Bigl\|\frac{dY}{ds}+BY\Bigr\|_{L^{2}}\text{。} \]
+\end{lemma}
+
+这条引理是\cref{thm:d-bijective-independent-s}在\trMorse{}理论中的类比。我们应用它时，取\trSymmetricMatrix{} $\operatorname{Hess}_{x}(f)$、$\operatorname{Hess}_{y}(f)$ 之一作为 $B$。由于\trCriticalPoint{} $x$ 与 $y$ 都是\trNondegenerate{}的，这两个矩阵都是\trInvertible{}的。由于这个性质在小的\trPerturbation{}之下显然是稳定的，我们便发现：若 $Y(s)$ 在 $-M\le s\le M$ 上为零，且 $M$ 充分大，那么\footnote{译注：原书下式左端印作 $\|Y\|_{W^{1,2}}$；按同一量在下文的证明中即印作 $\|Y\|_{W^{1,2}}^{2}$，且由 $\|Y\|_{W^{1,2}}^{2}=\int_{-\infty}^{+\infty}(\|Y\|^{2}+\|dY/ds\|^{2})\,ds$ 这一定义，积分与范数之间差一枚平方，疑漏平方，应为 $\|Y\|_{W^{1,2}}^{2}$，此处径改（该证明末的一式同此，并案径改）。——译者注}
+\[ \|Y\|_{W^{1,2}}^{2}=\int_{-\infty}^{+\infty}\Bigl(\|Y\|^{2}+\Bigl\|\frac{dY}{ds}\Bigr\|^{2}\Bigr)ds\le C_{2}\int_{-\infty}^{+\infty}\Bigl\|\frac{dY}{ds}+AY\Bigr\|^{2}ds\text{。} \]
+这些积分都是在 $]-\infty,-M]\cup[M,+\infty[$ 上计算的。如同\cref{subsec:proof-prop-871}中那样，$M$ 的选取使得 $A(s)$ 在 $s\le-M$ 时接近于 $\operatorname{Hess}_{x}(f)$，在 $s\ge M$ 时接近于 $\operatorname{Hess}_{y}(f)$。特别地，它不依赖于 $Y$。于是在第二条引理中，我们研究在\trBounded{}区间 $[-M,M]$ 上发生的事情。
+
+\begin{lemma}\label{thm:bounded-interval-inequality}
+存在一个常数 $C_{3}>0$，使得
+\[ \int_{-M}^{M}\Bigl(\|Y\|^{2}+\Bigl\|\frac{dY}{ds}\Bigr\|^{2}\Bigr)ds\le C_{3}\int_{-M}^{M}\Bigl(\|Y\|^{2}+\Bigl\|\frac{dY}{ds}+AY\Bigr\|^{2}\Bigr)ds\text{。} \]
+\end{lemma}
+
+接着，我们选取一个函数 $\beta$（仍如\cref{subsec:proof-prop-871}中那样），它在 $[-M,M]$ 上取值 $1$，在 $[-M-1,M+1]$ 之外取值 $0$。为了简化记号，我们令 $T=M+1$。由 $Y=\beta Y+(1-\beta)Y$，我们推出
+\[ \|Y\|_{W^{1,2}}\le\|\beta Y\|_{W^{1,2}}+\|(1-\beta)Y\|_{W^{1,2}}\text{。} \]
+接着，注意对每个函数 $\alpha$，
+\[ L_{u}(\alpha Y)=\frac{d\alpha}{ds}Y+\alpha L_{u}Y\text{。} \]
+
+于是我们便有：
+\begin{itemize}
+\item 函数 $(1-\beta)Y$ 在 $[-M,M]$ 上为零，从而满足
+\[
+\|(1-\beta)Y\|_{W^{1,2}}\le C_{2}\|L_{u}(1-\beta)Y\|_{L^{2}}
+\le C_{2}\Bigl(\Bigl\|\frac{d(1-\beta)}{ds}Y\Bigr\|_{L^{2}}+\|(1-\beta)L_{u}Y\|_{L^{2}}\Bigr)\text{。}
+\]
+\item 对 $\beta Y$——它在 $[-T,T]$ 之外为零——我们应用\cref{thm:bounded-interval-inequality}的不等式，得到
+\[
+\begin{aligned}
+\|\beta Y\|_{W^{1,2}}
+&\le C_{3}\bigl(\|\beta Y\|_{L^{2}}+\|L_{u}(\beta Y)\|_{L^{2}}\bigr)\\[4pt]
+&\le C_{3}\Bigl(\|\beta Y\|_{L^{2}}+\Bigl\|\frac{d\beta}{ds}Y\Bigr\|_{L^{2}}+\|\beta L_{u}Y\|_{L^{2}}\Bigr)\text{，}
+\end{aligned}
+\]
+从而
+\[
+\|Y\|_{W^{1,2}}\le C_{4}\Bigl(\|\beta Y\|_{L^{2}}+2\Bigl\|\frac{d\beta}{ds}Y\Bigr\|_{L^{2}}+\|\beta L_{u}Y\|_{L^{2}}+\|(1-\beta)L_{u}Y\|_{L^{2}}\Bigr)\text{。}
+\]
+\end{itemize}
+现在我们利用 $\beta$ 与 $d\beta/ds$ 在 $[-T,T]$ 之外为零这一事实，得到
+\[ \|\beta Y\|_{L^{2}}+2\Bigl\|\frac{d\beta}{ds}Y\Bigr\|_{L^{2}}\le K\|Y\|_{L^{2}[-T,T]} \]
+并且同样地
+\[
+\begin{aligned}
+&\|\beta L_{u}Y\|_{L^{2}}+\|(1-\beta)L_{u}Y\|_{L^{2}}\\
+&\le\Bigl(\int_{-\infty}^{-M}\|L_{u}Y\|^{2}\,ds\Bigr)^{1/2}+\Bigl(\int_{-T}^{T}\|L_{u}Y\|^{2}\,ds\Bigr)^{1/2}+\Bigl(\int_{M}^{+\infty}\|L_{u}Y\|^{2}\,ds\Bigr)^{1/2}\\[4pt]
+&\le 3\Bigl(\int_{-\infty}^{+\infty}\|L_{u}Y\|^{2}\,ds\Bigr)^{1/2}\text{。}
+\end{aligned}
+\]
+概括起来，我们发现：对充分大的 $T$，存在一个常数 $C_{5}$，使得
+\[ \|Y\|_{W^{1,2}}\le C_{5}\bigl(\|Y\|_{L^{2}[-T,T]}+\|L_{u}Y\|_{L^{2}}\bigr)\text{，} \]
+这正是我们所要证明的，因为它就是\cref{thm:lu-w12-estimate}的陈述——只差\cref{thm:constant-b-inequality}与\cref{thm:bounded-interval-inequality}的证明，这两条证明随即给出。
+
+\begin{proof}[\cref{thm:constant-b-inequality}的证明]
+我们令
+\[ Z=\frac{dY}{ds}+BY\text{。} \]
+我们想要证明：对某个常数 $C_{1}$，
+\[ \|Y\|_{W^{1,2}}\le C_{1}\|Z\|_{L^{2}} \]
+成立。因此，在矩阵 $B$ 为\trInvertible{}且对称的假设下，我们想要比较
+\[ \|Y\|_{W^{1,2}}^{2}=\int_{-\infty}^{+\infty}\Bigl(\|Y\|^{2}+\Bigl\|\frac{dY}{ds}\Bigr\|^{2}\Bigr)ds \]
+与
+\[ \Bigl\|\frac{dY}{ds}+BY\Bigr\|_{L^{2}}^{2}=\int_{-\infty}^{+\infty}\Bigl\|\frac{dY}{ds}+BY\Bigr\|^{2}ds\text{。} \]
+我们利用\trFourier{}变换
+\[ \widehat{Y}(v)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-ivs}Y(s)\,ds\text{。} \]
+对每个 $v\in\RR$，
+\[ \widehat{Z}(v)=(iv\cdot\mathrm{Id}+B)\cdot\widehat{Y}(v)\text{。} \]
+利用普朗歇雷尔公式，我们有
+\[ \|Z\|_{L^{2}}=\|\widehat{Z}\|_{L^{2}}=\bigl\|(iv\cdot\mathrm{Id}+B)\cdot\widehat{Y}(v)\bigr\|_{L^{2}}\text{。} \]
+我们回顾一下：$B$ 是对称且\trInvertible{}的。设 $V\in\RR^{n}$。我们把 $V$ 分解成 $B$ 的诸特征向量之和，便得到\footnote{译注：原书上式印作 $|\langle(iv\cdot\mathrm{Id}+B)\cdot V,V\rangle|\ge\sqrt{v^{2}+C_{0}^{2}}\ \|V\|^{2}$；当 $B$ 不定（\trEigenvalue{}有正有负）时此式并不成立——例如取 $B=\operatorname{diag}(1,-1)$、$v=0$、$V=(1,1)$，则左端为 $0$，右端为 $2$，从而随后的\trCauchy--\trSchwarz{}不等式一步亦失去前提。好在下一式的结论无恙：把 $V$ 按 $B$ 的\trOrthonormal{}特征基展开为 $V=\sum_{j}V_{j}e_{j}$（$\lambda_{j}$ 为相应的\trEigenvalue，$C_{0}=\min_{j}|\lambda_{j}|$），直接计算即得 $\|(iv\cdot\mathrm{Id}+B)V\|^{2}=\sum_{j}(v^{2}+\lambda_{j}^{2})\,|V_{j}|^{2}\ge(v^{2}+C_{0}^{2})\|V\|^{2}$，此即下一式，其后的推理照旧（这里的 $V$ 宜取 $\CC^{n}$——Fourier 变换的取值所在，按酉基作同样的计算即可）。此处照原书排印，载此更正。——译者注}
+\[ \bigl|\bigl\langle(iv\cdot\mathrm{Id}+B)\cdot V,V\bigr\rangle\bigr|\ge\sqrt{v^{2}+C_{0}^{2}}\ \|V\|^{2}\text{，} \]
+其中 $C_{0}>0$ 是 $B$ 的诸\trEigenvalue{}的绝对值的最小值。利用\trCauchy--\trSchwarz{}不等式，这就蕴含
+\[ \bigl\|(iv\cdot\mathrm{Id}+B)\cdot V\bigr\|\ge\sqrt{C_{0}^{2}+v^{2}}\ \|V\|\ge\sqrt{\frac{1}{C_{1}}\bigl(1+v^{2}\bigr)}\ \|V\|\text{，} \]
+其中 $C_{1}=\max(1,1/C_{0}^{2})$。令 $V=\widehat{Y}(v)$，并对左端的平方作积分，我们便得到
+\[
+\begin{aligned}
+\|Z\|_{L^{2}}^{2}=\|\widehat{Z}\|_{L^{2}}^{2}
+&\ge\frac{1}{C_{1}}\int_{\RR}\Bigl(\|\widehat{Y}(v)\|^{2}+v^{2}\|\widehat{Y}(v)\|^{2}\Bigr)dv\\[4pt]
+&=\frac{1}{C_{1}}\int_{\RR}\Bigl(\|Y(s)\|^{2}+\Bigl\|\frac{\partial Y}{\partial s}\Bigr\|^{2}\Bigr)ds
+=\frac{1}{C_{1}}\|Y\|_{W^{1,2}}^{2}\text{，}
+\end{aligned}
+\]
+这仍然是利用普朗歇雷尔公式。\footnote{译注：原书此式最末一项印作 $\frac{1}{C_{1}}\|Y\|_{W^{1,2}}$；按等号前的积分（即 $\|Y\|_{W^{1,2}}^{2}$ 的定义），疑漏一枚平方，应为 $\frac{1}{C_{1}}\|Y\|_{W^{1,2}}^{2}$，此处径改（与本节前文已注的那一处并案）。——译者注}
+\end{proof}
+
+\begin{proof}[\cref{thm:bounded-interval-inequality}的证明]
+让我们对积分
+\[ \int_{-M}^{M}\|L_{u}Y\|^{2}\,ds \]
+给出一个下界。把 $\|u+2v\|^{2}\ge 0$ 展开，便给出不等式
+\[ \|u+v\|^{2}\ge\frac{1}{2}\|u\|^{2}-\|v\|^{2} \]
+以及下界
+\[
+\begin{aligned}
+\int_{-M}^{M}\|L_{u}Y\|^{2}\,ds
+=\int_{-M}^{M}\Bigl\|\frac{dY}{ds}+AY\Bigr\|^{2}ds
+&\ge\int_{-M}^{M}\Bigl(\frac{1}{2}\Bigl\|\frac{dY}{ds}\Bigr\|^{2}-\|AY\|^{2}\Bigr)ds\\[4pt]
+&\ge\frac{1}{2}\int_{-M}^{M}\Bigl\|\frac{dY}{ds}\Bigr\|^{2}ds-C\int_{-M}^{M}\|Y\|^{2}\,ds\text{，}
+\end{aligned}
+\]
+最后便得
+\[ \frac{1}{2}\int_{-M}^{M}\Bigl\|\frac{dY}{ds}\Bigr\|^{2}ds\le C\int_{-M}^{M}\|Y\|^{2}\,ds+\int_{-M}^{M}\|L_{u}Y\|^{2}\,ds\text{，} \]
+这就给出了所要的上界。
+\end{proof}
+
+现在我们知道（由\cref{thm:semi-fredholm-kernel}）：$L_{u}$ 具有有限维的\trKernel{}与闭的\trImage。为了结束 $L_{u}$ 是\trFredholmOperator{}这一证明，我们还须确定它的\trCokernel。
+
+\begin{lemma}\label{thm:cokernel-adjoint-kernel}
+$L_{u}$ 的\trCokernel{}是算子
+\[ L_{u}^{\star}\colon W^{1,2}(\RR;\RR^{n})\longrightarrow L^{2}(\RR;\RR^{n}) \]
+的\trKernel，这个算子由
+\[ L_{u}^{\star}Z=-\frac{dZ}{ds}+A^{\star}Z \]
+所定义（其中 $A^{\star}$ 是 $A$ 的转置）。\footnote{译注：原书本条首句印作“the cokernel of $u$”；按紧随其后的证明首句即作“the cokernel of $L_{u}$”，疑漏算子记号 $L$，应为“$L_{u}$ 的\trCokernel”，此处径改。——译者注}
+\end{lemma}
+
+\begin{proof}
+$L_{u}$ 的\trCokernel{}是
+\[ \Bigl\{Z\in L^{2}(\RR;\RR^{n})\ \Bigm|\ \int_{-\infty}^{+\infty}\langle L_{u}Y,Z\rangle\,ds=0\ \text{对每个 } Y\in W^{1,2}(\RR;\RR^{n})\Bigr\}\text{。} \]
+设 $L_{u}^{\star}$ 是引理中所定义的算子。我们有
+\[
+\begin{aligned}
+\int_{-\infty}^{+\infty}\langle L_{u}(Y),Z\rangle\,ds
+&=\int_{-\infty}^{+\infty}\Bigl\langle\frac{dY}{ds},Z\Bigr\rangle ds+\int_{-\infty}^{+\infty}\langle AY,Z\rangle\,ds\\[4pt]
+&=-\int_{-\infty}^{+\infty}\Bigl\langle\frac{dZ}{ds},Y\Bigr\rangle ds+\int_{-\infty}^{+\infty}\langle A^{\star}Z,Y\rangle\,ds\text{。}
+\end{aligned}
+\]
+若 $Z\in\operatorname{Coker}L_{u}$，那么按\trDistribution{}的意义 $L_{u}^{\star}Z=0$；于是由 $L_{u}^{\star}$ 的定义，$dZ/ds$ 属于 $L^{2}$，从而 $Z\in W^{1,2}$ 且 $Z\in\operatorname{Ker}L_{u}^{\star}$。因此 $\operatorname{Coker}L_{u}=\operatorname{Ker}L_{u}^{\star}$（反方向的包含是显然的）。
+\end{proof}
+
+$L_{u}^{\star}$ 的\trKernel{}是有限维的，正如 $L_{u}$ 的\trKernel{}一样——由关于线性\trDifferential{}方程的同一条定理。因此，对 $L_{u}$ 的\trCokernel{}也有同样的结论。这就结束了\footnote{译注：原书此处印作 $L_{u}$；按文意，连接两个\trNondegenerate{}的\trCriticalPoint{}的是\trTrajectory{} $u$ 而非算子 $L_{u}$，疑多印一处记号 $L$，此处径改。——译者注}“当 $u$ 连接两个\trNondegenerate{}的\trCriticalPoint{}时，$L_{u}$ 是一个\trFredholmOperator”的证明，也就是说，结束了\cref{thm:lu-fredholm-gradient-trajectory}的证明。
+
+\begin{corollary}\label{thm:lu-fredholm-morse}
+若 $f$ 是一个\trMorseFunction，那么对每一条\trTrajectory{} $u$，算子 $L_{u}$ 都是一个\trFredholmOperator。
+\end{corollary}
+\noqed
+
+\subsection{\trIndex{}的计算}
+\label{subsec:index-computation-lu}
+
+现在让我们来计算这个算子的\trIndex。
+
+\begin{proposition}\label{thm:lu-index-morse-difference}
+\trFredholmOperator{} $L_{u}$ 的\trIndex{}是
+\[ \operatorname{Ind}(x)-\operatorname{Ind}(y)\text{。} \]
+\end{proposition}
+
+\begin{proof}
+我们已经指出过：$W^{1,2}$ 中 $L_{u}Y=0$ 的诸解在 $s\to\pm\infty$ 时指数式地趋于 $0$。若 $\sigma$ 与 $s$ 是两个实数，则设
+\[
+\begin{array}{c}
+\Phi_{(\sigma,s)}\colon T_{u(\sigma)}V\longrightarrow T_{u(s)}V
+\end{array}
+\]
+为这条线性\trDifferential{}方程的\textbf{\trResolvent}（resolvent），也就是说，它是把一个向量 $\widetilde{Y}\in T_{u(\sigma)}V$ 送到在 $\sigma$ 处取值 $\widetilde{Y}$ 的那个唯一解在 $s$ 处的值的映射。令
+\[ E^{u}(\sigma)=\Bigl\{\widetilde{Y}\in T_{u(\sigma)}V\ \Bigm|\ \lim_{s\to-\infty}\Phi_{(\sigma,s)}\widetilde{Y}=0\Bigr\} \]
+并且同样地
+\[ E^{s}(\sigma)=\Bigl\{\widetilde{Y}\in T_{u(\sigma)}V\ \Bigm|\ \lim_{s\to+\infty}\Phi_{(\sigma,s)}\widetilde{Y}=0\Bigr\}\text{。} \]
+这些空间正是 $x$ 与 $y$ 的\trUnstableManifold{}与\trStableManifold{}在 $u(\sigma)$ 处的\trTangentSpace，
+\[ E^{u}(\sigma)=T_{u(\sigma)}W^{u}(x) \qquad\text{与}\qquad E^{s}(\sigma)=T_{u(\sigma)}W^{s}(y)\text{。} \]
+若 $\widetilde{Y}\in E^{u}(\sigma)\cap E^{s}(\sigma)$，那么在 $\sigma$ 处取值 $\widetilde{Y}$ 的解 $Y(s)$ 就属于 $W^{1,2}(\RR;\RR^{n})$，反之亦然，于是
+\[ \forall\sigma\in\RR\text{，}\quad \operatorname{Ker}L_{u}\cong E^{u}(\sigma)\cap E^{s}(\sigma)\text{。} \]
+我们于是有
+\[ \operatorname{Ker}L_{u}\cong T_{u(\sigma)}W^{u}(x)\cap T_{u(\sigma)}W^{s}(y)\text{。} \]
+我们还须确定 $L_{u}^{\star}$ 的\trKernel。令
+\[ \Psi_{(\sigma,s)}=\Phi_{(s,\sigma)}^{\star}\colon T_{u(\sigma)}V\longrightarrow T_{u(s)}V\text{。} \]
+让我们证明这个映射就是 $L_{u}^{\star}$ 的\trResolvent。我们选取一个 $Z_{0}\in\RR^{n}$，并令 $Z_{0}(s)=\Psi_{(\sigma,s)}Z_{0}$。注意，由于 $\Psi_{(\sigma,\sigma)}=\mathrm{Id}$，我们有 $Z_{0}(\sigma)=Z_{0}$。我们再选取一个 $Y_{0}\in\RR^{n}$。按 $\Psi_{(\sigma,s)}$ 的定义，
+\[ \langle\Psi_{(\sigma,s)}Z_{0},\Phi_{(\sigma,s)}Y_{0}\rangle=\langle Z_{0},Y_{0}\rangle\text{。} \]
+把这个恒等式对 $s$ 求导，便给出
+\[ 0=\Bigl\langle\frac{dZ_{0}}{ds},\Phi_{(\sigma,s)}Y_{0}\Bigr\rangle+\Bigl\langle\Psi_{(\sigma,s)}Z_{0},\frac{dY_{0}}{ds}\Bigr\rangle\text{。} \]
+由于\trVectorField{} $Y_{0}(s)=\Phi_{(\sigma,s)}Y_{0}$ 是 $L_{u}Y_{0}=0$ 的一个解，从而 $\frac{dY_{0}}{ds}(s)=-AY_{0}(s)$，\footnote{译注：原书此处印作 $Y_{0}(s)/ds=-AY_{0}(s)$；按通常的求导记号，疑漏求导符号 $d$，应为 $\frac{dY_{0}}{ds}(s)=-AY_{0}(s)$，此处径改。——译者注}这个等式就变成
+\[ \Bigl\langle\frac{dZ_{0}}{ds},Y_{0}(s)\Bigr\rangle-\langle Z_{0}(s),AY_{0}(s)\rangle=0\text{，} \]
+也就是说，
+\[ \Bigl\langle\frac{dZ_{0}}{ds}-A^{\star}Z_{0}(s),Y_{0}(s)\Bigr\rangle=0\text{。} \]
+由于我们可以取任一切向量作为 $Y_{0}$，我们便证明了 $Z_{0}(\sigma)=Z_{0}$ 且 $L_{u}^{\star}Z_{0}=0$；换句话说，$\Psi_{(\sigma,s)}$ 是 $L_{u}^{\star}$ 的\trResolvent。
+
+这个计算还表明：若 $Z(s)$ 是 $L_{u}^{\star}Z=0$ 的一个解，那么 $\lim_{s\to-\infty}Z(s)=0$ 当且仅当 $Z(\sigma)\perp E^{u}(\sigma)$；同样地，$\lim_{s\to+\infty}Z(s)=0$ 当且仅当 $Z(\sigma)\perp E^{s}(\sigma)$。于是我们已经证明
+\[ \operatorname{Ker}L_{u}^{\star}=\bigl(T_{u(\sigma)}W^{u}(x)+T_{u(\sigma)}W^{s}(y)\bigr)^{\perp}\text{。} \]
+由于 $\dim T_{u(\sigma)}W^{u}(x)=\operatorname{Ind}(x)$，$\dim T_{u(\sigma)}W^{s}(y)=n-\operatorname{Ind}(y)$，我们便得到
+\[
+\begin{aligned}
+\dim\operatorname{Ker}L_{u}
+&=\dim\, T_{u(\sigma)}W^{u}(x)\cap T_{u(\sigma)}W^{s}(y)\\
+&=\dim W^{u}(x)+\dim W^{s}(y)-\dim\bigl(T_{u(\sigma)}W^{u}(x)+T_{u(\sigma)}W^{s}(y)\bigr)\text{，}\\[4pt]
+\dim\operatorname{Ker}L_{u}^{\star}
+&=\dim\bigl(T_{u(\sigma)}W^{u}(x)+T_{u(\sigma)}W^{s}(y)\bigr)^{\perp}\\
+&=n-\dim\bigl(T_{u(\sigma)}W^{u}(x)+T_{u(\sigma)}W^{s}(y)\bigr)\text{，}\\[4pt]
+\operatorname{Ind}(L_{u})
+&=\dim W^{u}(x)+\dim W^{s}(y)-n\\
+&=\operatorname{Ind}(x)+n-\operatorname{Ind}(y)-n\\
+&=\operatorname{Ind}(x)-\operatorname{Ind}(y)\text{，}
+\end{aligned}
+\]
+这正是所要证明的。
+\end{proof}
+
+计算这个算子的\trIndex{}的另一种方法，可以在\cref{ex:ch14-046-fredholm-index}中找到。
+
+\subsection{\trSmaleCondition}
+\label{subsec:smale-condition-morse}
+
+我们现在将证明：\trVectorField{} $X$ 满足\trSmaleCondition{}当且仅当诸 $L_{u}$ 都是\trSurjective{}的；换句话说，我们将证明\cref{thm:smale-iff-lu-surjective}。
+
+\begin{remark}\label{thm:metric-dependence-smale}
+若 $X$ 是 $f$ 对于某个\trMetric{} $g$ 的\trGradient，那么这条条件当然是关于那个\trMetric{}的。
+\end{remark}
+
+\begin{proof}[\cref{thm:smale-iff-lu-surjective}的证明]
+这是上面所给计算的一个推论。说 $L_{u}$ 是\trSurjective{}的，就是说它的\trCokernel{}约简为 $0$；换句话说，就是说 $L_{u}^{\star}$ 是\trInjective{}的，或者就是说
+\[ T_{u(\sigma)}W^{u}(x)+T_{u(\sigma)}W^{s}(y)=T_{u(\sigma)}V\text{。} \]
+后者正是\trStableManifold{}与\trUnstableManifold{}的\trTransversality{}条件，我们要它对一切\trCriticalPoint{} $x$ 与 $y$ 都成立。
+\end{proof}
+
+我们其实也可以在这个框架下展开\trMorseComplex{}的理论（参见 [65, 68]）。
+
+
+

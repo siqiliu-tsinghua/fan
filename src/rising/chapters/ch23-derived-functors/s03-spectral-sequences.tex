@@ -1,0 +1,174 @@
+
+\section{导出函子与谱序列}
+
+不少有用的事实都可以用\trSpectralSequence{}轻松证明。做完这些练习，你就会在对类似情形动用谱序列论证时不再有任何恐惧，因为你将意识到：它们全都是同一回事。
+
+在你阅读本节之前，你应当先读一下讲\trSpectralSequence{}的 \S1.6。
+
+\textbf{23.3.1. $\mathrm{Tor}$ 的对称性。}\quad
+
+\textbf{23.3.A.（练习：$\mathrm{Tor}$ 的对称性）}\quad 证明：存在一个同构 $\mathrm{Tor}^A_1(M,N)\overset{\sim}{\longrightarrow}\mathrm{Tor}^A_1(N,M)$。（提示：取 $M$ 的一个自由分解与 $N$ 的一个自由分解。把二者的「乘积」以某种方式做成一个\trDoubleComplex。把这个明显的\trSpectralSequence{}的两个朝向都用上，看看你会得到什么。）
+
+顺带说一句相关的事：
+
+\textbf{23.3.B.（练习）}\quad 证明：\mbox{练习~23.2.D} 与\mbox{练习~23.2.E} 中给出的 $\mathrm{Ext}^1(M,N)$ 的两个定义是一致的。
+
+\textbf{23.3.2. 导出函子可以用零调分解来计算。}\quad 设 $F\colon\mathscr{A}\to\mathscr{B}$ 是\trAbelianCategory{}之间的一个\trRightExact{}加性函子，并且 $\mathscr{A}$ 有足够多\trProjectiveObj{}对象。我们称 $A\in\mathscr{A}$ 是 \textbf{$F$-\trAcyclic}的（或当 $F$ 在上下文中清楚时简称\textbf{\trAcyclic}的），如果对 $i>0$ 有 $\mathrm{L}_iF\,A=0$。在\mbox{练习~23.3.D} 中我们将看到，$\mathscr{A}$ 的对象 $B$ 的导出函子 $\mathrm{L}_iF\,B$ 可以用「零调分解」来计算。我们先用一个有用的构造搭好舞台。
+
+\textbf{23.3.3.}\ \emph{为一个正合序列构造「\trProjectiveObj{}分解」。}\quad 设 $\cdots\to E_2\to E_1\to E_0\to 0$ 是某个带足够多\trProjectiveObj{}对象的\trAbelianCategory{}中的一个正合序列。我们来解释如何归纳地造出一个由\trProjectiveObj{}对象构成的\trDoubleComplex
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=1.9em]
+ & \vdots \ar[d] & \vdots \ar[d] & \vdots \ar[d] & \\
+\cdots \ar[r] & P_{2,1} \ar[r] \ar[d] & P_{1,1} \ar[r] \ar[d] & P_{0,1} \ar[r] \ar[d] & 0 \\
+\cdots \ar[r] & P_{2,0} \ar[r] \ar[d] & P_{1,0} \ar[r] \ar[d] & P_{0,0} \ar[r] \ar[d] & 0 \\
+\cdots \ar[r] & E_2 \ar[r] \ar[d] & E_1 \ar[r] \ar[d] & E_0 \ar[r] \ar[d] & 0 \\
+ & 0 & 0 & 0 &
+\end{tikzcd}
+\]
+使得各行与各列都正合。假设你已经造好了这个\trComplexN{}的一部分，正打算造出 $P_{m,n}$ 这一项：
+\begin{equation*}\tag{23.3.3.1}\label{eq:pp-lifting}
+\begin{tikzcd}[row sep=2.2em, column sep=2.4em]
+? \ar[r] & P_{m-1,n} \ar[r] \ar[d] & P_{m-2,n} \ar[d] \\
+P_{m,n-1} \ar[r] \ar[d] & P_{m-1,n-1} \ar[r] \ar[d] & P_{m-2,n-1} \\
+P_{m,n-2} \ar[r] & P_{m-1,n-2} &
+\end{tikzcd}
+\end{equation*}
+出于一些很快就会明朗的理由，我们假设：对任意 $b\in P_{m-1,n-1}$，只要它在 $P_{m-1,n-2}$ 与 $P_{m-2,n-1}$ 中的像都为零，就存在 $c\in P_{m,n-1}$，它在 $P_{m-1,n-1}$ 中的像为 $b$，而在 $P_{m,n-2}$ 中的像为零；并且对称地，存在 $c'\in P_{m-1,n}$，它在 $P_{m-1,n-1}$ 中的像为 $b$，而在 $P_{m-2,n}$ 中的像为零。
+
+考虑
+\[
+K:=\ker\bigl(P_{m,n-1}\oplus P_{m-1,n}\to P_{m,n-2}\oplus P_{m-1,n-1}\oplus P_{m-2,n}\bigr).
+\]
+若 $K$ 满射到 $\ker(P_{m-1,n}\to P_{m-2,n})$ 与 $\ker(P_{m,n-1}\to P_{m,n-2})$ 二者之上，那么我们就可以取从\trProjectiveObj{}对象 $P\twoheadrightarrow K$ 出发的任意满态射，然后取 $P_{m,n}$ 为 $P$（配备其到 $P_{m,n-1}$ 的映射，以及其到 $P_{m-1,n}$ 的映射之负）。这样一来，我们就同时保证了 $P_{m-1,n}$ 处的「水平正合性」、$P_{m,n-1}$ 处的「竖直正合性」，以及 (23.3.3.1) 中方块的交换性。
+
+我们现在用「追图」（这是合法的，见 \S1.5.5）来验证这两个想要的满态射。设 $a\in\ker(P_{m-1,n}\to P_{m-2,n})$，并设 $b$ 是它在 $P_{m-1,n-1}$ 中的像。我们希望找到 $c\in\ker(P_{m,n-1}\to P_{m,n-2})$，使得 $c$ 在 $P_{m-1,n-1}$ 中映到 $b$，而在 $P_{m,n-2}$ 中映到 $0$。（那么 $(-c,a)\in P_{m,n-1}\oplus P_{m-1,n}$ 就会是我们想要的、在 $P_{m-1,n}$ 中映到 $a$ 的那个 $K$ 的元素。）但这样的 $c$ 依我们的假设是存在的\footnote{原书此处作「exits」，当为「exists」之误，径改。——译者注}！对称地，我们便得到满态射 $K\twoheadrightarrow\ker(P_{m,n-1}\to P_{m,n-2})$。
+
+最后一项任务，是保证这些假设在我们随后建造\trDoubleComplex{}的各阶段依然成立。我们需要保证：对任意 $b'\in P_{m-1,n}$，只要它映到 $(0,0)\in P_{m-1,n-1}\oplus P_{m-2,n}$，就有 $P_{m,n}$ 的一个元素映到 $(0,b')\in P_{m,n-1}\oplus P_{m-1,n}$。并且我们必须保证把 $m$ 与 $n$ 的角色互换后的类似陈述。我们取 $Q'=\ker(P_{m-1,n}\to P_{m-1,n-1}\oplus P_{m-2,n})$，取 $Q''=\ker(P_{m,n-1}\to P_{m,n-2}\oplus P_{m-1,n-1})$，并取（从\trProjectiveObj{}对象出发的）满态射 $P'\twoheadrightarrow Q'$ 与 $P''\twoheadrightarrow Q''$。然后取 $P_{m,n}$ 为 $P'\oplus P''$，其中从 $P'$ 出发的映射如下：$P'$ 到 $P_{m-1,n}$ 的映射是上面描述的那个映射（经由 $Q'$）；$P'$ 到 $P_{m,n-1}$ 的映射为零；而对 $P''$ 则相反（到 $P_{m,n-1}$ 的映射为零，而到 $P_{m-1,n}$ 的映射如上经由 $Q''$ 所蕴含）。和项 $P'$ 保证我们的第一条想要成立的假设，和项 $P''$ 保证第二条。
+
+\textbf{23.3.C.（练习）}\quad 验证：上述构造确实给出一个正合序列的\trProjectiveObj{}分解。你是在哪里用到了「序列 $E_\bullet$ 正合」这一点的？
+
+现在，让我们来应用它。
+
+\textbf{23.3.D.（练习）}\quad 证明：你可以用\textbf{零调分解}（acyclic resolutions，而不仅仅是\trProjectiveObj{}分解）来计算 $\mathscr{A}$ 的对象 $B$ 的导出函子，也就是说，取一个由\trAcyclic{}对象构成的分解
+\[
+\tag{23.3.3.2}\label{eq:acyclic-resolution}
+\cdots \longrightarrow A_2 \longrightarrow A_1 \longrightarrow A_0 \longrightarrow B \longrightarrow 0
+\]
+截断，作用 $F$，然后取\trHomology。从而，$\mathrm{Tor}_i(M,N)$ 可以用 $M$ 或 $N$ 的一个平坦分解来计算。提示：如上所述，在正合序列 \eqref{eq:acyclic-resolution} 「上方」造一个由\trProjectiveObj{}对象构成的\trDoubleComplex。去掉最底下一行与最右边非零的一列，然后把 $F$ 作用上去，得到一个新的\trDoubleComplex。用\trSpectralSequence{}论证证明：(i) 该\trDoubleComplex{}的\trHomology{}等于 $\mathrm{L}_iF(B)$；(ii) 该\trDoubleComplex{}的\trHomology{}与练习题面所给的构造相一致。如果这让你晕头转向，请阅读下方关于\trCartan--\trEilenberg{}分解的更多内容。
+
+\textbf{23.3.4. \trGrothendieck 函子复合谱序列。}\quad 设 $\mathscr{A}$、$\mathscr{B}$ 与 $\mathscr{C}$ 是\trAbelianCategory，$F\colon\mathscr{A}\to\mathscr{B}$ 与 $G\colon\mathscr{B}\to\mathscr{C}$ 是\trLeftExact{}加性协变函子，并且 $\mathscr{A}$ 与 $\mathscr{B}$ 有足够多内射对象。于是，$F$、$G$ 与 $G\circ F$ 的右导出函子都存在。一个合理的问题是：它们之间有何关系？
+
+\textbf{23.3.5. \trhTheorem（\trGrothendieck 函子复合谱序列）。}\ ——\ \emph{设 $F\colon\mathscr{A}\to\mathscr{B}$ 与 $G\colon\mathscr{B}\to\mathscr{C}$ 是\trLeftExact{}加性协变函子，且 $\mathscr{A}$ 与 $\mathscr{B}$ 有足够多内射对象。再设 $F$ 把 $\mathscr{A}$ 的内射对象送到 $\mathscr{B}$ 的 $G$-\trAcyclic{}对象。则对每个 $X\in\mathscr{A}$，都存在一个\trSpectralSequence，满足 $\Eto{p,q}{2}=\mathrm{R}^q\mathrm{G}(\mathrm{R}^p\mathrm{F}(X))$，抵达 $\mathrm{R}^\bullet(\mathrm{G}\circ\mathrm{F})(X)$。}
+
+我们很快就会看到勒雷\trSpectralSequence{}作为一个应用（\mbox{定理~23.4.5}）。
+
+从\mbox{定理~23.3.5} 的证明中还有一些东西值得榨取。例如，尽管谱序列的 $E_0$ 页将依赖于若干（内射分解的）选择，$E_2$ 页却将与选择无关。对我们的应用而言，我们并不需要这种加细。
+
+建立\mbox{定理~23.3.5} 是要下一番功夫的，因此其证明在头一遍阅读时或许最好跳过。
+
+\textbf{23.3.6.}\ \hard\ \textbf{证明\mbox{定理~23.3.5}。}\quad 在给出证明（\S23.3.8）之前，我们先做些准备工作来为之提供动机。为了讨论作用在 $X$ 上的导出函子，我们选取 $X$ 的一个内射分解：
+\[
+0 \longrightarrow X \longrightarrow I^0 \longrightarrow I^1 \longrightarrow \cdots.
+\]
+为了计算导出函子 $\mathrm{R}^p\mathrm{F}(X)$，我们把 $F$ 作用到内射分解 $I^\bullet$ 上：
+\[
+0 \longrightarrow F(I^0) \longrightarrow F(I^1) \longrightarrow F(I^2) \longrightarrow \cdots.
+\]
+注意，依\mbox{定理~23.3.5} 的假设，$F(I^\bullet)$ 是 $G$-\trAcyclic{}的。如果我们顺着自己的鼻子走，或许会对上面这个\trComplexN{} $F(I^\bullet)$ 的诸项取「同时」内射分解 $I^{\bullet,\bullet}$（\S23.3.3 的「对偶」——注意只有各列被要求正合），然后作用 $G$，并审视所得到的\trDoubleComplex：
+\begin{equation*}\tag{23.3.6.1}\label{eq:ce-double}
+\begin{tikzcd}[row sep=2.2em, column sep=2em]
+ & \vdots & \vdots & \vdots & \\
+0 \ar[r] & G(I^{0,2}) \ar[r] \ar[u] & G(I^{1,2}) \ar[r] \ar[u] & G(I^{2,2}) \ar[r] \ar[u] & \cdots \\
+0 \ar[r] & G(I^{0,1}) \ar[r] \ar[u] & G(I^{1,1}) \ar[r] \ar[u] & G(I^{2,1}) \ar[r] \ar[u] & \cdots \\
+0 \ar[r] & G(I^{0,0}) \ar[r] \ar[u] & G(I^{1,0}) \ar[r] \ar[u] & G(I^{2,0}) \ar[r] \ar[u] & \cdots \\
+ & 0 \ar[u] & 0 \ar[u] & 0. \ar[u] &
+\end{tikzcd}
+\end{equation*}
+
+\textbf{23.3.E.（练习）}\quad 考虑带上行\trOrientation{}、以 \eqref{eq:ce-double} 为 $E_0$ \trPage{}的\trSpectralSequence。证明：$E_2^{p,q}$ 在 $q=0$ 时为 $\mathrm{R}^p(\mathrm{G}\circ\mathrm{F})(X)$，否则为 $0$。
+
+我们现在看到了\mbox{定理~23.3.5} 结论中一半的项；我们已经走到了半途。为了完成证明，我们还想考虑另一个带右行\trOrientation{}的谱序列，但我们需要对 \eqref{eq:ce-double} 知道得更多；我们将更细心地把它造出来。
+
+\textbf{23.3.7.}\ \emph{\trCartan--\trEilenberg{}分解。}\quad 设 $\cdots\to C^{p-1}\to C^p\to C^{p+1}\to\cdots$ 是\trAbelianCategory{} $\mathscr{B}$ 中的一个\trComplexN。我们将为 $C^\bullet$ 造一个内射分解
+\begin{equation*}\tag{23.3.7.1}\label{eq:ce-resolution}
+\begin{tikzcd}[row sep=2em, column sep=1.8em]
+ & \vdots & \vdots & \vdots & \\
+0 \ar[r] & I^{0,2} \ar[r] \ar[u] & I^{1,2} \ar[r] \ar[u] & I^{2,2} \ar[r] \ar[u] & \cdots \\
+0 \ar[r] & I^{0,1} \ar[r] \ar[u] & I^{1,1} \ar[r] \ar[u] & I^{2,1} \ar[r] \ar[u] & \cdots \\
+0 \ar[r] & I^{0,0} \ar[r] \ar[u] & I^{1,0} \ar[r] \ar[u] & I^{2,0} \ar[r] \ar[u] & \cdots \\
+0 \ar[r] & C^0 \ar[r] \ar[u] & C^1 \ar[r] \ar[u] & C^2 \ar[r] \ar[u] & \cdots \\
+ & 0 \ar[u] & 0 \ar[u] & 0 \ar[u] &
+\end{tikzcd}
+\end{equation*}
+并满足一些进一步的性质。
+
+我们先为\trComplexN{}上的若干函数定义一些记号。
+\begin{itemize}
+\item 置 $\mathrm{Z}^p(K^\bullet)$ 为\trComplexN{} $K^\bullet$ 的第 $p$ 个微分之\trKernel。
+\item 置 $\mathrm{B}^{p+1}(K^\bullet)$ 为\trComplexN{} $K^\bullet$ 的第 $p$ 个微分之像。（上标如此选取，使得 $\mathrm{B}^{p+1}(K^\bullet)\subset\mathrm{Z}^{p+1}$\footnote{原书此处作「$\mathrm{B}^{p+1}(K^\bullet)\subset\mathrm{K}^{p+1}$」，当为「$\mathrm{Z}^{p+1}$」之误（$\mathrm{B}^{p+1}$ 含于 $\mathrm{K}^{p+1}$ 系平凡事实，此括注意在说明上标的选取使诸边缘落入诸循环），径改。——译者注}。）
+\item 照例，置 $\mathrm{H}^p(K^\bullet)$ 为\trComplexN{} $K^\bullet$ 在第 $p$ 步处的\trCohomology。
+\end{itemize}
+对每个 $p$，我们都有\trComplexes
+\begin{equation*}\tag{23.3.7.2}\label{eq:ce-three}
+\begin{tikzcd}[row sep=1.9em, column sep=1.6em]
+ & \vdots & \vdots & \vdots & \\
+ & \mathrm{Z}^p(I^{\bullet,1}) \ar[u] & \mathrm{B}^p(I^{\bullet,1}) \ar[u] & \mathrm{H}^p(I^{\bullet,1}) \ar[u] & \\
+ & \mathrm{Z}^p(I^{\bullet,0}) \ar[u] & \mathrm{B}^p(I^{\bullet,0}) \ar[u] & \mathrm{H}^p(I^{\bullet,0}) \ar[u] & \\
+ & \mathrm{Z}^p(C^\bullet) \ar[u] & \mathrm{B}^p(C^\bullet) \ar[u] & \mathrm{H}^p(C^\bullet) \ar[u] & \\
+ & 0 \ar[u] & 0 \ar[u] & 0. \ar[u] &
+\end{tikzcd}
+\end{equation*}
+我们将这样构造 \eqref{eq:ce-resolution}，使得 (23.3.7.2) 的三个\trComplexes{}都是内射分解（就其首个非零项而言）。我们先把 $\mathrm{B}^p(C^\bullet)$ 的内射分解 $\mathrm{B}^{p,\ast}$ 与 $\mathrm{H}^p(C^\bullet)$ 的内射分解 $\mathrm{H}^{p,\ast}$ 选取好；它们最终将成为 (23.3.7.2) 的最后两行。
+
+\textbf{23.3.F.（练习）}\quad 请描述 $\mathrm{Z}^p(C^\bullet)$ 的一个内射分解 $\mathrm{Z}^{p,\ast}$（即 (23.3.7.2) 的第一行），使得下图成为\trComplexes{}的一个\trShortExactSequence。
+\begin{equation*}\tag{23.3.7.3}\label{eq:ce-bzh-diagram}
+\begin{tikzcd}[row sep=2em, column sep=1.8em]
+ & \vdots & \vdots & \vdots & \\
+0 \ar[r] & \mathrm{B}^{p,1} \ar[r] \ar[u] & \mathrm{Z}^{p,1} \ar[r] \ar[u] & \mathrm{H}^{p,1} \ar[r] \ar[u] & 0 \\
+0 \ar[r] & \mathrm{B}^{p,0} \ar[r] \ar[u] & \mathrm{Z}^{p,0} \ar[r] \ar[u] & \mathrm{H}^{p,0} \ar[r] \ar[u] & 0 \\
+0 \ar[r] & \mathrm{B}^p(C^\bullet) \ar[r] \ar[u] & \mathrm{Z}^p(C^\bullet) \ar[r] \ar[u] & \mathrm{H}^p(C^\bullet) \ar[r] \ar[u] & 0 \\
+ & 0 \ar[u] & 0 \ar[u] & 0 \ar[u] &
+\end{tikzcd}
+\end{equation*}
+提示：「对偶」的问题已在 \eqref{eq:tor-horseshoe} 中以「马蹄构造」解决了。
+
+\textbf{23.3.G.（练习）}\quad 请描述 $C^p$ 的一个内射分解 $\mathrm{I}^{p,\ast}$，使得下图成为\trComplexes{}的一个\trShortExactSequence。
+\begin{equation*}\tag{23.3.7.4}\label{eq:ce-zib-diagram}
+\begin{tikzcd}[row sep=2em, column sep=1.8em]
+ & \vdots & \vdots & \vdots & \\
+0 \ar[r] & \mathrm{Z}^{p,1} \ar[r] \ar[u] & \mathrm{I}^{p,1} \ar[r] \ar[u] & \mathrm{B}^{p+1,1} \ar[r] \ar[u] & 0 \\
+0 \ar[r] & \mathrm{Z}^{p,0} \ar[r] \ar[u] & \mathrm{I}^{p,0} \ar[r] \ar[u] & \mathrm{B}^{p+1,0} \ar[r] \ar[u] & 0 \\
+0 \ar[r] & \mathrm{Z}^p(C^\bullet) \ar[r] \ar[u] & C^p \ar[r] \ar[u] & \mathrm{B}^{p+1}(C^\bullet) \ar[r] \ar[u] & 0 \\
+ & 0 \ar[u] & 0 \ar[u] & 0 \ar[u] &
+\end{tikzcd}
+\end{equation*}
+（前一题的提示在这里再度适用。我们指出，(23.3.7.3) 与 (23.3.7.4) 最底下的非零行曾出现于 \mbox{(1.5.6.3)} 中。）
+
+\textbf{23.3.H.（练习／定义）}\quad 构造 $C^\bullet$ 的一个内射分解 \eqref{eq:ce-resolution}，使得 $\mathrm{Z}^{p,\ast}=\mathrm{Z}^p(\mathrm{I}^{\bullet,\ast})$、$\mathrm{B}^{p,\ast}=\mathrm{B}^p(\mathrm{I}^{\bullet,\ast})$、$\mathrm{H}^{p,\ast}=\mathrm{H}^p(\mathrm{I}^{\bullet,\ast})$，从而 (23.3.7.2) 的三个\trComplexes{}都是内射分解。这称作 $C^\bullet$ 的一个\textbf{\trCartan--\trEilenberg{}分解}。
+
+\textbf{23.3.8.}\ \emph{\trGrothendieck{}谱序列的证明，\mbox{定理~23.3.5}。}\quad 我们从插叙\trCartan--\trEilenberg{}分解之前停下的地方继续。选取 $X$ 的一个内射分解 $I^\bullet$。把函子 $F$ 作用上去，然后取 $\mathrm{F}I^\bullet$ 的一个\trCartan--\trEilenberg{}分解 $\mathrm{I}^{\bullet,\bullet}$，再作用 $G$，便得到 \eqref{eq:ce-double}。
+
+\mbox{练习~23.3.E} 描述了把 \eqref{eq:ce-double} 作为 $E_0$ \trPage{}、取上行\trOrientation{}的谱序列会发生什么。于是我们现在考虑右行\trOrientation。
+
+从我们对\trCartan--\trEilenberg{}分解的构造，我们得到了诸内射分解 \eqref{eq:ce-three}，以及\trShortExactSequence
+\[
+\tag{23.3.8.1}\label{eq:ce-bzh}
+0 \longrightarrow \mathrm{B}^p(\mathrm{I}^{\bullet,q}) \longrightarrow \mathrm{Z}^p(\mathrm{I}^{\bullet,q}) \longrightarrow \mathrm{H}^p(\mathrm{I}^{\bullet,q}) \longrightarrow 0,
+\]
+\[
+\tag{23.3.8.2}\label{eq:ce-zib}
+0 \longrightarrow \mathrm{Z}^p(\mathrm{I}^{\bullet,q}) \longrightarrow \mathrm{I}^{p,q} \longrightarrow \mathrm{B}^{p+1}(\mathrm{I}^{\bullet,q}) \longrightarrow 0
+\]
+——它们由\emph{内射}对象构成（来自 (23.3.7.3) 与 (23.3.7.4) 的诸列）。这意味着二者都是\emph{分裂}正合列（中间一项可以被表达为外侧两项的直和），于是作用 $G$ 之后，两条正合列依然正合。
+
+把\trLeftExact{}函子 $G$ 作用到
+\[
+0 \longrightarrow \mathrm{Z}^p(\mathrm{I}^{\bullet,q}) \longrightarrow \mathrm{I}^{p,q} \longrightarrow \mathrm{B}^{p+1}(\mathrm{I}^{\bullet,q}),
+\]
+我们发现 $\mathrm{GZ}^p(\mathrm{I}^{\bullet,q})=\ker(\mathrm{GI}^{p,q}\to\mathrm{GI}^{p+1,q})$。但这个\trKernel{}正是 $\mathrm{Z}^p(\mathrm{GI}^{\bullet,q})$ 的\emph{定义}，于是我们得到一个诱导同构 $\mathrm{GZ}^p(\mathrm{I}^{\bullet,q})=\mathrm{Z}^p(\mathrm{GI}^{\bullet,q})$（「$G$ 与 $\mathrm{Z}^p$ 交换」）。由 (23.3.8.2) 的正合性，在作用 $G$ 后我们看到 $\mathrm{GB}^{p+1}(\mathrm{I}^{\bullet,q})=\mathrm{B}^{p+1}(\mathrm{GI}^{\bullet,q})$（二者都是 $\coker(\mathrm{GZ}^p(\mathrm{I}^{\bullet,q})\to\mathrm{GI}^{p,q})$）。由 (23.3.8.1) 的正合性，在作用 $G$ 后我们看到 $\mathrm{GH}^p(\mathrm{I}^{\bullet,q})=\mathrm{H}^p(\mathrm{GI}^{\bullet,q})$（二者都是 $\coker(\mathrm{GB}^p(\mathrm{I}^{\bullet,q})\to\mathrm{GZ}^p(\mathrm{I}^{\bullet,q}))$——于是「$G$ 与 $\mathrm{H}^p$ 交换」）。
+
+我们回到带右行\trOrientation{}、以 \eqref{eq:ce-double} 为 $E_0$ \trPage{}的谱序列。在右行方向上取\trCohomology，我们发现 $E_1^{p,q}=\mathrm{H}^p(\mathrm{GI}^{\bullet,q})=\mathrm{GH}^p(\mathrm{I}^{\bullet,q})$（因为 $G$ 与 $\mathrm{H}^p$ 交换）。现在 $\mathrm{H}^p(\mathrm{I}^{\bullet,q})$ 是 $(\mathrm{R}^p\mathrm{F})(X)$ 的一个内射分解（\eqref{eq:ce-three} 中的最后一个分解）。于是，当我们用竖直箭头计算 $E_2$ 时，便得到 $E_2^{p,q}=\mathrm{R}^q\mathrm{G}(\mathrm{R}^p\mathrm{F}(X))$。
+
+你现在应当自行验证：这一点（与\mbox{练习~23.3.E} 相结合）便结束了\mbox{定理~23.3.5} 的证明。\hfill$\square$
+
+

@@ -1,0 +1,155 @@
+
+\section{\trCechCohomology{}与导出函子上同调一致}
+
+接下来我们要证明：在\trCechCohomology{}有定义之处，它与导出函子上同调一致。
+
+\textbf{23.5.1. \trhTheorem。}\ ——\ \emph{设 $X$ 是一个拟紧分离概形，而 $\mathscr{F}$ 是一个\trQCSheaf。则 $\mathscr{F}$ 的\trCechCohomology{}与 $\mathscr{F}$ 的导出函子上同调一致。}
+
+这句话还不如它本该有的那样精确。我们会想知道：这个同构对 $\mathscr{F}$ 是\trFunctoriality{}的，并且它尊重\trLongExactSequence（从而为\trCechCohomology{}定义的\trConnectingHomomorphism{}与为导出函子上同调定义者一致）。对\trHigherPushforward{}还有一个重要的推广。我们把这些问题留给本节末尾的 \S23.5.5。
+
+出于好奇不妨一说：只要定义得当，那么在概形理论之外的一大圈情形中（若底拓扑空间仿紧），切赫上同调都与导出函子上同调一致——但并非永远如此（反例见 [Gr1, \S3.8]）。\mbox{注记~23.5.6} 也与此相关。
+
+证明的核心想法（尽管带一个转折）是一种谱序列论证，风格与 \S23.3 中那些相同，并且对谱序列的每个朝向各用一条「上同调消失」式原料。
+
+\textbf{(A)}~若 $(X,\OO_X)$ 是一个\trRingedSpace，$\mathscr{Q}$ 是一个内射 $\OO_X$-\trModule，而 $X=\cup_i\mathfrak{U}_i$ 是一个有限开覆盖，则对此覆盖而言，$\mathscr{Q}$ 没有第 $i$ 切赫上同调（$i>0$）。
+
+\textbf{(B)}~若 $X$ 是一个\trAffineScheme，而 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf，则 $(\mathrm{R}^i\Gamma)(\mathscr{F})=0$ 对 $i>0$。
+
+翻译一下：\textbf{(A)} 说的是，导出函子上同调的积木块没有切赫上同调；而 \textbf{(B)} 说的是，切赫上同调的积木块没有导出函子上同调。
+
+\textbf{23.5.A.（预备练习）}\quad 设 $(X,\OO_X)$ 是一个\trRingedSpace，$\mathscr{Q}$ 是一个内射 $\OO$-\trModule，而 $i\colon\mathfrak{U}\hookrightarrow X$ 是一个开子集。证明 $\mathscr{Q}|_\mathfrak{U}$ 在 $\mathfrak{U}$ 上是内射的。提示：动用「$i^{-1}$ 有一个\trExact{}的左伴随 $i_!$（\trExtensionByZero）」这一事实；见 \S23.4.7，以及下面两幅图。
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=3em]
+0 \ar[r] & \mathscr{A} \ar[r] \ar[d] & \mathscr{B} \ar[dl, dashed, "?"] & & 0 \ar[r] & i_!\mathscr{A} \ar[r] \ar[d] & i_!\mathscr{B} \ar[dl, dashed, "?"] \\
+ & \mathscr{Q}|_\mathfrak{U} & & & & \mathscr{Q} &
+\end{tikzcd}
+\]
+
+在做\mbox{练习~23.5.A} 的过程中，你将证明下面这条事实；它在\mbox{练习~29.4.A} 中还会再度用到。（你也可以用它来解\mbox{练习~23.4.A}。）
+
+\textbf{23.5.B.（练习：正合函子的右伴随保持内射对象）}\quad 证明：若 $(F,G)$ 是\trAbelianCategory{}之间加性函子的一个\trAdjointPair，且 $F$ 是\trExact{}的，则 $G$ 把内射对象送到内射对象。
+
+\textbf{23.5.2.}\ \emph{\mbox{定理~23.5.1} 的证明（假定 (A) 与 (B)）。}\quad 与 \S23.3 中所证的那些事实一样，我们只采用那条唯一合理的路线：选取 $\mathscr{F}$ 的一个内射分解 $0\to\mathscr{F}\to\mathscr{Q}_\bullet$ 与 $X$ 的一个切赫覆盖，把这两类信息在一个\trDoubleComplex{}中混起来，然后把它扔进我们的谱序列机器（\S1.6）。更精确地说：选取一个有限\trAffine{}开覆盖 $X=\cup_i\mathfrak{U}_i$ 与一个内射分解
+\[
+0 \longrightarrow \mathscr{F} \longrightarrow \mathscr{Q}_0 \longrightarrow \mathscr{Q}_1 \longrightarrow \cdots.
+\]
+
+考虑这个\trDoubleComplex
+\begin{equation*}\tag{23.5.2.1}\label{eq:agree-double}
+\begin{tikzcd}[row sep=2em, column sep=1.7em]
+\vdots & \vdots & \vdots & \vdots & \\
+0 \ar[r] \ar[u] & \oplus_i\mathscr{Q}_2(\mathfrak{U}_i) \ar[r] \ar[u] & \oplus_{i,j}\mathscr{Q}_2(\mathfrak{U}_{ij}) \ar[r] \ar[u] & \oplus_{i,j,k}\mathscr{Q}_2(\mathfrak{U}_{ijk}) \ar[r] \ar[u] & \cdots \\
+0 \ar[r] \ar[u] & \oplus_i\mathscr{Q}_1(\mathfrak{U}_i) \ar[r] \ar[u] & \oplus_{i,j}\mathscr{Q}_1(\mathfrak{U}_{ij}) \ar[r] \ar[u] & \oplus_{i,j,k}\mathscr{Q}_1(\mathfrak{U}_{ijk}) \ar[r] \ar[u] & \cdots \\
+0 \ar[r] \ar[u] & \oplus_i\mathscr{Q}_0(\mathfrak{U}_i) \ar[r] \ar[u] & \oplus_{i,j}\mathscr{Q}_0(\mathfrak{U}_{ij}) \ar[r] \ar[u] & \oplus_{i,j,k}\mathscr{Q}_0(\mathfrak{U}_{ijk}) \ar[r] \ar[u] & \cdots \\
+0 \ar[r] \ar[u] & 0 \ar[r] \ar[u] & 0 \ar[r] \ar[u] & 0 \ar[r] \ar[u] & \cdots.
+\end{tikzcd}
+\end{equation*}
+
+我们把它取作某个谱序列的 $E_0$ 项。先用右行滤过。由于内射 $\OO$-\trModule{}的高阶切赫上同调为 $0$（假设 \textbf{(A)}），除「第 $0$ 列」之外我们处处得到 $0$，而在第 $i$ 行的第 $0$ 列处我们得到 $\mathscr{Q}_i(X)$：
+\[
+\begin{tikzcd}[row sep=1.9em, column sep=1.4em]
+ & \vdots & \vdots & \vdots & \vdots & \\
+ & 0 \ar[u] & \mathscr{Q}_2(X) \ar[u] & 0 \ar[u] & 0 \ar[u] & \cdots \\
+ & 0 \ar[u] & \mathscr{Q}_1(X) \ar[u] & 0 \ar[u] & 0 \ar[u] & \cdots \\
+ & 0 \ar[u] & \mathscr{Q}_0(X) \ar[u] & 0 \ar[u] & 0 \ar[u] & \cdots \\
+ & 0 \ar[u] & 0 \ar[u] & 0 \ar[u] & 0. \ar[u] &
+\end{tikzcd}
+\]
+
+然后在竖直方向上取上同调，便在 $E_2$ 页上得到 $\mathscr{F}$ 在 $X$ 上的导出函子上同调：
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=1.7em]
+ & \vdots & \vdots & \vdots & \vdots & \\
+ & 0 & \mathrm{R}^2\Gamma(X,\mathscr{F}) & 0 & 0 & \cdots \\
+ & 0 & \mathrm{R}^1\Gamma(X,\mathscr{F}) & 0 & 0 & \cdots \\
+ & 0 & \Gamma(X,\mathscr{F}) \ar[uul] & 0 \ar[uul] & 0 \ar[uul] & \cdots \\
+ & & 0 \ar[uul] & 0 \ar[uul] & 0. \ar[uul] &
+\end{tikzcd}
+\]
+
+然后我们回到 $E_0$ 页从头再来，这一次取上行定向（相应于先取向上的箭头）。由\mbox{命题~23.5.A}，$\mathscr{Q}_i|_{\mathfrak{U}_j}$ 在 $\mathfrak{U}_j$ 上是内射的，于是我们计算的是 $\mathscr{F}$ 在 $\mathfrak{U}_j$ 上的导出函子上同调。而 $\mathscr{F}$ 在 $\mathfrak{U}_j$ 上的高阶导出函子上同调为 $0$（假设 \textbf{(B)}），故除第 $0$ 行之外一切项都是 $0$。于是 $E_1$ 项为：
+\begin{equation*}\tag{23.5.2.2}\label{eq:agree-e1}
+\begin{tikzcd}[row sep=2.4em, column sep=2.4em]
+0 \ar[r] & 0 \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots \\
+0 \ar[r] & 0 \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots \\
+0 \ar[r] & \oplus_i\Gamma(\mathfrak{U}_i,\mathscr{F}) \ar[r] & \oplus_{i,j}\Gamma(\mathfrak{U}_{ij},\mathscr{F}) \ar[r] & \oplus_{i,j,k}\Gamma(\mathfrak{U}_{ijk},\mathscr{F}) \ar[r] & \cdots \\
+0 \ar[r] & 0 \ar[r] & 0 \ar[r] & 0. \ar[r] & \cdots.
+\end{tikzcd}
+\end{equation*}
+
+第 $0$ 行恰好是 $\mathscr{F}$ 的切赫复形，于是该谱序列在 $E_2$ 项处收敛，给出切赫上同调。既然一个朝向给出导出函子上同调、另一个朝向给出切赫上同调，证明便告完成。\hfill$\square$
+
+于是只剩下证明 \textbf{(A)} 与 \textbf{(B)}。
+
+\textbf{23.5.3. 原料 (A)：内射对象没有切赫上同调。}\quad
+
+\textbf{23.5.C.（练习）}\quad 设 $X=\cup_j\mathfrak{U}_j$ 是 $X$ 由开集构成的一个有限覆盖，而 $\mathscr{F}$ 是 $X$ 上的一个\trFlasque{}层（\mbox{定义~23.4.6}）。证明：$\mathscr{F}$ 相应于 $\cup_{j=1}^n\mathfrak{U}_j$ 的切赫复形在正次数处没有\trCohomology，也就是说，它在次数 $0$ 之外正合（在次数 $0$ 处它有\trCohomology{} $\mathscr{F}(X)$，依据的是层公理）。提示：对 $n$ 作归纳。考虑\trComplexes{}的\trShortExactSequence{} \mbox{(18.2.4.2)}（另见 \mbox{(18.2.3.1)}）。相应的\trLongExactSequence{}将立刻给出 $i>1$ 时所要的结果，而 $i=1$ 时则要用到松软性。
+
+于是，\trFlasque{}层没有切赫上同调，因而内射 $\OO$-\trModule{}（\mbox{练习~23.4.H}）尤其也没有。对我们的代数几何应用而言，有这些就够了；但为了让你看看这套机器有多通用，我们给出一个有趣的应用。
+
+\textbf{23.5.D.（不重要练习：借层上同调给出容斥原理的一条怪证）}\quad 容斥原理等价于下述命题：设 $X$ 是一个有限集，而 $\mathfrak{U}_i$（$1\le i\le n$）是覆盖 $X$ 的有限集。照例，对 $I\subset\{1,\dots,n\}$ 定义 $\mathfrak{U}_I=\cap_{i\in I}\mathfrak{U}_i$。那么
+\[
+|X|=\sum_i|\mathfrak{U}_i|-\sum_{|I|=2}|\mathfrak{U}_{I}|+\sum_{|I|=3}|\mathfrak{U}_{I}|-\sum_{|I|=4}|\mathfrak{U}_{I}|+\cdots.
+\]
+请给 $X$ 赋予\trDiscreteTopology，证明\trConstantSheaf{} $\mathbb{Q}$ 是\trFlasque{}的，考虑用覆盖 $\mathfrak{U}_i$ 计算 $\mathrm{H}^1(X,\mathbb{Q})$ 的切赫复形，并动用\mbox{练习~1.5.B}，由此证明上式。
+
+\textbf{23.5.4.}\ \hard\ \textbf{原料 (B)：仿射概形上的拟凝聚层没有导出函子上同调。}\quad 我们对 $k$ 作归纳来证明下述命题。设 $X$ 是一个\trAffineScheme，而 $\mathscr{F}$ 是 $X$ 上的一个\trQCSheaf。则 $\mathrm{R}^i\Gamma(X,\mathscr{F})=0$ 对 $0<i\le k$。$k=0$ 时结果空洞地为真；于是设我们对一切 $0<k'<k$（把 $X$ 换成\emph{任何}一个\trAffineScheme）已知结果。设 $\alpha\in\mathrm{R}^k\Gamma(X,\mathscr{F})$。我们希望证明 $\alpha=0$。选取一个\emph{由 $\OO_X$-模构成的}内射分解
+\[
+\begin{tikzcd}[row sep=1.8em]
+ & \vdots & \\
+ & \mathscr{Q}_1 \ar[u, "d_1"] & \\
+ & \mathscr{Q}_0 \ar[u, "d_0"] & \\
+ & \mathscr{F} \ar[u] & \\
+ & 0 \ar[u] &
+\end{tikzcd}
+\]
+于是 $\alpha$ 有一个代表元 $\alpha'\in\mathscr{Q}_k(X)=\Gamma(X,\mathscr{Q}_k)$，使得 $d\alpha'=0$。由于内射分解是正合的，$\alpha'$ 局部地是一个边缘。换句话说，在 $X$ 中任意点 $\mathfrak{p}$ 的一个开邻域内，存在开集 $V_\mathfrak{p}$，使得对某个 $\alpha''\in\mathscr{Q}_{k-1}(V_\mathfrak{p})$ 有 $\alpha'|_{V_\mathfrak{p}}=d\alpha''$。（你确信这是真的吗？回想：取层态射的余核需要层化；见\mbox{命题~2.6.1}。）必要时缩小 $V_\mathfrak{p}$，我们不妨设 $V_\mathfrak{p}$ 是\trAffine{}的。由 $X$ 的拟紧性，我们可以选出有限多个 $V_\mathfrak{p}$ 覆盖 $X$。把这些重新命名为 $\mathfrak{U}_i$，于是我们有了 $X$ 的一个\trAffine{}覆盖。考虑 $X$ 相应于\emph{这个}\trAffine{}覆盖的切赫覆盖（\emph{不}是你可能以为我们会用的那个——即拿 $X$ 自身当作覆盖——而是一个为我们这个特定的 $\alpha$ 量身定制的仿射覆盖），把\trDoubleComplex{} (23.5.2.1) 作为某个谱序列的 $E_0$ 项。
+
+先考虑右行定向。如 \S23.5.2 中的论证那样，谱序列在 $E_2$ 处收敛，此处我们处处得到 $0$，唯独导出函子上同调出现在第 $0$ 列。
+
+接着，从头再来，选取上行定向。在 $E_1$ 页上，第 $0$ 行如 (23.5.2.2) 中那样是切赫复形。由归纳假设，$1$ 与 $k-1$ 之间的一切行都是 $0$，但对更高的行我们尚未所知。由于我们感兴趣的是第 $k$ 个导出函子，我们把注意力放在第 $k$ 条反对角线（$E_\bullet^{p,k-p}$）上。这条反对角线上仅有的可能非零的项是 $E_1^{k,0}$ 与 $E_1^{0,k}$。我们先看底行上的那一项 $E_1^{k,0}=\prod_{|I|=k}\Gamma(\mathfrak{U}_I,\mathscr{F})$，它是切赫复形的一部分：
+\[
+\cdots \longrightarrow \prod_{|I|=k-1}\Gamma(\mathfrak{U}_I,\mathscr{F}) \longrightarrow \prod_{|I|=k}\Gamma(\mathfrak{U}_I,\mathscr{F}) \longrightarrow \prod_{|I|=k+1}\Gamma(\mathfrak{U}_I,\mathscr{F}) \longrightarrow \cdots.
+\]
+但我们已经验证过：仿射概形上拟凝聚层的切赫上同调消失——这是我们所用「$\mathscr{F}$ 拟凝聚」的唯一一处。于是这一项由 $E_2$ 页起消失（即对 $i\ge 2$ 有 $E_i^{k,0}=0$）。
+
+于是 $E_1$ 的第 $k$ 条反对角线上唯一有趣的项是 $E_1^{0,k}$，它是
+\begin{equation*}\tag{23.5.4.1}\label{eq:agree-antidiag}
+\prod_i\mathscr{Q}_{k-1}(\mathfrak{U}_i) \longrightarrow \prod_i\mathscr{Q}_k(\mathfrak{U}_i) \longrightarrow \prod_i\mathscr{Q}_{k+1}(\mathfrak{U}_i),
+\end{equation*}
+的\trHomology，即 $\prod_i\mathrm{R}^k\Gamma(\mathfrak{U}_i,\mathscr{F})$（用到\mbox{预备练习~23.5.A}：它说 $\mathscr{Q}_j|_{\mathfrak{U}_i}$ 在 $\mathfrak{U}_i$ 上内射，故它们可用来计算 $\mathrm{R}^k(\Gamma(\mathfrak{U}_i,\mathscr{F}))$）。于是 $E_2^{0,k}$ 是
+\[
+0 \longrightarrow \prod_i\mathrm{R}^k\Gamma(\mathfrak{U}_i,\mathscr{F}) \longrightarrow \prod_{i,j}\mathrm{R}^k\Gamma(\mathfrak{U}_{ij},\mathscr{F}),
+\]
+的\trHomology，此后进出 $E_\bullet^{0,k}$ 诸项的其余微分将都是 $0$，因为那些箭头的源与靶都是 $0$。现在考虑我们的 $\alpha\in\mathrm{R}^k\Gamma(X,\mathscr{F})$ 在 $\prod_i\mathrm{R}^k\Gamma(\mathfrak{U}_i,\mathscr{F})$ 中的提升 $\alpha'$。它在 (23.5.4.1) 的\trHomology{}中的像是\emph{零}——这正是我们起初选取覆盖 $\mathfrak{U}_i$ 的方式！于是 $\alpha=0$，正如所愿，证明完成。\hfill$\square$
+
+\textbf{23.5.E.}\ \extrahard\ \textbf{（练习）}\quad 这个证明还没有完全收尾。我们有类 $\alpha\in\mathrm{R}^k\Gamma(X,\mathscr{F})$，而我们已经把 $\mathrm{R}^k\Gamma(X,\mathscr{F})$ 解读为
+\[
+\ker\Bigl(\prod_i\mathrm{R}^k\Gamma(\mathfrak{U}_i,\mathscr{F}) \longrightarrow \prod_{i,j}\mathrm{R}^k\Gamma(\mathfrak{U}_{ij},\mathscr{F})\Bigr).
+\]
+我们有两个映射 $\mathrm{R}^k\Gamma(X,\mathscr{F})\to\mathrm{R}^k\Gamma(\mathfrak{U}_i,\mathscr{F})$：一个来自自然的限制（在它之下我们可以看出 $\alpha$ 的像是零），另一个来自真正的谱序列机器。请验证：它们是同一个映射。（可能的提示：按所用的谱序列定向，$E_\infty^{0,k}$ 项确实是\trDoubleComplex{}的\trHomology{}的一个商，故该映射的方向是对的。）
+
+\textbf{23.5.5.}\ \hard\ \textbf{收束线头。}\quad
+
+\textbf{23.5.F.（重要练习）}\quad 请陈述并证明\mbox{定理~23.5.1} 到\trHigherPushforward{} $\mathrm{R}^i\pi_\ast$ 的推广，其中 $\pi\colon X\to Y$ 是概形的一个拟紧分离\trMorphism。
+
+\textbf{23.5.G.（练习）}\quad 证明\mbox{定理~23.5.1} 的同构对 $\mathscr{F}$ 是\trFunctoriality{}的；也就是说，给定一个态射 $\mathscr{F}\to\mathscr{G}$，则方块
+\[
+\begin{tikzcd}[row sep=2.4em, column sep=3.4em]
+\mathrm{H}^i(X,\mathscr{F}) \ar[d] & \mathrm{R}^i\Gamma(X,\mathscr{F}) \ar[l, <->] \ar[d] \\
+\mathrm{H}^i(X,\mathscr{G}) & \mathrm{R}^i\Gamma(X,\mathscr{G}) \ar[l, <->]
+\end{tikzcd}
+\]
+交换，其中诸水平箭头是\mbox{定理~23.5.1} 的同构，而诸竖直箭头来自 $\mathrm{H}^i$ 与 $\mathrm{R}^i\Gamma$ 的函子性。（提示：「谱序列在 $E_0$ 处函子」，这一点从构造中即可容易看出，尽管我们没有明说。参看 \S1.6.7，那里论及谱序列的函子性。）
+
+\textbf{23.5.H.（练习）}\quad 证明：\mbox{定理~23.5.1} 的诸同构诱导出诸\trLongExactSequence{}的同构。
+
+\textbf{23.5.6.}\ \emph{\trhRemark。}\quad 如果你愿意，你可以用上面的论证来证明\trLeray{}的下述定理。设 $\mathscr{F}$ 是拓扑空间 $X$ 上的一个由阿贝尔群构成的层，而 $\{\mathfrak{U}_i\}$ 是 $X$ 的一个覆盖，使得 $\mathscr{F}$ 在正次数处的（导出函子）上同调在诸 $\mathfrak{U}_i$ 的每个有限交上都消失。那么 $\mathscr{F}$ 的上同调可以用覆盖 $\{\mathfrak{U}_i\}$ 的切赫上同调来计算；无须像一般切赫上同调的情形那样，过渡到一切覆盖的余极限。
+
+\textbf{23.5.7.}\ \emph{不重要的注记：在 $\mathit{QCoh}_X$ 中而非 $\mathit{Mod}_{\OO_X}$ 中工作。}\quad 在定义 $X$ 上拟凝聚层的导出函子时，我们本来也可以试着在拟凝聚层的范畴 $\mathit{QCoh}_X$ 自身中工作，而不是在更大的范畴 $\mathit{Mod}_{\OO_X}$ 中。出于若干理由，那样做将需要更多气力。不难证明：若 $X$ \trNoether，则 $\mathit{QCoh}_X$ 有足够多内射对象（比如见 [Ha1, Exer.~III.3.6(a)]）。由于在 $\mathit{QCoh}$ 中我们没有「\trExtensionByZero」（\S23.4.7），「开集 $\mathfrak{U}$ 上的内射拟凝聚层限制到更小的开子集 $V$ 上仍是内射拟凝聚层」（\mbox{练习~23.5.A} 的类似物）与「内射拟凝聚层是\trFlasque{}的」（\mbox{练习~23.4.H} 的类似物）这两个证明都会更难。你可以借此证明：在 $\mathit{QCoh}$ 中算出的 $\mathrm{H}^i$ 与 $\mathrm{R}^i\pi_\ast$，与在 $\mathit{Mod}_{\OO}$ 中算出者一致（一旦你把命题说精确）。内射的 $\mathit{QCoh}_X$ 对象（$X$ \trNoether）在 $\mathit{Mod}_{\OO_X}$ 中也是内射的，这是真的，但其证明需要功夫（见 [Mur, Prop.~6.8]）。
+
+对\emph{任何}概形 $X$，$\mathit{QCoh}_X$ 都有足够多内射对象，这也是真的，但那要难得多；见 [EE]。而从上一段可以清楚看到，「有足够多内射对象」只是我们想要的东西的开端。
+
+\textbf{23.5.8.}\ \emph{不重要的注记。}\quad \mbox{定理~23.5.1} 蕴含：若 $\pi\colon X\to Y$ 拟紧且分离，则 $\mathrm{R}^i\pi_\ast$ 把 $\mathit{QCoh}_X$ 送到 $\mathit{QCoh}_Y$（通过展示与切赫上同调的一个同构）。若 $X$ 与 $Y$ \trNoether，则借助\mbox{不重要注记~23.5.7} 的想法，「分离」这一假设可以放宽为「拟分离」。但由于从\trNoether{}概形出发的态射自动是拟分离的（\mbox{容易练习~8.3.B}(b)），我们可以把这个多余的「拟分离」假设去掉。这听起来令人兴奋，但它远没有分离的情形那么有用，因为没有切赫上同调，就很难算出任何东西。
+
+

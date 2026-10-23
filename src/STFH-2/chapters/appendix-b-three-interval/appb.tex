@@ -1,0 +1,320 @@
+\chapter{指数估计的三区间方法}
+\label{app:three-interval}
+\appendixsectionlessstatements
+
+本附录的主要目的是证明引理 9.5.29。它是极小曲面型几何偏微分方程问题中经常出现的
+一般指数行为的一个原型。\personIgnasiMundetIRiera{}和\personTian{}在 (MT09) 中对伪全纯映射采用了一种
+优美的方法来得到这类估计，该方法称为三区间方法。我们部分沿用 (OhZ11a) 在另一
+背景下的叙述。同一种论证也可用于其他几何问题中出现的许多情形。这里在长柱面上
+伪全纯映射直径很小的当前背景下重述他们的论证。
+
+首先重述引理 9.5.29。
+
+\begin{lemma}
+\label{lem:app-b-main-decay}
+存在 $L_0>0$ 和 $\epsilon_1>0$，使得对任意 $L\geq L_0$，若
+\[
+ u\colon[-L-1,L+1]\times S^1\longrightarrow(M,J)
+\]
+是 $J$-全纯的，且 $\operatorname{diam}(u)\leq\epsilon_1$，则
+\[
+ \left|\frac{\partial u}{\partial\tau}(\tau,t)\right|
+ +\left|\frac{\partial u}{\partial t}(\tau,t)\right|
+ \leq Ce^{-\lambda\operatorname{dist}(\tau,\partial[-L-1,L+1])}
+\]
+对 $\tau\in[-L,L]\times S^1$ 成立，其中 $\lambda>0$，$C>0$ 与
+$L\geq L_0$ 无关。事实上，通过令 $\epsilon_1$ 充分小，可以取
+$\lambda=2\pi\nu>0$，其中 $\nu=\nu(\epsilon_1)$ 可以任意接近 $1$。
+\footnote{译者注：原书把标量 $\tau$ 的取值范围写成
+$[-L,L]\times S^1$；按紧前公式，本应由 $(\tau,t)$ 属于该柱面。译文照录。}
+\end{lemma}
+
+令 $\iota_g>0$ 是 $M$ 上给定相容度量 $g$ 的\termInjectivityRadius{}。取
+$\epsilon>0$，假设对某个 $p\in M$ 有
+\[
+ u([-L-1,L+1]\times S^1)\subset B_p(\epsilon),
+\]
+并考虑方程
+\[
+ \frac{\partial u}{\partial\tau}+J\frac{\partial u}{\partial t}=0.
+\]
+用指数映射把邻域 $B_p(2\epsilon)$ 等同于 $(T_pM,J_p)$ 中以原点为中心、半径为
+$2\epsilon$ 的球后，可以假设 $B_p(2\epsilon)$ 是线性空间 $T_pM$ 的子集。再把
+$(T_pM,J_p)$ 等同于带标准度量的 $\mathbb C^n$。$M$ 中的 $J$-全纯映射 $u$ 便化为
+$\exp_p^*J$-全纯映射；对 $x\in\mathbb C^n\cong T_pM$，仍将后者记为
+$J=J(x)$。
+
+在这一设置下，(MT09) 的观察是：指数估计可化为三个依次相邻的局部 $L^2$ 估计
+\begin{equation}
+\label{eq:app-b-three-cylinder-local}
+ \|du\|_{L^2(Z_{II})}
+ \leq\frac12\bigl(\|du\|_{L^2(Z_I)}+\|du\|_{L^2(Z_{III})}\bigr),
+\end{equation}
+其中 $Z_I,Z_{II},Z_{III}\subset[-L-1,L+1]\times S^1$ 是三个依次相邻的单位长度
+柱面，即对某个整数 $i$，它们分别是
+\[
+ [i-1,i]\times S^1,\qquad[i,i+1]\times S^1,
+ \qquad[i+1,i+2]\times S^1.
+\]
+
+为了在指数衰减中得到最佳的 $\sigma$（我们需要 $\sigma$ 非常接近 $2\pi$），回忆
+(MT09) 的作者定义了常数
+\[
+ \gamma(c)=\frac1{e^c+e^{-c}}.
+\]
+$\gamma(c)$ 的重要性在于恒等式
+\begin{equation}
+\label{eq:app-b-gamma-identity}
+ \int_0^1e^{c\tau}\,d\tau
+ =\gamma(c)\left[
+   \int_{-1}^0e^{c\tau}\,d\tau+
+   \int_1^2e^{c\tau}\,d\tau\right],
+\end{equation}
+它稍后会出现在三个依次相邻的单位长度柱面上 $du$ 的 $L^2$-能量中。注意当
+$c>0$ 时，$\gamma(c)$ 是 $c$ 的严格递减函数。
+
+回忆下面的初等引理。
+
+\begin{lemma}[(MT09)，引理 9.4]
+\label{lem:app-b-three-interval-sequence}
+设 $x_k$（$k=0,1,\ldots,N$）为非负数。若存在固定常数
+$\gamma\in(0,1/2)$，使得对所有 $1\leq k\leq N-1$，
+\[
+ x_k\leq\gamma(x_{k-1}+x_{k+1}),
+\]
+则
+\[
+ x_k\leq x_0\xi^{-k}+x_N\xi^{-(N-k)}
+\]
+对所有 $1\leq k\leq N-1$ 成立，其中
+\[
+ \xi=\frac{1+\sqrt{1-4\gamma^2}}{2\gamma}.
+\]
+\end{lemma}
+
+\begin{remark}
+若 $\gamma=\gamma(c)=(e^c+e^{-c})^{-1}$，则可验证 $\xi=e^c$，上面的不等式成为
+指数衰减估计
+\begin{equation}
+\label{eq:app-b-sequence-decay}
+ x_k\leq x_0e^{-ck}+x_Ne^{-c(N-k)},
+\end{equation}
+其中 $1\leq k\leq N-1$。
+\end{remark}
+
+\begin{proposition}
+\label{prop:app-b-local-four-pi}
+对任意 $0<\nu<1$，存在 $L_0>0$ 和只依赖于 $\nu$、但与 $L\geq L_0$ 无关的
+$\epsilon_1=\epsilon_1(\nu)>0$，使得在一切满足
+\[
+ u\colon[-L-1,L+1]\times S^1\longrightarrow(M,J)
+\]
+为 $J$-全纯、$\operatorname{diam}(u)\leq\epsilon$、
+$0<\epsilon<\epsilon_1$ 且 $p\in M$ 的情形下，对
+$[-L,L]\times S^1$ 中任意三个依次相邻的柱面 $Z_I,Z_{II},Z_{III}$，都有
+\begin{equation}
+\label{eq:app-b-gamma-four-pi}
+ \|du\|_{L^2(Z_{II})}
+ \leq\gamma(4\pi\nu)
+ \bigl(\|du\|_{L^2(Z_I)}+\|du\|_{L^2(Z_{III})}\bigr).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+用反证法证明\eqref{eq:app-b-gamma-four-pi}。假设存在序列 $L_j\to\infty$ 和
+$u_j$，满足
+\[
+ \operatorname{diam}\bigl(u_j([-L_j,L_j]\times S^1)\bigr)\longrightarrow0,
+\]
+但在 $[-L_j,L_j]\times S^1$ 中三个依次相邻的柱面
+$Z_I^j,Z_{II}^j,Z_{III}^j$ 上违反\eqref{eq:app-b-gamma-four-pi}：
+\[
+ \|du_j\|_{L^2(Z_{II}^j)}
+ >\gamma(4\pi\nu)
+ \bigl(\|du_j\|_{L^2(Z_I^j)}+\|du_j\|_{L^2(Z_{III}^j)}\bigr).
+\]
+在 $Z_I^j\cup Z_{II}^j\cup Z_{III}^j$ 上考察重标度序列
+\[
+ \widehat u_j=
+ \frac{u_j}{\|u_j\|_{L^\infty(Z_I^j\cup Z_{II}^j\cup Z_{III}^j)}}.
+\]
+分母绝不为 $0$；否则 $u_j\equiv0$ 于这三个柱面的并上，与 $u_j$ 非常值的假设矛盾。
+于是
+\[
+ \|\widehat u_j\|_{L^\infty(Z_I^j\cup Z_{II}^j\cup Z_{III}^j)}=1,
+\]
+\[
+ \|d\widehat u_j\|_{L^2(Z_{II}^j)}
+ >\gamma(4\pi\nu)
+ \bigl(\|d\widehat u_j\|_{L^2(Z_I^j)}
+       +\|d\widehat u_j\|_{L^2(Z_{III}^j)}\bigr),
+\]
+且
+\[
+ \left(\frac\partial{\partial\tau}
+ +J(u_j)\frac\partial{\partial t}\right)\widehat u_j=0.
+\]
+
+适当平移 $Z_I^j\cup Z_{II}^j\cup Z_{III}^j$，并回忆
+$\operatorname{diam}(u_j)\to0$，可选取一个仍记作 $u_j$ 的子列，使得在
+$[0,3]\times S^1$ 上：
+\begin{enumerate}[label=(\arabic*)]
+\item 重标度映射 $\widehat u_j(\tau,t)$ 收敛到 $\widehat u_\infty(\tau,t)$；
+\item 原映射 $u_j(\tau,t)$ 收敛到某点 $p_\infty\in M$。
+\end{enumerate}
+下面还需要在 $j\to\infty$ 时 $J(u_j(\tau,t))$ 的 $C^1$ 行为收敛到 $C^1$ 行为。
+
+\begin{lemma}
+\label{lem:app-b-derivative-vanishing}
+必要时取子列，则对任意给定紧子集 $K\subset\mathbb R\times S^1$，有
+\[
+ \lim_{j\to\infty}\|du\|_{C^0;K}=0.
+\]
+特别地，$J(u_j)\to J_0$ 于 $\mathbb R\times S^1$ 上的紧 $C^1$ 拓扑。
+\footnote{译者注：极限左端原书写作 $\lVert du\rVert_{C^0;K}$，漏去序列下标
+$j$；译文照录原式。}
+\end{lemma}
+
+\begin{proof}
+给定紧子集 $K\subset\mathbb R\times S^1$。由于 $L_j\to\infty$，最终有
+$K\subset[-L_j,L_j]\times S^1$。反设必要时取子列后，存在某个 $\epsilon>0$ 和
+$(\tau_j,t_j)\in K$，使得对所有 $j$，
+$|du_j(\tau_j,t_j)|>\epsilon$。考虑平移并旋转后的映射
+\[
+ \widetilde u_j(\tau,t)=u_j(\tau-\tau_j,t-t_j),
+\]
+其定义域包含 $[-L_j+\tau_j,L_j+\tau_j]\times S^1$，且
+$|d\widetilde u_j(0,0)|>\epsilon$。标准冒泡论证要么产生一个非常值气泡，要么产生
+一个子列，使 $\widetilde u_j\to u_\infty$ 于紧 $C^1$ 拓扑，其中
+$u_\infty\colon\mathbb R\times S^1\to M$ 是满足
+\[
+ |du_\infty(0,0)|\geq\epsilon
+\]
+的 $J_0$-全纯映射，因而不是常值映射。这导致矛盾，因为
+$\operatorname{im}\widetilde u_j=\operatorname{im}u_j\subset B_{p_j}(2\epsilon_j)$，
+所以 $\operatorname{diam}(\operatorname{im}u_\infty)=0$。引理得证。
+\end{proof}
+
+特别地，该引理蕴含 $J(u_j(\tau,t))\to J_0$ 于\emph{固定}柱面
+$[0,3]\times S^1(=Z_I\cup Z_{II}\cup Z_{III})$ 上的 $C^1$ 拓扑。因此由以上讨论，
+极限映射 $\widehat u_\infty$ 满足
+\[
+ \|\widehat u_\infty\|_{L^\infty(Z_I\cup Z_{II}\cup Z_{III})}=1,
+\]
+\[
+ \|d\widehat u_\infty\|_{L^2(Z_{II})}
+ \geq\gamma(4\pi\nu)
+ \bigl(\|d\widehat u_\infty\|_{L^2(Z_I)}
+       +\|d\widehat u_\infty\|_{L^2(Z_{III})}\bigr),
+\]
+以及
+\[
+ \left(\frac\partial{\partial\tau}
+ +J_0\frac\partial{\partial t}\right)\widehat u_\infty=0.
+\]
+由第一、第三个恒等式，$\widehat u_\infty$ 是到 $\mathbb C^n$ 的非零全纯映射。把它
+展开为傅里叶级数
+\[
+ \widehat u_\infty(\tau,t)
+ =\sum_{k=-\infty}^{\infty}a_ke^{2\pi k\tau}e^{2\pi kit},
+ \qquad
+ \|\widehat u_\infty\|_{L^2(Z_I\cup Z_{II}\cup Z_{III})}\leq3,
+\]
+其中 $a_k$ 是 $\mathbb C^n$ 中的常向量。直接计算得
+\begin{equation}
+\label{eq:app-b-fourier-energy}
+ \|d\widehat u_\infty\|_{L^2([a,b]\times S^1)}^2
+ =\sum_{k=-\infty}^{\infty}4\pi^2k^2|a_k|^2
+   \int_a^be^{4\pi\tau}\,d\tau.
+\end{equation}
+把\eqref{eq:app-b-gamma-identity}乘以 $e^{4\pi k}$，并在其中令 $c=4\pi$，得到
+\begin{equation}
+\label{eq:app-b-shifted-gamma-identity}
+ \int_k^{k+1}e^{4\pi\tau}\,d\tau
+ =\gamma(4\pi)\left[
+   \int_{k-1}^ke^{4\pi\tau}\,d\tau
+   +\int_{k+1}^{k+2}e^{4\pi\tau}\,d\tau\right].
+\end{equation}
+由\eqref{eq:app-b-fourier-energy}与\eqref{eq:app-b-shifted-gamma-identity}可见
+\[
+ \|d\widehat u_\infty\|_{L^2(Z_{II})}
+ =\gamma(4\pi)
+ \bigl(\|d\widehat u_\infty\|_{L^2(Z_I)}
+       +\|d\widehat u_\infty\|_{L^2(Z_{III})}\bigr).
+\]
+这与
+\[
+ \|d\widehat u_\infty\|_{L^2(Z_{II})}
+ \geq\gamma(4\pi\nu)
+ \bigl(\|d\widehat u_\infty\|_{L^2(Z_I)}
+       +\|d\widehat u_\infty\|_{L^2(Z_{III})}\bigr)
+\]
+矛盾，因为 $\gamma(4\pi)<\gamma(4\pi\nu)$。
+\footnote{译者注：按紧前傅里叶展开，模态 $k$ 的能量指数通常应含 $k$；原书
+\eqref{eq:app-b-fourier-energy} 却印作 $e^{4\pi\tau}$，继而用与傅里叶模态无关的
+$\gamma(4\pi)$ 得到等式。译文照录这一推导，不自行重构。}
+\end{proof}
+
+结合上面的引理与\eqref{eq:app-b-sequence-decay}，得到以下推论。
+
+\begin{corollary}
+\label{cor:app-b-energy-decay}
+对任意 $0<\nu<1$，存在 $L_0>0$ 和只依赖于 $\nu$、但与 $L\geq L_0$ 无关的
+$\epsilon_0=\epsilon_0(\nu)>0$，使得对所有 $0<\epsilon\leq\epsilon_1$ 及
+$[\tau,\tau+1]\subset[-L,L]$，都有
+\[
+ \int_{[\tau,\tau+1]\times S^1}|du|^2
+ \leq e^{-4\pi\nu(L-|\tau|)}
+ \left[
+  \int_{[-L-1,-L]\times S^1}|du|^2
+  +\int_{[L,L+1]\times S^1}|du|^2
+ \right].
+\]
+\footnote{译者注：本推论先引入 $\epsilon_0=\epsilon_0(\nu)$，量词中却仍使用
+$\epsilon_1$；译文照录这两个下标。}
+\end{corollary}
+
+由这些结果以及柱面 $[\tau-\tfrac12,\tau+\tfrac12]\times S^1$ 上的标准椭圆估计，
+得到下面关于 $u$ 的逐点指数衰减估计。
+
+\begin{corollary}
+\label{cor:app-b-pointwise-decay}
+对任意 $0<\nu<1$，存在 $L_0>0$ 和只依赖于 $\nu$、但与 $L\geq L_0$ 无关的
+$\epsilon_1=\epsilon_0(\nu)>0$，使得对所有 $0<\epsilon\leq\epsilon_1$ 及
+$\tau\in[-L,L]$，都有
+\[
+ |du|\leq Ce^{-2\pi\nu(L-|\tau|)}
+ \bigl(
+  \|du\|_{L^2([-L-1,-L]\times S^1)}
+  +\|du\|_{L^2([L,L+1]\times S^1)}
+ \bigr).
+\]
+$\nu$ 可以任意接近 $1$。
+\end{corollary}
+
+\begin{remark}
+同一方案可应用于半带 $[0,\infty)\times[0,1]$ 上的弗洛尔方程
+\[
+ \begin{cases}
+ \partial u/\partial\tau+J\,\partial u/\partial t=0,\\
+ u(\tau,0)\in L_0,\quad u(\tau,1)\in L_1,
+ \end{cases}
+\]
+其渐近极限为
+$\lim_{\tau\to\infty}u(\tau,\cdot)=p\in L_0\cap L_1$，这里 $p$ 是横截交点；此时
+极限方程为
+\[
+ \begin{cases}
+ \partial\widehat u_\infty/\partial\tau
+ +J(p)\,\partial\widehat u_\infty/\partial t=0,\\
+ \widehat u_\infty(\tau,0)\in T_pL_0,\quad
+ \widehat u_\infty(\tau,1)\in T_pL_1.
+ \end{cases}
+\]
+这给出了第 14.1 节所证指数衰减结果的另一种证明；它不仅计算较少，还给出了
+式 (8.6.51) 的指数中 $\delta$ 的精确值。
+\end{remark}
+
+\begin{exercise}
+补全上述证明的细节。
+\end{exercise}

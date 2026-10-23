@@ -1,0 +1,128 @@
+\section{\texorpdfstring{$\Ham(M,\omega)$}{Ham(M, omega)} 的霍费尔拓扑}
+\stfhIndex{I162}{huo^fei^er^tuo^pu}{霍费尔拓扑（Hofer topology）}
+\label{sec:hofer-topology-ham}
+
+霍费尔 (H90)、(H93) 引入的卓越哈密顿微分同胚伪范数定义为
+\begin{equation}
+ \|\phi\|=\inf_{H\mapsto\phi}\|H\|
+ =\inf_{H\mapsto\phi}\operatorname{leng}(\phi_H).
+ \label{eq:hofer-pseudonorm}
+\end{equation}
+下面命题的证明是一个涉及哈密顿代数的有趣练习。
+
+\begin{proposition}\label{prop:hofer-pseudonorm-properties}
+设 $\phi,\psi\in\Ham^c(M,\omega)$。则下列结论成立：
+\begin{enumerate}[label=(\arabic*)]
+ \item （对称性）$\|\phi\|=\|\phi^{-1}\|$；
+ \item （三角不等式）$\|\phi\psi\|\leq\|\phi\|+\|\psi\|$；
+ \item （辛不变性）对所有 $h\in\Symp(M,\omega)$，
+ $\|h\phi h^{-1}\|=\|\phi\|$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+回忆 (2.3.22) 中的逆哈密顿量公式
+\[
+ \overline H(t,x)=-H(t,\phi_H^t(x)),
+\]
+它生成 $(\phi_H^t)^{-1}$。显然有
+\[
+ \max_x\overline H_t=-\min_xH_t,
+ \qquad
+ \min_x\overline H_t=-\max_xH_t.
+\]
+因而 $\|\overline H\|=\|H\|$。此外，我们知道两次取“横线”运算是恒等运算。对所有 $H\mapsto\phi$ 在
+$\|\overline H\|=\|H\|$ 两边取下确界，便由二者合并得到 (1)。
+
+对于 (2)，回忆复合哈密顿量 $H\#F$ 定义为
+\stfhIndex{I019}{00-symbol-019}{$H\#F$}
+\[
+ H\#F(t,x)=H(t,x)+F\bigl(t,(\phi_H^t)^{-1}(x)\bigr),
+\]
+当 $H\mapsto\phi$ 且 $F\mapsto\psi$ 时，它生成 $\phi\psi$。后一事实特别蕴含
+\begin{equation}
+ \|\phi\psi\|\leq
+ \inf_{H\mapsto\phi,\,F\mapsto\psi}\|H\#F\|.
+ \label{eq:hofer-composition-infimum}
+\end{equation}
+另一方面，有
+\[
+ \max_x(H\#F)_t\leq\max_xH_t+\max_xF_t,
+ \qquad
+ -\min_x(H\#F)_t\leq-\min_xH_t-\min_xF_t.
+\]
+于是得到
+\begin{equation}
+\begin{aligned}
+ \|H\#F\|
+ &=\int_0^1\left(\max_x(H\#F)_t-\min_x(H\#F)_t\right)dt\\
+ &\leq\int_0^1\left(
+   \max_xH_t+\max_xF_t-\min_xH_t-\min_xF_t\right)dt\\
+ &=\|H\|+\|F\|.
+\end{aligned}
+\label{eq:hofer-composition-bound}
+\end{equation}
+合并\eqref{eq:hofer-composition-infimum}与\eqref{eq:hofer-composition-bound}，即证 (2)。
+
+为证明 (3)，先回忆：对给定哈密顿量 $H$，拉回
+$h^*H=H\circ h$ 对任意辛微分同胚 $h:M\to M$ 都生成
+$h^{-1}\circ\phi_H^t\circ h$。显然有
+$\|H\|=\|H\circ h\|=\|h^*H\|$。对所有 $H\mapsto\phi$ 取下确界，即证 (3)。
+\end{proof}
+
+这个范数随即在 $\Ham(M,\omega)$ 上给出一个自然的度量拓扑，称为
+$\Ham(M,\omega)$ 的\emph{霍费尔拓扑}。这就是 (H90)、(H93) 中的原始定义。
+
+现在沿用 (OhM07) 的论述，从
+$\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})$ 上的霍费尔拓扑出发，给出另一种更具概念性的方式来定义 $\Ham(M,\omega)$ 上的霍费尔拓扑。先重写 $\Ham(M,\omega)$ 的定义。以
+$\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})$ 表示始于单位元的哈密顿路径集合，并以
+\begin{equation}
+ \operatorname{ev}_1:
+ \mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})
+ \longrightarrow\Symp(M,\omega);
+ \qquad \operatorname{ev}_1(\lambda)=\lambda(1)
+ \label{eq:evaluation-map-ham-paths}
+\end{equation}
+表示评价映射。于是由 $\Ham(M,\omega)$ 的定义有
+\stfhIndex{I020}{00-symbol-020}{$\Ham(M,\omega)$}
+\begin{equation}
+ \Ham(M,\omega)=\operatorname{ev}_1\bigl(
+ \mathcal P^{\mathrm{ham}}(\Symp(M,\omega),\operatorname{id})\bigr).
+ \label{eq:ham-as-evaluation-image}
+\end{equation}
+这个表达式以一种更明显的方式给出自然拓扑。
+
+\begin{proposition}\label{prop:hofer-topology-quotient}
+$\Ham(M,\omega)$ 上的霍费尔拓扑等价于使评价映射
+\eqref{eq:evaluation-map-ham-paths}连续的最强拓扑。
+\end{proposition}
+
+\begin{proof}
+由 $\Ham(M,\omega)$ 上霍费尔拓扑的定义，容易看出映射
+$\operatorname{ev}_1^{\mathrm{ham}}$ 连续。因此，霍费尔拓扑弱于这一最强拓扑。反过来，只需证明 $\Ham(M,\omega)$ 在最强拓扑中的开集在霍费尔拓扑中也开。
+
+设 $\mathcal U\subset\Ham(M,\omega)$ 在最强拓扑中开，并且
+$\phi\in\mathcal U\subset\Ham(M,\omega)$。取 $H\mapsto\phi$。由最强拓扑的定义可知，
+$\operatorname{ev}_1^{-1}(\mathcal U)$ 是
+$\mathcal P^{\mathrm{ham}}(\Ham(M,\omega),\operatorname{id})$ 中
+$\phi_H$ 的一个开邻域。因此，回忆
+\stfhIndex{I012}{00-symbol-012}{$d(\phi',\phi)$}
+\[
+ d(\phi',\phi)
+ =\inf_{H',H}\{d(\phi_{H'},\phi_H)\mid
+   H'\mapsto\phi',\ H\mapsto\phi\},
+\]
+存在 $\epsilon>0$，使得只要
+$d(\phi_{H'},\phi_H)<2\epsilon$，就有
+$\phi_{H'}\in\operatorname{ev}_1^{-1}(\mathcal U)$，即
+$\phi_{H'}^1\in\mathcal U$。现在断言，如果
+$d_{\mathrm{Hofer}}(\phi',\phi)<\epsilon$，则 $\phi'\in\mathcal U$；这将表明 $\mathcal U$ 在霍费尔拓扑中开。依定义，可以找到 $F$，使得
+$\phi_F^1=\phi'$ 且
+\[
+ d(\phi_F,\phi_H)<2\epsilon,
+\]
+这说明 $\phi_F\in\operatorname{ev}_1^{-1}(\mathcal U)$，特别地，
+$\phi'\in\mathcal U$。证明完毕。
+\end{proof}
+
+现在的一个大问题是这一拓扑是否平凡。下一节将讨论这个问题。

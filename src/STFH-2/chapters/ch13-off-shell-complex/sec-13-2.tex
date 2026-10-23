@@ -1,0 +1,274 @@
+\section{丛对及其马斯洛夫指标}
+\label{sec:bundle-pair-maslov-index}
+
+设 $\Sigma$ 是带边界 $\partial\Sigma$ 的定向紧曲面。以 $g$ 表示
+$\Sigma$ 的亏格，以 $h$ 表示 $\partial\Sigma$ 的连通分支数。
+
+\subsection{复向量丛情形}
+\label{subsec:complex-vector-bundle-pairs}
+
+考虑复向量丛 $E\to\Sigma$。注意，若 $\partial\Sigma\ne\varnothing$，则
+$\Sigma$ 上的任意复向量丛 $E\to\Sigma$ 在拓扑上都是平凡的。
+
+\stfhSubIndex{I048}{Congdui}{丛对（bundle pair）}{Fu}{复丛对（complex bundle pair）}
+\begin{definition}
+\label{def:complex-bundle-pair}
+一个\termComplexBundlePair{} $(E,\lambda)$ 是复向量丛 $E\to\Sigma$ 连同
+$E|_{\partial\Sigma}$ 的一个实子丛 $\lambda\to\partial\Sigma$，并配备同构
+\begin{equation}
+  E|_{\partial\Sigma}\cong\lambda\otimes\mathbb C.
+\label{eq:complex-bundle-boundary-complexification}
+\end{equation}
+等价地，复丛对是复向量丛 $E\to\Sigma$ 连同
+$E_{\mathbb R}|_{\partial\Sigma}\to\partial\Sigma$ 的一个\termTotallyRealSubbundle{}
+$\lambda\subset E_{\mathbb R}|_{\partial\Sigma}$；
+这里 $E_{\mathbb R}$ 是丛 $E$ 的实化。
+\end{definition}
+
+固定一个\termTrivialization{}
+\[
+  \Phi:E\longrightarrow\Sigma\times\mathbb C^n,
+\]
+并设 $R_1,\ldots,R_h$ 是 $\partial\Sigma$ 的连通分支，各自带有从
+$\Sigma$ 诱导的\termBoundaryOrientation{}。由给定的同构
+$E|_{\partial\Sigma}\cong\lambda\otimes\mathbb C$，
+$\Phi(\lambda|_{R_i})$ 给出环路
+\[
+  \gamma_{\Phi,i}:S^1\longrightarrow\mathcal R(n).
+\]
+令 $\mu(\Phi,R_i)=\mu(\gamma_{\Phi,i})$，便得到下面的命题。
+
+\begin{proposition}
+\label{prop:complex-bundle-pair-index-trivialization}
+设 $(E,\lambda)$ 是定向紧曲面 $\Sigma$ 上秩为 $n$ 的复丛对。则
+\[
+  \sum_{i=1}^h\mu(\Phi,R_i)
+\]
+不依赖于平凡化 $\Phi:E\to\Sigma\times\mathbb C^n$ 的选取。\footnote{译者注：原书把求和指标写成 $j$，被求和项却仍为 $R_i$；译文统一为 $i$。}
+\end{proposition}
+
+\begin{proof}
+设 $\Phi_1,\Phi_2$ 是 $E$ 的两个平凡化。于是
+\[
+  \Phi_2\circ\Phi_1^{-1}:
+  \Sigma\times\mathbb C^n\longrightarrow\Sigma\times\mathbb C^n
+\]
+由 $(x,v)\mapsto(x,g(x)v)$ 给出，其中
+\[
+  g:\Sigma\longrightarrow GL(n,\mathbb C).
+\]
+由 $\gamma_{\Phi,i}$ 的定义\footnote{译者注：原书把第一条矩阵恒等式的左端写成
+$g\overline g^{-1}\cdot B\circ\gamma_{\Phi_1,i}$，并在随后的度数公式中省去
+$B\circ\gamma_{\Phi_j,i}$ 前的 $\det$，还把每个分支上的限制 $|_{R_i}$
+写成 $|_{\partial\Sigma}$。译文依 $B(A\mathbb R^n)=A\overline A^{-1}$
+及本节对 $\mu(\Phi,R_i)$ 的定义补正这些对象。}，
+\[
+  g\,(B\circ\gamma_{\Phi_1,i})\,\overline g^{-1}
+  =B\circ\gamma_{\Phi_2,i}.
+\]
+因此
+\[
+\begin{aligned}
+  \deg(\det\circ B\circ\gamma_{\Phi_2,i})
+  ={}&
+  \deg\left(\left.\det(g\overline g^{-1})\right|_{R_i}\right)
+  +\deg(\det\circ B\circ\gamma_{\Phi_1,i}),
+\end{aligned}
+\]
+亦即
+\[
+  \mu(\Phi_2,R_i)-\mu(\Phi_1,R_i)
+  =\deg\left(\left.\det(g\overline g^{-1})\right|_{R_i}\right).
+\]
+另一方面，因为 $\partial\Sigma=\coprod_iR_i$，而映射
+\[
+  \left.\det(g\overline g^{-1})\right|_{\partial\Sigma}:
+  \partial\Sigma\longrightarrow S^1
+\]
+显然可以延拓到 $\Sigma$，所以由度数的\termCobordismInvariance{}，
+\[
+  \sum_{i=1}^h
+  \deg\left(\left.\det(g\overline g^{-1})\right|_{R_i}\right)=0.
+\]
+证明完成。
+\end{proof}
+
+\cref{prop:complex-bundle-pair-index-trivialization}说明下面的定义是良定义的。
+
+\stfhIndex{I124}{Masiluofuzhibiao}{马斯洛夫指标（Maslov index）}
+\begin{definition}
+\label{def:complex-bundle-pair-maslov-index}
+\termBundlePair{} $(E,\lambda)$ 的\termMaslovIndex{}定义为
+\begin{equation}
+  \mu(E,\lambda)=\sum_{i=1}^h\mu(\Phi,R_i),
+\label{eq:complex-bundle-pair-maslov-index}
+\end{equation}
+其中 $\Phi:E\to\Sigma\times\mathbb C^n$ 是某个（因而任意）平凡化。
+\end{definition}
+
+\subsection{辛向量丛情形}
+\label{subsec:symplectic-vector-bundle-pairs}
+
+考虑一个\termSymplecticVectorBundle{} $E\to\Sigma$，也就是说，假设每条纤维
+$E_x$ 都带有一个随 $x\in\Sigma$ 光滑变化的辛内积 $\omega_x$。
+同样，若 $h>0$，则 $\Sigma$ 上的任意辛向量丛都是辛平凡的。固定一个\termSymplecticTrivialization{}
+\[
+  \Psi:E\longrightarrow\Sigma\times(\mathbb R^{2n},\omega_0).
+\]
+
+\stfhSubIndex{I049}{Congdui}{丛对（bundle pair）}{Xin}{辛丛对（symplectic bundle pair）}
+\begin{definition}
+\label{def:symplectic-bundle-pair}
+一个\termSymplecticBundlePair{}是对子 $(E,\lambda)$，其中
+$E\to\Sigma$ 是辛向量丛，而 $\lambda\to\partial\Sigma$ 是
+$E|_{\partial\Sigma}$ 的一个\termLagrangianSubbundle{}。
+\end{definition}
+
+回忆，$\mathbb C^n$ 的任意拉格朗日子空间之\termComplexification{}都典范同构于
+$\mathbb C^n$。把这与\cref{def:complex-bundle-pair}比较。与复情形一样，限制
+$\Psi(\lambda|_{R_i})$ 给出环路
+\[
+  \gamma_{\Psi,i}:S^1\longrightarrow\Lambda(n).
+\]
+记 $\mu(\Psi,R_i)=\mu(\gamma_{\Psi,i})$。于是有下述命题。
+
+\begin{proposition}
+\label{prop:symplectic-bundle-pair-index-trivialization}
+设 $(E,\lambda)$ 是定向紧曲面 $\Sigma$ 上的辛丛对。则
+\[
+  \sum_{i=1}^h\mu(\Psi,R_i)
+\]
+不依赖于辛平凡化
+$\Psi:E\to\Sigma\times(\mathbb R^{2n},\omega_0)$ 的选取。\footnote{译者注：原书再次把求和指标写成 $j$、被求和项写成 $R_i$；并把平凡化的靶写成 $E\times\mathbb C^n$。译文分别统一为 $i$ 及本小节已经固定的 $\Sigma\times(\mathbb R^{2n},\omega_0)$。}
+\end{proposition}
+
+\begin{proof}
+设
+\[
+  \Psi_1,\Psi_2:
+  E\longrightarrow\Sigma\times(\mathbb R^{2n},\omega_0)
+\]
+是两个辛平凡化\footnote{译者注：原书在本证明中把两个辛平凡化的靶及过渡映射的定义域、值域都只写成
+$(\mathbb R^{2n},\omega_0)$，但下一行的赋值仍使用基点 $x$。译文补回
+$\Sigma\times(\mathbb R^{2n},\omega_0)$。}。映射
+\[
+  \Psi_2\circ\Psi_1^{-1}:
+  \Sigma\times(\mathbb R^{2n},\omega_0)
+  \longrightarrow
+  \Sigma\times(\mathbb R^{2n},\omega_0)
+\]
+由 $(x,v)\mapsto(x,g(x)v)$ 给出，其中
+\[
+  g:\Sigma\longrightarrow\operatorname{Sp}(2n,\mathbb R).
+\]
+把 $\operatorname{Sp}(2n,\mathbb R)$ 在 $\Lambda(n)$ 上的自然作用写成
+$g\cdot V$。于是
+\[
+  g(x)\gamma_{\Psi_1,i}(x)=\gamma_{\Psi_2,i}(x),
+  \qquad x\in R_i.
+\]
+
+因为 $\mathbb C^n$ 的任意拉格朗日子空间关于标准复乘法都是全实的，而且\termGeneralizedMaslovIndex{}在 $\mathcal R(n)$ 中的同伦下不变，所以这个恒等式给出
+\[
+  \mu(\Psi_2,R_i)=\mu(\Psi_1,R_i)+2\deg(g|_{R_i}),
+\]
+其中 $\deg(g|_{R_i})$ 是第 2.2.2 节中定义的环路
+\[
+  g|_{R_i}:S^1\longrightarrow\operatorname{Sp}(2n,\mathbb R)
+\]
+的度数。因为
+\[
+  g|_{\partial\Sigma}=\coprod_{i=1}^h g|_{R_i},
+\]
+再次得到
+\[
+  \sum_{i=1}^h\deg(g|_{R_i})=0,
+\]
+证明即告完成。
+\end{proof}
+
+这个命题使我们能够定义辛丛对 $(E,\lambda)$ 的马斯洛夫指标
+$\mu(E,\lambda)$。
+
+\begin{definition}
+\label{def:symplectic-bundle-pair-maslov-index}
+辛丛对 $(E,\lambda)$ 的马斯洛夫指标定义为
+\begin{equation}
+  \mu(E,\lambda)=\sum_{i=1}^h\mu(\Psi,R_i),
+\label{eq:symplectic-bundle-pair-maslov-index}
+\end{equation}
+其中 $\Psi:E\to\Sigma\times(\mathbb R^{2n},\omega_0)$ 是某个（因而任意）
+辛平凡化。\footnote{译者注：原书此处沿用复丛对定义中的 $\Phi$ 与
+$\Sigma\times\mathbb C^n$，但本小节此前始终以 $\Psi$ 表示取值于
+$\Sigma\times(\mathbb R^{2n},\omega_0)$ 的辛平凡化；译文依此统一。}
+\end{definition}
+
+不难证明 $\mu(E,\lambda)$ 的\termHomotopyInvariance{}。事实上，它满足一个更强的不变性；现在来表述这一点。
+
+设 $(E_1,\lambda_1)$、$(E_2,\lambda_2)$ 分别是 $\Sigma_1$、$\Sigma_2$
+上的辛丛对。\footnote{译者注：原书此处先写 $(E_0,\lambda_0)$、
+$(E_1,\lambda_1)$，随后在命题中混用下标 $0,1,2$ 以及未定义的
+$\Sigma_0,E_2,\lambda_2$。译文依命题结论与配边的两个边界分支统一为下标
+$1,2$。}
+
+\begin{proposition}
+\label{prop:maslov-cobordism-invariance}
+假设实向量丛
+\[
+  \lambda_1|_{\partial\Sigma_1}
+  \sqcup
+  \lambda_2|_{\partial\Sigma_2}
+\]
+可以延拓为\termOrientedCobordism{} $\Sigma_{12}$ 上的实向量丛
+$\lambda_{12}\to\Sigma_{12}$，其中
+\[
+  \partial\Sigma_{12}
+  =-\partial\Sigma_1\sqcup\partial\Sigma_2,
+\]
+并且 $\lambda_{12}$ 嵌入辛向量丛 $E_{12}\to\Sigma_{12}$，成为一个拉格朗日子丛；其在边界 $\partial\Sigma_{12}$ 上限制为丛对
+\[
+  (E_1,\lambda_1)|_{\partial\Sigma_1}
+  \sqcup
+  (E_2,\lambda_2)|_{\partial\Sigma_2}.
+\]
+则
+\[
+  \mu(E_1,\lambda_1)=\mu(E_2,\lambda_2).
+\]
+\end{proposition}
+
+\begin{proof}
+任选 $E_{12}\to\Sigma_{12}$ 的一个平凡化
+\[
+  \Phi_{12}:E_{12}
+  \longrightarrow
+  \Sigma_{12}\times(\mathbb R^{2n},\omega_0).
+\]
+它显然定义了 $E_1$ 和 $E_2$ 的平凡化。在这个平凡化中计算
+$\mu(E_i,\lambda_i)$（$i=1,2$）以及 $\mu(E_{12},\lambda_{12})$，结论随即成立。
+\end{proof}
+
+我们把这个命题的陈述称为 $\mu(E,\lambda)$ 的\termCobordismInvariance{}。
+显然，这个命题蕴含 $\mu(E,\lambda)$ 的同伦不变性。
+
+现在设 $L\subset(M,\omega)$ 是拉格朗日子流形，并考虑光滑映射
+\[
+  w:(\Sigma,\partial\Sigma)\longrightarrow(M,L).
+\]
+以 $\partial w:\partial\Sigma\to L$ 表示限制 $w|_{\partial\Sigma}$。于是
+$(w,\partial w)$ 诱导一个典范丛对
+\[
+  E=w^*TM,
+  \qquad
+  \lambda=(\partial w)^*TL.
+\]
+
+\begin{definition}
+\label{def:maslov-index-map}
+设 $w$ 如上。$w$ 的马斯洛夫指标记为 $\mu_L(w)$，定义为
+\[
+  \mu_L(w)=\mu\bigl(w^*TM,(\partial w)^*TL\bigr).
+\]
+\end{definition}
+
+$\mu(E,\lambda)$ 的同伦不变性立即推出映射 $w$ 的 $\mu_L(w)$ 具有同伦不变性。

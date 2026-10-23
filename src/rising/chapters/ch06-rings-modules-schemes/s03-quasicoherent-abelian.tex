@@ -1,0 +1,39 @@
+
+\section{\trQCSheaf{}构成\trAbelianCategory}
+
+概形 $X$ 上从一个\trQCSheaf{}到另一个\trQCSheaf{}的\trMorphism，就定义为「作为 $\OO_X$-\trModule{}的\trMorphism」。如此一来，概形 $X$ 上的诸\trQCSheaf{}便构成一个\trCategory，记作 $\catQCo_X$。（按定义，它是 $\catModOX$ 的一个\trFullSubcategory。）我们现在就来证明：$X$ 上的诸\trQCSheaf{}构成一个\emph{\trAbelian}\trCategory。
+
+要证明某个东西是\trAbelianCategory，你有许多事项要检验，因为这个定义由很多部分组成。然而，若你所考虑的诸\trObject{}本来就身处某个外围的\trAbelianCategory{}之中，事情就容易得多。这个想法你早已见过：要检验某个东西是\trGroup，有好几件事要做；但若你手里有的是由\trGroup{}元素组成的一个子集，那么检验它构成\trSubgroup{}就要容易得多。
+
+你不妨回头去查一查\trAbelianCategory{}的定义，便会发现：要检验一个\trSubcategory{}是\trAbelian\trSubcategory，只需检验下面几条：
+\begin{itemize}[leftmargin=2.6em,itemsep=2pt,topsep=3pt]
+\item[(i)] $0$ 属于该\trSubcategory；
+\item[(ii)] 该\trSubcategory{}对有限和封闭；
+\item[(iii)] 该\trSubcategory{}对\trKernel{}与\trCokernel{}封闭。
+\end{itemize}
+
+在我们 $\catQCo_X\subset\catModOX$ 的情形，前两条是廉价的：$0$ 当然是\trQC{}的；而且该\trSubcategory{}对有限和封闭——只要 $\scr{F}$ 与 $\scr{G}$ 是 $X$ 上的\trSheaf，并且在 $\Spec A$ 上 $\scr{F}\cong\widetilde{M}$、$\scr{G}\cong\widetilde{N}$，就有 $\scr{F}\oplus\scr{G}\cong\widetilde{M\oplus N}$（你看出这是为什么吗？），故 $\scr{F}\oplus\scr{G}$ 是\trQCSheaf。
+
+现在我们来检验 (iii)，用的正是重要练习~6.2.D 的刻画。设 $\alpha\colon\scr{F}\to\scr{G}$ 是\trQCSheaf{}之间的一个\trMorphism。于是在任一\trAffine\trOpenSet{} $U$ 上——该\trMorphism{}在此由 $\beta\colon M\to N$ 给出——定义 $(\ker\alpha)(U)=\ker\beta$ 与 $(\coker\alpha)(U)=\coker\beta$。而这两者在「对单个元素取逆」之下表现良好：若
+\[
+0\longrightarrow K\longrightarrow M\longrightarrow N\longrightarrow P\longrightarrow 0
+\]
+是\trExact{}的，则
+\[
+0\longrightarrow K_f\longrightarrow M_f\longrightarrow N_f\longrightarrow P_f\longrightarrow 0
+\]
+亦然，从而 $(\ker\beta)_f\cong\ker(\beta_f)$、$(\coker\beta)_f\cong\coker(\beta_f)$。于是，这两者定义出来的都是\trQCSheaf。此外，在\trStalk{}上加以检验即知：它们的确就是 $\alpha$ 的\trKernel{}与\trCokernel（\trExactness{}可以\trStalkLocal{}地检验）。这样，诸\trQCSheaf{}确实构成一个\trAbelianCategory。
+
+\textbf{6.3.A.（练习）}\quad 证明：$X$ 上\trQCSheaf{}的序列 $\scr{F}\to\scr{G}\to\scr{H}$ 是\trExact{}的，当且仅当它在 $X$ 的任一给定\trAffine\trCover{}的每个\trOpenSet{}上都\trExact。（特别地，「在仿射开子集 $\Spec A'$ 上取\trSection」是一个从 $X$ 上\trQCSheaf{}的\trCategory{}到 $A$-\trModule{}的\trCategory{}的\trExact{}函子。回忆：在一般情形下，取\trSection{}只是\trLeftExact{}的；见\cref{ex:sections-left-exact}。）于是，\trQCSheaf{}之间一个\trMorphism{}的单射性或满射性，可以在我们自己选定的\trAffine\trCover{}上加以检验。
+
+警示：若 $0\to\scr{F}\to\scr{G}\to\scr{H}\to 0$ 是\trQCSheaf{}的一个\trExactSequence，那么对任意\trOpenSet，
+\[
+0\longrightarrow\scr{F}(U)\longrightarrow\scr{G}(U)\longrightarrow\scr{H}(U)
+\]
+都是\trExact{}的，而右端的\trExactness{}只有当 $U$ 是\trAffine{}的时候才能得到保证。（这是在为\trCohomology{}做铺垫：每当你见到\trLeftExactness，就应当预期自己最终会把它解读为某个\trLongExactSequence{}的开端。所以我们预期右端会出现若干 $\mathrm{H}^1$，而现在我们预期 $\mathrm{H}^1(\Spec A,\scr{F})=0$。事实也确实会如此。）
+
+\textbf{6.3.B.（较不重要的练习：与另一个定义的联系，以及一般\trRingedSpace{}上的\trQCSheaf）}\quad 证明：概形 $X$ 上的一个 $\OO_X$-\trModule{} $\scr{F}$ 是\trQC{}的，当且仅当存在一个由诸 $U_i$ 组成的\trOpenCover，使得在每个 $U_i$ 上，$\scr{F}|_{U_i}$ 都\trIsomorphic{}于两个「\trFreeSheaf{}」（free sheaves）之间某个映射的\trCokernel：
+\[
+\OO_{U_i}^{\oplus I}\longrightarrow\OO_{U_i}^{\oplus J}\longrightarrow\scr{F}|_{U_i}\longrightarrow 0
+\]
+是\trExact{}的。这正是一般\trRingedSpace{}上\trQCSheaf{}的定义。它在许多场合都有用，例如在\trComplexAnalyticGeometry{}中。

@@ -1,0 +1,296 @@
+\section{生成函数与维泰博不变量}
+\stfhIndexRangeStart{I136}{sheng^cheng^han^shu}{生成函数（generating function）}
+\label{sec:generating-functions-viterbo-invariants}
+
+\emph{生成函数}在哈密顿力学和微局部分析中起重要作用，尤其是在赫尔曼德的傅里叶积分算子演算 (Hor71) 中。生成函数在经典力学中的应用参见 (Go80)，它在傅里叶积分算子理论中的用法参见 (Hor71)、(GS77)。从几何观点看，给定流形 $N$ 上的一个函数族，在适当的横截性条件下，便可在 $T^*N$ 中得到一个自然的（浸入）拉格朗日子流形。这一构造可以纳入拉格朗日子流形演算中更一般的\emph{推前}运算，成为后者的特例。由于深谷范畴中态射与运算的函子性构造，这种拉格朗日子流形演算近来引起了广泛关注 (WW10)。本节用生成函数的构造来说明这种演算。
+
+先给出推前拉格朗日子流形运算所依据的线性代数引理。回顾
+\cref{lem:linear-symplectic-reduction}：对辛向量空间 $(V,\Omega)$ 的任意余迷向子空间 $C$，商空间 $C/C^\Omega$ 带有由 $\Omega$ 诱导的典范辛形式。（见\cref{lem:linear-symplectic-reduction}。）下面的引理说明，在什么条件下，拉格朗日子空间
+$L\subset(V,\Omega)$ 会在 $C/C^\Omega$ 上典范地诱导一个拉格朗日子空间。
+
+\begin{lemma}\label{lem:lagrangian-coisotropic-reduction}
+设 $C\subset(V,\Omega)$ 是给定余迷向子空间。考虑拉格朗日子空间
+$L\subset(V,\Omega)$ 以及交集 $L\cap C$。假设
+\begin{equation}
+ L+C=V.
+ \label{eq:lagrangian-coisotropic-transversality}
+\end{equation}
+则 $\pi_C(L\cap C)\subset C/C^\Omega$ 是拉格朗日的。
+\end{lemma}
+
+\begin{proof}
+$\pi_C(L\cap C)$ 在 $C/C^\Omega$ 中总是迷向的。再者，
+\eqref{eq:lagrangian-coisotropic-transversality}蕴含
+$L\cap C^\Omega=L^\Omega\cap C^\Omega=0$，所以
+$\dim(L\cap C)=\dim\pi_C(L\cap C)$。还须证明
+$\dim(L\cap C)=\frac12\dim(C/C^\Omega)$。因为
+$\dim C+\dim C^\Omega=2n\;(=\dim V)$，有
+\[
+ \dim(C/C^\Omega)=2n-2\dim C^\Omega.
+\]
+另一方面，
+\[
+\begin{aligned}
+ \dim(L\cap C)
+ &=\dim L+\dim C-2n
+ =\dim C-n=(2n-\dim C^\Omega)-n\\
+ &=n-\dim C^\Omega
+ =\frac12\dim(C/C^\Omega),
+\end{aligned}
+\]
+故得证。
+\end{proof}
+
+现在考虑纤维丛 $\pi:E\to M$，以及纤维丛 $E$ 上的光滑函数
+$S:E\to\mathbb R$。考虑拉格朗日子流形
+$\operatorname{Graph}(dS)\subset T^*E$。我们希望把
+$\operatorname{Graph}(dS)$ 推前到 $T^*N$ 中的拉格朗日子流形。考虑典范竖直切丛
+$VTE\subset TE$，从而有子丛
+\begin{equation}
+ (VTE)^\perp\subset T^*E,
+ \label{eq:vertical-annihilator-bundle}
+\end{equation}
+其中 $(VTE)^\perp$ 是 $T^*E$ 的子丛，它在 $e$ 处的纤维
+$(VT_eE)^\perp\subset T_e^*E$ 是 $VT_eE$ 的零化子。注意
+$\dim(VT_eE)^\perp=\dim T_{\pi(e)}^*N$。选取
+$VT_eE\subset T_eE$ 的一个补空间，记作 $HT_eE$，便有同构
+\[
+ \pi_h^*:T_{\pi(e)}^*N\longrightarrow(HT_eE)^*
+ \longrightarrow(VTE)^\perp,
+\]
+其中第一个映射是水平投影
+$\pi_h:HT_eE\to T_{\pi(e)}N$ 的对偶映射。
+
+\begin{exercise}\label{ex:vertical-annihilator-isomorphism}
+定义这个同构，并证明其定义与分裂
+$T_eE=VT_eE\oplus HT_eE$ 中补空间 $HT_eE$ 的选取无关。
+\end{exercise}
+
+因此有自然映射
+\begin{equation}
+ \operatorname{Graph}(dS)\cap(VTE)^\perp\longrightarrow T^*N.
+ \label{eq:generating-function-pushforward-map}
+\end{equation}
+以 $L_S\subset T^*N$ 表示它的像。为了更具体地描述 $L_S$，回顾 $S$ 的\emph{纤维导数} $d^vS:E\to(VTE)^*$，它定义为
+\[
+ d^vS(e)=dS(e)|_{VT_eE},\qquad e\in E.
+\]
+于是可改写
+\[
+ \operatorname{Graph}(dS)\cap(VTE)^\perp
+ =\{(e,D^hS(e))\mid d^vS(e)=0\},
+\]
+其中
+\[
+ D^hS(e):=dS(e)|_{HT_eE}.
+\]
+
+\begin{proposition}\label{prop:generating-function-lagrangian-immersion}
+假设截面 $d^vS:E\to(VTE)^*$ 横截于零截面 $o_{(VTE)^*}$，则：
+\begin{enumerate}[label=(\arabic*)]
+\item 纤维临界点集
+\[
+ \Sigma_S:=\{e\in E\mid d^vS(e)=0\}
+\]
+是光滑流形；
+\item 浸入 $i_S:\Sigma_S\to T^*N$ 的像
+\[
+ L_S=\{(q,dS|_{\Sigma_S}(e))\mid e\in\Sigma_S,\ \pi(e)=q\}
+\]
+是拉格朗日的。
+\end{enumerate}
+若（浸入）拉格朗日子流形 $L\subset T^*N$ 可以如上由 $S$ 表示，则称 $S$ 为 $L$ 的\emph{生成函数}。
+\stfhIndexRangeEnd{I136}{sheng^cheng^han^shu}{生成函数（generating function）}
+\end{proposition}
+
+\begin{proof}
+由 $\Sigma_S$ 的定义，第一项来自横截性定理。
+
+为证明第二项，把 $e$ 写成 $e=(q,\xi)$，其中 $\pi(e)=q$ 且
+$\xi\in VT_eE$；则映射 $i_S:\Sigma_S\to T^*M$ 为
+\[
+ i_S(e)=\bigl(\pi_E(e),D^hS(e)\circ(\pi_h(e))^{-1}\bigr),
+ \qquad e\in\Sigma_S.
+\]
+现在计算
+\[
+\begin{aligned}
+ i_S^*(\theta)(e)(v)
+ &=\theta(di_S(e)(v))\\
+ &=D^hS(e)\circ(\pi_h(e))^{-1}(d\pi_E(v))\\
+ &=D^hS(e)(v)=i_{\Sigma_S}^*dS(e)(v),
+\end{aligned}
+\]
+其中 $\theta=p\,dq$ 是 $T^*M$ 上的刘维尔 $1$-形式。这证明
+$i_S^*(\theta)=i_{\Sigma_S}^*dS$，从而 $i_S^*\omega_0=0$。还须证明 $i_S$ 是浸入。
+
+为此，设 $e\in\Sigma_S$、$v\in T_e\Sigma_S$ 且 $di_S(e)(v)=0$。于是
+$d\pi_E(e)(v)=0$，故 $v$ 切于 $\pi_E:E\to N$ 的纤维。另一方面，$v$ 也切于
+$\Sigma_S$。沿 $v\in T_e\Sigma_S$ 对 $d^vS(e)=0$ 微分，得到
+$d(d^vS)(e)(v)=0$。因为 $v$ 竖直，$di_S(e)(v)=0$ 蕴含
+$d^v(D^hS)(e)(v)=0$，故 $d^v(d^vS)(e)(v)=0$。而
+$d^vS:E\to(VTE)^*$ 横截于 $(T^vE)^*$ 的零截面，等价于对每个
+$e\in\Sigma_S$，
+\[
+ d^v(d^vS)(e):VT_eE\longrightarrow(VT_eE)^*
+\]
+是同构。因此 $v=0$。这证明 $i_S$ 是浸入，命题得证。
+\end{proof}
+
+\begin{remark}\label{rem:generating-function-euclidean-case}
+当 $N=\mathbb R^n$、$E=\mathbb R^n\times\mathbb R^m$，且
+$S=S(q,\xi)$ 是 $\mathbb R^n\times\mathbb R^m$ 上的函数时，可以等同
+\[
+ d^vS=d_\xi S,\qquad D^hS=d_qS,
+\]
+并且
+$\Sigma_S=\{(q,\xi)\mid d_\xi S(q,\xi)=0\}$。此外，
+$VTE\cong\mathbb R^n\times\mathbb R^m\times\mathbb R^m$，而
+$d^vS:E\to(VTE)^*$ 可写作
+\[
+ d^vS(q,\xi)=(q,\xi,d^vS(q,\xi)).
+\]
+所以，在 $e=(q,\xi)\in\Sigma_S$ 处，$d^vS$ 横截于零截面
+\[
+ VTE\cong\mathbb R^n\times\mathbb R^m\times\{0\}
+ \subset\mathbb R^n\times\mathbb R^m\times(\mathbb R^m)^*
+\]
+等价于黑塞 $\operatorname{Hess}(S|_{E_q})$ 可逆。
+\end{remark}
+
+\cref{prop:generating-function-lagrangian-immersion}的证明立即给出如下推论。
+
+\begin{corollary}\label{cor:generated-lagrangian-exact}
+$T^*N$ 中由生成函数生成的任意拉格朗日浸入都是正合的。
+\end{corollary}
+
+事实表明，并非每个正合拉格朗日浸入都由生成函数生成。关于用生成函数表示正合拉格朗日子流形时所遇到的这一障碍，详见 (Lat91)。关于正合拉格朗日子流形的生成函数存在性，弗朗索瓦·洛当巴克（François Laudenbach）与让-克洛德·西科拉夫（Jean-Claude Sikorav）的如下定理——即 (LS85) 的定理 2.1——给出了一项重要结果。
+
+\begin{theorem}[洛当巴克--西科拉夫]\label{thm:laudenbach-sikorav-gfqi}
+设 $L\subset T^*N$ 是零截面 $o_N\subset T^*N$ 的哈密顿形变
+$L=\phi_H^1(o_N)$。则存在有限维向量丛 $E\to N$ 以及光滑函数
+$S:E\to\mathbb R$ 来表示 $\phi_H^1(o_N)$，而且 $S$ 在无穷远处是二次的。
+\end{theorem}
+
+这里，称 $S$ \emph{在无穷远处二次}，是指存在非退化的逐纤维二次型 $Q$，使得在 $E$ 的某个紧子集之外
+\stfhSubIndex{I138}{sheng^cheng^han^shu}{生成函数（generating function）}{zai^wu^qiong^yuan^chu^er^ci}{在无穷远处二次（quadratic at infinity）}
+$S(q,\xi)=Q(q,\xi)$。受这个定理启发，下文只讨论这一特殊类别的生成函数。依照维泰博 (Vi92)，把在无穷远处二次的生成函数简称为 GFQI。
+
+给定 $E$ 上逐纤维二次型 $Q$，以 $\mathcal S_{(Q;E)}$ 表示所有满足如下条件的 GFQI 之集合：在 $E$ 的一个紧子集之外
+$S(q,\xi)=Q(q,\xi)$。注意，当 $E\to N$ 是向量丛时，有典范同构
+$VT_eE\cong E_{\pi(e)}$，从而可作等同
+\[
+ VTE\cong\pi_E^*E,
+ \qquad
+ (VTE)^*\cong\pi_E^*E^*,
+\]
+其中 $\pi_E:E\to N$ 是投影。定义
+\[
+ \mathcal S^0_{(Q;E)}
+ :=\{S\in\mathcal S_{(Q;E)}\mid
+ d^vS\text{ 横截于 }o_{\pi_E^*E^*}\}.
+\]
+容易看出，在紧开拓扑下，$\mathcal S^0_{(Q;E)}$ 是
+$\mathcal S_{(Q;E)}$ 的稠密子集。
+
+下面引入生成函数上的两种运算；它们不改变所生成的拉格朗日子流形。
+
+\begin{definition}\label{def:generating-function-equivalences}
+\begin{enumerate}[label=(\arabic*)]
+\item \textbf{稳定化。}若
+\stfhSubIndex{I139}{sheng^cheng^han^shu}{生成函数（generating function）}{wen^ding^hua}{稳定化（stabilization）}
+$\widetilde S:E\oplus F\to\mathbb R$ 满足
+\[
+ \widetilde S(q,\xi,\eta)=S(q,\xi)+Q(q,\eta)+C,
+\]
+其中 $Q$ 是向量丛 $F\to N$ 上某个非退化逐纤维二次型，$C$ 是常数，则称
+$\widetilde S$ 为 $S$ 的一个\emph{稳定化}。
+
+\item \textbf{规范等价。}若存在保纤维微分同胚 $\Phi:E\to E$ 使
+\stfhSubIndex{I137}{sheng^cheng^han^shu}{生成函数（generating function）}{gui^fan^deng^jia}{规范等价（gauge equivalence）}
+\[
+ S_2=S_1\circ\Phi,
+\]
+则称 $S_1,S_2:E\to\mathbb R$ \emph{规范等价}。
+\end{enumerate}
+\end{definition}
+
+下面这个唯一性结果是 (Vi92) 和 (Th99) 中证明的一个基本定理；其证明请参见这些文献。
+
+\begin{theorem}[维泰博]\label{thm:viterbo-generating-function-uniqueness}
+\cref{thm:laudenbach-sikorav-gfqi}中的生成函数，在相差稳定化与规范等价的意义下唯一。
+\end{theorem}
+
+现在给定 GFQI $S:E\to\mathbb R$。把
+$S\in\mathcal S_{(Q;E)}$ 的次水平集记作
+\[
+ E^\lambda:=\{e\in E\mid S(e)\le\lambda\}.
+\]
+当 $|\lambda|$ 充分大时，
+\[
+ E^\lambda=\{e\in E\mid S(e)\le\lambda\}
+ =\{e\in E\mid Q(e)\le\lambda\}
+\]
+的同伦型与 $\lambda$ 无关。对这样的 $\lambda$，把 $E^\lambda$ 记作
+$E^\infty$，把 $E^{-\lambda}$ 记作 $E^{-\infty}$。注意
+\[
+ (E^\infty,E^{-\infty})\simeq(D(E^-),S(E^-)),
+\]
+其中 $E^-$ 表示二次型 $Q$ 的负丛，$D(E^-)$ 与 $S(E^-)$ 分别表示与
+$E^-$ 相伴的圆盘丛与球面丛。
+
+托姆同构给出同构
+\begin{equation}
+ H^*(M)\cong H^*(D(E^-),S(E^-))
+ \cong H^*(E^\infty,E^{-\infty}).
+ \label{eq:gfqi-thom-isomorphism}
+\end{equation}
+在 (Vi92) 中，维泰博为每个
+$(u,S)\in H^*(M)\times\mathcal S^0_{(Q;E)}$ 配置实数
+\[
+ c(u,S)=\inf\{\lambda\mid j_\lambda^*Tu\ne0\}.
+\]
+这里 $T$ 表示同构\eqref{eq:gfqi-thom-isomorphism}，而
+\[
+ j_\lambda^*:H^*(E^\infty,E^{-\infty})
+ \longrightarrow H^*(E^\lambda,E^{-\infty})
+\]
+是由包含
+\[
+ j_\lambda:E^\lambda\longrightarrow E^\infty
+\]
+诱导的同态。
+
+依照 (MiO95)，通过考虑任意闭子流形 $K\subset N$，我们推广这一构造；以
+$\pi|_K:E|_K\to K$ 表示丛 $E$ 在 $K$ 上的限制。
+
+\begin{definition}\label{def:viterbo-minimax-invariant}
+给定 $S\in\mathcal S^0_{(Q;E)}$ 与 $K\subset N$。对每个
+$0\ne u\in H^*(K)$，定义
+\[
+ c(S;u,K):=\inf\{\lambda\mid
+ j_\lambda^*Tu\ne0\text{ 于 }H^*(E_K^\lambda,E_K^{-\infty})\text{ 中}\}.
+\]
+\end{definition}
+
+下面的结果既可按维泰博在 (Vi92) 中的方法证明，也可像 (Oh97b) 那样用弗洛尔理论的方法证明。
+
+\begin{theorem}[参见 (Vi92) 的定理 2.3]\label{thm:viterbo-invariant-properties}
+设 $S\in\mathcal S^0_{(Q;E)}$ 是拉格朗日子流形
+$L\subset T^*N$ 的生成函数，$K\subset N$ 是闭子流形，则有：
+\begin{enumerate}[label=(\arabic*)]
+\item $c(S;u,K)$ 是 $S|_{E_K}$ 的临界值。
+\item 对每个 $0\ne u\in H^*(K)$，存在点
+$x_u\in\nu^*K\cap L$，使
+\[
+ c(S;u,K)-c(S;v,K)=\int_\gamma\theta,
+\]
+其中 $\gamma$ 是 $L$ 中任意一条连接 $x_u$ 与 $x_v$ 的光滑路径。
+\item 分别以 $1$ 与 $\mu_N$ 表示 $H^0(N)$ 和 $H^n(N)$ 的生成元。记
+\[
+ \gamma(L):=c(\mu_N,S)-c(1,S).
+\]
+则 $\gamma(L)\ge0$，并且 $\gamma(L)=0$ 当且仅当 $L=o_M$。
+\item 在 $S$ 的紧开拓扑下，$S\mapsto c(S;u,K)$ 是连续函数。
+\end{enumerate}
+\end{theorem}

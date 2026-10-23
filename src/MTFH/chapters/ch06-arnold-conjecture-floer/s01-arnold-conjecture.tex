@@ -1,0 +1,96 @@
+
+在本章中，我们抵达了我们主题的核心：\trArnoldConjecture。我们将陈述这条猜想，它给出某些\trHamiltonian\trDiffeomorphism{}的\trFixedPoint{}数目的一个下界。随后，我们将把这些\trFixedPoint{}与\trHamiltonian{}系统的\trPeriodic\trTrajectory、与“\trActionFunctional”的\trCriticalPoint{}视为同一。我们将描述这个泛函——即定义在原先那个\trSymplectic\trManifold{}的\trContractible\trLoop{}所成空间上的一个函数——以及定义此泛函的\trGradient{}之流的那条\trDifferential{}方程，即所谓的\trFloerEquation。这是一条偏\trDifferential{}方程，因为它同时涉及\trLoop{}的变量与\trGradient{}的流的变量。我们将从一个\trCompact{}性性质入手，开始研究这条方程的解空间。
+
+\section{\trArnoldConjecture}
+\label{sec:arnold-conjecture}
+
+\trArnoldConjecture{}的一般背景（由\trArnold{}在 [1, 2] 中陈述），乃是\trSymplectic\trManifold{}的\trSymplectic\trDiffeomorphism{}的情形；问题在于估计其\trFixedPoint{}的数目。当然了，要构造没有\emph{任何}\trFixedPoint{}的\trSymplectic\trManifold{}连同其上的\trSymplectic\trDiffeomorphism，是轻而易举的。比如说，取\trTorus{}上的一个旋转即可（参见第 14 章的练习~22）。
+
+反过来，我们已经看到（见\cref{sec:hamiltonian-vector-fields}），一个\trHamiltonian\trVectorField{}在“时刻 $1$”的\trFlow，其\trFixedPoint{}也至少与生成它的那个函数的\trCriticalPoint{}一样多。应用\cref{thm:morse-inequalities}，我们便推出下述结果。
+
+\begin{proposition}\label{thm:autonomous-periodic-solutions}
+\trCompact\trSymplectic\trManifold{} $W$ 上一个\trNondegenerate{}\trAutonomous\trHamiltonian{}系统的\trPeriodic{}为 $1$ 的解的个数，大于或等于
+\[
+\sum_i\dim HM_i(W;\ZZ/2)\text{。}\tag*{$\vdash$}
+\]
+\end{proposition}
+
+我们此处将要研究的\trArnoldConjecture，恰好就是同一个陈述，只不过不再假设\trHamiltonian{}量是\trAutonomous{}的了；它如今依赖于时间。
+
+\begin{conjecture}[\trArnold]\label{thm:arnold-conjecture}
+设 $W$ 是一个\trCompact\trSymplectic\trManifold，并设
+\[
+H\colon W\times\RR\longrightarrow\RR
+\]
+是一个时间依赖的\trHamiltonian{}量。假设与之相联系的\trHamiltonian{}系统的\trPeriodic{}为 $1$ 的解都是\trNondegenerate{}的。\footnote{译注：原书把“与之相联系的\trHamiltonian{}系统的\trPeriodic{}为 $1$ 的解”按字面理解为真正的\trPeriodic{}解——即对一切 $t$ 满足 $x(t+1)=x(t)$ 的解——来使用，却未假设 $H$ 关于 $t$ 是 $1$-\trPeriodic{}的；疑应补设 $H$ 为 $1$-\trPeriodic{}（或把结论改述为时刻 $1$ 映射 $\varphi^1$ 的\trFixedPoint{}的个数）。须知注记 6.1.3 的重\trParametrization{}只保持时刻 $1$ 映射（从而只保持\trFixedPoint），并不保持这样的\trPeriodic{}解。反例要点：在 $S^2$ 上取 $H_t=f+t\,g$，其中 $f$、$g$ 是\trCriticalPoint{}集不相交的两个\trMorseFunction{}（例如两个不同方向的\trHeightFunction{}）；则这样的\trPeriodic{}解须处处满足 $X_g=0$，从而只能是落在 $\operatorname{Crit}f\cap\operatorname{Crit}g$（为空）中的常值解，个数为 $0$，小于右端 $\sum_i\dim HM_i(S^2;\ZZ/2)=2$。故原书此句只能按“时刻 $1$ 映射的定点”一读方才成立；此处照原书排印，存疑备案。——译者注}那么它们的个数大于或等于
+\[
+\sum_i\dim HM_i(W;\ZZ/2)\text{。}
+\]
+\end{conjecture}
+
+回想一下，若\trFlow{}在时刻 $1$ 的\trDifferential{}不具有任何不动向量，就称\trPeriodic{}为 $1$ 的解是\trNondegenerate{}的（见\cref{thm:nondegenerate-periodic-solution}）。
+
+\begin{remark}\label{thm:periodic-hamiltonian-remark}
+在这个陈述中，$H$ 同样可以被假设为\trPeriodic{}的，其含义即 $H(x,t+1)=H(x,t)$。的确，
+\[
+\frac{d}{dt}\bigl(\varphi^{\alpha(t)}\bigr)=\frac{d\alpha}{dt}\,X_{H_{\alpha(t)}}\bigl(\varphi^{\alpha(t)}(x)\bigr)=X_{\alpha'(t)H_{\alpha(t)}}\bigl(\varphi^{\alpha(t)}(x)\bigr)\text{，}
+\]
+于是 $t\mapsto\varphi^{\alpha(t)}$ 就是与函数 $K_t=\alpha'(t)H_{\alpha(t)}$ 相联系的那个\trHamiltonian\trVectorField{}的\trFlow。若 $\alpha$ 是一个从 $[0,1]$ 到 $[0,1]$、在 $0$ 近旁为零（且平坦）、在 $1$ 近旁等于 $1$（且平坦）的函数，那么这个等式既给出了 $\varphi^{\alpha(1)}=\varphi^1$ 这一事实，也给出了 $K_t$ 可延拓为时间 $t$ 的\trPeriodic{}函数这一事实。\noqed
+\end{remark}
+
+\begin{remark}\label{thm:arnold-conjecture-variants}
+我们本可以再添上许许多多条注记。“正确的”猜想应是：一个如上所述的“时刻 $1$”\trDiffeomorphism，其\trFixedPoint{}的个数大于或等于一个函数在此\trManifold{}上\trCriticalPoint{}的最少个数；并且，若这些\trFixedPoint{}都是\trNondegenerate{}的，则它们的个数大于或等于一个\trMorseFunction{}在此\trManifold{}上\trCriticalPoint{}的最少个数。\footnote{我们在\cref{thm:three-critical-points-torus}中已经看到，一个函数的\trCriticalPoint{}的最少个数可以小于一个\trMorseFunction{}的\trCriticalPoint{}的最少个数。}
+变体有许许多多，比如这样的变体：把\trSymplectic\trDiffeomorphism{}的\trFixedPoint{}换成\trLagrange\trSubmanifold{}的交点……
+\end{remark}
+
+按惯例，人们会为已经获得的结果开列一份年代清单。这条猜想如今已在最大的普遍性下（在其\trHomology{}形式下）获得证明；许多数学家都对这一证明有所贡献。按年代先后——唯恐我们有所遗漏——我们还是试着开列一份清单：\trEliashberg{}证得二维情形，\trConley{}与\trZehnder{}证得诸\trTorus。随后来临的便是\trFloer{}的革命：先是对于\trAsphericity\trManifold（$\pi_2=0$），继而对于\trMonotone\trManifold（其中包括诸复\trProjectiveSpace），其所用的方法随后又被\trHofer{}与\trSalamon、并且独立地被\trOno{}推广并运用于弱\trMonotone{}情形，而后对于一般情形，则由\trFukaya{}与\trOno、由\trLiu{}与\trTian、以及由\trHofer{}与\trSalamon{}证得。至于这些工作的精确文献，我们请读者参阅\trSalamon{}的综述 [66]。
+
+\textbf{对不依赖于时间且“小”的\trHamiltonian{}量的证明}
+
+这个结果不仅仅是猜想易于获证的一个例子。它还将在第 10 章的\trFloerHomology{}计算中扮演一个本质性的角色。
+
+\begin{proposition}\label{thm:small-hamiltonian-periodic-solutions}
+设 $H$ 是 $\RR^{2n}$ 上的一个函数，从而 $X_H$ 便是 $\RR^{2n}$ 上的一个\trVectorField。若 $\|dX_H\|_{L^2}<2\pi$\footnote{译注：原书条件印作 $\|dX_H\|_{L^2}<2\pi$，但证明中 $\ddot{x}=(dX_H)_x\cdot\dot{x}$ 一步实际需要的是一致算子范数界 $\sup_z\|dX_H(z)\|_{\mathrm{op}}<2\pi$（即 $X_H$ 的\trLipschitz{}常数），$L^2$ 范数控制不了逐点性态。反例要点：取 $H_\varepsilon(z)=\varepsilon^2h(z/\varepsilon)$（$h$ 在一个紧集之外恒为零），则 $dX_{H_\varepsilon}(z)=(dX_h)(z/\varepsilon)$，从而全空间 $\|dX_{H_\varepsilon}\|_{L^2}\to 0$；但转动的角速度在缩放下不变——若 $h$ 在半径 $r_0$ 处满足 $h'(r_0)/r_0=2\pi$，则对每个 $\varepsilon$，半径 $\varepsilon r_0$ 的\trCircle{}仍是\trPeriodic{}为 $1$ 的非常值解。紧随其后的“\trLipschitz{}常数小于 $2\pi$”一语恰支持按一致算子范数来读；此处照原书排印，存疑备案。——译者注}，那么与 $H$ 相联系的\trHamiltonian{}系统的\trPeriodic{}为 $1$ 的解只有常值解（即 $H$ 的\trCriticalPoint）。
+\end{proposition}
+
+请注意，当\trHamiltonian{}量 $H$ 是“$\cC^2$-小”的时候，证明\trArnoldConjecture{}中的那个不等式，就对应于证明\trMorse{}不等式（见\cref{thm:small-hamiltonian-converse}）。
+
+\begin{proof}
+我们采用 [49] 中给出的那个证明。考虑\trPeriodic{}为 $1$ 的一个解 $x$，取它的\textbf{\trFourier{}展开}（Fourier expansion；这是 $\CC^n$ 中的一个向量），再取它的导数 $\dot{x}$ 与 $\ddot{x}$ 的：
+\[
+x(t)=\sum_n c_n(x)\,e^{2in\pi t}\ \text{：}\qquad \dot{x}=\sum_n 2ni\pi\,c_n(x)\,e^{2in\pi t}\text{，}\qquad\text{等等。}
+\]
+接着，\textbf{\trParseval{}恒等式}（Parseval identity）给出
+\[
+\|\ddot{x}\|_{L^2}^2=\sum_n 4\pi^2n^2\,|c_n(\dot{x})|^2\ge 4\pi^2\sum_{n\neq 0}|c_n(\dot{x})|^2=4\pi^2\,\|\dot{x}\|_{L^2}^2
+\]
+因为 $c_0(\dot{x})=0$。于是我们有
+\[
+\|\dot{x}\|_{L^2}\le\frac{1}{2\pi}\,\|\ddot{x}\|_{L^2}\text{。}
+\]
+由于 $\ddot{x}=(dX_H)_x\cdot\dot{x}$，条件 $\|dX_H\|_{L^2}<2\pi$ 便给出
+\[
+\|\ddot{x}\|_{L^2}<2\pi\,\|\dot{x}\|_{L^2}\quad\text{若}\ \dot{x}\neq 0\text{，}
+\]
+从而 $\dot{x}=0$ 而 $x$ 是常值的。
+\end{proof}
+
+事实上，这条命题对更一般的\trVectorField{}也成立：不必是\trHamiltonian{}的，只需其\trLipschitz{}常数小于 $2\pi$。同样地，下述命题对 $\cC^1$-小的\trVectorField{}也仍然为真。
+
+\begin{proposition}\label{thm:small-hamiltonian-constant-solutions}
+设 $W$ 是一个\trCompact\trSymplectic\trManifold，并设 $H\colon W\to\RR$ 是一个函数。若 $H$ 在 $\cC^2$ 意义下充分小，那么与 $H$ 相联系的\trHamiltonian{}系统的\trPeriodic{}为 $1$ 的解只有常值解。
+\end{proposition}
+
+\begin{proof}
+首先注意，对\trDisk{} $D^{2n}\subset\RR^{2n}$ 上的一个\trHamiltonian\trVectorField{} $X_H$ 而言，我们有
+\[
+\forall x\in D^{2n},\ \forall t\in[0,1]\text{，}\quad \bigl\|\varphi^t(x)-x\bigr\|\le\sup_{y\in D^{2n}}\|X_H(y)\|
+\]
+由中值定理。
+由此可知，若 $H\colon W\to\RR$ 在 $\cC^2$ 意义下充分小，那么存在\trCompact\trManifold{} $W$ 的一个由相对紧的\trDarboux\trChart{}构成的有限\trCovering，使得：
+\begin{itemize}
+\item 每条\trPeriodic{}为 $1$ 的\trTrajectory{}都含于一个\trChart{}之中。
+\item 在每个\trChart{}上都有 $\|dX_H\|<2\pi$（就 $\RR^{2n}$ 上的\trMetric{}而言）。
+\end{itemize}
+继而我们在每个\trChart{}中应用\cref{thm:small-hamiltonian-periodic-solutions}即可。
+\end{proof}

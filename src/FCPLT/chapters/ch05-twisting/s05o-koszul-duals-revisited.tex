@@ -1,0 +1,111 @@
+\paragraph{再论 \trKoszul{}对偶序列。}\label{sub:koszul-duals-revisited}
+设 $\scr{A}^{\rightarrow}$ 是一个\trDirected\trACategory，并令
+$\scr{A}=\mathit{Tw}\scr{A}^{\rightarrow}$。回忆\cref{thm:tw-yoneda-combination-cff}：
+存在一个\trCanonical{}\trCohomology\trFullyFaithful{}的 \trAFunctor{}%
+$\tilde{\scr{J}}\colon\scr{A}\to\scr{Q}=\mathit{mod}(\scr{A}^{\rightarrow})$。
+按定义，$Y^!_{m+1-k}\in\Ob\scr{A}$ 在这个\trFunctor{}下的\trImage{}就是%
+\trAinfty-\trModule{}%
+$\mathscr{Y}^!_{m+1-k}=\mathscr{T}_{Y_1}\ldots\mathscr{T}_{Y_{k-1}}(\mathscr{Y}_k)$。
+
+要实际写出这样一个\trModule{}的样子并不困难。作为基础的\trGraded\trVectorSpace{}%
+是
+\begin{equation}\label{eq:koszul-module-spaces}
+\medmuskip=1.5mu\relax\thickmuskip=3mu\relax
+\begin{aligned}
+\mathscr{Y}^!_{m+1-k}(Y_l)=\bigoplus_r\bigoplus_{i_1,\ldots,i_r}
+&\hom_{\scr{A}}(Y_{i_r},Y_k)\otimes\hom_{\scr{A}}(Y_{i_{r-1}},Y_{i_r})
+\otimes\cdots\\
+&\otimes\hom_{\scr{A}}(Y_{i_1},Y_{i_2})\otimes\hom_{\scr{A}}(Y_l,Y_{i_1})[r]
+\end{aligned}
+\end{equation}
+其中求和取遍 $r\ge 0$ 与 $l\le i_1<i_2<\cdots<i_r<k$；特别地，$r=0$ 的%
+\trDirectSummand{}就是 $\hom_{\scr{A}}(Y_l,Y_k)$。其次，
+\begin{equation}\label{eq:koszul-module-mu1}
+\medmuskip=1.5mu\relax\thickmuskip=3mu\relax
+\begin{aligned}
+\mu^1_{\mathscr{Y}^!_{m+1-k}}(b_{r+1}\otimes\cdots\otimes b_1)
+=\sum_{p,n}(-1)^{\dagger}\,b_{r+1}\otimes\cdots\otimes b_{n+p+1}\\
+&\otimes\mu^p_{\scr{A}}(b_{n+p},\ldots,b_{n+1})\\
+&\qquad\otimes b_n\otimes\cdots\otimes b_1,
+\end{aligned}
+\end{equation}
+其中 $\dagger=|b_1|+\cdots+|b_n|-n$；而当 $d\ge 2$ 时，
+\begin{equation*}
+\begin{aligned}
+&\mu^d_{\mathscr{Y}^!_{m+1-k}}(b_{r+1}\otimes\cdots\otimes b_1,
+a_{d-1},\ldots,a_1)\\
+&\quad=\sum_{n\ge 1}b_{r+1}\otimes\cdots\otimes b_{n+1}\otimes
+\mu^{d-1+n}_{\scr{A}}(b_n,\ldots,b_1,a_{d-1},\ldots,a_1).
+\end{aligned}
+\end{equation*}
+
+现在考虑\emph{单 \trAinfty-\trModule}（simple A∞-module）$SS_k$，它由
+$SS_k(Y_k)=\KK$、对其余一切 $l$ 有 $SS_k(Y_l)=0$、
+$\mu^2_{SS_k}(\cdot,e_{Y_k})=\mathrm{Id}_{\KK}$、而其余\trStructureMap{}%
+一概取为零来定义。存在一个\trCanonical{}的\trModule\trHomomorphism
+\begin{equation*}
+t\colon\mathscr{Y}^!_{m+1-k}\longrightarrow SS_k.
+\end{equation*}
+一阶部分 $t^1$ 是从 $\mathscr{Y}^!_{m+1-k}(Y_k)=\hom_{\scr{A}}(Y_k,Y_k)=
+\KK\cdot e_{Y_k}$ 到 $SS_k(Y_k)$ 的恒等映射；而各高阶映射 $t^d$（$d\ge 2$）
+全都恒等于零。
+
+\begin{lemma}\label{thm:yoneda-twisted-simple-iso}
+$[t]$ 在 $H^0(\scr{Q})$ 中是一个\trIsomorphism。
+\end{lemma}
+\begin{proof}
+\trChainComplex{} \eqref{eq:koszul-module-spaces} 容许一个显然的递增长度%
+\trFiltration{} $F^r$。把 $r$
+换成 $-r$ 使之成为递减的，并考虑相应的\trSpectralSequence，它\trConvergence{}%
+到 $H(\mathscr{Y}^!_{m+1-k}(Y_l))$。其起始项为
+\begin{equation*}
+E_1^{-r,s}=\Bigl(\bigoplus_{i_1,\ldots,i_r}
+\Hom_{H(\scr{A})}(Y_{i_r},Y_k)\otimes\cdots\otimes
+\Hom_{H(\scr{A})}(Y_l,Y_{i_1})\Bigr)^{s}
+\end{equation*}
+其中诸 $i_k$ 一如\eqref{eq:koszul-module-spaces} 中那样；而\trDifferential{}%
+则为
+\begin{equation*}
+\partial^{-r,s}(b_{r+1}\otimes\cdots\otimes b_1)
+=\sum_n(-1)^{\dagger+|b_{n+1}|}\,b_{r+1}\otimes\cdots\otimes b_{n+2}b_{n+1}
+\otimes\cdots\otimes b_1
+\end{equation*}
+其中 $\dagger$ 一如\eqref{eq:koszul-module-mu1} 中那样。可以认出这是一个约化%
+\trBarResolution；更精确地说，若对所有的 $l$ 求和，则所得结果就是阿贝尔%
+\trCategory{} $\mathit{Mod}^0(H(\scr{A}))$（由\trGraded{} $H(\scr{A})$-\trModule{}%
+组成的\trCategory）中单\trObject{} $H(SS_k)$ 的标准投射消解。因此，该%
+\trSpectralSequence{}的 $E_2$ 项是一维的（当 $k=l$ 时由 $[e_{Y_k}]$ 张成），
+而在其余情形则为零。不难与 $SS_k(Y_l)$ 的平凡\trFiltration{}搭建一个比较论证，
+所得结论是：$t^1\colon\mathscr{Y}^!_{m+1-k}(Y_l)\to SS_k(Y_l)$ 对任意 $l$ 都在%
+\trCohomology{}上诱导\trIsomorphism。所要的结果由此借助
+\cref{thm:module-composition-quasiisomorphism} 得到。
+\end{proof}
+
+\begin{remark}\label{thm:alternative-spectral-sequence}
+我们概略地说明一下这一观点如何引出\trSpectralSequence{}
+\eqref{eq:beilinson-twist-starting-term} 的另一个构造。任何
+$\mathscr{U}\in\Ob\scr{Q}$ 都带有由子\trModule{}组成的一个自然递减%
+\trFiltration
+\begin{equation*}
+(F^r\mathscr{U})(Y_k)=
+\begin{cases}
+\mathscr{U}(Y_k) & \text{当 } k\le m-r \text{ 时},\\
+0 & \text{其余情形。}
+\end{cases}
+\end{equation*}
+其\trGraded{}片是
+$F^r\mathscr{U}/F^{r+1}\mathscr{U}\cong\mathscr{U}(Y_{m-r})\otimes SS_{m-r}$，
+其中把 $\mathscr{U}(Y_{m-r})$ 看作一个\trVectorSpace\trChainComplex。现在令
+$\mathscr{U}=\mathscr{U}_1$，并考虑 $\hom_{\scr{Q}}(\mathscr{U}_0,\mathscr{U}_1)$
+上由此诱导的\trFiltration。所得\trSpectralSequence{}的起始项为
+\begin{equation}\label{eq:alternative-spectral-start}
+E_1^{rs}=\Bigl(H\bigl(\hom_{\scr{Q}}(\mathscr{U}_0,SS_{m-r})\bigr)\otimes
+H\bigl(\mathscr{U}_1(Y_{m-r})\bigr)\Bigr)^{r+s}.
+\end{equation}
+现在再设 $\mathscr{U}_0$、$\mathscr{U}_1$ 是诸\trTwistedComplex{}在%
+\trCohomology\trFullyFaithful{}的\trEmbedding{}%
+$\tilde{\scr{J}}\colon\scr{A}\to\scr{Q}$ 下的\trImage。那么，利用 %
+\cref{thm:yoneda-evaluation-quasiisomorphism}与%
+\cref{thm:yoneda-twisted-simple-iso}，就可以把\eqref{eq:alternative-spectral-start}
+化成\eqref{eq:beilinson-twist-starting-term} 的形式。
+\end{remark}

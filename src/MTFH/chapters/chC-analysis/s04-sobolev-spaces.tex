@@ -1,0 +1,237 @@
+
+\section{\texorpdfstring{$\RR^{n}$}{Rn} 上的\trSobolev{}空间}
+\label{sec:sobolev-spaces-rn}
+
+让我们在这里回顾一下\trSobolev{}空间的定义。设 $U$ 表示 $\RR^{n}$ 的一个\trOpen{}子集。我们记 $\cC^{\infty}(\overline{U})$ 为 $\RR^{n}$ 上的诸 $\cC^{\infty}$ 函数到 $\overline{U}$ 上的限制所成的空间，并记 $\cC^{\infty}_{c}(U)$ 为在 $U$ 上具有紧\trSupport{}的 $\cC^{\infty}$ 函数所成的空间。
+
+\trSobolev{}空间 $W^{s,p}(U)$ 是由 $U$ 上的、直到 $s$ 阶的一切导数都属于 $L^{p}(U)$ 的那些 $\cC^{\infty}$ 函数所成的空间的一个完备化。更精确地说，我们对 $U$ 上的一个 $\cC^{\infty}$ 函数如下定义范数 $\|\cdot\|_{s,p}$：
+\[
+\|u\|_{s,p}=\left(\int_{U}\sum_{|\alpha|\le s}|\partial^{\alpha}u(x)|^{p}\,dx\right)^{1/p}\text{。}
+\]
+\trSobolev{}空间 $W^{s,p}(U)$ 就是 $\cC^{\infty}(\overline{U})$ 对这个范数的完备化，而 $W^{s,p}_{0}(U)$ 是 $\cC^{\infty}_{c}(U)$ 的闭包。
+
+事实上，这些空间都是\trDistribution{}空间：$W^{s,p}(U)$ 的元素正是那些具有“\trWeakDerivative”（weak derivatives）的函数，正如我们在下述命题中所证明的那样。
+
+\begin{proposition}\label{thm:sobolev-weak-derivatives}
+设 $U$ 是 $\RR^{n}$ 的一个\trOpen{}子集，其边界是一个 $\cC^{1}$ 类的\trSubmanifold。设 $u\in L^{p}(U)$。那么，$u$ 属于 $W^{s,p}(U)$ 当且仅当对每个满足 $|\alpha|\le s$ 的 $\alpha$，都存在一个函数 $u_{\alpha}\in L^{p}(U)$，使得对每个函数 $\varphi\in\cC^{\infty}_{c}(U)$，我们有
+\[
+\int_{U}u(x)\,\partial^{\alpha}\varphi(x)\,dx
+=(-1)^{|\alpha|}\int_{U}u_{\alpha}(x)\,\varphi(x)\,dx\text{。}
+\]
+\end{proposition}
+
+\begin{proof}[\cref{thm:sobolev-weak-derivatives}的证明思路]
+通过一个坐标变换，我们把证明化归到 $U$ 是一个半空间的情形（取 $x_{1}>0$ 为例来说明想法）。我们把验证 $W^{s,p}$ 的元素具有\trWeakDerivative{}这件事留给读者自己去完成。
+
+让我们假设 $u$ 的确具有\trWeakDerivative $u_{\alpha}$，并来证明 $u\in W^{s,p}(U)$。让我们取定一个 $\RR^{n}$ 上的 $\cC^{\infty}$ 类函数 $\beta$，它的\trSupport{}含在单位球中，并且满足
+\[
+\int_{\RR^{n}}\beta(x)\,dx=1\text{，}
+\]
+并如下定义 $\beta_{\delta}$：
+\[
+\beta_{\delta}(x)=\delta^{-n}\beta(\delta^{-1}x)\text{。}
+\]
+让我们再取定一个 $\RR^{n}$ 上的 $\cC^{\infty}$ 类函数 $\gamma$，它在单位球上取值 $1$，而在半径为 $2$ 的球之外恒等于零。于是，对 $x_{1}>-\delta$ 定义的函数
+\[
+u_{\delta}(x)=\gamma(\delta x)\,u(x_{1}+\delta,x_{2},\dotsc,x_{n})
+\]
+具有紧\trSupport{}，并且它的直到 $s$ 阶的\trWeakDerivative{}按 $L^{p}$ 范数\trConvergence{}到 $u$ 的\trWeakDerivative。此外，\trConvolution
+\[
+\beta_{\delta}\star u_{\delta}(x)=\int_{\RR^{n}}\beta_{\delta}(x-y)\,u_{\delta}(y)\,dy
+\]
+是 $\cC^{\infty}$ 的、具有紧\trSupport{}，并且（按 $\|\cdot\|_{s,p}$ 范数）\trConvergence{}到 $u$。因此，$u$ 的确是 $W^{s,p}$ 的一个元素。
+\end{proof}
+
+这些\trWeakDerivative{}表现良好。事实上，即便这一点眼下还不显然，我们也确实有所期望的结果。
+
+\begin{proposition}\label{thm:locally-constant-weak-derivatives}
+设 $U$ 是 $\RR^{n}$ 的一个\trBounded{}\trOpen{}子集，并设 $u\in W^{1,p}(U)$ 是一个其（弱）一阶导数在 $U$ 上全部恒为零的元素。那么 $u$ 是局部常值的。如果我们进而还假设 $u\in W^{1,p}_{0}(U)$，那么 $u$ 恒为零。
+\end{proposition}
+
+\begin{proof}
+我们首先假设 $U$ 是一个立方体，并且 $u$ 的平均值为零。这时，函数 $u$ 就是一个由平均值为零的 $\cC^{\infty}$ 函数组成的序列 $(u_{\nu})$ 的（对 $W^{1,p}_{0}$ 上的范数而言的）极限。下面的那条（\trPoincare）引理断言，这个序列按 $L^{p}$ 范数\trConvergence{}到 $0$。于是 $u$ 为零。这样我们就证明了：在其（弱）一阶导数全为零的每个立方体上，$u$ 都是常值的。结论随之而得。
+\end{proof}
+
+在这个证明中用到的\trPoincare{}引理是一条不等式。
+
+\begin{lemma}[\trPoincare{}不等式]\label{thm:poincare-inequality}
+对 $p>1$ 以及 $\RR^{n}$ 的一个\trBounded{}\trOpen{}子集 $U$，存在一个常数 $C$（只依赖于 $p$ 与 $U$），使得对每个函数 $u\in W^{1,p}_{0}(U)$（在 $U$ 内具有紧\trSupport{}），我们有
+\[
+\|u\|_{L^{p}(U)}\le C\,\|\operatorname{grad}u\|_{L^{p}(U)}\text{。}
+\]
+如果 $U=\left]0,1\right[^{n}$ 是一个立方体，那么对每个平均值为零的 $u\in W^{1,p}(U)$，我们有
+\[
+\|u\|_{L^{p}(U)}\le n\,\|\operatorname{grad}u\|_{L^{p}(U)}\text{。}
+\]
+\end{lemma}
+
+\begin{proof}
+利用 $\cC^{\infty}\cap W^{1,p}$ 在 $W^{1,p}$ 中的\trDense{}性，我们可以——而且我们也确实如此——假设 $u$ 是\trSmooth{}的并且在 $U$ 内具有紧\trSupport{}。在必要时，经过 $\RR^{n}$ 的一个仿射变换之后，我们可以——而且我们也确实如此——进而假设这个\trOpen{}集 $U$ 含在半空间 $x_{n}>0$ 之中（并且 $0\in\partial U$）。由于 $U$ 是\trBounded{}的，它具有一个有限的直径 $D$，并且在 $U$ 上有 $0\le x_{n}\le D$。我们可以写
+\[
+u(x)=\int_{0}^{x_{n}}\frac{\partial u}{\partial x_{n}}(x_{1},\dotsc,x_{n-1},t)\,dt\text{，}
+\]
+于是
+\[
+|u(x)|^{p}
+\le\left[\int_{0}^{x_{n}}\left|\frac{\partial u}{\partial x_{n}}(x_{1},\dotsc,x_{n-1},t)\right|dt\right]^{p}
+\le D^{p/q}\int_{0}^{x_{n}}\left|\frac{\partial u}{\partial x_{n}}(x_{1},\dotsc,x_{n-1},t)\right|^{p}dt\text{，}
+\]
+这里用到了\trHoelder{}不等式（$1/p+1/q=1$，因而 $p/q=p-1$）。接着，我们把两边在 $U$ 上积分，或者——这其实是一回事——在 $\RR^{n-1}\times[0,D]$ 上积分，便得到
+\[
+\int_{\RR^{n}}|u(x)|^{p}\,dx\le D^{1+p/q}\int_{U}\left|\frac{\partial u}{\partial x_{n}}\right|^{p}dx
+\]
+并且最终有
+\[
+\|u\|_{L^{p}}\le D\left\|\frac{\partial u}{\partial x_{n}}\right\|_{L^{p}}\text{，}
+\]
+第一个断言随之而得。至于第二个断言，我们对 $n$ 作归纳。我们利用诸 $\cC^{\infty}$ 函数在 $\overline{U}$ 上的\trDense{}性，来假设 $u$ 在闭立方体上是 $\cC^{\infty}$ 的。我们如下启动这次归纳：注意到（正如我们在\cref{thm:mean-zero-inequality}中已经做过的那样）一个在 $[0,1]$ 上平均值为零的函数满足
+\[
+\int_{0}^{1}|u(t)|^{p}\,dt\le\int_{0}^{1}|u'(t)|^{p}\,dt\text{。}
+\]
+实际上，对 $[0,1]$ 中的每对 $t$、$t_{1}$，我们都有
+\[
+u(t_{1})-u(t)=\int_{t}^{t_{1}}\frac{du}{d\tau}\,d\tau\text{，}
+\]
+把这个关系式对 $t$ 在 $[0,1]$ 上积分，就得到
+\[
+u(t_{1})=\int_{0}^{1}\int_{t}^{t_{1}}\frac{du}{d\tau}\,d\tau\,dt\text{，}
+\]
+由此我们推出%
+\footnote{译注：原书此式与下一式中的被积函数均印作 $u(\tau)/d\tau$；由上面一行同式的 $du/d\tau$ 以及本证明随后出现的 $\int_{0}^{1}|u'(\tau)|^{p}\,d\tau$ 可知，两处均系 $du/d\tau$ 的排印之误。此处径改。又，下一式（不等式链）的内层积分自 $t$ 至 $t_{1}$ 有向，当 $t>t_{1}$ 时其值为负，从而对整个方形 $[0,1]^{2}$ 积分后中项恒为零（取 $u(t)=t-\frac{1}{2}$ 即成反例：左端为正而中项为零），链首的不等式因而不成立；内层积分限应改作自 $\min(t,t_{1})$ 至 $\max(t,t_{1})$（或等价地取内层积分的绝对值）再行放大——此时中项为 $\int_{0}^{1}2\tau(1-\tau)\,|u'(\tau)|^{p}\,d\tau$，确不超过右端 $\int_{0}^{1}|u'(\tau)|^{p}\,d\tau$，推理方能闭合。此处照原书排印，存疑备案。——译者注}
+\[
+\int_{0}^{1}|u(t_{1})|^{p}\,dt_{1}
+\le\int_{0}^{1}\int_{0}^{1}\int_{t}^{t_{1}}\left|\frac{du}{d\tau}\right|^{p}d\tau\,dt\,dt_{1}
+\le\int_{0}^{1}|u'(\tau)|^{p}\,d\tau\text{。}
+\]
+我们如下从 $n$ 过渡到 $n+1$：考虑
+\[
+v(t)=\int_{[0,1]^{n}}u(x_{1},\dotsc,x_{n},t)\,dx_{1}\cdots dx_{n}\text{，}
+\]
+这是一个在 $[0,1]$ 上平均值为零的函数，我们把 $n=1$ 的情形与\trHoelder{}不等式应用于它：
+\[
+\int_{0}^{1}|v(t)|^{p}\,dt\le\int_{0}^{1}|v'(t)|^{p}\,dt
+\le\int_{[0,1]^{n+1}}\left|\frac{\partial u}{\partial x_{n+1}}\right|^{p}dx\text{。}
+\]
+对取定的 $t$，我们把归纳假设应用于函数 $u(x,t)-v(t)$，得到
+\[
+\begin{aligned}
+&\int_{[0,1]^{n}}|u(x_{1},\dotsc,x_{n},t)-v(t)|^{p}\,dx_{1}\cdots dx_{n}\\
+&\qquad\le n^{p}\int_{[0,1]^{n}}\left|\operatorname{grad}_{x_{1},\dotsc,x_{n}}u(x_{1},\dotsc,x_{n},t)\right|^{p}dx_{1}\cdots dx_{n}\text{，}
+\end{aligned}
+\]
+再把两边对 $t$ 积分，便得
+\[
+\|u-v\|_{L^{p}}\le n\,\|\operatorname{grad}_{x_{1},\dotsc,x_{n}}u\|_{p}\text{，}
+\]
+并且最终有
+\[
+\|u\|_{L^{p}}
+\le\|u-v\|_{L^{p}}+\|v\|_{L^{p}}
+\le n\,\|\operatorname{grad}_{x_{1},\dotsc,x_{n}}u\|_{L^{p}}+\left\|\frac{\partial u}{\partial x_{n+1}}\right\|_{L^{p}}
+\le(n+1)\|\operatorname{grad}u\|_{L^{p}}\text{。}
+\]
+这就完成了这个证明。
+\end{proof}
+
+诸 $\cC^{\infty}$ 函数在下述精确的意义下是\trDense{}的。
+
+\begin{proposition}[{参见 [17,~Section~9.3]}]\label{thm:dense-restrictions}
+设 $U$ 是 $\RR^{n}$ 的一个\trOpen{}子集，其边界是一个 $\cC^{1}$ 类的\trSubmanifold。那么，$\RR^{n}$ 上具有紧\trSupport{}的诸 $\cC^{\infty}$ 函数到 $U$ 上的限制，构成 $W^{1,p}(U)$ 的一个\trDense{}子空间。
+\end{proposition}
+
+\noindent\textbf{\trSobolev{}空间之间的关系}
+
+让我们从一个例子开始。
+
+\begin{example}\label{thm:example-singular-sobolev}
+让我们考虑在 $\RR^{n}$ 的单位球 $\|x\|<1$ 上定义的函数
+\[
+u(x)=\frac{1}{\|x\|^{\alpha}}\text{。}
+\]
+若 $\alpha>0$，则它在 $0$ 处不连续。我们有
+\[
+\frac{\partial u}{\partial x_{i}}=-\alpha\frac{x_{i}}{\|x\|^{\alpha+2}}\text{，}
+\qquad\text{从而}\quad
+\left|\frac{\partial u}{\partial x_{i}}\right|\le\alpha\|x\|^{-\alpha-1}\text{。}
+\]
+这些导数的 $p$ 次幂在单位球上可积，当且仅当 $(\alpha+1)p<n$。因此，如果 $\alpha$ 满足
+\[
+0<\alpha<\frac{n}{p}-1\text{，}
+\]
+那么函数 $u$ 属于 $W^{1,p}$ 而在 $0$ 处不连续。这样的 $\alpha$ 只有在 $p<n$ 时才可能存在。这个例子对下述定理所表述的性质来说是典型的，该定理是\trRellich{}定理的一个特例。
+\end{example}
+
+\begin{theorem}[{\trRellich，[17,~Section~9.3]}]\label{thm:rellich-embedding}\BookIndexDefinition{T016}
+设 $U$ 是 $\RR^{n}$ 的一个\trBounded{}\trOpen{}子集，并设 $p>n$。那么，$W^{1,p}(U;\RR^{m})$ 是 $\cC^{0}(U;\RR^{m})$ 的一个子空间，并且\trEmbedding
+\[
+W^{1,p}(U;\RR^{m})\subset\cC^{0}(U;\RR^{m})
+\]
+是一个\trCompact{}算子。\footnote{译注：此陈述与下文的定理~C.4.10 照原书排印，两处合并存疑备案：仅设 $U$ 为\trBounded{}\trOpen{}子集时，紧性断言并不成立。反例：取 $U$ 为无穷多个两两互不相交、半径趋于零的开球之并（诸闭包亦两两不交），令 $u_{j}$ 在 $B_{j}$ 上取值 $|B_{j}|^{-1/p}$、其外取值 $0$，则每个 $u_{j}$ 属于 $W^{1,p}(U)$（在诸球的并上分段常值，导数恒为零）且诸范数 $\|u_{j}\|_{W^{1,p}}=1$，但 $(u_{j})$ 在 $L^{p}$ 中两两相距 $\|u_{j}-u_{l}\|_{L^{p}}^{p}=2$，在 $L^{\infty}$（乃至 $\cC^{0}$）中范数 $|B_{j}|^{-1/p}\to+\infty$，不存在强\trConvergence{}的子序列，该\trEmbedding{}因而不紧。故应补充边界\trRegularity{}假设（例如设 $U$ 的边界属于 $\cC^{1}$ 类，与定理~C.4.9 的假设一致）或相当的延拓条件。——译者注}
+\end{theorem}
+
+\begin{remark}\label{thm:remark-w12-continuous}
+我们特别注意到，在 $\RR$ 上，$W^{1,2}$ 的元素都是连续函数；参见 [17]。
+\end{remark}
+
+$p=n=2$（在 $\RR^{2}$ 上）的情形，也就是我们感兴趣的那种情形，则更为微妙，正如下面的例子所表明的那样。
+
+\begin{example}\label{thm:example-log-cutoff}
+对每个 $\delta\in\left]0,1\right]$，让我们在 $\CC$ 上如下定义一个连续函数 $u_{\delta}$：
+\[
+u_{\delta}(z)=
+\begin{cases}
+1 & \text{若 } |z|\le\delta\text{，}\\
+\dfrac{\log|z|}{\log\delta} & \text{若 } \delta\le|z|\le 1\text{，}\\
+0 & \text{若 } |z|\ge 1\text{。}
+\end{cases}
+\]
+当 $\delta\le|z|\le 1$ 时，我们有
+\[
+\|\operatorname{grad}u_{\delta}(z)\|\le\frac{1}{|\log\delta|\,|z|}\text{，}
+\]
+于是
+\[
+\int_{\CC}\|\operatorname{grad}u_{\delta}(z)\|^{2}\,dz
+\le\int_{\delta\le|z|\le 1}\frac{dz}{|\log\delta|^{2}|z|^{2}}
+=\int_{\delta}^{1}\frac{2\pi s^{-1}\,ds}{|\log\delta|^{2}}
+=\frac{2\pi}{|\log\delta|}\text{。}
+\]
+这样，$u_{\delta}$ 既是一个具有紧\trSupport{}的连续函数，又是 $W^{1,p}(\CC)$ 的一个元素（我们本来还可以通过与一个适当的函数作\trConvolution{}而使它成为 $\cC^{\infty}$ 的），并且它满足 $u_{\delta}(0)=1$。
+
+于是，由 $v_{n}=u_{1/n}$ 定义的序列 $(v_{n})$ 便是一个由属于 $W^{1,2}(\CC)$ 的、具有紧\trSupport{}的连续函数组成的序列。它按 $W^{1,2}$ 范数\trConvergence{}到 $0$，但按 $L^{\infty}$ 范数则不然。
+\end{example}
+
+下面的几条定理汇集了\trSobolev{}估计以及一条称为\trRellich{}定理的紧性陈述。
+
+\begin{theorem}[{参见 [17,~Section~9.3]}]\label{thm:sobolev-estimates}
+设 $U$ 是 $\RR^{n}$ 的一个\trBounded{}\trOpen{}子集，其边界属于 $\cC^{1}$ 类。设 $k\in\NN$、$k\ge1$，并设 $p$ 满足 $1<p<+\infty$。那么我们有：
+\begin{enumerate}[label=(\arabic*)]
+\item 若 $p<n/k$，则 $W^{k,p}(U)\subset L^{q}(U)$，其中 $q=np/(n-kp)$。
+\item 若 $p=n/k$，则对每个 $q\ge p$ 都有 $W^{k,p}(U)\subset L^{q}(U)$。
+\item 若 $p>n/k$，则 $W^{k,p}(U)\subset L^{\infty}(U)$。
+\end{enumerate}
+而且这些包含关系都是连续的。此外，对 $u\in W^{k,p}(U)$，我们有
+\[
+|\alpha|\le k\ \Longrightarrow\ \left\|\frac{\partial^{\alpha}u}{\partial x^{\alpha}}\right\|_{L^{\infty}(U)}
+\le C\,\|u\|_{W^{k,p}(U)}\text{。}
+\]
+特别地，对 $m=[k-n/p]$，我们有一个连续的\trEmbedding
+\[
+W^{k,p}(U)\subset\scr{E}^{m}(U)\text{。}
+\]
+\end{theorem}
+
+下面的这条陈述专注于 $k=1$ 的情形。%
+\footnote{译注：此处“$|\alpha|\le k$”疑应限于满足 $k-|\alpha|>n/p$ 的那些 $\alpha$（\trSobolev{}\trEmbedding{}的严格范围），否则 $u(x)=x^{3/4}\in W^{1,2}(0,1)$ 而 $u'=(3/4)x^{-1/4}\notin L^{\infty}$ 即成反例；又末句 $m=[k-n/p]$ 在 $k-n/p$ 恰为整数时须另附加\trRegularity{}条件方得 $\cC^{m}$ 的\trEmbedding{}。此处照原书排印，存疑备案。——译者注}
+
+\begin{theorem}[{\trRellich--孔德拉绍夫，[17,~Section~9.3]}]\label{thm:rellich-kondrachov}\BookIndexDefinition{T017}
+设 $U$ 是 $\RR^{n}$ 的一个\trBounded{}\trOpen{}子集，并设 $p<n$。那么存在一个常数 $C=C(p,U)>0$，使得对 $U$ 上的每个函数 $u$，我们有
+\[
+\|u\|_{L^{q}}\le C\,\|u\|_{W^{1,p}}\qquad\text{对每个 } q\le\frac{n}{n-p}\text{。}
+\]
+此外，对 $q<np/(n-p)$，\trEmbedding
+\[
+W^{1,p}(U;\RR^{m})\subset L^{q}(U;\RR^{m})
+\]
+是一个\trCompact{}算子。
+\end{theorem}

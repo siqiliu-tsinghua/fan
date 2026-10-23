@@ -1,0 +1,923 @@
+\section{恩托夫和波尔捷罗维奇的卡拉比拟同态}
+
+由\personBanyaga{}定理，闭 $M$ 的群 $\Ham(M,\omega)$ 是单群，因而不存在从
+$\Ham(M,\omega)$ 到 $\mathbb R$（或任意非平凡交换群）的非平凡满同态。换言之，
+对任意\emph{满射} $\mu:\Ham(M,\omega)\to\mathbb R$，缺陷
+\[
+ \sup_{\phi_1,\phi_2\in\Ham(M,\omega)}
+ |\mu(\phi_1\phi_2)-\mu(\phi_1)-\mu(\phi_2)|
+\]
+为正。若 $\mu$ 是同态，则其缺陷当然为零。当不存在非平凡满同态时，退而求其次，
+可以期待缺陷\emph{有界}的映射 $\mu$。事实表明，$\Ham(M,\omega)$ 带有一些源自哈密顿流及其
+不动点动力学的有趣拟同态。恩托夫和波尔捷罗维奇 (EnP03) 以谱不变量的公理性质为
+基础完成了这一构造。这再次体现出：谱不变量编码 $(M,\omega)$ 的辛拓扑性质以及
+$(M,\omega)$ 上哈密顿流及其周期轨道的动力学性质，并解码蕴藏在弗洛尔同调解析理论
+中的辛不变量。
+
+在恩托夫和波尔捷罗维奇的构造中，关键是对适当选取的\emph{幂等元}
+$e\in QH^*(M)$ 证明赋值 $\phi_H\mapsto\rho(\phi_H;e)$ 为拟同态。他们在底层辛流形
+$(M,\omega)$ 的量子上同调环满足某种代数性质（例如半单性），且弗罗贝尼乌斯配对定义
+非退化配对的假设下证明了这一拟同态性质。后一个非退化性对\emph{有理}辛流形不难证明，但
+对无理情形困难得多（见 (Ush10b)）。量子上同调环的半单性对 $S^2$ 成立，更一般地
+对 $\mathbb{CP}^n$ 成立。这把量子上同调环的代数性质与借助谱不变量公理研究哈密顿
+动力学卓越地融合在一起。即使对 $S^2$，它也给出了保面积微分同胚群上拟同态的新构造；
+这类研究在动力系统领域受到广泛关注，例如见 (GG97), (GG04), (Gh06), (C09)。
+
+\subsection{再论庞加莱对偶}
+
+先汇集弗洛尔同调中对偶性的若干基本事实。考虑滤过弗洛尔复形
+\[
+ CF_k^\lambda(H)=CF_k^{(-\infty,\lambda]}(H)
+ =\{\alpha\in CF_k(H)\mid\lambda_H(\alpha)\leq\lambda\}
+\]
+及其商
+\[
+ CF_k^{(\mu,\lambda]}(H)
+ =CF_k^{(-\infty,\lambda]}(H)/CF_k^{(-\infty,\mu]}(H),
+\]
+其中 $H$ 为任意一般的非退化哈密顿量，$k\in\mathbb Z_+$。以
+\[
+ i_\lambda:CF_*^{(-\infty,\lambda]}(H)\longrightarrow CF_*(H)
+\]
+表示典范包含，以
+\[
+ \pi_\lambda:CF_*(H)\longrightarrow CF_*^{(\lambda,\infty)}(H)
+ =CF_*(H)/CF_*^{(-\infty,\lambda]}(H)
+\]
+表示典范投影。对每个固定的 $\lambda_1,\lambda_2<\lambda$，存在自然投影
+\[
+ \pi^\lambda_{\lambda_2\lambda_1}:CF_k^{(\lambda_1,\lambda]}(H)
+ \longrightarrow CF_k^{(\lambda_2,\lambda]}(H),
+ \qquad \lambda_1\leq\lambda_2,
+\]
+它们定义一个逆系统。于是有下述引理。
+
+\begin{lemma}
+\label{lem:22-filtered-inverse-limit}
+令 $(M,\omega)$ 为任意紧辛流形，$(H,J)$ 弗洛尔正则。则典范极限映射
+\[
+ \pi^\lambda:CF_k^{(-\infty,\lambda]}(H)
+ \longrightarrow\varprojlim_{\mu}CF_k^{(\mu,\lambda]}(H)
+\]
+对所有 $\lambda\in\mathbb R\cup\{+\infty\}$ 都是同构。
+\end{lemma}
+
+\begin{proof}
+令 $\alpha\in CF_k^{(-\infty,\lambda]}(H)$。依定义，可写成
+\[
+ \alpha=\sum_{i=1}^\infty a_i[z_i,w_i]
+ =\lim_{N\to\infty}\sum_{i=1}^N a_i[z_i,w_i],
+ \qquad
+ \mathcal A_H([z_i,w_i])\geq\mathcal A_H([z_{i+1},w_{i+1}]),
+\]
+其中或者只有有限多个 $a_i$ 非零，或者
+$\lim_{i\to\infty}\mathcal A_H([z_i,w_i])=-\infty$。由此，$\alpha=0$ 当且仅当
+$\sum_{i=1}^N a_i[z_i,w_i]=0$ 对所有 $N$ 成立，也即
+$\pi^\lambda_{-\infty\mu}(\alpha)=0$ 对所有 $\mu$ 成立。因此 $\pi^\lambda$ 单射。
+
+另一方面，$\varprojlim_\mu CF_k^{(\mu,\lambda]}(H)$ 中任意元素
+$\{\alpha_\mu\}$ 都可由有限和
+\[
+ \sum_{i=1}^{N_\mu}a_i[z_i,w_i]
+\]
+表示，其中 $N_\mu\in\mathbb Z_+$。
+\footnote{译者注：原书证明此处把逆极限中的区间印作 $[\mu,\lambda)$，与本引理陈述、
+本小节此前定义的 $(\mu,\lambda]$ 以及后续投影均不一致；译文按已定义的
+$(\mu,\lambda]$ 统一。}
+设给定满足
+$\pi^\lambda_{\mu'\mu}(\alpha_{\mu'})=\alpha_\mu$ 的元素
+$\{\alpha_\mu\}_{\mu\in\mathbb R}$。对任意满足 $k\to\infty$ 时
+$\mu_k\to-\infty$ 的序列，可写
+\[
+ \alpha_{\mu_k}=\sum_{i=1}^{N_{\mu_k}}a_i[z_i,w_i],
+\]
+它收敛到 $CF^\lambda(H)$ 中某个 $\alpha$。容易验证该极限与序列 $\mu_k$ 的选择无关，
+故 $\pi^\lambda$ 为同构。证明完毕。
+\end{proof}
+
+
+\begin{remark}
+\label{rem:22-rational-finite-window}
+现设 $(M,\omega)$ 有理。此时 $CF_k^{(\mu,\lambda]}(H)$ 是有限维
+$\mathbb Q$-向量空间。需要强调，对无理的 $(M,\omega)$ 并非如此。
+\end{remark}
+
+考虑 $H$ 与 $\widetilde H=-H(1-t,x)$，并定义 $\mathbb Q$-值配对
+\begin{equation}
+ \langle\,\cdot\,,\,\cdot\,\rangle:
+ CF_n^{(-\infty,\lambda]}(H)\times
+ CF_n^{(-\lambda,\infty)}(\widetilde H)\longrightarrow\mathbb Q
+ \label{eq:22-filtered-pairing}
+\end{equation}
+如下：
+\[
+ \langle\alpha,\widetilde\beta\rangle
+ =\sum_{[z,w]\in\operatorname{Crit}\mathcal A_H}
+ a_{[z,w]}b_{[\widetilde z,\widetilde w]},
+\]
+其中
+$\alpha=\sum_{[z,w]\in\operatorname{Crit}\mathcal A_H}a_{[z,w]}[z,w]$，而
+$\widetilde\beta=
+\sum_{[\widetilde z,\widetilde w]\in\operatorname{Crit}\mathcal A_{\widetilde H}}
+b_{[\widetilde z,\widetilde w]}[\widetilde z,\widetilde w]$。由诺维科夫有限性条件，
+\[
+ CF_n^{(-\lambda,\infty)}(\widetilde H)
+ =CF_n(\widetilde H)/CF_n^{(-\infty,-\lambda]}(\widetilde H)
+\]
+中的任意元素都可用有限和表示，故上述配对良定且非退化。它进而诱导单射链同态
+\begin{equation}
+ (CF_n^{(-\infty,\lambda]}(H),\partial_{(H,J)})
+ \longrightarrow
+ \bigl(\operatorname{Hom}_{\mathbb Q}(CF_n^{(-\lambda,\infty)}(\widetilde H),
+ \mathbb Q),(\partial_{(\widetilde H,\widetilde J)})^*\bigr).
+ \label{eq:22-filtered-chain-duality-map}
+\end{equation}
+回忆典范等同
+\[
+ \operatorname{Hom}(CF_n^{(-\lambda,\infty)}(\widetilde H),\mathbb Q)
+ =\{\varphi\in\operatorname{Hom}(CF_n(\widetilde H),\mathbb Q)
+ \mid \varphi|_{CF_n^{(-\infty,-\lambda]}(\widetilde H)}\equiv0\}.
+\]
+\footnote{译者注：原书此式限制下标印作
+$CF_n^{(-\infty,\lambda]}(\widetilde H)$，但左端是商空间
+$CF_n(\widetilde H)/CF_n^{(-\infty,-\lambda]}(\widetilde H)$ 的对偶；泛函应在后一个
+子空间上消失，故译文补上遗漏的负号。}
+记
+$\operatorname{Hom}(CF_n^{(-\lambda,\infty)}(\widetilde H),\mathbb Q)
+=CF_n^{(-\lambda,\infty)}(\widetilde H)^*$。通过这一等同，当 $\lambda>\mu$ 时有典范
+包含映射
+\[
+ CF_n^{(-\mu,\infty)}(\widetilde H)^*\lhook\joinrel\longrightarrow
+ CF_n^{(-\lambda,\infty)}(\widetilde H)^*.
+\]
+此外还有自然等同
+\[
+ CF_n^{(-\lambda,-\mu]}(\widetilde H)^*
+ \cong CF_n^{(-\lambda,\infty)}(\widetilde H)^*/
+ CF_n^{(-\mu,\infty)}(\widetilde H)^*.
+\]
+
+下述定理是恩托夫和波尔捷罗维奇对有理 $(M,\omega)$ 构造拟同态时所用的关键事实。
+无理情形的相应定理难证得多；厄舍 (Ush10b) 运用非阿基米德分析的论证证明了它。
+这里按照恩托夫和波尔捷罗维奇给出有理情形证明的全部细节；无理情形请读者参阅
+厄舍的原文。
+
+\begin{theorem}
+\label{thm:22-rational-filtered-duality}
+令 $(M,\omega)$ 为任意紧有理辛流形。则典范 $\mathbb Q$-同态
+\eqref{eq:22-filtered-chain-duality-map} 是链同构。特别地，配对
+\eqref{eq:22-filtered-pairing} 下降为非退化配对
+\begin{equation}
+ HF_n^{(-\infty,\lambda]}(H)\times
+ HF_n^{(-\lambda,\infty)}(\widetilde H)\longrightarrow\mathbb Q.
+ \label{eq:22-filtered-homology-pairing}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+由注~\ref{rem:22-rational-finite-window}，
+$CF_k^{(\mu,\lambda]}(H)$ 与
+$CF_n^{(-\lambda,-\mu]}(\widetilde H)^*$ 都是有限维 $\mathbb Q$-向量空间（在无理
+情形下它们为无限维，这正是本证明不能覆盖无理情形的主要原因）。有链复形交换图
+\begin{equation}
+\begin{array}{ccc}
+ CF_*^{(-\infty,\lambda]}(H)&\xrightarrow{\ \pi_\mu^\lambda\ }&
+ CF_*^{(\mu,\lambda]}(H)\\[3pt]
+ \big\downarrow&&\big\downarrow\\[3pt]
+ CF_*^{(-\lambda,\infty)}(\widetilde H)^*&\longrightarrow&
+ CF_*^{(-\lambda,-\mu]}(\widetilde H)^* .
+\end{array}
+ \label{eq:22-filtered-chain-diagram}
+\end{equation}
+\footnote{译者注：原书在此交换图右下角以及下文所取同调的右侧复形中把链次数印作
+固定的 $n$，但上下文讨论的是链复形，紧接着的文字也明确写成 $CF_*$。译文在这些
+复形位置统一改为 $*$；定理陈述中固定次数 $n$ 的配对保持不变。}
+映射
+$CF_*^{(\mu,\lambda]}(H)\to CF_*^{(-\lambda,-\mu]}(\widetilde H)^*$ 是链同构：
+在每个次数上该映射单射，而由 $(M,\omega)$ 的\emph{有理性}，两个空间均有限维。因此上图
+诱导交换图
+\[
+\begin{array}{ccc}
+ CF_*^{(-\infty,\lambda]}(H)&\xrightarrow{\ \pi^\lambda\ }&
+ \varprojlim_\mu CF_*^{(\mu,\lambda]}(H)\\[3pt]
+ \big\downarrow&&\big\downarrow\\[3pt]
+ CF_*^{(-\lambda,\infty)}(\widetilde H)^*&\longrightarrow&
+ \varprojlim_\mu CF_*^{(-\lambda,-\mu]}(\widetilde H)^* .
+\end{array}
+\]
+其中右侧向下映射是链同构。水平映射均为同构，故左侧向下映射也是链同构。因此它
+诱导同构
+\[
+ H\bigl(CF_*^{(-\infty,\lambda]}(H),\partial_{(H,J)}\bigr)
+ \cong
+ H\bigl(CF_*^{(-\lambda,\infty)}(\widetilde H)^*,
+ \partial_{(\widetilde H,\widetilde J)}^*\bigr).
+\]
+左端恰为 $HF^{(-\infty,\lambda]}(H)$；由域 $\mathbb Q$ 上的泛系数定理，右端同构于
+\[
+ \operatorname{Hom}_{\mathbb Q}
+ \bigl(H(CF_*^{(-\lambda,\infty)}(\widetilde H),
+ \partial_{(\widetilde H,\widetilde J)}),\mathbb Q\bigr)
+ =HF^{(-\lambda,\infty)}(\widetilde H,\widetilde J).
+\]
+这一同构自然诱导对所有 $\lambda$ 都成立的（强）非退化配对
+\[
+ HF_n^{(-\infty,\lambda]}(H)\times
+ HF_n^{(-\lambda,\infty)}(\widetilde H)\longrightarrow\mathbb Q,
+\]
+故得到~\eqref{eq:22-filtered-homology-pairing}。
+\end{proof}
+
+当 $(M,\omega)$ 无理时，上述映射
+\[
+ CF_*^{(\mu,\lambda]}(H)\longrightarrow
+ CF_*^{(-\lambda,-\mu]}(\widetilde H)^*
+\]
+不是同构。事实上，后一个空间大得多：该映射单射但不满射。
+
+\begin{example}
+\label{ex:22-irrational-duality-failure}
+设 $(M,\omega)$ 无理，使周期群
+$\{\omega(A)\mid A\in\pi_2(M)\}$ 是 $\mathbb R$ 的稠密子群。则对任意哈密顿量
+$H$，$\operatorname{Spec}(H)$ 是 $\mathbb R$ 的稠密子集。考虑形式和
+\[
+ \gamma=\sum_{i=1}^\infty a_i[z_i,w_i],\qquad a_i\neq0,
+\]
+满足所有 $i$ 都有 $\mathcal A_H([z_i,w_i])\in(\mu,\lambda)$，且当 $i\neq j$ 时
+$[z_i,w_i]\neq[z_j,w_j]$。由于该无穷和不满足诺维科夫有限性条件，
+$\gamma\notin CF_*^{(\mu,\lambda]}(H)$。但容易验证，配对
+\[
+ \gamma\longmapsto\langle\gamma,\,\cdot\,\rangle
+\]
+定义了 $CF_*^{(-\lambda,-\mu)}(\widetilde H)$ 上不属于
+$CF_*^{(\mu,\lambda]}(H)$ 之像的线性泛函。
+\end{example}
+
+现在陈述 $\widetilde H$ 与 $H$ 的谱不变量之间关系的一般定理。该关系在恩托夫和
+波尔捷罗维奇的拟同态构造中起关键作用。
+
+\begin{lemma}[(EnP03) 的引理 2.2]
+\label{lem:22-spectral-duality}
+令 $\Pi$ 为式 (20.4.43) 给出的配对。对
+$b\in QH^*(M)\setminus\{0\}$，以 $\Upsilon(b)$ 表示所有满足
+$\Pi(b,a)\neq0$ 的 $a\in QH^*(M)$ 所成的集合。则
+\begin{equation}
+ \rho(\widetilde H;b)=-\inf_{a\in\Upsilon(b)}\rho(H;a).
+ \label{eq:22-spectral-duality}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+先证
+\begin{equation}
+ \rho(\widetilde H;b)\geq-\inf_{a\in\Upsilon(b)}\rho(H;a).
+ \label{eq:22-spectral-duality-lower}
+\end{equation}
+$\rho$ 的\emph{三角不等式}是证明该不等式的关键。
+
+反设
+$\rho(\widetilde H;b)+\inf_{a\in\Upsilon(b)}\rho(H;a)<0$。于是存在满足
+$\Pi(a,b)\neq0$ 的 $a$，使
+\[
+ \rho(\widetilde H;b)+\rho(H;a)<0.
+\]
+另一方面，对任意满足 $\Pi(a,b)\neq0$ 的 $a$，由 $QH^*(M)$ 的弗罗贝尼乌斯性质
+(20.4.43)，有 $(a*b)_0\neq0$，从而
+$\rho(0;a*b)=-\nu(a*b)\geq0$。但这给出
+\[
+ 0\leq\rho(0;a*b)=\rho(H\#\widetilde H;a*b)
+ \leq\rho(H;a)+\rho(\widetilde H;b)<0,
+\]
+矛盾，故~\eqref{eq:22-spectral-duality-lower} 成立。
+
+接着证明反向不等式，即
+\begin{equation}
+ \inf_{a\in\Upsilon(b)}\rho(H;a)\leq-\rho(\widetilde H;b).
+ \label{eq:22-spectral-duality-upper}
+\end{equation}
+上面的\emph{对偶配对非退化性}在证明中起关键作用。
+
+令 $c=\rho(\widetilde H;b)>-\infty$，并令
+$\Phi_{\widetilde H}:QH^*(M)\to FH_*(\widetilde H)$ 为 PSS 映射。对任意
+$\epsilon>0$，有
+$\Phi_{\widetilde H}(b)\notin\operatorname{Im}(i_{c-\epsilon})_*
+\subset HF_*(\widetilde H)$。由序列
+\[
+ HF_*^{c-\epsilon}(\widetilde H)
+ \xrightarrow{(i_{c-\epsilon})_*}HF_*(\widetilde H)
+ \xrightarrow{(\pi_{c-\epsilon})_*}HF_*^{(c-\epsilon,\infty)}(\widetilde H)
+\]
+在中间项的正合性，
+$\ker(\pi_{c-\epsilon})_*=\operatorname{Im}(i_{c-\epsilon})_*$，故
+\[
+ (\pi_{c-\epsilon})_*(\Phi_{\widetilde H}(b))\neq0.
+\]
+于是由对偶配对的非退化性，可找到弗洛尔同调类
+$0\neq a_H\in HF_*^{(-\infty,-c+\epsilon]}(H)$，它由闭链
+$\alpha_H\in CF_*(H)$ 表示，满足 $\lambda_H(\alpha_H)\leq-c+\epsilon$，且
+\[
+ L'([\alpha_H],\Phi_{\widetilde H}(b))\neq0.
+\]
+把弗洛尔同调类 $[\alpha_H]\in FH_*(H)$ 写成
+$[\alpha_H]=\Phi_H(a')$，其中 $a'\in QH^*(M)$。于是
+\[
+ \Pi(a',b)=L'(\Phi_H(a'),\Phi_{\widetilde H}(b))
+ =L'([\alpha_H],\Phi_{\widetilde H}(b))\neq0,
+\]
+故 $a'\in\Upsilon(b)$。最后一个等号使用了定理~\ref{thm:22-rational-filtered-duality}
+与~\eqref{eq:22-filtered-pairing}。
+
+由于 $\rho(H;a')\leq\lambda_H(\alpha_H)$，有
+$\rho(H;a')\leq-c+\epsilon$，从而
+\[
+ \inf_{a\in\Upsilon(b)}\rho(H;a)\leq\rho(H;a')\leq-c+\epsilon.
+\]
+这对所有 $\epsilon>0$ 成立，故~\eqref{eq:22-spectral-duality-upper} 成立，引理得证。
+\end{proof}
+
+\subsection{拟同态的一般性质}
+
+先概述一般拟同态的基本事实。\personCalegari{}的著作 (C09) 是一般语境下拟同态研究的一本
+较新而出色的参考书。考虑任意群 $G$ 与满射 $\mu:G\to\mathbb R$。
+
+\begin{definition}[拟同态]
+\label{def:22-quasimorphism}
+\stfhSubIndex{I163}{Nitongtai}{拟同态（quasimorphism）}{Quexian}{缺陷（defect）}
+给定函数 $\mu:G\to\mathbb R$，定义其（同态）缺陷
+$\operatorname{Def}_\mu:G\times G\to\mathbb R$ 为
+\[
+ \operatorname{Def}_\mu(g_1,g_2)=\mu(g_1g_2)-\mu(g_1)-\mu(g_2),
+\]
+其范数为
+\[
+ D(\mu):=|\operatorname{Def}_\mu|
+ =\sup_{g_1,g_2\in G}|\mu(g_1g_2)-\mu(g_1)-\mu(g_2)|.
+\]
+若 $D(\mu)<\infty$，即存在 $R>0$，使
+\begin{equation}
+ |\mu(g_1g_2)-\mu(g_1)-\mu(g_2)|<R,
+ \label{eq:22-quasimorphism-defect}
+\end{equation}
+则称 $\mu$ 为拟同态。
+\end{definition}
+
+映射 $\operatorname{Def}$ 衡量拟同态 $\mu:G\to\mathbb R$ 的同态性质之缺陷。
+回忆群上同调的如下标准定义（例如见 (Wb94)）。
+
+\begin{definition}
+\label{def:22-group-cohomology}
+令 $M$ 为左 $G$-模。设 $(C^*(G,M),\delta)$ 为复形，其中 $C^n(G,M)$ 是函数
+$\varphi:G^n\to M$ 的模，而上边界映射
+$\delta:C^n(G,M)\to C^{n+1}(G,M)$ 由
+\begin{align}
+ (\delta\varphi)(g_1,\ldots,g_{n+1})
+ &=g_1\cdot\varphi(g_2,\ldots,g_{n+1})\notag\\
+ &\quad+\sum_{i=1}^n(-1)^i
+ \varphi(g_1,\ldots,g_{i-1},g_ig_{i+1},g_{i+2},\ldots,g_{n+1})\notag\\
+ &\quad+(-1)^{n+1}\varphi(g_1,\ldots,g_n)
+ \label{eq:22-group-coboundary}
+\end{align}
+给出。若函数 $\varphi:G^k\to M$ 满足 $\delta\varphi=0$，则称其为群 $k$-余闭链；
+若对某个余链 $\psi:G^{k-1}\to M$ 有 $\varphi=\delta\psi$，则称其为余边界。
+以左 $G$-模 $M$ 为系数的 $G$ 的上同调群，是复形 $(C^*(G,M),\delta)$ 的上同调群，
+记作 $H^*(G,M)$。
+\footnote{译者注：原书此定义对一般左 $G$-模 $M$ 却把余链值域两次印作
+$\mathbb R$，并把“上同调群”称为该复形的“同调群”；译文按标准群上同调定义及式中
+$g_1$ 对值的 $M$-作用，改为值域 $M$ 与“上同调群”。}
+\end{definition}
+
+考虑 $M=\mathbb R$ 且 $G$ 作用平凡的特例。此时~\eqref{eq:22-group-coboundary} 化为
+\[
+ (\delta\varphi)(g_1,g_2,g_3)
+ =\varphi(g_1g_2,g_3)-\varphi(g_1,g_2g_3)-\varphi(g_1,g_2)
+\]
+（$\varphi$ 为 2-余链），以及
+\footnote{译者注：原书给出的这个平凡作用特例不由式 (22.5.50) 直接化出：按该式还应
+出现 $\varphi(g_2,g_3)$，中间两项的符号也相反。译文照录特例公式，不静默改写。}
+\[
+ \delta\varphi(g_1,g_2)=\varphi(g_1g_2)-\varphi(g_1)-\varphi(g_2)
+\]
+（$\varphi$ 为 1-余链）。直接计算，或利用形式表达式
+$\operatorname{Def}_\mu=\delta\mu$，可知 $\operatorname{Def}_\mu$ 是 2-余闭链。
+
+然而，当群 $G$ 非紧，例如 $G=\widetilde{\Ham}(M,\omega)$ 或类似情形时，
+$(C^*(G,\mathbb R),\delta)$ 有由\emph{有界余链}组成的子复形
+$(C_{\mathrm{bd}}^*(G,\mathbb R),\delta)$。当缺陷有界时，它定义
+$(C_{\mathrm{bd}}^*(G,\mathbb R),\delta)$ 的一个 2-余闭链。由于 $\mu$ 本身未必有界，
+$\operatorname{Def}_\mu=\delta\mu$ 并不意味着 $\operatorname{Def}_\mu$ 定义平凡的
+有界 2-上同调类，尽管形式上它是余边界。
+
+\begin{definition}
+\label{def:22-homogeneous-quasimorphism}
+若拟同态满足
+\begin{equation}
+ \mu(g^n)=n\mu(g)
+ \label{eq:22-homogeneous-quasimorphism}
+\end{equation}
+对所有 $n\in\mathbb Z$ 及 $g\in G$ 成立，则称它\emph{齐次}。
+\end{definition}
+
+给定群 $G$ 上的拟同态 $\mu$，有一个自然过程：取渐近平均，将 $\mu$ 齐次化。需要
+指出，取渐近平均在数学许多领域中都是常用做法，尤其在动力系统与遍历理论中。
+
+\begin{definition}[齐次化]
+\label{def:22-homogenization}
+拟同态 $\mu:G\to\mathbb R$ 的\emph{齐次化} $\mu^{\mathrm{homo}}$ 定义为
+\begin{equation}
+ \mu^{\mathrm{homo}}(g)=\lim_{n\to\infty}\frac{\mu(g^n)}n,
+ \label{eq:22-homogenization}
+\end{equation}
+其中 $g\in G$。
+\end{definition}
+
+\begin{proposition}
+\label{prop:22-homogenization}
+设 $\mu:G\to\mathbb R$ 为拟同态。则 $\mu^{\mathrm{homo}}$ 仍为拟同态且齐次。此外，
+\begin{equation}
+ |\mu^{\mathrm{homo}}(g)-\mu(g)|\leq D(\mu).
+ \label{eq:22-homogenization-bound}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+良定性的证明本质上与引理~\ref{lem:22-asymptotic-limit} 相同，故省略。一旦良定性成立，
+齐次性立即得到。拟同态的任何有界扰动仍是拟同态，所以拟同态性质将由
+\eqref{eq:22-homogenization-bound} 推出。只需证明该不等式。
+
+依定义，
+\[
+ \mu^{\mathrm{homo}}(g)-\mu(g)
+ =\lim_{n\to\infty}\frac{\mu(g^n)}n-\mu(g)
+ =\lim_{n\to\infty}\frac{\mu(g^n)-n\mu(g)}n.
+\]
+可改写为
+\[
+ \mu(g^n)-n\mu(g)
+ =\sum_{j=1}^n\bigl(\mu(g^j)-\mu(g^{j-1})-\mu(g)\bigr).
+\]
+和式中每一项的绝对值都不超过 $D(\mu)$，故
+\[
+ |\mu(g^n)-n\mu(g)|\leq nD(\mu).
+\]
+除以 $n$ 即得~\eqref{eq:22-homogenization-bound}。
+\end{proof}
+\subsection{\texorpdfstring{$\widetilde{\Ham}(M,\omega)$}{Ham(M,omega) 的万有覆盖}
+上的恩托夫--波尔捷罗维奇拟同态}
+
+现说明如何从任意幂等元 $e\in QH^*(M)$（即 $e^2=e$）的谱数
+$\rho(\,\cdot\,;e)$ 得到拟同态。例如，量子上同调的单位元 $e=1$ 是这个构造的自然
+候选。这一步骤由恩托夫和波尔捷罗维奇 (EnP03) 发明，后来又由麦克达夫和奥斯特罗弗
+(Os03) 加以改进。
+
+考虑次数为零的子环 $QH^{(0)}(M)\subset QH(M)$。它是域
+$K=\Lambda_\omega^{(0)}$ 上带单位元 $1=PD(M)$ 的交换弗罗贝尼乌斯代数。令 $e$ 为
+$QH^{(0)}(M)$ 的任意非零幂等元。考虑谱映射
+\[
+ \rho_e:\widetilde{\Ham}(M,\omega)\longrightarrow\mathbb R,
+ \qquad \rho_e(f)=\rho(f;e).
+\]
+三角不等式与幂等性 $e^2=e$ 蕴含
+\[
+ \rho_e(fg)\leq\rho_e(f)+\rho_e(g).
+\]
+现在要问：$(M,\omega)$ 满足何种条件时，$\rho_e$ 满足
+\begin{equation}
+ \rho_e(fg)\geq\rho_e(f)+\rho_e(g)-R
+ \label{eq:22-quasimorphism-lower-bound}
+\end{equation}
+其中常数 $R$ 与 $f,g$ 无关？这将保证 $\rho_e$ 是\emph{无限维}群
+$\widetilde{\Ham}(M,\omega)$ 上的拟同态。下述定理是恩托夫和波尔捷罗维奇
+(EnP03) 的定理经麦克达夫和奥斯特罗弗 (Os03) 改进后的一个小变体；这里紧随
+(EnP03) 的证明。
+
+\begin{theorem}[(EnP03)]
+\label{thm:22-entov-polterovich-quasimorphism}
+假设 $Q=QH^{(0)}(M)$ 作为 $K$-向量空间有分解
+$Q=Q_1\oplus Q'$，其中 $Q_1,Q'$ 都是 $Q$ 的子环，且 $Q_1$ 是域。以 $e$ 表示
+$Q_1$ 的单位元。则存在 $R>0$，使~\eqref{eq:22-quasimorphism-lower-bound} 成立，
+因而 $\rho_e$ 在 $\widetilde{\Ham}(M,\omega)$ 上定义一个拟同态。
+\end{theorem}
+
+\begin{proof}
+把 $\Lambda_\omega$ 与 $QH^*(M)$ 上的赋值 $\nu$ 分别限制到
+$K=\Lambda_\omega^{(0)}$、$Q=QH^{(0)}(M)$ 和 $Q_1$ 上。
+
+\begin{lemma}
+\label{lem:22-multiplicative-valuation-norm}
+函数
+\[
+ \zeta\in K\longmapsto e^{-\nu(\zeta)}=:|\zeta|
+\]
+是乘性的，即对所有 $\zeta_1,\zeta_2\in K$，
+$|\zeta_1\zeta_2|=|\zeta_1||\zeta_2|$。
+\end{lemma}
+
+\begin{proof}
+只需证明
+$\nu(\zeta_1\zeta_2)=\nu(\zeta_1)+\nu(\zeta_2)$。当 $\zeta_1=0$ 时，
+$\zeta_1\zeta_2=0$，等式平凡成立，因为两端都变成 $-\infty$。
+\footnote{译者注：原书同时把 $|\zeta|$ 定义为 $e^{-\nu(\zeta)}$，又称
+$\nu(0)=-\infty$；按通常扩展实数运算，这会令 $|0|=+\infty$，与“范数”不相容。
+原书没有在此解决这一符号约定冲突，译文照录论证并提示。}
+因此设 $\zeta_1,\zeta_2\neq0$。由于 $K$ 是域，没有零因子，故
+$\zeta_1\zeta_2\neq0$。依定义，
+\[
+ \zeta_i=a_{i,0}T^{\nu(\zeta_i)}
+ +(\zeta_i-a_{i,0}T^{\nu(\zeta_i)}),
+\]
+其中 $0\neq a_{i,0}\in\mathbb Q$，并且
+$\nu(\zeta_i-a_{i,0}T^{\nu(\zeta_i)})>\nu(\zeta_i)$，$i=1,2$。于是
+\[
+ \zeta_1\zeta_2=a_{1,0}a_{2,0}T^{\nu(\zeta_1)+\nu(\zeta_2)}
+ +\text{“高阶项”}.
+\]
+由于 $a_{1,0}a_{2,0}\neq0$，得到
+$\nu(\zeta_1\zeta_2)=\nu(\zeta_1)+\nu(\zeta_2)$。
+\end{proof}
+
+\begin{proposition}
+\label{prop:22-field-valuation-bound}
+存在 $R'$，使每个 $b\in Q_1\setminus\{0\}$ 都满足
+$\nu(b)+\nu(b^{-1})\geq R'$。
+\end{proposition}
+
+\begin{proof}
+域 $Q_1$ 是域 $K$ 上的有限维向量空间，因而是 $K$ 的有限域扩张。因此 $K$ 上上述
+乘性范数 $|\,\cdot\,|$ 可延拓为 $Q_1$ 上的乘性范数，仍记作
+$|\,\cdot\,|$。另一方面，函数
+\[
+ b\in Q_1\longmapsto e^{-\nu_{Q_1}(b)}
+\]
+在 $K$ 上的向量空间 $Q_1$ 上定义一个范数 $\lVert\,\cdot\,\rVert$。有限维
+$K$-向量空间上的所有范数等价，故存在 $r>0$，使
+\[
+ \lVert b\rVert\leq r|b|
+\]
+对所有 $b\in Q_1$ 成立。于是对 $b\neq0$，
+\[
+ \lVert b\rVert\,\lVert b^{-1}\rVert
+ \leq r^2|b|\,|b^{-1}|=r^2.
+\]
+而
+\[
+ \lVert b\rVert\,\lVert b^{-1}\rVert
+ =e^{-\nu_{Q_1}(b)}e^{-\nu_{Q_1}(b^{-1})}.
+\]
+结合二式，得到
+\begin{equation}
+ \nu_{Q_1}(b)+\nu_{Q_1}(b^{-1})\geq-2\log r
+ \label{eq:22-field-valuation-estimate}
+\end{equation}
+对所有 $0\neq b\in Q_1$ 成立。取 $R'=-2\log r$ 即可。
+\end{proof}
+
+现在证明定理~\ref{thm:22-entov-polterovich-quasimorphism}。令
+$f,g\in\widetilde{\Ham}(M,\omega)$。由三角不等式，
+\[
+ \rho(fg;e)\geq\rho(f;e)-\rho(g^{-1};e).
+\]
+把引理~\ref{lem:22-spectral-duality} 应用于 $\rho(g^{-1};e)$，得到
+\begin{equation}
+ \rho(fg;e)\geq\rho(f;e)+\inf_{b;\,\Pi(b,e)\neq0}\rho(g;b).
+ \label{eq:22-quasimorphism-duality-bound}
+\end{equation}
+估计右端的下确界。写 $b=b_1+b'$，其中 $b_1\in Q_1$、$b'\in Q'$。由 (20.4.43)，
+\[
+ 0\neq\Pi(b,e)=\pi_0(\langle b\cdot e,1\rangle)
+ =\pi_0(\langle b_1\cdot e,1\rangle)=\pi_0(\langle b_1,1\rangle).
+\]
+故 $b_1\neq0$ 且 $\nu_{Q_1}(b_1)\leq0$。由于 $Q_1$ 是域，$b_1$ 可逆，并由
+\eqref{eq:22-field-valuation-estimate} 有
+\[
+ \nu_{Q_1}(b_1^{-1})\geq-\nu_{Q_1}(b_1)-2\log r\geq R'.
+\]
+另一方面，两次应用三角不等式，得到
+\begin{align*}
+ \rho(g;b)&\geq\rho(g;b\cdot e)-\rho(1;e)
+ =\rho(g;b_1\cdot e)-\rho(1;e)\\
+ &\geq\rho(g;e)-\rho(1;b_1^{-1})-\rho(1;e),
+\end{align*}
+其中 $1\in\widetilde{\Ham}(M,\omega)$ 是与零哈密顿量 $0$ 相伴的常哈密顿道路所对应的
+恒等元。由谱不变量的归一化公理，
+$\rho(1;b_1^{-1})=-\nu(b_1^{-1})$ 且 $\rho(1;e)=-\nu(e)$。所以对所有
+$\Pi(b,e)\neq0$ 的 $b$，
+\[
+ \rho(g;b)\geq\rho(g;e)+\nu(b_1^{-1})+\nu(e)
+ \geq\rho(g;e)+R'+\nu(e).
+\]
+从而
+\[
+ \inf_{b;\,\Pi(b,e)\neq0}\rho(g;b)
+ \geq\rho(g;e)+R'+\nu(e).
+\]
+代入~\eqref{eq:22-quasimorphism-duality-bound}，得到
+\[
+ \rho(fg;e)\geq\rho(f;e)+\rho(g;e)+R'+\nu(e).
+\]
+因此 $\rho(\,\cdot\,;e)$ 定义拟同态，其缺陷小于
+$R=|R'+\nu(e)|$。这就完成了定理~22.5.11 的证明。
+\end{proof}
+
+对上述拟同态 $\rho_e$ 作齐次化，得到 $\widetilde{\Ham}(M,\omega)$ 上的齐次拟同态
+\begin{equation}
+ \widetilde\mu_e(f)=\lim_{m\to\infty}\frac{\rho_e(f^m)}m.
+ \label{eq:22-homogeneous-calabi-quasimorphism}
+\end{equation}
+
+\begin{remark}
+\label{rem:22-enp-sign-convention}
+需要指出，由于 (EnP03) 采用不同约定，(EnP03) 式 (17) 中的负号没有出现在这里的
+定义中。
+\end{remark}
+
+现在证明拟同态 $\widetilde\mu$ 的下述重要性质。
+
+\begin{proposition}
+\label{prop:22-calabi-property}
+设 $U\subset M$ 可移，即存在 $\phi\in\Ham(M,\omega)$，使
+$\phi(\overline U)\cap\overline U=\varnothing$。则对所有满足
+$f=[\phi_F]\in\widetilde{\Ham}(M,\omega)$、$\operatorname{supp}F\subset U$ 的 $f$，
+\[
+ \widetilde\mu(f)=\operatorname{Cal}_U(F).
+\]
+\end{proposition}
+
+\begin{proof}
+记 $\lambda=\phi_F$。由一般哈密顿道路 $\lambda$ 的 $\rho(\lambda;1)$ 定义，
+\[
+ \rho(\lambda^m;1)=\rho(\operatorname{Dev}(\lambda^m);1).
+\]
+（一般哈密顿道路的 $\operatorname{Dev}(\mu)$ 定义见定义 2.3.15。）而
+\begin{align*}
+ \operatorname{Dev}(\lambda^m)
+ &=\underline{F^{\#m}}\\
+ &=F^{\#m}-\frac1{\operatorname{vol}_\omega(M)}\int_M F_t^{\#m}\,d\mu_\omega\\
+ &=F^{\#m}-\frac1{\operatorname{vol}_\omega(M)}
+   \int_M\left(\sum_{k=1}^mF(t,((\phi_F^t)^{-1})^{k-1}(x))\right)d\mu_\omega\\
+ &=F^{\#m}-\frac m{\operatorname{vol}_\omega(M)}\int_MF(t,x)\,d\mu_\omega,
+\end{align*}
+最后一个等号成立是因为对所有 $k=1,\ldots,m$，
+$((\phi_F^t)^{-1})^{k-1}$ 都保持测度 $\mu_\omega$。因此
+\begin{equation}
+ \rho(\operatorname{Dev}(\lambda^m);1)
+ =\rho(F^{\#m};1)+m\operatorname{Cal}(F).
+ \label{eq:22-development-calabi}
+\end{equation}
+注意 $\operatorname{supp}F^{\#m}\subset U$，因为 $\operatorname{supp}F\subset U$。
+选取任意满足 $\phi=\phi_H^1$ 的哈密顿量 $H$。由假设
+$\phi(U)\cap\overline U=\varnothing$，命题 22.3.7 蕴含
+\[
+ \rho(F^{\#m};1)\leq\gamma(H).
+\]
+代入~\eqref{eq:22-development-calabi}，除以 $m$，再令 $m\to\infty$，得到
+\[
+ \widetilde\mu(f)\leq\operatorname{Cal}(F).
+\]
+类似地，以 $\lambda^{-1}$ 代替 $\lambda$，得到
+\[
+ \widetilde\mu(f^{-1})\leq\operatorname{Cal}(\overline F)
+ =-\operatorname{Cal}(F).
+\]
+另一方面，由 $\widetilde\mu$ 的齐次性，
+$\widetilde\mu(f^{-1})=-\widetilde\mu(f)$。结合二式，得到
+$-\widetilde\mu(f)\leq-\operatorname{Cal}(F)$，等价于
+$\widetilde\mu(f)\geq\operatorname{Cal}(F)$。故
+$\widetilde\mu(f)=\operatorname{Cal}(F)$，这证明了 $e=1$ 时的命题。
+
+同一证明也证明一般幂等元 $e$ 的第二条陈述。
+\footnote{译者注：原书命题 22.5.15 只陈述了 $\widetilde\mu$ 的一个恒等式，却在证明
+末称还证明了“一般幂等元 $e$ 的第二条陈述”；相应陈述似在排版中遗漏。译文保留这句
+并说明缺口。}
+\end{proof}
+
+\begin{remark}
+\label{rem:22-calabi-endpoint}
+第 2.5.1 节已经证明，在任意正合（开）辛流形上，
+$\operatorname{Cal}^{\mathrm{path}}(\lambda)$ 可表示为
+\begin{equation}
+ \operatorname{Cal}^{\mathrm{path}}(\lambda)
+ =\frac1{n+1}\int_M(\phi^*\alpha-\alpha)\wedge\alpha\wedge\omega^{n-1}.
+ \label{eq:22-calabi-endpoint-formula}
+\end{equation}
+特别地，$\operatorname{Cal}^{\mathrm{path}}(\lambda)$ 只依赖于终点
+$\lambda(1)=\phi$，因而定义非平凡同态
+\[
+ \operatorname{Cal}:\Ham^c(M,d\alpha)\longrightarrow\mathbb R.
+\]
+把这一构造应用于可缩 $U$ 的 $\mathcal P_U^{\mathrm{ham}}$，可对每个可缩 $U$ 定义
+$\operatorname{Cal}_U:\Ham^c(U,\omega)\to\mathbb R$。于是上述证明表明，\emph{只要}
+$\widetilde\mu_e$ 下降为 $\Ham(M,\omega)$ 上的拟同态，就有
+\[
+ \mu_e(\phi)=\operatorname{Cal}_U(\phi)
+\]
+对所有 $\phi\in\Ham^c(U)\subset\Ham(M,\omega)$ 成立。
+\end{remark}
+
+下面给出使 $\widetilde\mu_e$ 下降到 $\Ham(M,\omega)$ 的一个简单充分条件。
+
+\begin{proposition}[(EnP03) 的命题 3.4]
+\label{prop:22-descend-calabi-quasimorphism}
+若 $\pi_1(\Ham(M,\omega))$ 有限，则拟同态 $\widetilde\mu_e$ 下降为
+$\Ham(M,\omega)$ 上的卡拉比拟同态。
+\end{proposition}
+
+\begin{proof}
+注意 $\pi_1(\Ham(M,\omega))$ 正是覆盖投影
+$\widetilde{\Ham}(M,\omega)\to\Ham(M,\omega)$ 的核。
+
+先断言 $\pi_1(\Ham(M,\omega))\subset\widetilde{\Ham}(M,\omega)$ 位于
+$\widetilde{\Ham}(M,\omega)$ 的中心。只需对任意
+$g\in\pi_1(\Ham(M,\omega))$ 与 $h\in\widetilde{\Ham}(M,\omega)$ 证明
+$ghg^{-1}h^{-1}=id$。把 $g,h$ 分别表示为 $g=[\lambda]$、$h=[\delta]$，其中
+$\lambda,\delta:[0,1]\to\Ham(M,\omega)$ 为光滑道路，
+$\lambda(1)=\lambda(0)=id$、$\delta(0)=id$。对每个 $s\in[0,1]$，
+\[
+ \lambda(1)\delta(s)\lambda(1)^{-1}\delta(s)^{-1}=id.
+\]
+故当 $s\in[0,1]$ 时，道路
+\[
+ t\longmapsto\lambda(t)\delta(st)\lambda(t)^{-1}\delta(st)^{-1}
+\]
+给出以 $id$ 为基点的环路同伦。依定义，$s=0$ 时是平凡环路，$s=1$ 时是表示
+$\widetilde{\Ham}(M,\omega)$ 中 $ghg^{-1}h^{-1}$ 的道路
+$t\mapsto\lambda(t)\delta(t)\lambda(t)^{-1}\delta(t)^{-1}$。
+\footnote{译者注：原书在这两处道路公式中把逆元印作常值
+$\lambda(1)^{-1}=id$；那样 $s=1$ 的道路并不表示群交换子。译文按所声称的
+$ghg^{-1}h^{-1}$ 及标准中心性同伦改为 $\lambda(t)^{-1}$。}
+故
+$ghg^{-1}h^{-1}=id$，即 $gh=hg$，断言得证。
+
+结合中心性与拟同态性质，对所有 $m$ 有
+\[
+ |\widetilde\mu_e(g^m)+\widetilde\mu_e(h^m)
+ -\widetilde\mu_e((gh)^m)|
+ =|\widetilde\mu_e(g^m)+\widetilde\mu_e(h^m)
+ -\widetilde\mu_e(g^mh^m)|\leq R.
+\]
+另一方面，由 $\widetilde\mu_e$ 的齐次性，
+$\widetilde\mu_e((gh)^m)=m\widetilde\mu_e(gh)$ 且
+$\widetilde\mu_e(g^m)+\widetilde\mu_e(h^m)
+=m(\widetilde\mu_e(g)+\widetilde\mu_e(h))$。代入得
+\[
+ m|\widetilde\mu_e(g)+\widetilde\mu_e(h)-\widetilde\mu_e(gh)|\leq R.
+\]
+这对所有 $m$ 成立，故
+\begin{equation}
+ \widetilde\mu_e(g)+\widetilde\mu_e(h)=\widetilde\mu_e(gh).
+ \label{eq:22-central-additivity}
+\end{equation}
+反复令 $h=g$ 应用该恒等式，得到
+$k\widetilde\mu_e(g)=\widetilde\mu_e(g^k)$ 对所有 $k\in\mathbb N$ 成立。但
+$\pi_1(\Ham(M,\omega))$ 有限，故某个 $k_0\neq0$ 满足 $g^{k_0}=id$，于是
+$\widetilde\mu_e(g^{k_0})=\widetilde\mu_e(id)=0$。这蕴含
+$\widetilde\mu_e(g)=0$ 对所有 $g\in\pi_1(\Ham(M,\omega))$ 成立。
+
+代回~\eqref{eq:22-central-additivity}，得到对所有
+$g\in\pi_1(\Ham(M,\omega))$ 均有
+$\widetilde\mu_e(gh)=\widetilde\mu_e(h)$。因此 $\widetilde\mu_e$ 下降为映射
+$\mu_e:\Ham(M,\omega)\to\mathbb R$；定义为
+$\mu_e(\phi)=\widetilde\mu_e(h)$，其中
+$h\in\widetilde{\Ham}(M,\omega)$ 是 $\phi$ 的任意一个提升。
+
+\begin{exercise}
+\label{exer:22-calabi-quasimorphism-descent}
+证明上述定义的 $\mu_e:\Ham(M,\omega)\to\mathbb R$ 具有卡拉比拟同态性质，
+从而完成证明。
+\end{exercise}
+\end{proof}
+
+为了稍后在第 22.6 节把拟同态延拓到拓扑哈密顿情形，现在把拟同态
+$\widetilde\mu_e$ 提升到道路空间
+$\mathcal P^{\mathrm{ham}}(\Symp(M,\omega),id)$，而不是万有覆盖空间
+$\widetilde{\Ham}(M,\omega)$ 上。在光滑情形中，由于 $\rho(\,\cdot\,;e)$ 的同伦不变性，
+这一提升在下述定义下自动成立。
+
+\begin{definition}
+\label{def:22-path-homogeneous-quasimorphism}
+用同一公式定义齐次拟同态
+\[
+ \mu^{\mathrm{path}}=\mu_1^{\mathrm{path}}:
+ \mathcal P^{\mathrm{ham}}(\Symp(M,\omega),id)\longrightarrow\mathbb R,
+\]
+即\footnote{译者注：原书式 (22.5.61) 的极限下标印作 $i\to\infty$，但被积式与分母
+均使用 $m$；译文据此改为 $m\to\infty$。}
+\begin{equation}
+ \mu^{\mathrm{path}}(\lambda)
+ =\lim_{m\to\infty}\frac{\rho(\lambda^m;1)}m.
+ \label{eq:22-path-homogeneous-quasimorphism}
+\end{equation}
+\end{definition}
+
+对任意给定开子集 $U\subset M$，仍以
+\[
+ \mathcal P^{\mathrm{ham}}(\Symp_U(M,\omega),id)
+\]
+表示支集在 $U$ 中的哈密顿道路集合。回忆
+$\operatorname{Cal}_U(F)$ 由积分
+\begin{equation}
+ \operatorname{Cal}_U(F)
+ =\frac1{\operatorname{vol}_\omega(M)}\int_0^1\int_MF(t,x)\,d\mu_\omega\,dt
+ \label{eq:22-calabi-integral}
+\end{equation}
+定义。
+\footnote{译者注：原书式 (22.5.62) 在 $F(t,x)$ 后只印 $\mu_\omega$ 而没有微分号；
+译文按本书此前卡拉比积分的写法补作 $d\mu_\omega$。}
+把 $\widetilde{\Ham}_U(M,\omega)$ 换成
+$\mathcal P^{\mathrm{ham}}(\Symp_U(M,\omega),id)$，逐字重复上述构造，则
+$\widetilde\mu_e$ 的全部上述性质对 $\mu_e^{\mathrm{path}}$ 同样成立。
+
+本节最后讨论二维球面 $S^2$ 的谱直径。
+
+\begin{example}
+\label{ex:22-sphere-spectral-diameter}
+考虑谱函数
+\[
+ \rho_1:\widetilde{\Ham}(M,\omega)\longrightarrow\mathbb R,
+ \qquad \rho_1(f)=\rho(f;1).
+\]
+显然它满足 $\rho_1(fg)\leq\rho_1(f)+\rho_1(g)$。注意 $S^2$ 与量子上同调类
+$1\in QH^0(S^2)$ 满足定理~\ref{thm:22-entov-polterovich-quasimorphism} 所需的假设，
+因此存在与 $f,g$ 无关的常数 $R$，使
+\begin{equation}
+ \rho_1(fg)\geq\rho_1(f)+\rho_1(g)-R.
+ \label{eq:22-sphere-quasimorphism-bound}
+\end{equation}
+现在显式计算这个界 $R$。
+
+先注意，式~\eqref{eq:22-spectral-duality} 的右端变为
+\[
+ -\inf_{a\in QH^0(S^2)\setminus\{0\}}\rho(g;a).
+\]
+此外，$QH^0(S^2)$ 分解为
+\[
+ QH^0(S^2)=\mathbb Q1\oplus\mathbb Q\{[\omega]q^{-1}\},
+\]
+其中 $1=PD[S^2]$，$q$ 是次数为 $2$、赋值 $\nu(q)=4\pi$ 的形式参数，而且
+$QH^0(S^2)$ 的每个非零元素都可逆。
+
+对任意可逆的 $a\in QH^0(S^2)\setminus\{0\}$，由谱不变量归一化公理
+$\rho(1;a^{-1})=-\nu(a^{-1})$，
+\[
+ \rho(g;a)\geq\rho(g;a\cdot a^{-1})-\rho(1;a^{-1})
+ =\rho(g;1)+\nu(a^{-1}).
+\]
+而
+\begin{equation}
+ \inf_{b\in QH^0(S^2)\setminus\{0\}}\nu(b^{-1})=-4\pi.
+ \label{eq:22-sphere-valuation-bound}
+\end{equation}
+故对所有 $a\in QH^0(S^2)\setminus\{0\}$，
+$\rho(g;a)\geq\rho(g;1)-4\pi$。
+
+令 $f,g\in\widetilde{\Ham}(M,\omega)$。由三角不等式，
+\[
+ \rho(fg;1)\geq\rho(f;1)-\rho(g^{-1};1).
+\]
+应用引理~\ref{lem:22-spectral-duality} 与~\eqref{eq:22-sphere-valuation-bound}，得到
+\[
+ \rho(fg;1)\geq\rho(f;1)+\rho(g;1)-4\pi.
+\]
+取 $f=g^{-1}$，便以 $R=4\pi$ 完成证明。综上得到下述命题。
+\end{example}
+
+\begin{proposition}
+\label{prop:22-sphere-inverse-spectral-bound}
+对面积为 $4\pi$ 的 $S^2$ 上任意哈密顿量 $H$，
+\begin{equation}
+ \rho((\phi_H^1)^{-1};1)\leq-\rho(\phi_H;1)+4\pi.
+ \label{eq:22-sphere-inverse-bound}
+\end{equation}
+\end{proposition}
+
+上述讨论的一个有趣推论给出 $\Ham(S^2)$ 谱直径的如下界。
+
+\begin{theorem}
+\label{thm:22-sphere-spectral-diameter}
+以 $\operatorname{Diam}_\rho$ 表示\emph{谱直径}，定义为
+\[
+ \operatorname{Diam}_\rho(\Ham(S^2))
+ :=\sup_H\{\gamma(\phi_H)\mid H\in C^\infty([0,1]\times S^2,\mathbb R)\}.
+\]
+则 $\operatorname{Diam}_\rho(\Ham(S^2))\leq4\pi$；等价地，
+\begin{equation}
+ \gamma(\phi_H)\leq4\pi\;(=\operatorname{Area}(S^2))
+ \label{eq:22-sphere-spectral-diameter}
+\end{equation}
+对所有 $H$ 成立。
+\footnote{译者注：原书在 $\operatorname{Diam}_\rho(\Ham(S^2))$ 的定义中把哈密顿量
+的定义域印作 $[0,1]\times M$，但本定理从头至尾讨论 $S^2$；译文据此改作
+$[0,1]\times S^2$。}
+\end{theorem}
+
+$S^2$ 谱直径的这个上界与波尔捷罗维奇关于 $S^2$ 的霍费尔直径的定理
+（(Po98b) 中的定理 17.6.3）形成鲜明对比：后者断言相对于霍费尔距离，
+$\Ham(S^2)$ 的直径为无穷。事实上，只要量子上同调 $QH^*(M)$ 成为域，例如
+$\mathbb{CP}^n$，类似界就成立。
+
+由此自然产生一个有趣问题。
+
+\begin{question}
+\label{ques:22-hofer-spectral-diameter}
+找出 $(M,\omega)$ 具有有限（或无限）霍费尔直径的精确判据。谱直径又如何？这对
+哈密顿动力学有何含义？
+\end{question}

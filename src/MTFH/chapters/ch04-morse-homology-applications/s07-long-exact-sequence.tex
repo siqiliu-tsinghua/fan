@@ -1,0 +1,172 @@
+
+\section{\trLongExactSequence}
+\label{sec:long-exact-sequence}
+
+设 $V$ 是\trManifold{} $W$ 的一个\trSubmanifold。我们将证明：在\trHomology{}中存在一个\trLongExactSequence，它把映射
+\[
+(i_0)_\star\colon HM_k(V)\longrightarrow HM_k(W)\text{。}
+\]
+补全。
+
+为此，我们将利用 $V$ 上的一个\trMorse--\trSmale{}对 $(f,X)$，并像\cref{sec:functoriality}中那样将它延拓——这一次是延拓到 $V$ 在 $W$ 中的一个\trTubularNeighborhood{} $\mathcal{V}$ 上。如此一来，$\mathcal{V}$ 便是一个\trManifoldWithBoundary，$\overline{W-\mathcal{V}}$ 也是，二者具有同一个边界 $\partial\mathcal{V}$。
+
+我们手头有一个\trMorseFunction{} $\widetilde f$，它在 $\mathcal{V}$ 内的诸\trCriticalPoint{}正是 $f$ 在 $V$ 上的那些；还有一个满足\trSmaleCondition{}的\trVectorField{} $\widetilde X$，它指向 $\mathcal{V}$ 的内部（并且从 $\overline{W-\mathcal{V}}$ 指向外部）。包含映射 $i_0\colon V\subset W$ 诱导出一个\trInjective{}的\trComplex\trMorphism
+\[
+(i_0)_\star\colon\bigl(C_\star(f),\partial_X\bigr)\hookrightarrow
+  \bigl(C_\star(\widetilde f),\partial_{\widetilde X}\bigr)\text{。}
+\]
+这两个\trComplex{}中的第一个计算 $V$ 的\trHomology，第二个则计算 $W$ 的\trHomology；就目前而言，没有任何新东西。现在我们定义一个（群的）\trMorphism
+\[
+C_\star(\widetilde f)\longrightarrow
+  C_\star\bigl(\widetilde f\big|_{\overline{W-\mathcal{V}}}\bigr)
+\]
+它无非是把 $\widetilde f$ 的位于 $\mathcal{V}$ 内的诸\trCriticalPoint{}都送到 $0$。由于 $\widetilde f$ 的位于 $\mathcal{V}$ 内的诸\trCriticalPoint{}（正如我们所说过的）正是 $f$ 在 $V$ 中的那些，我们便有一个由\trAbelianGroup{}组成的序列
+\[
+C_\star(f)\longrightarrow C_\star(\widetilde f)\longrightarrow
+  C_\star\bigl(\widetilde f\big|_{\overline{W-\mathcal{V}}}\bigr)\text{。}
+\]
+
+我们的第二个\trMorphism{}也是\trComplex{}的一个\trMorphism：$\widetilde X$ 的连接 $\widetilde f$ 的两个不在 $\mathcal{V}$ 内的\trCriticalPoint{}的\trTrajectory{}绝不会进入 $\mathcal{V}$。而\trComplex{} $C_\star\bigl(\widetilde f\big|_{\overline{W-\mathcal{V}}},\partial_{\widetilde X}\bigr)$ 则计算出\trHomology{} $HM_\star\bigl(\overline{W-\mathcal{V}},\partial\mathcal{V}\bigr)$，因为场 $\widetilde X$ 从 $\overline{W-\mathcal{V}}$ 指向外部。
+
+一如所有同类的序列，\trComplex{}的这个\trExact{}列在\trHomology{}中诱导出如下这个\trLongExactSequence
+\[
+\begin{tikzcd}[column sep=1.35cm,row sep=1.15cm]
+HM_k(V) \ar[r] & HM_k(W) \ar[r]
+  & HM_k\bigl(\overline{W-\mathcal{V}},\partial\mathcal{V}\bigr) \ar[from=1-3,to=2-1,shift right=1.5mm,"\partial"] \\
+HM_{k-1}(V) \ar[r] & HM_{k-1}(W)
+\end{tikzcd}
+\]
+
+为了简化记号，我们令
+\[
+HM_k\bigl(\overline{W-\mathcal{V}},\partial\mathcal{V}\bigr)=HM_k(W,V)\text{，}
+\]
+这就是\trRelative\trHomology。\footnote{对于知道这是什么的人来说：它确实是经由\textbf{\trExcision}（excision）所得的\trRelative\trHomology；例如可参见 [25]。}
+
+这个\trLongExactSequence{}的\trConnectingHomomorphism
+\[
+\begin{tikzcd}[column sep=1.35cm,row sep=1.15cm]
+HM_k(V) \ar[r] & HM_k(W) \ar[r]
+  & HM_k(W,V) \ar[from=1-3,to=2-1,shift right=1.5mm,"\partial"] \\
+HM_{k-1}(V) \ar[r] & HM_{k-1}(W)
+\end{tikzcd}
+\]
+有一个简单的解释：映射 $\partial$ 把 $HM_k\bigl(\overline{W-\mathcal{V}},\partial\mathcal{V}\bigr)$ 中的一个类——它由 $\widetilde f$ 在 $\overline{W-\mathcal{V}}$ 中的一个\trCriticalPoint{} $a$ 所代表——送到由 $\widetilde X$ 的诸\trTrajectory{}连接到 $a$ 的那些 $f$ 的\trCriticalPoint{}之线性组合的类，\footnote{译注：原书此式印作 $\partial a=\sum_{b\in\operatorname{Crit}(f)}n_{\widetilde X}(a,b)$：右端只是模 2 计数（标量）之和，并非 $HM_{k-1}(V)$ 中的元素，与左端不匹配——模 2 下 $1+1=0$，而 $b_1+b_2\neq 0$，盖因漏链了基向量 $b$；此处径改（补链基向量并取类）。——译者注}
+\[
+\partial[a]=\Bigl[\sum_{b\in\operatorname{Crit}(f)} n_{\widetilde X}(a,b)\,b\Bigr]\text{。}
+\]
+
+现在让我们考虑一个边界为 $\partial M$ 的\trManifold{} $M$，
+\[
+\partial M\overset{i_0}{\hookrightarrow}M\text{。}
+\]
+我们想把上面的结果应用到对 $(M,\partial M)$ 上。然而，$\partial M$ 是 $M$ 的一个\trSubmanifold{}这一点并不完全为真。因此，我们把 $M$ 换成一个与它\trDiffeomorphic{}、并且以 $\partial M$ 为其一个\trSubmanifold{}的\trManifold。
+
+边界拥有一个“\textbf{\trCollar}”（collar）邻域，也就是说，一个形如下式的邻域
+\[
+\partial M\times[-\varepsilon,0]\overset{i}{\hookrightarrow}M
+\qquad\text{其中 }i(x,0)=i_0(x)
+\]
+（其中 $\varepsilon$ 是一个选取恰当的正实数，而记号则沿用\cref{sec:functoriality}的那些\footnote{回忆一下：利用一个\trIncoming{}的\trVectorField{}的\trFlow，我们就能得到这样的一个 $i$。}）。请注意，
+\[
+M^{-\varepsilon}=M-i\bigl(\,]{-\varepsilon},0]\bigr)
+\]
+是一个\trManifoldWithBoundary，它\trDiffeomorphic{}于 $M$，且以 $i_{-\varepsilon}(\partial M)$ 为边界。我们先把这种\trCollar{}的一个“镜像”添加到 $M$ 上，也就是考虑那个显而易见的\trGluing
+\[
+M^{+\varepsilon}=M\cup\partial M\times[0,\varepsilon]
+\]
+（参见\cref{fig:collar-mirror-gluing}）。此时，$\partial M$ 便真正是 $M^{+\varepsilon}$ 的一个\trSubmanifold{}了。此外，它还拥有一个\trDiffeomorphic{}于 $\partial M\times[-\varepsilon,\varepsilon]$ 的邻域。
+
+\setcounter{figure}{3}%
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[line width=0.6pt,scale=0.85]
+  \newcommand{\collareye}[1]{%
+    \draw ({0.35+#1},-0.50) .. controls ({0.60+#1},-0.22) and ({0.92+#1},-0.22) .. ({1.16+#1},-0.50);
+    \draw ({0.22+#1},-0.55) .. controls ({0.55+#1},-0.68) and ({0.95+#1},-0.66) .. ({1.18+#1},-0.56);
+    \draw ({1.18+#1},-0.56) .. controls ({1.26+#1},-0.48) and ({1.28+#1},-0.38) .. ({1.26+#1},-0.26);}
+  \newcommand{\collarbody}[1]{%
+    \draw (0,0) .. controls (0.85,0.85) and (1.55,1.20) .. (2.10,1.34);
+    \draw (0,0) .. controls (0.50,-0.80) and (1.15,-1.38) .. (2.10,-1.10);
+    \draw (2.10,0.12) ellipse (0.44 and 1.22);
+    \collareye{#1}}
+  \newcommand{\collarclip}{%
+    \clip (0,0) .. controls (0.85,0.85) and (1.55,1.20) .. (2.10,1.34)
+      arc[start angle=90,end angle=-90,x radius=0.44,y radius=1.22]
+      .. controls (1.15,-1.38) and (0.50,-0.80) .. (0,0) -- cycle;}
+  \newcommand{\collarribbon}[2]{%
+    \clip ({#1},1.34) arc[start angle=90,end angle=270,x radius=0.44,y radius=1.22]
+      -- ({#2},-1.10) arc[start angle=270,end angle=90,x radius=0.44,y radius=1.22] -- cycle;}
+  \begin{scope}
+    \collarbody{0}
+    \node at (0.55,-2.55) {$M$};
+  \end{scope}
+  \draw[->,line width=1.1pt] (2.95,-2.15) -- (5.05,-2.15);
+  \node at (4.0,-2.72) {$M^{-\varepsilon}$};
+  \begin{scope}[xshift=3.6cm]
+    \begin{scope}
+      \collarclip
+      \collarribbon{1.75}{2.10}
+      \foreach \i in {0,...,12} {\draw ({0.65+\i*0.11},-1.5) -- ({1.95+\i*0.11},2.0);}
+    \end{scope}
+    \draw (1.75,0.12) ellipse (0.44 and 1.22);
+    \collarbody{0}
+  \end{scope}
+  \draw[->,line width=1.1pt] (6.55,-2.15) -- (8.65,-2.15);
+  \node at (7.6,-2.72) {$M^{+\varepsilon}$};
+  \begin{scope}[xshift=7.2cm]
+    \begin{scope}
+      \collarclip
+      \collarribbon{1.40}{1.75}
+      \foreach \i in {0,...,9} {\draw ({0.30+\i*0.11},-1.5) -- ({1.60+\i*0.11},2.0);}
+    \end{scope}
+    \begin{scope}
+      \collarclip
+      \collarribbon{1.75}{2.10}
+      \foreach \i in {0,...,12} {\draw ({0.65+\i*0.11},-1.5) -- ({1.95+\i*0.11},2.0);}
+    \end{scope}
+    \draw (1.40,0.12) ellipse (0.44 and 1.22);
+    \draw (1.75,0.12) ellipse (0.44 and 1.22);
+    \collarbody{-0.35}
+  \end{scope}
+  \begin{scope}[xshift=12.0cm]
+    \draw (0,0) ellipse (0.38 and 1.30);
+    \draw (0.62,0.08) ellipse (0.45 and 1.40);
+    \draw (0,1.30) .. controls (0.20,1.48) and (0.40,1.52) .. (0.62,1.48);
+    \draw (0,-1.30) .. controls (0.20,-1.50) and (0.40,-1.56) .. (0.62,-1.32);
+    \draw[->] (-1.45,1.60) -- (-0.02,0.48);
+    \draw[->] (-1.65,0.95) -- (-0.22,-0.15);
+    \draw[->] (-1.75,0.30) -- (-0.32,-0.80);
+    \draw[->] (-1.85,-0.30) -- (-0.42,-1.12);
+    \draw[->] (2.05,1.75) -- (0.68,0.72);
+    \draw[->] (2.25,1.10) -- (0.88,0.10);
+    \draw[->] (2.45,0.40) -- (1.08,-0.55);
+    \draw[->] (0.30,1.40) -- (0.30,-0.90);
+    \node at (-1.95,-0.72) {$X$};
+  \end{scope}
+\end{tikzpicture}
+\caption{}
+\label{fig:collar-mirror-gluing}
+\end{figure}
+
+现在考虑对 $(W,V)$，其中 $W=M^{+\varepsilon}$，而 $V$ 是它的\trSubmanifold{} $\partial M$。由于 $W$ 与 $M$ \trDiffeomorphic，我们有 $HM_\star(W)=HM_\star(M)$。此外，$HM_\star(W,V)$——按定义即 $HM_\star\bigl(\overline{W-\mathcal{V}},\partial\mathcal{V}\bigr)$——\footnote{译注：原书此处第二个变量印作 $\mathcal{V}$；按上文的记号约定 $HM_k\bigl(\overline{W-\mathcal{V}},\partial\mathcal{V}\bigr)=HM_k(W,V)$，应为 $\partial\mathcal{V}$；此处径改。——译者注}恰好就是我们在论述\trCobordism{}的\cref{sec:cobordisms}中定义为 $HM_\star(M,\partial M)$ 的那个对象。于是，我们便得到下面这个\trLongExactSequence
+\[
+\begin{tikzcd}[column sep=1.35cm,row sep=1.15cm]
+HM_k(\partial M) \ar[r] & HM_k(M) \ar[r]
+  & HM_k(M,\partial M) \ar[from=1-3,to=2-1,shift right=1.5mm,"\partial"] \\
+HM_{k-1}(\partial M) \ar[r] & \cdots
+\end{tikzcd}
+\]
+
+\begin{example}\label{thm:les-disk-case}
+在\trDisk{}的情形（参见\cref{thm:cobordism-disk-example}、\cref{thm:disk-relative-homology}与\cref{fig:hemisphere-fields}），这个\trLongExactSequence{}给出两个\trIsomorphism
+\[
+HM_0\bigl(S^{n-1};\ZZ/2\bigr)\xrightarrow{\ \ j_\star\ \ }HM_0\bigl(D^n;\ZZ/2\bigr)
+\]
+与
+\[
+HM_n\bigl(D^n,S^{n-1};\ZZ/2\bigr)\xrightarrow{\ \ \partial\ \ }
+  HM_{n-1}\bigl(S^{n-1};\ZZ/2\bigr)
+\]
+（该\trExact{}列中的其余各群都是平凡的）。\footnote{译注：本例须设 $n\ge 2$ 方成立（$n=1$ 时 $HM_0(S^0;\ZZ/2)\cong(\ZZ/2)^2$，$j_\star$ 非单，$\partial$ 亦非\trIsomorphism）。原书连同 §4.8 各处的低维端点断言均照排于此，集中记备：（i）§4.8.b 的 Brouwer 论证引用 $HM_{n-1}(D^n;\ZZ/2)=0$，在 $n=1$ 失效——此时 $HM_0(D^1;\ZZ/2)\cong\ZZ/2\neq 0$，且收缩 $D^1\to S^0$ 确实存在；（ii）“不存在 $S^n$ 到其子\trSphere{} $S^k$（$k<n$）的收缩”的\trHomology{}论证在 $k=0$ 两端皆误——$HM_0(S^0;\ZZ/2)\cong(\ZZ/2)^2$ 而非 $\ZZ/2$，$HM_0(S^n;\ZZ/2)\cong\ZZ/2$ 而非 $0$（收缩的不存在性本身在 $n\ge 1$ 时仍真，可由\trConnected{}性立得）；（iii）§4.8.c 中“\trConnectingHomomorphism{} $\partial\colon HM_k(\CP^n(\RR);\ZZ/2)\to HM_{k-1}(\CP^n(\RR);\ZZ/2)$ 为\trIsomorphism”的范围应作 $1\le k\le n$（$k=0$ 时无 $\partial$ 可言；\cref{thm:mod2-hm-projective-space} 的 $0\le k\le n$ 本身无误）。除本例须补 $n\ge 2$ 外，其余各处的低维例外均可由约化\trHomology{}统一处理。——译者注}
+\end{example}

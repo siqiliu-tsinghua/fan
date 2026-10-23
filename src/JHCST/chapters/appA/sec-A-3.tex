@@ -1,0 +1,486 @@
+
+\section{\BookRecordIndex{T0380}隐函数定理}\label{sec:A-3}
+
+设 $X,Y$ 是巴拿赫空间，$f:X\to Y$ 是光滑映射。对每个 $x\in X$，
+以 $df(x):X\to Y$ 表示 $f$ 在 $x$ 处的微分。若此算子是双射，
+则由开映射定理，其逆 $df(x)^{-1}:Y\to X$ 是有界线性算子。
+逆函数定理断言：在每个使 $df(x)$ 可逆的点 $x$ 附近，$f$ 都有局部逆。
+用 $B_r(x;X)$ 表示巴拿赫空间 $X$ 中以 $x$ 为中心、半径为 $r$ 的开球。
+当空间由上下文确定时，简记 $B_r(x):=B_r(x;X)$、$B_r:=B_r(0;X)$。
+
+\begin{theorem}[逆函数定理]\label{thm:A-3-1}
+设 $X,Y$ 是巴拿赫空间，$U\subset X$ 是开集，$f:U\to Y$ 连续可微。
+设 $x_0\in U$，且微分 $df(x_0):X\to Y$ 是双射。
+则存在 $x_0$ 的开邻域 $U_0\subset U$，使 $f$ 在 $U_0$ 上的限制为单射，
+$V_0:=f(U_0)$ 是 $Y$ 中的开集，$f^{-1}:V_0\to U_0$ 连续可微，且对
+$y\in V_0$ 有
+\[
+  df^{-1}(y)=\bigl(df(f^{-1}(y))\bigr)^{-1}.
+\]
+因此，若 $f$ 为 $C^\ell$ 类（$\ell$ 为正整数），则 $f^{-1}$ 也是 $C^\ell$ 类。
+\end{theorem}
+
+证明基于以下关于导数接近恒等映射的 $\psi:X\to X$ 的引理。
+
+\begin{lemma}\label{lem:A-3-2}
+设 $\gamma<1$ 与 $R$ 是正实数，$X$ 是巴拿赫空间，$x_0\in X$，
+$\psi:B_R(x_0)\to X$ 连续可微，且对每个 $x\in B_R(x_0)$ 有
+\[
+  \|\operatorname{id}-d\psi(x)\|\le\gamma.
+\]
+则 $\psi$ 是单射，并将 $B_R(x_0)$ 映到 $X$ 中的开集，满足
+\sourcefootnote{原书下式右端的球心印作 $x_0$，但在平移映射
+$\psi(x)=x+a$（其导数为恒等映射）下即不成立；证明中的归一化步骤及左端球心
+均表明右端应为 $\psi(x_0)$，故据此补正。}
+\[
+  B_{R(1-\gamma)}(\psi(x_0))
+  \subset\psi(B_R(x_0))
+  \subset B_{R(1+\gamma)}(\psi(x_0)).
+\]
+此外，$\psi^{-1}:\psi(B_R(x_0))\to B_R(x_0)$ 连续可微，且
+\begin{equation}\label{eq:A-3-1}
+  d\psi^{-1}(y)=d\psi(\psi^{-1}(y))^{-1}.
+\end{equation}
+因此，若 $\psi$ 为 $C^\ell$ 类（$\ell$ 为正整数），则 $\psi^{-1}$
+也是 $C^\ell$ 类。
+\end{lemma}
+
+\begin{proof}
+用映射 $x\mapsto\psi(x_0+x)-\psi(x_0)$ 替换 $\psi$，
+可假设 $x_0=0$ 且 $\psi(x_0)=0$。证明分四步。
+
+\noindent\textbf{第 1 步：$\psi$ 是到其像上的同胚，且
+$\psi(B_R)\subset B_{R(1+\gamma)}$。}
+考虑映射
+\[
+  \phi:=\operatorname{id}-\psi:B_R\to X.
+\]
+对每个 $x\in B_R$，它满足 $\|d\phi(x)\|\le\gamma$。因此，
+对所有 $x_1,x_2\in B_R$ 有
+\begin{equation}\label{eq:A-3-2}
+  \|\phi(x_1)-\phi(x_2)\|\le\gamma\|x_1-x_2\|.
+\end{equation}
+于是由三角不等式，对所有 $x_1,x_2\in B_R$ 有
+\begin{equation}\label{eq:A-3-3}
+  (1-\gamma)\|x_1-x_2\|
+  \le\|\psi(x_1)-\psi(x_2)\|
+  \le(1+\gamma)\|x_1-x_2\|.
+\end{equation}
+右侧不等式表明 $\psi(B_R)\subset B_{R(1+\gamma)}$；
+左侧不等式表明 $\psi$ 是单射，且 $\psi^{-1}$ 是（Lipschitz）连续的。
+
+\noindent\textbf{第 2 步：$B_{R(1-\gamma)}\subset\psi(B_R)$。}
+取 $y\in B_{R(1-\gamma)}$，由
+$\|y\|=:(1-\gamma)(R-\varepsilon)$ 定义 $\varepsilon>0$。
+在式~\eqref{eq:A-3-2} 中取 $x_2=0$，可知对 $x\in B_R$ 有
+$\|\phi(x)\|\le\gamma\|x\|$，从而
+\[
+  \|x\|\le R-\varepsilon
+  \quad\Longrightarrow\quad
+  \|\phi(x)+y\|\le R-\varepsilon.
+\]
+因此，映射 $x\mapsto\phi(x)+y$ 是半径为 $R-\varepsilon$ 的闭球上的压缩映射。
+由压缩映射原理，它有唯一不动点 $x$，满足 $\|x\|\le R-\varepsilon$。
+此不动点满足 $\psi(x)=x-\phi(x)=y$，故 $y\in\psi(B_R)$。
+
+\noindent\textbf{第 3 步：$\psi(B_R)$ 是开集。}
+设 $y=\psi(x)$，其中 $x\in B_R$，并选取 $\varepsilon>0$，使
+$B_\varepsilon(x)\subset B_R$。由第 2 步，
+\[
+  B_{\varepsilon(1-\gamma)}(\psi(x))
+  \subset\psi(B_\varepsilon(x))\subset\psi(B_R).
+\]
+
+\noindent\textbf{第 4 步：$\psi^{-1}$ 连续可微，其导数由式~\eqref{eq:A-3-1} 给出。}
+设 $y_0=\psi(x_0)$，其中 $x_0\in B_R$，记 $D:=d\psi(x_0)$。
+于是 $\|\operatorname{id}-D\|\le\gamma$，故 $D$ 可逆，并且
+\[
+  D^{-1}=\sum_{k=0}^{\infty}(\operatorname{id}-D)^k,
+  \qquad \|D^{-1}\|\le\frac1{1-\gamma}.
+\]
+我们证明 $\psi^{-1}$ 在 $y_0$ 处可微，且
+$d\psi^{-1}(y_0)=D^{-1}$。
+\sourcefootnote{原书此处写“$\psi$ 在 $y_0$ 处可微”，但下一式及结论均讨论
+$\psi^{-1}$ 的微分，且 $y_0$ 属于逆映射的定义域；据此补正主语。}
+为此，固定任意 $\varepsilon>0$。由于 $\psi$ 在 $x_0$ 处可微，存在
+$\delta>0$，使得对每个 $x\in B_R$，
+\[
+  \|x-x_0\|<\frac\delta{1-\gamma}
+  \quad\Longrightarrow\quad
+  \|\psi(x)-\psi(x_0)-D(x-x_0)\|
+  \le\varepsilon(1-\gamma)^2\|x-x_0\|.
+\]
+必要时缩小 $\delta$，由第 3 步可假设
+$B_\delta(y_0)\subset\psi(B_R)$。现在设
+$\|y-y_0\|<\delta$，记 $x:=\psi^{-1}(y)\in B_R$。
+由式~\eqref{eq:A-3-3} 得
+\[
+  \|x-x_0\|\le\frac1{1-\gamma}\|y-y_0\|
+  \le\frac\delta{1-\gamma}.
+\]
+因此
+\[
+\begin{aligned}
+  \|\psi^{-1}(y)-\psi^{-1}(y_0)-D^{-1}(y-y_0)\|
+  &=\|D^{-1}(y-y_0-D(x-x_0))\|\\
+  &\le\frac1{1-\gamma}
+   \|\psi(x)-\psi(x_0)-D(x-x_0)\|\\
+  &\le\varepsilon(1-\gamma)\|x-x_0\|\\
+  &\le\varepsilon\|y-y_0\|.
+\end{aligned}
+\]
+所以 $\psi^{-1}$ 在 $y_0$ 处可微，其导数由式~\eqref{eq:A-3-1} 给出。
+由第 1 步与式~\eqref{eq:A-3-1}，映射
+$y\mapsto d\psi^{-1}(y)$ 关于 $\mathcal L(X)$ 上的范数拓扑连续。
+这证明了引理~\ref{lem:A-3-2}。
+\end{proof}
+
+\begin{proof}[定理~\ref{thm:A-3-1} 的证明]
+不失一般性，设 $x_0=0$ 且 $f(0)=0$。考虑映射
+$\psi:B_\delta(0;X)\to X$，
+\[
+  \psi(x):=D^{-1}f(x),
+\]
+其中 $D:=df(x_0)$。取 $c>0$ 使 $c\ge\|D^{-1}\|$。
+\sourcefootnote{原书在此证明中直接使用常数 $c$，未先定义；
+由紧接着的算子范数估计及末尾的球半径，可取任意 $c>0$ 且
+$c\ge\|D^{-1}\|$。}
+其微分满足
+\[
+  \operatorname{id}-d\psi(x)
+  =\operatorname{id}-D^{-1}df(x)
+  =D^{-1}(D-df(x)),
+\]
+因此，缩小 $\delta>0$ 后，对每个 $x\in B_\delta(0;X)$ 有
+\[
+  \|\operatorname{id}-d\psi(x)\|
+  \le c\|D-df(x)\|\le\frac12.
+\]
+在引理~\ref{lem:A-3-2} 中取 $R=\delta$、$\gamma=1/2$，
+可知 $\psi$ 在 $B_\delta(0;X)$ 上有连续可微的逆，
+且 $\psi(B_\delta(0;X))$ 是包含 $B_{\delta/2}(0;X)$ 的开集。
+所以
+\[
+  f(B_\delta(0;X))
+  =D\psi(B_\delta(0;X))
+  \supset DB_{\delta/2}(0;X)
+  \supset B_{\delta/(2c)}(0;Y),
+\]
+且 $f$ 的逆由
+\[
+  f^{-1}(y)=\psi^{-1}(D^{-1}y)
+\]
+给出。它连续可微，公式
+$df^{-1}(y)=df(f^{-1}(y))^{-1}$ 由链式法则得到。
+定理~\ref{thm:A-3-1} 得证。
+\end{proof}
+
+巴拿赫空间之间的光滑映射 $f:X\to Y$ 称为\emph{弗雷德霍姆映射}，
+如果对每个 $x\in X$，其微分 $df(x):X\to Y$ 都是\BookRecordIndex{T0128}弗雷德霍姆算子。
+由于\BookRecordIndex{T0129}弗雷德霍姆指标在小扰动下不变，$df(x)$ 的指标与 $x$ 的选取无关，
+记为 $\operatorname{index}(f)$。对任何光滑映射 $f:X\to Y$，
+无论它是否为弗雷德霍姆映射，向量 $y\in Y$ 称为 $f$ 的\emph{\BookRecordIndex{T0409}正则值}，
+如果对每个 $x\in f^{-1}(y)$，算子 $df(x):X\to Y$ 都是满射且有\BookRecordIndex{T0392}右逆。
+\BookRecordIndex{T0380}隐函数定理断言：$f$ 的每个\BookRecordIndex{T0409}正则值 $y$ 的原像 $f^{-1}(y)$ 都是光滑流形。
+此外，若 $f$ 是弗雷德霍姆映射，则 $f^{-1}(y)$ 有限维，
+其维数等于 $f$ 的\BookRecordIndex{T0129}弗雷德霍姆指标。
+
+\begin{theorem}[\BookRecordIndex{T0380}隐函数定理]\label{thm:A-3-3}
+设 $X,Y$ 是巴拿赫空间，$U\subset X$ 是开集，$\ell$ 是正整数。
+若 $f:U\to Y$ 为 $C^\ell$ 类且 $y$ 是 $f$ 的\BookRecordIndex{T0409}正则值，则
+\[
+  \mathcal M:=f^{-1}(y)\subset X
+\]
+是 $C^\ell$ \BookRecordIndex{T0053}巴拿赫流形，并且对每个 $x\in\mathcal M$，有
+\[
+  T_x\mathcal M=\ker df(x).
+\]
+因此，若 $f$ 是弗雷德霍姆映射，则 $\mathcal M$ 有限维，且
+\[
+  \dim\mathcal M=\operatorname{index}(f).
+\]
+\end{theorem}
+
+证明之前，先把这个几何陈述改写为更便于分析的形式。不失一般性，设 $y=0$。
+若 $x_0\in\mathcal M$，则由假设，算子
+\[
+  D:=df(x_0):X\to Y
+\]
+为满射，并有\BookRecordIndex{T0392}右逆 $Q:Y\to X$，满足 $DQ=\operatorname{id}_Y$。
+\BookRecordIndex{T0392}右逆存在，当且仅当存在分解
+\[
+  X=\ker D\oplus\operatorname{im}Q.
+\]
+这里 $\ker D$ 由线性化方程 $df(x_0)\xi=0$ 的解组成；
+我们预期，完整非线性方程 $f(x)=0$ 的解空间在 $x_0$ 附近局部看起来像
+$\ker D$。\BookRecordIndex{T0380}隐函数定理把这一点精确化。它断言 $\ker D$ 是
+$\mathcal M=f^{-1}(0)$ 在 $x_0$ 处的切空间，等价于存在 $C^\ell$ 类映射
+\sourcefootnote{原书此处称所构造的 $\phi$ 为“smooth”，但本定理只假设
+$f$ 为 $C^\ell$ 类，后面的证明也只得出 $\phi$ 为 $C^\ell$ 类；
+故按本定理的\BookRecordIndex{T0408}正则性补正。}
+\[
+  \phi:\ker D\to Y,
+\]
+满足 $d\phi(0)=0$，且当 $x$ 充分接近 $x_0$ 时，$f(x)=0$
+当且仅当存在充分小的向量 $\xi$，使得
+\[
+  x=x_0+\xi+Q\phi(\xi),\qquad D\xi=0.
+\]
+因此，记 $x_1:=x_0+\xi$，我们要寻找某个
+$\eta\in\operatorname{im}Q$，使 $f(x_1+\eta)=0$。
+目前只知道 $x=x_1$ 是方程 $f(x)=0$ 的近似解；
+我们并不假设 $f(x_0)=0$。
+\sourcefootnote{原书此前明确取 $x_0\in\mathcal M=f^{-1}(0)$，
+故在这段局部几何讨论中已有 $f(x_0)=0$。此句保留原文；
+它只能理解为转入下一个命题的更一般设置，那里 $x_0$ 不必为零点。}
+不过，下一命题说，只要 $f(x_1)$ 充分小，陪集
+$C=x_1+\operatorname{im}Q$ 中就有真正的解。
+
+\begin{proposition}\label{prop:A-3-4}
+设 $X,Y$ 是巴拿赫空间，$U\subset X$ 是开集，$f:U\to Y$ 连续可微。
+设 $x_0\in U$，使 $D:=df(x_0):X\to Y$ 为满射，且有一个（有界线性）
+\BookRecordIndex{T0392}右逆 $Q:Y\to X$。选取正常数 $\delta,c$，使得
+$\|Q\|\le c$、$B_\delta(x_0;X)\subset U$，且
+\begin{equation}\label{eq:A-3-4}
+  \|x-x_0\|<\delta
+  \quad\Longrightarrow\quad
+  \|df(x)-D\|\le\frac1{2c}.
+\end{equation}
+假设 $x_1\in X$ 满足
+\begin{equation}\label{eq:A-3-5}
+  \|f(x_1)\|<\frac\delta{4c},
+  \qquad \|x_1-x_0\|<\frac\delta8.
+\end{equation}
+则存在唯一的 $x\in X$，满足
+\[
+  f(x)=0,\qquad x-x_1\in\operatorname{im}Q,
+  \qquad \|x-x_0\|<\delta.
+\]
+此外，$\|x-x_1\|\le2c\|f(x_1)\|$。
+\end{proposition}
+
+\begin{proof}
+定义映射 $h:U\to Y$ 为
+\[
+  h(x):=f(x)-D(x-x_1).
+\]
+于是
+\begin{equation}\label{eq:A-3-6}
+  x+Qh(x)=x_1
+  \quad\Longleftrightarrow\quad
+  f(x)=0,\quad x-x_1\in\operatorname{im}Q.
+\end{equation}
+为说明这一点，先设
+$x+Qf(x)-QD(x-x_1)=x_1$，则 $x-x_1\in\operatorname{im}Q$。
+因而 $QD(x-x_1)=x-x_1$，所以 $Qf(x)=0$。
+由于 $Q$ 是单射，得 $f(x)=0$；反向同理。
+
+因此，问题归结为在 $B_\delta(x_0;X)$ 中求解 $x+Qh(x)=x_1$。
+把该方程写成 $\psi(x)=x_1$，其中 $\psi:U\to X$ 定义为
+\[
+  \psi(x):=x+Qh(x)=x+Q(f(x)-D(x-x_1)).
+\]
+我们将证明 $\psi$ 满足引理~\ref{lem:A-3-2} 的假设，且
+$x_1\in\psi(B_\delta(x_0;X))$。
+
+具体地，$d\psi(x)-\operatorname{id}=Q(df(x)-D)$，
+故由式~\eqref{eq:A-3-4}，
+\[
+  \|x-x_0\|<\delta
+  \quad\Longrightarrow\quad
+  \|\operatorname{id}-d\psi(x)\|
+  \le c\|df(x)-D\|\le\frac12.
+\]
+由引理~\ref{lem:A-3-2}，$\psi$ 把 $B_\delta(x_0;X)$
+双射到 $X$ 中的一个开集，并且
+\sourcefootnote{原书此处右端印作
+$\psi(B_{2\delta}(x_0;X))$，但 $\psi$ 未必在整个
+$B_{2\delta}(x_0;X)$ 上有定义；由引理~\ref{lem:A-3-2}
+的上界应为以 $\psi(x_0)$ 为中心、半径 $3\delta/2$ 的球。}
+\[
+  B_{\delta/2}(\psi(x_0);X)
+  \subset\psi(B_\delta(x_0;X))
+  \subset B_{3\delta/2}(\psi(x_0);X).
+\]
+再由式~\eqref{eq:A-3-3} 和~\eqref{eq:A-3-5}，
+\[
+\begin{aligned}
+  \|x_1-\psi(x_0)\|
+  &=\|\psi(x_1)-\psi(x_0)-Qf(x_1)\|\\
+  &\le2\|x_1-x_0\|+c\|f(x_1)\|<\delta/2.
+\end{aligned}
+\]
+故存在唯一的 $x\in B_\delta(x_0;X)$，使 $\psi(x)=x_1$，
+等价地，$x+Qh(x)=x_1$。由式~\eqref{eq:A-3-6}，
+我们找到 $x\in x_1+\operatorname{im}Q$，使 $f(x)=0$。
+另外，引理~\ref{lem:A-3-2} 证明中的式~\eqref{eq:A-3-3} 给出
+\[
+  \|x-x_1\|
+  \le2\|\psi(x)-\psi(x_1)\|
+  =2\|Qf(x_1)\|
+  \le2c\|f(x_1)\|.
+\]
+这证明了命题~\ref{prop:A-3-4}。
+\end{proof}
+
+\begin{remark}\label{rem:A-3-5}
+命题~\ref{prop:A-3-4} 的证明可以用 Newton--Picard 迭代来解释。
+给定使 $f(x_1)$ 很小的 $x_1$，我们要寻找
+$g(\eta):=f(x_1+Q\eta)=0$ 在 $\eta=0$ 附近的解 $\eta\in Y$。
+直接的 Newton--Picard 迭代方案是递归定义
+\[
+  \eta_{i+1}:=\eta_i-dg(0)^{-1}g(\eta_i),
+  \qquad \eta_1:=0.
+\]
+令 $x_i:=x_1+Q\eta_i$。由于
+$dg(0)=DQ=\operatorname{id}_Y$\sourcefootnote{原书在此把
+$dg(0)$ 写成 $DQ=\operatorname{id}_Y$，但按
+$g(\eta)=f(x_1+Q\eta)$ 直接求导，应为 $dg(0)=df(x_1)Q$；
+$D=df(x_0)$ 仅在 $x_1=x_0$ 或另有条件时才与之相同。
+后文迭代式可视为用冻结导数 $D$ 的迭代；这里保留原论证，不把它冒充精确的 Newton 步。}，
+这个公式便是
+\[
+  x_{i+1}:=x_i-Qf(x_i).
+\]
+沿命题~\ref{prop:A-3-4} 的证明追溯到引理~\ref{lem:A-3-2}
+证明中第 2 步所用的压缩映射原理，论证归结为寻找映射
+$x\mapsto x_1-Qh(x)$ 的不动点，其中仍取
+$h(x):=f(x)-D(x-x_1)$。这个不动点问题的迭代为
+\[
+  x_{i+1}=x_1-Qh(x_i)
+  =x_1+QD(x_i-x_1)-Qf(x_i).
+\]
+又因 $x_i-x_1\in\operatorname{im}Q$，有
+$x_i=x_1+QD(x_i-x_1)$。因此，这正是上面所述的迭代。
+\end{remark}
+
+\begin{proof}[定理~\ref{thm:A-3-3} 的证明]
+不失一般性，设 $y=0$。取 $x_0\in U$ 使 $f(x_0)=0$，并记
+$D:=df(x_0)$。由假设，$D$ 有\BookRecordIndex{T0392}右逆 $Q:Y\to X$。
+按命题~\ref{prop:A-3-4} 选取常数 $c,\delta$；必要时缩小 $\delta$，
+还可假设
+\[
+  \|\xi\|<\delta/8
+  \quad\Longrightarrow\quad
+  \|f(x_0+\xi)-f(x_0)-df(x_0)\xi\|<2\|\xi\|/c.
+\]
+取 $\xi\in\ker D$ 且 $\|\xi\|<\delta/8$。则
+$x_1:=x_0+\xi$ 满足式~\eqref{eq:A-3-5}。
+由命题~\ref{prop:A-3-4}，存在唯一元素 $x=x(\xi)\in X$，满足
+\[
+  f(x)=0,\quad x-x_0-\xi\in\operatorname{im}Q,
+  \quad \|x-x_0\|<\delta.
+\]
+由于 $Q$ 是单射，存在唯一的 $\phi(\xi)\in Y$，使得
+\[
+  x=x_0+\xi+Q\phi(\xi).
+\]
+命题~\ref{prop:A-3-4} 还给出
+$\|Q\phi(\xi)\|\le2c\|f(x_0+\xi)\|<\delta/2$。
+
+下面证明 $\phi$ 是 $C^\ell$ 类。定义 $\psi:B_\delta(x_0)\to X$ 为
+\[
+  \psi(x):=Qf(x)+x-x_0-QD(x-x_0).
+\]
+于是
+\[
+  \psi(x_0)=0,
+  \qquad d\psi(x)-\operatorname{id}=Q(df(x)-D).
+\]
+由式~\eqref{eq:A-3-4}，每个 $x\in B_\delta(x_0)$ 都满足
+$\|d\psi(x)-\operatorname{id}\|\le1/2$。
+因此，由引理~\ref{lem:A-3-2}，$\psi$ 在 $B_{\delta/2}(0)$
+上有 $C^\ell$ 类的逆。若 $\xi\in\ker D$ 且 $\|\xi\|<\delta/8$，
+则 $\|\xi+Q\phi(\xi)\|<5\delta/8<\delta$，且
+$\psi(x_0+\xi+Q\phi(\xi))=\xi$，所以
+\[
+  x_0+\xi+Q\phi(\xi)=\psi^{-1}(\xi).
+\]
+因 $DQ=\operatorname{id}_Y$，这意味着
+\[
+  \phi(\xi)=D\psi^{-1}(\xi)-Dx_0,
+  \qquad \xi\in\ker D,\quad\|\xi\|<\delta/8.
+\]
+故 $\phi$ 如所断言为 $C^\ell$ 类；又因
+$d\psi(x_0)=\operatorname{id}$，有 $d\phi(0)=0$。
+
+此外，若 $x\in X$ 满足 $f(x)=0$，且
+$\|x-x_0\|<\delta/[8(1+c\|D\|)]<\delta$，
+则可写成
+\[
+  x=x_0+\xi+Q\eta,\quad
+  \eta:=D(x-x_0),\quad
+  \xi:=x-x_0-Q\eta\in\ker D.
+\]
+由 $\|\eta\|\le\|D\|\|x-x_0\|$，可得
+\[
+  \|\xi\|\le(1+c\|D\|)\|x-x_0\|<\delta/8.
+\]
+因此 $\eta=\phi(\xi)$，从而 $x=\psi^{-1}(\xi)$。
+于是映射
+\[
+  \psi:f^{-1}(0)\cap
+  B_{\delta/[8(1+c\|D\|)]}(x_0)\longrightarrow\ker D
+\]
+是 $f^{-1}(0)$ 上的一张坐标图。转移映射显然具有 $C^\ell$ \BookRecordIndex{T0408}正则性。
+\sourcefootnote{原书此处称转移映射“smooth”，但本定理只假设 $f$ 为
+$C^\ell$ 类，且刚构造的坐标图及逆映射只保证 $C^\ell$；
+故这里按结论所需的\BookRecordIndex{T0408}正则性表述。}
+这证明了定理~\ref{thm:A-3-3}。
+\end{proof}
+
+在巴拿赫空间中，$D$ 为满射并不保证它有\BookRecordIndex{T0392}右逆。
+\BookRecordIndex{T0392}右逆存在，当且仅当 $\ker D$ 在 $X$ 中有补空间
+（见下面的命题~\ref{prop:A-4-1}）。特别地，每个满射\BookRecordIndex{T0128}弗雷德霍姆算子都有\BookRecordIndex{T0392}右逆。
+这一点还可推广到由
+\[
+  (D\oplus L)(x,z)=Dx+Lz
+\]
+定义的算子 $D\oplus L:X\oplus Z\to Y$，其中 $D:X\to Y$ 为\BookRecordIndex{T0128}弗雷德霍姆算子。
+
+\begin{lemma}\label{lem:A-3-6}
+设 $D:X\to Y$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，$L:Z\to Y$ 是有界线性算子，
+且 $D\oplus L:X\oplus Z\to Y$ 是满射。则 $D\oplus L$ 有\BookRecordIndex{T0392}右逆。
+此外，投影 $\Pi:\ker(D\oplus L)\to Z$ 是\BookRecordIndex{T0128}弗雷德霍姆算子，
+且 $\ker\Pi\cong\ker D$、
+$\operatorname{coker}\Pi\cong\operatorname{coker}D$，从而
+\[
+  \operatorname{index}\Pi=\operatorname{index}D.
+\]
+\end{lemma}
+
+\begin{proof}
+选取 $\ker D$ 在 $X$ 中的一个补空间 $X_1$，再选取有限多个向量
+$z_\nu\in Z$（$\nu=1,\ldots,N$），使 $Lz_\nu$ 张成
+$\operatorname{im}D$ 在 $Y$ 中的一个补空间。
+则 $D\oplus L$ 的一个\BookRecordIndex{T0392}右逆是算子
+\[
+  Y\longrightarrow X\oplus Z:
+  y\longmapsto\left(x,\sum_{\nu=1}^N\lambda_\nu z_\nu\right),
+\]
+其中 $x$ 与 $\lambda_1,\ldots,\lambda_N$ 选得满足
+\[
+  x\in X_1,\qquad
+  y=Dx+\sum_{\nu=1}^N\lambda_\nu Lz_\nu.
+\]
+现在 $\ker\Pi=\ker D\oplus\{0\}$，且
+$\operatorname{im}\Pi=L^{-1}(\operatorname{im}D)$。
+因此
+\[
+  \frac{Z}{\operatorname{im}\Pi}
+  =\frac{Z}{L^{-1}(\operatorname{im}D)}
+  \cong\frac{\operatorname{im}L}
+  {\operatorname{im}D\cap\operatorname{im}L}
+  \cong\frac{Y}{\operatorname{im}D}.
+\]
+第二个同构由 $L$ 诱导；最后一个同构之所以存在，是因为
+$\operatorname{im}D+\operatorname{im}L=Y$。
+\end{proof}
+
+\begin{exercise}\label{ex:A-3-7}
+设 $X$ 是无限维希尔伯特空间。与有限维情形不同，
+在单位球外为零的 $C^\infty$ 光滑函数
+$\phi:X\to\mathbb R$ 不一定有界（尽管 $X$ 的每个点都有一个使函数有界的邻域）。
+构造一个支集位于单位球内的无界光滑函数。
+提示：单位球内有无穷多个两两不交、半径均为 $1/4$ 的球。
+\end{exercise}

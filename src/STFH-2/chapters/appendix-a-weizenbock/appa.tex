@@ -1,0 +1,220 @@
+\chapter{向量值形式的魏岑伯克公式}
+\label{app:weizenbock}
+\appendixsectionlessstatements
+
+本附录推导黎曼流形 $(P,h)$ 上一般 $E$-值形式的标准魏岑伯克公式，并把它应用到我们
+当前的情形
+\[
+ (P,h)=(\Sigma,h),\qquad E=u^*TM,
+\]
+其中 $u\colon\Sigma\to M$。在标架丛上直接处理一般魏岑伯克公式的一种优美叙述见
+(FU84) 的附录。这里的叙述取自 (OhW12)。
+
+设 $(P,h)$ 是带度量 $h$ 的 $n$ 维黎曼流形，$D$ 是\termLeviCivitaConnection{}。令
+$E\to P$ 是任意带内积 $\langle\cdot,\cdot\rangle$ 的向量丛，并设 $\nabla$ 是 $E$
+上与该内积相容的联络。
+
+对任意向量丛 $E$-值形式 $s$，计算 $s$ 的能量密度的（霍奇）拉普拉斯算子可得
+\[
+ -\frac12\Delta|s|^2=|\nabla s|^2+
+ \langle\operatorname{Tr}\nabla^2s,s\rangle,
+\]
+其中 $|\nabla s|$ 表示向量丛 $T^*P\otimes E$ 上的诱导范数，即
+$|\nabla s|^2=\sum_i|\nabla_{e_i}s|^2$，这里 $\{e_i\}$ 是 $TP$ 的一组标准正交
+标架。$\operatorname{Tr}\nabla^2$ 表示联络拉普拉斯算子，定义为
+$\operatorname{Tr}\nabla^2s=\sum_i\nabla^2_{e_i,e_i}s$，其中
+\[
+ \nabla^2_{X,Y}:=\nabla_X\nabla_Y-\nabla_{\nabla_XY}.
+\]
+
+以
+\[
+ \Omega^k(M;E)=\Gamma(\Lambda^k(M)\otimes E)
+\]
+表示 $P$ 上 $E$-值 $k$-形式的空间。联络 $\nabla$ 诱导外微分
+$d^\nabla\colon\Omega^k(E)\to\Omega^{k+1}(E)$，它由下列等式刻画：
+\[
+ d^\nabla\zeta=\nabla\zeta,
+ \qquad
+ d^\nabla(\alpha\otimes\zeta)
+ =d\alpha\otimes\zeta+(-1)^k\alpha\wedge\nabla\zeta,
+\]
+其中 $\alpha\in\Omega^*(M)$、$\zeta\in\Gamma(E)$。
+\footnote{译者注：原书在这两处把底流形写成 $M$，但本附录此前固定的底流形是
+$P$；译文照录原式，不自行更换字母。}
+
+例如，对 $1$-形式 $\beta$，有
+\[
+ d^\nabla\beta(v_1,v_2)
+ =(\nabla_{v_1}\beta)(v_2)-(\nabla_{v_2}\beta)(v_1),
+\]
+其中 $v_1,v_2\in TP$。
+
+把霍奇星算子延拓到 $E$-值形式：
+\[
+ *\colon\Omega^k(E)\longrightarrow\Omega^{n-k}(E),
+ \qquad
+ *\beta=*(\alpha\otimes\zeta)=(*\alpha)\otimes\zeta,
+\]
+其中 $\beta=\alpha\otimes\zeta\in\Omega^k(E)$。定义联络 $\nabla$ 的霍奇拉普拉斯算子
+\[
+ \Delta^\nabla:=d^\nabla\delta^\nabla+\delta^\nabla d^\nabla,
+\]
+其中
+\[
+ \delta^\nabla:=(-1)^{nk+n+1}*d^\nabla*.
+\]
+下述引理对于推导魏岑伯克公式十分重要。
+
+\begin{lemma}
+\label{lem:app-a-exterior-codifferential}
+设 $\{e_i\}$ 是 $P$ 的一组标准正交标架，$\{\alpha^i\}$ 是其对偶标架。则
+\[
+ d^\nabla=\sum_i\alpha^i\wedge\nabla_{e_i},
+ \qquad
+ \delta^\nabla=-\sum_i e_i\mathbin{\lrcorner}\nabla_{e_i}.
+\]
+\end{lemma}
+
+\begin{proof}
+设 $\beta=\alpha\otimes\zeta\in\Omega^k(E)$，则
+\begin{align*}
+ d^\nabla(\alpha\otimes\zeta)
+ &=d\alpha\otimes\zeta+(-1)^k\alpha\wedge\nabla\zeta\\
+ &=\sum_i\alpha^i\wedge\nabla_{e_i}\alpha\otimes\zeta
+   +(-1)^k\alpha\wedge\nabla\zeta.
+\end{align*}
+另一方面，
+\begin{align*}
+ \sum_i\alpha^i\wedge\nabla_{e_i}(\alpha\otimes\zeta)
+ &=\sum_i\bigl(\alpha^i\wedge\nabla_{e_i}\alpha\otimes\zeta
+   +\alpha^i\wedge\alpha\otimes\nabla_{e_i}\zeta\bigr)\\
+ &=\sum_i\alpha^i\wedge\nabla_{e_i}\alpha\otimes\zeta
+   +(-1)^k\alpha\wedge\nabla\zeta,
+\end{align*}
+从而第一式得证。
+
+对第二式，计算
+\begin{align*}
+ \delta^\nabla(\alpha\otimes\zeta)
+ &=(-1)^{nk+n+1}*d^\nabla*(\alpha\otimes\zeta)\\
+ &=(\delta\alpha)\otimes\zeta
+   +(-1)^{nk+n+1}*(-1)^{n-k}(*\alpha)\wedge\nabla\zeta\\
+ &=-\sum_i e_i\mathbin{\lrcorner}\nabla_{e_i}\alpha\otimes\zeta
+   +\sum_i(-1)^{nk-k+1}*((*\alpha)\wedge\alpha^i)
+      \otimes\nabla_{e_i}\zeta\\
+ &=-\sum_i e_i\mathbin{\lrcorner}\nabla_{e_i}\alpha\otimes\zeta
+   -\sum_i e_i\mathbin{\lrcorner}\alpha\otimes\nabla_{e_i}\zeta\\
+ &=-\sum_i e_i\mathbin{\lrcorner}\nabla_{e_i}(\alpha\otimes\zeta),
+\end{align*}
+引理得证。
+\end{proof}
+
+\begin{theorem}[魏岑伯克公式]
+\label{thm:app-a-weizenbock}
+设 $\{e_i\}$ 是 $P$ 的一组标准正交标架，$\{\alpha^i\}$ 是其对偶标架。则在任意
+向量丛 $E$-值形式上，
+\[
+ \Delta^\nabla=-\operatorname{Tr}\nabla^2
+ +\sum_{i,j}\alpha^j\wedge
+   \bigl(e_i\mathbin{\lrcorner}R(e_i,e_j)\bigr),
+\]
+其中 $R$ 是向量丛 $E$ 关于联络 $\nabla$ 的曲率张量。
+\end{theorem}
+
+\begin{proof}
+等式右端与标准正交基的选取无关，并且这是一个逐点公式，故可在一点 $p\in P$ 取
+正规坐标 $\{e_i\}$（$\{\alpha^i\}$ 为对偶基），即
+$h_{ij}:=h(e_i,e_j)(p)=\delta_{ij}$ 且 $dh_{i,j}(p)=0$，并对这些坐标在 $p$ 处证明
+公式。对于列维--奇维塔联络，正规坐标的条件 $dh_{i,j}(p)=0$ 等价于
+\[
+ \Gamma^k_{i,j}(p):=\alpha^k(D_{e_i}e_j)(p)=0.
+\]
+对 $\beta\in\Omega^k(E)$，利用\cref{lem:app-a-exterior-codifferential}计算
+\begin{align*}
+ \delta^\nabla d^\nabla\beta
+ &=-\sum_{i,j}e_i\mathbin{\lrcorner}\nabla_{e_i}
+       (\alpha^j\wedge\nabla_{e_j}\beta)\\
+ &=-\sum_{i,j}e_i\mathbin{\lrcorner}
+   \bigl(D_{e_i}\alpha^j\wedge\nabla_{e_j}\beta
+   +\alpha^j\wedge\nabla_{e_i}\nabla_{e_j}\beta\bigr).
+\end{align*}
+在点 $p$，第一项消失，因而
+\begin{align*}
+ \delta^\nabla d^\nabla\beta(p)
+ &=-\sum_{i,j}e_i\mathbin{\lrcorner}
+       (\alpha^j\wedge\nabla_{e_i}\nabla_{e_j}\beta)(p)\\
+ &=-\sum_i\nabla_{e_i}\nabla_{e_i}\beta(p)
+   +\sum_{i,j}\alpha^j\wedge
+      (e_i\mathbin{\lrcorner}\nabla_{e_i}\nabla_{e_j}\beta)(p)\\
+ &=-\sum_i\nabla^2_{e_i,e_i}\beta(p)
+   +\sum_{i,j}\alpha^j\wedge
+      (e_i\mathbin{\lrcorner}\nabla_{e_i}\nabla_{e_j}\beta)(p).
+\end{align*}
+此外，
+\begin{align*}
+ d^\nabla\delta^\nabla\beta
+ &=-\sum_{i,j}\alpha^i\wedge\nabla_{e_i}
+      (e_j\mathbin{\lrcorner}\nabla_{e_j}\beta)\\
+ &=-\sum_{i,j}\alpha^i\wedge
+      (e_j\mathbin{\lrcorner}\nabla_{e_i}\nabla_{e_j}\beta)
+   -\sum_{i,j}\alpha^i\wedge
+      ((D_{e_i}e_j)\mathbin{\lrcorner}\nabla_{e_j}\beta),
+\end{align*}
+而在点 $p$，第二项消失。把 $d^\nabla\delta^\nabla$ 与
+$\delta^\nabla d^\nabla$ 两部分相加，得到
+\[
+ \Delta^\nabla\beta(p)
+ =-\sum_i\nabla^2_{e_i,e_i}\beta(p)
+ +\sum_{i,j}\alpha^j\wedge
+  \bigl(e_i\mathbin{\lrcorner}R(e_i,e_j)\beta\bigr)(p).
+\]
+\end{proof}
+
+特别地，当公式作用在 $0$-形式，即 $E$ 的截面上时，右端第二项消失，因此
+\[
+ \Delta^\nabla=-\operatorname{Tr}\nabla^2.
+\]
+当公式作用在最高次形式上时，上式也容易直接验证。我们这里使用的是
+$\beta\in\Omega^1(E)$ 的情形，适用下述推论。
+
+\begin{corollary}
+\label{cor:app-a-one-form-weizenbock}
+对 $\beta=\alpha\otimes\zeta\in\Omega^1(E)$，魏岑伯克公式可写成
+\[
+ \Delta^\nabla\beta
+ =-\sum_i\nabla^2_{e_i,e_i}\beta
+  +\operatorname{Ric}^{D^*}(\alpha)\otimes\zeta
+  +\operatorname{Ric}^\nabla\beta,
+\]
+其中 $\operatorname{Ric}^{D^*}$ 表示作用在 $1$-形式上的
+$\operatorname{Ric}^D$ 的伴随。特别地，当 $P=\Sigma$ 是曲面时，
+\[
+ \Delta^\nabla\beta
+ =-\sum_i\nabla^2_{e_i,e_i}\beta+K\cdot\beta
+  +\operatorname{Ric}^\nabla(\beta),
+\]
+并且
+\begin{equation}
+\label{eq:app-a-weizenbock-energy-density}
+ -\frac12\Delta|\beta|^2
+ =|\nabla\beta|^2-\langle\Delta^\nabla\beta,\beta\rangle
+ +K\cdot|\beta|^2
+ +\langle\operatorname{Ric}^\nabla(\beta),\beta\rangle,
+\end{equation}
+其中 $K$ 是曲面 $\Sigma$ 的高斯曲率，且
+\[
+ \operatorname{Ric}^\nabla(\beta)
+ :=\alpha\otimes\sum_{i,j}R(e_i,e_j)\zeta.
+\]
+\footnote{译者注：源书本式按字面恒为零——曲率对指标反对称，在曲面上
+$\sum_{i,j}R(e_i,e_j)\zeta=R(e_1,e_2)\zeta-R(e_1,e_2)\zeta=0$，定义因而空洞；
+且与定理 A.2 自身的曲率项
+$\sum_{i,j}\alpha^j\wedge(e_i\lrcorner R(e_i,e_j))$ 不衔接。由定理 A.2 的
+分裂 $R^{T^*P\otimes E}=R^D\otimes1+1\otimes R^\nabla$，1-形式的 $E$-曲率项
+应保留对形式部分的收缩，即
+$\operatorname{Ric}^\nabla\beta:=\sum_{i,j}
+\bigl(\alpha^j\wedge(e_i\lrcorner\alpha)\bigr)\otimes R(e_i,e_j)\zeta$。
+以平坦线丛的显式算例验证：照录式使上一能量恒等式为假，收缩式则使其成立。
+疑为源书排版时中段因子塌缩。译文照录原式，特此披露。}
+\end{corollary}

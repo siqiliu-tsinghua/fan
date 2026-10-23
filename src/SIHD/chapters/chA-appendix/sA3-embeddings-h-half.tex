@@ -1,0 +1,257 @@
+
+\section{\texorpdfstring{$\Hh{1}{2}(S^{1})$ 的嵌入与作用量的光滑性}{H1/2(S1) 的嵌入与作用量的光滑性}}
+\label{sec:embeddings-action-smoothness}
+
+\hzsync{theorem}{3}%
+\hzsync{proposition}{3}%
+\hzsync{lemma}{5}%
+\hzsync{equation}{38}%
+
+在下文关于\trActionFunctional{}\trSmoothness{}的证明中，第 3 章中引入的空间%
+ $\Hh{1}{2}(S^{1})$ 的下列\trEmbedding{}性质将是至关重要的。形式上，它们可以由%
+\trSobolev\trEmbedding{}定理推出；然而，对\textbf{\trFractional\trDerivative}（fractional derivatives）%
+则需要一个单独的证明。
+
+\begin{theorem}\label{thm:hhalf-lp-embedding}
+若 $u\in\Hh{1}{2}(S^{1})$，则对每个 $1\leq p<\infty$ 都有 $u\in L^{p}(S^{1})$，%
+并且存在常数 $C_{p}$，使得
+\[
+\|u\|_{L^{p}(S^{1})}\ \leq\ C_{p}\|u\|_{\Hh{1}{2}(S^{1})}\ ,\qquad%
+u\in\Hh{1}{2}(S^{1})\ .
+\]
+
+此外，这些\trEmbedding{}还是\trCompact{}的。
+\end{theorem}
+
+\begin{proof}
+显然，只须求出对光滑函数 $u\in C^{\infty}(S^{1})$ 满足这些估计式的常数 $C_{p}$ %
+即可，因为它们在 $\Hh{1}{2}(S^{1})$ 中\trDense。为简单起见，再设这些函数的%
+平均值为零，我们把它们表示为
+\[
+u(e^{2\pi i\vartheta})\ =\ \sum_{j\in\Z}c_{j}\,e^{2\pi i\vartheta j}\ ,\qquad%
+\text{其中}\ c_{0}=0\ \text{且}\ c_{-j}=\bar{c}_{j}\ .
+\]
+按定义，
+\[
+\|u\|^{2}_{\Hh{1}{2}(S^{1})}\ =\ 2\pi\sum_{j\in\Z}|j|\,|c_{j}|^{2}\ .
+\]
+令 $z=re^{2\pi i\vartheta}\in\C$。把 $S^{1}=\partial D$ 视为圆盘%
+ $D=\{z\in\C:\ |z|\leq1\}$ 的\trBoundary，我们便可以通过令
+\[
+u(z)\ =\ \sum_{j\neq0}c_{j}r^{|j|}e^{2\pi i\vartheta j}\ =\ %
+\frac{1}{2}\Bigl(f(z)+\overline{f(z)}\Bigr)
+\]
+把函数 $u$ 延拓为 $\mathring{D}$ 上的\textbf{\trHarmonic{}函数}（harmonic function）$u(z)$，%
+其中
+\[
+f(z)\ =\ 2\sum_{j=1}^{\infty}c_{j}\,z^{j}\ .
+\]
+由于 $u(e^{2\pi i\vartheta})$ 属于 $\Hh{1}{2}(S^{1})$，函数 $f$ 在 $\mathring{D}$ 中%
+\trHolomorphic，而 $u(z)$ 取到所要的\trBoundary{}值。我们断言
+\[
+\int_{D}|\nabla u|^{2}\,dx\,dy\ =\ \|u\|^{2}_{\Hh{1}{2}(\partial D)}\ .
+\]
+的确，利用 $f'(z)=\frac{\partial u}{\partial x}-i\frac{\partial u}{\partial y}$ 并先对%
+诸角变量积分，我们得到
+\[
+\begin{aligned}
+\int_{D}|\nabla u|^{2}dx\,dy\ &=\ \int_{D}|f'(z)|^{2}r\,dr\,d\vartheta\\
+&=\ 8\pi\sum_{j=1}^{\infty}j^{2}|c_{j}|^{2}\int_{0}^{1}r^{2j-1}dr\ =\ %
+8\pi\sum_{j\geq1}|c_{j}|^{2}\,\frac{j^{2}}{2j}\\
+&=\ 2\pi\sum_{j\in\Z}|j|\,|c_{j}|^{2}\ =\ \|u\|^{2}_{\Hh{1}{2}(S^{1})}
+\end{aligned}
+\]
+如所断言。利用假设 $c_{0}=0$，一个类似的计算还表明%
+ $\|u\|_{L^{2}(D)}\leq\|\nabla u\|_{L^{2}(D)}$。于是，\cref{thm:hhalf-lp-embedding}%
+所要的估计便是下述命题的一个直接推论：
+
+\begin{proposition}\label{prop:boundary-lp-trace}
+对 $2\leq p<\infty$ 存在常数 $C_{p}$，使得
+\[
+\|u\|_{L^{p}(\partial D)}\ \leq\ C_{p}\Bigl(\|u\|_{L^{2}(D)}\ +\ %
+\|\nabla u\|_{L^{2}(D)}\Bigr)\ .
+\]
+对 $u\in C^{1}(D)$ 成立。
+\end{proposition}
+
+为了证明这一论断——它是一个一般「迹」定理的特殊情形——我们从一条引理开始。
+
+\begin{lemma}\label{lem:boundary-lp-iterated}
+对 $2\leq p<\infty$ 存在常数 $C_{p}$ 满足
+\[
+\|u\|_{L^{p}(\partial D)}\ \leq\ C_{p}\Bigl(\|u\|_{L^{2p-2}(D)}\ +\ %
+\|\nabla u\|_{L^{2}(D)}\Bigr)
+\]
+对 $u\in C^{1}(D)$ 成立。
+\end{lemma}
+
+\begin{proof}
+先考虑环形区域 $A=\{z\mid\tfrac{1}{2}\leq|z|\leq1\}$ 上的函数 $u=u(r,\vartheta)$。%
+由 $u$ 的连续性，可以找到半径 $\tfrac{1}{2}<\rho<1$，使得
+\[
+\|u\|_{L^{1}(A)}\ =\ \int_{\frac{1}{2}}^{1}\int_{0}^{2\pi}|u(r,\vartheta)|r\,dr\,d\vartheta\ =\ %
+\frac{\rho}{2}\int_{0}^{2\pi}|u(\rho,\vartheta)|d\vartheta\ \geq\ %
+\frac{1}{4}\int_{0}^{2\pi}|u(\rho,\vartheta)|d\vartheta\ .
+\]
+于是，把
+\[
+u(1,\vartheta)=u(\rho,\vartheta)+\int_{\rho}^{1}\frac{\partial u}{\partial r}(r,\vartheta)dr
+\]
+对角变量积分，便得到
+\[
+\frac{1}{4}\|u\|_{L^{1}(\partial D)}\ \leq\ \|u\|_{L^{1}(A)}\ +\ %
+\Bigl\|\frac{\partial u}{\partial r}\Bigr\|_{L^{1}(A)}\ .
+\]
+以 $v=|u|^{p-1}u$（$p\geq2$）替换 $u$，利用%
+ $\frac{\partial v}{\partial r}=p|u|^{p-1}\frac{\partial u}{\partial r}$ 以及%
+\trCauchy-\trSchwarz{}不等式，我们得到
+\[
+\|u\|_{L^{p}(\partial D)}\ \leq\ C_{p}\Bigl(\|u\|_{L^{p}(A)}\ +\ %
+\|u\|^{\frac{p-1}{p}}_{L^{2p-2}(A)}\Bigl\|\frac{\partial u}{\partial r}\Bigr\|^{\frac{1}{p}}_{L^{2}(A)}\Bigr)\ ,
+\]
+其中常数 $C_{p}$ 只依赖于 $p$。利用\trYoung{}氏不等式（当 $\tfrac{1}{p}+\tfrac{1}{q}=1$ 时%
+ $ab\leq\frac{a^{p}}{p}+\frac{b^{q}}{q}$），我们得出
+\[
+\|u\|_{L^{p}(\partial D)}\ \leq\ C_{p}\Bigl(\|u\|_{L^{2p-2}(A)}\ +\ %
+\Bigl\|\frac{\partial u}{\partial r}\Bigr\|_{L^{2}(A)}\Bigr)\ ,
+\]
+引理证毕。
+\end{proof}
+
+鉴于这条引理，\cref{prop:boundary-lp-trace}便是下一个命题的推论，后者是更一般的%
+\trSobolev\trEmbedding{}定理的一个特殊情形；该定理断言：对每个 $p<\infty$，%
+$H^{1,2}(D)$ 连续地\trEmbedding{}于 $L^{p}(D)$ 中。
+
+\begin{proposition}\label{prop:domain-lp-estimate}
+存在常数 $C_{p}$（$2\leq p<\infty$），使得
+\[
+\|u\|_{L^{p}(D)}\ \leq\ C_{p}\Bigl(\|u\|_{L^{2}(D)}\ +\ \|\nabla u\|_{L^{2}(D)}\Bigr)
+\]
+对一切 $u\in C^{1}(D)$ 成立。
+\end{proposition}
+
+\begin{proof}
+先把诸函数 $u\in C^{1}(D)$ 延拓为 $D$ 的一个\trNeighborhood{}内具有%
+\trCompactSupport{}的 $C^{1}$ 函数。这可以如下实现：选取 $\chi\in C^{\infty}_{c}(\R^{2})$，%
+使得 $\chi$ 在 $D$ 上等于 $1$，而在半径 $\tfrac{5}{4}$ 的圆盘之外等于 $0$。%
+然后由
+\[
+u(1+r,\vartheta)=\bigl\{4u\bigl(1-\tfrac{1}{2}r,\vartheta\bigr)-3u(1-r,\vartheta)\bigr\}%
+\cdot\chi(1+r,\vartheta)\ .
+\]
+定义 $u=u(r,\vartheta)$ 的延拓。这就定义了一个线性延拓映射%
+ $E:C^{1}(D)\to C^{1}_{c}(Q)$，它按 $W^{1,2}$\trNorm{}有界，其中 $Q$ 是一个更大的%
+\trDomain。于是，为了证明本命题，只须找出常数 $C_{p}$，使得对一切%
+ $u\in C^{1}_{c}(Q)$ 有
+\begin{equation}\label{eq:lp-q-estimate}
+\|u\|_{L^{p}(Q)}\ \leq\ C_{p}\Bigl(\|u\|_{L^{2}(Q)}\ +\ \|\nabla u\|_{L^{2}(Q)}\Bigr)\ .
+\end{equation}
+若 $u\in C^{1}_{c}(Q)$，则
+\[
+|u(x,y)|\ =\ \Bigl|\int_{-\infty}^{x}\frac{\partial u}{\partial x}(t,y)dt\Bigr|\ \leq\ %
+\int_{-\infty}^{\infty}\Bigl|\frac{\partial u}{\partial x}(t,y)\Bigr|dt\ ,
+\]
+从而，对 $y$ 导数也有一个类似的估计：
+\[
+|u(x,y)|^{2}\ \leq\ \int_{-\infty}^{\infty}\Bigl|\frac{\partial u}{\partial x}(t,y)\Bigr|dt%
+\cdot\int_{-\infty}^{\infty}\Bigl|\frac{\partial u}{\partial y}(x,t)\Bigr|dt\ .
+\]
+经积分，得
+\[
+\Bigl\|u\Bigr\|^{2}_{L^{2}(Q)}\ \leq\ \Bigl\|\frac{\partial u}{\partial x}\Bigr\|_{L^{1}(Q)}%
+\cdot\Bigl\|\frac{\partial u}{\partial y}\Bigr\|_{L^{1}(Q)}\ .
+\]
+以 $v=|u|^{t-1}u$（$t\geq2$）替换 $u$，由\trCauchy-\trSchwarz{}不等式我们得到
+\[
+\begin{aligned}
+\|u\|^{2t}_{L^{2t}(Q)}\ &\leq\ C_{t}\|u\|^{2t-2}_{L^{2t-2}(Q)}%
+\Bigl\|\frac{\partial u}{\partial x}\Bigr\|_{L^{2}(Q)}\Bigl\|\frac{\partial u}{\partial y}\Bigr\|_{L^{2}(Q)}\\
+&\leq\ C_{t}\|u\|^{2t-2}_{L^{2t-2}(Q)}\,\|\nabla u\|^{2}_{L^{2}(Q)}\ .
+\end{aligned}
+\]
+于是由\trYoung{}氏不等式，
+\begin{equation}\label{eq:l2t-q-estimate}
+\|u\|_{L^{2t}(Q)}\ \leq\ C_{t}\Bigl(\|u\|_{L^{2t-2}(Q)}\ +\ \|\nabla u\|_{L^{2}(Q)}\Bigr)\ .
+\end{equation}
+若 $t=2$，则右端就是 $W^{1,2}$\trNorm，于是迭代不等式%
+ \eqref{eq:l2t-q-estimate}，对每个 $2\leq p<\infty$ 便得出所要的估计%
+ \eqref{eq:lp-q-estimate}。这就完成了\cref{prop:domain-lp-estimate}的证明以及%
+\cref{thm:hhalf-lp-embedding}的第一条论断。
+\end{proof}
+
+最后我们来证明：诸\trEmbedding{} $\Hh{1}{2}\to L^{p}$ 对 $p<\infty$ 都是紧的。%
+特殊情形 $p=2$ 已在第 3 章中证明。把\trCauchy-\trSchwarz{}不等式应用于%
+ $|u|\cdot|u|^{q-1}=|u|^{q}$，我们便得到下述插值不等式：
+\[
+\|u\|_{L^{q}}\ \leq\ \|u\|^{\frac{1}{q}}_{L^{2}}\,\|u\|^{1-\frac{1}{q}}_{L^{2q-2}}\ ,\qquad q>2\ .
+\]
+由于据\cref{thm:hhalf-lp-embedding}的第一部分，$\Hh{1}{2}\to L^{2q-2}$ 是连续的，%
+而 $\Hh{1}{2}\to L^{2}$ 是紧的，故由上面的插值不等式可得出 $\Hh{1}{2}\to L^{q}$ %
+也是紧的。这就证明了\cref{thm:hhalf-lp-embedding}的第二条论断。
+\end{proof}
+
+\cref{thm:hhalf-lp-embedding}中排除了情形 $p=\infty$，我们给出 $\Hh{1}{2}(S^{1})$ %
+中无界函数的一个例子。若 $0<\varepsilon<\tfrac{1}{2}$，则函数
+\[
+u(e^{i\vartheta}):=Re\bigl[\log(1-e^{i\vartheta})\bigr]^{\frac{1}{2}-\varepsilon}
+\]
+属于 $\Hh{1}{2}(S^{1})$，其中 $\log$ 的分支选取得使 $\log 1=0$。为了验证这一点，%
+只须对 $f(z):=\bigl[\log(1-z)\bigr]^{\frac{1}{2}-\varepsilon}$ 证明积分
+\[
+\int_{|z|<1}|f'(z)|^{2}\,dx\,dy
+\]
+有限。我们还想补充指出：属于 $\Hh{1}{2}$ 的函数不仅对每个 $1\leq p<\infty$ %
+都属于 $L^{p}$，甚至对每个 $\alpha\in\R$ 都有 $e^{\alpha u^{2}}\in L^{1}$，%
+而且存在常数 $C>0$，使得
+\[
+\begin{gathered}
+\int_{0}^{2\pi}e^{[u(e^{i\vartheta})]^{2}}d\vartheta\ \leq\ C\qquad%
+\text{对每个满足}\\
+\|u\|_{\Hh{1}{2}(S^{1})}\ \leq\ 1\,,\qquad\int_{0}^{2\pi}u(e^{i\vartheta})d\vartheta\ =\ 0
+\end{gathered}
+\]
+的 $u\in\Hh{1}{2}(S^{1})$ 成立。这一结果归于 D.~E.~\trMarshall{}，它精化了%
+ A.~\trBeurling{}的一个估计；参见 S.~Y.~\trChangSA{} [40] 以及更晚近的 W.~\trBeckner{} [17]。
+
+接下来我们考虑一个光滑的\trHamiltonianFunction{} $H\in C^{\infty}(\R\times\R^{2n},\R)$，%
+它对时间\trPeriodic，即对一切 $(t,x)\in\R\times\R^{2n}$ 有 $H(t,x)=H(t+1,x)$。%
+我们假设 $H$ 的一切\trDerivative{}都具有多项式增长。
+
+\begin{theorem}\label{thm:action-smoothness}
+由
+\[
+a(x):=\int_{0}^{1}H\bigl(t,x(t)\bigr)dt\ ,
+\]
+定义的\trAction{} $a:\Hh{1}{2}(S^{1})\to\R$ 属于 $C^{\infty}\bigl(\Hh{1}{2}(S^{1}),\R\bigr)$。
+\end{theorem}
+
+\begin{proof}
+取定一个整数 $k$，我们从函数 $x\mapsto H(t,x)$ 的\trTaylor{}公式出发：
+\[
+H(t,y+\eta)\ =\ \sum_{j=0}^{k}\frac{1}{j!}\,h_{j}(t,y)\cdot\eta^{j}\ +\ o_{k}(\eta)\ ,
+\]
+其中
+\[
+h_{j}(t,y)\cdot\eta^{j}:=\sum_{|\alpha|=j}\frac{j!}{\alpha!}\,D^{\alpha}_{x}H(t,y)\eta^{\alpha}
+\]
+而 $y$、$\eta\in\R^{2n}$。若 $x$、$\xi\in\Hh{1}{2}$，我们代入 $y=x(t)$ 与 $\eta=\xi(t)$ %
+并对 $t$ 积分，便得到 $a$ 的呈下述形式的\trTaylor{}公式：
+\[
+a(x+\xi)\ =\ \sum_{j=0}^{k}\frac{1}{j!}\,a_{j}(x)\cdot\xi^{j}\ +\ r_{k}(x,\xi)\ ,
+\]
+其中
+\[
+a_{j}(x)\cdot\xi^{j}:=\int_{0}^{1}h_{j}\bigl(t,x(t)\bigr)\cdot\xi(t)^{j}\,dt\ .
+\]
+现在，$a_{j}(x)$ 是 $\Hh{1}{2}$ 上的一个连续的 $j$\trLinear{}形式，而且它还连续地%
+依赖于 $x\in\Hh{1}{2}$。把\trHolder{}不等式应用于上面的积分，并利用%
+\cref{thm:hhalf-lp-embedding}以及 $H$ 的诸\trDerivative{}多项式有界这一假设，%
+这一点便立即得出。此外，$|r_{k}(x,\xi)|\leq C_{k}\cdot|\xi|^{k+1}_{1/2}$。%
+由于这对每个 $k$ 都成立，故由泰勒定理之逆定理（例如参见 R.~\trAbraham{}与%
+ J.~\trRobbin{} [2]）可以得出：$a$ 是\trSmooth{}的，并且如形式上所期望的那样，%
+具有导数
+\[
+D^{j}a(x)\ =\ a_{j}(x)
+\]
+对 $j\geq1$ 成立。\cref{thm:action-smoothness}的证明至此完成。
+\end{proof}

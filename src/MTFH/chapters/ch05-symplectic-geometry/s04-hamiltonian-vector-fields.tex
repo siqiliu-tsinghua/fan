@@ -1,0 +1,199 @@
+
+\section{\trHamiltonian\trVectorField{}与\trHamiltonian{}系统}
+\label{sec:hamiltonian-vector-fields}
+
+若 $H\colon W\to\RR$ 是一个函数，那么\trSymplecticForm{}便使我们得以给它配上一个\trVectorField，一种\trGradient：\textbf{\trHamiltonian\trVectorField}（Hamiltonian vector field）$X_H$（有时也称为 $H$ 的“\trSymplectic\trGradient”）。它就是由如下关系式所定义的那个\trVectorField：
+\[
+\omega_x\bigl(Y,X_H(x)\bigr)=(dH)_x(Y)\qquad\text{对每个 } Y\in T_xW
+\]
+（或者由 $\iota_{X_H}\omega=-dH$ 给出\footnote{译注：$\iota_{X_H}\omega$ 表示把 2-\trForm{} $\omega$ 的第一个变元换成 $X_H$ 所得的那个 1-\trForm，称为沿 $X_H$ 的\trInnerProduct。后文证明中所写的 $i$（如 $di_{X_H}\omega$）即此算子 $\iota_{X_H}$。}）。
+
+注意，\trVectorField{} $X_H$ 在 $x$ 处为零当且仅当 $x$ 是函数 $H$ 的\trCriticalPoint：
+\[
+X_H(x)=0\Longleftrightarrow(dH)_x=0\text{。}
+\]
+特别地，一个\trHamiltonian\trVectorField{}的\trSingularPoint（或零点）正是某个函数的\trCriticalPoint。
+
+\textbf{\trHamiltonian{}系统}（Hamiltonian system）是与这个\trVectorField{}相伴随的\trDifferential{}方程组，即
+\[
+\dot{x}(t)=X_H(x(t))\text{。}
+\]
+
+注意，函数 $H$ 在\trVectorField{} $X_H$ 的诸\trTrajectory（或\trIntegralCurve）上取常值：由于 $\omega_x$ 是\trAlternating{}的，我们有
+\[
+(dH)(X_H)=0\qquad\text{或}\qquad X_H\cdot H=0\text{。}
+\]
+
+\subsection{\trHamilton{}方程}
+\label{subsec:hamilton-equations}
+
+在具有\trSymplecticForm{} $\sum dp_i\wedge dq_i$ 的 $\RR^{2n}$ 中，用坐标 $(q_i,p_i)$ 来写，该\trDifferential{}方程组便取如下形式：
+\[
+\dot{q}_i=\frac{\partial H}{\partial p_i}\text{，}\qquad
+\dot{p}_i=-\frac{\partial H}{\partial q_i}\text{。}
+\]
+这些就是经典的“\trHamilton{}方程”。
+
+\begin{example}[“经典”\trHamiltonian{}量]\label{thm:classical-hamiltonian-example}
+在具有其标准\trSymplectic{}结构的 $\RR^{2n}$ 中，我们考虑函数
+\[
+H(p,q)=\frac{1}{2}\|p\|^2+V(q)
+\]
+（把它想成总\trEnergy，即动能与势能之和）。与之相伴随的\trHamiltonian{}系统是
+\[
+\dot{q}=p\text{，}\qquad
+\dot{p}=-\frac{\partial V}{\partial q}\text{，}
+\]
+于是 $p$ 的确表现为那个位置由 $q$ 给出的粒子的速度（或\trMomentum）。\footnote{译注：原书此处印作 “the speed (or the impulse) of the particle”；impulse 系法文 impulsion 之英译，按力学语境应义为\trMomentum；此处径译作\trMomentum。——译者注}
+\end{example}
+
+\begin{proposition}\label{thm:hamiltonian-diffeomorphism}
+\trHamiltonian\trVectorField{}的\trFlow{}在时刻 $t$ 处的映射是一个保持\trSymplecticForm{}的\trDiffeomorphism。它被称为\textbf{\trHamiltonian\trDiffeomorphism}（Hamiltonian diffeomorphism）。
+\end{proposition}
+
+\begin{proof}
+我们有\footnote{必要时参见\cref{subsec:lie-derivative-cartan}。}
+\[
+\begin{aligned}
+\frac{d}{dt}\Bigl((\psi^t)^\star\omega\Bigr)
+  &=(\psi^t)^\star\scr{L}_{X_H}\omega\\
+  &=(\psi^t)^\star\bigl(di_{X_H}\omega\bigr)\\
+  &=(\psi^t)^\star(-ddH)=0\text{。}
+\end{aligned}
+\]
+因此 $(\psi^t)^\star\omega$ 不依赖于 $t$，并且对每个 $t$ 都有 $(\psi^t)^\star\omega=(\psi^0)^\star\omega=\omega$。
+\end{proof}
+
+\subsection{\trPeriodic\trTrajectory}
+\label{subsec:periodic-orbits}
+
+若\trVectorField{} $X_H$ 的\trFlow{}的一条\trTrajectory{}以 1 为\trPeriodic，那么对它的每个点我们都有
+\[
+\psi^1(x)=x\text{。}
+\]
+因而它们全是 $\psi^1$ 的\trFixedPoint。例如，$H$ 的诸\trCriticalPoint{}就是\trPeriodic\trTrajectory。于是，这个\trSymplectic\trDiffeomorphism{} $\psi^1$ 的\trFixedPoint{}至少与函数 $H$ 的\trCriticalPoint{}一样多。
+
+\begin{example}[二次\trHamiltonian{}量]\label{thm:quadratic-hamiltonian-example}
+我们来考虑 $\RR^{2n}$ 上的一个二次\trHamiltonian{}量 $H$ 的情形：
+\[
+H=\frac{1}{2}\sum a_{ij}p_ip_j+\sum b_{ij}p_iq_j+\frac{1}{2}\sum c_{ij}q_iq_j\text{，}
+\]
+其中矩阵 $a$ 与 $c$ 是对称的。此时 $X_H$ 是一个线性\trVectorField
+\[
+X_H(p,q)=-\sum_{i=1}^{n}\frac{\partial H}{\partial q_i}\frac{\partial}{\partial p_i}
++\sum_{i=1}^{n}\frac{\partial H}{\partial p_i}\frac{\partial}{\partial q_i}
+=A\cdot\begin{pmatrix}p\\ q\end{pmatrix}\text{，}
+\]
+其中 $A$ 是矩阵
+\[
+A=\begin{pmatrix}-\,{}^{t}b & -c\\ a & b\end{pmatrix}
+=\begin{pmatrix}0 & -\mathrm{Id}\\ \mathrm{Id} & 0\end{pmatrix}
+\begin{pmatrix}a & b\\ {}^{t}b & c\end{pmatrix}
+=J_0\begin{pmatrix}a & b\\ {}^{t}b & c\end{pmatrix}\text{。}
+\]
+因此，差一个\trInvertible{}矩阵 $J_0$ 的乘法因子，矩阵 $A$ 就是 $H$ 在 0 处的\trHessian，也就是\trQuadraticForm{} $H$ 的矩阵。$X_H$ 的\trFlow{}由下式给出：
+\[
+\psi^t(p,q)=e^{tA}\cdot\begin{pmatrix}p\\ q\end{pmatrix}\text{。}
+\]
+注意 $\psi^1=e^A$。于是，若 $\psi^1$ 不具有\trEigenvalue{} 1，则 $A$ 就不具有\trEigenvalue{} 0，从而\trQuadraticForm{} $H$ 是\trNondegenerate{}的；也就是说，$H$ 在 0 处的\trCriticalPoint{}是一个\trNondegenerate\trCriticalPoint。
+注意，其逆命题不真：$A$ 可以具有形如 $2ik\pi$（$k\in\ZZ$）的\trEigenvalue；例如参见第 14 章中的练习~18。
+\end{example}
+
+\subsection{时间依赖的\trHamiltonian{}量}
+\label{subsec:time-dependent-hamiltonians}
+
+我们现在来考虑“时间依赖的”\trHamiltonian{}量，亦即函数
+\[
+H\colon W\times\RR\longrightarrow\RR\text{，}
+\]
+以及由下式定义的诸\trHamiltonian\trVectorField{} $X_t$：
+\[
+X_t=X_{H_t}\text{，}\qquad\text{若令 } H(x,t)=H_t(x)\text{。}
+\]
+与之相伴随的\trDifferential{}方程组不再是\trAutonomous{}的；它就是方程组
+\[
+\dot{x}(t)=X_t(x(t))\text{。}
+\]
+与\trAutonomous{}情形一样，该方程组的解使我们得以定义一族\trSymplectic\trDiffeomorphism{} $\psi^t$，使得
+\[
+\frac{d}{dt}\psi^t=X_t\circ\psi^t\qquad\text{且}\qquad\psi^0=\mathrm{Id}\text{。}
+\]
+如同\cref{thm:hamiltonian-diffeomorphism}中那样（并且带着同样的证明），$\psi^t$ 保持\trSymplecticForm。
+
+\subsection{\trNondegenerate\trPeriodic{}解}
+\label{subsec:nondegenerate-periodic-solutions}
+
+\trDifferential{}方程组的一个以 1 为\trPeriodic{}的\trPeriodic{}解对应于\trDiffeomorphism{} $\psi^1$ 的一个\trFixedPoint。此外，若我们再假定\trHamiltonian{}量 $H$ 以 1 为\trPeriodic，那么这些\trFixedPoint{}便都来自\trPeriodic{}解。
+
+\begin{definition}\label{thm:nondegenerate-periodic-solution}
+一个\trPeriodic{}解 $x$ 称为\trNondegenerate{}的，若 $\psi^1$ 的\trDifferential{}不具有\trEigenvalue{} 1，也就是说，用数学符号来写，若
+\[
+\det(\mathrm{Id}-T_{x(0)}\psi^1)\neq 0\text{。}
+\]
+\end{definition}
+
+在这个“时间依赖的”\trHamiltonian{}量 $H$ 实际上不依赖于时间的特殊情形，$H$ 的诸\trCriticalPoint{}便是\trHamiltonian{}系统的（\trStationary{}的）\trPeriodic{}解。\cref{thm:quadratic-hamiltonian-example}例示了下述陈述。
+
+\begin{proposition}\label{thm:critical-nondegenerate-transfer}
+若 $H$ 的一个\trCriticalPoint{}作为\trHamiltonian{}系统的\trPeriodic{}解是\trNondegenerate{}的，那么它作为函数 $H$ 的\trCriticalPoint{}也是\trNondegenerate{}的。
+\end{proposition}
+
+\begin{proof}
+我们可以在该\trCriticalPoint{}的邻域里使用\trDarboux{}定理与 $H$ 的 2 阶\trTaylor{}展开，并由此推得上面所做显式计算的结果。这里给出另一个证明。我们首先注意到，若 $Y$ 与 $Z$ 是 $W$ 在 $x$ 处的两个切向量，则
+\[
+(d^2H)_x(Y,Z)=\omega_x\bigl([X_H,Z]_x,Y\bigr)
+\]
+（其中我们让 $Z$ 同时也记在 $x$ 的邻域内延拓向量 $Z$ 的任一\trVectorField）\footnote{译注：原书此处括注印作 “any vector extending the vector Z”；与其下 “by extending Y to a Hamiltonian vector field” 一句合读，显系 vector field 脱失一词；此处径作\trVectorField。——译者注}。事实上，把 $Y$ 延拓为 $x$ 的邻域内的一个\trHamiltonian\trVectorField{} $X_f$，我们便有
+\[
+\begin{aligned}
+\omega([X_H,Z],Y)&=\omega([X_H,Z],X_f)\\
+&=df([X_H,Z])\\
+&=[X_H,Z]\cdot f\\
+&=X_H\cdot(Z\cdot f)-Z\cdot(X_H\cdot f)\\
+&=X_H\cdot(Z\cdot f)+Z\cdot(X_f\cdot H)\text{。}
+\end{aligned}
+\]
+在 $H$ 的\trCriticalPoint{} $x$ 处计算，第一项为零，而第二项恰好是
+\[
+(d^2H)_x\bigl(X_f(x),Z(x)\bigr)=(d^2H)_x(Y,Z)\text{。}
+\]
+现在我们假设 $x$ 作为 $X_H$ 的一条\trTrajectory{}是\trNondegenerate{}的。这意味着对每个 $Z\neq 0$，我们有
+\[
+T_x\psi^1(Z)-Z\neq 0\text{。}
+\]
+由于 $\psi^0=\mathrm{Id}$，必定存在一个 $t$ 使得
+\[
+\frac{d}{dt}T_x\psi^t(Z)\neq 0\text{，}
+\]
+而这个导数等于
+\[
+T_x\psi^t([X_H,Z])\text{，}
+\]
+于是对每个 $Z\neq 0$，都存在一个 $t$ 使得 $T_x\psi^t([X_H,Z])\neq 0$。\footnote{译注：原书此处印作正号（即 $\frac{d}{dt}T_x\psi^t(Z)=T_x\psi^t([X_H,Z])$）；实算应带负号：按 $[X,Z]\cdot f=X(Z\cdot f)-Z(X\cdot f)$，在 $X_H(x)=0$ 处（此时 $\psi^t(x)=x$）逐项推演得 $\frac{d}{dt}T_x\psi^t(Z)=-T_x\psi^t([X_H,Z]_x)$；取 $H=\frac{1}{2}(p^2+q^2)$、$X_H=J_0x$、$Z$ 为常值\trVectorField{}即可直见符号相反。不过这一正负之差不影响下文的非零性推论（$\neq 0$ 与符号无关）；此处照原书排印。——译者注}由此推出，对每个 $Z\neq 0$，我们有 $[X_H,Z]\neq 0$。由前面的关系式，这就蕴含 $x$ 作为 $H$ 的\trCriticalPoint{}是\trNondegenerate{}的。
+\end{proof}
+
+\begin{remark}\label{thm:linearized-flow-matrix}
+在局部坐标下，$T_x\psi^1$ 的矩阵是\trJacobi{}矩阵 $\operatorname{Jac}_x\psi^1$，即 $\exp\bigl(J_0\operatorname{Hess}_x(H)\bigr)$（必要时参见第 14 章中的练习~8），其中 $\operatorname{Hess}$ 表示\trHessian{}矩阵。于是，$x$ 作为\trPeriodic\trTrajectory{}的\trNondegenerate{}性等价于 $\exp\bigl(J_0\operatorname{Hess}_x(H)\bigr)-\mathrm{Id}$ 的\trInvertible{}性，也就是说，等价于 $H$ 的\trHessian{}在 $2\pi\ZZ$ 中不具有任何\trEigenvalue{}这一事实。\footnote{译注：原书末句判据照此排印，然其有疏：由 $\exp\bigl(J_0\operatorname{Hess}_x(H)\bigr)-\mathrm{Id}$ 的\trInvertible{}性所能得出的，应是 $\operatorname{Spec}\bigl(J_0\operatorname{Hess}_x(H)\bigr)\cap 2\pi i\ZZ=\varnothing$，而非“$H$ 的\trHessian{}在 $2\pi\ZZ$ 中无\trEigenvalue”。两个方向均有反例：其一，\trHessian{}为 $\operatorname{diag}(1,4\pi^2)$，\trSpectrum{}不在 $2\pi\ZZ$ 中，而 $J_0\operatorname{Hess}$ 的\trEigenvalue{}为 $\pm 2\pi i$，$\exp\bigl(J_0\operatorname{Hess}\bigr)$ 以 $1$ 为\trEigenvalue，照样\trDegenerate；其二，\trHessian{}为 $\operatorname{diag}(2\pi,-2\pi)$，\trSpectrum{}落在 $2\pi\ZZ$ 中，而 $J_0\operatorname{Hess}$ 的\trEigenvalue{}是实的 $\pm 2\pi$，$\exp\bigl(J_0\operatorname{Hess}\bigr)$ 不以 $1$ 为\trEigenvalue，并不\trDegenerate。——译者注}
+\end{remark}
+
+\begin{remark}\label{thm:small-hamiltonian-converse}
+若\trHamiltonian{}量 $H$ 是“充分”$\cC^2$-小的——更确切地说，若其\trHessian{}的范数小于 $2\pi$——那么上一条注记表明\cref{thm:critical-nondegenerate-transfer}的逆命题为真：两种\trNondegenerate{}性概念重合。
+\end{remark}
+
+\begin{remark}\label{thm:monodromy-floquet-multipliers}
+因此，\trNondegenerate{}的\trStationary\trPeriodic{}解（\trPeriodic{}为 1）都是\trIsolated{}的；不存在无穷小邻近的\trPeriodic{}解。对\trNondegenerate{}的解来说，这一点在更一般的情形下也成立。这里给出理解这一事实的另一种方式。设
+\[
+\begin{array}{rcl}
+S^1 &\longrightarrow& W\\
+t &\longmapsto& x(t)
+\end{array}
+\]
+是 $W$ 上\trVectorField{} $X_t$ 的一条\trPeriodic\trTrajectory。正如对所有 $2n$ 阶的线性\trDifferential{}方程组都成立的那样，沿解 $x$ \trLinearization{}\footnote{必要时参见\cref{subsec:linearization-along-solution}。}所得的\trDifferential{}方程，其解所构成的\trVectorSpace{}的维数是 $2n$。若 $Y_1,\dotsc,Y_{2n}$ 是 $T_{x(0)}W$ 的一组基，那么存在 $T_{x(t)}W$ 的唯一一组基 $Y_1(t),\dotsc,Y_{2n}(t)$，使得
+\[
+\begin{cases}
+Y_i(t)\ \text{是一个解}\\
+Y_i(0)=Y_i
+\end{cases}\text{。}
+\]
+于是 $Y_1(1),\dotsc,Y_{2n}(1)$ 也是 $T_{x(0)}W$ 的一组基，因为 $x$ 以 1 为\trPeriodic。它可以由 $Y_1,\dotsc,Y_{2n}$ 通过一个线性\trIsomorphism{}得到，而这个\trIsomorphism{}不是别的，正是 $T_{x(0)}\psi^1$（参见\cref{subsec:linearization-along-solution}）。在线性\trDifferential{}方程的理论中，这个\trIsomorphism{}就是该方程沿\trTrajectory{} $x$ 的\textbf{\trMonodromy}（monodromy）。当这个解如同在我们这里的情形一样具有\trPeriodic{}系数时，\trMonodromy{}的\trEigenvalue{}便是\textbf{\trFloquet{}乘子}（Floquet multipliers）。\trMonodromy{}不具有\trEigenvalue{} 1（这正是我们的\trNondegenerate{}性假设）这一事实，等价于\trLinearization{}之后的方程没有非零\trPeriodic{}解这一事实。\footnote{译注：原书此处印作“does not have a periodic solution”（没有\trPeriodic{}解）；\trLinearization{}后的方程是线性齐次方程，零解恒为其解，所述等价性应指没有非零\trPeriodic{}解；此处径补“非零”二字。——译者注}这种\trNondegenerate{}性也是一类\trTransversality；参见第 14 章中的练习~6。
+\end{remark}

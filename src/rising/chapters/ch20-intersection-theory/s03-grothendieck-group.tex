@@ -1,0 +1,60 @@
+
+\section{凝聚层的\trGrothendieck{}群与\trHomology{}的代数版本}
+
+相交积 \eqref{eq:intersection-product-def} 的构造，或许会让你意犹未尽——尤其是鉴于 \S20.1.9 的\trCohomology{}诠释之后。你也许想要某种类似\trHomology{}的理论，充当一个收纳不同维数之\trCycle{}的仓库，而诸\trLineBundle（或其\trChern{}类）能在其上作用。就我们已有的知识而言，这件事其实可以轻而易举地做到。
+
+\textbf{20.3.1.}\ \emph{\trhDefinition{}。}\quad 设 $X$ 为 $k$-\trVariety。我们定义\textbf{凝聚层的\trGrothendieck{}群}（Grothendieck group of coherent sheaves），记作 $K(X)$（亦常记作 $K_0(X)$），它是由形如 $[\mathscr{F}]$ 的符号生成的\trAbelianGroups，其中 $\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf，并受制于如下关系：若 $\mathscr{F}\cong\mathscr{F}'$，则 $[\mathscr{F}]=[\mathscr{F}']$；而若存在\trShortExactSequence
+\[
+\begin{tikzcd}
+0\ar[r]&\mathscr{F}'\ar[r]&\mathscr{F}\ar[r]&\mathscr{F}''\ar[r]&0
+\end{tikzcd}
+\]
+则 $[\mathscr{F}']+[\mathscr{F}'']=[\mathscr{F}]$。
+
+（当心：记号 $K(X)$ 如今被用来指两个概念——\trGrothendieck{}群与\trFunctionField。这个符号的含义，从上下文来看应当是清楚的。）由构造，\trGrothendieck{}群就是凝聚层范畴上那种「在正合列中表现良好」的算子的泛构造。例如，若 $X$ 是\trProper{}的，则：
+
+（i）我们有映射 $\chi\colon\mathit{Coh}_X\to\mathbb{Z}$，因为一个\trCoherentSheaf{}的\trEulerCharacteristic{}是有限的：在\trProjective{}情形由\mbox{定理~18.1.3(i)}，而更一般地，在\trProper{}情形由\mbox{\trGrothendieck{}凝聚定理~18.9.1}。由\mbox{练习~18.4.A}（它原封不动地推广到\trProper{}情形），这个映射下降为 $\chi\colon K(X)\to\mathbb{Z}$。
+
+（ii）若 $X$ 是\trIntegral{}的，则秩函数
+\[
+\operatorname{rank}\colon\mathit{Coh}_X\longrightarrow\mathbb{Z}
+\]
+下降为一个函数 $\operatorname{rank}\colon K(X)\to\mathbb{Z}$。（\mbox{练习~14.3.I} 的论证适用。）
+
+\textbf{20.3.2.}\ \emph{定义与非标准记号。}\quad \trGrothendieck{}群按维数\trFiltered：令 $K(X)^{\le d}$ 为 $K(X)$ 中由支撑维数至多 $d$ 的\trCoherentSheaf{}所生成的\trSubgroup。（这称为 $K(X)$ 上的\textbf{维数\trFiltration}（dimensional filtration）或\textbf{\trConiveauFiltration}（coniveau filtration），尽管我们用不到这些名字。）令 $A'_d(X)$ 为 $K(X)$ 的第 $d$ 个分次片段（graded piece），即 $A'_d(X):=K(X)^{\le d}/K(X)^{\le d-1}$。
+
+若 $\mathscr{L}$ 是 $X$ 上的一个\trInvertibleSheaf，则如下定义 $\mathscr{L}\cdot\colon K(X)\to K(X)$：$\mathscr{L}\cdot[\mathscr{F}]=[\mathscr{F}]-[\mathscr{L}^{\vee}\otimes\mathscr{F}]$。（你看得出这个算子为何是\trWellDefined{}的吗？）
+
+\textbf{20.3.A.（练习）}\quad 设 $X$ 是\trProjective{}的而 $k$ 是无限的。证明：$\mathscr{L}\cdot$ 把 $K(X)^{\le d}$ 送到 $K(X)^{\le d-1}$。（提示：对每个固定的、支撑在维数至多 $d$ 的子集上的 $\mathscr{F}$，把 $\mathscr{L}$ 写成两个极丰富\trInvertibleSheaf{}之差，并选取这两者的\trSection{}使它们避开 $\mathscr{F}$ 的诸\trAssociatedPoint。）
+
+\textbf{20.3.3.}\ \emph{\trhRemark{}。}\quad 前一个练习在 $k$ 不必无限、$X$ 不必\trProper{}时依然成立；见 [Ko1, Prop.~VI.2.5]。
+
+\textbf{20.3.4.}\quad 在本节的其余部分，我们假定 $X$ 是\trProjective{}的且 $k$ 是无限的。（但鉴于\mbox{注记~20.3.3}，这些假设都可以去除。）由\mbox{练习~20.3.A}，$\mathscr{L}\cdot$ 下降为一个映射 $A'_d(X)\to A'_{d-1}(X)$；我们把这个算子记作 $c_1(\mathscr{L})\cap$。（它是第一\trChern{}类的作用。）
+
+\textbf{20.3.B.（练习：「$c_1$ 是加性的」）}\quad 证明：$c_1(\mathscr{L}\otimes\mathscr{L}')\cap=(c_1(\mathscr{L})\cap)+(c_1(\mathscr{L}')\cap)$。提示：证明 $((\mathscr{L}\otimes\mathscr{L}')\cdot)-(\mathscr{L}\cdot)-(\mathscr{L}'\cdot)=-(\mathscr{L}\cdot)\circ(\mathscr{L}'\cdot)$，于是它把 $K(X)^{\le d}$ 送到 $K(X)^{\le d-2}$。（这会让你想起\mbox{命题~20.1.3} 证明中的那个技巧，而事实上后者正是受前者启发。当心：$\operatorname{Pic}(X)$ 在 $K(X)$ 上的作用并非加性的；只有过渡到相伴分次环 $A'_{\bullet}(X)$ 之后，它才成为加性的。）
+
+若 $\mathscr{F}$ 的支撑维数至多为 $n$，而 $\mathscr{L}_1,\dots,\mathscr{L}_n$ 是 $n$ 个\trInvertibleSheaf，那么我们如今便可把相交积 $(\mathscr{L}_1\cdot\mathscr{L}_2\cdots\mathscr{L}_n\cdot\mathscr{F})$ 重新诠释为
+\[
+c_1(\mathscr{L}_1)\cap\cdots\cap c_1(\mathscr{L}_n)\cap[\mathscr{F}],
+\]
+其中 $[\mathscr{F}]$ 可视为落在 $K(X)$ 或 $A'_n(X)$ 之中。你现在可以回过头去重读 \S20.1，以这个起点重新证明其中的全部结果，有时还会得到有趣的推广。我们如今把相交积从一个整数提升为 $A'_0(X)$ 中的一个类，而后者可能携带多得多的信息。（即便 $X$ 是 $\mathbb{C}$ 上一条正\trGenus{}的\trCurve，借助 [F2] 中发展的理论，这也依然为真。）
+
+这些 $A'_d(X)$ 在好些方面表现得如同\trHomology{}群。若 $Y\subset X$ 是\trPureDimension{}为 $d$ 的一个\trClosed\trSubvariety，我们便有一个类 $[Y]:=[\OO_Y]\in A'_d(X)$。群 $A'_d(X)$ 具有适当的函子性质。例如，若 $\pi\colon X_1\to X_2$ 是一个\trProper\trMorphism（即便诸 $X_i$ 自身并不\trProper），我们也有一个映射 $\pi_*\colon K(X_1)\to K(X_2)$，由
+\begin{equation*}\tag{20.3.4.1}\label{eq:k-pushforward}
+\pi_*[\mathscr{F}]=[\pi_*\mathscr{F}]-[\mathrm{R}^1\pi_*\mathscr{F}]+\cdots
+\end{equation*}
+给出（利用高次\trPushforward{}的长正合列，\mbox{定理~18.7.1(c)}）；它下降为一个映射 $A'_d(X_1)\to A'_d(X_2)$，其中 \eqref{eq:k-pushforward} 右边的「靠后的项」消失，于是 $\pi_*[\mathscr{F}]=[\pi_*\mathscr{F}]$。这个\trPushforward{}与线丛的第一\trChern{}类配合融洽，从而给出\mbox{注记~20.1.8} 的\trProjection{}公式。
+
+若 $\pi$ 改而是一个\trFlat\trMorphism——它即将在第 24 章中得到详尽的讨论——那么 $\pi^*$ 是\trExact{}的（\mbox{练习~24.1.H}），于是我们有一个映射 $\pi^*\colon K(X_2)\to K(X_1)$。若这个映射的「相对维数」为 $r$（将在\mbox{定义~24.5.7} 中正式定义），这就给出一个映射 $\pi^*\colon A'_d(X_2)\to A'_{d+r}(X_1)$。它与诸第一\trChern{}类及\trProper{}前推都配合融洽。
+
+若 $k=\mathbb{C}$ 而 $X$ 是\trProper{}的，则存在一个映射 $A'_d(X)\to\mathrm{H}_{2d}(X,\mathbb{Q})$，其表现正如你所愿（例如，在与线丛的\trChern{}类的相互作用上）。若 $X$ 不\trProper（但 $k=\mathbb{C}$），那么这个映射所指向的是\trBorel--\trMoore\trHomology（Borel-Moore homology），而非通常的\trHomology。
+
+我们的群 $A'_d(X)$ 是对\trChow{}群 $A_d(X)$ 之理论的一个良好近似，后者在 [F2] 中得到发展。事实上，存在一个\trSurjectiveMap
+\begin{equation*}\tag{20.3.4.2}\label{eq:chow-surjection}
+\begin{tikzcd}[column sep=3em]
+A_d(X)\ar[r,two heads]&A'_d(X)
+\end{tikzcd}
+\end{equation*}
+[F2, Examp.~15.1.5]，而且这一映射一经与 $\mathbb{Q}$ 作张量便是\trIsomorphism [F2, Thms.~18.2 and~18.3]。这是代数几何中一个漫长而丰饶的故事的开端。
+
+\textbf{20.3.5.}\ \emph{旁注}（side remark）。\quad 这个\trSurjectiveMap{} \eqref{eq:chow-surjection} 未必是\trIsomorphism；见 [SGA6, Exp.~XIV, \S4.5--4.7]（不过它的\trKernel{}必为\trTorsion，如上所述）。作为一个诱人的例子，若 $X$ 是群 $\mathrm{E}_8$，则其\trKernel{}带有 $2$-\trTorsion、$3$-\trTorsion{}与 $5$-\trTorsion；见 [KN, DZ]。

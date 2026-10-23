@@ -1,0 +1,148 @@
+
+\section{\trHilbert{}函数、\trHilbert{}多项式与亏格}
+
+若 $\mathscr{F}$ 是射影 $k$-\trScheme{} $X\subset\mathbb{P}^n$ 上的一个\trCoherentSheaf，定义 $\mathscr{F}$ 的\textbf{\trHilbert{}函数}（Hilbert function）为
+\[
+h_{\mathscr{F}}(m):=h^0(X,\mathscr{F}(m)).
+\]
+注意，\trHilbert{}函数依赖于 $X$ 的射影嵌入（经由其\trLineBundle），尽管这一依赖关系在记号中被隐去了。$X$ 的\textbf{\trHilbert{}函数}就是\trStructureSheaf{}的\trHilbert{}函数。古人早已知晓\trHilbert{}函数是「终归为多项式」（eventually polynomial）的，也就是说，对足够大的 $m$，它与某个多项式相符。这个多项式蕴含大量有趣的几何信息，我们很快就会看到。用现代的语言来说，我们预期这种「终归多项式性」（eventual polynomiality）之所以出现，是因为\trEulerCharacteristic{}应当是一个多项式，而且当 $m\gg 0$ 时更高的\trCohomology{}都消失。事实的确如此，我们现在就来验证。
+
+\textbf{18.6.1.\ \trhTheorem。}\ ——\ \emph{若 $\mathscr{F}$ 是射影 $k$-\trScheme{} $X\hookrightarrow\mathbb{P}^n_k$ 上的一个\trCoherentSheaf，则 $\chi(X,\mathscr{F}(m))$ 是次数等于 $\dim\operatorname{Supp}\mathscr{F}$ 的多项式。于是由\trSerre{}消失（\mbox{定理~18.1.3}~(ii)），当 $m\gg 0$ 时，$h^0(X,\mathscr{F}(m))$ 是一个次数为 $\dim\operatorname{Supp}\mathscr{F}$ 的多项式 $p_{\mathscr{F}}(m)$。特别地，当 $m\gg 0$ 时，$h^0(X,\OO_X(m))$ 为多项式，其次数等于 $\dim X$。}
+
+\textbf{18.6.2.}\ \textbf{\trhDefinition{}。}\quad \mbox{定理~18.6.1} 中定义的多项式 $p_{\mathscr{F}}(m)$ 称为 \textbf{\trHilbert{}多项式}。若 $X\subset\mathbb{P}^n$ 是一个射影 $k$-\trScheme，则定义 $p_X(m):=p_{\OO_X}(m)$。
+
+\textbf{18.6.3.}\quad 在\mbox{定理~18.6.1} 中，$\OO_X(m)$ 是 $\OO_{\mathbb{P}^n_k}(m)$ 的限制或拉回。零多项式的次数与空集的维数都定义为 $-1$。特别地，\trHilbert{}多项式为 $0$ 的\trCoherentSheaf{}只有\trZeroSheaf（zero-sheaf）。
+
+这个论证用到局部\trNoetherian{}概形上\trCoherentSheaf{}的\trAssociatedPoint{}概念（\S6.6.2）。（\trHilbert{}合冲定理~\mbox{16.1.3} 所给出的分解可以给出一个更短的证明；但我们要到 \S24.4 才会证明它。）
+
+\emph{证明。}\quad 定义 $p_{\mathscr{F}}(m)=\chi(X,\mathscr{F}(m))$。我们将证明 $p_{\mathscr{F}}(m)$ 是一个具有所需次数的多项式。
+
+我们首先用\mbox{练习~18.2.H} 化归到 $k$ 为代数闭（从而特别地为无限）的情形。（这是这样一类情形：即便你关心的是某个非代数闭域（如 $\mathbb{F}_p$）上潜在含算术味道的问题，你也会被迫考虑基域为代数闭的「几何」情形。）
+
+这个\trCoherentSheaf{} $\mathscr{F}$ 有有限多个\trAssociatedPoint（\S6.6.17）。我们来展示一个日后还会再用到的事实。
+
+\textbf{18.6.A.（练习）}\quad 设 $X$ 是一个射影 $k$-\trScheme{}，其中 $k$ 无限，而 $\mathscr{F}$ 是 $X$ 上的一个\trCoherentSheaf。证明：若 $\mathscr{L}$ 是 $X$ 上一个\trVeryAmple{}的\trInvertibleSheaf，则存在 $X$ 上的一个\trEffectiveCartierDivisor{} $D$，使得 $\mathscr{L}\cong\OO(D)$，且 $D$ 不含 $\mathscr{F}$ 的\trAssociatedPoint{}。（提示：证明：给定量 $\mathbb{P}^n_k$ 的任意有限点集，总有一张超平面不含其中任何一点。这是\mbox{练习~12.3.D(c)} 关键一步的一个变体。）
+
+于是存在一张超平面 $x=0$（$x\in\Gamma(X,\OO(1))$）避开这个有限点集。（这正是我们要用上 $k$ 之无限性的地方。）
+
+那么映射 $\mathscr{F}(-1)\xrightarrow{\times x}\mathscr{F}$ 是单射。（在任何\trAffine{}开子集上，$\mathscr{F}$ 对应于一个模，而 $x$ 在该模上不是\trZerodivisor，因为它不在该模的任何\trAssociatedPoint{}处取零；见\mbox{命题~6.6.13}。）于是我们有短正合列
+\begin{equation*}\tag{18.6.3.1}\label{eq:twisting-ses}
+0\longrightarrow\mathscr{F}(-1)\longrightarrow\mathscr{F}\longrightarrow\mathscr{G}\longrightarrow 0
+\end{equation*}
+其中 $\mathscr{G}$ 是一个\trCoherentSheaf。
+
+现在 $\operatorname{Supp}\mathscr{G}=(\operatorname{Supp}\mathscr{F})\cap V(x)$。（理由：\mbox{练习~6.6.D} 给出了这个陈述的仿射／模版本。）于是 $V(x)$ 与 $\operatorname{Supp}\mathscr{F}$ 的一切正维数分量都相遇（\mbox{练习~12.3.D(a)}），故由\trKrull{}主理想定理~\mbox{12.3.3}，$\dim\operatorname{Supp}\mathscr{G}=\dim\operatorname{Supp}\mathscr{F}-1$，除非 $\mathscr{F}=0$（那种情形我们已然知道结论，故设定情形并非如此）。
+
+用 $\OO(m)$ 扭转 \eqref{eq:twisting-ses}，得
+\[
+0\longrightarrow\mathscr{F}(m-1)\longrightarrow\mathscr{F}(m)\longrightarrow\mathscr{G}(m)\longrightarrow 0.
+\]
+\trEulerCharacteristic{}在正合列中是加性的（\mbox{练习~18.4.A}），由此得 $p_{\mathscr{F}}(m)-p_{\mathscr{F}}(m-1)=p_{\mathscr{G}}(m)$。而 $p_{\mathscr{G}}(m)$ 是一个次数为 $\dim\operatorname{Supp}\mathscr{F}-1$ 的多项式。
+
+于是，结论便是下述关于单变元多项式的初等事实的推论。\footnote{原书此处作『a consequence from』，当为『a consequence of』之误，径改。——译者注}
+
+\textbf{18.6.B.（练习）}\quad 设 $f$ 与 $g$ 是整数上的两个函数，对一切 $m$ 都有 $f(m+1)-f(m)=g(m)$，而 $g(m)$ 是一个次数 $d\ge 0$ 的多项式。证明：$f$ 是一个次数为 $d+1$ 的多项式。\hfill$\square$
+
+\emph{例~1。}\quad 射影空间的 \trHilbert{}多项式是 $p_{\mathbb{P}^n}(m)=\binom{m+n}{m}$，我们把它理解为多项式 $(m+1)\cdots(m+n)/n!$。
+
+\emph{例~2。}\quad 设 $H$ 是 $\mathbb{P}^n$ 中一张次数为 $d$ 的超曲面，而 $i\colon H\hookrightarrow\mathbb{P}^n$ 是闭嵌入。那么由闭子概形正合列
+\[
+0\longrightarrow\OO_{\mathbb{P}^n}(-d)\longrightarrow\OO_{\mathbb{P}^n}\longrightarrow i_*\OO_H\longrightarrow 0,
+\]
+我们有
+\begin{equation*}\tag{18.6.3.2}\label{eq:hilbert-polynomial-hypersurface}
+p_H(m)=p_{\mathbb{P}^n}(m)-p_{\mathbb{P}^n}(m-d)=\binom{m+n}{n}-\binom{m+n-d}{n}.
+\end{equation*}
+（这个论证中隐含着如下事实：$(i_*\OO_H)\otimes\OO_{\mathbb{P}^n}(m)\cong i_*(\OO_H\otimes i^*\OO_{\mathbb{P}^n}(m))$。这可以由投射公式（\mbox{练习~14.5.L(b)}）得到。你也可以用转移函数直接证明这一点。）
+
+\textbf{18.6.C.（练习）}\quad 证明：扭曲三次曲线（由完全线性系 $|\OO_{\mathbb{P}^1}(3)|$ 嵌入 $\mathbb{P}^3$ 的 $\mathbb{P}^1$）的 \trHilbert{}多项式是 $3m+1$。（扭曲三次曲线定义于\mbox{练习~9.3.A}。）
+
+\textbf{18.6.D.（练习）}\quad 更一般地，求 $\mathbb{P}^n$ 的次数 $d$ 的\trVeronese{}嵌入（即借助\trLineBundle{} $\OO(d)$、\S9.3.6，将 $\mathbb{P}^n$ 闭嵌入到一个更大的射影空间中）的 \trHilbert{}多项式。
+
+\textbf{18.6.E.（练习：将在第 19 章中多次使用）}\quad 设
+\begin{tikzcd}[column sep=2.8em]
+X \ar[r, hook, "i"] & Y \ar[r, hook] & \mathbb{P}^n_k
+\end{tikzcd}
+是一列闭嵌入。
+（a）证明：当 $m\gg 0$ 时 $p_X(m)\le p_Y(m)$。提示：设 $\mathscr{I}_{X/Y}$ 为 $X$ 在 $Y$ 中的\trIdealSheaf。考虑正合列
+\[
+0\longrightarrow\mathscr{I}_{X/Y}(m)\longrightarrow\OO_Y(m)\longrightarrow i_*\OO_X(m)\longrightarrow 0.
+\]
+（b）若当 $m\gg 0$ 时 $p_X(m)=p_Y(m)$，证明 $X=Y$。提示：证明：若一个\trCoherentSheaf{} $\mathscr{F}$ 的 \trHilbert{}多项式是 $0$，则 $\mathscr{F}=0$。（便利的一招：当 $m\gg 0$ 时，$\mathscr{F}(m)$ 由\trGlobalSections{}生成。）把这件事应用到 $\mathscr{F}=\mathscr{I}_{X/Y}$。
+
+由 \trHilbert{}多项式出发，我们可以抽取许多不变量，其中有两个特别重要。第一个是\emph{\trDegree}，第二个是\trArithmeticGenus（\S18.6.7）。\textbf{维数 $n$ 的射影 $k$-\trScheme{}的\trDegree}定义为 \trHilbert{}多项式的首项系数（即 $m^n$ 的系数）乘以 $n!$。
+
+用上面的例子，我们看到 $\mathbb{P}^n$ 在其自身中的\trDegree{}是 $1$。扭曲三次曲线的\trDegree{}是 $3$。
+
+\textbf{18.6.F.（练习）}\quad 证明：\trDegree{}总是整数。提示：用归纳法证明：$m$ 的任何只取整数值的 $k$ 次多项式，其 $m^k$ 的系数必为 $1/k!$ 的整倍数。对此的提示：若 $f(x)$ 只取整数值且次数为 $k$，则 $f(x+1)-f(x)$ 只取整数值且次数为 $k-1$。
+
+\textbf{18.6.G.（练习）}\quad 证明：次数为 $d$ 的超曲面（\mbox{定义~9.3.2}）的\trDegree{}是 $d$（防止一场记号危机）。
+
+\textbf{18.6.H.（练习：次数＝次数）}\quad 设一条\trRegular{}\trCurve{} $C$ 借助一个次数为 $d$ 的\trInvertibleSheaf（次数如 \S18.4.6 中所定义）嵌入到射影空间中。换言之，这个\trLineBundle{}决定了一个\trClosedEmbedding。证明：$C$ 在这个嵌入下的\trDegree{}是 $d$（防止另一场记号危机）。（一场类似的记号危机曾在\mbox{练习~18.4.E} 中得以避免。）提示：\trRiemannRoch，\mbox{练习~18.4.B}。（\trRegularity{}的假设并不必要；把它收进来只是为了使这条练习容易一些。）
+
+\textbf{18.6.I.（练习）}\quad 证明：$\mathbb{P}^n$ 的次数 $d$ 的\trVeronese{}嵌入的\trDegree{}是 $d^n$。
+
+\textbf{18.6.J.（练习：\trBezout{}定理，推广\mbox{练习~9.3.D} 与~\mbox{练习~15.2.I}）}\quad 设 $X\subset\mathbb{P}^n_k$ 是一个维数至少为 $1$ 的射影概形，而 $H$ 是一张不含 $X$ 的任何\trAssociatedPoint{}的超曲面。（例如，若 $X$ 是\trReduced{}的、从而没有\trEmbeddedPoint，则我们只要求 $H$ 不含 $X$ 的任何\trIrreducibleComponent{}即可。）证明：$\deg(H\cap X)=(\deg H)(\deg X)$。
+
+\textbf{18.6.4.}\ \emph{平面曲线的\trBezout{}定理。}\quad 作为推论，我们得到平面曲线的\trBezout{}定理：若 $C$ 与 $D$ 分别是次数为 $m$ 与 $n$ 的平面曲线，没有公共分量，则 $C$ 与 $D$ 相交于 $mn$ 个点，以恰当的\trMultiplicity{}计数。（要应用\mbox{练习~18.6.J}，你需要知道平面曲线没有\trEmbeddedPoint。这既可以用\mbox{练习~6.6.F} 来做，也可以通过假定其中一条曲线是\trReduced{}的来做。）相交的\trMultiplicity{}不过是交（作为一个 $k$-\trScheme）的\trDegree。
+
+\textbf{18.6.K.（练习）}\quad 设 $C$ 是 $\mathbb{P}^3_k$ 中一条次数为 $1$ 的曲线（或者更精确地说，$\mathbb{P}^3_k$ 中一个次数 $1$、纯一维（pure-one-dimensional）且没有\trEmbeddedPoint{}的\trClosedSubscheme）。证明：$C$ 是一条直线。提示：化归到 $k=\overline{k}$ 的情形。设 $p$ 与 $q$ 是 $C$ 上两个不同的\trClosedPoint。用\trBezout{}定理（\mbox{练习~18.6.J}）证明：任何含 $p$ 与 $q$ 的超平面必含 $C$，从而 $C\subset\overline{pq}$。
+
+\textbf{18.6.L.（趣味练习）}\quad 设 $k$ 是一个域，为方便起见我们假定它是\trAlgClosed{}的（尽管你尽可以随意去掉这个假设）。设 $C$ 是 $\mathbb{P}^N_k$ 中次数为 $d$ 的一条\trIntegral{}\trCurve，其中 $N\ge d$。证明：$C$ 含于某个线性子空间 $\mathbb{P}^d\subset\mathbb{P}^N_k$。特别地，若 $N>d$，则 $C$ 是\trDegenerate{}的（\mbox{练习~15.2.C} 中定义）。（\mbox{练习~18.6.K} 并不完全是本问题的一个特例，但其提示或许仍有助益。）
+
+\textbf{18.6.M.（练习：\trBezout{}定理的另一种形式）}\quad 经典上，维数 $n$ 的复射影\trVariety{}的\trDegree{}曾定义如下。我们用 $n$ 张泛取的超平面去切这个\trVariety。由\mbox{练习~13.4.C}（\trBertini{}定理~\mbox{13.4.2} 的一个推论），这个交将是有限多个既约点。\trDegree{}就是这些点的个数。请用\trBezout{}定理把这件事讲通，使之与我们\trDegree{}的定义相符。
+
+于是，\trDegree{}的经典定义——先作一个选取，然后再证明结果与选取无关——已被一个涉及\trEulerCharacteristic{}的上同调式定义所取代。这应当会使你想起，我们是如何终于「正确地」理解\trLineBundle{}的\trDegree{}的。\trDegree{}传统上定义为任一非零\trRational\trSection{}的某个\trDivisor{}的\trDegree{}（重要的\mbox{练习~18.4.C}），而我们则找到了一个用\trEulerCharacteristic{}表述的更好的定义（\S18.4.6）。
+
+\textbf{18.6.5.}\ \extrahard\ \emph{题外话：与\trDegree{}的拓扑定义的联系（仅供背景足够者）。}\quad 维数 $d$ 的复射影\trVariety{} $X\subset\mathbb{P}^n_\mathbb{C}$ 的\trDegree{}还有另一个定义：$[X]$ 是 $\mathrm{H}_{2d}(\mathbb{P}^n_\mathbb{C},\mathbb{Z})$ 的「正」生成元的 $d$ 倍，而这个数 $d$ 便是\trDegree。你可以如下对 $d$ 归纳来证明这件事。设 $X$ 是一个维数为 $d$ 的复射影\trVariety。对一张泛取的超平面，$H\cap X$ 是一个（复）维数为 $d-1$ 的复射影\trVariety。（你明白这是为什么吗？）证明：在 $\mathrm{H}_{2(d-1)}(X,\mathbb{Z})$ 中 $[H\cap X]=c_1(\OO(1))\cap[X]$，办法是把\mbox{练习~18.4.H} 的解恰当地加以推广。\footnote{原书此处作 $c_1(\OO(1))\cup[X]$，当为 $\cap$（cap 积）之误（$\cup$ 与次数不匹配），径改。——译者注}（进一步的推广见 \S20.1.9。）由于这个缘故，$c_1(\OO(1))$ 常被称为「\trHyperplaneClass」（hyperplane class）。
+
+\textbf{18.6.6.}\ \emph{重温先前的一个例子。}\quad 我们重温 \S10.3.4 与 \S16.3.10 中那个富有启发性的例子：令 $k=\mathbb{Q}$，考虑抛物线 $x=y^2$。我们把它与四条直线 $x=1$、$x=0$、$x=-1$ 与 $x=2$ 相交，并且看到每次都得到 $2$（计数的约定沿用我们上一次见到这个例子时的那一个）。
+
+如果我们把它与 $y=2$ 相交，就只会得到一个点——但那是因为它并不是一条射影曲线，我们实在应当在 $\mathbb{P}^2_k$ 上做这个相交；而在此情形，这条二次曲线与该直线相交于两点，其中一点「在无穷远处」。
+
+\textbf{18.6.N.（练习）}\quad 证明：$\mathbb{P}^n$ 的 $d$ 重\trVeronese{}嵌入的\trDegree{}是 $d^n$，所用方式不同于\mbox{练习~18.6.I}，如下。设 $\nu_d\colon\mathbb{P}^n\to\mathbb{P}^N$ 是\trVeronese{}嵌入。为求像的\trDegree，我们让它与 $\mathbb{P}^N$ 中的 $n$ 张超平面相交（以概形论的方式），并数出交点的个数（带\trMultiplicity{}计数）。而 $\mathbb{P}^N$ 中一张超平面拉回到 $\mathbb{P}^n$ 上，是一张次数为 $d$ 的超曲面。请在 $\mathbb{P}^n$ 中施行这个相交，并使用\trBezout{}定理（\mbox{练习~18.6.J}）。
+
+\textbf{18.6.O.（练习：\trDegree{}对并是加性的）}\quad 设 $X$ 与 $Y$ 是 $\mathbb{P}^n_k$ 中两个 $d$ 维\trClosedSubscheme，没有公共的 $d$ 维\trIrreducibleComponent。证明：$\deg X\cup Y=\deg X+\deg Y$。
+
+\textbf{18.6.7. 再论\trArithmeticGenus。}
+
+又有中心的一段信息栖居于 \trHilbert{}多项式之中。注意 $p_X(0)=\chi(X,\OO_X)$ 是概形 $X$ 的一个\emph{内在}不变量，不依赖于射影嵌入。它与\trArithmeticGenus{} $(-1)^{\dim X}(\chi(X,\OO_X)-1)$（\S18.4.4）所含的信息相同。
+
+想象一下，这对古人来说必定显得多么神奇：他们通过数一数「各种次数的函数」有多少个来定义 \trHilbert{}函数；随后他们注意到，当次数变大时，它与某个多项式相符；再随后，当他们把 $0$ 代入这个多项式——向后外推，外推到 \trHilbert{}函数与 \trHilbert{}多项式不再相符之处——他们发现了一个魔法般的不变量！此外，当 $X$ 是复曲线时，这个不变量基本上就是\trTopologicalGenus（topological genus）！
+
+我们现在由此能够看到代数闭域上一大类曲线，它们可被证明不是 $\mathbb{P}^1$！注意 $\mathbb{P}^1$ 的 \trHilbert{}多项式是 $(m+1)/1=m+1$，于是 $\chi(\OO_{\mathbb{P}^1})=1$。设 $C$ 是 $\mathbb{P}^2$ 中一条次数为 $d$ 的曲线。那么 $C$ 的 \trHilbert{}多项式是
+\[
+p_{\mathbb{P}^2}(m)-p_{\mathbb{P}^2}(m-d)=\frac{(m+1)(m+2)}{2}-\frac{(m-d+1)(m-d+2)}{2}.
+\]
+代入 $m=0$，便得到 $-(d^2-3d)/2$。于是当 $d>2$ 时，我们就有一条不可能同构于 $\mathbb{P}^1$ 的曲线！（而且不难证明次数 $d$ 的\trRegular{}曲线是存在的，\mbox{练习~13.3.E}。）
+
+现在由 $0\to\OO_{\mathbb{P}^2}(-d)\to\OO_{\mathbb{P}^2}\to\OO_C\to 0$，使用 $h^1(\mathbb{P}^2,\OO_{\mathbb{P}^2}(-d))=0$，我们得到 $h^0(C,\OO_C)=1$。由于 $h^0-h^1=\chi$，我们便有
+\begin{equation*}\tag{18.6.7.1}\label{eq:genus-plane-curve}
+h^1(C,\OO_C)=\frac{(d-1)(d-2)}{2}.
+\end{equation*}
+
+我们现在重温 \S7.5.11 中初次见到的一个有趣问题。若 $k$ 是代数闭域，那么 $k$ 的每个超越次数为 $1$ 的有限生成域扩张都同构于 $k(x)$ 吗？在那一节中，我们找到了一些特设的（但无可否认是漂亮的）例子，表明答案是「否」。但现在我们有了一个更好的问题。这个问题乍看像一个代数问题，但我们现在认识到，它根本是一个几何问题。这类域扩张有一个整值的上同调不变量，具有良好的几何意义：亏格。
+
+\eqref{eq:genus-plane-curve} 给出了一系列亏格为 $0$、$1$、$3$、$6$、\dots{}的曲线的例子（相应于次数 $1$ 或 $2$、$3$、$4$、$5$、\dots）。这就招来了一些问题，比如：还存在具有其他亏格的曲线吗？（我们很快将在 \S19.5.5 中看到，答案是肯定的。）还存在别的亏格 $0$ 曲线吗？（若 $k$ 是代数闭的则没有，但否则有时有——考虑 $\mathbb{P}^2_\mathbb{R}$ 中的 $x^2+y^2+z^2=0$，它没有 $\mathbb{R}$-值点，从而不同构于 $\mathbb{P}^1_\mathbb{R}$；我们将在 \S19.3 中进一步讨论这件事。）我们拥有亏格 $3$ 的全部曲线吗？（几乎全部，但还不完全。\S19.7 中会看到更多。）我们拥有亏格 $6$ 的全部曲线吗？（我们还缺着「其中的大多数」，\S19.8.4 将会暗示这一点。）
+
+\textbf{18.6.8.}\ \emph{\trhCaveat{}。}\quad 结构层的\trEulerCharacteristic{}是一个不完备的不变量。我们马上就会看到，它并不总能区分不可约光滑射影\trVariety{}的同构类。
+
+\textbf{18.6.P.（练习）}\quad 若超曲面 $X\subset\mathbb{P}^n_k$ 的次数 $\le n$，证明 $\chi(X,\OO_X)=1$。
+
+于是，例如，若 $X=\mathbb{P}^1_k\times\mathbb{P}^1_k$，则 $\chi(X,\OO_X)=1$，因为 $X$ 可以描述为 $\mathbb{P}^3_k$ 中的一张二次曲面。此时，$\mathbb{P}^2_k$ 与 $\mathbb{P}^1_k\times\mathbb{P}^1_k$ 都具有结构层\trEulerCharacteristic{} $1$（$\mathbb{P}^2_k$ 的情形见\mbox{定理~18.1.2}），但二者并不同构——$\mathrm{Pic}\,\mathbb{P}^2_k\cong\mathbb{Z}$（\S15.4.15），而 $\mathrm{Pic}(\mathbb{P}^1_k\times\mathbb{P}^1_k)\cong\mathbb{Z}\oplus\mathbb{Z}$（\mbox{练习~15.5.K}）。
+
+\textbf{18.6.9. $\mathbb{P}^n_k$ 中的\trCompleteIntersection。}\quad 回想一下：$\mathbb{P}^n_k$ 中余维数 $r$ 的完全相交，就是 $\mathbb{P}^n_k$ 中 $r$ 张超曲面的完全相交（\S9.5.8），而由\trKrull{}高度定理~\mbox{12.3.10}，它具有纯余维数 $r$。
+
+\textbf{18.6.Q.（练习）}\quad 设 $X$ 是 $\mathbb{P}^N_k$ 中一个维数为 $m$ 的完全相交。证明：对 $0<i<m$ 都有 $h^i(X,\OO_X(n))=0$。
+
+\textbf{18.6.R.（练习）}\quad 求 $\mathbb{P}^3_k$ 中两张二次曲面的完全相交的亏格。
+
+\textbf{18.6.S.（练习）}\quad 更一般地，求 $\mathbb{P}^3_k$ 中一张次数为 $m$ 的曲面与一张次数为 $n$ 的曲面的完全相交的亏格。（若 $m=2$、$n=3$，你应当得到亏格 $4$。我们将在 \S19.8 中看到，在某种意义上，大多数亏格 $4$ 的曲线都以这种方式产生。注意\trBertini{}定理~\mbox{13.4.2} 保证这种形式的\trRegular{}曲线确实存在。）
+
+\textbf{18.6.T.（练习）}\quad 证明：$\mathbb{P}^d$ 中次数为 $d$ 的有理正规曲线在 $d>2$ 时\emph{不是}完全相交。（提示：倘若它\emph{果真}是 $d-1$ 张超曲面的完全相交，那么这些超曲面的次数会是多少？为什么这些次数没有一个能是 $1$？）
+
+\textbf{18.6.U.（练习：$\mathbb{P}^n_k$ 中正维数的完全相交是连通的；参看\mbox{练习~18.5.B}）}\quad 证明：$\mathbb{P}^n_k$ 中\emph{正}维数的完全相交是连通的。提示：证明 $h^0(X,\OO_X)=1$。（这个论证甚至会表明它们是几何连通的（\S10.5.1 中定义），因为 $h^0$ 在域扩张下保持不变；见\mbox{练习~18.2.H}。）
+
+注意，这个陈述并不要求 $X$ 是\trReduced{}的。所以，例如，这意味着：若 $X$ 是 $\mathbb{P}^2_k$ 中由 $x^2=0$ 切出的那个概形，则 $h^0(X,\OO_X)=1$——不存在非零的幂零函数，尽管确实存在非零且幂零的局部函数！这个例子早先在 \S5.2.3 与 \S11.4.7 中出现过。\footnote{原书此处作『this implies that that if』，当为『this implies that if』之误，衍一「that」，径改。——译者注}
+
+\textbf{18.6.V.（练习）}\quad 证明：$\mathbb{P}^4$ 中交于一点的两张平面的并不是一个完全相交。提示：它是连通的，但你可以再用一张超平面去切它，得到某个不连通的东西（见\mbox{练习~18.6.U}）。

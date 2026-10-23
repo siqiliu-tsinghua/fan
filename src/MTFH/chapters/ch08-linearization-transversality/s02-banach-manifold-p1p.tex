@@ -1,0 +1,205 @@
+
+\section{\trBanachManifold{} \texorpdfstring{$\scr{P}^{1,p}(x,y)$}{P1p(x,y)}}
+\label{sec:banach-manifold-p1p}
+
+\subsection{我们所用的\trSobolevSpace}
+\label{subsec:sobolev-spaces-used}
+
+我们需要在\trBanachSpace{}中工作，而诸 $\cC^{\infty}$ 映射所成的空间并不是这样的空间。正如我们在\cref{sec:banach-manifold-lw}中考虑了 $W$ 的 $W^{1,p}$ 类\trLoop{}那样，我们现在要在诸 $u$ 所成的空间上考虑一个类似的结构。这件事要稍微复杂一些，原因有二：
+
+\begin{itemize}
+\item 其一，是由于诸 $u$ 定义在一个维数为 $2$ 的空间——即诸 $(s,t)$ 所成的空间 $\RR\times S^{1}$——之上；
+\item 其二，是因为变量 $s$ 在非紧的空间 $\RR$ 中变动。
+\end{itemize}
+
+我们所使用的泛函空间是诸 $\cC^{\infty}$ \trSection{}（在无穷远处具有充分的衰减）所成的空间对于“\trSobolev{}范数”
+\[
+\|Y\|_{L^{p}}=\Bigl(\int_{-\infty}^{+\infty}\int_{0}^{1}\|Y(s,t)\|^{p}\,ds\,dt\Bigr)^{1/p}
+\]
+以及
+\[
+\|Y\|_{W^{1,p}}=\Bigl(\int_{-\infty}^{+\infty}\int_{0}^{1}\|Y(s,t)\|^{p}+\Bigl\|\frac{\partial Y}{\partial s}(s,t)\Bigr\|^{p}+\Bigl\|\frac{\partial Y}{\partial t}(s,t)\Bigr\|^{p}\,ds\,dt\Bigr)^{1/p}
+\]
+（其中 $p\in\,]1,+\infty[$）的完备化\footnote{译注：两式外层积分限 $-\infty$ 至 $+\infty$ 本属 $s$、内层 $0$ 至 $1$ 本属 $t$，而按读序紧贴被积函数的却是 $ds$，与积分限的归属不相配，按累次积分读法应作 $dt\,ds$（或交换两层积分号的先后）；兹照原书排印，存疑备案。——译者注}，它们分别在\trSobolevSpace（按定义，是\trBanachSpace）
+\[
+L^{p}(\RR\times S^{1};\RR^{2n})\qquad\text{以及}\qquad W^{1,p}(\RR\times S^{1};\RR^{2n})
+\]
+之上。
+
+\begin{remark}\label{thm:sobolev-distribution}
+诸\trSobolevSpace{} $W^{1,p}$ 也可以定义为\trDistribution{}空间。这是最好的观点，因为这样一来，$W^{1,p}$ 的元素就不是 $\cC^{\infty}$ 函数的\trCauchy{}序列的等价类，而是一个\trDistribution，从而它作为\trDistribution{}便拥有导数等等。参见\cref{sec:sobolev-spaces-rn}。
+\end{remark}
+
+让我们立即指出一个困难。在维数为 $1$ 时，也就是说对于 $\RR$ 中的\trBounded{}区间 $I$，$W^{1,p}(I)$ 包含于 $\overline{I}$ 上连续函数所成的空间之中，这对一切 $p\ge1$ 都成立。在维数至少为 $2$ 时，这就不再成立了（而不巧的是，我们的源空间 $\RR\times S^{1}$ 的维数恰好是 $2$）。对于 $\RR^{m}$ 中\trBounded{}的 $U$（边界充分\trRegular），当 $p>m$ 时我们只有
+\[
+W^{1,p}(U)\subset C^{0}(\overline{U})
+\]
+（参见\cref{sec:sobolev-spaces-rn}）。我们所遇到的困难之一正来自这样一个事实：$W^{1,2}(\RR\times S^{1};\RR^{2n})$ 的元素不是连续函数\footnote{而我们希望与连续函数打交道，以便使用\trRegularity{}与\trCompact{}性的结果\cref{thm:solution-smoothness-regularity}与\cref{thm:gromov-compactness-theorem}。}。尽管我们很想留在这个讨人喜欢的\trHilbertSpace{}之中，我们仍将不得不对 $p>2$ 使用 $W^{1,p}$（关于我们如何使用这条关键条件的详细解释，参见小节 12.1.b）。
+
+\subsection{将要起作用的诸范数}
+\label{subsec:norms-role}
+
+\trSymplectic{}\trManifold{} $W$ 仍然\trEmbedding{}在一个很大的 $\RR^{m}$ 之中。我们令 $T_{W}\RR^{m}$ 表示\trTangentBundle{} $T\RR^{m}$ 在 $W$ 上的限制（我们有 $T_{W}\RR^{m}\simeq W\times\RR^{m}$）。在 $W$ 上，我们有由 $\omega$ 与 $J$ 定义的\trRiemannian{}\trMetric
+\[
+g_{a}(v,w)=\omega_{a}(v,Jw)\qquad\text{对 }a\in W,\ v,\ w\in T_{a}W\text{。}
+\]
+借助一个\trPartitionOfUnity，我们可以把这个\trMetric{}扩张到 $T_{W}\RR^{m}$ 上，从而得到
+\[
+\widetilde{g}\colon W\times\RR^{m}\times\RR^{m}\longrightarrow\RR
+\]
+使得对 $W$ 中的每个 $a$，$\widetilde{g}(a,\cdot,\cdot)$ 都是一个\trPositiveDefinite{}的\trSymmetricBilinearForm。$\RR^{m}$ 上通常的\trInnerProduct{}记作 $\langle\ ,\ \rangle$（有时也干脆记作 $\cdot$）。
+
+\subsection{\trTrajectory{}诸空间}
+\label{subsec:trajectory-spaces}
+
+如上所述，我们令 $\|\cdot\|_{W^{1,p}}$ 或 $\|\cdot\|_{L^{p}}$ 表示诸\trSobolev{}范数，它们分别定义在 $W^{1,p}(\RR\times S^{1};\RR^{m})$ 与 $W^{1,p}(\RR\times S^{1};\RR^{2n})$ 上、或 $L^{p}(\RR\times S^{1};\RR^{m})$ 与 $L^{p}(\RR\times S^{1};\RR^{2n})$ 上。注意，在 $\|\cdot\|_{W^{1,p}}$ 与 $\|\cdot\|_{L^{p}}$ 的定义中出现的、诸空间 $\RR^{N}$（$\RR^{m}$ 或 $\RR^{2n}$）上的范数是\trEuclidean{}范数，而不是由 $\widetilde{g}$ 所定义的那个范数。
+
+最后，对于\trBanachSpace{}之间的\trLinearOperator，在为清晰起见而需要的时候，我们将令 $\|\cdot\|^{\mathrm{op}}$ 表示算子范数：
+\[
+\|A\|^{\mathrm{op}}=\sup_{\|x\|=1}\|Ax\|\text{。}
+\]
+
+若 $x$ 与 $y$ 是 $W$ 中\trContractible{}的\trLoop，它们是 $\scr{A}_{H}$ 的\trCriticalPoint，则 $\cC^{\infty}_{\searrow}(x,y)$ 表示诸 $\cC^{\infty}$ 类映射
+\[
+u\colon\RR\times S^{1}\longrightarrow W
+\]
+中满足下列条件者所成之集：
+\[
+\lim_{s\to-\infty}u(s,t)=x(t)\text{，}\qquad\lim_{s\to+\infty}u(s,t)=y(t)\text{，}
+\]
+\[
+\Bigl|\frac{\partial u}{\partial s}(s,t)\Bigr|\le Ke^{-\delta|s|}
+\qquad\text{以及}\qquad
+\Bigl|\frac{\partial u}{\partial t}(s,t)-X_{H}(u)\Bigr|\le Ke^{-\delta|s|}\text{，}
+\]
+其中 $K$ 与 $\delta$ 是（依赖于 $u$ 的）正常数。
+
+\begin{definition}\label{thm:p1p-definition}
+对 $p>2$，$\scr{P}^{1,p}(x,y)$（或在指数不言自明时径写作 $\scr{P}(x,y)$）表示形如
+\[
+(s,t)\longmapsto\exp_{w(s,t)}Y(s,t)
+\]
+的映射所成的空间，其中 $Y\in W^{1,p}(w^{\star}TW)$，$w\in\cC^{\infty}_{\searrow}(x,y)$。
+\end{definition}
+
+在进入诸空间 $W^{1,p}(w^{\star}TW)$ 的定义之前，让我们先注意到下面这个结果。
+
+\begin{proposition}\label{thm:m-subset-cinfinity}
+若 $x$ 与 $y$ 是\trContractible{}的\trLoop，并且是\trActionFunctional{} $\scr{A}_{H}$ 的\trNondegenerate{}\trCriticalPoint，那么我们有
+\[
+\scr{M}(x,y)\subset\cC^{\infty}_{\searrow}(x,y)\subset\scr{P}^{1,p}(x,y)\text{。}
+\]
+\end{proposition}
+
+\begin{proof}[\cref{thm:m-subset-cinfinity}的证明]
+这是\trExponentialDecay{}的一个推论（亦即\cref{thm:exp-decay-dichotomy}与\cref{thm:du-ds-decay-remark}的推论）。
+\end{proof}
+
+\textbf{$W^{1,p}(w^{\star}TW)$ 的定义}
+
+设 $w\colon\RR\times S^{1}\to W$ 是一个 $\cC^{\infty}$ 类的映射，下面就是 $W^{1,p}(w^{\star}TW)$ 的定义（有时我们也把它记作 $W^{1,p}(\RR\times S^{1};w^{\star}TW)$）。\trSymplectic{}\trManifold{} $W$ 被\trEmbedding{}在一个空间 $\RR^{m}$ 之中。如果 $Y$ 是一个连续\footnote{因此我们假设 $p>2$。}的映射
+\[
+Y\colon\RR\times S^{1}\longrightarrow TW
+\]
+满足：对每个 $(s,t)$ 都有 $Y(s,t)\in T_{w(s,t)}W$，并且复合
+\[
+\RR\times S^{1}\xrightarrow{\ Y\ }TW\subset T\RR^{m}=\RR^{m}\times\RR^{m}\xrightarrow{\ \mathrm{pr}_{2}\ }\RR^{m}
+\]
+属于 $W^{1,p}(\RR\times S^{1};\RR^{m})$，那么我们就说 $Y\in W^{1,p}(w^{\star}TW)$。
+
+我们也可以不借助 $W$ 在 $\RR^{m}$ 中的一个\trEmbedding，而是利用 $w^{\star}TW$ 的一个\trTrivialization\footnote{我们已经见过这样的\trTrivialization{}是存在的，这是因为诸\trLoop{} $x$ 与 $y$ 都是\trContractible{}的，并且我们的\trManifold{}满足\cref{thm:symplectic-trivialization}。}来定义这个空间。考虑由
+\[
+\overline{w}(s,t)=
+\begin{cases}
+x(t) & s=-\infty\\
+w(s,t) & s\in\RR\\
+y(t) & s=+\infty
+\end{cases}
+\]
+定义的映射 $\overline{w}\colon\overline{\RR}\times S^{1}\to W$，以及沿 $\overline{w}$ 的一个\trOrthonormal{}\trFrame{} $(Z_{i}(s,t))_{i=1,\dots,2n}$。在这个\trFrame{}中，$Y$ 可以写成
+\[
+Y(s,t)=\sum_{i=1}^{2n}y_{i}(s,t)Z_{i}(s,t)\text{，}
+\]
+其中诸坐标\footnote{译注：原书此处印作 $y_{i}\colon\RR\times S^{1}\to\RR^{2n}$；按诸 $y_{i}$ 是实值坐标函数（$y_{i}=\langle Y,Z_{i}\rangle$ 为实数），紧随其后的“向量 $(y_{1},\dots,y_{2n})$ 属于 $W^{1,p}(\RR\times S^{1};\RR^{2n})$”亦分证此点，疑上标 $2n$ 为衍文，此处径改。——译者注} $y_{i}\colon\RR\times S^{1}\to\RR$ 由 $y_{i}=\langle Y,Z_{i}\rangle$ 定义。沿 $\overline{w}$ 的\trVectorField{} $Y$ 属于 $W^{1,p}(w^{\star}TW)$，当且仅当向量 $(y_{1},\dots,y_{2n})$ 属于 $W^{1,p}(\RR\times S^{1};\RR^{2n})$。
+
+这两个定义的等价性是下面这条简单引理的一个推论。
+
+\begin{lemma}\label{thm:w1p-product-inequality}
+设 $f\in W^{1,p}(\RR\times S^{1};\RR)$，并设 $g\in\cC^{\infty}(\RR\times S^{1};\RR)$ 使得 $g$ 及其导数 $\partial g/\partial s$、$\partial g/\partial t$ 在 $\RR\times S^{1}$ 上是\trBounded{}的。那么乘积 $fg$ 属于 $W^{1,p}(\RR\times S^{1};\RR)$，并且满足不等式\footnote{译注：此不等式照原书排印；但按字面取常数 $\sup_{\RR\times S^{1}}\bigl(|g|,|\partial g/\partial s|,|\partial g/\partial t|\bigr)$ 时断言一般不成立（例如 $p=4$ 时可造出使右端对左端之比大于 $1$ 的反例）——紧随其后的证明在 $\bigl\|\,|\partial f/\partial s|+|f|\,\bigr\|_{L^{p}}\le\|\partial f/\partial s\|_{L^{p}}+\|f\|_{L^{p}}$ 一步已引入至多 $2$ 的因子，所缺的只是一只依赖 $p$ 的普适常数（或明示改用彼此等价的范数），乘法连续性本身无误，兹照排存疑备案。——译者注}
+\[
+\|fg\|_{W^{1,p}}\le\|f\|_{W^{1,p}}\Bigl(\sup_{\RR\times S^{1}}\bigl(|g|,|\partial g/\partial s|,|\partial g/\partial t|\bigr)\Bigr)\text{。}
+\]
+同样地，若 $f\in L^{p}(\RR\times S^{1};\RR)$，且 $g\in\cC^{0}(\RR\times S^{1};\RR)$ 是一个\trBounded{}函数（特别地，若 $g\in W^{1,p}(\RR\times S^{1};\RR)$），那么乘积 $fg$ 属于 $L^{p}(\RR\times S^{1};\RR)$，并且满足不等式
+\[
+\|fg\|_{L^{p}}\le\|f\|_{L^{p}}\sup|g|\text{。}
+\]
+\end{lemma}
+
+利用一套简化的记号，这两条不等式也可以写成（我们也将这样做）
+\[
+\|fg\|_{W^{1,p}}\le\|f\|_{W^{1,p}}\|g\|_{\cC^{1}}
+\qquad\text{以及}\qquad
+\|fg\|_{L^{p}}\le\|f\|_{L^{p}}\|g\|_{\cC^{0}}\text{。}
+\]
+
+\begin{proof}[\cref{thm:w1p-product-inequality}的证明]
+它基于下列不等式：
+\[
+\Bigl(\int_{\RR\times S^{1}}|fg|^{p}\Bigr)^{1/p}\le\Bigl(\int_{\RR\times S^{1}}|f|^{p}\,(\sup|g|)^{p}\Bigr)^{1/p}=\|f\|_{L^{p}}\,\sup|g|\text{，}
+\]
+以及
+\[
+\begin{aligned}
+\Bigl(\int_{\RR\times S^{1}}|\partial(fg)/\partial s|^{p}\Bigr)^{1/p}
+&\le\Bigl(\int_{\RR\times S^{1}}\bigl(|\partial f/\partial s|\,|g|+|\partial g/\partial s|\,|f|\bigr)^{p}\Bigr)^{1/p}\\
+&\le\sup\bigl(|g|,|\partial g/\partial s|\bigr)\,\bigl\|\,|\partial f/\partial s|+|f|\,\bigr\|_{L^{p}}\\
+&\le\sup\bigl(|g|,|\partial g/\partial s|\bigr)\bigl(\|\partial f/\partial s\|_{L^{p}}+\|f\|_{L^{p}}\bigr)\\
+&\le\sup\bigl(|g|,|\partial g/\partial s|,|\partial g/\partial t|\bigr)\,\|f\|_{W^{1,p}}\text{，}
+\end{aligned}
+\]
+对 $\partial(fg)/\partial t$ 亦然。
+\end{proof}
+
+\subsection{\texorpdfstring{$\scr{P}(x,y)$}{P(x,y)} 上的\trBanachManifold{}结构}
+\label{subsec:banach-manifold-structure}
+
+空间 $\scr{P}^{1,p}(x,y)$（\cref{thm:p1p-definition}）是一个以 $W^{1,p}(\RR\times S^{1};\RR^{2n})$ 为模型的\trBanachManifold。这条\trBanach{}性质与 $\scr{L}^{1,p}(W)$ 的那条性质类似（参见\cref{sec:banach-manifold-lw}）。让我们于是以类似的方式定义一个\trAtlas。如上，设 $w\in\cC^{\infty}_{\searrow}(x,y)$，并设 $(Z_{i})$ 是沿 $w$ 的一个\trOrthonormal{}\trFrame，于是 $W^{1,p}(w^{\star}TW)$ 就被等同于 $W^{1,p}(\RR\times S^{1};\RR^{2n})$。既然我们已经假设了 $p>2$，我们知道
+\[
+W^{1,p}(\RR\times S^{1};\RR^{2n})\hookrightarrow L^{\infty}(\RR\times S^{1};\RR^{2n})
+\]
+并且这个\trInjective{}是连续的（\cref{thm:sobolev-estimates}）。因此，
+\[
+\forall Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})\text{，}\quad\|Y\|_{L^{\infty}}\le K\,\|Y\|_{W^{1,p}}\text{。}
+\]
+
+令 $\rho_{\mathrm{inj}}$ 为定义在 $W$ 上的\trMetric{}的\trInjectivityRadius（必要时参见\cref{sec:riemannian-metrics-exp}）。让我们取定一个 $r_{0}<\rho_{\mathrm{inj}}$。令
+\[
+\begin{array}{c}
+\Phi_{w}\colon\Bigl\{Y\in W^{1,p}(w^{\star}TW)\ \bigm|\ \|Y\|_{W^{1,p}}\le\dfrac{r_{0}}{K}\Bigr\}\longrightarrow\scr{P}(x,y)\\[8pt]
+(w,Y)\longmapsto\exp_{w}(Y)\text{。}
+\end{array}
+\]
+这是到它的像上的一个\trBijective，而且，正如\cref{sec:banach-manifold-lw}中那样——亦即正如 [68] 中那样——诸 $\Phi_{w}$（对 $w\in\cC^{\infty}_{\searrow}(x,y)$）构成 $\scr{P}^{1,p}(x,y)$ 的一个\trAtlas\footnote{译注：作为\trAtlas{}之卡的定义域，此处的模型域按理应是模型\trBanachSpace{}中的开集（$\|Y\|_{W^{1,p}}<r_{0}/K$）；原书印作闭不等号，兹照排存疑备案，亦可理解为对球的内部取限制。——译者注}。
+
+让我们把定义了所论\trFloerEquation{}的那个\trAlmostComplex{}结构 $J$ 与那个\trHamiltonian{}量 $H$ 也纳入记号，即写作：
+
+\begin{itemize}
+\item $\scr{M}(J,H)$：有限\trEnergy{}的\trContractible{}解所成的空间；
+\item $\scr{M}(x,y,J,H)$：把 $x$ 连接到 $y$ 的那些解——当心，$x$ 与 $y$ 是 $X_{t}=X_{H_{t}}$ 的\trPeriodic{}\trTrajectory，在这个记号下，它们依赖于\trHamiltonian{}量 $H$。
+\end{itemize}
+
+\textbf{\trFloer{}映射}
+
+我们现在要定义“\trFloer{}映射”
+\[
+\scr{F}\colon\scr{P}^{1,p}(x,y)\longrightarrow\scr{L}^{p}(x,y)
+\]
+即令
+\[
+\scr{F}(u)=\frac{\partial u}{\partial s}+J(u)\frac{\partial u}{\partial t}+\operatorname{grad}H_{t}(u)\text{。}
+\]
+这里，$\scr{L}^{p}(x,y)$ 是 $\scr{P}^{1,p}(x,y)$ 上的一个\trFiberBundle，它在 $u$ 处的\trFiber{}是空间 $L^{p}(u^{\star}TW)$，后者可以仿照 $W^{1,p}(w^{\star}TW)$ 来定义。由 $\scr{P}^{1,p}(x,y)$ 的定义，它的元素 $u$ 可以写成一个具有\trExponentialDecay{}的 $w\in\cC^{\infty}(\RR\times S^{1};W)$ 与一个 $X\in W^{1,p}(w^{\star}TW)$ 之下的 $u=\exp_{w}(X)$。因此我们需要验证 $\scr{F}$ 确实在 $L^{p}$ 中取值，也就是说
+\[
+\scr{F}(\exp_{w}X)\in L^{p}(\RR\times S^{1};\RR^{m})\text{，}
+\]
+我们将在\cref{sec:operator-frho}（\cref{thm:frho-lp}与\cref{thm:frho-lp-remark}）中做这件事。

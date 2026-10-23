@@ -1,0 +1,129 @@
+
+\section{正规化}
+
+我们现在便来讨论\trNormalization，唯一的理由是：这个中心构造能让人练习 \S10.1 中纤维积之构造背后的那个中心想法（见\mbox{练习~10.7.B}与\mbox{练习~10.7.I}）。
+
+\trNormalization{}是把既约概形变成正规概形的一种手段。（一条不重要的评注：\trReducedness{}并不是必要的假设，把它写进来只是为了免于分心。若你在意，可以把整个构造贯彻到底，从而发现：概形的正规化穿过其既约化，并且正是其既约化的正规化。）既约概形 $X$ 的一个\textbf{\trNormalization}（normalization），是从一个正规概形出发的\trMorphism{} $\nu\colon\widetilde{X}\to X$，其中 $\nu$ 诱导 $\widetilde{X}$ 与 $X$ 的诸\trIrreducibleComponent{}之间的一个\trBijection，而且在合理的情形下（试比较\mbox{练习~10.7.N}），$\nu$ 在每个\trIrreducibleComponent{}上都给出一个双有理态射。它将满足一个\trUniversalProperty，从而在唯一同构的意义下唯一。图~\ref{fig:normalization-nodal-cubic}便是正规化的一个例子。
+
+我们从 $X$ \trIrreducible（从而由\mbox{练习~5.2.G}是\trIntegral{}的）的情形开始。（随后我们会处理更一般的情形，并且讨论函数域扩张中的正规化。）在 $X$ \trIrreducible{}的情形，\textbf{\trNormalization} $\nu\colon\widetilde{X}\to X$ 是从\trIrreducible{}正规概形到 $X$ 的一个\trDominant{}态射（而不仅仅是\trDominant{}的\trRationalMap！），使得任何其他这类态射都穿过 $\nu$：
+\begin{equation*}\tag{10.7.0.1}\label{eq:normalization-universal-property}
+\begin{tikzcd}[row sep=3.2em, column sep=4.4em]
+\text{正规} & Y \ar[rr, dotted, "\exists!"] \ar[dr, "\text{支配}"'] & & \widetilde{X} \ar[dl, "\nu\text{，支配}"] & \text{正规} \\
+& & X & &
+\end{tikzcd}
+\end{equation*}
+于是，若正规化存在，则它在唯一同构的意义下唯一。现在必须证明它确实存在，我们的证法看上去会颇为眼熟。先处理 $X$ 仿射的情形，比如说 $X=\Spec A$，其中 $A$ 是一个\trIntegralDomain。令 $\widetilde{A}$ 为 $A$ 在其\trFractionField{} $K(A)$ 中的\trIntegralClosure。
+
+\textbf{10.7.A.（练习）}\quad （回想 $A$ 是一个\trIntegralDomain。）证明：$\nu\colon\Spec\widetilde{A}\to\Spec A$ 满足正规化的\trUniversalProperty。（顺带你或许会证明：\trIrreducible{}正规概形的\trGlobalSections{}也是「正规的」，即\trIntegrallyClosed{}的。）
+
+\textbf{10.7.B.（重要然而出奇容易的练习）}\quad 证明：整概形的正规化一般而言存在。（提示：\S10.1 中纤维积存在性背后的想法或许用得上。）
+
+\textbf{10.7.C.（容易的练习）}\quad 证明：正规化是整的且满的。（满性的提示：Lying Over 定理；见 \S8.2.6。）
+
+我们很快就会在\mbox{练习~10.7.N}中看到：整的有限型 $k$-概形的正规化总是双有理态射。
+
+\textbf{10.7.D.（练习）}\quad 解释（通过定义一条\trUniversalProperty）如何把正规化的观念推广到如下情形：$X$ 是既约概形，可能有不止一个分量，但假设 $X$ 的每个仿射开子集都只有有限多个\trIrreducibleComponent。注意：这包括一切局部诺特概形。（若你愿意，你还可以证明此时正规化存在。更多信息见 [Stacks, tag 035Q]。）
+
+这里给出几个例子。
+
+\textbf{10.7.E.（练习：\trNode{}三次曲线的正规化）}\quad 设 $\operatorname{char}k\neq 2$（只是为了我们好使用「结点」这个词）。证明：由 $(x,y)\mapsto(t^2-1,\,t(t^2-1))$ 给出的 $\Spec k[t]\to\Spec k[x,y]/(y^2-x^2(x+1))$（见图~\ref{fig:normalization-nodal-cubic}）是一个正规化。目标曲线称为\textbf{\trNode{}三次曲线}（nodal cubic curve）。（提示：证明 $k[t]$ 与 $k[x,y]/(y^2-x^2(x+1))$ 有相同的\trFractionField。证明 $k[t]$ \trIntegrallyClosed。证明 $k[t]$ 包含于 $k[x,y]/(y^2-x^2(x+1))$ 的\trIntegralClosure{}之中。）
+
+从上一道练习你会看到：一旦猜出了正规化是什么，要验证它确实是正规化并不难。至于上一道练习中的多项式 $t^2-1$ 与 $t(t^2-1)$ 从何而来，或许值得交代几句。关键的想法是猜 $t=y/x$。（于是立刻有 $t^2=x+1$、$y=xt$。）这个想法有三个可能的来源。我们先把曲线草草描出，注意到原点处的「结点」（「结点」将在 \S28.2.1 中正式定义）。(a)~函数 $y/x$ 在结点之外是良定的，而在结点处，两个分支各有「值」$y/x=1$ 与 $y/x=-1$。(b)~我们还可以注意到：若 $t=y/x$，则 $t^2$ 是一个多项式，所以为了得到正规化，我们将需要把 $t$ 添加进来。(c)~这条曲线是三次的，因此我们期待一条一般直线与这条三次曲线交于三个点（计入重数）。（等到讨论\trBezout{}定理（\mbox{练习~18.6.J}）时，我们会把这一点说精确，但此时我们已经在\mbox{练习~7.5.H}中得到了它的一个预示。）存在一个 $\mathbb{P}^1$ 把过原点的直线参数化（其\trCoordinate{}等于直线的斜率 $y/x$），而大多数这样的直线都以重数 $2$ 与曲线交于原点，于是恰好再与曲线交于一点。这样一来，这个坐标便「坐标化」了曲线的大部分，我们不妨试着把它添加进来。
+
+\textbf{10.7.F.（练习）}\quad 求\trCusp{}（cusp）$y^2=x^3$ 的正规化（见图~\ref{fig:cusp-normalization}）。（「\trCusp{}」将在定义~28.2.2 中正式定义。）
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1]
+  \draw (-1.3,0) -- (1.3,0);
+  \draw[->] (0,-0.35) -- (0,-1.25);
+  \draw[domain=-0.95:0.95,smooth,samples=61] plot ({\x*\x-0.45},{-2.7+1.15*\x*\x*\x});
+\end{tikzpicture}
+\caption{\trCusp{}的正规化。（依原书手绘图重绘。）}%
+\label{fig:cusp-normalization}
+\end{figure}
+
+\textbf{10.7.G.（练习）}\quad 设 $\operatorname{char}k\neq 2$。求\trTacnode{}（tacnode）$y^2=x^4$ 的正规化，并画一幅与图~\ref{fig:cusp-normalization}类似的图。（「\trTacnode{}」将在定义~28.2.2 中正式定义。）
+
+（尽管我们尚未定义「奇点」「光滑」「曲线」或「\trDimension」，你仍应当把这段读下去。）注意：在上面几个例子中，正规化「消解」了曲线的奇点（「非光滑」的点）。一般地，在\trDimension{} $1$ 时它确实如此（在合理的诺特情形下——因为\trDimension{}为 $1$ 的正规局部诺特\trIntegralDomain{}都是\trDVR，\S13.5），但在更高\trDimension{}时则不然（特征非 $2$ 的域 $k$ 上的\trCone{} $z^2=x^2+y^2$ 是正规的，\mbox{练习~5.4.I}(b)）。
+
+\textbf{10.7.H.（练习）}\quad 设 $X=\Spec\mathbb{Z}[15i]$。描述正规化 $\widetilde{X}\to X$。（提示：$\mathbb{Z}[i]$ 是\trUFD{}（\S5.4.5(0)），从而由\mbox{练习~5.4.F}知它\trIntegrallyClosed。）正规化在 $X$ 的哪些点处不是同构？
+
+同类风格的另一道练习是「捏合平面」（pinched plane）的正规化，\mbox{练习~13.5.H}。
+
+\textbf{10.7.I.（练习：\trFunctionField{}扩张中的正规化，一个重要的推广）}\quad 设 $X$ 是一个整概形。$X$ 在其\trFunctionField{} $K(X)$ 的一个给定的代数域扩张 $L$ 中的\textbf{\trNormalization} $\nu\colon\widetilde{X}\to X$，是从一个以 $L$ 为\trFunctionField{}的正规整概形 $\widetilde{X}$ 出发的\trDominant{}态射，使得 $\nu$ 诱导包含关系 $K(X)\hookrightarrow L$，并且关于这条性质是泛的。
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=3.2em]
+\Spec L \ar[r, equal] \ar[dr, equal] & \Spec K(Y) \ar[r] \ar[d, "\sim"] & Y \ar[d, dotted, "\exists!"] \ar[dd, bend left=50] & \text{正规} \\
+& \Spec K(\widetilde{X}) \ar[r] \ar[d] & \widetilde{X} \ar[d] & \text{正规} \\
+& \Spec K(X) \ar[r] & X &
+\end{tikzcd}
+\]
+证明：在域的（给定的）扩张中的正规化存在。
+
+接下来的两个例子，一算术、一几何，表明这是一项有意思的构造。
+
+\textbf{10.7.J.（练习）}\quad 设 $X=\Spec\mathbb{Z}$（\trFunctionField{}为 $\mathbb{Q}$）。求它在域扩张 $\mathbb{Q}(i)$ 中的\trIntegralClosure。（做这件事没有「几何」的门路；它纯粹是一个代数问题，尽管答案应当从几何上去理解。）
+
+\textbf{10.7.1.\ \trhRemark{}：\trNumberField{}中的\trRingOfIntegers{}。}\quad $\mathbb{Q}$ 的一个有限扩张 $K$ 称为一个\textbf{\trNumberField{}}（number field），而 $\mathbb{Z}$ 在 $K$ 中的\trIntegralClosure{}称为 $K$ 的\textbf{\trRingOfIntegers{}}（ring of integers），记作 $\OO_K$。（鉴于 $\OO$ 这个符号另有他用，这个记号相当尴尬。）
+\[
+\begin{tikzcd}[row sep=2.6em, column sep=3.6em]
+\Spec K \ar[r] & \Spec\OO_K \ar[d] \\
+\Spec\mathbb{Q} \ar[r] & \Spec\mathbb{Z}
+\end{tikzcd}
+\]
+由前面几道练习，$\OO_K$ 是一个正规整环；我们很快会看到（定理~10.7.3(a)）它是诺特的，稍后还会看到（\mbox{练习~12.1.G}）它「\trDimension{}为 $1$」。这是一个\trDedekind{}整环的例子；见 \S13.5.11。等我们定义了「\trSmooth」（更确切地说，\trRegular）与「\trCurve」的含义，我们就会把它当作一条「光滑」\trCurve{}来思考。
+
+\textbf{10.7.K.（练习）}\quad 求 $\mathbb{Q}(\sqrt{n})$ 中的\trRingOfIntegers{}，其中 $n$ \trSquareFree{}且 $n\equiv 3\pmod{4}$。（提示：\mbox{练习~5.4.I}(a)，在那里你还能对一般的\trSquareFree{} $n$ 把答案算出来。）
+
+\textbf{10.7.L.（练习）}\quad 为方便起见设 $\operatorname{char}k\neq 2$（尽管并非必要）。(a)~设 $X=\Spec k[x]$（\trFunctionField{}为 $k(x)$）。求它在域扩张 $k(x)(y)$（其中 $y^2=x^2+x$）中的正规化。（同样，我们得到一个\trDedekind{}整环。）提示：这可以做得不太痛苦。证明 $\Spec k[x,y]/(x^2+x-y^2)$ 是正规的，办法或是把它认同为 $\mathbb{P}^1_k$ 的一个\trOpenSubset，或是使用\mbox{练习~5.4.H}。(b)~设 $X=\mathbb{P}^1_k$，带有\trDistinguishedOpen\trSubscheme{} $\Spec k[x]$。求它在域扩张 $k(x,y)$（其中 $y^2=x^2+x$）中的正规化。（(a) 部分是在一个仿射开集上计算正规化；现在请弄清楚在「另一个」仿射开集上会发生什么，以及如何粘合。）
+
+\textbf{10.7.2.\ 妙事实：\trIntegralClosure{}的有限性。}
+
+下述事实很有用。
+
+\textbf{10.7.3.\ \trhTheorem{}（\trIntegralClosure{}的有限性）。}\ ——\ \emph{设 $A$ 是\trNoetherian{}整环，$K=K(A)$，$L/K$ 是域的\trFinite{}\trFieldExtension，而 $B$ 是 $A$ 在 $L$ 中的\trIntegralClosure（即「$A$ 在域扩张 $L/K$ 中的\trIntegralClosure{}」，也就是 $L$ 中那些在 $A$ 上\trIntegral{}的元素）。}
+
+\emph{(a)~若 $A$ \trIntegrallyClosed{}且 $L/K$ 可分，则 $B$ 是\trFinitelyGenerated{}的 $A$-\trModule。}
+
+\emph{(b)~（E.~\trNoether）若 $A$ 是\trFinitelyGenerated{}的 $k$-\trAlgebra，则 $B$ 是\trFinitelyGenerated{}的 $A$-\trModule。}
+
+\trEisenbud{}用一页半的篇幅给出了证明：(a) 见 [E, Prop.~13.14]，(b) 见 [E, Cor.~13.13]。证明梗概见 \S10.7.5。
+
+\textbf{10.7.4.\ \trhWarning{}。}\quad (b) 对一般的\trNoetherian{} $A$ 并\emph{不}成立——诺特环的\trIntegralClosure{}未必诺特。（一些讨论可参看 [Rei2, \S9.4] 或 [E, \S13.3]。）这令人警觉。这样的例子竟然存在，恰恰说明定理~10.7.3 并非易事。
+
+在下述四道练习中，一旦你知道了簇是什么，就可以把「整的有限型 $k$-概形」换成「\trIntegral{}\trVariety」。
+
+\textbf{10.7.M.（练习：正规化的有限性）}\quad (a)~证明：若 $X$ 是整的、\trLocally\trFiniteType{}的 $k$-概形，则其正规化 $\nu\colon\widetilde{X}\to X$ 是\trFinite{}\trMorphism。(b)~设 $X$ 是局部诺特整概形。证明：若 $X$ 正规，则在\trFinite{}可分\trFieldExtension{}中的正规化是\trFinite{}\trMorphism。证明：若 $X$ 是整的有限型 $k$-概形，则在域的\trFinite{}\trExtension{}中的正规化是\trFinite{}\trMorphism。特别地，一旦我们定义了「\trVariety」（定义~11.2.9），你将看到这蕴含：\trVariety{}的正规化（包括在\trFunctionField{}的\trFinite{}\trExtension{}中的正规化）是一个\trVariety。
+
+\textbf{10.7.N.（练习）}\quad 证明：若 $X$ 是整的有限型 $k$-概形，则正规化态射是\trBirational{}的。（提示：命题~7.5.8；或者先解出\mbox{练习~10.7.O}。）
+
+\textbf{10.7.O.（练习）}\quad 设 $X$ 是整的有限型 $k$-概形。证明：$X$ 的正规化映射在 $X$ 的一个\trOpen\trDense{}子集上是同构。（提示：命题~7.5.6。）证明：$X$ 的诸正规点构成一个\trDense{}的\trOpen{}子集。（由\mbox{练习~10.7.D}，「整」这一假设可以放宽为「既约」。）
+
+\textbf{10.7.P.（练习）}\quad 设 $\rho\colon Z\to X$ 是从整的有限型 $k$-概形到一个\emph{正规}的整有限型 $k$-概形的\trFinite{}\trBirational{}\trMorphism。证明：$\rho$ 是同构。
+
+\textbf{10.7.5.}\ \extrahard\ \textbf{\trIntegralClosure{}的有限性（定理~10.7.3）的证明梗概。}\quad 这里给出一个梗概，以展示论证的结构。它用到第 12 章的交换代数想法，所以你只消扫上一眼，看清其中并没有玩什么花样即可。(a) 部分：化归到 $L/K$ 是\trGalois{}扩张、群为 $\{\sigma_1,\dots,\sigma_n\}$ 的情形。选取 $b_1,\dots,b_n\in B$，构成 $L$ 的一个 $K$-\trVectorSpace{}基。设 $M$ 是（伽罗瓦理论中眼熟的）第 $ij$ 个元素为 $\sigma_i b_j$ 的矩阵，并令 $d=\det M$。证明 $M$ 的元素都落在 $B$ 中，并且 $d^2\in K$（因为 $d^2$ 在\trGalois{}群下不动）。利用特征标（character）的线性无关性证明 $d\neq 0$。然后如下完成证明：证明 $B\subset d^{-2}(Ab_1+\cdots+Ab_n)$（诺特环上有限生成模的子模也诺特，\cref{ex:finitely-generated-noetherian-module}）。设有 $b\in B$，写 $b=\sum c_i b_i$（$c_i\in K$）。若 $c$ 是以诸 $c_i$ 为元素的列向量，证明列向量 $Mc$ 的第 $i$ 个元素是 $\sigma_i b\in B$。从左侧用 $\operatorname{adj}M$ 乘 $Mc$（参看引理~8.2.1 证明中的那个巧招），证明 $dc_i\in B$。于是 $d^2c_i\in B\cap K=A$（因为 $A$ \trIntegrallyClosed），如所欲证。
+
+至于 (b)，用诺特正规化引理~12.2.4 化归到 $A=k[x_1,\dots,x_n]$ 的情形。再化归到 $L$ 在 $K$ 上正规闭（normally closed）的情形。设 $L'$ 是 $L/K$ 的一个子扩张，使得 $L/L'$ \trGalois{}而 $L'/K$ \trPurelyInseparable。用 (a) 部分化归到 $L=L'$ 的情形。若 $L'\neq K$，则对某个 $q$，$L'$ 在 $K$ 上由有限多个\trRationalFunction{}的 $q$ 次根生成。化归到 $L'=k'(x_1^{1/q},\dots,x_n^{1/q})$（其中 $k'/k$ 是\trFinite{}\trPurelyInseparable{}\trFieldExtension）的情形。此时证明 $B=k'[x_1^{1/q},\dots,x_n^{1/q}]$，而它确实在 $k[x_1,\dots,x_n]$ 上有限。\hfill$\square$
+
+\textbf{10.7.6.\ 再论概形的既约化。}\quad 用这个观点重温概形的「\trReduction」或许富有启发性。论证干净利落，而且亲手把它做一遍，你会更好地领会各个部件如何咬合。我们现在从头出发定义「\trReduction」，然后证明它与 \S9.4.10 的定义一致。
+
+\textbf{10.7.7.\ \trhDefinition{}。}\quad 设 $X$ 是一个概形。与 \eqref{eq:normalization-universal-property} 平行，我们称 $\rho\colon X^{\mathrm{red}}\to X$ 为 $X$ 的「那个」\textbf{\trReduction}，若从既约概形 $W$ 出发的任何\trMorphism{} $W\to X$ 都唯一地穿过 $\rho$：
+\[
+\begin{tikzcd}[row sep=2.8em, column sep=4.2em]
+\text{既约} & W \ar[rr, dotted, "\exists!"] \ar[drr] & & X^{\mathrm{red}} \ar[d, "\rho"] \\
+& & & X
+\end{tikzcd}
+\]
+「那个」二字打上引号，是因为这轻微地滥用了记号。与纤维积和正规化平行，我们现在验证：这样的 $X^{\mathrm{red}}$ 存在：
+
+\vkexsync{Q}
+\begin{exercise}\label{ex:reduction-universal-property}
+\begin{enumerate}[label=(\alph*)]
+  \item 与\mbox{练习~10.7.A}平行，证明：$\rho\colon\Spec A/\mathfrak{N}(A)\to\Spec A$ 满足既约化的\trUniversalProperty。
+  \item 与\mbox{练习~10.7.B}平行，证明：概形的既约化一般而言存在。
+  \item 为了确认我们没有与先前的自己相矛盾：证明 \S9.4.10 的构造满足这条\trUniversalProperty。
+\end{enumerate}
+\end{exercise}
+
+\textbf{10.7.8.\ \trhDefinition{}。}\quad 由既约化的\trUniversalProperty，概形之间的任何\trMorphism{} $\pi\colon X\to Y$ 都诱导一个\trMorphism{} $X^{\mathrm{red}}\to Y^{\mathrm{red}}$，即 $\pi$ 的\textbf{\trReduction}，我们十分合理地把它命名为 $\pi^{\mathrm{red}}$。（你多半已经看出：「\trReduction」给出了从概形\trCategory{}到既约概形\trCategory{}的一个\trFunctor。）

@@ -1,0 +1,372 @@
+\section{离壳椭圆估计}
+\label{sec:off-shell-elliptic-estimates}
+\stfhIndexRangeStart{I219}{li^ke^tuo^yuan^gu^ji}{离壳椭圆估计（off-shell elliptic estimate）}
+\stfhIndex{I287}{quan^shi^bian^jie^tiao^jian}{全实边界条件（totally real boundary condition）}
+
+上一节主要讨论“壳上”估计，即 $J$-全纯映射的估计。不过，任意光滑映射的“离壳”先验椭圆估计往往也很有用，研究伪全纯曲线的粘合问题时尤其如此。我们把前几节对一般光滑映射所作的几何计算加以细化，导出离壳估计。在涉及边界条件的张量计算中，我们仍利用诺伊曼边界条件，而不是全实边界条件。正如前面指出的，对任意 $\omega$-相容的 $J$，拉格朗日边界条件蕴含 $J$-全纯映射的诺伊曼边界条件。
+
+(Fl88a)、(Oh92) 的作者采用了一种更为整体的方法，从柯西--黎曼方程的经典线性估计出发，得到 $J$-全纯曲线的局部先验估计；有边界时，该方法也适用于全实边界条件。这里的新方法借助典范联络，使精确的张量计算大为简化，并能给出主要 $W^{2,4}$ 估计（推论 8.2.7）中各系数对几何量的精确依赖。
+
+我们始终假设映射光滑；但为了对 $J$-全纯映射作分析，还需按适当索伯列夫范数完备化光滑映射空间。最简单的办法是使用纳什嵌入定理 (Nas56)：固定一个充分大的 $N\in\mathbb N$ 以及等距嵌入 $M\hookrightarrow\mathbb R^N$，把到 $M$ 的映射视为取值落在 $M\subset\mathbb R^N$ 中的向量值函数。
+
+从现在起，考虑满足诺伊曼边界条件
+\begin{equation}
+ \left.\frac{\partial u}{\partial\nu}\right|_{\partial\Sigma}\perp L
+ \label{eq:ch8-neumann-boundary-condition}
+\end{equation}
+的映射 $u:\Sigma\to M$，其中 $L\subset(M,\omega)$ 是拉格朗日子流形。
+
+\begin{definition}\label{def:ch8-relative-sobolev-maps}
+设 $k-2/p>0$，以 $\|\cdot\|_{k,p}$ 表示向量值函数 $u:\Sigma\to\mathbb R^N$ 的索伯列夫 $W^{k,p}$ 范数，并以 $W^{k,p}(D,\mathbb R^N)$ 表示 $W^{k,p}$ 函数空间。定义
+$W^{k,p}((\Sigma,\partial\Sigma),(M,R))$ 为满足
+$u(\partial\Sigma)\subset R$ 的光滑映射所成集合
+\[
+ C^\infty((\Sigma,\partial\Sigma),(M,R))
+\]
+在 $W^{k,p}(D,\mathbb R^N)$ 中的完备化。
+\end{definition}
+
+以 $\|\cdot\|_{k,p,K}$ 表示 $\|\cdot\|_{k,p}$ 在 $\Sigma$ 的子集 $K$ 上的限制。因假设 $k-2/p>0$，所有这种映射都连续，故边界条件有意义。特别地，$p>2$ 时有限 $W^{1,p}$ 范数的映射连续，所以 $W^{1,p}((D,\partial D),(M,R))$ 中的映射确实满足 $u(\partial D)\subset R$。
+由引理 7.3.2 的恒等式 $d^\nabla(du)=u^*T$ 出发，按定义计算
+\[
+ \Delta(du)=d^\nabla(d^\nabla)^*(du)+(d^\nabla)^*d^\nabla(du).
+\]
+仍记 $\delta^\nabla=(d^\nabla)^*$。在二维曲面 $\Sigma$ 上
+$\delta^\nabla=-*d^\nabla*$，故第二项成为
+\begin{equation}
+ (d^\nabla)^*d^\nabla(du)=-*d^\nabla*(u^*T).
+ \label{eq:ch8-laplacian-du-torsion}
+\end{equation}
+类似前面的计算，应用魏岑伯克公式得
+\begin{align}
+ \Delta e(u)&=\Delta\langle du,du\rangle
+ =\langle\nabla^*\nabla du,du\rangle-2|\nabla du|^2
+   +\langle du,\nabla^*\nabla du\rangle \notag\\
+ &=2\langle\Delta du,du\rangle-\langle2Kdu,du\rangle
+ -2\langle R^\nabla(du,du)du,du\rangle-2|\nabla du|^2.
+ \label{eq:ch8-off-shell-bochner}
+\end{align}
+它与 (7.3.27) 的唯一区别，是右端出现了 $2\langle\Delta du,du\rangle$。又有
+\begin{align}
+ \langle\Delta du,du\rangle
+ &=\langle d^\nabla(d^\nabla)^*(du),du\rangle
+   +\langle(d^\nabla)^*d^\nabla(du),du\rangle\notag\\
+ &=\langle d^\nabla(d^\nabla)^*(du),du\rangle
+   -\langle*d^\nabla*(u^*T),du\rangle .
+ \label{eq:ch8-off-shell-laplacian-split}
+\end{align}
+下述恒等式很有用；同 (OhW12) 一样，我们借用其证明。
+\begin{lemma}\label{lem:ch8-covariant-codifferential-pairing}
+设 $\alpha\in\Omega^0(u^*\xi)$ 为零形式，$\beta\in\Omega^1(u^*\xi)$ 为 $1$-形式，$\langle\cdot,\cdot\rangle$ 是由 $Q$ 的度量诱导在 $u^*\xi$ 上的内积。则
+\[
+ \langle d^\nabla\alpha,\beta\rangle-\langle\alpha,\delta^\nabla\beta\rangle
+ =-\delta\langle\alpha,\beta\rangle.
+\]
+\end{lemma}
+
+\begin{proof}
+计算
+\begin{align*}
+ -\delta\langle\alpha,\beta\rangle
+ &=*d*\langle\alpha,\beta\rangle=*d\langle\alpha,*\beta\rangle\\
+ &=*\langle d^\nabla\alpha\wedge*\beta\rangle
+   +*\langle\alpha,d^\nabla(*\beta)\rangle\\
+ &=*\langle d^\nabla\alpha,\beta\rangle\,d\operatorname{vol}
+   +\langle\alpha,*d^\nabla(*\beta)\rangle\\
+ &=\langle d^\nabla\alpha,\beta\rangle-\langle\alpha,\delta^\nabla\beta\rangle.
+\end{align*}
+第三行还用到 $\nabla$ 是黎曼联络；对向量值形式作 $\wedge$ 时，纤维方向取内积，底空间方向取楔积。
+\end{proof}
+
+现在计算 \eqref{eq:ch8-off-shell-laplacian-split} 中的
+$-\langle*d^\nabla*(u^*T),du\rangle$。
+
+\begin{lemma}\label{lem:ch8-torsion-error-estimate}
+对所有 $0<\epsilon<1$，
+\[
+ \bigl|-\langle*d^\nabla*(u^*T),du\rangle\bigr|
+ \leq |T||\nabla du||du|^2+|\nabla T||du|^3
+ \leq\frac\epsilon2|\nabla du|^2+\frac1{2\epsilon}|T|^2|du|^4
+      +|\nabla T||du|^3.
+\]
+\end{lemma}
+\begin{proof}
+再次使用引理 8.2.2，
+\[
+ -\langle*d^\nabla*(u^*T),du\rangle
+ =-\langle d^\nabla*(u^*T),*du\rangle,
+\]
+直接计算即得不等式。
+\end{proof}
+
+以下计算使用分解
+\[
+ du=\partial_Ju+\bar\partial_Ju\in
+ \Lambda_J^{(1,0)}(TM)\oplus\Lambda_J^{(0,1)}(TM).
+\]
+这里不使用复化；上一章分解 $du=\partial u+\bar\partial u$ 中出现的 $\partial u$、$\bar\partial u$ 在本节不再出现。我们希望这不致使读者困惑：以下省略下标 $J$，径写作
+$\partial_Ju=\partial u$、$\bar\partial_Ju=\bar\partial u$。
+具体地说，上一章所用而本节不再使用的复化分解为
+\[
+ du=\partial u+\bar\partial u\in
+ \Lambda^{(1,0)}(T_\mathbb C M)\oplus\Lambda^{(1,0)}(T_\mathbb C M).
+\]
+
+\begin{lemma}\label{lem:ch8-delta-du-decomposition}
+\[
+ \langle d^\nabla(d^\nabla)^*(du),du\rangle
+ =4|d^\nabla(\bar\partial u)|^2+|u^*T|^2
+ -4\langle u^*T,d^\nabla\bar\partial u\rangle
+ -\delta\langle\delta^\nabla(du),du\rangle.
+\]
+\end{lemma}
+\begin{proof}
+由 $\delta^\nabla=-*d^\nabla*$ 与引理 8.2.2，
+\begin{align*}
+ \langle d^\nabla(d^\nabla)^*(du),du\rangle
+ &=\langle d^\nabla\delta^\nabla(du),du\rangle\\
+ &=-\delta\langle\delta^\nabla(du),du\rangle+|\delta^\nabla(du)|^2.
+\end{align*}
+又有 $\delta^\nabla\partial u=J*d^\nabla\partial u$、
+$\delta^\nabla\bar\partial u=-J*d^\nabla\bar\partial u$，故
+\begin{equation}
+ |d^\nabla\partial u|=|\delta^\nabla\partial u|,\qquad
+ |d^\nabla\bar\partial u|=|\delta^\nabla\bar\partial u|.
+ \label{eq:ch8-d-delta-partial}
+\end{equation}
+第一个恒等式的计算为
+\[
+ \delta^\nabla\partial u=-*d^\nabla*\partial u
+ =*d^\nabla(\partial u\circ j)=*d^\nabla(J\partial u)
+ =J*d^\nabla\partial u;
+\]
+第二个恒等式完全类似。
+并且
+\begin{align*}
+ |\delta^\nabla(du)|^2
+ &=|d^\nabla*du|^2
+ =|d^\nabla(\partial u\,j+\bar\partial u\,j)|^2\\
+ &=|d^\nabla(J\partial u-J\bar\partial u)|^2
+ =|d^\nabla(du-2\bar\partial u)|^2\\
+ &=|u^*T-2d^\nabla\bar\partial u|^2\\
+ &=|u^*T|^2+4|d^\nabla\bar\partial u|^2
+ -4\langle u^*T,d^\nabla\bar\partial u\rangle.
+\end{align*}
+这里把 $\partial u=du-\bar\partial u$ 重写，并在第三个等号处使用恒等式
+$d^\nabla(du)=u^*T$。把它代回本证明开头的恒等式，即完成证明。
+\end{proof}
+
+把引理 8.2.3、8.2.4 代入 \eqref{eq:ch8-off-shell-laplacian-split} 与
+\eqref{eq:ch8-off-shell-bochner}，重新整理并积分，得到
+\begin{align*}
+ |\nabla du|^2
+ &\leq-\frac12\Delta e(u)-\delta\langle\delta^\nabla(du),du\rangle
+ +\frac\epsilon2|\nabla du|^2+\frac1{2\epsilon}|T|^2|du|^4+|\nabla T||du|^3\\
+ &\quad-\langle Kdu,du\rangle-\langle R^\nabla(du,du)du,du\rangle
+ +4|d^\nabla(\bar\partial u)|^2+|u^*T|^2
+ -4\langle u^*T,d^\nabla\bar\partial u\rangle,
+\end{align*}
+即
+\begin{align*}
+ \left(1-\frac\epsilon2\right)|\nabla du|^2
+ &=-\frac12\Delta e(u)-\delta\langle\delta^\nabla(du),du\rangle
+ +\frac1{2\epsilon}|T|^2|du|^4+|\nabla T||du|^3\\
+ &\quad-\langle Kdu,du\rangle-\langle R^\nabla(du,du)du,du\rangle
+ +4|d^\nabla(\bar\partial u)|^2+|u^*T|^2
+ -4\langle u^*T,d^\nabla\bar\partial u\rangle.
+\end{align*}
+取积分，得到
+\begin{align*}
+ \left(1-\frac\epsilon2\right)\int_\Sigma|\nabla du|^2
+ &\leq\frac12\int_{\partial\Sigma}\frac{\partial}{\partial\nu}e(u)
+ +\int_{\partial\Sigma}*\langle\delta^\nabla(du),du\rangle
+ +\frac1{2\epsilon}\int_\Sigma|T|^2|du|^4\\
+ &\quad+\int_\Sigma|\nabla T||du|^3
+ -\int_\Sigma\{\langle Kdu,du\rangle+\langle R^\nabla(du,du)du,du\rangle\}\\
+ &\quad+4\int_\Sigma|d^\nabla(\bar\partial u)|^2+\int_\Sigma|u^*T|^2
+ -4\int_\Sigma\langle u^*T,d^\nabla\bar\partial u\rangle.
+\end{align*}
+这里的拉普拉斯算子 $\Delta$ 作用于 $\Sigma$ 上的零形式（即函数）时，是几何拉普拉斯算子，也就是经典拉普拉斯算子的负值，因此格林公式为
+\[
+ -\frac12\int_\Sigma\Delta e(u)\,dA
+ =\frac12\int_{\partial\Sigma}\frac\partial{\partial\nu}e(u)\,dt.
+\]
+在 $\partial\Sigma$ 上，经逐项计算并使用定义 7.4.1 中典范联络的第二基本形式，可把边界项写成
+\begin{align}
+ &\frac12\frac\partial{\partial\nu}e(u)\,dt
+ +*\langle\delta^\nabla(du),du\rangle-\langle*u^*T,*du\rangle\notag\\
+ &=\frac12\frac\partial{\partial r}
+ \left(\left|\frac{\partial u}{\partial t}\right|^2
+ +\left|\frac{\partial u}{\partial r}\right|^2\right)dt
+ -\left\langle\nabla_t\frac{\partial u}{\partial t}
+ +\nabla_r\frac{\partial u}{\partial r},\frac{\partial u}{\partial r}\right\rangle dt
+ -\langle*u^*T,*du\rangle\notag\\
+ &=\left(\frac12\frac\partial{\partial r}
+ \left|\frac{\partial u}{\partial t}\right|^2
+ -\left\langle\nabla_t\frac{\partial u}{\partial t},
+ \frac{\partial u}{\partial r}\right\rangle\right)dt
+ -\langle*u^*T,*du\rangle\notag\\
+ &=\left(-2\left\langle\nabla_t\frac{\partial u}{\partial t},
+ \frac{\partial u}{\partial r}\right\rangle
+ +\left\langle T\left(\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial t}\right),
+ \frac{\partial u}{\partial t}\right\rangle\right)dt
+ -\langle*u^*T,*du\rangle,
+\label{eq:ch8-boundary-term-computation}
+\end{align}
+倒数第二个等号使用
+\[
+ \frac12\frac\partial{\partial r}\left|\frac{\partial u}{\partial r}\right|^2
+ =\left\langle\nabla_r\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial r}\right\rangle.
+\]
+接着计算
+\begin{align*}
+ -\langle*u^*T,*du\rangle
+ &=-\left\langle T\left(\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial t}\right),
+ \frac{\partial u}{\partial t}\,dr-
+ \frac{\partial u}{\partial r}\,dt\right\rangle\\
+ &=-\left\langle T\left(\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial t}\right\rangle dr
+ +\left\langle T\left(\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial r}\right\rangle dt.
+\end{align*}
+代回并限制到 $\partial\Sigma$，得到
+\[
+ \frac12\frac\partial{\partial\nu}e(u)\,dt
+ +*\langle\delta^\nabla(du),du\rangle-\langle*u^*T,*du\rangle
+ =-2\left\langle\nabla_t\frac{\partial u}{\partial t},
+ \frac{\partial u}{\partial r}\right\rangle dt
+ +\left\langle T\left(\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial r}\right\rangle dt.
+\]
+这正可由第二基本形式重写为
+\[
+ \begin{aligned}
+ &\frac12\frac\partial{\partial\nu}e(u)\,dt
+ +*\langle\delta^\nabla(du),du\rangle-\langle*u^*T,*du\rangle\\
+ &\quad=2\left\langle B^\nabla\left(\frac{\partial u}{\partial t},
+ \frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial r}\right\rangle dt
+ +\left\langle T\left(\frac{\partial u}{\partial r},
+ \frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial r}\right\rangle dt.
+ \end{aligned}
+\]
+
+\begin{theorem}\label{thm:ch8-off-shell-integral-identity}
+设 $\nabla$ 是殆凯勒流形的典范联络，$R$ 是任意子流形。若
+$u:(\Sigma,\partial\Sigma)\to(M,R)$ 满足诺伊曼边界条件，则对任意
+$0<\epsilon<2$，
+\begin{equation}
+\begin{split}
+\left(1-\frac\epsilon2\right)\int_\Sigma|\nabla du|^2
+&\leq4\int_\Sigma|d^\nabla(\bar\partial u)|^2+2\int_\Sigma|u^*T|^2
+-4\int_\Sigma\langle u^*T,d^\nabla\bar\partial u\rangle\\
+&\quad-\int_\Sigma\{\langle Kdu,du\rangle+\langle R^\nabla(du,du)du,du\rangle\}
++\frac1{2\epsilon}\int_\Sigma|T|^2|du|^4\\
+&\quad+\int_\Sigma|\nabla T||du|^3
++\int_{\partial\Sigma}\left\{
+\begin{aligned}
+&2\left\langle B^\nabla\left(\frac{\partial u}{\partial t},
+\frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial r}\right\rangle\\
+&\quad+\left\langle T\left(\frac{\partial u}{\partial r},
+\frac{\partial u}{\partial t}\right),\frac{\partial u}{\partial r}\right\rangle
+\end{aligned}\right\}\,dt.
+\end{split}
+\label{eq:ch8-off-shell-integral-estimate}
+\end{equation}
+\end{theorem}
+
+取 $\epsilon=1$ 立即得到主要离壳估计。
+\begin{theorem}\label{thm:ch8-main-global-off-shell-estimate}
+在定理 8.2.5 的同一假设下，
+\begin{equation}
+\begin{split}
+\frac12\int_\Sigma|\nabla du|^2
+&\leq6\int_\Sigma|d^\nabla(\bar\partial u)|^2
++4\int_\Sigma\max|T|^2|du|^4
++\int_\Sigma\max(-K)|du|^2\\
+&\quad+\frac12\int_\Sigma|T|^2|du|^4
++\int_\Sigma|\nabla T||du|^3
++\int_\Sigma\max|R^\nabla||du|^4\\
+&\quad+2\int_{\partial\Sigma}\{\max|B^\nabla||du|^3+\max|T||du|^3\}\,dt.
+\end{split}
+\label{eq:ch8-main-global-off-shell}
+\end{equation}
+\end{theorem}
+
+一个立即的推论，是命题 7.4.5 的如下离壳版本；其中各系数依
+$(M,\omega,J)$、边界流形 $R^\nabla$ 以及 $|\nabla(\bar\partial u)|$
+的几何而得到精确控制。这里还使用不等式
+$|d^\nabla(\bar\partial u)|\leq|\nabla(\bar\partial u)|$。
+\begin{corollary}\label{cor:ch8-w24-off-shell}
+在定理 8.2.5 的同一假设下，对任意满足诺伊曼边界条件的光滑映射
+$u:(\Sigma,\partial\Sigma)\to(M,R)$，
+\[
+ \|du\|_{1,2}^2\leq12\|\bar\partial_Ju\|_{1,2}^2
+ +C_1\|du\|_2^2+C_2\|du\|_4^4+C_3\|du\|_3^3
+ +C_4\|du|_{\partial\Sigma}\|_3^3,
+\]
+其中
+\[
+\begin{gathered}
+C_1=2\max(-K),\\
+C_2=8\max|T|^2+2\max|R^\nabla|+\max|T|^2,\\
+C_3=2\max|\nabla T|,\qquad
+C_4=2\max|B^\nabla|+2\max|T|_R.
+\end{gathered}
+\]
+\end{corollary}
+
+\begin{remark}\label{rem:ch8-off-shell-coefficients}
+\begin{enumerate}[label=(\arabic*)]
+\item 挠率张量 $T$ 度量殆复结构不可积的程度；曲率 $R^\nabla$ 依赖典范联络 $\nabla$；而 $R$ 的第二基本形式 $B^\nabla$ 度量嵌入 $R\subset M$ 的外曲率。因此，若 $(M,\omega,J)$ 与 $R$ 具有有界几何，则各 $C_i$ 可一致有界。
+\item 当 $M$ 非紧、$\Sigma$ 是开黎曼曲面或带柱状端的穿孔黎曼曲面时，上述估计没有说明 $u:\Sigma\to M$ 的 $C^0$ 行为。此时，穿孔附近柱状度量下的 $C^0$ 估计成为必须另行处理的问题。
+\end{enumerate}
+\end{remark}
+\stfhIndexRangeEnd{I219}{li^ke^tuo^yuan^gu^ji}{离壳椭圆估计（off-shell elliptic estimate）}
+
+局部化版本也常常很重要，以下作一说明。令 $D$ 为开单位圆盘或以
+$(-1,1)$ 为边界的开半圆盘，以 $(x,y)$ 表示标准坐标，并赋予 $D$ 标准平直度量；
+半圆盘情形要求 $u:D\to M$ 满足诺伊曼边界条件，见图 8.1。
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9]
+ \draw (0,0) circle (1.25);
+ \draw (3.2,-0.55) -- (5.7,-0.55);
+ \draw (3.2,-0.55) arc[start angle=180,end angle=0,radius=1.25];
+\end{tikzpicture}
+\caption{圆盘与半圆盘。}
+\label{fig:ch8-disc-and-semidisc}
+\end{figure}
+
+\begin{theorem}\label{thm:ch8-localized-off-shell-estimate}
+设 $u:(D,\partial D)\to(M,R)$ 是满足诺伊曼边界条件的光滑映射，且
+$\|du\|_{1,4;D}=:C<\infty$。则对任意紧子集 $K\subset D$，
+\[
+ \|du\|_{1,2;K}^2\leq6\|\bar\partial u\|_{1,2;D}^2
+ +C_1'\|du\|_{2;D}^2+C_2'\|du\|_{4;D}^4
+ +C_3'\|du|_{\partial\Sigma\cap D}\|_{3}^3,
+\]
+其中 $C_i'$ 连续依赖于 $J,K$ 与 $\|du\|_{1,4;D}$。
+\end{theorem}
+\begin{proof}
+取紧支光滑函数 $\chi:\mathbb R^2\to\mathbb R$，使得对某个开圆盘（或开半圆盘）
+$K\subset D'\subset\overline{D'}\subset D$，
+\[
+ \chi=1\text{ 于 }K,\qquad \chi=0\text{ 于 }D'\text{ 外}.
+\]
+估计 $\nabla(\chi du)$ 而不是 $\nabla(du)$。注意
+$\|\nabla(du)\|_{1,4;K}\leq\|\nabla(\chi\cdot du)\|_{1,4;D}$，并分解
+$\nabla(\chi du)=\nabla\chi\,du+\chi\nabla du$，即可直接导出所需不等式。此时各
+$C_i'$ 依赖于 $\chi$ 与 $\chi'$。细节留作习题。
+\end{proof}
+
+\begin{exercise}\label{ex:ch8-complete-localized-estimate}
+补全上述定理证明中略去的细节。
+\end{exercise}
+
+\begin{remark}\label{rem:ch8-higher-off-shell-estimate}
+同样的论证给出 $l\geq3$ 时 $\|du\|_{l-1,q,K}$ 的估计，其中常数 $C_1$ 依赖
+$\|\nabla^{l-1}J\|_\infty$ 与 $\|du\|_p$；本书不再使用这一估计。
+\end{remark}

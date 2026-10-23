@@ -1,0 +1,93 @@
+
+\section{（闭子）\trSchemeTheoreticImage{}}
+
+我们现在要定义一连串的观念，它们全都属于「使某事成立的最小\trClosedSubscheme」这一形式。其中一例便是局部闭嵌入的\trSchemeTheoretic\trClosure{}这一观念，它将使我们能以三种等价的方式解读局部闭嵌入（\trOpenSubscheme{}交\trClosedSubscheme；\trClosedSubscheme{}的\trOpenSubscheme；\trOpenSubscheme{}的\trClosedSubscheme——参\mbox{练习~9.2.C}）。
+
+\textbf{9.4.1.\ \trSchemeTheoretic\trImage{}（scheme-theoretic image）。}\quad 我们从\trSchemeTheoreticImage{}这个观念谈起。集合论像（set-theoretic image）在一般情形下表现得很糟（\S8.4.1）；即便配上了合理的假设——比如\trChevalley{}定理~8.4.2 中的那些假设——事情仍可能令人迷惑。例如，对于由 $(x,y)\mapsto(x,xy)$ 给出的态射 $\mathbb{A}^2_k\to\mathbb{A}^2_k$，就没有什么合理的办法在其像上安放一个概形结构。定义靶概形的一个\trClosedSubscheme{}——它「最佳逼近」这个像——将会很有用（例如\mbox{练习~9.4.C}）。这将把下面这件事涵括进来：带有非\trReduced{}结构（「\trFuzz」）的对象，其像也可以带有非\trReduced{}结构。照例，我们仍需施加合理的假设，才能让这个观念表现良好（见定理~9.4.4 与推论~9.4.5）。
+
+\textbf{9.4.2.}\ \emph{\trhDefinition{}。}\quad 设 $i\colon Z\hookrightarrow Y$ 是一个\trClosedSubscheme，它给出正合列 $0\to\scr{I}_{Z/Y}\to\OO_Y\to i_*\OO_Z\to 0$。若复合 $\scr{I}_{Z/Y}\to\OO_Y\to\pi_*\OO_X$ 为零，我们就称\textbf{$\pi\colon X\to Y$ 的像落于 $Z$ 中}（the image of $\pi\colon X\to Y$ lies in $Z$）。非正式地说：在局部上，在 $Z$ 上消失的函数\trPullback{}到 $X$ 上就是零函数。若 $\pi$ 的像落于某些子概形 $Z_j$ 之中（$j$ 跑遍某个指标集），则显然它也落于它们的交之中（参\cref{ex:scheme-theoretic-union-intersection}(a)中关于\trClosedSubscheme{}之交的讨论）。我们于是把\textbf{$\pi$ 的\trSchemeTheoretic\trImage{}}——$Y$ 的一个\trClosedSubscheme——定义为「包含该像的最小\trClosedSubscheme」，也就是说，一切包含该像的\trClosedSubscheme{}之交。特别地（在我们最初的几个例子中也是如此），若 $Y$\trAffine，则\trSchemeTheoreticImage{}由 $Y$ 上那些\trPullback{}到 $X$ 上为零的函数切出。
+
+这个概念的其他合理名字还有\emph{闭子\trSchemeTheoreticImage{}}（closed subscheme-theoretic image）或\emph{像闭子概形}（image closed subscheme）。它们的长处在于提醒读者：\trSchemeTheoreticImage{}是一个\emph{闭的}\trSubscheme；但我们不用这些说法。
+
+\emph{\trhExample{}~1.}\quad 考察 $\pi\colon\Spec k[\epsilon]/(\epsilon^2)\to\Spec k[x]=\mathbb{A}^1_k$，由 $x\mapsto\epsilon$ 给出。那么 $\pi$ 的\trSchemeTheoreticImage{}由 $\Spec k[x]/(x^2)$ 给出（\trPullback{}为零的多项式恰是 $x^2$ 的倍式）。可见，这个\trFuzz{}点的像仍带着些许绒毛。
+
+\emph{\trhExample{}~2.}\quad 考察 $\pi\colon\Spec k[\epsilon]/(\epsilon^2)\to\Spec k[x]=\mathbb{A}^1_k$，由 $x\mapsto 0$ 给出。此时\trSchemeTheoreticImage{}由 $\Spec k[x]/(x)$ 给出：像是\trReduced{}的。在这幅图景里，绒毛被 $\pi$「压塌」了。
+
+\emph{\trhExample{}~3.}\quad 考察 $\pi\colon\Spec k[t,t^{-1}]=\mathbb{A}^1-\{0\}\to\mathbb{A}^1=\Spec k[u]$，由 $u\mapsto t$ 给出。任何作为 $t$ 的函数\trPullback{}为零的函数 $g(u)$ 都必是零函数。于是\trSchemeTheoreticImage{}是全空间。而集合论像，另一方面，则是\trDistinguishedOpen{} $\mathbb{A}^1\setminus\{0\}$。由此可见，在不那么病态的情形下，\trSchemeTheoreticImage{}的\trUnderlyingSet{}也可能不是集合论像。但局面还不算糟：\trSchemeTheoreticImage{}的\trUnderlyingSet{}必为\trClosedSet，而且它正是集合论像的\trClosure。我们或许会指望：在合理的情形下这件事总是对的；而在更好的情形下，\trSchemeTheoreticImage{}的\trUnderlyingSet{}就等于集合论像。我们稍后会看到，事实确实如此（\S9.4.6）。
+
+但遗憾的是，病理有时确会现身——嗯，在病态的情势里。
+
+\emph{\trhExample{}~4（图~\ref{fig:yuck-fuzzy-point-image}）。}\quad 令 $X=\bigsqcup_n\Spec k[\epsilon_n]/((\epsilon_n)^n)$（这道概形曾在\mbox{练习~5.2.F}的提示中登场），$Y=\Spec k[x]$，并定义 $X\to Y$：在 $X$ 的第 $n$ 个分支上取 $x\mapsto\epsilon_n$。若 $Y$ 上的函数 $g(x)$ \trPullback{}到 $X$ 上为零，则它的\trTaylor{}展开对一切 $n$ 都到 $n$ 阶为止为零（逐一考察拉回到 $X$ 第 $n$ 个分支上的结果即可），故 $g(x)$ 必为 $0$。（这个论证将在\mbox{练习~13.9.A}(b)中被极大地推广。）于是\trSchemeTheoreticImage{}是 $Y$ 上的 $V(0)$，即 $Y$ 自身；而集合论像则容易看出恰是原点（\trClosedPoint{} $0$）。（这个态射将在警示/例~9.4.11 中隐然现身。）
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0,line width=0.8pt]
+  \node at (0,2.75) {$\vdots$};
+  \draw[dashed] (-0.55,2.05) -- (0.55,2.05);
+  \fill (0,2.05) circle (0.05);
+  \draw[dashed] (-0.42,1.62) -- (0.42,1.62);
+  \fill (0,1.62) circle (0.05);
+  \draw[dashed] (-0.30,1.24) -- (0.30,1.24);
+  \fill (0,1.24) circle (0.05);
+  \fill (0,0.78) circle (0.055);
+  \draw[gray!75,->] (0,0.45) -- (0,-0.95);
+  \draw (-1.7,-1.15) -- (1.7,-1.15);
+  \node[anchor=west] at (0.85,1.85) {$X$};
+  \node[anchor=west] at (1.95,-1.15) {$Y$};
+\end{tikzpicture}
+\caption{真恶心（定义~9.4.2 的例~4）。（依原书手绘图重绘。）}\label{fig:yuck-fuzzy-point-image}
+\end{figure}
+
+\textbf{9.4.3.\ 计算\trSchemeTheoreticImage{}的仿射局部判据。}\quad 不过例~4 显然很怪异；我们可以证明：在「合理的情势」下，这种病理并不会出现。
+
+在靶 $Y$ \trAffine{}的特殊情形（请留意这一论证在例~1 至例~3 中是如何运作的），比如说 $Y=\Spec B$，几乎按定义，$\pi\colon X\to Y$ 的\trSchemeTheoreticImage{}就由理想 $I\subset B$——$Y$ 上那些\trPullback{}到 $X$ 上为零的函数——切出。
+
+若能用这一点对\trSchemeTheoreticImage{}逐片仿射（仿射局部地）进行计算，那就太好了。在\trAffine\trOpenSet{} $\Spec B\subset Y$ 上，定义 $B$ 中由那些\trPullback{}到 $X$ 上为 $0$ 的函数组成的理想 $I(B)\subset B$。形式化地，$I(B):=\ker\bigl(B\to\Gamma(\Spec B,\pi_*\OO_X)\bigr)$。若对每个这样的 $B$ 及每个 $g\in B$，映射 $\varphi\colon I(B)_g\to I(B_g)$ 都是\trIsomorphism，则我们便把\trSchemeTheoreticImage{}定义成了一个\trClosedSubscheme（见\mbox{练习~9.1.F}）。$\varphi$ 的单射性是直截了当的：若 $r\in B$ 而 $r/g^n$ 拉回到 $\pi^{-1}(\Spec B_g)$ 上为零，则由于 $g$ 在 $\Spec B_g=D(g)$ 的所有点处都不消失，$\pi^\sharp(r)$ 在 $\pi^{-1}(\Spec B_g)$ 上也为零。
+
+于是问题便是 $\varphi$ 的满射性；把它翻译过来就是：给定 $D(g)$ 上一个拉回到 $\pi^{-1}(D(g))$ 上为零的函数 $r/g^n$，是否对某个 $m$ 有 $rg^m$ 拉回到 $\pi^{-1}(\Spec B)$ 上为零？
+
+（i）我们先来证明：若 $\pi^{-1}(\Spec B)$\trReduced，则答案是肯定的。此时我们可以利用\mbox{练习~5.2.A}：\trReduced\trScheme{}上的函数，只要在每一点处的取值都为零，就为零。于是我们可以取 $m=1$（因为 $\pi^\sharp(r)$ 在 $\pi^{-1}(D(g))$ 上消失，而 $g$ 在 $V(g)$ 上消失，故 $\pi^\sharp(rg)$ 在 $\pi^{-1}(\Spec B)=\pi^{-1}(D(g))\cup\pi^{-1}(V(g))$ 上消失）。
+
+（ii）若 $\pi^{-1}(\Spec B)$\trAffine，比如说为 $\Spec A$，答案也是肯定的：设 $r'=\pi^\sharp(r)$、$g'=\pi^\sharp(g)$ 落在 $A$ 中；若 $r'$ 在 $D(g')$ 上为零，则存在 $m$ 使 $r'(g')^m=0$（「$r'$ 在 $D(g')$ 上为零」这句话的含义恰恰就是这个——$D(g')$ 上的函数正是 $A_{g'}$）。
+
+（ii）$'$ 更一般地，若 $\pi^{-1}(\Spec B)$\trQuasicompact，答案也是肯定的：用有限多个\trAffine\trOpenSet{}覆盖 $\pi^{-1}(\Spec B)$。对其中每一个，都会有某个 $m_i$，使 $rg^{m_i}$ 拉回到这个开集上为零。然后取 $m=\max(m_i)$。（我们再次看到：拟紧性是我们的朋友！）
+
+总之，我们证明了下面这条（颇为微妙的）定理。
+
+\textbf{9.4.4.\ \trhTheorem{}。}\ ——\ \emph{设 $\pi\colon X\to Y$ 是概形间的\trMorphism。若 $X$\trReduced{}或 $\pi$\trQuasicompact，则 $\pi$ 的\trSchemeTheoreticImage{}可以仿射局部地计算：在 $\Spec A\subset Y$ 上，它由那些\trPullback{}为函数 $0$（在 $\pi^{-1}(\Spec A)$ 上）的函数（即 $A$ 的元素）切出。}
+
+\textbf{9.4.5.\ \trhCorollary{}。}\ ——\ \emph{在定理~9.4.4 的假设下，$\pi$ 的集合论像的\trClosure{}就是\trSchemeTheoreticImage{}的\trUnderlyingSet。}
+
+（上面的例~4 表明，这些假设是必需的。）
+
+\textbf{9.4.6.}\quad 特别地，若集合论像是闭的（例如 $\pi$\trFinite{}或\trProjective），则集合论像就是\trSchemeTheoreticImage{}的\trUnderlyingSet——正如上面的例~3 所许诺的那样。
+
+\textbf{9.4.7.}\ \emph{\trhCorollary{}~9.4.5 的证明。}\quad 集合论像含于\trSchemeTheoreticImage{}的\trUnderlyingSet{}之中。（请自行检验！）\trSchemeTheoreticImage{}的\trUnderlyingSet{}是闭集，故集合论像的\trClosure{}含于\trSchemeTheoreticImage{}的\trUnderlyingSet{}之中。另一方面，若 $U$ 是集合论像之\trClosure{}的\trComplement，则 $\pi^{-1}(U)=\varnothing$。在这些假设下，\trSchemeTheoreticImage{}可以局部地计算，故在 $U$ 上\trSchemeTheoreticImage{}是空集。\hfill$\square$
+
+我们以几条零散的评注作结。
+
+\textbf{9.4.A.（容易练习）}\quad 若 $X$\trReduced，证明：$\pi\colon X\to Y$ 的\trSchemeTheoreticImage{}也\trReduced。
+
+更一般地，你或许会指望：像上不该有不被源的非\trReduced{}结构所强迫的多余非\trReduced{}结构。下面这条练习在局部\trNoetherian{}的情形（此时我们可以谈论\trAssociatedPoint）把这件事说精确。
+
+\textbf{9.4.B.}\ \hard\ \textbf{（不重要练习）}\quad 若 $\pi\colon X\to Y$ 是局部\trNoetherian{}概形之间的\trQuasicompact\trMorphism，证明：像子概形的诸\trAssociatedPoint{}构成 $X$ 的诸\trAssociatedPoint{}之像的一个子集。（例 $\bigsqcup_{a\in\mathbb{C}}\Spec\mathbb{C}[t]/(t-a)\to\Spec\mathbb{C}[t]$ 表明，若你放弃拟紧性会出什么岔子——注意，源的\trReducedness{}帮不上忙。）提示：化归到 $X$ 与 $Y$ 都\trAffine{}的情形。（你能否培养出一种几何直观，让这件事在你看来是顺理成章的？）
+
+\textbf{9.4.8.\ 局部闭子概形的\trSchemeTheoretic\trClosure。}\quad 我们把局部闭嵌入 $\pi\colon X\hookrightarrow Y$ 的\textbf{\trSchemeTheoretic\trClosure{}}（scheme-theoretic closure）定义为 $\pi$ 的\trSchemeTheoreticImage{}。（一个更简短的说法是 schematic closure（概形闭包），不过这个更雅致的命名并未流行开来。）
+
+\textbf{9.4.C.（练习）}\quad 若局部闭嵌入 $V\hookrightarrow X$ 是\trQuasicompact{}的（例如 $V$ \trNoetherian{}时，\cref{ex:quasicompact-quasiseparated-source}(a)；或 $V$ \trReduced{}时），证明：\mbox{练习~9.2.C}中的 (iii) 蕴含 (i) 与 (ii)。于是，在这一幸运的情势下，局部闭嵌入可以用三种不同的方式来思考，哪种方便用哪种。（提示：推论~9.4.5。）
+
+\textbf{9.4.D.（不重要练习，但有助直观）}\quad 若 $\pi\colon X\hookrightarrow Y$ 是向一个局部\trNoetherian{}概形中的局部闭嵌入（于是 $X$ 也局部\trNoetherian），则\trSchemeTheoretic\trClosure{}的诸\trAssociatedPoint{}（自然地双射于）$X$ 的诸\trAssociatedPoint。（提示：\mbox{练习~9.4.B}。）非正式地说：\trSchemeTheoretic{}闭包上唯一的非\trReduced{}结构，就是被 $X$ 上的非\trReduced{}结构「强迫出来的」那一点。
+
+\textbf{9.4.9.\ 闭子集上的（既约）子概形结构。}\quad 设 $X^{\mathrm{set}}$ 是概形 $Y$ 的一个闭\emph{子集}。那么我们可以在 $X^{\mathrm{set}}$ 上定义一个\trCanonical{}的概形结构 $X$，它是既约的。我们可以把它描述为：由那些在 $X^{\mathrm{set}}$ 的所有点处取值都为零的函数切出。在 $Y$ 的\trAffine\trOpenSet{} $\Spec B$ 上，若集合 $X^{\mathrm{set}}$ 对应于\trRadicalIdeal{} $I=I(X^{\mathrm{set}}\cap\Spec B)$（回想 \S3.7 中的函数 $I(\cdot)$），则概形 $X$ 对应于 $\Spec B/I$。你可以很快核验：这个构造对任何特异包含 $\Spec B_f\hookrightarrow\Spec B$ 都表现良好。我们还可以按下面这种疯狂的方式，把这个构造看作\trSchemeTheoreticImage{}的一例：令 $W$ 是把 $X^{\mathrm{set}}$ 的所有点作成\trDisjointUnion{}所得的概形——对应于 $X^{\mathrm{set}}$ 中点 $p$ 的那个点，就是 $\OO_{Y,p}$ 的\trResidueField{}之谱。令 $\rho\colon W\to Y$ 为「\trCanonical」映射：把「$p$」送到 $p$，并在剩余域上给出\trIsomorphism。那么 $X$ 上的概形结构便是 $\rho$ 的\trSchemeTheoreticImage{}。第三种定义：它是那种\trUnderlyingSet{}包含 $X^{\mathrm{set}}$ 的最小\trClosedSubscheme。
+
+\textbf{9.4.E.（练习）}\quad 证明：这三种定义全都相同。
+
+这个构造称为闭子集 $X^{\mathrm{set}}$ 上的（诱导）\textbf{\trReduced\trSubscheme{}结构}（reduced subscheme structure）。（一道含糊的练习：请把既约子概形结构这个定义弄得精确而严格，直到你自己满意为止。）
+
+\textbf{9.4.F.（练习）}\quad 证明：诱导既约子概形 $X\hookrightarrow Y$ 的\trUnderlyingSet{}确是闭子集 $X^{\mathrm{set}}$。证明：$X$\trReduced。
+
+\textbf{9.4.10.\ 概形的既约版本。}\quad 在最要紧的情形，即 $X^{\mathrm{set}}$ 为整个 $Y$ 时，我们得到一个\emph{\trReduced\trClosedSubscheme} $Y^{\mathrm{red}}\hookrightarrow Y$，称为 $Y$ 的\textbf{\trReduction{}}（reduction）。在\trAffine\trOpenSubset{} $\Spec B\hookrightarrow Y$ 上，$Y^{\mathrm{red}}\hookrightarrow Y$ 对应于（对 $B$ 的\trNilradical{} $\mathfrak{N}(B)$）取商的结果。概形的\trReduction{}就是概形的「既约版本」；非正式地说，它对应于「把绒毛剪掉」。
+
+另一个等价的\trReduction{}定义：在\trAffine\trOpenSubset{} $\Spec B\hookrightarrow Y$ 上，$Y$ 的\trReduction{}对应于\trNilradical{} $\mathfrak{N}(B)\subset B$。我们容易核验：对任意 $f\in B$，$\mathfrak{N}(B)_f=\mathfrak{N}(B_f)$。由\mbox{练习~9.1.F}，这就定义出一个\trClosedSubscheme，我们称之为\trReduction{}。
+
+\textbf{9.4.11.}\ \hard\ \emph{\trhCaveat{}/\trhExample{}。}\quad 下述说法并不成立：对\emph{每个}开子集 $U\subset Y$，$\Gamma(U,\OO_{Y^{\mathrm{red}}})$ 都等于 $\Gamma(U,\OO_Y)$ 模去其幂零元的结果。例如，在 $Y=\bigsqcup_n\Spec k[x]/(x^n)$ 上，函数 $x$ 并不幂零，但它在 $Y^{\mathrm{red}}$ 上为 $0$，因为它是「\trLocally\trNilpotent」的。这或许会让你想起定义~9.4.2 之后的例~4。

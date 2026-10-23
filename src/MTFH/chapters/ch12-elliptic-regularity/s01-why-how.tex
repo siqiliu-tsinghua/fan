@@ -1,0 +1,198 @@
+
+\section{\trEllipticRegularity：为何与如何？}
+\label{sec:why-how}
+
+我们已经多次在“\trEllipticRegularity”的名义下，援引\trFloerEquation{}诸解的\trRegularity：
+\[
+\frac{\partial u}{\partial s}+J(u)\frac{\partial u}{\partial t}+\operatorname{grad}H_{t}(u)=0\text{。}
+\]
+第一次是在第~6~章中，我们需要它来证明有限\trEnergy{}解所成空间 $\scr{M}$ 的\trCompact{}性（更确切地说，\cref{thm:solution-smoothness-regularity}）。我们当时使用的陈述是下面这条。
+
+\begin{lemma}[\trEllipticRegularity]\label{thm:elliptic-regularity-lemma}
+设 $U$ 是 $\CC$ 的一个\trOpen{}子集。\trFloerEquation
+\[
+\frac{\partial u}{\partial s}+J(u)\frac{\partial u}{\partial t}+\operatorname{grad}H_{t}(u)=0
+\]
+的、定义在 $U$ 上且满足
+\[
+\sup_{n\in\NN}\|\operatorname{grad}u_{n}\|_{L^{\infty}(U)}\le M
+\]
+（对某个实数 $M$）的 $\cC^{\infty}$ 类解所成的任一序列 $(u_{n})$，都有一个子序列在 $U$ 的每个\trCompact{}子集上一致\trConvergence{}——其全部导数亦然——极限因而是 $\cC^{\infty}$ 类的。
+\end{lemma}
+
+其次，在\trTransversality{}定理~8.1.2（\cref{thm:moduli-manifold-dimension}）的证明中，我们也曾求助于\trEllipticRegularity，以证实\trFloerEquation{}在\trSobolev{}型空间 $\scr{P}^{1,p}(x,y)$ 中的解都是 $\cC^{\infty}$ 类的，而且由 $\scr{P}^{1,p}$ 的\trTopology{}在这个解空间上诱导出的那个\trTopology，与 $\scr{M}$ 上的那个相同，也就是说，即 $\cC^{\infty}_{\mathrm{loc}}$ \trTopology（$\scr{P}^{1,p}(x,y)$ 的定义见\cref{thm:p1p-definition}）。
+
+在那之后，这个\trEllipticRegularity{}论证又在一些类似的场合中出现：在第~9~章里，为了证明由\trGluing{}产出的那些 $\scr{P}^{1,p}$ 解是“真正的”解、并且在正确的\trTopology{}下\trConvergence{}到一条\trBrokenTrajectory（\cref{thm:psihat-tends-broken}）；随后是在第~11~章里，那里在一种更一般的框架中证明了\trCompact{}性、\trTransversality{}与\trGluing{}的结果——其中的\trAlmostComplex{}结构 $J$ 与\trHamiltonian{}量 $H$ 依赖于 $s$，有时还依赖于另一个参数 $\lambda$。
+
+于是我们看到，\trEllipticRegularity{}在\trFloerHomology{}构造的每一个步骤里都扮演了一个角色。这正是我们如今要给出这些性质的严格陈述与详细证明的缘由。我们主要用到了 [51]。
+
+\subsection{（线性）\trEllipticRegularity{}结果}
+
+本书至此所援引过的那些\trEllipticRegularity{}结果，都与下面的定理相关联。
+
+\begin{theorem}\label{thm:local-regularity-estimate}
+设 $p>1$，并设 $U\subset\CC$ 是一个\trOpen{}子集。设 $f\in W^{k,p}_{\mathrm{loc}}(U)$，又设 $u\in L^{p}_{\mathrm{loc}}(U)$ 是 $\bar{\partial}u=f$ 的一个\trWeakSolution。那么
+\[
+u\in W^{k+1,p}_{\mathrm{loc}}(U)\text{。}
+\]
+此外，对每个满足 $\overline{V}\subset U$ 的相对紧\trOpen{}集 $V$，都存在一个常数 $C=C(k,p,V,U)$，\footnote{译注：原书此处印作 $C(k,p,K,U)$；本定理中并未出现 $K$，按陈述中被估计的相对紧开集 $V$，疑应为 $C(k,p,V,U)$。此处径改。——译者注}使得
+\[
+\|u\|_{W^{k+1,p}(V)}\le C\left(\|f\|_{W^{k,p}(U)}+\|u\|_{L^{p}(U)}\right)\text{。}
+\]
+\end{theorem}
+
+我们将在\cref{sec:proof-theorem-1212}中证明这条定理。它最初的那批推论之一，便是第~8~章中所使用的下述估计；它就是\cref{thm:local-regularity-estimate}在算子 $L$ 情形下的类比。
+
+\emph{定理（引理~8.7.2）。}设 $p>1$，设 $S\colon\RR\times S^{1}\longrightarrow\operatorname{End}(\RR^{2n})$ 是一个满足 $\lim_{s\to\pm\infty}S(s,t)=S^{\pm}(t)$ 的连续映射，最后设
+\[
+L\colon W^{1,p}(\RR\times S^{1};\RR^{2n})\longrightarrow L^{p}(\RR\times S^{1};\RR^{2n})
+\]
+是受\trPerturbation{}的\trCauchyRiemann{}算子
+\[
+LY=\frac{\partial Y}{\partial s}+J_{0}\frac{\partial Y}{\partial t}+S\cdot Y\text{。}
+\]
+那么存在一个常数 $C>0$，使得
+\[
+\forall Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})\text{，}\quad\|Y\|_{W^{1,p}}\le C\left(\|LY\|_{L^{p}}+\|Y\|_{L^{p}}\right)\text{。}
+\]
+更一般地，若 $Y$ 与 $LY$ 都属于 $L^{p}$，则 $Y\in W^{1,p}$，并且上述不等式成立。\footnote{译注：原书此处印作 “the equality holds”（等式成立）；所示实为一条不等式，疑应为 “the inequality”。此处径改（§12.2 末的同款措辞亦照此处理）。——译者注}
+
+我们将要在\cref{sec:proof-lemma-872}中证明它。我们还使用\cref{thm:local-regularity-estimate}来得到\trFloer{}算子的\trLinearization{}的一条\trRegularity{}结果（在\cref{thm:z-pairing-vanish}与\cref{thm:fredholm-operator-L}的证明中用过它）。
+
+\begin{theorem}[\trEllipticRegularity，线性版本]\label{thm:floer-operator-regularity}
+设 $L$ 是算子
+\[
+L=\frac{\partial}{\partial s}+J_{0}\frac{\partial}{\partial t}+S\text{，}\qquad\text{其中 }S\in\cC^{\infty}\bigl(\RR\times S^{1};\operatorname{End}(\RR^{2n})\bigr)\text{。}
+\]
+我们假设
+\[
+\lim_{s\to\pm\infty}S(s,t)=S^{\pm}(t)\qquad\text{且}\qquad\lim_{s\to\pm\infty}\frac{\partial S}{\partial s}(s,t)=0\text{。}
+\]
+若 $Y\in L^{p}(\RR\times S^{1};\RR^{2n})$ 使得按\trDistribution{}的意义 $LY=0$，那么 $Y$ 是 $\cC^{\infty}$ 类的，并且 $Y\in W^{1,p}(\RR\times S^{1};\RR^{2n})$。若 $p>2$，那么对每个 $q>1$ 我们还有 $Y\in W^{1,q}(\RR\times S^{1};\RR^{2n})$。
+\end{theorem}
+
+\begin{proof}
+由于 $Y$ 属于 $L^{p}$，
+\[
+\bar{\partial}Y=-SY\in L^{p}(\RR\times S^{1};\RR^{2n})\text{。}
+\]
+利用\cref{thm:local-regularity-estimate}，我们于是发现 $Y\in W^{1,p}_{\mathrm{loc}}$，从而 $SY\in W^{1,p}_{\mathrm{loc}}$。由同一条定理，我们有 $Y\in W^{2,p}_{\mathrm{loc}}$，再由归纳法，对每个 $k\in\NN$ 都有 $Y\in W^{k,p}_{\mathrm{loc}}$（这是一次\trElliptic{}自举）。利用\cref{thm:sobolev-estimates}，我们推出 $Y$ 是 $\cC^{\infty}$ 类的。前一条定理（它也以引理~8.7.2 之名为人所知）告诉我们，它属于 $W^{1,p}$。
+
+接下来假设 $p>2$。按上面那样的方式进行，为了证明对每个 $q>1$ 都有 $Y\in W^{1,q}(\RR\times S^{1})$，只需证明对每个 $q>1$ 都有 $Y\in L^{q}(\RR\times S^{1})$。由于 $Y$ 是 $\cC^{\infty}$ 类的，一条\trExponentialDecay{}性质
+\[
+\|Y(s,t)\|\le e^{-\delta|s|}\qquad\forall s,t\text{，其中 }\delta>0\text{ 为一常数}
+\]
+便已足够。现在，\cref{thm:exp-decay-dichotomy}保证这条性质成立，只要函数
+\[
+s\longmapsto\int_{0}^{1}\|Y(s,t)\|^{2}\,dt
+\]
+当 $s\to\pm\infty$ 时不趋于无穷。让我们于是来验证我们的 $Y$ 满足这条性质。\trHoelder{}不等式给出
+\[
+\int_{0}^{1}\|Y(s,t)\|^{2}\,dt\le\left(\int_{0}^{1}\|Y(s,t)\|^{p}\,dt\right)^{2/p}\text{。}
+\]
+因此，若 $\int_{0}^{1}\|Y(s,t)\|^{2}\,dt$ 趋于无穷，那么 $\int_{0}^{1}\|Y(s,t)\|^{p}\,dt$ 也同样趋于无穷，这是不可能的，因为
+\[
+\int_{-\infty}^{+\infty}\int_{0}^{1}\|Y(s,t)\|^{p}\,dt\,ds=\|Y\|^{p}_{L^{p}}<+\infty\text{，}
+\]
+定理得证。
+\end{proof}
+
+\subsection{（非线性）\trEllipticRegularity{}结果}
+
+“非线性”的\trEllipticRegularity{}性质包含在下述陈述之中。
+
+\begin{proposition}\label{thm:loc-topologies-coincide}
+设 $p>2$，那么\trFloerEquation{}的一个解 $u\in W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};W)$ 是 $\cC^{\infty}$ 类的。在解空间 $W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};W)$ 上，$W^{1,p}_{\mathrm{loc}}$ 与 $\cC^{\infty}_{\mathrm{loc}}$ 这两个\trTopology{}相重合。
+\end{proposition}
+
+记号 $W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};W)$ 在本书中是新的，我们随后会阐明它的含义。另请注意，与前面那些陈述相反，非线性\trEllipticRegularity{}需要 $p>2$ 这一假设。下面给出一些解释。
+
+\textbf{为何假设 $p>2$？}
+
+在所有这些\trRegularity{}陈述中，目标都是证明一个\trWeakSolution（按\trDistribution{}的意义的解）是一个 $\cC^{\infty}$ 类的真正的解。在我们这里，按假设，解属于\trSobolevSpace{} $W^{1,p}(\RR\times S^{1})$。正如我们在\cref{sec:banach-manifold-p1p}中所解释的，假设 $p>2$ 便能经由\trRellich{}定理（\cref{thm:rellich-embedding}）保证这个解是连续的；与此同时，这也使得我们得以在局部坐标下工作。
+
+解 $u\colon\RR\times S^{1}\longrightarrow W$ 的\trRegularity{}可以在 $W$ 的诸\trChart{}中读出。但此处牵涉到的另一些性质——比如 $L^{p}$ 可积性（即便在\trCompact{}集上）——在转移映射下并非不变。另一方面，若 $u$ 属于 $W^{1,p}(\RR\times S^{1};\RR^{2n})$，且 $\varphi\colon\RR^{2n}\longrightarrow\RR^{2n}$ 是 $\cC^{1}$ 类的\footnote{译注：原书此处印作 “is continuous”（是连续的）；按紧随其后的链式法则等式用到了 $(d\varphi)_{u}$，疑应为 $\cC^{1}$ 类。此处径改。——译者注}，那么对 $p>2$，就有 $\varphi\circ u\in W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$。的确，由 $u$ 的连续性，$\varphi\circ u$ 属于 $L^{p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$，并且
+\[
+\frac{\partial(\varphi\circ u)}{\partial s}=(d\varphi)_{u}\left(\frac{\partial u}{\partial s}\right)\in L^{p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})
+\]
+（对 $t$ 的导数亦然），因为它是一个连续函数与一个 $L^{p}_{\mathrm{loc}}$ 函数的乘积。于是，我们可以把空间 $W^{1,p}(\RR\times S^{1};W)$ 定义为这样的连续函数所成的子空间：它们在坐标下由 $W^{1,p}(\RR\times S^{1};\RR^{2n})$ 函数所表示。一个等价的替代做法，是把 $W$ \trEmbedding{}到 $\RR^{m}$ 中，然后考虑取值于 $W$ 内的那些 $W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{m})$ 函数（这个定义将不依赖于所选的\trEmbedding）。
+
+这并不是假设 $p>2$ 的唯一理由。所有这些\trRegularity{}陈述之证明的主要配料，是一个“\trElliptic{}自举”论证：它断言，若一个解属于 $W^{k,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$，那么它也属于 $W^{k+1,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$。解的\trRegularity{}随后便是\cref{thm:sobolev-estimates}的一个推论。我们在\trEllipticRegularity{}的线性情形（\cref{thm:floer-operator-regularity}）的证明中应用过这个论证。而在非线性的情形下，条件 $p>2$ 结果是决定性的。参见\cref{thm:generalized-regularity-estimate}在\cref{subsec:proof-thm-1215}中的证明。
+
+\cref{thm:elliptic-regularity-lemma}的证明依赖于\cref{thm:loc-topologies-coincide}，但它并不是后者的一个直接推论。这是因为，对序列 $(u_{n})$ 应用\trArzelaAscoliTheorem{}只能给出一个仅连续的极限。为了证明这个极限属于 $W^{1,p}_{\mathrm{loc}}$、从而可以应用\cref{thm:loc-topologies-coincide}，我们还必须用到 $\|\operatorname{grad}u_{n}\|$ 一致\trBounded{}这一事实。后者将在\cref{sec:nonlinear-proofs}中得到证明。
+
+\cref{thm:loc-topologies-coincide}给出了定理~8.1.2（\cref{thm:moduli-manifold-dimension}）之证明所需要的\trRegularity{}论证，因为按定义，空间 $\scr{P}^{1,p}(x,y)$ 包含于 $W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};W)$ 之中（参见 $\scr{P}^{1,p}$ 的定义即\cref{thm:p1p-definition}，那里把诸\trChart{}显式地写了出来）。因此，证明这条命题就足够了。
+
+我们将要给出的证明依赖于一个与\cref{thm:local-regularity-estimate}相类似的陈述。我们先取有限多个\trChart，让其\trOpen{}集盖住 $W$，以便化归到 $W=\RR^{2n}$ 的情形。于是，映射 $u\in W^{1,p}(\RR\times S^{1};\RR^{2n})$ 就是
+\[
+\frac{\partial u}{\partial s}+J(u)\frac{\partial u}{\partial t}+\operatorname{grad}H_{t}(u)=0
+\]
+的一个解。这里的 $J$ 与 $H$ 都是 $\cC^{\infty}$ 类的，并且可以依赖于 $s$（如同在第~11~章中那样），而这丝毫不影响证明。设
+\[
+\widetilde{J}(s,t)=J(u(s,t))\qquad\text{与}\qquad h(s,t)=\operatorname{grad}H_{t}(u(s,t))\text{。}
+\]
+利用 $u$ 的连续性，我们轻易便能看出
+\[
+\widetilde{J}\in W^{1,p}_{\mathrm{loc}}\bigl(\RR\times S^{1};\operatorname{End}(\RR^{2n})\bigr)\qquad\text{与}\qquad h\in W^{1,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})\text{。}
+\]
+更一般地，而且不添任何额外的困难，我们可以证明 $\widetilde{J}$ 与 $h$ 具有和 $u$ 相同的\trRegularity：若 $u\in W^{k,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$，那么
+\[
+\widetilde{J}\in W^{k,p}_{\mathrm{loc}}\bigl(\RR\times S^{1};\operatorname{End}(\RR^{2n})\bigr)\qquad\text{与}\qquad h\in W^{k,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})\text{。}
+\]
+
+下面就是我们需要证明的那个陈述。
+
+\begin{theorem}\label{thm:generalized-regularity-estimate}
+设 $k\ge 0$，设 $p>2$，设
+\[
+\widetilde{J}\in W^{\max(k,1),p}_{\mathrm{loc}}\bigl(\RR\times S^{1};\operatorname{End}(\RR^{2n})\bigr)\text{，}\qquad\widetilde{J}^{2}=-\mathrm{Id}\text{，}
+\]
+又设 $h\in W^{k,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$。若 $u\in L^{p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$ 是
+\[
+\frac{\partial u}{\partial s}+\widetilde{J}\frac{\partial u}{\partial t}+h=0
+\]
+的一个解（按\trDistribution{}的意义），那么 $u\in W^{k+1,p}_{\mathrm{loc}}(\RR\times S^{1};\RR^{2n})$。
+
+设 $V\subset U\subset\RR\times S^{1}$ 是两个相对紧的子集，并设 $c_{0}>0$ 满足
+\[
+\|\widetilde{J}\|_{W^{\max(k,1),p}(U)}\le c_{0}\text{。}
+\]
+那么存在一个常数 $C$（它依赖于 $U$、$V$、$c_{0}$、$p$ 与 $k$），使得对每个 $\ell\in\{0,\dots,k\}$，\footnote{译注：原书于此定理两处均印作 $W^{\min(k,1),p}$（本段假设中的 $\widetilde{J}$ 与随后的界 $\|\widetilde{J}\|_{W^{\min(k,1),p}(U)}\le c_{0}$），又把估计范围印作 $\ell\in\{0,\dots,\max(k-1,0)\}$。前者与\cref{subsec:proof-thm-1215} 的证明相悖：$k=0$ 时该证明用到 $\widetilde{J}$ 的一阶\trWeakDerivative、$k\ge2$ 时用到其 $k$ 阶导数，假设应为 $W^{\max(k,1),p}$；后者按原书证明（p.475--476）实对每个 $\ell\le k$ 建立估计，且与本定理结论 $u\in W^{k+1,p}_{\mathrm{loc}}$ 相接，应为 $\{0,\dots,k\}$。两项均径改。——译者注}都有
+\[
+\|u\|_{W^{\ell+1,p}(V)}\le C\left(\|h\|_{W^{\ell,p}(U)}+\|u\|_{W^{\ell,p}(U)}\right)\text{。}
+\]
+\end{theorem}
+
+\subsection{阿里阿德涅之线}\label{subsec:ariadne-thread}
+
+前面的六条陈述构成了又一座迷宫。\footnote{译注：阿里阿德涅之线（Ariadne's thread）典出希腊神话：忒修斯入迷宫诛牛怪时，以阿里阿德涅所授之线原路引出；后世以此为“迷宫引路”之喻——原书各章的这类框图即循此意。}为了帮助读者找到道路，我们给出一张新的示意图。
+
+\begin{center}
+\begin{tikzpicture}
+\tikzset{stmtbox/.style={draw, inner sep=3pt, align=center}}
+\node[stmtbox] (stmt1231) at (0,0) {12.3.1};
+\node[stmtbox] (stmt1212) at (-2.2,-1.7) {12.1.2\\{}$\bar{\partial}$};
+\node[stmtbox] (stmt1215) at (2.3,-1.7) {12.1.5\\广义 $\bar{\partial}$};
+\node[stmtbox] (stmt1213) at (-3.7,-3.4) {12.1.3};
+\node[stmtbox] (stmt872) at (-2.0,-3.4) {8.7.2};
+\node[stmtbox] (stmt1214) at (1.0,-3.4) {12.1.4};
+\node[stmtbox] (stmt1211) at (3.6,-3.4) {12.1.1};
+\draw[double,->,shorten >=2pt] (stmt1231) -- (stmt1212);
+\draw[double,->,shorten >=2pt] (stmt1231) -- (stmt1215);
+\draw[double,->,shorten >=2pt] (stmt1212) -- (stmt1213);
+\draw[double,->,shorten >=2pt] (stmt1212) -- (stmt872);
+\draw[double,->,shorten >=2pt] (stmt872) -- (stmt1213);
+\draw[double,->,shorten >=2pt] (stmt1215) -- (stmt1214);
+\draw[double,->,shorten >=2pt] (stmt1215) -- (stmt1211);
+\draw[double,->,shorten >=2pt] (stmt1214) -- (stmt1211);
+\node at (-2.9,-4.3) {线性};
+\node at (2.3,-4.3) {非线性};
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+\item 我们已经证明了：\cref{thm:local-regularity-estimate}与\cref{thm:cz-inequality-L}蕴含\cref{thm:floer-operator-regularity}。
+\item 在\cref{sec:proof-lemma-872}中，我们将证明\cref{thm:local-regularity-estimate}蕴含\cref{thm:cz-inequality-L}。
+\item 在\cref{sec:proof-theorem-1212}中，我们将证明\cref{thm:calderon-zygmund-inequality}蕴含\cref{thm:bar-partial-regularity-criterion}，再蕴含\cref{thm:local-regularity-estimate}。
+\item 在\cref{sec:nonlinear-proofs}中，我们将证明\cref{thm:bar-partial-regularity-criterion}蕴含\cref{thm:generalized-regularity-estimate}、再蕴含\cref{thm:loc-topologies-coincide}，以及\cref{thm:generalized-regularity-estimate}与\cref{thm:loc-topologies-coincide}蕴含\cref{thm:elliptic-regularity-lemma}。
+\end{itemize}
